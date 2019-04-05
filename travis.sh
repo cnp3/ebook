@@ -1,7 +1,7 @@
 #!/bin/bash
 # on error exit
 # install mscgen
-git clone git@github.com:sphinx-contrib/mscgen.git
+git clone https://github.com/sphinx-contrib/mscgen.git
 #wget https://files.pythonhosted.org/packages/69/2b/1d78898c62a9b12d0949d28c1221d4e7e299b7d51859b149f6f4e7b3ed51/sphinxcontrib-mscgen-0.4.tar.gz
 #tar xzvf sphinxcontrib-mscgen-0.4.tar.gz
 #cd sphinxcontrib-mscgen-0.4
