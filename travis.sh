@@ -8,7 +8,7 @@ tar xzvf sphinxcontrib-mscgen-0.4.tar.gz
 cd sphinxcontrib-mscgen-0.4
 cat sphinxcontrib/mscgen.py | sed 's/OSError,/OSError as/' > sphinxcontrib/mscgen.py
 cd ..
-pip3 install sphinxcontrib-mscgen-0.4
+pip3 install -e sphinxcontrib-mscgen-0.4
 cd $PWD
 set -e
 # Flags used here, not in `make html`:
