@@ -2,8 +2,9 @@ before_install:
  - sudo apt-get install mscgen
  - sudo apt-get install texlive-font-utils
  - sudo apt-get install texlive-latex-extra
-install: "pip install -q -r .travis-requirements.txt"
+install: "pip3 install -q -r .travis-requirements.txt"
 language: python
 python:
+ - "3.6"
 # command to run tests
 script: bash travis.sh
