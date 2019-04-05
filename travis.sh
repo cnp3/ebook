@@ -6,6 +6,7 @@ git clone https://github.com/sphinx-contrib/mscgen.git
 #tar xzvf sphinxcontrib-mscgen-0.4.tar.gz
 #cd sphinxcontrib-mscgen-0.4
 cat mscgen/sphinxcontrib/mscgen.py | sed 's/OSError,/OSError as/' > mscgen/sphinxcontrib/mscgen.py
+cat mscgen/sphinxcontrib/mscgen.py | sed 's/except MscgenError, exc:/except MscgenError ad exc:/g' > mscgen/sphinxcontrib/mscgen.py
 #cat sphinxcontrib/mscgen.py | sed 's/from sphinx.util.compat import Directive/from docutils.parsers.rst import directives, Directive/' > sphinxcontrib/mscgen.py
 #cd ..
 pip3 install -e mscgen
