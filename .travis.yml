@@ -1,6 +1,6 @@
 before_install:
  - sudo apt-get install mscgen
- - sudo apt-get install epstopdf
+ - sudo apt-get install texlive-font-utils
  - sudo apt-get install texlive-latex-extra
 install: "pip install -q -r .travis-requirements.txt"
 language: python
