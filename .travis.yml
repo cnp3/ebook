@@ -1,0 +1,6 @@
+install: "pip install -q -r .travis-requirements.txt"
+language: python
+python:
+  - "3.6"
+  # command to run tests
+  script: bash travis.sh
