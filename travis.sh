@@ -10,7 +10,6 @@ cat mscgen/sphinxcontrib/mscgen.py | sed 's/except MscgenError, exc:/except Mscg
 #cat sphinxcontrib/mscgen.py | sed 's/from sphinx.util.compat import Directive/from docutils.parsers.rst import directives, Directive/' > sphinxcontrib/mscgen.py
 #cd ..
 pip3 install -e mscgen
-rm -rf mscgen
 set -e
 # Flags used here, not in `make html`:
 #  -n   Run in nit-picky mode. Currently, this generates warnings for all missing references.
