@@ -32,7 +32,7 @@ extensions = ['sphinx.ext.todo', 'sphinxcontrib.mscgen', 'sphinx.ext.graphviz', 
 #mscgen_args=['-T eps']
 #mscgen='/home/vagrant/local/mscgen-0.20/bin/mscgen'
 #mscgen_epstopdf='/usr/bin/epstopdf'
-mscgen_epstopdf_args=['--debug']
+#mscgen_epstopdf_args=['--debug']
 
 
 # mcq
