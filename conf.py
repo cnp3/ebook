@@ -55,14 +55,14 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Computer networking : Principles, Protocols and Practice'
-copyright = u'2013 Olivier Bonaventure'
+copyright = u'2019 Olivier Bonaventure'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
 # built documents.
 #
 # The short X.Y version.
-version = ''
+version = '3'
 # The full version, including alpha/beta/rc tags.
 release = ''
 
@@ -85,9 +85,7 @@ exclude_trees = ['_build']
 
 # List of files that should not be automatically compiled by sphynx because they are included
 
-exclude_patterns = [ '*#*',   # emacs backups
-                     'MCQ.old/*',
-                     'mcq-ex/*']
+exclude_patterns = [ '*#*' ]
 
 # epilog add to all included files
 #rst_epilog = """
@@ -234,8 +232,6 @@ latex_elements = {
 tikz_libraries="positioning"
 
 tikz_proc_suite='Netpbm'
-
-
 
 # -- Options for PDF output --------------------------------------------------
 # Grouping the document tree into PDF files. List of tuples # (source start file, target name, title, author, options). # # If there is more than one author, separate them with \\. # For example: r'Guido van Rossum\\Fred L. Drake, Jr., editor' #
