@@ -79,6 +79,31 @@ A `time-sequence diagram` describes the interactions between communicating hosts
       c=>d [ label = "DATA.ind(0)" ];
 
 
+  .. tikz::
+     
+     :libs: arrows,shadows,calc
+
+     \begin{sequencediagram}
+	    
+     \tikzstyle{inststyle}=[rectangle,anchor=west,minimum
+	height=0.8cm, minimum width=1.6cm, fill=white]
+     \tikzstyle{dotted}=[line width=2pt,red!50]
+     \newinst{ue}{UE}
+     \newinst[3]{nodeb}{Node B}
+     \newinst[3]{rnc}{RNC}
+     \mess{ue}{RRC Connection Request}{rnc}
+     \mess{rnc}{Radio Link Setup Request}{nodeb}
+     \mess{nodeb}{Radio Link Setup Response}{rnc}
+     \mess{rnc}{Establish Request}{nodeb}
+     \mess{nodeb}{Establish Confirm}{rnc}
+     \mess{rnc}{RRC Connection Setup}{ue}
+     \postlevel
+     \mess{nodeb}{Synchronization Indication}{rnc}
+     \filldraw[fill=black!30] ($(RRC Connection Setup to)+(0,-.3)$) rectangle ($(Synchronization Indication from) +(0,.3)$) node[midway] {L1 Synchronization};
+     \mess{ue}{RRC Connection Setup Complete}{rnc}
+     \end{sequencediagram}
+     	     
+      
 Time-sequence diagrams are usual when trying to understand the characteristics of a given communication scheme. When considering the above transmission scheme, is it useful to evaluate whether this scheme allows the two communicating hosts to reliably exchange information ? A digital transmission will be considered as reliable when a sequence of bits that is transmitted by a host is received correctly at the other end of the wire. In practice, achieving perfect reliability when transmitting information using the above scheme is difficult. Several problems can occur with such a transmission scheme.
 
 
