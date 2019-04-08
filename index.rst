@@ -16,8 +16,7 @@ Computer Networking : Principles, Protocols and Practice, 2nd edition
 
    This is an unpolished draft of the second edition of this ebook. If you find any error or have suggestions to improve the text, please create an issue via https://github.com/CNP3/ebook/issues/new
 
-    The development of this edition of the textbook is carried out on `github
-    <https://github.com/CNP3/ebook>`_ 
+    The development of this edition of the textbook is carried out on `https://github.com/CNP3/ebook <https://github.com/CNP3/ebook>`_ 
 
     The source code of the entire textbook is written in `reStructuredText <http://docutils.sourceforge.net/rst.html>`_ and uses several `sphinx <http://sphinx.pocoo.org>`_ features. You can browse it from `github <https://github.com/CNP3/ebook/tree/master>`_ 
 
@@ -38,11 +37,11 @@ Part 1: Principles
 .. toctree::
    :maxdepth: 4
 
-..   principles/reliability
+     principles/reliability
 ..   principles/network
 ..   principles/transport
 ..   principles/naming
-   principles/sharing
+..   principles/sharing
 ..   principles/referencemodels
 ..   principles/security
 

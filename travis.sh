@@ -1,6 +1,8 @@
 #!/bin/bash
 # on error exit
 # install mscgen
+mkdir python
+cd python
 git clone https://github.com/obonaventure/mscgen.git
 #wget https://files.pythonhosted.org/packages/69/2b/1d78898c62a9b12d0949d28c1221d4e7e299b7d51859b149f6f4e7b3ed51/sphinxcontrib-mscgen-0.4.tar.gz
 #tar xzvf sphinxcontrib-mscgen-0.4.tar.gz
@@ -10,6 +12,9 @@ git clone https://github.com/obonaventure/mscgen.git
 #cat sphinxcontrib/mscgen.py | sed 's/from sphinx.util.compat import Directive/from docutils.parsers.rst import directives, Directive/' > sphinxcontrib/mscgen.py
 #cd ..
 pip3 install -e mscgen
+git clone https://github.com/sphinx-contrib/tikz.git
+pip3 install -e tikz
+cd ..
 set -e
 # Flags used here, not in `make html`:
 #  -n   Run in nit-picky mode. Currently, this generates warnings for all missing references.
