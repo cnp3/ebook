@@ -219,7 +219,6 @@ latex_elements = {
 'preamble': '''
 \usepackage{tikz}
 \usepackage{pgfplots}
-\usepackage{pgf-umlsd}
 \pgfplotsset{compat=1.14}
 \usetikzlibrary{arrows,positioning, matrix,backgrounds,shapes,shadows,calc}
 '''
@@ -231,7 +230,7 @@ latex_elements = {
 # If false, no module index is generated.
 #latex_use_modindex = True
 
-tikz_libraries="positioning"
+tikz_libraries="positioning,matrix,arrows"
 
 tikz_proc_suite='Netpbm'
 

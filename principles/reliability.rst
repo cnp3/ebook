@@ -11,17 +11,24 @@ Connecting two hosts
 
 .. warning:: 
 
-   This is an unpolished draft of the second edition of this ebook. If you find any error or have suggestions to improve the text, please create an issue via https://github.com/obonaventure/cnp3/issues?milestone=1
-
+   This is an unpolished draft of the second edition of this ebook. If you find any error or have suggestions to improve the text, please create an issue via https://github.com/CNP3/ebook/issues?milestone=1
 
 
 The first step when building a network, even a worldwide network such as the Internet, is to connect two hosts together. This is illustrated in the figure below.
 
- .. figure:: figures/twohosts.png
-    :align: center
-    :scale: 70
-   
-    Connecting two hosts together
+.. tikz:: Connecting two hosts together
+   :libs: positioning, matrix
+
+    \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em
+}, }
+    \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
+    \node[router] (R1) {R1};
+    \node[host, right=of R1] (A) {A};
+
+    \path[draw,thick]
+    (A) edge (R1);
+
+
 
 To enable the two hosts to exchange information, they need to be linked together by some kind of physical media. Computer networks have used various types of physical media to exchange information, notably :
 
@@ -155,7 +162,7 @@ From a Computer Science viewpoint, the physical transmission of information thro
 Many other types of encodings have been defined to transmit information over an electrical cable. All physical layers are able to send and receive physical symbols that represent values `0` and `1`. However, for various reasons that are outside the scope of this chapter, several physical layers exchange other physical symbols as well. For example, the Manchester encoding used in several physical layers can send four different symbols. The Manchester encoding is a differential encoding scheme in which time is divided into fixed-length periods. Each period is divided in two halves and two different voltage levels can  be applied. To send a symbol, the sender must set one of these two voltage levels during each half period. To send a `1` (resp. `0`), the sender must set a high (resp. low) voltage during the first half of the period and a low (resp. high) voltage during the second half. This encoding ensures that there will be a transition at the middle of each period and allows the receiver to synchronise its clock to the sender's clock. Apart from the encodings for `0` and `1`, the Manchester encoding also supports two additional symbols : `InvH` and `InvB`  where the same voltage level is used for the two half periods. By definition, these two symbols cannot appear inside a frame which is only composed of `0` and `1`. Some technologies use these special symbols as markers for the beginning or end of frames.
 
 
- .. figure:: ../../book/lan/png/lan-fig-006-c.png
+ .. figure:: figures/manchester.png
     :align: center
     :scale: 70
    
@@ -166,7 +173,7 @@ Many other types of encodings have been defined to transmit information over an 
 .. index:: Physical layer
 
 
-.. figure:: ../../book/intro/svg/intro-figures-027-c.png
+.. figure:: figures/physical-layer.png
    :align: center
    :scale: 80
 
@@ -321,11 +328,7 @@ When running on top of a perfect framing sublayer, a datalink entity can simply 
       c=>d [ label = "DATA.ind(SDU)" ];
 
 
-.. .. figure:: ../../book/transport/svg/transport-fig-004.png
-   :align: center
-   :scale: 70 
 
-   The simplest reliable protocol
 
 
 Unfortunately, this is not always sufficient to ensure a reliable delivery of the SDUs. Consider the case where a client sends tens of SDUs to a server. If the server is faster that the client, it will be able to receive and process all the segments sent by the client and deliver their content to its user. However, if the server is slower than the client, problems may arise. The datalink entity contains buffers to store SDUs that have been received as a `Data.request` but have not yet been sent. If the application is faster than the physical link, the buffer may become full. At this point, the operating system suspends the application to let the datalink entity empty its transmission queue. The datalink entity also uses a buffer to store the received frames that have not yet been processed by the application. If the application is slow to process the data, this buffer may overflow and the datalink entity will not able to accept any additional frame. The buffers of the datalink entity have a limited size and if they overflow, the arriving frames will be discarded, even if they are correct.
@@ -397,7 +400,7 @@ The datalink entity can then be modelled as a finite state machine, containing t
 
 
 
-.. figure:: ../../book/transport/png/transport-fig-008-c.png
+.. figure:: figures/simple-fsm.png
    :align: center
    :scale: 60 
 
@@ -608,7 +611,7 @@ The Alternating Bit Protocol uses a single bit to encode the sequence number. It
 
 
 
-.. figure:: ../../book/transport/svg/transport-fig-021.png
+.. figure:: figures/abp-sender-fsm.png 
    :align: center
    :scale: 80 
 
@@ -620,7 +623,7 @@ The initial state of the sender is `Wait for D(0,...)`. In this state, the sende
 The receiver first waits for `D(0,...)`. If the frame contains a correct `CRC`, it passes the SDU to its user and sends `OK0`. If the frame contains an invalid CRC, it is immediately discarded. Then, the receiver waits for `D(1,...)`. In this state, it may receive a duplicate `D(0,...)` or a data frame with an invalid CRC. In both cases, it returns an `OK0` frame to allow the sender to recover from the possible loss of the previous `OK0` frame.
 
 
-.. figure:: ../../book/transport/svg/transport-fig-022.png
+.. figure:: figures/abp-receiver-fsm.png
    :align: center
    :scale: 70 
 
@@ -737,7 +740,7 @@ Go-back-n and selective repeat
 
 To overcome the performance limitations of the alternating bit protocol, reliable protocols rely on `pipelining`. This technique allows a sender to transmit several consecutive frames without being forced to wait for an acknowledgement after each frame. Each data frame contains a sequence number encoded in an `n` bits field.
 
-.. figure:: figures/png/pipelining.png
+.. figure:: figures/pipelining.png
    :align: center
    :scale: 70 
 
@@ -747,7 +750,7 @@ To overcome the performance limitations of the alternating bit protocol, reliabl
 
 This is implemented by using a `sliding window`. The sliding window is the set of consecutive sequence numbers that the sender can use when transmitting frames without being forced to wait for an acknowledgement. The figure below shows a sliding window containing five segments (`6,7,8,9` and `10`). Two of these sequence numbers (`6` and `7`) have been used to send frames and only three sequence numbers (`8`, `9` and `10`) remain in the sliding window. The sliding window is said to be closed once all sequence numbers contained in the sliding window have been used. 
 
-.. figure:: figures/png/slidingwin.png
+.. figure:: figures/slidingwin.png
    :align: center
    :scale: 70 
 
@@ -756,7 +759,7 @@ This is implemented by using a `sliding window`. The sliding window is the set o
 The figure below illustrates the operation of the sliding window. It uses a sliding window of three frames. The sender can thus transmit three frames before being forced to wait for an acknowledgement. The sliding window moves to the higher sequence numbers upon the reception of each acknowledgement. When the first acknowledgement (`OK0`) is received, it allows the sender to move its sliding window to the right and sequence number `3` becomes available. This sequence number is used later to transmit the frame containing `d`.
 
 
-.. figure:: figures/png/gbnwin.png
+.. figure:: figures/gbnwin.png
    :align: center
    :scale: 70 
 
@@ -766,7 +769,7 @@ The figure below illustrates the operation of the sliding window. It uses a slid
 In practice, as the frame header includes an `n` bits field to encode the sequence number, only the sequence numbers between :math:`0` and :math:`2^{n}-1` can be used. This implies that, during a long transfer, the same sequence number will be used for different frames and the sliding window will wrap. This is illustrated in the figure below assuming that `2` bits are used to encode the sequence number in the frame header. Note that upon reception of `OK1`, the sender slides its window and can use sequence number `0` again.
 
 
-.. figure:: figures/png/gbnwinex.png
+.. figure:: figures/gbnwinex.png
    :align: center
    :scale: 70 
 
@@ -788,7 +791,7 @@ The simplest sliding window protocol uses the `go-back-n` recovery. Intuitively,
 The figure below shows the FSM of a simple `go-back-n` receiver. This receiver uses two variables : `lastack` and `next`. `next` is the next expected sequence number and `lastack` the sequence number of the last data frame that has been acknowledged. The receiver only accepts the frame that are received in sequence. `maxseq` is the number of different sequence numbers (:math:`2^n`).
 
 
-.. figure:: figures/png/gbn-rec.png
+.. figure:: figures/gbn-rec.png
    :align: center
    :scale: 70 
 
@@ -798,7 +801,7 @@ The figure below shows the FSM of a simple `go-back-n` receiver. This receiver u
 A `go-back-n` sender is also very simple. It uses a sending buffer that can store an entire sliding window of frames [#fsizesliding]_ . The frames are sent with increasing sequence numbers (modulo `maxseq`). The sender must wait for an acknowledgement once its sending buffer is full. When a `go-back-n` sender receives an acknowledgement, it removes from the sending buffer all the acknowledged frames and uses a retransmission timer to detect frame losses. A simple `go-back-n` sender maintains one retransmission timer per connection. This timer is started when the first frame is sent. When the `go-back-n sender` receives an acknowledgement, it restarts the retransmission timer only if there are still unacknowledged frames in its sending buffer. When the retransmission timer expires, the `go-back-n` sender assumes that all the unacknowledged frames currently stored in its sending buffer have been lost. It thus retransmits all the unacknowledged frames in the buffer and restarts its retransmission timer.
 
 
-.. figure:: figures/png/gbn-sender.png
+.. figure:: figures/gbn-sender.png
    :align: center
    :scale: 70 
 
@@ -807,7 +810,7 @@ A `go-back-n` sender is also very simple. It uses a sending buffer that can stor
 
 The operation of `go-back-n` is illustrated in the figure below. In this figure, note that upon reception of the out-of-sequence frame `D(2,c)`, the receiver returns a cumulative acknowledgement `C(OK,0)` that acknowledges all the frames that have been received in sequence. The lost frame is retransmitted upon the expiration of the retransmission timer.
 
-.. figure:: figures/png/gbnex.png
+.. figure:: figures/gbnex.png
    :align: center
    :scale: 70 
 
@@ -825,7 +828,7 @@ The main advantage of `go-back-n` is that it can be easily implemented, and it c
 
 A `selective repeat` receiver maintains a sliding window of `W` frames and stores in a buffer the out-of-sequence frames that it receives. The figure below shows a five-frame receive window on a receiver that has already received frames `7` and `9`.
 
-.. figure:: figures/png/selrepeatwin.png
+.. figure:: figures/selrepeatwin.png
    :align: center
    :scale: 70 
 
@@ -839,7 +842,7 @@ The `selective repeat` sender maintains a sending buffer that can store up to `W
 
 The figure below illustrates the operation of `selective repeat` when frames are lost. In this figure, `C(OK,x)` is used to indicate that all frames, up to and including sequence number `x` have been received correctly.
 
-.. figure:: figures/png/selrepeat.png
+.. figure:: figures/selrepeat.png
    :align: center
    :scale: 70 
 
