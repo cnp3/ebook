@@ -2,7 +2,7 @@ before_install:
  - sudo apt-get install mscgen
  - sudo apt-get install texlive-font-utils
  - sudo apt-get install texlive-latex-extra
- - sudo apt-get install netbpm
+ - sudo apt-get install netpbm
 install: "pip3 install -q -r .travis-requirements.txt"
 language: python
 python:
