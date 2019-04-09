@@ -37,7 +37,9 @@ Part 1: Principles
 .. toctree::
    :maxdepth: 4
 
-     principles/reliability
+   principles/reliability
+
+
 ..   principles/network
 ..   principles/transport
 ..   principles/naming

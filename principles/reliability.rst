@@ -11,7 +11,7 @@ Connecting two hosts
 
 .. warning:: 
 
-   This is an unpolished draft of the second edition of this ebook. If you find any error or have suggestions to improve the text, please create an issue via https://github.com/CNP3/ebook/issues?milestone=1
+   This is an unpolished draft of the third edition of this ebook. If you find any error or have suggestions to improve the text, please create an issue via https://github.com/CNP3/ebook/issues?milestone=1
 
 
 The first step when building a network, even a worldwide network such as the Internet, is to connect two hosts together. This is illustrated in the figure below.
@@ -19,14 +19,11 @@ The first step when building a network, even a worldwide network such as the Int
 .. tikz:: Connecting two hosts together
    :libs: positioning, matrix
 
-    \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em
-}, }
-    \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
-    \node[router] (R1) {R1};
-    \node[host, right=of R1] (A) {A};
+   \node[router] (R1) {R1};
+   \node[host, right=of R1] (A) {A};
 
-    \path[draw,thick]
-    (A) edge (R1);
+   \path[draw,thick]
+   (A) edge (R1);
 
 
 
@@ -911,7 +908,7 @@ In the figure above, when the sender receives `C(OK,0,[2])`, it knows that all f
 
 Reliable protocols often need to send data in both directions. To reduce the overhead caused by the acknowledgements, most reliable protocols use `piggybacking`. Thanks to this technique, a datalink entity can place the acknowledgements and the receive window that it advertises for the opposite direction of the data flow inside the header of the data frames that it sends. The main advantage of piggybacking is that it reduces the overhead as it is not necessary to send a complete frame to carry an acknowledgement. This is illustrated in the figure below where the acknowledgement number is underlined in the data frames. Piggybacking is only used when data flows in both directions. A receiver will generate a pure acknowledgement when it does not send data in the opposite direction as shown in the bottom of the figure.
 
-.. figure:: figures/png/piggyback.png 
+.. figure:: figures/piggyback.png 
    :align: center
    :scale: 70 
 

@@ -29,9 +29,9 @@ import sys, os
 extensions = ['sphinx.ext.todo', 'sphinxcontrib.mscgen', 'sphinx.ext.graphviz', 'sphinxcontrib.tikz', 'sphinx.ext.mathjax']
 #extensions = ['sphinx.ext.todo', 'sphinx.ext.pngmath', 'sphinxcontrib.mscgen','sphinx.ext.graphviz','sphinxcontrib.tikz']
 #mscgen
-#mscgen_args=['-T eps']
+mscgen_args=['-T eps']
 #mscgen='/home/vagrant/local/mscgen-0.20/bin/mscgen'
-#mscgen_epstopdf='/usr/bin/epstopdf'
+mscgen_epstopdf='/usr/bin/epstopdf'
 #mscgen_epstopdf_args=['--debug']
 
 
@@ -48,7 +48,7 @@ templates_path = ['_templates']
 source_suffix = '.rst'
 
 # The encoding of source files.
-#source_encoding = 'utf-8'
+source_encoding = 'utf-8'
 
 # The master toctree document.
 master_doc = 'index'
@@ -233,6 +233,17 @@ latex_elements = {
 tikz_libraries="positioning,matrix,arrows"
 
 tikz_proc_suite='Netpbm'
+
+tikz_latex_preamble='''
+%preamble
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{pgfkeys}
+\pgfplotsset{compat=1.14}
+\\tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em
+}, }
+\\tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
+'''
 
 # -- Options for PDF output --------------------------------------------------
 # Grouping the document tree into PDF files. List of tuples # (source start file, target name, title, author, options). # # If there is more than one author, separate them with \\. # For example: r'Guido van Rossum\\Fred L. Drake, Jr., editor' #
