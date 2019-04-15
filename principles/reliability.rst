@@ -18,14 +18,14 @@ The first step when building a network, even a worldwide network such as the Int
 
 .. tikz:: Connecting two hosts together
    :libs: positioning, matrix
-	  
+
    \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
    \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
-   \node[router] (R1) {R1};
-   \node[host, right=of R1] (A) {A};
+   \node[host] (B) {B};
+   \node[host, right=of B] (A) {A};
 
    \path[draw,thick]
-   (A) edge (R1);
+   (A) edge (B);
 
 
 To enable the two hosts to exchange information, they need to be linked together by some kind of physical media. Computer networks have used various types of physical media to exchange information, notably :
