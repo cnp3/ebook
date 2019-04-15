@@ -16,4 +16,4 @@ set -e
 #  -N   Do not emit colors
 #  -T   output full traceback
 # --keep-going continue the processing after a warning
-sphinx-build  -nWNT --keep-going -b html . /tmp
+sphinx-build  -WNT --keep-going -b html . /tmp
