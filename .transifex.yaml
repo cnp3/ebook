@@ -1,0 +1,7 @@
+filters:
+ - filter_type: dir
+   file_format: PO
+   source_file_extension: po
+   source_language: ecn
+   source_file_dir: locale/en/LC_MESSAGES/
+   translation_files_expression: local/<lang>/LC_MESSAGES/

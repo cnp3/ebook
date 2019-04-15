@@ -1,0 +1,83 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2019 Olivier Bonaventure
+# This file is distributed under the same license as the Computer networking
+# : Principles, Protocols and Practice package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Computer networking : Principles, Protocols and "
+"Practice 3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-04-15 12:37+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../mscgen/doc/index.rst:7
+msgid "ChangeLog"
+msgstr ""
+
+#: ../../mscgen/CHANGES:3
+msgid "This file describes user-visible changes between the extension versions."
+msgstr ""
+
+#: ../../mscgen/CHANGES:6
+msgid "Version 0.4 (2009-11-21)"
+msgstr ""
+
+#: ../../mscgen/CHANGES:8
+msgid "Add website__."
+msgstr ""
+
+#: ../../mscgen/CHANGES:9
+msgid "Change license to BOLA__."
+msgstr ""
+
+#: ../../mscgen/CHANGES:10
+msgid "Minor code cleanups."
+msgstr ""
+
+#: ../../mscgen/CHANGES:17
+msgid "Version 0.3 (2009-06-05)"
+msgstr ""
+
+#: ../../mscgen/CHANGES:19
+msgid "Fix a bug when exposed when epstopdf fails."
+msgstr ""
+
+#: ../../mscgen/CHANGES:20
+msgid ""
+"Add ``[]`` to ``\\includegraphics`` in LaTeX output so it can be centered"
+" in figures using ``\\centering``."
+msgstr ""
+
+#: ../../mscgen/CHANGES:22
+msgid "Improve documentation."
+msgstr ""
+
+#: ../../mscgen/CHANGES:26
+msgid "Version 0.2 (unreleased)"
+msgstr ""
+
+#: ../../mscgen/CHANGES:28
+msgid "Add image maps support for HTML output."
+msgstr ""
+
+#: ../../mscgen/CHANGES:32
+msgid "Version 0.1 (unreleased)"
+msgstr ""
+
+#: ../../mscgen/CHANGES:34
+msgid "Initial version."
+msgstr ""
+
+#: ../../mscgen/doc/index.rst:13
+msgid "License"
+msgstr ""
+

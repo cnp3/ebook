@@ -34,6 +34,13 @@ mscgen_args=['-T eps']
 mscgen_epstopdf='/usr/bin/epstopdf'
 #mscgen_epstopdf_args=['--debug']
 
+# Localisation
+
+locale_dirs= ['locale/']
+gettext_compact=False   # see http://www.sphinx-doc.org/en/master/usage/advanced/intl.html#using-transifex-service-for-team-translation
+
+
+
 
 # mcq
 
@@ -54,8 +61,8 @@ source_encoding = 'utf-8'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Computer networking : Principles, Protocols and Practice'
-copyright = u'2019 Olivier Bonaventure'
+project = 'Computer networking : Principles, Protocols and Practice'
+copyright = '2019 Olivier Bonaventure'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -200,8 +207,8 @@ latex_paper_size = 'a4'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'CNP3.tex', u'Computer Networking : Principles, Protocols and Practice',
-   u'Olivier Bonaventure', 'manual'),
+  ('index', 'CNP3.tex', 'Computer Networking : Principles, Protocols and Practice',
+   'Olivier Bonaventure', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -217,10 +224,10 @@ latex_logo = "cnp3.png"
 
 latex_elements = {
 'preamble': '''
-\usepackage{tikz}
-\usepackage{pgfplots}
+\\usepackage{tikz}
+\\usepackage{pgfplots}
 \pgfplotsset{compat=1.14}
-\usetikzlibrary{arrows,positioning, matrix,backgrounds,shapes,shadows,calc}
+\\usetikzlibrary{arrows,positioning, matrix,backgrounds,shapes,shadows,calc}
 '''
 }
 
@@ -236,9 +243,9 @@ tikz_proc_suite='Netpbm'
 
 tikz_latex_preamble='''
 %preamble
-\usepackage{tikz}
-\usepackage{pgfplots}
-\usepackage{pgfkeys}
+\\usepackage{tikz}
+\\usepackage{pgfplots}
+\\usepackage{pgfkeys}
 \pgfplotsset{compat=1.14}
 \\tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em
 }, }
