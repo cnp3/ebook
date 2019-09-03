@@ -207,7 +207,7 @@ A first solution to this problem is to require the physical layer to remain idle
 
 .. note:: Bit rate and bandwidth
 
-  Bit rate and bandwidth are often used to characterize the transmission capacity of the physical service. The original definition of `bandwidth <http://www.merriam-webster.com/dictionary/bandwidth>`_, as listed in the `Webster dictionary <http://www.merriam-webster.com/dictionary>`_ is `a range of radio frequencies which is occupied by a modulated carrier wave, which is assigned to a service, or over which a device can operate`. This definition corresponds to the characteristics of a given transmission medium or receiver. For example, the human ear is able to decode sounds in roughly the 0-20 KHz frequency range. By extension, bandwidth is also used to represent the capacity of a communication system in bits per second. For example, a Gigabit Ethernet link is theoretically capable of transporting one billion bits per second.
+  Bit rate and bandwidth are often used to characterize the transmission capacity of the physical service. The original definition of `bandwidth <https://www.merriam-webster.com/dictionary/bandwidth>`_, as listed in the `Webster dictionary <https://www.merriam-webster.com/dictionary>`_ is `a range of radio frequencies which is occupied by a modulated carrier wave, which is assigned to a service, or over which a device can operate`. This definition corresponds to the characteristics of a given transmission medium or receiver. For example, the human ear is able to decode sounds in roughly the 0-20 KHz frequency range. By extension, bandwidth is also used to represent the capacity of a communication system in bits per second. For example, a Gigabit Ethernet link is theoretically capable of transporting one billion bits per second.
 
 
 .. index:: bit stuffing, stuffing (bit)
@@ -514,7 +514,7 @@ It is also possible to design a code that allows the receiver to correct transmi
 	 011			1
   ====================    =============
 
-Other more powerful error correction codes have been proposed and are used in some applications. The `Hamming Code <http://en.wikipedia.org/wiki/Hamming_code>`_ is a clever combination of parity bits that provides error detection and correction capabilities. 
+Other more powerful error correction codes have been proposed and are used in some applications. The `Hamming Code <https://en.wikipedia.org/wiki/Hamming_code>`_ is a clever combination of parity bits that provides error detection and correction capabilities. 
 
 
 Reliable protocols use error detection schemes, but none of the widely used reliable protocols rely on error correction schemes. To detect errors, a frame is usually divided into two parts :
@@ -540,7 +540,7 @@ The simplest error detection scheme is the checksum. A checksum is basically an 
 .. real checksum http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.55.8520
 .. do not invent your own checksum, use existing ones
 .. implementations can be optimised by using table lookups
-.. crc : http://en.wikipedia.org/wiki/Cyclic_redundancy_check
+.. crc : https://en.wikipedia.org/wiki/Cyclic_redundancy_check
 .. tcp offload engine http://www.10gea.org/tcp-ip-offload-engine-toe.htm
 .. stcp used Adler-32 but it now uses CRC :rfc:`3309`
 
