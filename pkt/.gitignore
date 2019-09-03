@@ -1,0 +1,4 @@
+# images are produced from the ASCII files, they are not stored on the git
+*.png
+*.pdf
+*.svg

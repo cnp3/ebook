@@ -4,6 +4,7 @@ Hz
 Hz
 IPv4
 IPv6
+IPv
 KHz
 Kbits
 Kbps
@@ -39,6 +40,7 @@ middlebox
 multicast
 multiplicatively
 nameserver
+nameservers
 pipelining
 resolver
 resolvers
@@ -49,3 +51,5 @@ retransmits
 retransmitted
 subnetwork
 unicast
+hostname
+hostnames

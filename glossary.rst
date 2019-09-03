@@ -17,7 +17,7 @@ Glossary
 	a transmission mode where an information is sent from one source to `one` receiver that belongs to a specified group
 
    unicast
-	a transmission mode where an information is sent from one source to one recipient
+        a transmission mode where an information is sent from one source to one recipient
 
    multicast
 	a transmission mode where an information is sent efficiently to `all` the receivers that belong to a given group
@@ -33,18 +33,18 @@ Glossary
 
    WAN
 	Wide Area Network
-   
+
    ISO
-	The International Standardization Organization is an agency of the United Nations that is based in Geneva and develop standards on various topics. Within ISO, country representatives vote to approve or reject standards. Most of the work on the development of ISO standards is done in expert working groups. Additional information about ISO may be obtained from http://www.iso.int 
+	The International Standardization Organization is an agency of the United Nations that is based in Geneva and develop standards on various topics. Within ISO, country representatives vote to approve or reject standards. Most of the work on the development of ISO standards is done in expert working groups. Additional information about ISO may be obtained from https://www.iso.org 
 
    ITU
-	The International Telecommunication Union is a United Nation's agency whose purpose is to develop standards for the telecommunication industry. It was initially created to standardize the basic telephone system but expanded later towards data networks. The work within ITU is mainly done by network specialists from the telecommunication industry (operators and vendors). See http://www.itu.int for more information
+	The International Telecommunication Union is a United Nation's agency whose purpose is to develop standards for the telecommunication industry. It was initially created to standardize the basic telephone system but expanded later towards data networks. The work within ITU is mainly done by network specialists from the telecommunication industry (operators and vendors). See https://www.itu.int for more information
 
    IETF
-	The Internet Engineering Task Force is a non-profit organization that develops the standards for the protocols used in the Internet. The IETF mainly covers the transport and network layers. Several application layer protocols are also standardized within the IETF. The work in the IETF is organized in working groups. Most of the work is performed by exchanging emails and there are three IETF meetings every year. Participation is open to anyone. See http://www.ietf.org
+	The Internet Engineering Task Force is a non-profit organization that develops the standards for the protocols used in the Internet. The IETF mainly covers the transport and network layers. Several application layer protocols are also standardized within the IETF. The work in the IETF is organized in working groups. Most of the work is performed by exchanging emails and there are three IETF meetings every year. Participation is open to anyone. See https://www.ietf.org
 
    W3C
-	The world wide web consortium was created to standardize the protocols and mechanisms used in the world wide web. It is thus focused on a subset of the application layer. See http://www.w3c.org
+	The world wide web consortium was created to standardize the protocols and mechanisms used in the world wide web. It is thus focused on a subset of the application layer. See https://www.w3.org
 
    ARPANET	
    	The Advanced Research Project Agency (ARPA) Network is a network that was built by network scientists in USA with funding from the ARPA of the US Ministry of Defense. ARPANET is considered as the grandfather of today's Internet.
@@ -118,7 +118,6 @@ Glossary
    API
 	Application Programming Interface
 
-
    socket
 	A low-level API originally defined on Berkeley Unix to allow programmers to develop clients and servers. 
 
@@ -133,7 +132,6 @@ Glossary
 
    IANA
 	The Internet Assigned Numbers Authority (IANA) is responsible for the coordination of the DNS Root, IP addressing, and other Internet protocol resources
-
 	
    RIR
 	Regional Internet Registry. An organization that manages IP addresses and AS numbers on behalf of :term:`IANA`.
@@ -152,20 +150,15 @@ Glossary
 
    EGP
 	Exterior Gateway Protocol. Synonym of interdomain routing protocol
-
-.. spelling::
-
-   eXchange
 	
    IXP
-	Internet eXchange Point. A location where routers belonging to different domains are attached to the same Local Area Network to establish peering sessions and exchange packets. See http://www.euro-ix.net/ or http://en.wikipedia.org/wiki/List_of_Internet_exchange_points_by_size for a partial list of IXPs.
+	Internet eXchange Point. A location where routers belonging to different domains are attached to the same Local Area Network to establish peering sessions and exchange packets. See http://www.euro-ix.net/ or https://en.wikipedia.org/wiki/List_of_Internet_exchange_points_by_size for a partial list of IXPs.
 
    BGP
 	The Border Gateway Protocol is the interdomain routing protocol used in the global Internet.
 
    EIGRP
 	The Enhanced Interior Gateway Routing Protocol (EIGRP) is a proprietary intradomain routing protocol that is often used in enterprise networks. EIGRP uses the DUAL algorithm described in [Garcia1993]_.
-
 
    IGRP	
    	The Interior Gateway Routing Protocol (IGRP) is a proprietary intradomain routing protocol that uses distance vector. IGRP supports multiple metrics for each route but has been replaced by :term:`EIGRP`
@@ -212,13 +205,9 @@ Glossary
    telnet
 	The telnet protocol is defined in :rfc:`854`
 
-.. spelling::
-
-   XWindow
-   
-	
    X11
-	The XWindow system and the associated protocols are defined in [SG1990]_   
+	The XWindow system and the associated protocols are defined in [SG1990]_
+
 
    DNS
 	The Domain Name System is defined in :rfc:`1035`
@@ -241,17 +230,9 @@ Glossary
    Frame-Relay	     
         A wide area networking 	technology using virtual circuits that is deployed by telecom operators.	     
   
-   hosts.txt
-	A file that initially contained the list of all Internet hosts with their IPv4 address. As the network grew, this file was replaced by the DNS, but each host still maintains a small hosts.txt file that can be used when DNS is not available.   
-
    DNS
 	The Domain Name System is a distributed database that can be queried by hosts to map names onto IP addresses
 
-.. spelling::
-
-   Backus
-   Naur
-	
    BNF
 	 A Backus-Naur Form (BNF) is a formal way to describe a language by using syntactic and lexical rules. BNFs are frequently used to define programming languages, but also to define the messages exchanged between networked applications. :rfc:`5234` explains how a BNF must be written to specify an Internet protocol.
 
@@ -280,32 +261,25 @@ Glossary
 	The Internet Message Access Protocol (IMAP), defined in :rfc:`3501`, is an application-level protocol that allows a client to access and manipulate the emails stored on a server. With IMAP, the email messages remain on the server and are not downloaded on the client.
 	
    HTML
-	The HyperText Markup Language specifies the structure and the syntax of the documents that are exchanged on the world wide web. HTML is maintained by the `HTML working group <http://www.w3.org/html/wg/>`_ of the :term:`W3C` 
-
-.. spelling::
-
-   eXtensible
-
-   
+	The HyperText Markup Language specifies the structure and the syntax of the documents that are exchanged on the world wide web. HTML is maintained by the `HTML working group <https://www.w3.org/html/wg/>`_ of the :term:`W3C` 
 	
    XML
-	The eXtensible Markup Language (XML) is a flexible text format derived from SGML. It was originally designed for the electronic publishing industry but is now used by a wide variety of applications that need to exchange structured data. The XML specifications are maintained by `several working groups <http://www.w3.org/XML/>`_ of the :term:`W3C`
+	The eXtensible Markup Language (XML) is a flexible text format derived from SGML. It was originally designed for the electronic publishing industry but is now used by a wide variety of applications that need to exchange structured data. The XML specifications are maintained by `several working groups <https://www.w3.org/XML/>`_ of the :term:`W3C`
 
    ARP
 	The Address Resolution Protocol is a protocol used by IPv4 devices to obtain the datalink layer address that corresponds to an IPv4 address on the local area network. ARP is defined in :rfc:`826`	
  
    ISO
 	The International Standardization Organization
-
 	
    minicomputer
-	A minicomputer is a multi-user system that was typically used in the 1960s/1970s to serve departments. See the corresponding Wikipedia article for additional information : http://en.wikipedia.org/wiki/Minicomputer
+	A minicomputer is a multi-user system that was typically used in the 1960s/1970s to serve departments. See the corresponding Wikipedia article for additional information : https://en.wikipedia.org/wiki/Minicomputer
 
    MIME document
 	A MIME document is a document, encoded by using the :term:`MIME` format.
 
    modem
-	A modem (modulator-demodulator) is a device that encodes (resp. decodes) digital information by modulating (resp. demodulating) an analog signal. Modems are frequently used to transmit digital information over telephone lines and radio links. See http://en.wikipedia.org/wiki/Modem for a survey of various types of modems
+	A modem (modulator-demodulator) is a device that encodes (resp. decodes) digital information by modulating (resp. demodulating) an analog signal. Modems are frequently used to transmit digital information over telephone lines and radio links. See https://en.wikipedia.org/wiki/Modem for a survey of various types of modems
 
    dial-up line
    	A synonym for a regular telephone line, i.e. a line that can be used to dial any telephone number.
@@ -316,26 +290,14 @@ Glossary
    ISO-3166
 	An :term:`ISO` standard that defines codes to represent countries and their subdivisions. See http://www.iso.org/iso/country_codes.htm    
 	
-
-.. spelling::
-
    vnc
-
-   
-	
-   vnc
-	A networked application that allows to remotely access a computer's Graphical User Interface. See http://en.wikipedia.org/wiki/Virtual_Network_Computing
+	A networked application that allows to remotely access a computer's Graphical User Interface. See https://en.wikipedia.org/wiki/Virtual_Network_Computing
 
    ISP
         An Internet Service Provider, i.e. a network that provides Internet access to its clients. 
-
-.. spelling::
-
-   Endian
-
    
    network-byte order
-        Internet protocol allow to transport sequences of bytes. These sequences of bytes are sufficient to carry ASCII characters. The network-byte order refers to the Big-Endian encoding for 16 and 32 bits integer. See http://en.wikipedia.org/wiki/Endianness
+        Internet protocol allow to transport sequences of bytes. These sequences of bytes are sufficient to carry ASCII characters. The network-byte order refers to the Big-Endian encoding for 16 and 32 bits integer. See https://en.wikipedia.org/wiki/Endianness
  
    standard query
         For DNS servers and resolvers, a standard query is a query for a `A` or a `AAAA` record. Such a query typically returns an IP address. 
@@ -349,9 +311,23 @@ Glossary
    NBMA
 	A Non Broadcast Mode Multiple Access Network is a subnetwork that supports multiple hosts/routers but does not provide an efficient way of sending broadcast frames to all devices attached to the subnetwork. ATM subnetworks are an example of NBMA networks.
 
+   hosts.txt
+       The original file containing the list of all Internet hosts. This file has been deprecated, but Unix variants still maintain a local ``/etc/hosts`` containing mappings between names and IP addresses. See http://man7.org/linux/man-pages/man5/hosts.5.html for a description of the format of this file on Linux.
 
+   remote login
+       A service that enables a user to connect to a distant server over the network. Telnet, defined in :rfc:`854` and the BSD rlogin services defined in :rfc:`1282` were popular in the past. They have been deprecated for security reasons and are now replaced by :term:`ssh`. 
+   
+   file transfer
+       A service that enables a user to send or receive a file from a distant server over the network. The File Transfer Protocol :term:`FTP` was a popular service. It has now been replaced by HTTP/HTTPs or more secure protocols such as the `SSH File Transfer Protocol <https://en.wikipedia.org/wiki/SSH_File_Transfer_Protocol>`_. 
+   
 .. spelling::
 
-   IPv
-
+   Backus
+   Naur
+   Endian
+   eXtensible
+   XWindow
+   txt
    
+	
+

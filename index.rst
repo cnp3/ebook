@@ -38,11 +38,13 @@ Part 1: Principles
    :maxdepth: 4
 
    principles/reliability
-
-
+   principles/naming
+   
 ..   principles/network
 ..   principles/transport
-..   principles/naming
+   
+
+   
 ..   principles/sharing
 ..   principles/referencemodels
 ..   principles/security
