@@ -1,2 +1,4 @@
  setuptools
- sphinx==1.8.3
+ sphinx>=2.0.0
+ PyEnchant>=1.6.5
+ sphinxcontrib-spelling
