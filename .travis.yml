@@ -4,6 +4,8 @@ before_install:
  - sudo apt-get install texlive-latex-extra
  - sudo apt-get install netpbm 
  - sudo apt-get install poppler-utils
+ - sudo apt-get instal python3-enchant
+ - sudo apt-get install python3-sphinxcontrib.spelling 
 install: "pip3 install -q -r .travis-requirements.txt"
 language: python
 python:
