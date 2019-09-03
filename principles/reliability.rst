@@ -1,5 +1,5 @@
 .. Copyright |copy| 2013 by Olivier Bonaventure
-.. Some portions of this text come from the first edition of this ebook
+.. Some portions of this text come from the first edition of this e-book
 .. This file is licensed under a `creative commons licence <http://creativecommons.org/licenses/by-sa/3.0/>`_
 
 
@@ -7,11 +7,11 @@
 Connecting two hosts
 ********************
 
-.. index:: electrical cable, optical fiber, multimode optical fiber, monomode optical fiber 
+.. index:: electrical cable, optical fiber, multi-mode optical fiber, single-mode optical fiber 
 
 .. warning:: 
 
-   This is an unpolished draft of the third edition of this ebook. If you find any error or have suggestions to improve the text, please create an issue via https://github.com/CNP3/ebook/issues?milestone=1
+   This is an unpolished draft of the third edition of this e-book. If you find any error or have suggestions to improve the text, please create an issue via https://github.com/CNP3/ebook/issues?milestone=1
 
 
 The first step when building a network, even a worldwide network such as the Internet, is to connect two hosts together. This is illustrated in the figure below.
@@ -31,8 +31,8 @@ The first step when building a network, even a worldwide network such as the Int
 To enable the two hosts to exchange information, they need to be linked together by some kind of physical media. Computer networks have used various types of physical media to exchange information, notably :
 
  - `electrical cable`. Information can be transmitted over different types of electrical cables. The most common ones are the twisted pairs (that are used in the telephone network, but also in enterprise networks) and the coaxial cables (that are still used in cable TV networks, but are no longer used in enterprise networks). Some networking technologies operate over the classical electrical cable.
- - `optical fiber`. Optical fibers are frequently used in public and enterprise networks when the distance between the communication devices is larger than one kilometer. There are two main types of optical fibers : multimode and monomode. Multimode is much cheaper than monomode fiber because a LED can be used to send a signal over a multimode fiber while a monomode fiber must be driven by a laser. Due to the different modes of propagation of light, monomode fibers are limited to distances of a few kilometers while multimode fibers can be used over distances greater than several tens of kilometers. In both cases, repeaters can be used to regenerate the optical signal at one endpoint of a fiber to send it over another fiber. 
- - `wireless`. In this case, a radio signal is used to encode the information exchanged between the communicating devices. Many types of modulation techniques are used to send information over a wireless channel and there is lot of innovation in this field with new techniques appearing every year. While most wireless networks rely on radio signals, some use a laser that sends light pulses to a remote detector. These optical techniques allow to create point-to-point links while radio-based techniques, depending on the directionality of the antennas, can be used to build networks containing devices spread over a small geographical area.
+ - `optical fiber`. Optical fibers are frequently used in public and enterprise networks when the distance between the communication devices is larger than one kilometer. There are two main types of optical fibers : multi-mode and single-mode. Multi-mode is much cheaper than single-mode fiber because a LED can be used to send a signal over a multi-mode fiber while a single-mode fiber must be driven by a laser. Due to the different modes of propagation of light, single-mode fibers are limited to distances of a few kilometers while multi-mode fibers can be used over distances greater than several tens of kilometers. In both cases, repeaters can be used to regenerate the optical signal at one endpoint of a fiber to send it over another fiber. 
+ - `wireless`. In this case, a radio signal is used to encode the information exchanged between the communicating devices. Many types of modulation techniques are used to send information over a wireless channel and there is lot of innovation in this field with new techniques appearing every year. While most wireless networks rely on radio signals, some use a laser that sends light pulses to a remote detector. These optical techniques allow to create point-to-point links while radio-based techniques can be used to build networks containing devices spread over a small geographical area.
 
 
 The physical layer
@@ -88,7 +88,7 @@ A `time-sequence diagram` describes the interactions between communicating hosts
 Time-sequence diagrams are usual when trying to understand the characteristics of a given communication scheme. When considering the above transmission scheme, is it useful to evaluate whether this scheme allows the two communicating hosts to reliably exchange information ? A digital transmission will be considered as reliable when a sequence of bits that is transmitted by a host is received correctly at the other end of the wire. In practice, achieving perfect reliability when transmitting information using the above scheme is difficult. Several problems can occur with such a transmission scheme.
 
 
-The first problem is that electrical transmission can be affected by electromagnetic interferences. These interferences can have various sources including natural phenomenons like thunderstorms, variations of the magnetic field, but also can be caused by interference with other electrical signals such as interference from neighboring cables, interferences from neighboring antennas, ... Due to all these interferences, there is unfortunately no guarantee that when a host transmit one bit on a wire, the same bit is received at the other end. This is illustrated in the figure below where a `DATA.request(0)` on the left host leads to a `Data.indication(1)` on the right host. 
+The first problem is that electrical transmission can be affected by electromagnetic interference. Interference can have various sources including natural phenomenons like thunderstorms, variations of the magnetic field, but also can be caused by interference with other electrical signals such as interference from neighboring cables, interference from neighboring antennas, ... Due to these various types of interference, there is unfortunately no guarantee that when a host transmit one bit on a wire, the same bit is received at the other end. This is illustrated in the figure below where a `DATA.request(0)` on the left host leads to a `Data.indication(1)` on the right host. 
 
 
   .. msc::
@@ -103,7 +103,7 @@ The first problem is that electrical transmission can be affected by electromagn
       c=>d [ label = "DATA.ind(1)" ];
 
 
-With the above transmission scheme, a bit is transmitted by setting the voltage on the electrical cable to a specific value during some period of time. We have seen that due to electromagnetic interferences, the voltage measured by the receiver can differ from the voltage set by the transmitter. This is the main cause of transmission errors. However, this is not the only type of problem that can occur. Besides defining the voltages for bits `0` and `1`, the above transmission scheme also specifies the duration of each bit. If one million bits are sent every second, then each bit lasts 1 microsecond. On each host, the transmission (resp. the reception) of each bit is triggered by a local clock having a 1 MHz frequency. These clocks are the second source of problems when transmitting bits over a wire. Although the two clocks have the same specification, they run on different hosts, possibly at a different temperature and with a different source of energy. In practice, it is possible that the two clocks do not operate at exactly the same frequency. Assume that the clock of the transmitting host operates at exactly 1000000 Hz while the receiving clock operates at 999999 Hz. This is a very small difference between the two clocks. However, when using the clock to transmit bits, this difference is important. With its 1000000 Hz clock, the transmitting host will generate one million bits during a period of one second. During the same period, the receiving host will sense the wire 999999 times and thus will receive one bit less than the bits originally transmitted. This small difference in clock frequencies implies that bits can "disappear" during their transmission on an electrical cable. This is illustrated in the figure below.
+With the above transmission scheme, a bit is transmitted by setting the voltage on the electrical cable to a specific value during some period of time. We have seen that due to electromagnetic interference, the voltage measured by the receiver can differ from the voltage set by the transmitter. This is the main cause of transmission errors. However, this is not the only type of problem that can occur. Besides defining the voltages for bits `0` and `1`, the above transmission scheme also specifies the duration of each bit. If one million bits are sent every second, then each bit lasts 1 microsecond. On each host, the transmission (resp. the reception) of each bit is triggered by a local clock having a 1 MHz frequency. These clocks are the second source of problems when transmitting bits over a wire. Although the two clocks have the same specification, they run on different hosts, possibly at a different temperature and with a different source of energy. In practice, it is possible that the two clocks do not operate at exactly the same frequency. Assume that the clock of the transmitting host operates at exactly 1000000 Hz while the receiving clock operates at 999999 Hz. This is a very small difference between the two clocks. However, when using the clock to transmit bits, this difference is important. With its 1000000 Hz clock, the transmitting host will generate one million bits during a period of one second. During the same period, the receiving host will sense the wire 999999 times and thus will receive one bit less than the bits originally transmitted. This small difference in clock frequencies implies that bits can "disappear" during their transmission on an electrical cable. This is illustrated in the figure below.
 
   .. msc::
 
@@ -149,7 +149,7 @@ A similar reasoning applies when the clock of the sending host is slower than th
 
 From a Computer Science viewpoint, the physical transmission of information through a wire is often considered as a black box that allows to transmit bits. This black box is often referred to as the `physical layer service` and is represented by using the `DATA.request` and `DATA.indication` primitives introduced earlier. This physical layer service facilitates the sending and receiving of bits. This service abstracts the technological details that are involved in the actual transmission of the bits as an electromagnetic signal. However, it is important to remember that the `physical layer service` is imperfect and has the following characteristics :
 
- - the `Physical layer service` may change, e.g. due to electromagnetic interferences, the value of a bit being transmitted
+ - the `Physical layer service` may change, e.g. due to electromagnetic interference, the value of a bit being transmitted
  - the `Physical layer service` may deliver `more` bits to the receiver than the bits sent by the sender
  - the `Physical layer service` may deliver `fewer` bits to the receiver than the bits sent by the sender
 
@@ -157,7 +157,7 @@ From a Computer Science viewpoint, the physical transmission of information thro
 
 .. index:: Manchester encoding
 
-Many other types of encodings have been defined to transmit information over an electrical cable. All physical layers are able to send and receive physical symbols that represent values `0` and `1`. However, for various reasons that are outside the scope of this chapter, several physical layers exchange other physical symbols as well. For example, the Manchester encoding used in several physical layers can send four different symbols. The Manchester encoding is a differential encoding scheme in which time is divided into fixed-length periods. Each period is divided in two halves and two different voltage levels can  be applied. To send a symbol, the sender must set one of these two voltage levels during each half period. To send a `1` (resp. `0`), the sender must set a high (resp. low) voltage during the first half of the period and a low (resp. high) voltage during the second half. This encoding ensures that there will be a transition at the middle of each period and allows the receiver to synchronise its clock to the sender's clock. Apart from the encodings for `0` and `1`, the Manchester encoding also supports two additional symbols : `InvH` and `InvB`  where the same voltage level is used for the two half periods. By definition, these two symbols cannot appear inside a frame which is only composed of `0` and `1`. Some technologies use these special symbols as markers for the beginning or end of frames.
+Many other types of encodings have been defined to transmit information over an electrical cable. All physical layers are able to send and receive physical symbols that represent values `0` and `1`. However, for various reasons that are outside the scope of this chapter, several physical layers exchange other physical symbols as well. For example, the Manchester encoding used in several physical layers can send four different symbols. The Manchester encoding is a differential encoding scheme in which time is divided into fixed-length periods. Each period is divided in two halves and two different voltage levels can  be applied. To send a symbol, the sender must set one of these two voltage levels during each half period. To send a `1` (resp. `0`), the sender must set a high (resp. low) voltage during the first half of the period and a low (resp. high) voltage during the second half. This encoding ensures that there will be a transition at the middle of each period and allows the receiver to synchronize its clock to the sender's clock. Apart from the encodings for `0` and `1`, the Manchester encoding also supports two additional symbols : `InvH` and `InvB`  where the same voltage level is used for the two half periods. By definition, these two symbols cannot appear inside a frame which is only composed of `0` and `1`. Some technologies use these special symbols as markers for the beginning or end of frames.
 
 
  .. figure:: figures/manchester.png
@@ -262,7 +262,7 @@ Some characters are used as markers to delineate the frame boundaries. Many `cha
  **DLE STX DLE ETX**	                      `DLE STX` **DLE** `DLE` **STX** **DLE** `DLE` ETX** `DLE ETX`
  ===========================================  ===============================================================
 
-`Character stuffing` , like bit stuffing, increases the length of the transmitted frames. For `character stuffing`, the worst frame is a frame containing many `DLE` characters. When transmission errors occur, the receiver may incorrectly decode one or two frames (e.g. if the errors occur in the markers). However, it will be able to resynchronise itself with the next correctly received markers.
+`Character stuffing` , like bit stuffing, increases the length of the transmitted frames. For `character stuffing`, the worst frame is a frame containing many `DLE` characters. When transmission errors occur, the receiver may incorrectly decode one or two frames (e.g. if the errors occur in the markers). However, it will be able to resynchronize itself with the next correctly received markers.
 
 
 
@@ -308,9 +308,9 @@ In this section, we develop a reliable datalink protocol running above the physi
 The datalink layer is designed to send and receive frames on behalf of a user. We model these interactions by using the `DATA.req` and `DATA.ind` primitives. However, to simplify the presentation and to avoid confusion between a `DATA.req` primitive issued by the user of the datalink layer entity, and a `DATA.req` issued by the datalink layer entity itself, we will use the following terminology :
 
  - the interactions between the user and the datalink layer entity are represented by using the classical `DATA.req` and the `DATA.ind` primitives
- - the interactions between the datalink layer entity and the framing sublayer are represented by using `send` instead of `DATA.req` and `recvd` instead of `DATA.ind`
+ - the interactions between the datalink layer entity and the framing sub-layer are represented by using `send` instead of `DATA.req` and `recvd` instead of `DATA.ind`
  
-When running on top of a perfect framing sublayer, a datalink entity can simply issue a `send(SDU)` upon arrival of a `DATA.req(SDU)` [#fsdu]_ .Similarly, the receiver issues a `DATA.ind(SDU)` upon receipt of a `recvd(SDU)`. Such a simple protocol is sufficient when a single SDU is sent. This is illustrated in the figure below.
+When running on top of a perfect framing sub-layer, a datalink entity can simply issue a `send(SDU)` upon arrival of a `DATA.req(SDU)` [#fsdu]_ .Similarly, the receiver issues a `DATA.ind(SDU)` upon receipt of a `recvd(SDU)`. Such a simple protocol is sufficient when a single SDU is sent. This is illustrated in the figure below.
 
 
   .. msc::
@@ -341,7 +341,7 @@ These two types of frames can be distinguished by dividing the frame in two part
  - the `header` that contains one bit set to `0` in data frames and set to `1` in control frames
  - the payload that contains the SDU supplied by the application
 
-The datalink entity can then be modelled as a finite state machine, containing two states for the receiver and two states for the sender. The figure below provides a graphical representation of this state machine with the sender above and the receiver below.
+The datalink entity can then be modeled as a finite state machine, containing two states for the receiver and two states for the sender. The figure below provides a graphical representation of this state machine with the sender above and the receiver below.
 
 ..
   .. digraph:: sender
@@ -404,7 +404,7 @@ The datalink entity can then be modelled as a finite state machine, containing t
 
    Finite state machine of the simplest reliable protocol
 
-The above FSM shows that the sender has to wait for an acknowledgement from the receiver before being able to transmit the next SDU.  The figure below illustrates the exchange of a few frames between two hosts.
+The above FSM shows that the sender has to wait for an acknowledgment from the receiver before being able to transmit the next SDU.  The figure below illustrates the exchange of a few frames between two hosts.
 
   .. msc::
 
@@ -437,7 +437,7 @@ The above FSM shows that the sender has to wait for an acknowledgement from the 
 
 .. An important point to note about the `Datalink layer` is that although the figure below indicates that two entities of the `Datalink layer` exchange frames directly, in reality this is slightly different. When the `Datalink layer` entity on the left needs to transmit a frame, it issues as many `Data.request` primitives to the underlying `physical layer` as there are bits in the frame. The physical layer will then convert the sequence of bits in an electromagnetic or optical signal that will be sent over the physical medium. The `physical layer` on the right hand side of the figure will decode the received signal, recover the bits and issue the corresponding `Data.indication` primitives to its `Datalink layer` entity. If there are no transmission errors, this entity will receive the frame sent earlier. 
 
-.. The datalink layer uses the service provided by the physical layer. Although there are many different implementations of the physical layer from a technological perspective, they all provide a service that enables the datalink layer to send and receive bits between directly connected devices. The datalink layer receives packets from the network layer. Two datalink layer entities exchange `frames`. As explained in the previous chapter, most datalink layer technologies impose limitations on the size of the frames. Some technologies only impose a maximum frame size, others enforce both minimum and maximum frames sizes and finally some technologies only support a single frame size. In the latter case, the datalink layer will usually include an adaptation sublayer to allow the network layer to send and receive variable-length packets. This adaptation layer may include fragmentation and reassembly mechanisms.
+.. The datalink layer uses the service provided by the physical layer. Although there are many different implementations of the physical layer from a technological perspective, they all provide a service that enables the datalink layer to send and receive bits between directly connected devices. The datalink layer receives packets from the network layer. Two datalink layer entities exchange `frames`. As explained in the previous chapter, most datalink layer technologies impose limitations on the size of the frames. Some technologies only impose a maximum frame size, others enforce both minimum and maximum frames sizes and finally some technologies only support a single frame size. In the latter case, the datalink layer will usually include an adaptation sub-layer to allow the network layer to send and receive variable-length packets. This adaptation layer may include fragmentation and reassembly mechanisms.
 
 .. alternating bit
 
@@ -526,9 +526,13 @@ Some headers also include a `length` field, which indicates the total length of 
 
 The simplest error detection scheme is the checksum. A checksum is basically an arithmetic sum of all the bytes that a frame is composed of. There are different types of checksums. For example, an eight bit checksum can be computed as the arithmetic sum of all the bytes of (both the header and trailer of) the frame. The checksum is computed by the sender before sending the frame and the receiver verifies the checksum upon frame reception. The receiver discards frames received with an invalid checksum. Checksums can be easily implemented in software, but their error detection capabilities are limited. Cyclical Redundancy Checks (CRC) have better error detection capabilities [SGP98]_, but require more CPU when implemented in software.
 
-.. note:: Checksums, CRCs, ...
+.. spelling::
 
-   Most of the protocols in the TCP/IP protocol suite rely on the simple Internet checksum in order to verify that a received packet has not been affected by transmission errors. Despite its popularity and ease of implementation, the Internet checksum is not the only available checksum mechanism. Cyclical Redundancy Checks (CRC_) are very powerful error detection schemes that are used notably on disks, by many datalink layer protocols and file formats such as zip or png. They can easily be implemented efficiently in hardware and have better error-detection capabilities than the Internet checksum [SGP98]_ . However, CRCs are sometimes considered to be too CPU-intensive for software implementations and other checksum mechanisms are preferred. The TCP/IP community chose the Internet checksum, the OSI community chose the Fletcher checksum [Sklower89]_ . Nowadays there are efficient techniques to quickly compute CRCs in software [Feldmeier95]_
+   png
+
+.. note:: checksums, CRCs, ...
+
+   Most of the protocols in the TCP/IP protocol suite rely on the simple Internet checksum in order to verify that a received packet has not been affected by transmission errors. Despite its popularity and ease of implementation, the Internet checksum is not the only available checksum mechanism. Cyclical Redundancy Checks (CRC_) are very powerful error detection schemes that are used notably on disks, by many datalink layer protocols and file formats such as ``zip`` or ``png``. They can easily be implemented efficiently in hardware and have better error-detection capabilities than the Internet checksum [SGP98]_ . However, CRCs are sometimes considered to be too CPU-intensive for software implementations and other checksum mechanisms are preferred. The TCP/IP community chose the Internet checksum, the OSI community chose the Fletcher checksum [Sklower89]_ . Nowadays there are efficient techniques to quickly compute CRCs in software [Feldmeier95]_
 
 .. , the SCTP protocol initially chose the Adler-32 checksum but replaced it recently with a CRC (see :rfc:`3309`).
 
@@ -542,7 +546,7 @@ The simplest error detection scheme is the checksum. A checksum is basically an 
 
 .. The second imperfection of the network layer is that segments may be lost. As we will see later, the main cause of packet losses in the network layer is the lack of buffers in intermediate routers. 
 
-Since the receiver sends an acknowledgement after having received each data frame, the simplest solution to deal with losses is to use a retransmission timer. When the sender sends a frame, it starts a retransmission timer. The value of this retransmission timer should be larger than the `round-trip-time`, i.e. the delay between the transmission of a data frame and the reception of the corresponding acknowledgement. When the retransmission timer expires, the sender assumes that the data segment has been lost and retransmits it. This is illustrated in the figure below.
+Since the receiver sends an acknowledgment after having received each data frame, the simplest solution to deal with losses is to use a retransmission timer. When the sender sends a frame, it starts a retransmission timer. The value of this retransmission timer should be larger than the `round-trip-time`, i.e. the delay between the transmission of a data frame and the reception of the corresponding acknowledgment. When the retransmission timer expires, the sender assumes that the data segment has been lost and retransmits it. This is illustrated in the figure below.
 
 
 .. msc::
@@ -570,7 +574,7 @@ Since the receiver sends an acknowledgement after having received each data fram
 
 
 
-Unfortunately, retransmission timers alone are not sufficient to recover from losses. Let us consider, as an example, the situation depicted below where an acknowledgement is lost. In this case, the sender retransmits the data segment that has not been acknowledged. Unfortunately, as illustrated in the figure below, the receiver considers the retransmission as a new segment whose payload must be delivered to its user.
+Unfortunately, retransmission timers alone are not sufficient to recover from losses. Let us consider, as an example, the situation depicted below where an acknowledgment is lost. In this case, the sender retransmits the data segment that has not been acknowledged. Unfortunately, as illustrated in the figure below, the receiver considers the retransmission as a new segment whose payload must be delivered to its user.
 
 .. msc::
 
@@ -601,7 +605,7 @@ Unfortunately, retransmission timers alone are not sufficient to recover from lo
 
 .. index:: sequence number
 
-To solve this problem, datalink protocols associate a `sequence number` to each data frame. This `sequence number` is one of the fields found in the header of data frames. We use the notation `D(x,...)` to indicate a data frame whose sequence number field is set to value `x`. The acknowledgements also contain a sequence number indicating the data frames that it is acknowledging. We use `OKx` to indicate an acknowledgement frame that confirms the reception of `D(x,...)`. The sequence number is encoded as a bit string of fixed length. The simplest reliable protocol is the Alternating Bit Protocol (ABP). 
+To solve this problem, datalink protocols associate a `sequence number` to each data frame. This `sequence number` is one of the fields found in the header of data frames. We use the notation `D(x,...)` to indicate a data frame whose sequence number field is set to value `x`. The acknowledgments also contain a sequence number indicating the data frames that it is acknowledging. We use `OKx` to indicate an acknowledgment frame that confirms the reception of `D(x,...)`. The sequence number is encoded as a bit string of fixed length. The simplest reliable protocol is the Alternating Bit Protocol (ABP). 
 
 .. index:: Alternating Bit Protocol
 
@@ -616,7 +620,7 @@ The Alternating Bit Protocol uses a single bit to encode the sequence number. It
    Alternating bit protocol : Sender FSM
 
 
-The initial state of the sender is `Wait for D(0,...)`. In this state, the sender waits for a `Data.request`. The first data frame that it sends uses sequence number `0`. After having sent this frame, the sender waits for an `OK0` acknowledgement. A frame is retransmitted upon expiration of the retransmission timer or if an acknowledgement with an incorrect sequence number has been received.
+The initial state of the sender is `Wait for D(0,...)`. In this state, the sender waits for a `Data.request`. The first data frame that it sends uses sequence number `0`. After having sent this frame, the sender waits for an `OK0` acknowledgment. A frame is retransmitted upon expiration of the retransmission timer or if an acknowledgment with an incorrect sequence number has been received.
 
 The receiver first waits for `D(0,...)`. If the frame contains a correct `CRC`, it passes the SDU to its user and sends `OK0`. If the frame contains an invalid CRC, it is immediately discarded. Then, the receiver waits for `D(1,...)`. In this state, it may receive a duplicate `D(0,...)` or a data frame with an invalid CRC. In both cases, it returns an `OK0` frame to allow the sender to recover from the possible loss of the previous `OK0` frame.
 
@@ -724,7 +728,7 @@ And the loss of one control frame.
    Checksums and CRCs should not be confused with hash functions such as MD5 defined in :rfc:`1321` or `SHA-1 <http://www.itl.nist.gov/fipspubs/fip180-1.htm>`_ .
 
 
-The Alternating Bit Protocol can recover from transmission errors and frame losses. However, it has one important drawback. Consider two hosts that are directly connected by a 50 Kbits/sec satellite link that has a 250 milliseconds propagation delay. If these hosts send 1000 bits frames, then the maximum throughput that can be achieved by the alternating bit protocol is one frame every :math:`20+250+250=520` milliseconds if we ignore the transmission time of the acknowledgement. This is less than 2 Kbits/sec ! 
+The Alternating Bit Protocol can recover from transmission errors and frame losses. However, it has one important drawback. Consider two hosts that are directly connected by a 50 Kbits/sec satellite link that has a 250 milliseconds propagation delay. If these hosts send 1000 bits frames, then the maximum throughput that can be achieved by the alternating bit protocol is one frame every :math:`20+250+250=520` milliseconds if we ignore the transmission time of the acknowledgment. This is less than 2 Kbits/sec ! 
 
 .. 
   figure:: ../../book/transport/png/transport-fig-024-c.png
@@ -736,7 +740,7 @@ The Alternating Bit Protocol can recover from transmission errors and frame loss
 Go-back-n and selective repeat
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To overcome the performance limitations of the alternating bit protocol, reliable protocols rely on `pipelining`. This technique allows a sender to transmit several consecutive frames without being forced to wait for an acknowledgement after each frame. Each data frame contains a sequence number encoded in an `n` bits field.
+To overcome the performance limitations of the alternating bit protocol, reliable protocols rely on `pipelining`. This technique allows a sender to transmit several consecutive frames without being forced to wait for an acknowledgment after each frame. Each data frame contains a sequence number encoded in an `n` bits field.
 
 .. figure:: figures/pipelining.png
    :align: center
@@ -744,9 +748,9 @@ To overcome the performance limitations of the alternating bit protocol, reliabl
 
    Pipelining improves the performance of reliable protocols
 
-`Pipelining` allows the sender to transmit frames at a higher rate. However this higher transmission rate may overload the receiver. In this case, the frames sent by the sender will not be correctly received by their final destination. The reliable protocols that rely on pipelining allow the sender to transmit `W` unacknowledged frames before being forced to wait for an acknowledgement from the receiving entity. 
+`Pipelining` allows the sender to transmit frames at a higher rate. However this higher transmission rate may overload the receiver. In this case, the frames sent by the sender will not be correctly received by their final destination. The reliable protocols that rely on pipelining allow the sender to transmit `W` unacknowledged frames before being forced to wait for an acknowledgment from the receiving entity. 
 
-This is implemented by using a `sliding window`. The sliding window is the set of consecutive sequence numbers that the sender can use when transmitting frames without being forced to wait for an acknowledgement. The figure below shows a sliding window containing five segments (`6,7,8,9` and `10`). Two of these sequence numbers (`6` and `7`) have been used to send frames and only three sequence numbers (`8`, `9` and `10`) remain in the sliding window. The sliding window is said to be closed once all sequence numbers contained in the sliding window have been used. 
+This is implemented by using a `sliding window`. The sliding window is the set of consecutive sequence numbers that the sender can use when transmitting frames without being forced to wait for an acknowledgment. The figure below shows a sliding window containing five segments (`6,7,8,9` and `10`). Two of these sequence numbers (`6` and `7`) have been used to send frames and only three sequence numbers (`8`, `9` and `10`) remain in the sliding window. The sliding window is said to be closed once all sequence numbers contained in the sliding window have been used. 
 
 .. figure:: figures/slidingwin.png
    :align: center
@@ -754,7 +758,7 @@ This is implemented by using a `sliding window`. The sliding window is the set o
 
    The sliding window 
 
-The figure below illustrates the operation of the sliding window. It uses a sliding window of three frames. The sender can thus transmit three frames before being forced to wait for an acknowledgement. The sliding window moves to the higher sequence numbers upon the reception of each acknowledgement. When the first acknowledgement (`OK0`) is received, it allows the sender to move its sliding window to the right and sequence number `3` becomes available. This sequence number is used later to transmit the frame containing `d`.
+The figure below illustrates the operation of the sliding window. It uses a sliding window of three frames. The sender can thus transmit three frames before being forced to wait for an acknowledgment. The sliding window moves to the higher sequence numbers upon the reception of each acknowledgment. When the first acknowledgment (`OK0`) is received, it allows the sender to move its sliding window to the right and sequence number `3` becomes available. This sequence number is used later to transmit the frame containing `d`.
 
 
 .. figure:: figures/gbnwin.png
@@ -782,9 +786,9 @@ Unfortunately, frame losses do not disappear because a reliable protocol uses a 
  - a `retransmission strategy` to retransmit the lost frames
 
 
-.. index:: cumulative acknowledgements
+.. index:: cumulative acknowledgments
 
-The simplest sliding window protocol uses the `go-back-n` recovery. Intuitively, `go-back-n` operates as follows. A `go-back-n` receiver is as simple as possible. It only accepts the frames that arrive in-sequence. A `go-back-n` receiver discards any out-of-sequence frame that it receives. When `go-back-n` receives a data frame, it always returns an acknowledgement containing the sequence number of the last in-sequence frame that it has received. This acknowledgement is said to be `cumulative`. When a `go-back-n` receiver sends an acknowledgement for sequence number `x`, it implicitly acknowledges the reception of all frames whose sequence number is earlier than `x`. A key advantage of these cumulative acknowledgements is that it is easy to recover from the loss of an acknowledgement. Consider for example a `go-back-n` receiver that received frames `1`, `2` and `3`. It sent `OK1`, `OK2` and `OK3`. Unfortunately, `OK1` and `OK2` were lost. Thanks to the cumulative acknowledgements, when the receiver receives `OK3`, it knows that all three frames have been correctly received. 
+The simplest sliding window protocol uses the `go-back-n` recovery. Intuitively, `go-back-n` operates as follows. A `go-back-n` receiver is as simple as possible. It only accepts the frames that arrive in-sequence. A `go-back-n` receiver discards any out-of-sequence frame that it receives. When `go-back-n` receives a data frame, it always returns an acknowledgment containing the sequence number of the last in-sequence frame that it has received. This acknowledgment is said to be `cumulative`. When a `go-back-n` receiver sends an acknowledgment for sequence number `x`, it implicitly acknowledges the reception of all frames whose sequence number is earlier than `x`. A key advantage of these cumulative acknowledgments is that it is easy to recover from the loss of an acknowledgment. Consider for example a `go-back-n` receiver that received frames `1`, `2` and `3`. It sent `OK1`, `OK2` and `OK3`. Unfortunately, `OK1` and `OK2` were lost. Thanks to the cumulative acknowledgments, when the receiver receives `OK3`, it knows that all three frames have been correctly received. 
 
 The figure below shows the FSM of a simple `go-back-n` receiver. This receiver uses two variables : `lastack` and `next`. `next` is the next expected sequence number and `lastack` the sequence number of the last data frame that has been acknowledged. The receiver only accepts the frame that are received in sequence. `maxseq` is the number of different sequence numbers (:math:`2^n`).
 
@@ -796,7 +800,7 @@ The figure below shows the FSM of a simple `go-back-n` receiver. This receiver u
    Go-back-n : receiver FSM
 
 
-A `go-back-n` sender is also very simple. It uses a sending buffer that can store an entire sliding window of frames [#fsizesliding]_ . The frames are sent with increasing sequence numbers (modulo `maxseq`). The sender must wait for an acknowledgement once its sending buffer is full. When a `go-back-n` sender receives an acknowledgement, it removes from the sending buffer all the acknowledged frames and uses a retransmission timer to detect frame losses. A simple `go-back-n` sender maintains one retransmission timer per connection. This timer is started when the first frame is sent. When the `go-back-n sender` receives an acknowledgement, it restarts the retransmission timer only if there are still unacknowledged frames in its sending buffer. When the retransmission timer expires, the `go-back-n` sender assumes that all the unacknowledged frames currently stored in its sending buffer have been lost. It thus retransmits all the unacknowledged frames in the buffer and restarts its retransmission timer.
+A `go-back-n` sender is also very simple. It uses a sending buffer that can store an entire sliding window of frames [#fsizesliding]_ . The frames are sent with increasing sequence numbers (modulo `maxseq`). The sender must wait for an acknowledgment once its sending buffer is full. When a `go-back-n` sender receives an acknowledgment, it removes from the sending buffer all the acknowledged frames and uses a retransmission timer to detect frame losses. A simple `go-back-n` sender maintains one retransmission timer per connection. This timer is started when the first frame is sent. When the `go-back-n sender` receives an acknowledgment, it restarts the retransmission timer only if there are still unacknowledged frames in its sending buffer. When the retransmission timer expires, the `go-back-n` sender assumes that all the unacknowledged frames currently stored in its sending buffer have been lost. It thus retransmits all the unacknowledged frames in the buffer and restarts its retransmission timer.
 
 
 .. figure:: figures/gbn-sender.png
@@ -806,7 +810,7 @@ A `go-back-n` sender is also very simple. It uses a sending buffer that can stor
    Go-back-n : sender FSM
 
 
-The operation of `go-back-n` is illustrated in the figure below. In this figure, note that upon reception of the out-of-sequence frame `D(2,c)`, the receiver returns a cumulative acknowledgement `C(OK,0)` that acknowledges all the frames that have been received in sequence. The lost frame is retransmitted upon the expiration of the retransmission timer.
+The operation of `go-back-n` is illustrated in the figure below. In this figure, note that upon reception of the out-of-sequence frame `D(2,c)`, the receiver returns a cumulative acknowledgment `C(OK,0)` that acknowledges all the frames that have been received in sequence. The lost frame is retransmitted upon the expiration of the retransmission timer.
 
 .. figure:: figures/gbnex.png
    :align: center
@@ -832,11 +836,11 @@ A `selective repeat` receiver maintains a sliding window of `W` frames and store
 
    The receiving window with selective repeat 
 
-A `selective repeat` receiver discards all frames having an invalid CRC, and maintains the variable `lastack` as the sequence number of the last in-sequence frame that it has received. The receiver always includes the value of `lastack` in the acknowledgements that it sends. Some protocols also allow the `selective repeat` receiver to acknowledge the out-of-sequence frames that it has received. This can be done for example by placing the list of the correctly received, but out-of-sequence frames in the acknowledgements together with the `lastack` value.
+A `selective repeat` receiver discards all frames having an invalid CRC, and maintains the variable `lastack` as the sequence number of the last in-sequence frame that it has received. The receiver always includes the value of `lastack` in the acknowledgments that it sends. Some protocols also allow the `selective repeat` receiver to acknowledge the out-of-sequence frames that it has received. This can be done for example by placing the list of the correctly received, but out-of-sequence frames in the acknowledgments together with the `lastack` value.
 
-When a `selective repeat` receiver receives a data frame, it first verifies whether the frame is inside its receiving window. If yes, the frame is placed in the receive buffer. If not, the received frame is discarded and an acknowledgement containing `lastack` is sent to the sender. The receiver then removes all consecutive frames starting at `lastack` (if any) from the receive buffer. The payloads of these frames are delivered to the user, `lastack` and the receiving window are updated, and an acknowledgement acknowledging the last frame received in sequence is sent.
+When a `selective repeat` receiver receives a data frame, it first verifies whether the frame is inside its receiving window. If yes, the frame is placed in the receive buffer. If not, the received frame is discarded and an acknowledgment containing `lastack` is sent to the sender. The receiver then removes all consecutive frames starting at `lastack` (if any) from the receive buffer. The payloads of these frames are delivered to the user, `lastack` and the receiving window are updated, and an acknowledgment acknowledging the last frame received in sequence is sent.
 
-The `selective repeat` sender maintains a sending buffer that can store up to `W` unacknowledged frames. These frames are sent as long as the sending buffer is not full. Several implementations of a `selective repeat` sender are possible. A simple implementation associates one retransmission timer to each frame. The timer is started when the frame is sent and cancelled upon reception of an acknowledgement that covers this frame. When a retransmission timer expires, the corresponding frame is retransmitted and this retransmission timer is restarted. When an acknowledgement is received, all the frames that are covered by this acknowledgement are removed from the sending buffer and the sliding window is updated.
+The `selective repeat` sender maintains a sending buffer that can store up to `W` unacknowledged frames. These frames are sent as long as the sending buffer is not full. Several implementations of a `selective repeat` sender are possible. A simple implementation associates one retransmission timer to each frame. The timer is started when the frame is sent and canceled upon reception of an acknowledgment that covers this frame. When a retransmission timer expires, the corresponding frame is retransmitted and this retransmission timer is restarted. When an acknowledgment is received, all the frames that are covered by this acknowledgment are removed from the sending buffer and the sliding window is updated.
 
 The figure below illustrates the operation of `selective repeat` when frames are lost. In this figure, `C(OK,x)` is used to indicate that all frames, up to and including sequence number `x` have been received correctly.
 
@@ -846,9 +850,9 @@ The figure below illustrates the operation of `selective repeat` when frames are
 
    Selective repeat : example 
 
-.. index:: selective acknowledgements
+.. index:: selective acknowledgments
 
-Pure cumulative acknowledgements work well with the `go-back-n` strategy. However, with only cumulative acknowledgements a `selective repeat` sender cannot easily determine which frames have been correctly received after a data frame has been lost. For example, in the figure above, the second `C(OK,0)` does not inform explicitly the sender of the reception of `D(2,c)` and the sender could retransmit this frame although it has already been received. A possible solution to improve the performance of `selective repeat` is to provide additional information about the received frames in the acknowledgements that are returned by the receiver. For example, the receiver could add in the returned acknowledgement the list of the sequence numbers of all frames that have already been received. Such acknowledgements are sometimes called `selective acknowledgements`. This is illustrated in the figure above.
+Pure cumulative acknowledgments work well with the `go-back-n` strategy. However, with only cumulative acknowledgments a `selective repeat` sender cannot easily determine which frames have been correctly received after a data frame has been lost. For example, in the figure above, the second `C(OK,0)` does not inform explicitly the sender of the reception of `D(2,c)` and the sender could retransmit this frame although it has already been received. A possible solution to improve the performance of `selective repeat` is to provide additional information about the received frames in the acknowledgments that are returned by the receiver. For example, the receiver could add in the returned acknowledgment the list of the sequence numbers of all frames that have already been received. Such acknowledgments are sometimes called `selective acknowledgments`. This is illustrated in the figure above.
 
 .. ..figure:: png/manque
       :align: center
@@ -857,18 +861,18 @@ Pure cumulative acknowledgements work well with the `go-back-n` strategy. Howeve
 ..   TODO : SACK Selective repeat : example 
 
 
-In the figure above, when the sender receives `C(OK,0,[2])`, it knows that all frames up to and including `D(0,...)` have been correctly received. It also knows that frame `D(2,...)` has been received and can cancel the retransmission timer associated to this frame. However, this frame should not be removed from the sending buffer before the reception of a cumulative acknowledgement (`C(OK,2)` in the figure above) that covers this frame. 
+In the figure above, when the sender receives `C(OK,0,[2])`, it knows that all frames up to and including `D(0,...)` have been correctly received. It also knows that frame `D(2,...)` has been received and can cancel the retransmission timer associated to this frame. However, this frame should not be removed from the sending buffer before the reception of a cumulative acknowledgment (`C(OK,2)` in the figure above) that covers this frame. 
 
 .. note:: Maximum window size with `go-back-n` and `selective repeat`
 
  A reliable protocol that uses `n` bits to encode its sequence number can send up to :math:`2^n` successive frames. However, to ensure a reliable delivery of the frames, `go-back-n` and `selective repeat` cannot use a sending window of :math:`2^n` frames.
- Consider first `go-back-n` and assume that a sender sends :math:`2^n` frames. These frames are received in-sequence by the destination, but all the returned acknowledgements are lost. The sender will retransmit all frames. These frames will all be accepted by the receiver and delivered a second time to the user. It is easy to see that this problem can be avoided if the maximum size of the sending window is :math:`{2^n}-1` frames.
+ Consider first `go-back-n` and assume that a sender sends :math:`2^n` frames. These frames are received in-sequence by the destination, but all the returned acknowledgments are lost. The sender will retransmit all frames. These frames will all be accepted by the receiver and delivered a second time to the user. It is easy to see that this problem can be avoided if the maximum size of the sending window is :math:`{2^n}-1` frames.
  A similar problem occurs with `selective repeat`. However, as the receiver accepts out-of-sequence frames, a sending window of :math:`{2^n}-1` frames is not sufficient to ensure a reliable delivery. It can be easily shown that to avoid this problem, a `selective repeat` sender cannot use a window that is larger than :math:`\frac{2^n}{2}` frames.
 
 
 .. `Go-back-n` or `selective repeat` are used to provide a reliable data transfer above an unreliable physical layer service. Until now, we have assumed that the size of the sliding window was fixed for the entire lifetime of the connection. In practice a  layer entity is usually implemented in the operating system and shares memory with other parts of the system. Furthermore, a transport layer entity must support several (possibly hundreds or thousands) of transport connections at the same time. This implies that the memory which can be used to support the sending or the receiving buffer of a transport connection may change during the lifetime of the connection [#fautotune]_ . Thus, a transport protocol must allow the sender and the receiver to adjust their window sizes.
 
-.. To deal with this issue, transport protocols allow the receiver to advertise the current size of its receiving window in all the acknowledgements that it sends. The receiving window advertised by the receiver bounds the size of the sending buffer used by the sender. In practice, the sender maintains two state variables : `swin`, the size of its sending window (that may be adjusted by the system) and `rwin`, the size of the receiving window advertised by the receiver. At any time, the number of unacknowledged segments cannot be larger than :math:`\min(swin,rwin)` [#facklost]_ . The utilisation of dynamic windows is illustrated in the figure below.
+.. To deal with this issue, transport protocols allow the receiver to advertise the current size of its receiving window in all the acknowledgments that it sends. The receiving window advertised by the receiver bounds the size of the sending buffer used by the sender. In practice, the sender maintains two state variables : `swin`, the size of its sending window (that may be adjusted by the system) and `rwin`, the size of the receiving window advertised by the receiver. At any time, the number of unacknowledged segments cannot be larger than :math:`\min(swin,rwin)` [#facklost]_ . The utilisation of dynamic windows is illustrated in the figure below.
 
 .. .. figure:: ../../book/transport/svg/transport-fig-039.png
      :align: center
@@ -876,7 +880,7 @@ In the figure above, when the sender receives `C(OK,0,[2])`, it knows that all f
 
       Dynamic receiving window
 
-.. The receiver may adjust its advertised receive window based on its current memory consumption, but also to limit the bandwidth used by the sender. In practice, the receive buffer can also shrink as the application may not able to process the received data quickly enough. In this case, the receive buffer may be completely full and the advertised receive window may shrink to `0`. When the sender receives an acknowledgement with a receive window set to `0`, it is blocked until it receives an acknowledgement with a positive receive window. Unfortunately, as shown in the figure below, the loss of this acknowledgement could cause a deadlock as the sender waits for an acknowledgement while the receiver is waiting for a data segment.
+.. The receiver may adjust its advertised receive window based on its current memory consumption, but also to limit the bandwidth used by the sender. In practice, the receive buffer can also shrink as the application may not able to process the received data quickly enough. In this case, the receive buffer may be completely full and the advertised receive window may shrink to `0`. When the sender receives an acknowledgment with a receive window set to `0`, it is blocked until it receives an acknowledgment with a positive receive window. Unfortunately, as shown in the figure below, the loss of this acknowledgment could cause a deadlock as the sender waits for an acknowledgment while the receiver is waiting for a data segment.
 
 .. .. figure:: ../../book/transport/png/transport-fig-040-c.png
       :align: center
@@ -887,10 +891,10 @@ In the figure above, when the sender receives `C(OK,0,[2])`, it knows that all f
 
 .. index:: persistence timer
 
-.. To solve this problem, transport protocols rely on a special timer : the `persistence timer`. This timer is started by the sender whenever it receives an acknowledgement advertising a receive window set to `0`. When the timer expires, the sender retransmits an old segment in order to force the receiver to send a new acknowledgement, and hence send the current receive window size.
+.. To solve this problem, transport protocols rely on a special timer : the `persistence timer`. This timer is started by the sender whenever it receives an acknowledgment advertising a receive window set to `0`. When the timer expires, the sender retransmits an old segment in order to force the receiver to send a new acknowledgment, and hence send the current receive window size.
 
 ..
- ..  note:: Negative acknowledgements
+ ..  note:: Negative acknowledgments
 
 .. To conclude our description of the basic mechanisms found in transport protocols, we still need to discuss the impact of segments arriving in the wrong order. If two consecutive segments are reordered, the receiver relies on their sequence numbers to reorder them in its receive buffer. Unfortunately, as transport protocols reuse the same sequence number for different segments, if a segment is delayed for a prolonged period of time, it might still be accepted by the receiver. This is illustrated in the figure below where segment `D(1,b)` is delayed.
 
@@ -907,7 +911,7 @@ In the figure above, when the sender receives `C(OK,0,[2])`, it knows that all f
 
 .. index:: piggybacking
 
-Reliable protocols often need to send data in both directions. To reduce the overhead caused by the acknowledgements, most reliable protocols use `piggybacking`. Thanks to this technique, a datalink entity can place the acknowledgements and the receive window that it advertises for the opposite direction of the data flow inside the header of the data frames that it sends. The main advantage of piggybacking is that it reduces the overhead as it is not necessary to send a complete frame to carry an acknowledgement. This is illustrated in the figure below where the acknowledgement number is underlined in the data frames. Piggybacking is only used when data flows in both directions. A receiver will generate a pure acknowledgement when it does not send data in the opposite direction as shown in the bottom of the figure.
+Reliable protocols often need to send data in both directions. To reduce the overhead caused by the acknowledgments, most reliable protocols use `piggybacking`. Thanks to this technique, a datalink entity can place the acknowledgments and the receive window that it advertises for the opposite direction of the data flow inside the header of the data frames that it sends. The main advantage of piggybacking is that it reduces the overhead as it is not necessary to send a complete frame to carry an acknowledgment. This is illustrated in the figure below where the acknowledgment number is underlined in the data frames. Piggybacking is only used when data flows in both directions. A receiver will generate a pure acknowledgment when it does not send data in the opposite direction as shown in the bottom of the figure.
 
 .. figure:: figures/piggyback.png 
    :align: center
@@ -919,7 +923,7 @@ Reliable protocols often need to send data in both directions. To reduce the ove
 
 .. [#fsdu] SDU is the acronym of Service Data Unit. We use it as a generic term to represent the data that is transported by a protocol.
 
-.. [#fsizesliding] The size of the sliding window can be either fixed for a given protocol or negotiated during the connection establishment phase. Some protocols allow to change the maximum window size during the data transfert. We will explain these techniques with real protocols later. 
+.. [#fsizesliding] The size of the sliding window can be either fixed for a given protocol or negotiated during the connection establishment phase. Some protocols allow to change the maximum window size during the data transfer. We will explain these techniques with real protocols later. 
 
 .. .. [#fautotune] For a discussion on how the sending buffer can change, see e.g. [SMM1998]_
 

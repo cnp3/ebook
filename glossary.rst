@@ -35,16 +35,16 @@ Glossary
 	Wide Area Network
    
    ISO
-	The International Standardization Organisation is an agency of the United Nations that is based in Geneva and develop standards on various topics. Within ISO, country representatives vote to approve or reject standards. Most of the work on the development of ISO standards is done in expert working groups. Additional information about ISO may be obtained from http://www.iso.int 
+	The International Standardization Organization is an agency of the United Nations that is based in Geneva and develop standards on various topics. Within ISO, country representatives vote to approve or reject standards. Most of the work on the development of ISO standards is done in expert working groups. Additional information about ISO may be obtained from http://www.iso.int 
 
    ITU
-	The International Telecommunication Union is a United Nation's agency whose purpose is to develop standards for the telecommunication industry. It was initially created to standardise the basic telephone system but expanded later towards data networks. The work within ITU is mainly done by network specialists from the telecommunication industry (operators and vendors). See http://www.itu.int for more information
+	The International Telecommunication Union is a United Nation's agency whose purpose is to develop standards for the telecommunication industry. It was initially created to standardize the basic telephone system but expanded later towards data networks. The work within ITU is mainly done by network specialists from the telecommunication industry (operators and vendors). See http://www.itu.int for more information
 
    IETF
-	The Internet Engineering Task Force is a non-profit organisation that develops the standards for the protocols used in the Internet. The IETF mainly covers the transport and network layers. Several application layer protocols are also standardised within the IETF. The work in the IETF is organised in working groups. Most of the work is performed by exchanging emails and there are three IETF meetings every year. Participation is open to anyone. See http://www.ietf.org
+	The Internet Engineering Task Force is a non-profit organization that develops the standards for the protocols used in the Internet. The IETF mainly covers the transport and network layers. Several application layer protocols are also standardized within the IETF. The work in the IETF is organized in working groups. Most of the work is performed by exchanging emails and there are three IETF meetings every year. Participation is open to anyone. See http://www.ietf.org
 
    W3C
-	The world wide web consortium was created to standardise the protocols and mechanisms used in the global www. It is thus focused on a subset of the application layer. See http://www.w3c.org
+	The world wide web consortium was created to standardize the protocols and mechanisms used in the world wide web. It is thus focused on a subset of the application layer. See http://www.w3c.org
 
    ARPANET	
    	The Advanced Research Project Agency (ARPA) Network is a network that was built by network scientists in USA with funding from the ARPA of the US Ministry of Defense. ARPANET is considered as the grandfather of today's Internet.
@@ -71,16 +71,16 @@ Glossary
 	a public internet, i.e. a network composed of different networks that are running :term:`IPv4` or :term:`IPv6`
 
    internet
-	an internet is an internetwork, i.e. a network composed of different networks. The :term:`Internet` is a very popular internetwork, but other internets have been used in the path.	
+	an internet is an internetwork, i.e. a network composed of different networks. The :term:`Internet`, with a capital `I` corresponds to the global network that we use today, but other internetworks have been used in the path.	
 
    IP
-        Internet Protocol is the generic term for the network layer protocol in the TCP/IP protocol suite. :term:`IPv4` is widely used today and :term:`IPv6` is expected to replace :term:`IPv4`
+        Internet Protocol is the generic term for the network layer protocol in the TCP/IP protocol suite. IP version 4 is widely used but IP version 6 is being deployed globally. 
 
    IPv4
 	is the version 4 of the Internet Protocol, the connectionless network layer protocol used in most of the Internet today. IPv4 addresses are encoded as a 32 bits field.
 
    IPv6
-	is the version 6 of the Internet Protocol, the connectionless network layer protocol which is intended to replace :term:`IPv4` . IPv6 addresses are encoded as a 128 bits field.
+	is the version 6 of the Internet Protocol, the connectionless network layer protocol which is intended to replace IPv4. IP version 6 addresses are encoded as a 128 bits field.
 
    TCP/IP
         refers to the :term:`TCP` and :term:`IP` protocols	
@@ -101,7 +101,7 @@ Glossary
 	The Abstract Syntax Notation One (ASN.1) was designed by ISO and ITU-T. It is a standard and flexible notation that can be used to describe data structures for representing, encoding, transmitting, and decoding data between applications. It was designed to be used in the Presentation layer of the OSI reference model but is now used in other protocols such as :term:`SNMP`.
 
    ftp
-	The File Transfer Protocol defined in :rfc:`959` has been the de facto protocol to exchange files over the Internet before the widespread adoption of HTTP :rfc:`2616`
+	The File Transfer Protocol defined in :rfc:`959` has been the `de facto` protocol to exchange files over the Internet before the widespread adoption of HTTP :rfc:`2616`.
 
    ISN
 	The Initial Sequence Number of a TCP connection is the sequence number chosen by the client ( resp. server) that is placed in the `SYN` (resp. `SYN+ACK`) segment during the establishment of the TCP connection.
@@ -126,13 +126,17 @@ Glossary
 	A TCP option used by a TCP entity in SYN segments to indicate the Maximum Segment Size that it is able to receive.
 
    round-trip-time
-	The round-trip-time (RTT) is the delay between the transmission of a segment and the reception of the corresponding acknowledgement in a transport protocol.
+	The round-trip-time (RTT) is the delay between the transmission of a segment and the reception of the corresponding acknowledgment in a transport protocol.
 
    CIDR
-	Classless Inter Domain Routing is the current address allocation architecture for IPv4. It was defined in :rfc:`1518` and :rfc:`4632`. 
+	Classless Inter Domain Routing is the current address allocation architecture for IP version 4. It was defined in :rfc:`1518` and :rfc:`4632`. 
 
+   IANA
+	The Internet Assigned Numbers Authority (IANA) is responsible for the coordination of the DNS Root, IP addressing, and other Internet protocol resources
+
+	
    RIR
-	Regional Internet Registry. An organisation that manages IP addresses and AS numbers on behalf of :term:`IANA`.
+	Regional Internet Registry. An organization that manages IP addresses and AS numbers on behalf of :term:`IANA`.
 
    RIP
 	Routing Information Protocol. An intradomain routing protocol based on distance vectors that is sometimes used in enterprise networks. RIP is defined in :rfc:`2453`.
@@ -141,7 +145,7 @@ Glossary
 	Open Shortest Path First. A link-state intradomain routing protocol that  is often used in enterprise and ISP networks. OSPF is defined in and :rfc:`2328`  and :rfc:`5340`
  
    IS-IS
-	Intermediate System- Intermediate System. A link-state intradomain routing that was initially defined for the ISO CLNP protocol but was extended to support IPv4 and IPv6. IS-IS is often used in ISP networks. It is defined in [ISO10589]_
+	Intermediate System- Intermediate System. A link-state intradomain routing that was initially defined for the ISO CLNP protocol but was extended to support IP v4 and IP v6. IS-IS is often used in ISP networks. It is defined in [ISO10589]_
 
    IGP
 	Interior Gateway Protocol. Synonym of intradomain routing protocol
@@ -149,6 +153,10 @@ Glossary
    EGP
 	Exterior Gateway Protocol. Synonym of interdomain routing protocol
 
+.. spelling::
+
+   eXchange
+	
    IXP
 	Internet eXchange Point. A location where routers belonging to different domains are attached to the same Local Area Network to establish peering sessions and exchange packets. See http://www.euro-ix.net/ or http://en.wikipedia.org/wiki/List_of_Internet_exchange_points_by_size for a partial list of IXPs.
 
@@ -204,6 +212,11 @@ Glossary
    telnet
 	The telnet protocol is defined in :rfc:`854`
 
+.. spelling::
+
+   XWindow
+   
+	
    X11
 	The XWindow system and the associated protocols are defined in [SG1990]_   
 
@@ -220,7 +233,7 @@ Glossary
 	The Network Time Protocol is defined in :rfc:`1305`
   
    X.25
-	A wide area networking technology using virtual circuits that was deployed by telecom operators.
+	A wide area networking technology using virtual circuits that was deployed by telecommunication operators.
 
    ATM
 	Asynchronous Transfer Mode
@@ -234,6 +247,11 @@ Glossary
    DNS
 	The Domain Name System is a distributed database that can be queried by hosts to map names onto IP addresses
 
+.. spelling::
+
+   Backus
+   Naur
+	
    BNF
 	 A Backus-Naur Form (BNF) is a formal way to describe a language by using syntactic and lexical rules. BNFs are frequently used to define programming languages, but also to define the messages exchanged between networked applications. :rfc:`5234` explains how a BNF must be written to specify an Internet protocol.
 
@@ -264,6 +282,12 @@ Glossary
    HTML
 	The HyperText Markup Language specifies the structure and the syntax of the documents that are exchanged on the world wide web. HTML is maintained by the `HTML working group <http://www.w3.org/html/wg/>`_ of the :term:`W3C` 
 
+.. spelling::
+
+   eXtensible
+
+   
+	
    XML
 	The eXtensible Markup Language (XML) is a flexible text format derived from SGML. It was originally designed for the electronic publishing industry but is now used by a wide variety of applications that need to exchange structured data. The XML specifications are maintained by `several working groups <http://www.w3.org/XML/>`_ of the :term:`W3C`
 
@@ -271,10 +295,11 @@ Glossary
 	The Address Resolution Protocol is a protocol used by IPv4 devices to obtain the datalink layer address that corresponds to an IPv4 address on the local area network. ARP is defined in :rfc:`826`	
  
    ISO
-	The International Standardization Organisation
+	The International Standardization Organization
 
+	
    minicomputer
-	A minicomputer is a multi-user system that was typically used in the 1960s/1970s to serve departments. See the corresponding wikipedia article for additional information : http://en.wikipedia.org/wiki/Minicomputer
+	A minicomputer is a multi-user system that was typically used in the 1960s/1970s to serve departments. See the corresponding Wikipedia article for additional information : http://en.wikipedia.org/wiki/Minicomputer
 
    MIME document
 	A MIME document is a document, encoded by using the :term:`MIME` format.
@@ -291,8 +316,12 @@ Glossary
    ISO-3166
 	An :term:`ISO` standard that defines codes to represent countries and their subdivisions. See http://www.iso.org/iso/country_codes.htm    
 	
-   IANA
-	The Internet Assigned Numbers Authority (IANA) is responsible for the coordination of the DNS Root, IP addressing, and other Internet protocol resources
+
+.. spelling::
+
+   vnc
+
+   
 	
    vnc
 	A networked application that allows to remotely access a computer's Graphical User Interface. See http://en.wikipedia.org/wiki/Virtual_Network_Computing
@@ -300,6 +329,11 @@ Glossary
    ISP
         An Internet Service Provider, i.e. a network that provides Internet access to its clients. 
 
+.. spelling::
+
+   Endian
+
+   
    network-byte order
         Internet protocol allow to transport sequences of bytes. These sequences of bytes are sufficient to carry ASCII characters. The network-byte order refers to the Big-Endian encoding for 16 and 32 bits integer. See http://en.wikipedia.org/wiki/Endianness
  
@@ -314,3 +348,10 @@ Glossary
 
    NBMA
 	A Non Broadcast Mode Multiple Access Network is a subnetwork that supports multiple hosts/routers but does not provide an efficient way of sending broadcast frames to all devices attached to the subnetwork. ATM subnetworks are an example of NBMA networks.
+
+
+.. spelling::
+
+   IPv
+
+   

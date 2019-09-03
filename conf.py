@@ -26,7 +26,8 @@ import sys, os
 #sys.path.append(os.path.abspath('mcq'))
 #sys.path.insert(0, os.path.abspath('.'))
 
-extensions = ['sphinx.ext.todo', 'sphinxcontrib.mscgen', 'sphinx.ext.graphviz', 'sphinxcontrib.tikz', 'sphinx.ext.mathjax']
+extensions = ['sphinx.ext.todo', 'sphinxcontrib.mscgen', 'sphinx.ext.graphviz', 'sphinxcontrib.tikz', 'sphinx.ext.mathjax', 'sphinxcontrib.spelling' ]
+
 #extensions = ['sphinx.ext.todo', 'sphinx.ext.pngmath', 'sphinxcontrib.mscgen','sphinx.ext.graphviz','sphinxcontrib.tikz']
 #mscgen
 mscgen_args=['-T eps']
@@ -39,7 +40,12 @@ mscgen_epstopdf='/usr/bin/epstopdf'
 locale_dirs= ['locale/']
 gettext_compact=False   # see http://www.sphinx-doc.org/en/master/usage/advanced/intl.html#using-transifex-service-for-team-translation
 
-
+# spelling
+spelling_lang='en_US'
+tokenizer_lang='en_US'
+spelling_show_suggestions=False
+# Private dictionnary
+spelling_word_list_filename=['wordlist.dict']
 
 
 # mcq

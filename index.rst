@@ -2,9 +2,9 @@
 .. This file is licensed under a `creative commons licence <http://creativecommons.org/licenses/by/3.0/>`_
 
 
-#####################################################################
-Computer Networking : Principles, Protocols and Practice, 2nd edition
-#####################################################################
+#######################################################################
+Computer Networking : Principles, Protocols and Practice, third edition
+#######################################################################
 
 
 
@@ -14,7 +14,7 @@ Computer Networking : Principles, Protocols and Practice, 2nd edition
 
 .. only:: html
 
-   This is an unpolished draft of the second edition of this ebook. If you find any error or have suggestions to improve the text, please create an issue via https://github.com/CNP3/ebook/issues/new
+   This is an unpolished draft of the third edition of this ebook. If you find any error or have suggestions to improve the text, please create an issue via https://github.com/CNP3/ebook/issues/new
 
     The development of this edition of the textbook is carried out on `https://github.com/CNP3/ebook <https://github.com/CNP3/ebook>`_ 
 

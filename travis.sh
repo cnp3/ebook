@@ -17,3 +17,5 @@ set -e
 #  -T   output full traceback
 # --keep-going continue the processing after a warning
 sphinx-build  -WNT --keep-going -b html . /tmp
+# Spell checker
+sphinx-build  -WNT --keep-going -b spelling . /tmp
