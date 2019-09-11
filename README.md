@@ -11,7 +11,7 @@ All the files in this subversion repository are licensed under a Creative Common
 
 You can find the source files for the two previous editions and their history on https://github.com/obonaventure/cnp3
 
-See [INSTALL.md](INSTALL.md) if you want to build the e-book.
+See [BUILD.md](BUILD.md) if you want to build the e-book.
 
  
 
