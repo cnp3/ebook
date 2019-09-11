@@ -328,6 +328,9 @@ Glossary
    eXtensible
    XWindow
    txt
+   rlogin
+   vnc
+   eXchange
    
 	
 

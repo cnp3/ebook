@@ -50,6 +50,9 @@ retransmit
 retransmits
 retransmitted
 subnetwork
+subnetworks
 unicast
 hostname
 hostnames
+telecom
+intradomain

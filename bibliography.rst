@@ -62,7 +62,7 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
 .. .. [DYGU2004] Davik, F.  Yilmaz, M.  Gjessing, S.  Uzun, N., `IEEE 802.17 resilient packet ring tutorial <https://dx.doi.org/10.1109/MCOM.2004.1273782>`_, IEEE Communications Magazine, Mar 2004, Vol 42, N 3, p. 112-118 
 .. .. [Dijkstra1959] Dijkstra, E., `A Note on Two Problems in Connection with Graphs <https://dx.doi.org/10.1007/BF01386390>`_. Numerische Mathematik, 1:269- 271, 1959 
 .. .. [FDDI] ANSI. `Information systems - Fiber Distributed Data Interface (FDDI) - token ring media access control (MAC)`. ANSI X3.139-1987 (R1997), 1997
-.. .. [Fletcher1982] Fletcher, J., `An Arithmetic Checksum for Serial Transmissions <https://dx.doi.org/10.1109/TCOM.1982.1095369>`_, Communications, IEEE Transactions on, Jan. 1982, Vol. 30, N. 1, pp. 247-252
+.. [Fletcher1982] Fletcher, J., `An Arithmetic Checksum for Serial Transmissions <https://dx.doi.org/10.1109/TCOM.1982.1095369>`_, Communications, IEEE Transactions on, Jan. 1982, Vol. 30, N. 1, pp. 247-252
 .. .. [FFEB2005] Francois, P., Filsfils, C., Evans, J., and Bonaventure, O., `Achieving sub-second IGP convergence in large IP networks <http://doi.acm.org/10.1145/1070873.1070877>`_. SIGCOMM Computer Communication Review 35, 3 (Jul. 2005), 35-44. 
 .. .. [FJ1993] Sally Floyd and Van Jacobson. 1993. `Random early detection gateways for congestion avoidance <https://dx.doi.org/10.1109/90.251892>`_. IEEE/ACM Transactions Networking 1, 4 (August 1993), 397-413. 
 .. .. [FJ1994] Floyd, S., and Jacobson, V., `The Synchronization of Periodic Routing Messages <https://dx.doi.org/10.1109/90.298431>`_, IEEE/ACM Transactions on Networking, V.2 N.2, p. 122-136, April 1994 

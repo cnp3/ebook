@@ -59,8 +59,11 @@ Part 2: Protocols
    :maxdepth: 4
 
 
+
+   protocols/dns
+
 ..   protocols/transport-service
-..   protocols/dns
+
 ..   protocols/email
 ..   protocols/ssh
 ..   protocols/http
@@ -80,15 +83,15 @@ Part 2: Protocols
    
 .. _part3:
 
-.. ################
-.. Part 3: Practice
-.. ################
+################
+Part 3: Practice
+################
 
-.. .. toctree::
-..   :maxdepth: 4
+.. toctree::
+   :maxdepth: 4
 
-..   exercises/intro           
-..   exercises/reliable
+   exercises/intro           
+   exercises/reliability
 ..   exercises/network
 ..   exercises/ex-transport
 ..   exercises/ex-sharing
