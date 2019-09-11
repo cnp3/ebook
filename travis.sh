@@ -15,7 +15,12 @@ set -e
 #  -W   Turn warnings into errors. This means that the build stops at the first warning and sphinx-build exits with exit status 1.
 #  -N   Do not emit colors
 #  -T   output full traceback
-# --keep-going continue the processing after a warning
-sphinx-build  -WNT --keep-going -b html . /tmp
 # Spell checker
 sphinx-build  -WNT --keep-going -b spelling . /tmp
+# Build images
+cd pkt
+make
+cd ..
+# --keep-going continue the processing after a warning
+sphinx-build  -WNT --keep-going -b html . /tmp
+

@@ -10,7 +10,8 @@ To build the HTML version of the e-book, you need to install several software pa
  - the python3 setuptools
  - mscgen to produce some figures
  - tikz to produce other figures
-
+ - inkscape to convert some figures
+ 
 We use the sphinxcontrib-spelling sphinx extension to check the spelling of the text on a regular basis. This extension use PyEnchant and the enchant library.
 
 The required packages can be installed on a Ubuntu Linux using the following commands.
@@ -22,7 +23,8 @@ The required packages can be installed on a Ubuntu Linux using the following com
  sudo apt-get install netpbm 
  sudo apt-get install poppler-utils
  sudo apt-get install python3-enchant
- sudo apt-get install python3-sphinxcontrib.spelling 
+ sudo apt-get install python3-sphinxcontrib.spelling
+ sudo apt-get install inkscape
  sudo pip3 install -q requirements.txt
 
 ```
