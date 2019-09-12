@@ -10,7 +10,7 @@ The network and the transport layers rely on addresses that are encoded as fixed
 
 While addresses are natural for the network and transport layer entities, humans prefer to use names when interacting with network services. Names can be encoded as a character string and a mapping services allows applications to map a name into the corresponding address. Using names is friendlier for humans, but it also provides a level of indirection which is very useful in many situations. 
 
-In the early days of the Internet, only a few hosts (mainly minicomputers) connected to the network. The most popular applications were remote login and file transfer. By 1983, there were already five hundred hosts attached to the Internet [Zakon]_. Each of these hosts were identified by a unique address. Forcing human users to remember the addresses of the hosts that they wanted to use was not user-friendly. Humans prefer to remember names, and use them when needed. Using names as aliases for addresses is a common technique in Computer Science. It simplifies the development of applications and allows the developer to ignore the low level details. For example, by using a programming language instead of writing machine code, a developer can write software without knowing whether the variables that it uses are stored in memory or inside registers. 
+In the early days of the Internet, only a few hosts (mainly minicomputers) connected to the network. The most popular applications were :term:`remote login` and file transfer. By 1983, there were already five hundred hosts attached to the Internet [Zakon]_. Each of these hosts were identified by a unique address. Forcing human users to remember the addresses of the hosts that they wanted to use was not user-friendly. Humans prefer to remember names, and use them when needed. Using names as aliases for addresses is a common technique in Computer Science. It simplifies the development of applications and allows the developer to ignore the low level details. For example, by using a programming language instead of writing machine code, a developer can write software without knowing whether the variables that it uses are stored in memory or inside registers. 
 
 Because names are at a higher level than addresses, they allow (both in the example of programming above, and on the Internet) to treat addresses as mere technical identifiers, which can change at will. Only the names are stable. 
 
@@ -151,5 +151,9 @@ Names provide a lot of flexibility compared to addresses. For the network, they 
 
 .. [#fg00gle] It is interesting to note that to prevent any homograph attack, Google Inc. registered the `g00gle.com` domain name but does not apparently use it.
 
+.. spelling::
+
+   subdomains
+	      
 .. include:: /links.rst
 

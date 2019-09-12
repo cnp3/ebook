@@ -26,12 +26,13 @@ import sys, os
 #sys.path.append(os.path.abspath('mcq'))
 #sys.path.insert(0, os.path.abspath('.'))
 
-extensions = ['sphinx.ext.todo', 'sphinxcontrib.mscgen', 'sphinx.ext.graphviz', 'sphinxcontrib.tikz', 'sphinx.ext.mathjax', 'sphinxcontrib.spelling' ]
+# add sphinx extensions
+sys.path.append(os.path.abspath("./util"))
+extensions = ['sphinx.ext.todo', 'sphinxcontrib.mscgen', 'sphinx.ext.graphviz', 'sphinxcontrib.tikz', 'sphinx.ext.mathjax', 'sphinxcontrib.spelling', 'interactive_syllabus_directives']
 
 #extensions = ['sphinx.ext.todo', 'sphinx.ext.pngmath', 'sphinxcontrib.mscgen','sphinx.ext.graphviz','sphinxcontrib.tikz']
 #mscgen
-mscgen_args=['-T eps']
-#mscgen='/home/vagrant/local/mscgen-0.20/bin/mscgen'
+#mscgen_args=['-T eps']
 mscgen_epstopdf='/usr/bin/epstopdf'
 #mscgen_epstopdf_args=['--debug']
 
@@ -98,7 +99,7 @@ exclude_trees = ['_build']
 
 # List of files that should not be automatically compiled by sphynx because they are included
 
-exclude_patterns = [ '*#*', "python/*" ]
+exclude_patterns = [ '*#*', "python/*" , "principles/dv.rst", "principles/linkstate.rst"]
 
 # epilog add to all included files
 #rst_epilog = """

@@ -38,10 +38,11 @@ Part 1: Principles
    :maxdepth: 4
 
    principles/reliability
+   principles/network
    principles/naming
-   
-..   principles/network
-..   principles/transport
+      
+
+..   principles/transport   
    
 
    

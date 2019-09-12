@@ -46,9 +46,11 @@ resolver
 resolvers
 resynchronize
 retransmission
+retransmissions
 retransmit
 retransmits
 retransmitted
+retransmitting
 subnetwork
 subnetworks
 unicast
@@ -56,3 +58,10 @@ hostname
 hostnames
 telecom
 intradomain
+pseudocode
+nexthop
+multipath
+LSP
+unicity
+decapsulate
+Multiprotocol

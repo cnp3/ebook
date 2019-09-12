@@ -884,7 +884,11 @@ Reliable protocols often need to send data in both directions. To reduce the ove
 
 .. .. [#fmsl] As we will see in the next chapter, the Internet does not strictly enforce this MSL. However, it is reasonable to expect that most packets on the Internet will not remain in the network during more than 2 minutes. There are a few exceptions to this rule, such as :rfc:`1149` whose implementation is described in http://www.blug.linux.no/rfc1149/ but there are few real links supporting :rfc:`1149` in the Internet.
 
+.. spelling::
 
+   multi
+
+   
 .. include:: /links.rst
 
 
