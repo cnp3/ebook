@@ -4,7 +4,7 @@ Using sockets for inter-process communication
 =============================================
 
 
-Popular operating systems allow to isolate different programs by executing them in separate :term:`processes`. A :term:`socket` is a tool provided by the operating system that allows two separated processes to communicate with each other. A socket takes the form of a file descriptor and can be seen as a communication pipe through which the communicating processes can exchange arbitrary informations. In order to receive a message, a process must be attached to a specific :term:`address` that the peer can use to reach it.
+Popular operating systems allow to isolate different programs by executing them in separate `processes`. A :term:`socket` is a tool provided by the operating system that allows two separated processes to communicate with each other. A socket takes the form of a file descriptor and can be seen as a communication pipe through which the communicating processes can exchange arbitrary information. In order to receive a message, a process must be attached to a specific :term:`address` that the peer can use to reach it.
 
 .. add the two socket images
 
@@ -139,7 +139,7 @@ Receiving data from a peer using a socket
 -----------------------------------------
 
 Operating systems allow to assign an address to a socket using the ``bind`` system call. This is useful when you want to receive messages from another program to which you announced your socket address.
-Once the address is assigned to the socket, the program can receive informations from others using system calls such as ``recv`` and ``read``. Note that we can use the ``read`` system call as the operating system provides a socket as a file descriptor.
+Once the address is assigned to the socket, the program can receive data from others using system calls such as ``recv`` and ``read``. Note that we can use the ``read`` system call as the operating system provides a socket as a file descriptor.
 
 The following program binds its socket to a given socket address and then waits for receiving new bytes, using the already created socket ``sock``.
 
@@ -258,7 +258,7 @@ The following program connects a socket to a remote address, sends a message and
 Creating a new socket to communicate through a network
 ------------------------------------------------------
 
-Until now, we learned how to use sockets that were already created. When writing a whole program, you will have to create you own sockets and choose the concrete technology that it will use to communicate with others. In this section, we will create new sockets and allow a program to communicate with processes located on another computer using a network. The most recent standardised technology used to communicate through a network is the :term:`IPv6` :term:`network protocol`.
+Until now, we learned how to use sockets that were already created. When writing a whole program, you will have to create you own sockets and choose the concrete technology that it will use to communicate with others. In this section, we will create new sockets and allow a program to communicate with processes located on another computer using a network. The most recent standardized technology used to communicate through a network is the :term:`IPv6` network protocol.
 In the IPv6 protocol, hosts are identified using *IPv6 addresses*. Modern operating systems allow IPv6 network communications between programs to be done using the socket API, just as we did in the previous sections. 
 
 A program can use the ``socket`` system call to create a new socket.
@@ -321,3 +321,4 @@ Now, we have built everything we need to send a message to the remote program. T
 
 Note that we can reuse our ``send_hello_to_peer`` function without any modification as we wrote it to handle any kind of sockets, including sockets using the IPv6 network protocol.
 
+.. include:: /links.rst

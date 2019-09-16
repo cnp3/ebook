@@ -887,7 +887,7 @@ Reliable protocols often need to send data in both directions. To reduce the ove
 .. spelling::
 
    multi
-
+   Multi
    
 .. include:: /links.rst
 

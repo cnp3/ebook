@@ -36,7 +36,7 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
 .. .. [BYL2008] Buford, J., Yu, H., Lua, E.K., `P2P Networking and Applications <http://books.google.com/books?id=O9NkAaY9YxMC>`_, Morgan Kaufmann, 2008
 .. .. [CB2003] Cheswick, William R., Bellovin, Steven M., Rubin, Aviel D., `Firewalls and internet security - Second edition - Repelling the Wily Hacker <http://books.google.com/books?id=XI52je-zaW8C>`_, Addison-Wesley 2003 
 .. .. [CCB+2013] Cardwell, N., Cheng, Y., Brakmo, L., Mathis, M., Raghavan, B., Dukkipati, N., Chu, H., Terzis, A., and Herbert, T., `packetdrill: scriptable network stack testing, from sockets to packets <https://www.usenix.org/conference/atc13/packetdrill-scriptable-network-stack-testing-sockets-packets>`_. In Proceedings of the 2013 USENIX conference on Annual Technical Conference (USENIX ATC'13). USENIX Association, Berkeley, CA, USA, 213-218.
-.. .. [CD2008] Calvert, K., Donahoo, M., `TCP/IP Sockets in Java : Practical Guide for Programmers <http://books.google.com/books?id=lfHo7uMk7r4C>`_, Morgan Kaufman, 2008
+.. [CD2008] Calvert, K., Donahoo, M., `TCP/IP Sockets in Java : Practical Guide for Programmers <http://books.google.com/books?id=lfHo7uMk7r4C>`_, Morgan Kaufman, 2008
 .. .. [CJ1989] Chiu, D., Jain, R., `Analysis of the Increase and Decrease Algorithms for Congestion Avoidance in Computer Networks <https://dx.doi.org/10.1016/0169-7552(89)90019-6>`_, Computer Networks and ISDN Systems Vol 17, pp 1-14, 1989 
 .. .. [CK74] Cerf, V., Kahn, R., `A Protocol for Packet Network Intercommunication <https://dx.doi.org/10.1109/TCOM.1974.1092259>`_, IEEE Transactions on Communications, May 1974 
 .. .. [CNPI09] Gont, F., `Security Assessment of the Transmission Control Protocol (TCP) <http://tools.ietf.org/html/draft-ietf-tcpm-tcp-security-02>`_,Security Assessment of the Transmission Control Protocol (TCP), Internet draft, work in progress, Jan. 2011
@@ -49,7 +49,7 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
 .. .. [Comer1988] Comer, D., `Internetworking with TCP/IP : principles, protocols & architecture`, Prentice Hall, 1988
 .. .. [Comer1991] Comer D., `Internetworking With TCP/IP : Design Implementation and Internals`,  Prentice Hall, 1991
 .. .. [Cohen1980] Cohen, D., `On Holy Wars and a Plea for Peace`, IEN 137, April 1980, http://www.ietf.org/rfc/ien/ien137.txt
-.. .. [DC2009] Donahoo, M., Calvert, K., `TCP/IP Sockets in C: Practical Guide for Programmers <http://books.google.com/books?id=dmt_mERzxV4C>`_ , Morgan Kaufman, 2009
+.. [DC2009] Donahoo, M., Calvert, K., `TCP/IP Sockets in C: Practical Guide for Programmers <http://books.google.com/books?id=dmt_mERzxV4C>`_ , Morgan Kaufman, 2009
 .. .. [DH1976] Diffie, W., Hellman, M., `New directions in cryptography`, in Information Theory, IEEE Transactions on , vol.22, no.6, pp.644-654, Nov 1976, https://dx.doi.org/10.1109/TIT.1976.1055638
 .. .. [DIX] Digital, Intel, Xerox, `The Ethernet: a local area network: data link layer and physical layer specifications <http://doi.acm.org/10.1145/1015591.1015594>`_. SIGCOMM Computer Communication Review 11, 3 (Jul. 1981), 20-66. 
 .. .. [DKF+2007] Dimitropoulos, X., Krioukov, D., Fomenkov, M., Huffaker, B., Hyun, Y., Claffy, K., Riley, G.,  `AS Relationships: Inference and Validation <http://doi.acm.org/10.1145/1198255.1198259>`_, ACM SIGCOMM Computer Communication Review (CCR), Jan. 2007
@@ -95,7 +95,7 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
 .. .. [JLT2013] Jesup, R., Loreto, S., Tuexen, M., `RTCWeb Data Channels <http://tools.ietf.org/html/draft-ietf-rtcweb-data-channel-06>`_, Internet draft, work in progress, 2013
 .. [JSBM2002] Jung, J., Sit, E., Balakrishnan, H., and Morris, R. 2002. `DNS performance and the effectiveness of caching <https://dx.doi.org/10.1109/TNET.2002.803905>`_. IEEE/ACM Transactions Networking 10, 5 (Oct. 2002), 589-603. 
 .. .. [JSON-RPC2] JSON-RPC Working group, `JSON-RPC 2.0 Specification <http://www.jsonrpc.org/specification>`_, available on http://www.jsonrpc.org, 2010
-.. .. [Kerrisk2010] Kerrisk, M., `The Linux Programming Interface <http://nostarch.com/tlpi>`_, No Starch Press, 2010 
+.. [Kerrisk2010] Kerrisk, M., `The Linux Programming Interface <http://nostarch.com/tlpi>`_, No Starch Press, 2010 
 .. .. [KM1995] Kent, C. A. and Mogul, J. C., `Fragmentation considered harmful <http://doi.acm.org/10.1145/205447.205456>`_. SIGCOMM Computer Communication Review 25, 1 (Jan. 1995), 75-87. 
 .. .. [KNT2013] Kühlewind, M., Neuner, S., Trammell, B., `On the state of ECN and TCP Options on the Internet <http://link.springer.com/chapter/10.1007%2F978-3-642-36516-4_14>`_. Proceedings of the 14th Passive and Active Measurement conference (PAM 2013), Hong Kong, March 2013
 .. .. [KP91] Karn, P. and Partridge, C., `Improving round-trip time estimates in reliable transport protocols <http://doi.acm.org/10.1145/118544.118549>`_. ACM Transactions Computer Systems 9, 4 (Nov. 1991), 364-373. 
@@ -113,7 +113,7 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
 .. .. [LCP2005] Eng Keong Lua, Crowcroft, J., Pias, M., Sharma, R., Lim, S., `A survey and comparison of peer-to-peer overlay network schemes <https://dx.doi.org/10.1109/COMST.2005.1610546>`_, Communications Surveys & Tutorials, IEEE, Volume: 7 , Issue: 2, 2005, pp. 72-93
 .. .. [LeB2009] Leroy, D. and O. Bonaventure, `Preparing network
                configurations for IPv6 renumbering <http://inl.info.ucl.ac.be/system/files/dleroy-nem-2009.pdf>`_, International of Network Management, 2009 
-.. .. [LFJLMT] Leffler, S., Fabry, R., Joy, W., Lapsley, P., Miller, S., Torek, C., `An Advanced 4.4BSD Interprocess Communication Tutorial <http://docs.freebsd.org/44doc/psd/21.ipc/paper.pdf>`_, 4.4 BSD Programmer's Supplementary Documentation 
+.. [LFJLMT] Leffler, S., Fabry, R., Joy, W., Lapsley, P., Miller, S., Torek, C., `An Advanced 4.4BSD Interprocess Communication Tutorial <http://docs.freebsd.org/44doc/psd/21.ipc/paper.pdf>`_, 4.4 BSD Programmer's Supplementary Documentation 
 .. .. [LNO1996] T. V. Lakshman, Arnold Neidhardt, and Teunis J. Ott. 1996. `The drop from front strategy in TCP and in TCP over ATM <https://dx.doi.org/10.1109/INFCOM.1996.493070>`_. INFOCOM'96, Vol. 3. IEEE Computer Society, Washington, DC, USA, 1242-1250.
 .. .. [LSP1982] Lamport, L., Shostak, R., and Pease, M., `The Byzantine Generals Problem <http://doi.acm.org/10.1145/357172.357176>`_. ACM Transactions Programming Languages and Systems 4, 3 (Jul. 1982), 382-401. 
 .. .. [Leboudec2008] Leboudec, J.-Y., `Rate Adaptation Congestion Control and Fairness : a tutorial <http://ica1www.epfl.ch/PS_files/LEB3132.pdf>`_, Dec. 2008
@@ -142,7 +142,7 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
 .. .. [Perlman2000] Perlman, R., `Interconnections : Bridges, routers, switches and internetworking protocols <http://books.google.com/books?id=AIRitf5C-QQC&pgis=1>`_, 2nd edition, Addison Wesley, 2000 
 .. .. [Perlman2004] Perlman, R., `RBridges: Transparent Routing <http://www.ieee-infocom.org/2004/Papers/26_1.PDF>`_, Proceedings IEEE INFOCOM , March 2004. 
 .. .. [Pouzin1975] Pouzin, L., `The CYCLADES Network - Present state and development trends <http://rogerdmoore.ca/PS/CIGALE/CYCL2.html>`_, Symposium on Computer Networks, 1975 pp 8-13. 
-.. .. [Rago1993] Rago, S., `UNIX System V network programming <http://www.pearsonhighered.com/educator/product/UNIX-System-V-Network-Programming/9780201563184.page>`_, Addison Wesley, 1993 
+.. [Rago1993] Rago, S., `UNIX System V network programming <http://www.pearsonhighered.com/educator/product/UNIX-System-V-Network-Programming/9780201563184.page>`_, Addison Wesley, 1993 
 .. .. [RE1989] Rochlis, J. A. and Eichin, M. W., `With microscope and tweezers: the worm from MIT's perspective <http://doi.acm.org/10.1145/63526.63528>`_. Communications ACM 32, 6 (Jun. 1989), 689-698. 
 .. .. [RFC20] Cerf, V., `ASCII format for network interchange`, :rfc:`20`, Oct. 1969
 .. .. [RFC768] Postel, J., `User Datagram Protocol`, :rfc:`768`, Aug. 1980
@@ -312,7 +312,7 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
 .. .. [Russel06] Russell A., `Rough Consensus and Running Code and the Internet-OSI Standards War <https://dx.doi.org/10.1109/MAHC.2006.42>`_, IEEE Annals of the History of Computing, July-September 2006 
 .. .. [SAO1990] Sidhu, G., Andrews, R., Oppenheimer, A., `Inside AppleTalk <ftp://ftp.turingbirds.com/electronics/books/buses_networks/apple_localtalk.pdf>`_, Addison-Wesley, 1990 
 .. .. [SARK2002] Subramanian, L., Agarwal, S., Rexford, J., Katz, R.. .. `Characterizing the Internet hierarchy from multiple vantage points <https://dx.doi.org/10.1109/INFCOM.2002.1019307>`_. In IEEE INFOCOM, 2002 
-.. .. [Sechrest] Sechrest, S., `An Introductory 4.4BSD Interprocess Communication Tutorial <http://docs.freebsd.org/44doc/psd/20.ipctut/paper.pdf>`_, 4.4BSD Programmer's Supplementary Documentation 
+.. [Sechrest] Sechrest, S., `An Introductory 4.4BSD Interprocess Communication Tutorial <http://docs.freebsd.org/44doc/psd/20.ipctut/paper.pdf>`_, 4.4BSD Programmer's Supplementary Documentation 
 .. [SG1990] Scheifler, R., Gettys, J., `X Window System: The Complete Reference to Xlib <http://h30097.www3.hp.com/docs/base_doc/DOCUMENTATION/V51B_ACRO_SUP/XWINSYS.PDF>`_, X Protocol, ICCCM, XLFD, X Version 11, Release 4, Digital Press
 .. [SGP98] Stone, J., Greenwald, M., Partridge, C., and Hughes, J., `Performance of checksums and CRC's over real data <https://dx.doi.org/10.1109/90.731187>`_. IEEE/ACM Transactions Networking 6, 5 (Oct. 1998), 529-543. 
 .. .. [SH1980] Shoch, J. F. and Hupp, J. A., `Measured performance of an Ethernet local network <http://doi.acm.org/10.1145/359038.359044>`_. Communications ACM 23, 12 (Dec. 1980), 711-721. 
@@ -324,13 +324,13 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
 .. .. [STD2013] Stewart, R., Tuexen, M., Dong, X., `ECN for Stream Control Transmission Protocol (SCTP) <http://tools.ietf.org/html/draft-stewart-tsvwg-sctpecn-04>`_, Internet draft, April 2013, work in progress
 .. .. [Seifert2008] Seifert, R., Edwards, J., `The All-New Switch Book : The complete guide to LAN switching technology <http://books.google.com/books?id=wgeusf8tgTMC>`_, Wiley, 2008 
 .. .. [Selinger] Selinger, P., `MD5 collision demo`, http://www.mscs.dal.ca/~selinger/md5collision/
-.. .. [SFR2004] Stevens R. and Fenner, and Rudoff, A., `UNIX Network Programming: The sockets networking API <http://books.google.com/books?id=ptSC4LpwGA0C>`_, Addison Wesley, 2004 
+.. [SFR2004] Stevens R. and Fenner, and Rudoff, A., `UNIX Network Programming: The sockets networking API <http://books.google.com/books?id=ptSC4LpwGA0C>`_, Addison Wesley, 2004 
 .. [Sklower89] Sklower, K. 1989. `Improving the efficiency of the OSI checksum calculation <http://doi.acm.org/10.1145/74681.74684>`_. SIGCOMM Computer Communication Review 19, 5 (Oct. 1989), 32-43. 
 .. .. [SMASU2012] Sarrar, N., Maier, G., Ager, B., Sommer, R. and Uhlig, S., `Investigating IPv6 traffic <http://link.springer.com/chapter/10.1007/978-3-642-28537-0_2>`_, Passive and Active Measurements, Lecture Notes in Computer Science vol 7192, 2012, pp.11-20
 .. .. [SMM98] Semke, J., Mahdavi, J., and Mathis, M., `Automatic TCP buffer tuning <http://doi.acm.org/10.1145/285243.285292>`_. SIGCOMM Computer Communication Review 28, 4 (Oct. 1998), 315-323. 
 .. .. [Stallings2009] Stallings, W., `Protocol Basics: Secure Shell Protocol <http://www.cisco.com/web/about/ac123/ac147/archived_issues/ipj_12-4/124_ssh.html>`_, Internet Protocol Journal, vol 12, n 4, Dec. 2009
 .. .. [Stevens1994] Stevens, R., `TCP/IP Illustrated : the Protocols <http://books.google.com/books?id=-btNds68w84C>`_, Addison-Wesley, 1994 
-.. .. [Stevens1998] Stevens, R., `UNIX Network Programming, Volume 1, Second Edition: Networking APIs: Sockets and XTI <http://books.google.com/books?id=ptSC4LpwGA0C>`_, Prentice Hall, 1998 
+.. [Stevens1998] Stevens, R., `UNIX Network Programming, Volume 1, Second Edition: Networking APIs: Sockets and XTI <http://books.google.com/books?id=ptSC4LpwGA0C>`_, Prentice Hall, 1998 
 .. .. [Stewart1998] Stewart, J., `BGP4: Inter-Domain Routing In The Internet <http://books.google.com/books?id=UEcHpN4QHrAC>`_, Addison-Wesley, 1998
 .. .. [Stoll1988] Stoll, C., `Stalking the wily hacker <http://doi.acm.org/10.1145/42411.42412>`_, Communications ACM 31, 5 (May. 1988), 484-497. 
 .. .. [SV1995] M. Shreedhar and G. Varghese. `Efficient fair queueing using deficit round robin <http://doi.acm.org/10.1145/217391.217453>`_ SIGCOMM Computer Communication Review 25, 4 (October 1995), 231-242.

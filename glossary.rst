@@ -1,4 +1,4 @@
-.. Copyright |copy| 2010 by Olivier Bonaventure
+.. Copyright |copy| 2010, 2019 by Olivier Bonaventure
 .. This file is licensed under a `creative commons licence <http://creativecommons.org/licenses/by/3.0/>`_
 
 
@@ -319,7 +319,13 @@ Glossary
    
    file transfer
        A service that enables a user to send or receive a file from a distant server over the network. The File Transfer Protocol :term:`FTP` was a popular service. It has now been replaced by HTTP/HTTPs or more secure protocols such as the `SSH File Transfer Protocol <https://en.wikipedia.org/wiki/SSH_File_Transfer_Protocol>`_. 
-   
+
+   address
+      A string of bits that identifies a network interface in the network layer or the datalink layer. Most addresses have a fixed length, e.g. 32 bits for :term:`IPv4`, 128 bits for :term:`IPv6` or 48 bits for :term:`Ethernet` and other related Local Area Networks.
+
+   Ethernet
+      The most widely used LAN technology.
+      
 .. spelling::
 
    Backus
@@ -331,6 +337,7 @@ Glossary
    rlogin
    vnc
    eXchange
-   
+   multi
+   login
 	
 

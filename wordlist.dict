@@ -60,8 +60,13 @@ telecom
 intradomain
 pseudocode
 nexthop
+nexthops
 multipath
 LSP
 unicity
 decapsulate
 Multiprotocol
+lookup
+timestamp
+decrement
+

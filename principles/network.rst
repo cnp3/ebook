@@ -470,7 +470,7 @@ The figure below shows the path followed by the packets on the `R1->R3->R4->R2->
 
 
 
-Multi-Protocol Label Switching (MPLS) is the example of a deployed networking technology that relies on label switching. MPLS is more complex than the above description because it has been designed to be easily integrated with datagram technologies. However, the principles remain. `Asynchronous Transfer Mode` (ATM) and Frame Relay are other examples of technologies that rely on `label switching`.
+MultiProtocol Label Switching (MPLS) is the example of a deployed networking technology that relies on label switching. MPLS is more complex than the above description because it has been designed to be easily integrated with datagram technologies. However, the principles remain. `Asynchronous Transfer Mode` (ATM) and Frame Relay are other examples of technologies that rely on `label switching`.
 
 Nowadays, most deployed networks rely on distributed algorithms, called routing protocols, to compute the forwarding tables that are installed on the network nodes. These distributed algorithms are part of the `control plane`. They are usually implemented in software and are executed on the main CPU of the network nodes. There are two main families of routing protocols : distance vector routing and link state routing. Both are capable of discovering autonomously the network and react dynamically to topology changes.
 
@@ -525,6 +525,7 @@ In this section, we discuss the main techniques that can be used to maintain the
    broadcasted
    pre
    todo
+   Multi
 	     
 .. include:: /links.rst
 
