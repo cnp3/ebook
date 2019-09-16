@@ -11,7 +11,9 @@
 #include <string.h>
 #include <arpa/inet.h>
 #include <unistd.h>
+#include <getopt.h>
 #include <time.h>
+#include <sys/select.h>
 
 #define TIME_PORT 37
 #define MAX_MESSAGE_SIZE 2000
@@ -147,7 +149,7 @@ int main(int argc, char *argv[]) {
             break;
         case 'h':
             status_code = 0;
-            __attribute__ ((fallthrough));
+            // fall through
         default: /* '?' */
             fprintf(stderr, "Usage: %s -p port\nThe port will be used both for TCP and UDP. It is set to 37 if -p is not used.\n",
                     argv[0]);
