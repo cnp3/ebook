@@ -1,0 +1,9 @@
+[Unit]
+Description=RFC868 Time Protocol server implementation proposed by CNP3
+PartOf=timeprotocolserver-cnp3.service
+
+[Socket]
+ListenStream=37
+BindIPv6Only=both
+ReusePort=true
+Service=timeprotocolserver-cnp3.service
