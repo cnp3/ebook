@@ -1,0 +1,14 @@
+[Unit]
+Description=RFC868 Time Protocol server implementation proposed by CNP3
+After=network.target
+
+Requires=timeprotocolserver-cnp3-datagram.socket timeprotocolserver-cnp3-stream.socket
+
+[Service]
+User=cnp3
+Group=cnp3
+PIDFile=/var/run/timeprotocol-cnp3-server.pid
+ExecStart=/usr/sbin/timeprotocol-cnp3-server -D
+
+[Install]
+WantedBy=multi-user.target
