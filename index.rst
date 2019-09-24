@@ -96,7 +96,7 @@ Part 3: Practice
    exercises/intro           
    exercises/reliability
    exercises/sockets
-..   exercises/network
+   exercises/network
 ..   exercises/ex-transport
 ..   exercises/ex-sharing
 ..   exercises/ex-app

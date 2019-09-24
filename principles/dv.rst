@@ -84,6 +84,9 @@ At this point, all routers can reach all other routers in the network thanks to 
 
    Routing tables computed by distance vector in a simple network
 
+
+.. inginious:: q-net-dv
+   
 To deal with link and router failures, routers use the timestamp stored in their routing table. As all routers send their distance vector every `N` seconds, the timestamp of each route should be regularly refreshed. Thus no route should have a timestamp older than `N` seconds, unless the route is not reachable anymore. In practice, to cope with the possible loss of a distance vector due to transmission errors, routers check the timestamp of the routes stored in their routing table every `N` seconds and remove the routes that are older than :math:`3 \times N` seconds.
 
 When a router notices that a route towards a destination has expired, it must first associate an :math:`\infty` cost to this route and send its distance vector to its neighbors to inform them. The route can then be removed from the routing table after some time (e.g. :math:`3 \times N` seconds), to ensure that the neighboring routers have received the bad news, even if some distance vectors do not reach them due to transmission errors. 
@@ -167,6 +170,9 @@ After having detected the failure, router `B` sends its distance vectors:
  - :math:`[A=\infty,B=0,C=1,E=\infty]` to router `E`
 
 If, unfortunately, the distance vector sent to router `C` is lost due to a transmission error or because router `C` is overloaded, a new count to infinity problem can occur. If router `C` sends its distance vector :math:`[A=2,B=1,C=0,E=\infty]` to router `E`, this router installs a route of distance `3` to reach `A` via `C`. Router `E` sends its distance vectors :math:`[A=3,B=\infty,C=1,E=1]` to router `B` and :math:`[A=\infty,B=1,C=\infty,E=0]` to router `C`. This distance vector allows `B` to recover a route of distance `4` to reach `A`.
+
+
+.. inginious:: q-net-dvp
 
 .. note:: Forwarding tables versus routing tables
 

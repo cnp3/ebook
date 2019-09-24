@@ -75,6 +75,8 @@ In this pseudo-code, `LSDB(r)` returns the most recent `LSP` originating from ro
 Flooding is illustrated in the figure below. By exchanging HELLO messages, each router learns its direct neighbors. For example, router `E` learns that it is directly connected to routers `D`, `B` and `C`. Its first LSP has sequence number `0` and contains the directed links `E->D`, `E->B` and `E->C`. Router `E` sends its LSP on all its links and routers `D`, `B` and `C` insert the LSP in their LSDB and forward it over their other links. 
 
 
+.. inginious:: q-net-ls
+
 .. figure:: /principles/figures/ls-flooding.png
    :align: center
    :scale: 100   

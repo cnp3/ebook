@@ -20,6 +20,30 @@ You can access a build of the interactive e-book through http://beta.computer-ne
 See [BUILD.md](BUILD.md) if you want to build the e-book yourself.
 
  
+How to contribute
+-----------------
 
+Contributions to the e-book are more than welcome. We welcome contributions with new or improved text, new or improved figures, new open exercises, new multiple choice questions, ... Here are a few guidelines to help you prepare your contributions to the e-book.
+
+
+Updating existing sections
+..........................
+
+This is the simplest way to contribute. If you spot a small error, a typo or would like to clarify a few sentences, feel free to update the text directly on gituhb and create a pull request. When doing so, remember that there are a few guidelines that we try to follow:
+
+ - We use American English spelling. There are automated travis tests that will automatically verify that your pull-request passes the spell check. If not, update your pull request. If you introduce a new word that is not recognized by the standard directory, you can either add it as a spelling directive in the file where is appears (see e.g. the bottom of the `bibliography.rst` file) or include it in the `wordlist.dict` file which contains the new words that are used in different files.
+ - When citing references, please update the file `bibliography.rst`. Please use the same style as the one used in the file and add an hyperlink to the paper title that points to a stable URL, e.g. a DOI
+ - Make sure that your update builds correctly using sphinx. You can check the result of the travis tests of your pull request on github.
+ 
+
+Proposing new sections
+......................
+
+If you would like to add several sections or chapters to recover some topics that are important and are missing from the e-book, please start a discussion on the `cnp3 mailing list <https://sympa-2.sipr.ucl.ac.be/sympa/info/cnp3>`_. The e-book evolves over time and we sometime remove sections/chapters as the networking technology evolves. We do not attempt at covering all possible networking technologies.
+
+Updating figures
+................
+
+There is unfortunately some diversity among the figures of the e-book. Some have been drawn using powerpoint, other were drawn using inkscape. If you plan to draw new figures, please try to use tikz or mscgen if possible. Thanks to `sphinxcontrib-tikz <https://sphinxcontrib-tikz.readthedocs.io/en/latest/>`_ and `sphinxcontrib-mscgen <https://github.com/sphinx-contrib/mscgen>`_, these figures are written directly in the text, which makes it easier to update them than using graphical drawing tools. 
 
 
