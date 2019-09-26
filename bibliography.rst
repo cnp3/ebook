@@ -48,7 +48,7 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
 .. .. [Clark88] Clark D., `The Design Philosophy of the DARPA Internet Protocols <https://dx.doi.org/10.1145/205447.205458>`_, Computer Communications Review 18:4, August 1988, pp. 106-114
 .. .. [Comer1988] Comer, D., `Internetworking with TCP/IP : principles, protocols & architecture`, Prentice Hall, 1988
 .. .. [Comer1991] Comer D., `Internetworking With TCP/IP : Design Implementation and Internals`,  Prentice Hall, 1991
-.. .. [Cohen1980] Cohen, D., `On Holy Wars and a Plea for Peace`, IEN 137, April 1980, http://www.ietf.org/rfc/ien/ien137.txt
+.. [Cohen1980] Cohen, D., `On Holy Wars and a Plea for Peace`, IEN 137, April 1980, http://www.ietf.org/rfc/ien/ien137.txt
 .. [DC2009] Donahoo, M., Calvert, K., `TCP/IP Sockets in C: Practical Guide for Programmers <http://books.google.com/books?id=dmt_mERzxV4C>`_ , Morgan Kaufman, 2009
 .. .. [DH1976] Diffie, W., Hellman, M., `New directions in cryptography`, in Information Theory, IEEE Transactions on , vol.22, no.6, pp.644-654, Nov 1976, https://dx.doi.org/10.1109/TIT.1976.1055638
 .. .. [DIX] Digital, Intel, Xerox, `The Ethernet: a local area network: data link layer and physical layer specifications <http://doi.acm.org/10.1145/1015591.1015594>`_. SIGCOMM Computer Communication Review 11, 3 (Jul. 1981), 20-66. 
