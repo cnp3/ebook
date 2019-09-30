@@ -41,12 +41,9 @@ Part 1: Principles
 
    principles/reliability
    principles/network
+   principles/transport   
    principles/naming
       
-
-..   principles/transport   
-   
-
    
 ..   principles/sharing
 ..   principles/referencemodels
