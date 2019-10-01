@@ -94,7 +94,8 @@ Part 3: Practice
    exercises/reliability
    exercises/sockets
    exercises/network
-..   exercises/ex-transport
+   exercises/transport
+   
 ..   exercises/ex-sharing
 ..   exercises/ex-app
 ..   exercises/netkit-app

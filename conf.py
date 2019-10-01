@@ -99,7 +99,7 @@ exclude_trees = ['_build']
 
 # List of files that should not be automatically compiled by sphynx because they are included
 
-exclude_patterns = [ '*#*', "python/*" , "principles/dv.rst", "principles/linkstate.rst"]
+exclude_patterns = [ '*#*', "python/*" , "principles/dv.rst", "principles/linkstate.rst", '\._*rst']
 
 # epilog add to all included files
 #rst_epilog = """

@@ -321,6 +321,7 @@ Now, we have built everything we need to send a message to the remote program. T
 
 Note that we can reuse our ``send_hello_to_peer`` function without any modification as we wrote it to handle any kind of sockets, including sockets using the IPv6 network protocol.
 
+
 Endianness: exchanging integers between different computers
 -----------------------------------------------------------
 
@@ -333,7 +334,7 @@ The first possibility was named  `big-endian` in a note written by Cohen [Cohen1
 
 Besides 16 and 32 bit words, some applications need to exchange data structures containing bit fields of various lengths. For example, a message may be composed of a 16 bits field followed by eight, one bit flags, a 24 bits field and two 8 bits bytes. Internet protocol specifications will define such a message by using a representation such as the one below. In this representation, each line corresponds to 32 bits and the vertical lines are used to delineate fields. The numbers above the lines indicate the bit positions in the 32-bits word, with the high order bit at position `0`. 
 
-.. figure:: message.png
+.. figure:: /exercises/figures/message.png
    :align: center
    :scale: 100 
 
