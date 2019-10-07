@@ -1,1 +1,9 @@
+# emacs backup files
 *~
+# pkt directory .pkt files are converted in svg and png
+pkt/*svg
+pkt/*png
+# python modules used for sphinx build
+python/*
+# tmp files during builds
+tmp/*

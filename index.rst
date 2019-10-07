@@ -43,10 +43,8 @@ Part 1: Principles
    principles/network
    principles/transport   
    principles/naming
-      
-   
-..   principles/sharing
-..   principles/referencemodels
+   principles/sharing
+   principles/referencemodels
 ..   principles/security
 
 .. _part2:
@@ -96,7 +94,7 @@ Part 3: Practice
    exercises/network
    exercises/transport
    
-..   exercises/ex-sharing
+   exercises/ex-sharing
 ..   exercises/ex-app
 ..   exercises/netkit-app
 ..   exercises/netkit-tcp
