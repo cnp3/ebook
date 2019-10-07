@@ -245,7 +245,8 @@ Another way to share the network resources is to distribute the load across mult
 .. spelling::
 
    bittorrent 
-
+   metadata
+   
 There is another solution that allows to spread the load among many sources without relying on the name service. The popular `bittorent <https://www.bittorrent.com>`_ service 
 is an example of this approach. With this solution, each file is divided in blocks of a fixed size. To retrieve a file, a client needs to retrieve all the blocks that compose the file. However, nothing forces the client to retrieve all the blocks in sequence and from the same server. Each file is associated with metadata that indicates for each block a list of addresses of hosts that store this block. To retrieve a complete file, a client first downloads the metadata. Then, it tries to retrieve each block from one of the hosts that store the block. In practice, implementations often try to download several blocks in parallel. Once one block has been successfully downloaded, the next block can be requested. If a host is slow to provide one block or becomes unavailable, the client can contact another host listed in the metadata. Most deployments of bittorrent allow the clients to participate to the distribution of blocks. Once a client has downloaded one block, it contacts the server which stores the metadata to indicate that it can also provide this block. With this scheme, when a file is popular, its blocks are downloaded by many hosts that automatically participate in the distribution of the blocks. Thus, the number of `servers` that are capable of providing blocks from a popular file automatically increases with the file's popularity. 
 

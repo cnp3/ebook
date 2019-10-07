@@ -136,7 +136,7 @@ In contrast with OSI, the TCP/IP community did not spend a lot of effort definin
 - the Application layer
 - the Transport layer
 - the Internet layer which is equivalent to the network layer of our reference model
-- the Link layer which combines the functionalities of the physical and datalink layers of our five-layer reference model
+- the Link layer which combines the functions of the physical and datalink layers of our five-layer reference model
 
 Besides this difference in the lower layers, the TCP/IP reference model is very close to the five layers that we use throughout this document.
 
