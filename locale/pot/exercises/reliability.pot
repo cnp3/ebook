@@ -1,0 +1,186 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2019 Olivier Bonaventure
+# This file is distributed under the same license as the Computer networking : Principles, Protocols and Practice package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Computer networking : Principles, Protocols and Practice 3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-10-09 12:39+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../exercises/reliability.rst:7
+msgid "Reliable transfer"
+msgstr ""
+
+#: ../../exercises/reliability.rst:11
+msgid "Open questions"
+msgstr ""
+
+#: ../../exercises/reliability.rst:13
+msgid "Consider a `b` bits per second link between two hosts that has a propagation delay of `t` seconds. Derive a formula that computes the time elapsed between the transmission of the first bit of a `d` bytes segment from a sending host and the reception of the last bit of this segment on the receiving host."
+msgstr ""
+
+#: ../../exercises/reliability.rst:16
+msgid "Transmission links have sometimes different upstream and downstream bandwidths. A typical example are access networks that use ADSL (Asymmetric Digital Subscriber Lines). Consider two hosts connected via an ADSL link having an upstream bandwidth of 1 Mbps and a downstream bandwidth of 50 Mbps. The propagation delay between the two hosts is 10 milliseconds. What is the maximum throughput, expressed in frames/second, that the alternating bit protocol can obtain on this link if each data frame has a length of 125 bytes and acknowledgments are 25 bytes long. Same question if the protocol is modified to support 1500 bytes long data frames."
+msgstr ""
+
+#: ../../exercises/reliability.rst:19
+msgid "How would you set the duration of the retransmission timer in the alternating bit protocol ?"
+msgstr ""
+
+#: ../../exercises/reliability.rst:22
+msgid "A version of the Alternating Bit Protocol supporting variable length frames uses a header that contains the following fields :"
+msgstr ""
+
+#: ../../exercises/reliability.rst:24
+msgid "a `number` (0 or 1)"
+msgstr ""
+
+#: ../../exercises/reliability.rst:25
+msgid "a `length` field that indicates the length of the data"
+msgstr ""
+
+#: ../../exercises/reliability.rst:26
+msgid "a Cyclic Redundancy Check (`CRC`)"
+msgstr ""
+
+#: ../../exercises/reliability.rst:28
+msgid "To speedup the transmission of the frames, a student proposes to compute the CRC over the data part of the segment but not over the header. What do you think of this proposed solution ?"
+msgstr ""
+
+#: ../../exercises/reliability.rst:30
+msgid "Derive a mathematical expression that provides the `goodput`, i.e. the amount of payload bytes that have been transmitted during a period of time, achieved by the Alternating Bit Protocol assuming that :"
+msgstr ""
+
+#: ../../exercises/reliability.rst:32
+msgid "Each frame contains `D` bytes of data and `c` bytes of control information"
+msgstr ""
+
+#: ../../exercises/reliability.rst:33
+msgid "Each acknowledgment contains `c` bytes of control information"
+msgstr ""
+
+#: ../../exercises/reliability.rst:34
+msgid "The bandwidth of the two directions of the link is set to `B` bits per second"
+msgstr ""
+
+#: ../../exercises/reliability.rst:35
+msgid "The delay between the two hosts is `s` seconds in both directions"
+msgstr ""
+
+#: ../../exercises/reliability.rst:36
+msgid "there are no transmission errors"
+msgstr ""
+
+#: ../../exercises/reliability.rst:38
+msgid "Consider a go-back-n sender and a go-back receiver that are directly connected with a 10 Mbps link that has a propagation delay of 100 milliseconds. Assume that the retransmission timer is set to three seconds. If the window has a length of 4 segments, draw a time-sequence diagram showing the transmission of 10 segments (each segment contains 10000 bits):"
+msgstr ""
+
+#: ../../exercises/reliability.rst:40
+msgid "when there are no losses"
+msgstr ""
+
+#: ../../exercises/reliability.rst:41
+msgid "when the third and seventh segments are lost"
+msgstr ""
+
+#: ../../exercises/reliability.rst:42
+msgid "when every second acknowledgment is discarded due to transmission errors"
+msgstr ""
+
+#: ../../exercises/reliability.rst:44
+msgid "Same question when using selective repeat instead of go-back-n. Note that the answer is not necessarily the same."
+msgstr ""
+
+#: ../../exercises/reliability.rst:50
+msgid "Practice"
+msgstr ""
+
+#: ../../exercises/reliability.rst:52
+msgid "Reliable protocols depend on error detection algorithms to detect transmission errors. The following questions will reinforce your understanding of these algorithms."
+msgstr ""
+
+#: ../../exercises/reliability.rst:54
+msgid "Reliable protocols rely on different types of checksums to verify whether frames have been affected by transmission errors. The most frequently used checksums are :"
+msgstr ""
+
+#: ../../exercises/reliability.rst:56
+msgid "the Internet checksum used by UDP, TCP and other Internet protocols which is defined in :rfc:`1071` and implemented in various libraries."
+msgstr ""
+
+#: ../../exercises/reliability.rst:57
+msgid "the 16 bits or the 32 bits Cyclical Redundancy Checks (CRC) that are often used on disks, in zip archives and in datalink layer protocols. See http://rosettacode.org/wiki/CRC-32 for CRC-32 implementations in various languages."
+msgstr ""
+
+#: ../../exercises/reliability.rst:58
+msgid "the Fletcher checksum [Fletcher1982]_, see https://en.wikipedia.org/wiki/Fletcher%27s_checksum for implementation details"
+msgstr ""
+
+#: ../../exercises/reliability.rst:60
+msgid "By using your knowledge of the Internet checksum, can you find a transmission error that will not be detected by this checksum ?"
+msgstr ""
+
+#: ../../exercises/reliability.rst:62
+msgid "The Cyclic Redundancy Checks (CRCs) are efficient error detection codes that are able to detect :"
+msgstr ""
+
+#: ../../exercises/reliability.rst:64
+msgid "all errors that affect an odd number of bits"
+msgstr ""
+
+#: ../../exercises/reliability.rst:65
+msgid "all errors that affect a sequence of bits which is shorter than the length of the CRC"
+msgstr ""
+
+#: ../../exercises/reliability.rst:67
+msgid "Implement a small software that computes the CRC-32 for a text file. Then, modify the contents of the file to change an even number of bits or an odd number of bits inside the file. When modifying the file, remember that an ASCII file is composed of 8 bits characters that are encoded by using the ASCII table that you can find at : http://en.wikipedia.org/wiki/ASCII . You can also write a small program that produces binary files that are a small variation of each other."
+msgstr ""
+
+#: ../../exercises/reliability.rst:69
+msgid "Checksums and CRCs should not be confused with secure hash functions such as MD5 defined in :rfc:`1321` or SHA-1 described in :rfc:`4634`. Secure hash functions are used to ensure that files or sometimes packets/segments have not been modified. Secure hash functions aim at detecting malicious changes while checksums and CRCs only detect random transmission errors. Use the `shasum <http://linux.die.net/man/1/shasum>`_ or `md5sum <http://linux.die.net/man/1/md5sum>`_ programs on Linux to perform the same tests as above."
+msgstr ""
+
+#: ../../exercises/reliability.rst:74
+msgid "Discussion questions"
+msgstr ""
+
+#: ../../exercises/reliability.rst:77
+msgid "Consider two high-end servers connected back-to-back by using a 10 Gbps interface. If the delay between the two servers is one millisecond, what is the throughput that can be achieved by a reliable protocol that is using 10,000 bits frames and a window of"
+msgstr ""
+
+#: ../../exercises/reliability.rst:79
+msgid "one frame"
+msgstr ""
+
+#: ../../exercises/reliability.rst:80
+msgid "ten frames"
+msgstr ""
+
+#: ../../exercises/reliability.rst:81
+msgid "hundred frames"
+msgstr ""
+
+#: ../../exercises/reliability.rst:83
+msgid "Is it possible for a go-back-n receiver to inter-operate with a selective-repeat sender ? Justify your answer."
+msgstr ""
+
+#: ../../exercises/reliability.rst:85
+msgid "Is it possible for a selective-repeat receiver to inter-operate with a go-back-n sender ? Justify your answer."
+msgstr ""
+
+#: ../../exercises/reliability.rst:89
+msgid "A go-back-n receiver has sent :math:`2^n` data segments. All the segments have been received correctly and in-order by the receiver, but all the returned acknowledgments have been lost. Show by using a time sequence diagram (e.g. by considering a window of four segments) what happens in this case. Can you fix the problem on the go-back-n sender ?"
+msgstr ""
+
+#: ../../exercises/reliability.rst:91
+msgid "Same question as above, but assume now that both the sender and the receiver implement selective repeat. Note that the answer can be different from the above question."
+msgstr ""
+
