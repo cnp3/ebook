@@ -45,7 +45,7 @@ Part 1: Principles
    principles/naming
    principles/sharing
    principles/referencemodels
-..   principles/security
+   principles/security
 
 .. _part2:
 

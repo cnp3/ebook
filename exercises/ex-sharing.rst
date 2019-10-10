@@ -440,7 +440,7 @@ In practice, a router is connected to multiple input links. The figure below sho
       \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
       \tikzset{ftable/.style={rectangle, dashed, draw} }
       \node[host, red] (A) {A};
-      \node[host, right=3 cm of A] (R) {R};
+      \node[router, right=3 cm of A] (R) {R};
       \node[host, right=3 cm of R] (C) {C};
       \node[host, below=of A, blue] (B) {B};
       \draw[-] (A) -- node [midway, above] { 2 Mbps} (R); 
@@ -545,8 +545,8 @@ In general, the links have a non-zero delay. This is illustrated in the figure b
       \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
       \tikzset{ftable/.style={rectangle, dashed, draw} }
       \node[host] (A) {A};
-      \node[host, right=3 cm of A] (R1) {R1};
-      \node[host, right=3 cm of R1] (R2) {R2};
+      \node[router, right=3 cm of A] (R1) {R1};
+      \node[router, right=3 cm of R1] (R2) {R2};
       \node[host, below=of A] (B) {B};
       \node[host, right=3 cm of R2] (D) {D};
       \draw[-] (A) -- node [midway, above, fill=white, align=center] { 1 Mbps \\ 0 msec} (R1); 
@@ -572,12 +572,12 @@ In general, the links have a non-zero delay. This is illustrated in the figure b
       \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
       \tikzset{ftable/.style={rectangle, dashed, draw} }
       \node[host] (A) {A};
-      \node[host, right=3 cm of A] (R1) {R1};
+      \node[router, right=3 cm of A] (R1) {R1};
       \node[host, below=of A] (B) {B};
       \node[host, right=3 cm of R1] (D) {D};
       \draw[-] (A) -- (R1); 
       \draw[-] (B) -- (R1); 
-      \draw[-] (R1)  (D); 
+      \draw[-] (R1) -- (D); 
 
 4. Compute the max-min fair bandwidth allocation in the network below.
 
@@ -598,8 +598,8 @@ In general, the links have a non-zero delay. This is illustrated in the figure b
       \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
       \tikzset{ftable/.style={rectangle, dashed, draw} }
       \node[host] (A) {A};
-      \node[host, right=3 cm of A] (R1) {R1};
-      \node[host, right=3 cm of R1] (R2) {R2};
+      \node[router, right=3 cm of A] (R1) {R1};
+      \node[router, right=3 cm of R1] (R2) {R2};
       \node[host, right=3 cm of R2] (D) {D};
       \draw[-] (A) -- node [midway, above, fill=white, align=center] { 1 Mbps} (R1); 
       \draw[-] (R1) -- node [midway, fill=white, below, align=center] { 250 kbps} (R2); 
@@ -620,7 +620,7 @@ In general, the links have a non-zero delay. This is illustrated in the figure b
       \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
       \tikzset{ftable/.style={rectangle, dashed, draw} }
       \node[host] (A) {A};
-      \node[host, right=3 cm of A] (R1) {R1};
+      \node[router, right=3 cm of A] (R1) {R1};
       \node[host, below=of A] (B) {B};
       \node[host, right=3 cm of R1] (D) {D};
       \draw[-] (A) -- node [midway, above, fill=white, align=center] { 1 Mbps\\ 10 msec} (R1);
