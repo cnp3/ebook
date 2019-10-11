@@ -7,15 +7,15 @@
 Network security
 ----------------
 
-In the early days, data networks were mainly used by researchers and security was not a concern. Only a small number of users were connected and capable of using the network. Most of the devices attached to the network were openly accessible and users were trusted. As the utilization of the networks grew, security concerns started to appear. In universities, researchers and professors did not always trust their students and required some forms of access control. On standalone computers, the most frequent access control mechanism is the password. A `username` is assigned to each user and when this user wants to access the computer, he or she needs to provide his/her `username` and his/her `password`. Most passwords are composed of a sequence of characters. The strength of the password is function of the difficulty of guessing the  characters chosen by each user. Various guidelines have been defined on how  to select a good password [#fpasswords]_. Some systems require regular modifications of the passwords chosen by their users. 
+In the early days, data networks were mainly used by researchers and security was not a concern. A few users were connected and capable of using the network. Almost all the devices attached to the network were openly accessible and users were trusted. As the utilization of the networks grew, security concerns started to appear. In universities, researchers and professors did not always trust their students and required some forms of access control. On standalone computers, the common access control mechanism is the password. A `username` is assigned to each user and when this user wants to access the computer, he or she needs to provide his/her `username` and his/her `password`. Most passwords are composed of a sequence of characters. The strength of the password is function of the difficulty of guessing the  characters chosen by each user. Various guidelines have been defined on how  to select a good password [#fpasswords]_. Some systems require regular modifications of the passwords chosen by their users. 
 
 When the first computers were attached to data networks, applications were
 developed to enable them to access to remote computers through the network.
 To authenticate the remote users, these applications have also relied on
 usernames and passwords. When a user connects to a distant computer, she
 sends her username through the network and then provides her password
-to confirm her `identity`. This authentication scheme can be represented 
-by the time sequence diagram shown below.
+to confirm her `identity`. This authentication scheme is presented 
+in the time sequence diagram below.
 
   .. msc::
 
@@ -62,26 +62,24 @@ Threats
 ^^^^^^^
 
 When analyzing security issues in computer networks, it is useful to
-reason in terms of the
+reason about the
 capabilities of the attacker who wants to exploit some breach in the security
-of the network. Various types of attackers can be considered. Some
-are very generic, others are specific to a given technology or network
-protocol. In this section, we discuss some of the most
-important threats that a network architect must take into account.
+of the network. There are different types of attackers. Some
+have generic capabilities, others are specific to a given technology or network
+protocol. In this section, we discuss some important threats that a network architect must take into account.
 
 .. index:: passive attacker
 
 The first type of attacker is called the `passive attacker`. 
-A `passive attacker` is someone who is
-able to observe and usually store the information (e.g. the packets)
+A `passive attacker` is someone able to observe and usually store the information (e.g. the packets)
 exchanged in a given network or subset of it (e.g. a specific link). This
 attacker has access to all the data passing through this specific
 link. This is the most basic type of attacker and many network technologies
-are vulnerable to this type of attack. In the above example, a passive
+are vulnerable to such attacks. In the above example, a passive
 attacker could easily capture the password sent by Alice and reuse it later
 to be authenticated as Alice on the remote computer. This is illustrated
 on the figure below where we do not show anymore the ``DATA.req`` and
-``DATA.ind`` primitives but only show the messages that are exchanged. 
+``DATA.ind`` primitives but only the messages exchanged. 
 Throughout this chapter, we will always use `Eve` as a user who is
 able to eavesdrop the data passing in front of her.
 
@@ -119,8 +117,7 @@ Alice on Bob's computer and do whatever Alice is authorized to do. This
 is a major problem from a security point of view. To prevent this attack,
 Alice should never send her password in clear over a network where someone
 could eavesdrop the information. In some networks, such as an open wireless
-network, collecting all the data sent by a particular user is relatively
-easy. In other networks, this is a bit more complex depending on the network
+network, an attacker can easily collect all the data sent by a particular user. In other networks, this is a bit more complex depending on the network
 technology used, but various software packages exist to automate this process.
 As will be described later, the best approach to prevent this type of attack
 is to rely on cryptographic techniques to ensure that passwords are never

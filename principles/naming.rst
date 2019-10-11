@@ -3,6 +3,8 @@
 
 .. index:: naming, addressing
 
+.. _naming:
+           
 Naming and addressing
 ---------------------
 

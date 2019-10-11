@@ -95,6 +95,7 @@ Part 3: Practice
    exercises/transport
    
    exercises/ex-sharing
+   exercises/dns
 ..   exercises/ex-app
 ..   exercises/netkit-app
 ..   exercises/netkit-tcp
