@@ -4,19 +4,22 @@
 # : Principles, Protocols and Practice package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Computer networking : Principles, Protocols and "
-"Practice 3\n"
+"Project-Id-Version: Computer networking : Principles, Protocols and Practice "
+"3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-15 12:37+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2019-10-14 09:05+0000\n"
+"Last-Translator: Anthony Gego <anthonygego@hotmail.com>\n"
+"Language-Team: French <http://weblate.info.ucl.ac.be/projects/cnp3-ebook/"
+"sourceindex/fr/>\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.8\n"
 "Generated-By: Babel 2.6.0\n"
 
 #: ../../source/index.rst:9
@@ -31,11 +34,11 @@ msgstr ""
 
 #: ../../source/index.rst:16
 msgid "Indices and tables"
-msgstr ""
+msgstr "Index et tables"
 
 #: ../../source/index.rst:18
 msgid ":ref:`genindex`"
-msgstr ""
+msgstr ":ref:`genindex`"
 
 #: ../../source/index.rst:19
 msgid ":ref:`modindex`"
@@ -43,5 +46,4 @@ msgstr ""
 
 #: ../../source/index.rst:20
 msgid ":ref:`search`"
-msgstr ""
-
+msgstr ":ref:`search`"
