@@ -10,7 +10,7 @@ msgstr ""
 "3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-09 12:39+0000\n"
-"PO-Revision-Date: 2019-10-19 07:04+0000\n"
+"PO-Revision-Date: 2019-10-22 14:04+0000\n"
 "Last-Translator: Anthony Gego <anthony.gego@uclouvain.be>\n"
 "Language-Team: French <http://weblate.info.ucl.ac.be/projects/cnp3-ebook/"
 "principlesreliability/fr/>\n"
@@ -180,35 +180,35 @@ msgstr "Bits par seconde"
 
 #: ../../principles/reliability.rst:51
 msgid "1 Kbps"
-msgstr ""
+msgstr "1 Kbps"
 
 #: ../../principles/reliability.rst:51
 msgid ":math:`10^3`"
-msgstr ""
+msgstr ":math:`10^3`"
 
 #: ../../principles/reliability.rst:52
 msgid "1 Mbps"
-msgstr ""
+msgstr "1 Mbps"
 
 #: ../../principles/reliability.rst:52
 msgid ":math:`10^6`"
-msgstr ""
+msgstr ":math:`10^6`"
 
 #: ../../principles/reliability.rst:53
 msgid "1 Gbps"
-msgstr ""
+msgstr "1 Gbps"
 
 #: ../../principles/reliability.rst:53
 msgid ":math:`10^9`"
-msgstr ""
+msgstr ":math:`10^9`"
 
 #: ../../principles/reliability.rst:54
 msgid "1 Tbps"
-msgstr ""
+msgstr "1 Tbps"
 
 #: ../../principles/reliability.rst:54
 msgid ":math:`10^{12}`"
-msgstr ""
+msgstr ":math:`10^{12}`"
 
 #: ../../principles/reliability.rst:59
 msgid ""
@@ -218,26 +218,35 @@ msgid ""
 " transmit one thousand bits per second. To transmit these bits, the two "
 "hosts can agree on the following rules :"
 msgstr ""
+"Pour comprendre les principes de la transmission physique d'information, "
+"considérons le cas d'un fil électrique qui est utilisé pour transmettre des "
+"bits. Supposons que les deux hôtes qui communiquent veulent transmettre un "
+"millier de bits par seconde. Pour transmettre ces bits, les deux hôtes "
+"peuvent se mettre d'accord sur les règles suivantes :"
 
 #: ../../principles/reliability.rst:63
 msgid "On the sender side :"
-msgstr ""
+msgstr "Du côté de l'émetteur :"
 
 #: ../../principles/reliability.rst:62
 msgid ""
 "set the voltage on the electrical wire at ``+5V`` during one millisecond "
 "to transmit a bit set to `1`"
 msgstr ""
+"mettre la tension sur le fil électeique à ``+5V`` pendant une milliseconde "
+"pour transmettre un bit mis à `1`"
 
 #: ../../principles/reliability.rst:63
 msgid ""
 "set the voltage on the electrical wire at ``-5V`` during one millisecond "
 "to transmit a bit set to `0`"
 msgstr ""
+"mettre la tension sur le fil électrique à ``-5V`` pendant une milliseconde "
+"pour transmettre un bit mis à `0`"
 
 #: ../../principles/reliability.rst:66
 msgid "On the receiver side :"
-msgstr ""
+msgstr "Du côté du récepteur :"
 
 #: ../../principles/reliability.rst:66
 msgid ""
@@ -245,6 +254,9 @@ msgid ""
 "the voltage is set to ``+5V``, record the reception of bit `1`. "
 "Otherwise, record the reception of bit `0`"
 msgstr ""
+"chaque milliseconde, enregistrer la tension appliquée sur le fil électrique. "
+"Si la tension est de ``+5V``, enregistrer le bit reçu comme étant `1`. "
+"Sinon, enregistrer le bit reçu comme étant `0`"
 
 #: ../../principles/reliability.rst:70
 msgid ""
@@ -256,6 +268,14 @@ msgid ""
 " physical transmission scheme described above can be represented by using"
 " a `time-sequence diagram`."
 msgstr ""
+"Ce procédé de transmission a été utilisé pour quelques uns des tout premiers "
+"réseaux. Nous l'utilisons comme base pour comprendre comment deux hôtes "
+"communiquent. Pour un informaticien, travailler avec des tensions est "
+"inhabituel. Les informaticiens reposent plutôt sur des modèles qui leur "
+"permettent de raisonner aux problèmes auxquels ils font face sans avoir à "
+"prendre en compte tous les détails d'implémentation. Le procédé de "
+"transmission physique décris ci-dessus peut être représenté en utilisant un `"
+"diagramme de séquence`."
 
 #: ../../principles/reliability.rst:72
 msgid ""
@@ -285,6 +305,30 @@ msgid ""
 "ordering of the different primitives, but the distance between two "
 "primitives does not represent a precise amount of time."
 msgstr ""
+"Un `diagramme de séquence` décrit les interactions entre deux hôtes qui "
+"communiquent. Par convention, les hôtes sont représentés sur les parties "
+"gauche et droites du diagramme alors que le fil électrique est placé au "
+"milieu du diagramme. Dans un tel diagramme de séquence, le temps s'écoule de "
+"haut en bas. La transmission d'un bit d'information est représentée à l'aide "
+"de trois flèches. Commençant par la gauche, la première flèche horizontale "
+"représente la requête pour envoyer un bit d'information. Cette requête est "
+"représentée à l'aide d'une `primitive`qui peut être considérée comme une "
+"sorte d'appel de procédure. Cette primitive prend un paramètre (le bit à "
+"transférer) et un nom (`DATA.request`dans cet exemple). Par convention, "
+"toutes les primitives qui sont nommées `qqch.request`correspondent à une "
+"demande  pour transmettre de l'information. La flèche en pointillés indique "
+"la transmission du signal électrique correspond sur le fil. Les signaux "
+"électriques et optiques ne se déplacent pas de manière instantanée. La "
+"flèche en pointillés diagonale indique que le signal électrique prend du "
+"temps pour être transmis de `Hôte A` à `Hôte B`. A la réception du signal "
+"électrique, le circuit électronique de l'interface réseau de `Hôte B` "
+"détecte la tension et la convertit en un bit. Ce bit est reçu sous la forme "
+"d'une primitive `DATA.indication`. Toutes les primitives qui sont nommées "
+"`qqch.indication`correspondent à la réception d'information. Les lignes en "
+"pointillés représentent aussi la relation entre deux (ou plusieurs) "
+"primitives. Un tel diagramme de séquence fournit de l'information sur "
+"l'ordre des différentes primitives, mais la distances séparant deux "
+"primitives ne représente pas un intervalle de temps précis."
 
 #: ../../principles/reliability.rst:88
 msgid ""
