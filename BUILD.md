@@ -14,7 +14,9 @@ To build the HTML version of the e-book, you need to install several software pa
  
 We use the sphinxcontrib-spelling sphinx extension to check the spelling of the text on a regular basis. This extension use PyEnchant and the enchant library.
 
-## Ubuntu
+## Requirements
+
+### Ubuntu
 
 The required packages can be installed on a Ubuntu Linux using the following commands.
 
@@ -29,7 +31,7 @@ The required packages can be installed on a Ubuntu Linux using the following com
  sudo apt-get install inkscape
 ```
  
-## CentOS 7
+### CentOS 7
 
 `mscgen` is not packaged by default on CentOS 7, but you can find statically-linked binaries for `mscgen` [here](http://www.mcternan.me.uk/mscgen/software/mscgen-static-0.20.tar.gz).
 
@@ -52,7 +54,15 @@ You will then also need to manually install the `pgfplots` and `standalone` texl
 * The `pgfplots` package is available [here](http://mirrors.ctan.org/install/graphics/pgf/contrib/pgfplots.tds.zip).
 * The `standalone` package is available [here](http://mirrors.ctan.org/install/macros/latex/contrib/standalone.tds.zip).
 
-## Python dependancies
+### Fedora 28+
+
+The required packages can be installed on Fedora 28+ using the following command:
+
+```
+sudo dnf install mscgen netpbm-progs inkscape poppler-utils netpbm ImageMagick texlive texlive-latex texlive-base texlive-pgf texlive-collection-latex texlive-collection-latexrecommended texlive-pgfplots textlive-standalone
+```
+
+### Python dependencies
  
  Finally, you need to install python packages using `pip3`. This can be done by running the following command :
  
@@ -70,9 +80,29 @@ Here is the requirements.txt file
 
 ```
 
-Once these packages are installed, you should be able to recompile the HTML version of the e-book with:
+## Building the e-book
+
+Once the required packages are installed, you should be able to recompile the HTML version of the e-book with the following command:
 
 ```
-sphinx-build  --keep-going -b html . /tmp
+sphinx-build --keep-going -b html . <output_dir>
 ```
 
+where ``<output_dir>`` is the output directory where the e-book should be built.
+
+### Building a localized version
+
+If you want to build a localized version of the e-book, change the ``language`` parameter in ``conf.py`` using the ISO-639-1 code corresponding to the target language.
+
+### Updating the localization strings
+
+To update the localization strings, you will need to install the Python ``sphinx-intl`` package.
+
+- First generate the ``.pot`` files by typing:
+  ```
+  sphinx-build -b gettext . locale/pot
+  ```
+- Then update the ``.po`` files by typing:
+   ```
+   sphinx-intl update
+   ```
