@@ -1,0 +1,222 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2019 Olivier Bonaventure
+# This file is distributed under the same license as the Computer networking : Principles, Protocols and Practice package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Computer networking : Principles, Protocols and Practice 3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-10-09 12:39+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../exercises/sockets.rst:4
+msgid "Using sockets for inter-process communication"
+msgstr ""
+
+#: ../../exercises/sockets.rst:7
+msgid "Popular operating systems allow to isolate different programs by executing them in separate `processes`. A :term:`socket` is a tool provided by the operating system that allows two separated processes to communicate with each other. A socket takes the form of a file descriptor and can be seen as a communication pipe through which the communicating processes can exchange arbitrary information. In order to receive a message, a process must be attached to a specific :term:`address` that the peer can use to reach it."
+msgstr ""
+
+#: ../../exercises/sockets.rst:52
+msgid "The socket is a powerful abstraction as it allows processes to communicate even if they are located on different computers. In this specific cases, the inter-processes communication will go through a network."
+msgstr ""
+
+#: ../../exercises/sockets.rst:98
+msgid "Networked applications were usually implemented by using the :term:`socket` :term:`API`. This API was designed when TCP/IP was first implemented in the `Unix BSD`_ operating system [Sechrest]_ [LFJLMT]_, and has served as the model for many APIs between applications and the networking stack in an operating system. Although the socket API is very popular, other APIs have also been developed. For example, the STREAMS API has been added to several Unix System V variants [Rago1993]_. The socket API is supported by most programming languages and several textbooks have been devoted to it. Users of the C language can consult [DC2009]_, [Stevens1998]_, [SFR2004]_ or [Kerrisk2010]_. The Java implementation of the socket API is described in [CD2008]_ and in the `Java tutorial <http://java.sun.com/docs/books/tutorial/networking/sockets/index.html>`_. In this section, we will use the C socket API to illustrate the key concepts."
+msgstr ""
+
+#: ../../exercises/sockets.rst:100
+msgid "The socket API is quite low-level and should be used only when you need a complete control of the network access. If your application simply needs, for instance, to retrieve data from a web server, there are much simpler and higher-level APIs."
+msgstr ""
+
+#: ../../exercises/sockets.rst:102
+msgid "A detailed discussion of the socket API is outside the scope of this section and the references cited above provide a detailed discussion of all the  details of the socket API. As a starting point, it is interesting to compare the socket API with the service primitives that we have discussed in the previous chapter. Let us first consider the connectionless service that consists of the following two primitives :"
+msgstr ""
+
+#: ../../exercises/sockets.rst:104
+msgid "`DATA.request(destination,message)` is used to send a message to a specified destination. In this socket API, this corresponds to the ``send`` method."
+msgstr ""
+
+#: ../../exercises/sockets.rst:105
+msgid "`DATA.indication(message)` is issued by the transport service to deliver a message to the application. In the socket API, this corresponds to the return of the ``recv`` method that is called by the application."
+msgstr ""
+
+#: ../../exercises/sockets.rst:107
+msgid "The `DATA` primitives are exchanged through a service access point. In the socket API, the equivalent to the service access point is the `socket`. A `socket` is a data structure which is maintained by the networking stack and is used by the application every time it needs to send or receive data through the networking stack."
+msgstr ""
+
+#: ../../exercises/sockets.rst:110
+msgid "Sending data to a peer using a socket"
+msgstr ""
+
+#: ../../exercises/sockets.rst:112
+msgid "In order to reach a peer, a process must know its :term:`address`. An address is a value that identifies a peer in a given network. There exists many different kinds of address families. For example, some of them allow to reach a peer using the file system on the computer. Some others allow to reach a remote peer using a network. The socket API provides generic functions: the peer address is taken as a ``struct sockaddr *``, which can point to any family of address. This is partly why sockets are a powerful abstraction."
+msgstr ""
+
+#: ../../exercises/sockets.rst:114
+msgid "The ``sendto`` system call allows to send data to a peer identified by its socket address through a given socket."
+msgstr ""
+
+#: ../../exercises/sockets.rst:120
+msgid "The first argument is the file descriptor of the socket that we use to perform the communication. ``buf`` is a buffer of length ``len`` containing the bytes to send to the peer. The usage of ``flags`` argument is out of the scope of this section and can be set to 0. ``dest_addr`` is the socket address of the destination to which we want to send the bytes, its length is passed using the ``addrlen`` argument."
+msgstr ""
+
+#: ../../exercises/sockets.rst:122
+msgid "In the following example, a C program is sending the bytes ``'h'``, ``'e'``, ``'l'``, ``'l'`` and ``'o'`` to a remote process located at address ``peer_addr``, using the already created socket ``sock``."
+msgstr ""
+
+#: ../../exercises/sockets.rst:135
+msgid "As the ``sendto`` function is generic, this function will work correctly independently from the fact that the peer's address is defined as a path on the computer filesystem or a network address."
+msgstr ""
+
+#: ../../exercises/sockets.rst:139
+msgid "Receiving data from a peer using a socket"
+msgstr ""
+
+#: ../../exercises/sockets.rst:141
+msgid "Operating systems allow to assign an address to a socket using the ``bind`` system call. This is useful when you want to receive messages from another program to which you announced your socket address. Once the address is assigned to the socket, the program can receive data from others using system calls such as ``recv`` and ``read``. Note that we can use the ``read`` system call as the operating system provides a socket as a file descriptor."
+msgstr ""
+
+#: ../../exercises/sockets.rst:144
+msgid "The following program binds its socket to a given socket address and then waits for receiving new bytes, using the already created socket ``sock``."
+msgstr ""
+
+#: ../../exercises/sockets.rst:173
+msgid "Depending on the socket address family, the operating system might implicitly assign an address to an unbound socket upon a call to ``write``, ``send`` or ``sendto``. While this is a useful behavior, describing it precisely is out of the scope of this section."
+msgstr ""
+
+#: ../../exercises/sockets.rst:175
+msgid "Using this code, the program will read and print an arbitrary message received from an arbitrary peer who knows the program's socket address. If we want to know the address of the peer that sent us the message, we can use the ``recvfrom`` system call. This is what a modified version of ``bind_and_receive_from_peer`` is doing below."
+msgstr ""
+
+#: ../../exercises/sockets.rst:213
+msgid "This function is now using the ``recvfrom`` system call that will also provide the address of the peer who sent the message. As addresses are generic and can have different sizes, ``recvfrom`` also tells us the size of the address that it has written."
+msgstr ""
+
+#: ../../exercises/sockets.rst:216
+msgid "``connect``: connecting a socket to a remote address"
+msgstr ""
+
+#: ../../exercises/sockets.rst:218
+msgid "Operating systems allow to link a socket to a remote address so that every information sent through the socket will only be sent to this remote address, and the socket will only receive messages sent by this remote address. This can be done using the ``connect`` system call below."
+msgstr ""
+
+#: ../../exercises/sockets.rst:224
+msgid "This system call will assign the socket ``sockfd`` to the ``addr`` remote socket address. The process can then use the ``send`` and ``write`` system calls that do not to specify the destination socket address. Furthermore, the calls to ``recv`` and ``read`` will only deliver messages sent by this remote address. This is useful when we only care about the other peer messages."
+msgstr ""
+
+#: ../../exercises/sockets.rst:227
+msgid "The following program connects a socket to a remote address, sends a message and waits for a reply."
+msgstr ""
+
+#: ../../exercises/sockets.rst:259
+msgid "Creating a new socket to communicate through a network"
+msgstr ""
+
+#: ../../exercises/sockets.rst:261
+msgid "Until now, we learned how to use sockets that were already created. When writing a whole program, you will have to create you own sockets and choose the concrete technology that it will use to communicate with others. In this section, we will create new sockets and allow a program to communicate with processes located on another computer using a network. The most recent standardized technology used to communicate through a network is the :term:`IPv6` network protocol. In the IPv6 protocol, hosts are identified using *IPv6 addresses*. Modern operating systems allow IPv6 network communications between programs to be done using the socket API, just as we did in the previous sections."
+msgstr ""
+
+#: ../../exercises/sockets.rst:264
+msgid "A program can use the ``socket`` system call to create a new socket."
+msgstr ""
+
+#: ../../exercises/sockets.rst:270
+msgid "The ``domain`` parameter specifies the address family that we will use to concretely perform the communication. For an IPv6 socket, the ``domain`` parameter will be set to the value ``AF_INET6``, telling the operating system that we plan to communicate using IPv6 addresses. The ``type`` parameter specifies the communication guarantees that we need. For now, we will use the type ``SOCK_DGRAM`` which allows us to send *unreliable messages*. This means that each data that we send at each call of ``sendto`` will either be completely received or not received at all. The last parameter will be set to ``0``. The following line creates a socket, telling the operating system that we want to communicate using IPv6 addresses and that we want to send unreliable messages."
+msgstr ""
+
+#: ../../exercises/sockets.rst:280
+msgid "Sending a message to a remote peer using its IPv6 address"
+msgstr ""
+
+#: ../../exercises/sockets.rst:284
+msgid "Now that we created an IPv6 socket, we can use it to reach another program if we know its IPv6 address. IPv6 addresses have a human-readable format that can be represented as a string of characters. The details of IPv6 addresses are out of scope of this section but here are some examples :"
+msgstr ""
+
+#: ../../exercises/sockets.rst:283
+msgid "The ``::1`` IPv6 address identifies the computer on which the current program is running."
+msgstr ""
+
+#: ../../exercises/sockets.rst:284
+msgid "The ``2001:6a8:308f:9:0:82ff:fe68:e520`` IPv6 address identifies the computer serving the ``https://beta.computer-networking.info`` website."
+msgstr ""
+
+#: ../../exercises/sockets.rst:288
+msgid "An IPv6 address often identifies a computer and not a program running on the computer. In order to identify a specific program running on a specific computer, we use a *port number* in addition to the IPv6 address. A program using an IPv6 socket is this identified using :"
+msgstr ""
+
+#: ../../exercises/sockets.rst:287
+msgid "The IPv6 address of the computer"
+msgstr ""
+
+#: ../../exercises/sockets.rst:288
+msgid "The port number identifying the program running on the computer"
+msgstr ""
+
+#: ../../exercises/sockets.rst:290
+msgid "A program can use the ``struct sockaddr_in6`` to represent IPv6 socket addresses. The following program creates a ``struct sockaddr_in6`` that identifies the program that reserved the port number ``55555`` on the computer identified by the ``::1`` IPv6 address."
+msgstr ""
+
+#: ../../exercises/sockets.rst:301
+msgid "Now, we have built everything we need to send a message to the remote program. The ``create_socket_and_send_message`` function below assembles all the building blocks we created until now in order to send the message ``\"hello\"`` to the program running on port ``55555`` on the computer identified by the ``::1`` IPv6 address."
+msgstr ""
+
+#: ../../exercises/sockets.rst:322
+msgid "Note that we can reuse our ``send_hello_to_peer`` function without any modification as we wrote it to handle any kind of sockets, including sockets using the IPv6 network protocol."
+msgstr ""
+
+#: ../../exercises/sockets.rst:326
+msgid "Endianness: exchanging integers between different computers"
+msgstr ""
+
+#: ../../exercises/sockets.rst:328
+msgid "Besides character strings, some applications also need to exchange 16 bits and 32 bits fields such as integers. A naive solution would have been to send the 16- or 32-bits field as it is encoded in the host's memory. Unfortunately, there are different methods to store 16- or 32-bits fields in memory. Some CPUs store the most significant byte of a 16-bits field in the first address of the field while others store the least significant byte at this location. When networked applications running on different CPUs exchange 16 bits fields, there are two possibilities to transfer them over the transport service :"
+msgstr ""
+
+#: ../../exercises/sockets.rst:330
+msgid "send the most significant byte followed by the least significant byte"
+msgstr ""
+
+#: ../../exercises/sockets.rst:331
+msgid "send the least significant byte followed by the most significant byte"
+msgstr ""
+
+#: ../../exercises/sockets.rst:333
+msgid "The first possibility was named  `big-endian` in a note written by Cohen [Cohen1980]_ while the second was named `little-endian`. Vendors of CPUs that used `big-endian` in memory insisted on using `big-endian` encoding in networked applications while vendors of CPUs that used `little-endian` recommended the opposite. Several studies were written on the relative merits of each type of encoding, but the discussion became almost a religious issue [Cohen1980]_. Eventually, the Internet chose the `big-endian` encoding, i.e. multi-byte fields are always transmitted by sending the most significant byte first, :rfc:`791` refers to this encoding as the :term:`network-byte order`. Most libraries [#fhtonl]_ used to write networked applications contain functions to convert multi-byte fields from memory to the network byte order and vice versa."
+msgstr ""
+
+#: ../../exercises/sockets.rst:335
+msgid "Besides 16 and 32 bit words, some applications need to exchange data structures containing bit fields of various lengths. For example, a message may be composed of a 16 bits field followed by eight, one bit flags, a 24 bits field and two 8 bits bytes. Internet protocol specifications will define such a message by using a representation such as the one below. In this representation, each line corresponds to 32 bits and the vertical lines are used to delineate fields. The numbers above the lines indicate the bit positions in the 32-bits word, with the high order bit at position `0`."
+msgstr ""
+
+#: ../../exercises/sockets.rst:341
+msgid "Message format"
+msgstr ""
+
+#: ../../exercises/sockets.rst:343
+msgid "The message mentioned above will be transmitted starting from the upper 32-bits word in network byte order. The first field is encoded in 16 bits. It is followed by eight one bit flags (`A-H`), a 24 bits field whose high order byte is shown in the first line and the two low order bytes appear in the second line followed by two one byte fields. This ASCII representation is frequently used when defining binary protocols. We will use it for all the binary protocols that are discussed in this book."
+msgstr ""
+
+#: ../../exercises/sockets.rst:346
+msgid "Exercises"
+msgstr ""
+
+#: ../../exercises/sockets.rst:348
+msgid "Here are some exercises that will help you to learn how to use sockets."
+msgstr ""
+
+#: ../../exercises/sockets.rst:364
+msgid "Footnotes"
+msgstr ""
+
+#: ../../exercises/sockets.rst:365
+msgid "For example, the ``htonl(3)`` (resp. ``ntohl(3)``) function the standard C library converts a 32-bits unsigned integer from the byte order used by the CPU to the network byte order (resp. from the network byte order to the CPU byte order). Similar functions exist in other programming languages."
+msgstr ""
+

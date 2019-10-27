@@ -10,22 +10,22 @@ msgstr ""
 "Project-Id-Version: Computer networking : Principles, Protocols and "
 "Practice 3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-15 12:37+0000\n"
+"POT-Creation-Date: 2019-10-09 12:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.6.0\n"
+"Generated-By: Babel 2.7.0\n"
 
 #: ../../index.rst:7
-msgid "Computer Networking : Principles, Protocols and Practice, 2nd edition"
+msgid "Computer Networking : Principles, Protocols and Practice, third edition"
 msgstr ""
 
 #: ../../index.rst:17
 msgid ""
-"This is an unpolished draft of the second edition of this ebook. If you "
+"This is an unpolished draft of the third edition of this ebook. If you "
 "find any error or have suggestions to improve the text, please create an "
 "issue via https://github.com/CNP3/ebook/issues/new"
 msgstr ""
@@ -40,11 +40,17 @@ msgstr ""
 msgid ""
 "The source code of the entire textbook is written in `reStructuredText "
 "<http://docutils.sourceforge.net/rst.html>`_ and uses several `sphinx "
-"<http://sphinx.pocoo.org>`_ features. You can browse it from `github "
-"<https://github.com/CNP3/ebook/tree/master>`_"
+"<http://sphinx.pocoo.org>`_ features. You can browse these sources from "
+"`github <https://github.com/CNP3/ebook/tree/master>`_"
 msgstr ""
 
-#: ../../index.rst:35
+#: ../../index.rst:23
+msgid ""
+"You can access a demo version of the e-book from `http://beta.computer-"
+"networking.info <http://beta.computer-networking.info>`_"
+msgstr ""
+
+#: ../../index.rst:37
 msgid "Part 1: Principles"
 msgstr ""
 
@@ -52,19 +58,44 @@ msgstr ""
 msgid "Part 2: Protocols"
 msgstr ""
 
-#: ../../index.rst:144
+#: ../../index.rst:86
+msgid "Part 3: Practice"
+msgstr ""
+
+#: ../../index.rst:149
 msgid "Appendices"
 msgstr ""
 
-#: ../../index.rst:155
+#: ../../index.rst:160
 msgid "Indices and tables"
 msgstr ""
 
-#: ../../index.rst:158
+#: ../../index.rst:163
 msgid ":ref:`genindex`"
 msgstr ""
 
-#: ../../index.rst:159
+#: ../../index.rst:164
 msgid ":ref:`search`"
 msgstr ""
+
+#~ msgid "Computer Networking : Principles, Protocols and Practice, 2nd edition"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "This is an unpolished draft of the"
+#~ " second edition of this ebook. If "
+#~ "you find any error or have "
+#~ "suggestions to improve the text, please"
+#~ " create an issue via "
+#~ "https://github.com/CNP3/ebook/issues/new"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The source code of the entire "
+#~ "textbook is written in `reStructuredText "
+#~ "<http://docutils.sourceforge.net/rst.html>`_ and uses "
+#~ "several `sphinx <http://sphinx.pocoo.org>`_ "
+#~ "features. You can browse it from "
+#~ "`github <https://github.com/CNP3/ebook/tree/master>`_"
+#~ msgstr ""
 
