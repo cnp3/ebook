@@ -18,7 +18,7 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
 .. .. [ATLAS2009] Labovitz, C., Iekel-Johnson, S., McPherson, D., Oberheide, J. and Jahanian, F., `Internet inter-domain traffic <http://doi.acm.org/10.1145/1851182.1851194>`_. In Proceedings of the ACM SIGCOMM 2010 conference on SIGCOMM (SIGCOMM '10). ACM, New York, NY, USA, 75-86. 
 .. .. [AW05] Arlitt, M. and Williamson, C. 2005. `An analysis of TCP reset behaviour on the internet <http://doi.acm.org/10.1145/1052812.1052823>`_. SIGCOMM Computer Communication Review 35, 1 (Jan. 2005), 37-44. 
 .. [Abramson1970] Abramson, N., `THE ALOHA SYSTEM: another alternative for computer communications <http://doi.acm.org/10.1145/1478462.1478502>`_. In Proceedings of the November 17-19, 1970, Fall Joint Computer Conference (Houston, Texas, November 17 - 19, 1970). AFIPS '70 (Fall). ACM, New York, NY, 281-285. 
-.. .. [B1989] Berners-Lee, T., `Information Management: A Proposal <http://www.w3.org/History/1989/proposal.html>`_, March 1989 
+.. [B1989] Berners-Lee, T., `Information Management: A Proposal <http://www.w3.org/History/1989/proposal.html>`_, March 1989 
 .. .. [Baran] Baran, P., `On distributed communications series`, http://www.rand.org/about/history/baran.list.html, 
 .. .. [BE2007] Biondi, P. and A. Ebalard, `IPv6 Routing Header  Security <http://www.secdev.org/conf/IPv6_RH_security-csw07.pdf>`_, CanSecWest Security Conference 2007, April 2007. 
 .. [BF1995] Bonomi, F. and  Fendick, K.W., `The rate-based flow control framework for the available bit rate ATM service <https://dx.doi.org/10.1109/65.372653>`_, IEEE Network, Mar/Apr 1995, Volume: 9,  Issue: 2, pages : 25-39 
@@ -30,8 +30,8 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
 .. .. [Benvenuti2005] Benvenuti, C., `Understanding Linux Network Internals <http://books.google.com/books?id=yy7tihZLgGYC>`_, O'Reilly Media, 2005 
 .. .. [BH2013] Bormann, C., Hoffman, P., `Concise Binary Object Representation (CBOR) <http://tools.ietf.org/html/rfc7049>`_, RFC7049 2013. See also https://cbor.io
 .. .. [BS2005] D. Barrett, R. Silverman, R. Byrnes, `SSH: The Secure Shell (The Definitive Guide) <https://books.google.be/books?id=3XzIFG3w8-YC>`_, O'Reilly 2005 (2nd edition). 
-.. .. [Bush1945]  Bush, V. `As we may think <http://www.theatlantic.com/magazine/archive/1969/12/as-we-may-think/3881/>`_ The Atlantic Monthly 176 (July 1945), pp. 101–108 
-.. .. [Bush1993] Bush, R., `FidoNet: technology, tools, and history <http://doi.acm.org/10.1145/163381.163383>`_. Communications ACM 36, 8 (Aug. 1993), 31-35. 
+.. [Bush1945]  Bush, V. `As we may think <http://www.theatlantic.com/magazine/archive/1969/12/as-we-may-think/3881/>`_ The Atlantic Monthly 176 (July 1945), pp. 101–108 
+.. [Bush1993] Bush, R., `FidoNet: technology, tools, and history <http://doi.acm.org/10.1145/163381.163383>`_. Communications ACM 36, 8 (Aug. 1993), 31-35. 
 .. [Bux1989] Bux, W., `Token-ring local-area networks and their performance <http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=18625>`_, Proceedings of the IEEE, Vol 77, No 2, p. 238-259, Feb. 1989 
 .. [BYL2008] Buford, J., Yu, H., Lua, E.K., `P2P Networking and Applications <http://books.google.com/books?id=O9NkAaY9YxMC>`_, Morgan Kaufmann, 2008
 .. .. [CB2003] Cheswick, William R., Bellovin, Steven M., Rubin, Aviel D., `Firewalls and internet security - Second edition - Repelling the Wily Hacker <http://books.google.com/books?id=XI52je-zaW8C>`_, Addison-Wesley 2003 
@@ -49,6 +49,7 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
 .. .. [Comer1988] Comer, D., `Internetworking with TCP/IP : principles, protocols & architecture`, Prentice Hall, 1988
 .. .. [Comer1991] Comer D., `Internetworking With TCP/IP : Design Implementation and Internals`,  Prentice Hall, 1991
 .. [Cohen1980] Cohen, D., `On Holy Wars and a Plea for Peace`, IEN 137, April 1980, http://www.ietf.org/rfc/ien/ien137.txt
+.. [CWE444] CWE-444, `Inconsistent Interpretation of HTTP Requests ('HTTP Request Smuggling') <https://cwe.mitre.org/data/definitions/444.html>`_, https://cwe.mitre.org/data/definitions/444.html
 .. [DC2009] Donahoo, M., Calvert, K., `TCP/IP Sockets in C: Practical Guide for Programmers <http://books.google.com/books?id=dmt_mERzxV4C>`_ , Morgan Kaufman, 2009
 .. [DH1976] Diffie, W., Hellman, M., `New directions in cryptography`, in Information Theory, IEEE Transactions on , vol.22, no.6, pp.644-654, Nov 1976, https://dx.doi.org/10.1109/TIT.1976.1055638
 .. .. [DIX] Digital, Intel, Xerox, `The Ethernet: a local area network: data link layer and physical layer specifications <http://doi.acm.org/10.1145/1015591.1015594>`_. SIGCOMM Computer Communication Review 11, 3 (Jul. 1981), 20-66. 
@@ -73,8 +74,8 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
 .. .. [FTY99] Theodore Faber, Joe Touch, and Wei Yue, `The TIME-WAIT state in TCP and Its Effect on Busy Servers <https://dx.doi.org/10.1109/INFCOM.1999.752180>`_, Proceedings INFOCOM'99, pp. 1573 
 .. [Feldmeier95] Feldmeier, D. C., `Fast software implementation of error detection codes <https://dx.doi.org/10.1109/90.477710>`_. IEEE/ACM Transactions Networking 3, 6 (Dec. 1995), 640-651. 
 .. .. [GAVE1999] Govindan, R., Alaettinoglu, C., Varadhan, K., Estrin, D., `An Architecture for Stable, Analyzable Internet Routing <https://dx.doi.org/10.1109/65.750447>`_, IEEE Network Magazine, Vol. 13, No. 1, pp. 29--35, January 1999 
-.. .. [GC2000] Grier, D., Campbell, M., `A social history of Bitnet and Listserv <http://www.computer.org/portal/web/csdl/doi/10.1109/85.841135>`_, 1985-1991, Annals of the History of Computing, IEEE, Volume 22, Issue 2, Apr-Jun 2000, pp. 32 - 41 
-.. .. [Genilloud1990] Genilloud, G., `X.400 MHS: first steps towards an EDI communication standard <http://doi.acm.org/10.1145/378570.378712>`_. SIGCOMM Computer Communication Review 20, 2 (Apr. 1990), 72-86. 
+.. [GC2000] Grier, D., Campbell, M., `A social history of Bitnet and Listserv <http://www.computer.org/portal/web/csdl/doi/10.1109/85.841135>`_, 1985-1991, Annals of the History of Computing, IEEE, Volume 22, Issue 2, Apr-Jun 2000, pp. 32 - 41
+.. [Genilloud1990] Genilloud, G., `X.400 MHS: first steps towards an EDI communication standard <http://doi.acm.org/10.1145/378570.378712>`_. SIGCOMM Computer Communication Review 20, 2 (Apr. 1990), 72-86. 
 .. [Greenwald2014] G. Greenwald, `No Place to Hide: Edward Snowden, the NSA, and the U.S. Surveillance State <https://books.google.be/books?isbn=1627790748>`_, Metropolitan books, 2014
 .. .. [GGR2001] Gao, L., Griffin, T., Rexford, J., `Inherently safe backup routing with BGP <https://dx.doi.org/10.1109/INFCOM.2001.916777>`_, Proceedings IEEE INFOCOM, April 2001 
 .. [GN2011] Gettys, J., Nichols, K., `Bufferbloat: dark buffers in the internet <http://queue.acm.org/detail.cfm?id=2063196>`_. Communications of the ACM 55, no. 1 (2012): 57-65.
@@ -103,7 +104,8 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
 .. [KPD1985] Karn, P., Price, H., Diersing, R., `Packet radio in amateur service <https://dx.doi.org/10.1109/JSAC.1985.1146214>`_, IEEE Journal on Selected Areas in Communications, 3, May, 1985 
 .. .. [KPS2003] Kaufman, C., Perlman, R., and Sommerfeld, B. `DoS protection for UDP-based protocols <http://doi.acm.org/10.1145/948109.948113>`_. In Proceedings of the 10th ACM Conference on Computer and Communications Security (Washington D.C., USA, October 27 - 30, 2003). CCS '03. ACM, New York, NY, 2-7. 
 .. .. [KPS2002] Kaufman, C., Perlman, R., Speciner, M., `Network Security : Private communication in a public world <https://books.google.be/books?id=wxMqaz4JMb0C>`_, 2nd edition, Prentice Hall, 2002
-.. [KR1995] Kung, N.T.   Morris, R., `Credit-based flow control for ATM networks <https://dx.doi.org/10.1109/65.372658>`_, IEEE Network, Mar/Apr 1995, Volume: 9,  Issue: 2, pages: 40-48 
+.. [KR1995] Kung, N.T.   Morris, R., `Credit-based flow control for ATM networks <https://dx.doi.org/10.1109/65.372658>`_, IEEE Network, Mar/Apr 1995, Volume: 9,  Issue: 2, pages: 40-48
+.. [KR2001] Krishnamurthy, B. and Rexford, J., `Web Protocols and Practice: HTTP/1.1, Networking Protocols, Caching, and Traffic Measurement <https://books.google.be/books?id=g_1SAAAAMAAJ&q=Web+Protocols+and+Practice:+HTTP/1.1,+Networking+Protocols,+Caching,+and+Traffic+Measurement&dq=Web+Protocols+and+Practice:+HTTP/1.1,+Networking+Protocols,+Caching,+and+Traffic+Measurement&hl=en&sa=X&ved=0ahUKEwi4r4O4p73lAhU3SBUIHSOWBwkQ6AEIKTAA>`_, Addison Wesley, 2001	    
 .. [KT1975] Kleinrock, L., Tobagi, F., `Packet Switching in Radio Channels: Part I--Carrier Sense Multiple-Access Modes and their Throughput-Delay Characteristics <https://dx.doi.org/10.1109/TCOM.1975.1092768>`_, IEEE Transactions on Communications, Vol. COM-23, No. 12, pp. 1400-1416, December 1975. 
 .. .. [KW2009] Katz, D., Ward, D.,  `Bidirectional Forwarding Detection`, :rfc:`5880`, June 2010
 .. [KZ1989] Khanna, A. and Zinky, J. 1989. `The revised ARPANET routing metric <http://doi.acm.org/10.1145/75247.75252>`_. SIGCOMM Computer Communication Review 19, 4 (Aug. 1989), 45-56. 
@@ -132,13 +134,14 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
 .. [Metcalfe1976] Metcalfe R., Boggs, D., `Ethernet: Distributed packet-switching for local computer networks <http://doi.acm.org/10.1145/360248.3602530>`_. Communications of the ACM, 19(7):395--404, 1976. 
 .. [Mills2006] Mills, D.L., `Computer Network Time Synchronization: the Network Time Protocol <http://books.google.com/books?id=pdTcJBfnbq8C>`_. CRC Press, March 2006, 304 pp. 
 .. .. [Miyakawa2008] Miyakawa, S., `From IPv4 only To v4/v6 Dual Stack <http://www.nttv6.jp/~miyakawa/IETF72/IETF-IAB-TECH-PLENARY-NTT-miyakawa-extended.pdf>`_, IETF72 IAB Technical Plenary, July 2008 
-.. .. [Mogul1995] Mogul, J. , `The case for persistent-connection HTTP <http://doi.acm.org/10.1145/217382.217465>`_. In Proceedings of the Conference on Applications, Technologies, Architectures, and Protocols For Computer Communication (Cambridge, Massachusetts, United States, August 28 - September 01, 1995). D. Oran, Ed. SIGCOMM '95. ACM, New York, NY, 299-313. 
+.. [Mogul1995] Mogul, J. , `The case for persistent-connection HTTP <http://doi.acm.org/10.1145/217382.217465>`_. In Proceedings of the Conference on Applications, Technologies, Architectures, and Protocols For Computer Communication (Cambridge, Massachusetts, United States, August 28 - September 01, 1995). D. Oran, Ed. SIGCOMM '95. ACM, New York, NY, 299-313. 
 .. .. [Moore] Moore, R., `Packet switching history`, http://rogerdmoore.ca/PS/
 .. .. [Moy1998] Moy, J., `OSPF: Anatomy of an Internet Routing Protocol <http://books.google.com/books?id=YXUWsqVhx60C>`_, Addison Wesley, 1998 
 .. [MVV2011]  Menezes, A., van Oorschot, P. and Vanstone, S. , `Handbook of Applied Cryptography <http://cacr.uwaterloo.ca/hac/>`_ , CRC Press, 2011
-.. .. [Myers1998] Myers, B. A., `A brief history of human-computer interaction technology <http://doi.acm.org/10.1145/274430.274436>`_. interactions 5, 2 (Mar. 1998), 44-54. 
-.. .. [Nelson1965] Nelson, T. H., `Complex information processing: a file structure for the complex, the changing and the indeterminate <http://doi.acm.org/10.1145/800197.806036>`_. In Proceedings of the 1965 20th National Conference (Cleveland, Ohio, United States, August 24 - 26, 1965). L. Winner, Ed. ACM '65. ACM, New York, NY, 84-100. 
+.. [Myers1998] Myers, B. A., `A brief history of human-computer interaction technology <http://doi.acm.org/10.1145/274430.274436>`_. interactions 5, 2 (Mar. 1998), 44-54.
+.. [Nelson1965] Nelson, T. H., `Complex information processing: a file structure for the complex, the changing and the indeterminate <http://doi.acm.org/10.1145/800197.806036>`_. In Proceedings of the 1965 20th National Conference (Cleveland, Ohio, United States, August 24 - 26, 1965). L. Winner, Ed. ACM '65. ACM, New York, NY, 84-100. 
 .. .. [NGB+1997] Nielsen, H., Gettys, J., Baird-Smith, A., Prudhommeaux, E., Wium Lie, H., and Lilley, C. `Network performance effects of HTTP/1.1, CSS1, and PNG <http://doi.acm.org/10.1145/263109.263157>`_. SIGCOMM Computer Communication Review 27, 4 (October 1997), 155-166. 
+.. [NSS2010] Nygren E, Sitaraman RK, Sun J., `The Akamai network: a platform for high-performance Internet applications <https://doi.org/10.1145/1842733.1842736>`_. ACM SIGOPS Operating Systems Review. 2010 Aug 17;44(3):2-19.
 .. .. [Paxson99] Paxson, V. , `End-to-end Internet packet dynamics <http://doi.acm.org/10.1145/263109.263155>`_. SIGCOMM Computer Communication Review 27, 4 (Oct. 1997), 139-152. 
 .. .. [Perlman1985] Perlman, R., `An algorithm for distributed computation of a spanning tree in an extended LAN <http://doi.acm.org/10.1145/318951.319004>`_. SIGCOMM Computer Communication Review 15, 4 (Sep. 1985), 44-53. 
 .. .. [Perlman2000] Perlman, R., `Interconnections : Bridges, routers, switches and internetworking protocols <http://books.google.com/books?id=AIRitf5C-QQC&pgis=1>`_, 2nd edition, Addison Wesley, 2000 
@@ -338,11 +341,12 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
 .. [SV1995] M. Shreedhar and G. Varghese. `Efficient fair queueing using deficit round robin <http://doi.acm.org/10.1145/217391.217453>`_ SIGCOMM Computer Communication Review 25, 4 (October 1995), 231-242.
 .. .. [TE1993] Tsuchiya, P. F. and Eng, T., `Extending the IP internet through address reuse <http://doi.acm.org/10.1145/173942.173944>`_. SIGCOMM Computer Communication Review 23, 1 (Jan. 1993), 16-33. 
 .. .. [Thomborson1992] Thomborson, C., `The V.42bis Standard for Data-Compressing Modems <http://www.computer.org/portal/web/csdl/doi/10.1109/40.166712>`_, IEEE Micro, September/October 1992 (vol. 12 no. 5), pp. 41-53 
-.. .. [Unicode] The Unicode Consortium. `The Unicode Standard <http://unicode.org/versions/Unicode5.0.0/>`_, Version 5.0.0, defined by: The Unicode Standard, Version 5.0 (Boston, MA, Addison-Wesley, 2007
+.. [Unicode] The Unicode Consortium. `The Unicode Standard <http://unicode.org/versions/Unicode5.0.0/>`_, Version 5.0.0, defined by: The Unicode Standard, Version 5.0 (Boston, MA, Addison-Wesley, 2007
 .. .. [VPD2004] Vasseur, J., Pickavet, M., and Demeester, P., `Network Recovery: Protection and Restoration of Optical, SONET-SDH, IP, and MPLS <http://books.google.com/books?id=nYO305Y5eNAC>`_. Morgan Kaufmann Publishers Inc., 2004 
 .. .. [Varghese2005] Varghese, G., `Network Algorithmics: An Interdisciplinary Approach to Designing Fast Networked Devices <http://books.google.com/books?id=01QORuRF6fIC>`_, Morgan Kaufmann, 2005 
 .. .. [Vyncke2007] Vyncke, E., Paggen, C., `LAN Switch Security: What Hackers Know About Your Switches <http://books.google.com/books?id=HkraAQAACAAJ>`_, Cisco Press, 2007
 .. .. [WB2008] Waserman, M., Baker, F., `IPv6-to-IPv6 Network Address Translation (NAT66)`, Internet draft, November 2008, http://tools.ietf.org/html/draft-mrw-behave-nat66-02
+.. [WBK2014] Wang XS, Balasubramanian A, Krishnamurthy A, Wetherall D. `How Speedy is SPDY ? <https://www.usenix.org/conference/nsdi14/technical-sessions/wang>`_ . In 11th {USENIX} Symposium on Networked Systems Design and Implementation ({NSDI} 14) 2014 (pp. 387-399).   
 .. .. [WMH2008] Wilson, P., Michaelson, G., Huston, G., `Redesignation of 240/4 from "Future Use" to "Private Use"`, Internet draft, September 2008, work in progress, http://tools.ietf.org/html/draft-wilson-class-e-02
 .. .. [WMS2004] White, R., Mc Pherson, D., Srihari, S., `Practical BGP <http://books.google.com/books?id=9OlSAAAAMAAJ>`_, Addison-Wesley, 2004 
 .. .. [Watson1981] Watson, R., `Timer-Based Mechanisms in Reliable Transport Protocol Connection Management <https://dx.doi.org/10.1016/0376-5075(81)90031-3>`_. Computer Networks 5: 47-56 (1981) 
@@ -354,6 +358,7 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
 .. .. [X224] ITU-T, recommendation X.224, `Information technology - Open Systems Interconnection - Protocol for providing the connection-mode transport service <http://www.itu.int/rec/T-REC-X.224-199511-I/en/>`_, 1995 
 .. .. [XNS] Xerox, `Xerox Network Systems Architecture <http://www.bitsavers.org/pdf/xerox/xns/XNSG058504_XNS_Introduction.pdf>`_, XNSG058504, 1985 
 .. .. [Ylonen1996] Ylonen, T., `SSH — Secure Login Connections over the Internet <https://www.usenix.org/legacy/publications/library/proceedings/sec96/full_papers/ylonen/index.html>`_, Usenix Security 1996
+.. [ZWH2018] Zimmermann T., Wolters B., Hohlfeld O., Wehrle K. `Is the web ready for HTTP/2 server push? <http://doi.acm.org/10.1145/3281411.3281434>`_ , Proceedings of the 14th International Conference on emerging Networking Experiments and Technologies 2018 Dec 4 (pp. 13-19). ACM.
 .. [Zimmermann80] Zimmermann, H., `OSI Reference Model - The ISO Model of  Architecture for Open Systems Interconnection <https://dx.doi.org/10.1109/TCOM.1980.1094702>`_, IEEE Transactions on Communications, vol. 28, no. 4, April 1980, pp. 425 - 432.
 .. [Zakon] Zakon, R., `Hobbes Internet Timeline <https://www.zakon.org/robert/internet/timeline/>`_, online, https://www.zakon.org/robert/internet/timeline/
 .. [Zhe2017] Zheng, X., `Phishing with Unicode Domains <https://www.xudongz.com/blog/2017/idn-phishing/>`_, April 14, 2017, https://www.xudongz.com/blog/2017/idn-phishing/
@@ -753,3 +758,11 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
    Zheng
    Parulkar
    Shenker
+   Wolters
+   Hohlfeld
+   Wehrle
+   Krishnamurthy
+   Nygren
+   Sitaraman
+   Balasubramanian
+   Wetherall

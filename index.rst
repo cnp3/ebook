@@ -59,12 +59,13 @@ Part 2: Protocols
 
 
    protocols/dns
-
-..   protocols/transport-service
-
-..   protocols/email
+   protocols/transport-service
+   protocols/email
+   protocols/http
+   protocols/http2
+   
 ..   protocols/ssh
-..   protocols/http
+
 ..   protocols/rpc
 ..   protocols/tls
 ..   protocols/dnssec
@@ -96,6 +97,9 @@ Part 3: Practice
    
    exercises/ex-sharing
    exercises/dns
+   exercises/email
+   exercises/http
+	      
 ..   exercises/ex-app
 ..   exercises/netkit-app
 ..   exercises/netkit-tcp

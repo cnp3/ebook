@@ -1,0 +1,5 @@
+ Greeting	= "220 " Domain [ SP textstring ] CRLF
+ textstring	= 1*atext
+ Reply-line	= *( Reply-code "-" [ textstring ] CRLF )
+ 		  Reply-code [ SP textstring ] CRLF
+ Reply-code 	= %x32-35 %x30-35 %x30-39

@@ -41,7 +41,6 @@ dig_ also contains some additional parameters and flags that are described in th
 1. What are the IP addresses of the resolvers that the `dig` implementation you are using relies on [#fdig]_ ?
 
 2. What are the nameservers that are responsible for the `info` top-level domain ? Is it possible to use IPv6 to query them ?
-
   
 3. What is the IPv6 address that corresponds to `www.computer-networking.info` ? Which type of DNS query does `dig` send to obtain this information ?
 
@@ -70,11 +69,6 @@ dig_ also contains some additional parameters and flags that are described in th
 	;; Got answer:
 	;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 25718
 
-.. inginious:: pkt-dns-port
-
-
-.. inginious:: pkt-dns-id
-
                
 10. A DNS implementation such as `dig` and more importantly a name resolver such as bind_ or unbound_, always checks that the received DNS reply contains the same identifier as the DNS request that it sent. Why is this so important ?
 
@@ -84,18 +78,31 @@ dig_ also contains some additional parameters and flags that are described in th
      - sends DNS requests containing identifiers that are incremented by one after each request
      - sends DNS requests containing random identifiers
 
-11. The DNS protocol can run over UDP and over TCP. Most DNS servers prefer to use UDP because it consumes fewer resources on the server. However, TCP is useful when a large answer is expected or when a large answer is expected. Use `time dig +tcp` to query a root DNS server. Is it faster to receive an answer via TCP or via UDP ?
+11. The DNS protocol can run over UDP and over TCP. Most DNS servers prefer to use UDP because it consumes fewer resources on the server. However, TCP is useful when a large answer is expected or when a large answer is expected. Compare `time dig +tcp` and `time dig` to query a root DNS server. Is it faster to receive an answer via TCP or via UDP ?
 
+
+Besides `dig`, another way to analyze the DNS is to look at packet traces with tools such as `wireshark <https://www.wireshark.org>`_ or `tcpdump <https://www.tcpdump.org>`_ These tools can capture packets in a network and also display and analyze their content. `Wireshark <https://www.wireshark.org>`_  provides a flexible Graphical User Interface that eases the analysis of the captured packets. The three questions below should help you to better understand the important fields of DNS messages.
+
+
+.. inginious:: mcq-pkt-dns-1
+
+.. inginious:: mcq-pkt-dns-2
+
+.. inginious:: mcq-pkt-dns-3
+
+The next three questions ask you to go one step further by predicting the values of specific fields in the DNS messages.
+
+.. inginious:: pkt-dns-port
+
+.. inginious:: pkt-dns-id
 
 .. inginious:: pkt-dns-tcp    
 
-
 When a client requests the mapping of a domain name into an IP address to its local resolver, the resolver may need to query a large number of nameservers starting from the root nameserver. The three exercises below show packet traces collected while the resolver was resolving the following names: `www.example.com`, `www.google.com` and `www.computer-networking.info`. If you understand how the DNS operates, you should be able to correctly reorder those packet traces.
-
+	       
 .. inginious:: pkt-dns-example
 
 .. inginious:: pkt-dns-google
-
                
 .. inginious:: pkt-dns-computernetworking
                
@@ -106,8 +113,6 @@ When a client requests the mapping of a domain name into an IP address to its lo
 .. [#fdig] On a Linux machine, the *Description* section of the `dig` man page tells you where `dig` finds the list of nameservers to query.
 
 .. [#rs] You may obtain additional information about the root DNS servers from http://www.root-servers.org
-
-
 
 
 .. include:: /links.rst
