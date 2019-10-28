@@ -29,7 +29,7 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
 .. .. [BOP1994] Brakmo, L. S., O'Malley, S. W., and Peterson, L. L., `TCP Vegas: new techniques for congestion detection and avoidance <http://doi.acm.org/10.1145/190314.190317>`_. In Proceedings of the Conference on Communications Architectures, Protocols and Applications (London, United Kingdom, August 31 - September 02, 1994). SIGCOMM '94. ACM, New York, NY, 24-35. 
 .. .. [Benvenuti2005] Benvenuti, C., `Understanding Linux Network Internals <http://books.google.com/books?id=yy7tihZLgGYC>`_, O'Reilly Media, 2005 
 .. [BH2013] Bormann, C., Hoffman, P., `Concise Binary Object Representation (CBOR) <http://tools.ietf.org/html/rfc7049>`_, RFC7049 2013. See also https://cbor.io
-.. .. [BS2005] D. Barrett, R. Silverman, R. Byrnes, `SSH: The Secure Shell (The Definitive Guide) <https://books.google.be/books?id=3XzIFG3w8-YC>`_, O'Reilly 2005 (2nd edition). 
+.. [BS2005] D. Barrett, R. Silverman, R. Byrnes, `SSH: The Secure Shell (The Definitive Guide) <https://books.google.be/books?id=3XzIFG3w8-YC>`_, O'Reilly 2005 (2nd edition). 
 .. [Bush1945]  Bush, V. `As we may think <http://www.theatlantic.com/magazine/archive/1969/12/as-we-may-think/3881/>`_ The Atlantic Monthly 176 (July 1945), pp. 101–108 
 .. [Bush1993] Bush, R., `FidoNet: technology, tools, and history <http://doi.acm.org/10.1145/163381.163383>`_. Communications ACM 36, 8 (Aug. 1993), 31-35. 
 .. [Bux1989] Bux, W., `Token-ring local-area networks and their performance <http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=18625>`_, Proceedings of the IEEE, Vol 77, No 2, p. 238-259, Feb. 1989 
@@ -333,7 +333,7 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
 .. [Sklower89] Sklower, K. 1989. `Improving the efficiency of the OSI checksum calculation <http://doi.acm.org/10.1145/74681.74684>`_. SIGCOMM Computer Communication Review 19, 5 (Oct. 1989), 32-43. 
 .. .. [SMASU2012] Sarrar, N., Maier, G., Ager, B., Sommer, R. and Uhlig, S., `Investigating IPv6 traffic <http://link.springer.com/chapter/10.1007/978-3-642-28537-0_2>`_, Passive and Active Measurements, Lecture Notes in Computer Science vol 7192, 2012, pp.11-20
 .. .. [SMM98] Semke, J., Mahdavi, J., and Mathis, M., `Automatic TCP buffer tuning <http://doi.acm.org/10.1145/285243.285292>`_. SIGCOMM Computer Communication Review 28, 4 (Oct. 1998), 315-323. 
-.. .. [Stallings2009] Stallings, W., `Protocol Basics: Secure Shell Protocol <http://www.cisco.com/web/about/ac123/ac147/archived_issues/ipj_12-4/124_ssh.html>`_, Internet Protocol Journal, vol 12, n 4, Dec. 2009
+.. [Stallings2009] Stallings, W., `Protocol Basics: Secure Shell Protocol <http://www.cisco.com/web/about/ac123/ac147/archived_issues/ipj_12-4/124_ssh.html>`_, Internet Protocol Journal, vol 12, n 4, Dec. 2009
 .. .. [Stevens1994] Stevens, R., `TCP/IP Illustrated : the Protocols <http://books.google.com/books?id=-btNds68w84C>`_, Addison-Wesley, 1994 
 .. [Stevens1998] Stevens, R., `UNIX Network Programming, Volume 1, Second Edition: Networking APIs: Sockets and XTI <http://books.google.com/books?id=ptSC4LpwGA0C>`_, Prentice Hall, 1998 
 .. .. [Stewart1998] Stewart, J., `BGP4: Inter-Domain Routing In The Internet <http://books.google.com/books?id=UEcHpN4QHrAC>`_, Addison-Wesley, 1998
@@ -357,7 +357,7 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
 .. [X200] ITU-T, recommendation X.200, `Open Systems Interconnection - Model and Notation <http://www.itu.int/rec/T-REC-X.200-199407-I/en>`_, 1994 
 .. .. [X224] ITU-T, recommendation X.224, `Information technology - Open Systems Interconnection - Protocol for providing the connection-mode transport service <http://www.itu.int/rec/T-REC-X.224-199511-I/en/>`_, 1995 
 .. .. [XNS] Xerox, `Xerox Network Systems Architecture <http://www.bitsavers.org/pdf/xerox/xns/XNSG058504_XNS_Introduction.pdf>`_, XNSG058504, 1985 
-.. .. [Ylonen1996] Ylonen, T., `SSH — Secure Login Connections over the Internet <https://www.usenix.org/legacy/publications/library/proceedings/sec96/full_papers/ylonen/index.html>`_, Usenix Security 1996
+.. [Ylonen1996] Ylonen, T., `SSH — Secure Login Connections over the Internet <https://www.usenix.org/legacy/publications/library/proceedings/sec96/full_papers/ylonen/index.html>`_, Usenix Security 1996
 .. [ZWH2018] Zimmermann T., Wolters B., Hohlfeld O., Wehrle K. `Is the web ready for HTTP/2 server push? <http://doi.acm.org/10.1145/3281411.3281434>`_ , Proceedings of the 14th International Conference on emerging Networking Experiments and Technologies 2018 Dec 4 (pp. 13-19). ACM.
 .. [Zimmermann80] Zimmermann, H., `OSI Reference Model - The ISO Model of  Architecture for Open Systems Interconnection <https://dx.doi.org/10.1109/TCOM.1980.1094702>`_, IEEE Transactions on Communications, vol. 28, no. 4, April 1980, pp. 425 - 432.
 .. [Zakon] Zakon, R., `Hobbes Internet Timeline <https://www.zakon.org/robert/internet/timeline/>`_, online, https://www.zakon.org/robert/internet/timeline/

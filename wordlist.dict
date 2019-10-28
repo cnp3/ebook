@@ -115,3 +115,6 @@ callee
 boolean
 booleans
 endian
+naive
+bitwise
+cleartext

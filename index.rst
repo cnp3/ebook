@@ -64,8 +64,7 @@ Part 2: Protocols
    protocols/http
    protocols/http2
    protocols/rpc
-   
-..   protocols/ssh
+   protocols/ssh
 
 
 ..   protocols/tls
