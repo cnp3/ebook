@@ -28,7 +28,7 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
 .. [BNT1997] Beech, W., Nielsen, D., Taylor, J.,  `AX.25 Link Access Protocol for Amateur Packet Radio <http://www.tapr.org/pdf/AX25.2.2.pdf>`_, version 2.2, Revision: July 1998
 .. .. [BOP1994] Brakmo, L. S., O'Malley, S. W., and Peterson, L. L., `TCP Vegas: new techniques for congestion detection and avoidance <http://doi.acm.org/10.1145/190314.190317>`_. In Proceedings of the Conference on Communications Architectures, Protocols and Applications (London, United Kingdom, August 31 - September 02, 1994). SIGCOMM '94. ACM, New York, NY, 24-35. 
 .. .. [Benvenuti2005] Benvenuti, C., `Understanding Linux Network Internals <http://books.google.com/books?id=yy7tihZLgGYC>`_, O'Reilly Media, 2005 
-.. .. [BH2013] Bormann, C., Hoffman, P., `Concise Binary Object Representation (CBOR) <http://tools.ietf.org/html/rfc7049>`_, RFC7049 2013. See also https://cbor.io
+.. [BH2013] Bormann, C., Hoffman, P., `Concise Binary Object Representation (CBOR) <http://tools.ietf.org/html/rfc7049>`_, RFC7049 2013. See also https://cbor.io
 .. .. [BS2005] D. Barrett, R. Silverman, R. Byrnes, `SSH: The Secure Shell (The Definitive Guide) <https://books.google.be/books?id=3XzIFG3w8-YC>`_, O'Reilly 2005 (2nd edition). 
 .. [Bush1945]  Bush, V. `As we may think <http://www.theatlantic.com/magazine/archive/1969/12/as-we-may-think/3881/>`_ The Atlantic Monthly 176 (July 1945), pp. 101–108 
 .. [Bush1993] Bush, R., `FidoNet: technology, tools, and history <http://doi.acm.org/10.1145/163381.163383>`_. Communications ACM 36, 8 (Aug. 1993), 31-35. 
@@ -56,7 +56,7 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
 .. .. [DKF+2007] Dimitropoulos, X., Krioukov, D., Fomenkov, M., Huffaker, B., Hyun, Y., Claffy, K., Riley, G.,  `AS Relationships: Inference and Validation <http://doi.acm.org/10.1145/1198255.1198259>`_, ACM SIGCOMM Computer Communication Review (CCR), Jan. 2007
 .. .. [DP1981] Dalal, Y. K. and Printis, R. S., `48-bit absolute internet and Ethernet host numbers <http://doi.acm.org/10.1145/800081.802680>`_. In Proceedings of the Seventh Symposium on Data Communications (Mexico City, Mexico, October 27 - 29, 1981). SIGCOMM '81. ACM, New York, NY, 240-245.
 .. .. [DRC+2010] Dukkipati, N., Refice, T., Cheng, Y., Chu, J., Herbert, T., Agarwal, A., Jain, A., Sutin, N., `An Argument for Increasing TCP's Initial Congestion Window <https://dx.doi.org/10.1145/1823844.1823848>`_, ACM SIGCOMM Computer Communications Review, vol. 40 (2010), pp. 27-33
-.. .. [Dubuisson2000] O. Dubuisson, `ASN.1 : Communication between Heterogeneous Systems <http://www.oss.com/asn1/resources/books-whitepapers-pubs/asn1-books.html#dubuisson>`, Morgan Kauffman, 2000 
+.. [Dubuisson2000] O. Dubuisson, `ASN.1 : Communication between Heterogeneous Systems <http://www.oss.com/asn1/resources/books-whitepapers-pubs/asn1-books.html#dubuisson>`, Morgan Kauffman, 2000 
 .. .. [Dunkels2003] Dunkels, A., `Full TCP/IP for 8-Bit Architectures <http://www.sics.se/~adam/mobisys2003.pdf>`_. In Proceedings of the first international conference on mobile applications, systems and services (MOBISYS 2003), San Francisco, May 2003.
 .. [DR2002] Daemen, J., Rijmen, V., `The Design of Rijndael: AES – The Advanced Encryption Standard <http://www.springer.com/us/book/9783540425809>`_ Springer, 2002. ISBN 3-540-42580-2. 
 .. .. [DT2007] Donnet, B. and Friedman, T., `Internet Topology Discovery: a Survey <http://inl.info.ucl.ac.be/publications/internet-topology-discovery-survey>`_. IEEE Communications Surveys and Tutorials, 9(4):2-15, December 2007
@@ -96,7 +96,7 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
 .. [Jain1990] Jain, R., `Congestion control in computer networks : Issues and trends <https://dx.doi.org/10.1109/65.56532>`_, IEEE Network Magazine, May 1990, pp. 24-30
 .. .. [JLT2013] Jesup, R., Loreto, S., Tuexen, M., `RTCWeb Data Channels <http://tools.ietf.org/html/draft-ietf-rtcweb-data-channel-06>`_, Internet draft, work in progress, 2013
 .. [JSBM2002] Jung, J., Sit, E., Balakrishnan, H., and Morris, R. 2002. `DNS performance and the effectiveness of caching <https://dx.doi.org/10.1109/TNET.2002.803905>`_. IEEE/ACM Transactions Networking 10, 5 (Oct. 2002), 589-603. 
-.. .. [JSON-RPC2] JSON-RPC Working group, `JSON-RPC 2.0 Specification <http://www.jsonrpc.org/specification>`_, available on http://www.jsonrpc.org, 2010
+.. [JSON-RPC2] JSON-RPC Working group, `JSON-RPC 2.0 Specification <http://www.jsonrpc.org/specification>`_, available on http://www.jsonrpc.org, 2010
 .. [Kerrisk2010] Kerrisk, M., `The Linux Programming Interface <http://nostarch.com/tlpi>`_, No Starch Press, 2010 
 .. .. [KM1995] Kent, C. A. and Mogul, J. C., `Fragmentation considered harmful <http://doi.acm.org/10.1145/205447.205456>`_. SIGCOMM Computer Communication Review 25, 1 (Jan. 1995), 75-87. 
 .. .. [KNT2013] Kühlewind, M., Neuner, S., Trammell, B., `On the state of ECN and TCP Options on the Internet <http://link.springer.com/chapter/10.1007%2F978-3-642-36516-4_14>`_. Proceedings of the 14th Passive and Active Measurement conference (PAM 2013), Hong Kong, March 2013

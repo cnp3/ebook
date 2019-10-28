@@ -63,10 +63,11 @@ Part 2: Protocols
    protocols/email
    protocols/http
    protocols/http2
+   protocols/rpc
    
 ..   protocols/ssh
 
-..   protocols/rpc
+
 ..   protocols/tls
 ..   protocols/dnssec
 ..   protocols/transport
