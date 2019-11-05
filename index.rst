@@ -56,8 +56,6 @@ Part 2: Protocols
 .. toctree::
    :maxdepth: 4
 
-
-
    protocols/dns
    protocols/transport-service
    protocols/email
@@ -99,7 +97,8 @@ Part 3: Practice
    exercises/dns
    exercises/email
    exercises/http
-	      
+   exercises/tls
+      
 ..   exercises/ex-app
 ..   exercises/netkit-app
 ..   exercises/netkit-tcp
