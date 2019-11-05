@@ -69,7 +69,7 @@ Part 2: Protocols
    protocols/dnssec
    protocols/transport
    protocols/udp
-..   protocols/tcp
+   protocols/tcp
 
 ..   protocols/sctp
 
