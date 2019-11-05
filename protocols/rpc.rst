@@ -29,6 +29,7 @@ The encoding problem exists in a wide range of applications. In the previous sec
 .. spelling::
 
    eXternal
+   datatype
 
 The eXternal Data Representation (XDR) Standard, defined in :rfc:`1832` is an early specification that describes how information exchanged during Remote Procedure Calls should be encoded before being transmitted through a network. Since the transport service allows to transfer a block of bytes (with the connectionless service) or a stream of bytes (by using the connection-oriented service), XDR maps each datatype onto a sequence of bytes. The caller encodes each data in the appropriate sequence and the callee decodes the received information. Here are a few examples extracted from :rfc:`1832` to illustrate how this encoding/decoding can be performed.
 
