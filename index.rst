@@ -98,6 +98,7 @@ Part 3: Practice
    exercises/email
    exercises/http
    exercises/tls
+   exercises/trace
       
 ..   exercises/ex-app
 ..   exercises/netkit-app
