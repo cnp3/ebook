@@ -67,8 +67,8 @@ Part 2: Protocols
    protocols/ssh
    protocols/tls
    protocols/dnssec
-..   protocols/transport
-..   protocols/udp
+   protocols/transport
+   protocols/udp
 ..   protocols/tcp
 
 ..   protocols/sctp
