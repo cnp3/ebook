@@ -14,6 +14,7 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
 .. [IEEE802.5] LAN/MAN Standards Committee of the IEEE Computer Society. IEEE Standard for Information technology--Telecommunications and information exchange between systems--Local and metropolitan area networks--Specific requirements--Part 5: Token Ring Access Method and Physical Layer Specification. IEEE, 1998. available from http://standards.ieee.org/getieee802
 .. .. [IEEE802] IEEE, Std 802-2001 : IEEE Standard for Local and Metropolitan Area Networks: Overview and Architecture, Available from http://standards.ieee.org/getieee802/download/802-2001.pdf
 .. .. [ACO+2006] Augustin, B., Cuvellier, X., Orgogozo, B., Viger, F., Friedman, T., Latapy, M., Magnien, C., Teixeira, R., `Avoiding traceroute anomalies with Paris traceroute <https://dx.doi.org/10.1145/1177080.1177100>`_, Internet Measurement Conference, October 2006, See also http://www.paris-traceroute.net/
+.. [AM2019] Anderson, B. and McGrew, D., 2019, October. `TLS Beyond the Browser: Combining End Host and Network Data to Understand Application Behavior <https://doi.org/10.1145/3355369.3355601>`_. In Proceedings of the Internet Measurement Conference (pp. 379-392). ACM.
 .. [AS2004] Androutsellis-Theotokis, S. and Spinellis, D.. .. 2004. `A survey of peer-to-peer content distribution technologies <http://doi.acm.org/10.1145/1041680.1041681>`_. ACM Computing Surveys 36, 4 (December 2004), 335-371. 
 .. .. [ATLAS2009] Labovitz, C., Iekel-Johnson, S., McPherson, D., Oberheide, J. and Jahanian, F., `Internet inter-domain traffic <http://doi.acm.org/10.1145/1851182.1851194>`_. In Proceedings of the ACM SIGCOMM 2010 conference on SIGCOMM (SIGCOMM '10). ACM, New York, NY, USA, 75-86. 
 .. .. [AW05] Arlitt, M. and Williamson, C. 2005. `An analysis of TCP reset behaviour on the internet <http://doi.acm.org/10.1145/1052812.1052823>`_. SIGCOMM Computer Communication Review 35, 1 (Jan. 2005), 37-44. 
@@ -63,12 +64,13 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
 .. [DYGU2004] Davik, F.  Yilmaz, M.  Gjessing, S.  Uzun, N., `IEEE 802.17 resilient packet ring tutorial <https://dx.doi.org/10.1109/MCOM.2004.1273782>`_, IEEE Communications Magazine, Mar 2004, Vol 42, N 3, p. 112-118 
 .. [Dijkstra1959] Dijkstra, E., `A Note on Two Problems in Connection with Graphs <https://dx.doi.org/10.1007/BF01386390>`_. Numerische Mathematik, 1:269- 271, 1959
 .. [Wikipedia:Dijkstra] Wikipedia, `Dijkstra's algorithm <https://en.wikipedia.org/wiki/Dijkstra's_algorithm>`_		  
+.. [eTLS2018] ETSI, TS 103 533-3, v 1.1.1, `CYBER: Middlebox Security Protocol; Part 3: Profile for enterprise network and data center access control <https://www.etsi.org/deliver/etsi_ts/103500_103599/10352303/01.01.01_60/ts_10352303v010101p.pdf>`_, Oct. 2018
 .. .. [FDDI] ANSI. `Information systems - Fiber Distributed Data Interface (FDDI) - token ring media access control (MAC)`. ANSI X3.139-1987 (R1997), 1997
 .. [Fletcher1982] Fletcher, J., `An Arithmetic Checksum for Serial Transmissions <https://dx.doi.org/10.1109/TCOM.1982.1095369>`_, Communications, IEEE Transactions on, Jan. 1982, Vol. 30, N. 1, pp. 247-252
 .. [FFEB2005] Francois, P., Filsfils, C., Evans, J., and Bonaventure, O., `Achieving sub-second IGP convergence in large IP networks <http://doi.acm.org/10.1145/1070873.1070877>`_. SIGCOMM Computer Communication Review 35, 3 (Jul. 2005), 35-44. 
 .. [FJ1993] Sally Floyd and Van Jacobson. 1993. `Random early detection gateways for congestion avoidance <https://dx.doi.org/10.1109/90.251892>`_. IEEE/ACM Transactions Networking 1, 4 (August 1993), 397-413. 
 .. .. [FJ1994] Floyd, S., and Jacobson, V., `The Synchronization of Periodic Routing Messages <https://dx.doi.org/10.1109/90.298431>`_, IEEE/ACM Transactions on Networking, V.2 N.2, p. 122-136, April 1994 
-.. .. [FKC1996] Freier, A., Karlton, P., Kocher, C., `The SSL Protocol Version 3.0`, Internet draft, November 1996,  https://tools.ietf.org/html/draft-ietf-tls-ssl-version3-00
+.. [FKC1996] Freier, A., Karlton, P., Kocher, C., `The SSL Protocol Version 3.0`, Internet draft, November 1996,  https://tools.ietf.org/html/draft-ietf-tls-ssl-version3-00
 .. .. [FLM2008] Fuller, V., Lear, E., Meyer, D., `Reclassifying 240/4 as usable unicast address space <http://tools.ietf.org/html/draft-fuller-240space-02>`_, Internet draft, March 2008, work in progress 
 .. [FRT2002] Fortz, B. Rexford, J. ,Thorup, M., `Traffic engineering with traditional IP routing protocols <https://dx.doi.org/10.1109/MCOM.2002.1039866>`_, IEEE Communication Magazine, October 2002 
 .. .. [FTY99] Theodore Faber, Joe Touch, and Wei Yue, `The TIME-WAIT state in TCP and Its Effect on Busy Servers <https://dx.doi.org/10.1109/INFCOM.1999.752180>`_, Proceedings INFOCOM'99, pp. 1573 
@@ -87,6 +89,7 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
 .. .. [Gast2002] Gast, M., `802.11 Wireless Networks : The Definitive Guide <http://books.google.com/books?id=9rHnRzzMHLIC&pgis=1>`_, O'Reilly, 2002 
 .. .. [Gill2004] Gill, V. , `Lack of Priority Queuing Considered Harmful <http://queue.acm.org/detail.cfm?id=1036502>`_, ACM Queue, December 2004 
 .. .. [Goralski2009] Goralski, W., `The Illustrated network : How TCP/IP works in a modern network <http://books.google.com/books?id=6nDtNA6VJ5YC>`_, Morgan Kaufmann, 2009 
+.. [Helme2019] Helme, S., `Top 1 Million Analysis - September 2019 <https://scotthelme.co.uk/top-1-million-analysis-september-2019/>`_, 2019, https://scotthelme.co.uk/top-1-million-analysis-september-2019/
 .. .. [HFPMC2002] Huffaker, B., Fomenkov, M., Plummer, D., Moore, D., Claffy, K., `Distance Metrics in the Internet <http://www.caida.org/outreach/papers/2002/Distance/>`_, Presented at the IEEE International Telecommunications Symposium (ITS) in 2002. 
 .. .. [HRX2008] Ha, S., Rhee, I., and Xu, L., `CUBIC: a new TCP-friendly high-speed TCP variant <http://doi.acm.org/10.1145/1400097.1400105>`_. SIGOPS Operating Systems Review 42, 5 (Jul. 2008), 64-74. 
 .. .. [HV2008] Hogg, S. Vyncke, E., `IPv6 Security <http://www.ciscopress.com/store/ipv6-security-9780133346312>`_, Cisco Press, 2008
@@ -98,14 +101,16 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
 .. [JSBM2002] Jung, J., Sit, E., Balakrishnan, H., and Morris, R. 2002. `DNS performance and the effectiveness of caching <https://dx.doi.org/10.1109/TNET.2002.803905>`_. IEEE/ACM Transactions Networking 10, 5 (Oct. 2002), 589-603. 
 .. [JSON-RPC2] JSON-RPC Working group, `JSON-RPC 2.0 Specification <http://www.jsonrpc.org/specification>`_, available on http://www.jsonrpc.org, 2010
 .. [Kerrisk2010] Kerrisk, M., `The Linux Programming Interface <http://nostarch.com/tlpi>`_, No Starch Press, 2010 
-.. .. [KM1995] Kent, C. A. and Mogul, J. C., `Fragmentation considered harmful <http://doi.acm.org/10.1145/205447.205456>`_. SIGCOMM Computer Communication Review 25, 1 (Jan. 1995), 75-87. 
+.. .. [KM1995] Kent, C. A. and Mogul, J. C., `Fragmentation considered harmful <http://doi.acm.org/10.1145/205447.205456>`_. SIGCOMM Computer Communication Review 25, 1 (Jan. 1995), 75-87.
+.. [KMS2017] Krombholz, K., Mayer, W., Schmiedecker, M. and Weippl, E., 2017. `" I Have No Idea What I'm Doing" - On the Usability of Deploying HTTPS <https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/krombholz>`_. In 26th {USENIX} Security Symposium ({USENIX} Security 17) (pp. 1339-1356).   
 .. .. [KNT2013] Kühlewind, M., Neuner, S., Trammell, B., `On the state of ECN and TCP Options on the Internet <http://link.springer.com/chapter/10.1007%2F978-3-642-36516-4_14>`_. Proceedings of the 14th Passive and Active Measurement conference (PAM 2013), Hong Kong, March 2013
 .. .. [KP91] Karn, P. and Partridge, C., `Improving round-trip time estimates in reliable transport protocols <http://doi.acm.org/10.1145/118544.118549>`_. ACM Transactions Computer Systems 9, 4 (Nov. 1991), 364-373. 
 .. [KPD1985] Karn, P., Price, H., Diersing, R., `Packet radio in amateur service <https://dx.doi.org/10.1109/JSAC.1985.1146214>`_, IEEE Journal on Selected Areas in Communications, 3, May, 1985 
 .. .. [KPS2003] Kaufman, C., Perlman, R., and Sommerfeld, B. `DoS protection for UDP-based protocols <http://doi.acm.org/10.1145/948109.948113>`_. In Proceedings of the 10th ACM Conference on Computer and Communications Security (Washington D.C., USA, October 27 - 30, 2003). CCS '03. ACM, New York, NY, 2-7. 
-.. .. [KPS2002] Kaufman, C., Perlman, R., Speciner, M., `Network Security : Private communication in a public world <https://books.google.be/books?id=wxMqaz4JMb0C>`_, 2nd edition, Prentice Hall, 2002
+.. [KPS2002] Kaufman, C., Perlman, R., Speciner, M., `Network Security : Private communication in a public world <https://books.google.be/books?id=wxMqaz4JMb0C>`_, 2nd edition, Prentice Hall, 2002
 .. [KR1995] Kung, N.T.   Morris, R., `Credit-based flow control for ATM networks <https://dx.doi.org/10.1109/65.372658>`_, IEEE Network, Mar/Apr 1995, Volume: 9,  Issue: 2, pages: 40-48
-.. [KR2001] Krishnamurthy, B. and Rexford, J., `Web Protocols and Practice: HTTP/1.1, Networking Protocols, Caching, and Traffic Measurement <https://books.google.be/books?id=g_1SAAAAMAAJ&q=Web+Protocols+and+Practice:+HTTP/1.1,+Networking+Protocols,+Caching,+and+Traffic+Measurement&dq=Web+Protocols+and+Practice:+HTTP/1.1,+Networking+Protocols,+Caching,+and+Traffic+Measurement&hl=en&sa=X&ved=0ahUKEwi4r4O4p73lAhU3SBUIHSOWBwkQ6AEIKTAA>`_, Addison Wesley, 2001	    
+.. [KR2001] Krishnamurthy, B. and Rexford, J., `Web Protocols and Practice: HTTP/1.1, Networking Protocols, Caching, and Traffic Measurement <https://books.google.be/books?id=g_1SAAAAMAAJ&q=Web+Protocols+and+Practice:+HTTP/1.1,+Networking+Protocols,+Caching,+and+Traffic+Measurement&dq=Web+Protocols+and+Practice:+HTTP/1.1,+Networking+Protocols,+Caching,+and+Traffic+Measurement&hl=en&sa=X&ved=0ahUKEwi4r4O4p73lAhU3SBUIHSOWBwkQ6AEIKTAA>`_, Addison Wesley, 2001
+.. [KRA2018] Kotzias, P., Razaghpanah, A., Amann, J., Paterson, K.G., Vallina-Rodriguez, N. and Caballero, J., 2018, October. `Coming of age: A longitudinal study of TLS deployment <https://doi.org/10.1145/3278532.3278568>`_. In Proceedings of the Internet Measurement Conference 2018 (pp. 415-428). ACM.	    
 .. [KT1975] Kleinrock, L., Tobagi, F., `Packet Switching in Radio Channels: Part I--Carrier Sense Multiple-Access Modes and their Throughput-Delay Characteristics <https://dx.doi.org/10.1109/TCOM.1975.1092768>`_, IEEE Transactions on Communications, Vol. COM-23, No. 12, pp. 1400-1416, December 1975. 
 .. .. [KW2009] Katz, D., Ward, D.,  `Bidirectional Forwarding Detection`, :rfc:`5880`, June 2010
 .. [KZ1989] Khanna, A. and Zinky, J. 1989. `The revised ARPANET routing metric <http://doi.acm.org/10.1145/75247.75252>`_. SIGCOMM Computer Communication Review 19, 4 (Aug. 1989), 45-56. 
@@ -136,6 +141,7 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
 .. .. [Miyakawa2008] Miyakawa, S., `From IPv4 only To v4/v6 Dual Stack <http://www.nttv6.jp/~miyakawa/IETF72/IETF-IAB-TECH-PLENARY-NTT-miyakawa-extended.pdf>`_, IETF72 IAB Technical Plenary, July 2008 
 .. [Mogul1995] Mogul, J. , `The case for persistent-connection HTTP <http://doi.acm.org/10.1145/217382.217465>`_. In Proceedings of the Conference on Applications, Technologies, Architectures, and Protocols For Computer Communication (Cambridge, Massachusetts, United States, August 28 - September 01, 1995). D. Oran, Ed. SIGCOMM '95. ACM, New York, NY, 299-313. 
 .. .. [Moore] Moore, R., `Packet switching history`, http://rogerdmoore.ca/PS/
+.. [MoR2004] Modadugu, N. and Rescorla, E., 2004, February. `The Design and Implementation of Datagram TLS <https://www.ndss-symposium.org/wp-content/uploads/2017/09/Modadugu.pdf>`_. In NDSS.
 .. .. [Moy1998] Moy, J., `OSPF: Anatomy of an Internet Routing Protocol <http://books.google.com/books?id=YXUWsqVhx60C>`_, Addison Wesley, 1998 
 .. [MVV2011]  Menezes, A., van Oorschot, P. and Vanstone, S. , `Handbook of Applied Cryptography <http://cacr.uwaterloo.ca/hac/>`_ , CRC Press, 2011
 .. [Myers1998] Myers, B. A., `A brief history of human-computer interaction technology <http://doi.acm.org/10.1145/274430.274436>`_. interactions 5, 2 (Mar. 1998), 44-54.
@@ -146,8 +152,10 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
 .. .. [Perlman1985] Perlman, R., `An algorithm for distributed computation of a spanning tree in an extended LAN <http://doi.acm.org/10.1145/318951.319004>`_. SIGCOMM Computer Communication Review 15, 4 (Sep. 1985), 44-53. 
 .. .. [Perlman2000] Perlman, R., `Interconnections : Bridges, routers, switches and internetworking protocols <http://books.google.com/books?id=AIRitf5C-QQC&pgis=1>`_, 2nd edition, Addison Wesley, 2000 
 .. .. [Perlman2004] Perlman, R., `RBridges: Transparent Routing <http://www.ieee-infocom.org/2004/Papers/26_1.PDF>`_, Proceedings IEEE INFOCOM , March 2004. 
+.. [PHG2013] Prado, A., Harris, N., and Y. Gluck, `The BREACH Attack <http://breachattack.com>`_ , 2013, <http://breachattack.com/>.
 .. .. [Pouzin1975] Pouzin, L., `The CYCLADES Network - Present state and development trends <http://rogerdmoore.ca/PS/CIGALE/CYCL2.html>`_, Symposium on Computer Networks, 1975 pp 8-13. 
-.. [Rago1993] Rago, S., `UNIX System V network programming <http://www.pearsonhighered.com/educator/product/UNIX-System-V-Network-Programming/9780201563184.page>`_, Addison Wesley, 1993 
+.. [Rago1993] Rago, S., `UNIX System V network programming <http://www.pearsonhighered.com/educator/product/UNIX-System-V-Network-Programming/9780201563184.page>`_, Addison Wesley, 1993
+.. [Rescorla2015] Rescorla, E., `Stanford Seminar - The TLS 1.3 protocol <https://www.youtube.com/watch?v=grRi-aFrbSE>`_, Nov. 2015	      
 .. .. [RE1989] Rochlis, J. A. and Eichin, M. W., `With microscope and tweezers: the worm from MIT's perspective <http://doi.acm.org/10.1145/63526.63528>`_. Communications ACM 32, 6 (Jun. 1989), 689-698. 
 .. .. [RFC20] Cerf, V., `ASCII format for network interchange`, :rfc:`20`, Oct. 1969
 .. .. [RFC768] Postel, J., `User Datagram Protocol`, :rfc:`768`, Aug. 1980
@@ -307,7 +315,7 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
 .. .. [RFC6265] Barth, A., `HTTP State Management Mechanism`, :rfc:`6265`, April 2011
 .. .. [RFC6274] Gont, F., `Security Assessment of the Internet Protocol Version 4`, :rfc:`6274`, July 2011
 .. .. [RG2010] Rhodes, B. and Goerzen, J., `Foundations of Python Network Programming: The Comprehensive Guide to Building Network Applications with Python <http://books.google.com/books?id=9HGUc8AO2xQC>`_, Second Edition, Academic Press, 2004
-.. .. [Ristic2015] Ristic, I., `Bulletproof SSL and TLS: Understanding and Deploying SSL/TLS and PKI to Secure Web Servers and Applications <https://books.google.be/books?id=fQOLBAAAQBAJ>`_, Feisty Duck, 2015
+.. [Ristic2015] Ristic, I., `Bulletproof SSL and TLS: Understanding and Deploying SSL/TLS and PKI to Secure Web Servers and Applications <https://books.google.be/books?id=fQOLBAAAQBAJ>`_, Feisty Duck, 2015
 .. [RJ1995] Ramakrishnan, K. K. and Jain, R., `A binary feedback scheme for congestion avoidance in computer networks with a connectionless network layer <http://doi.acm.org/10.1145/205447.205461>`_. SIGCOMM Computer Communication Review 25, 1 (Jan. 1995), 138-156. 
 .. .. [RIB2013] Raiciu, C., Iyengar, J., Bonaventure, O., `Recent Advances in Reliable Transport Protocols <http://sigcomm.org/education/ebook/SIGCOMMeBook2013v1_chapter2.pdf>`_, in H. Haddadi, O. Bonaventure (Eds.), `Recent Advances in Networking <http://sigcomm.org/content/ebook>`_, (2013), pp. 59-106.
 .. [RSA1978] Rivest, R., Shamir, A. and Adleman, L., `A method for obtaining digital signatures and public-key cryptosystems <http://doi.acm.org/10.1145/359340.359342>`_. Communications ACM 21, 2 (February 1978), 120-126
@@ -350,7 +358,7 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
 .. .. [WMH2008] Wilson, P., Michaelson, G., Huston, G., `Redesignation of 240/4 from "Future Use" to "Private Use"`, Internet draft, September 2008, work in progress, http://tools.ietf.org/html/draft-wilson-class-e-02
 .. .. [WMS2004] White, R., Mc Pherson, D., Srihari, S., `Practical BGP <http://books.google.com/books?id=9OlSAAAAMAAJ>`_, Addison-Wesley, 2004 
 .. .. [Watson1981] Watson, R., `Timer-Based Mechanisms in Reliable Transport Protocol Connection Management <https://dx.doi.org/10.1016/0376-5075(81)90031-3>`_. Computer Networks 5: 47-56 (1981) 
-.. .. [WF2003] Wessels, D., Fomenkov, M., `Wow, That's a lot of packets <https://www.caida.org/publications/papers/2003/dnspackets/>`_,  Passive and Active Network Measurement Workshop (PAM), Apr 2003
+.. [WF2003] Wessels, D., Fomenkov, M., `Wow, That's a lot of packets <https://www.caida.org/publications/papers/2003/dnspackets/>`_,  Passive and Active Network Measurement Workshop (PAM), Apr 2003
 .. [Williams1993] Williams, R. `A painless guide to CRC error detection algorithms`, August 1993, unpublished manuscript, https://web.archive.org/web/20060101004751/http://www.ross.net/crc/download/crc_v3.txt
 .. .. [Winston2003] Winston, G., `NetBIOS Specification <http://www.netbiosguide.com/>`_, 2003 
 .. .. [WY2011] Wing, D. and Yourtchenko, A., `Happy Eyeballs:  Success with Dual-Stack Hosts`, Internet draft, work in progress, July 2011, http://tools.ietf.org/html/draft-ietf-v6ops-happy-eyeballs-03
@@ -766,3 +774,14 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
    Sitaraman
    Balasubramanian
    Wetherall
+   Helme
+   Krombholz
+   Schmiedecker
+   Kotzias
+   Razaghpanah
+   Amann
+   Vallina
+   Gluck
+   Weippl
+   Modadugu
+   Rescorla

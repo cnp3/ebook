@@ -65,14 +65,14 @@ Part 2: Protocols
    protocols/http2
    protocols/rpc
    protocols/ssh
-
-
-..   protocols/tls
-..   protocols/dnssec
+   protocols/tls
+   protocols/dnssec
 ..   protocols/transport
 ..   protocols/udp
 ..   protocols/tcp
+
 ..   protocols/sctp
+
 ..   protocols/congestion
 ..   protocols/ipv6
 ..   protocols/ipv6b
