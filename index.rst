@@ -99,7 +99,8 @@ Part 3: Practice
    exercises/http
    exercises/tls
    exercises/trace
-      
+   exercises/tcp
+   
 ..   exercises/ex-app
 ..   exercises/netkit-app
 ..   exercises/netkit-tcp
