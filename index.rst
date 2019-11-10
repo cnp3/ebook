@@ -68,16 +68,18 @@ Part 2: Protocols
    protocols/transport
    protocols/udp
    protocols/tcp
+   protocols/congestion
 
 ..   protocols/sctp
 
-..   protocols/congestion
+
 ..   protocols/ipv6
 ..   protocols/ipv6b
 ..   protocols/routing
 ..   protocols/bgp
 ..   protocols/lan
-   
+..   protocols/quic   
+
 .. _part3:
 
 ################

@@ -27,7 +27,7 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
 .. .. [BMO2006] Bhatia, M., Manral, V., Ohara, Y., `IS-IS and OSPF Difference Discussions <http://tools.ietf.org/html/draft-bhatia-manral-diff-isis-ospf-01>`_, work in progress, Internet draft, Jan. 2006 
 .. .. [BMvB2009] Bagnulo, M., Matthews, P., van Beijnum, I., `NAT64: Network Address and Protocol Translation from IPv6 Clients to IPv4 Servers <http://tools.ietf.org/html/draft-ietf-behave-v6v4-xlate-stateful-02>`_, Internet draft, work in progress, October 2009, 
 .. [BNT1997] Beech, W., Nielsen, D., Taylor, J.,  `AX.25 Link Access Protocol for Amateur Packet Radio <http://www.tapr.org/pdf/AX25.2.2.pdf>`_, version 2.2, Revision: July 1998
-.. .. [BOP1994] Brakmo, L. S., O'Malley, S. W., and Peterson, L. L., `TCP Vegas: new techniques for congestion detection and avoidance <http://doi.acm.org/10.1145/190314.190317>`_. In Proceedings of the Conference on Communications Architectures, Protocols and Applications (London, United Kingdom, August 31 - September 02, 1994). SIGCOMM '94. ACM, New York, NY, 24-35. 
+.. [BOP1994] Brakmo, L. S., O'Malley, S. W., and Peterson, L. L., `TCP Vegas: new techniques for congestion detection and avoidance <http://doi.acm.org/10.1145/190314.190317>`_. In Proceedings of the Conference on Communications Architectures, Protocols and Applications (London, United Kingdom, August 31 - September 02, 1994). SIGCOMM '94. ACM, New York, NY, 24-35. 
 .. .. [Benvenuti2005] Benvenuti, C., `Understanding Linux Network Internals <http://books.google.com/books?id=yy7tihZLgGYC>`_, O'Reilly Media, 2005 
 .. [BH2013] Bormann, C., Hoffman, P., `Concise Binary Object Representation (CBOR) <http://tools.ietf.org/html/rfc7049>`_, RFC7049 2013. See also https://cbor.io
 .. [BS2005] D. Barrett, R. Silverman, R. Byrnes, `SSH: The Secure Shell (The Definitive Guide) <https://books.google.be/books?id=3XzIFG3w8-YC>`_, O'Reilly 2005 (2nd edition). 
@@ -37,6 +37,7 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
 .. [BYL2008] Buford, J., Yu, H., Lua, E.K., `P2P Networking and Applications <http://books.google.com/books?id=O9NkAaY9YxMC>`_, Morgan Kaufmann, 2008
 .. .. [CB2003] Cheswick, William R., Bellovin, Steven M., Rubin, Aviel D., `Firewalls and internet security - Second edition - Repelling the Wily Hacker <http://books.google.com/books?id=XI52je-zaW8C>`_, Addison-Wesley 2003 
 .. .. [CCB+2013] Cardwell, N., Cheng, Y., Brakmo, L., Mathis, M., Raghavan, B., Dukkipati, N., Chu, H., Terzis, A., and Herbert, T., `packetdrill: scriptable network stack testing, from sockets to packets <https://www.usenix.org/conference/atc13/packetdrill-scriptable-network-stack-testing-sockets-packets>`_. In Proceedings of the 2013 USENIX conference on Annual Technical Conference (USENIX ATC'13). USENIX Association, Berkeley, CA, USA, 213-218.
+.. [CCG+2016] Cardwell, N., Cheng, Y., Gunn, S., Hassas Yeganeh, S. and Jacobson, J., `BBR: Congestion-Based Congestion Control <https://doi.org/10.1145/3012426.3022184>`_. Queue 14, 5, Pages 50 (October 2016)
 .. [CD2008] Calvert, K., Donahoo, M., `TCP/IP Sockets in Java : Practical Guide for Programmers <http://books.google.com/books?id=lfHo7uMk7r4C>`_, Morgan Kaufman, 2008
 .. [CJ1989] Chiu, D., Jain, R., `Analysis of the Increase and Decrease Algorithms for Congestion Avoidance in Computer Networks <https://dx.doi.org/10.1016/0169-7552(89)90019-6>`_, Computer Networks and ISDN Systems Vol 17, pp 1-14, 1989 
 .. .. [CK74] Cerf, V., Kahn, R., `A Protocol for Packet Network Intercommunication <https://dx.doi.org/10.1109/TCOM.1974.1092259>`_, IEEE Transactions on Communications, May 1974 
@@ -56,7 +57,7 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
 .. .. [DIX] Digital, Intel, Xerox, `The Ethernet: a local area network: data link layer and physical layer specifications <http://doi.acm.org/10.1145/1015591.1015594>`_. SIGCOMM Computer Communication Review 11, 3 (Jul. 1981), 20-66. 
 .. .. [DKF+2007] Dimitropoulos, X., Krioukov, D., Fomenkov, M., Huffaker, B., Hyun, Y., Claffy, K., Riley, G.,  `AS Relationships: Inference and Validation <http://doi.acm.org/10.1145/1198255.1198259>`_, ACM SIGCOMM Computer Communication Review (CCR), Jan. 2007
 .. .. [DP1981] Dalal, Y. K. and Printis, R. S., `48-bit absolute internet and Ethernet host numbers <http://doi.acm.org/10.1145/800081.802680>`_. In Proceedings of the Seventh Symposium on Data Communications (Mexico City, Mexico, October 27 - 29, 1981). SIGCOMM '81. ACM, New York, NY, 240-245.
-.. .. [DRC+2010] Dukkipati, N., Refice, T., Cheng, Y., Chu, J., Herbert, T., Agarwal, A., Jain, A., Sutin, N., `An Argument for Increasing TCP's Initial Congestion Window <https://dx.doi.org/10.1145/1823844.1823848>`_, ACM SIGCOMM Computer Communications Review, vol. 40 (2010), pp. 27-33
+.. [DRC+2010] Dukkipati, N., Refice, T., Cheng, Y., Chu, J., Herbert, T., Agarwal, A., Jain, A., Sutin, N., `An Argument for Increasing TCP's Initial Congestion Window <https://dx.doi.org/10.1145/1823844.1823848>`_, ACM SIGCOMM Computer Communications Review, vol. 40 (2010), pp. 27-33
 .. [Dubuisson2000] O. Dubuisson, `ASN.1 : Communication between Heterogeneous Systems <http://www.oss.com/asn1/resources/books-whitepapers-pubs/asn1-books.html#dubuisson>`, Morgan Kauffman, 2000 
 .. .. [Dunkels2003] Dunkels, A., `Full TCP/IP for 8-Bit Architectures <http://www.sics.se/~adam/mobisys2003.pdf>`_. In Proceedings of the first international conference on mobile applications, systems and services (MOBISYS 2003), San Francisco, May 2003.
 .. [DR2002] Daemen, J., Rijmen, V., `The Design of Rijndael: AES – The Advanced Encryption Standard <http://www.springer.com/us/book/9783540425809>`_ Springer, 2002. ISBN 3-540-42580-2. 
@@ -91,7 +92,7 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
 .. .. [Goralski2009] Goralski, W., `The Illustrated network : How TCP/IP works in a modern network <http://books.google.com/books?id=6nDtNA6VJ5YC>`_, Morgan Kaufmann, 2009 
 .. [Helme2019] Helme, S., `Top 1 Million Analysis - September 2019 <https://scotthelme.co.uk/top-1-million-analysis-september-2019/>`_, 2019, https://scotthelme.co.uk/top-1-million-analysis-september-2019/
 .. .. [HFPMC2002] Huffaker, B., Fomenkov, M., Plummer, D., Moore, D., Claffy, K., `Distance Metrics in the Internet <http://www.caida.org/outreach/papers/2002/Distance/>`_, Presented at the IEEE International Telecommunications Symposium (ITS) in 2002. 
-.. .. [HRX2008] Ha, S., Rhee, I., and Xu, L., `CUBIC: a new TCP-friendly high-speed TCP variant <http://doi.acm.org/10.1145/1400097.1400105>`_. SIGOPS Operating Systems Review 42, 5 (Jul. 2008), 64-74. 
+.. [HRX2008] Ha, S., Rhee, I., and Xu, L., `CUBIC: a new TCP-friendly high-speed TCP variant <http://doi.acm.org/10.1145/1400097.1400105>`_. SIGOPS Operating Systems Review 42, 5 (Jul. 2008), 64-74. 
 .. .. [HV2008] Hogg, S. Vyncke, E., `IPv6 Security <http://www.ciscopress.com/store/ipv6-security-9780133346312>`_, Cisco Press, 2008
 .. .. [IMHM2013] Ishihara, K., Mukai, M., Hiromi, R., Mawatari, M., `Packet Filter and Route Filter Recommendation for IPv6 at xSP routers <http://www.team-cymru.org/ReadingRoom/Templates/IPv6Routers/xsp-recommendations.html>`_, 2013
 .. [ISO10589] ISO, `Intermediate System to Intermediate System intra-domain routeing information exchange protocol for use in conjunction with the protocol for providing the connectionless-mode network service (ISO 8473) <http://standards.iso.org/ittf/PubliclyAvailableStandards/c030932_ISO_IEC_10589_2002(E).zip>`_ , 2002 
@@ -103,7 +104,7 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
 .. [Kerrisk2010] Kerrisk, M., `The Linux Programming Interface <http://nostarch.com/tlpi>`_, No Starch Press, 2010 
 .. .. [KM1995] Kent, C. A. and Mogul, J. C., `Fragmentation considered harmful <http://doi.acm.org/10.1145/205447.205456>`_. SIGCOMM Computer Communication Review 25, 1 (Jan. 1995), 75-87.
 .. [KMS2017] Krombholz, K., Mayer, W., Schmiedecker, M. and Weippl, E., 2017. `" I Have No Idea What I'm Doing" - On the Usability of Deploying HTTPS <https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/krombholz>`_. In 26th {USENIX} Security Symposium ({USENIX} Security 17) (pp. 1339-1356).   
-.. .. [KNT2013] Kühlewind, M., Neuner, S., Trammell, B., `On the state of ECN and TCP Options on the Internet <http://link.springer.com/chapter/10.1007%2F978-3-642-36516-4_14>`_. Proceedings of the 14th Passive and Active Measurement conference (PAM 2013), Hong Kong, March 2013
+.. [KNT2013] Kühlewind, M., Neuner, S., Trammell, B., `On the state of ECN and TCP Options on the Internet <http://link.springer.com/chapter/10.1007%2F978-3-642-36516-4_14>`_. Proceedings of the 14th Passive and Active Measurement conference (PAM 2013), Hong Kong, March 2013
 .. [KP91] Karn, P. and Partridge, C., `Improving round-trip time estimates in reliable transport protocols <http://doi.acm.org/10.1145/118544.118549>`_. ACM Transactions Computer Systems 9, 4 (Nov. 1991), 364-373. 
 .. [KPD1985] Karn, P., Price, H., Diersing, R., `Packet radio in amateur service <https://dx.doi.org/10.1109/JSAC.1985.1146214>`_, IEEE Journal on Selected Areas in Communications, 3, May, 1985 
 .. .. [KPS2003] Kaufman, C., Perlman, R., and Sommerfeld, B. `DoS protection for UDP-based protocols <http://doi.acm.org/10.1145/948109.948113>`_. In Proceedings of the 10th ACM Conference on Computer and Communications Security (Washington D.C., USA, October 27 - 30, 2003). CCS '03. ACM, New York, NY, 2-7. 
@@ -132,7 +133,7 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
 .. .. [ML2011] Minei I. and Lucek J. ,`MPLS-Enabled Applications: Emerging Developments and New Technologies <http://www.amazon.com/MPLS-Enabled-Applications-Developments-Technologies-Communications/dp/0470665459>`_  (Wiley Series on Communications Networking & Distributed Systems), Wiley, 2011 
 .. [MRR1979] McQuillan, J. M., Richer, I., and Rosen, E. C., `An overview of the new routing algorithm for the ARPANET <http://doi.acm.org/10.1145/800092.802981>`_. In Proceedings of the Sixth Symposium on Data Communications (Pacific Grove, California, United States, November 27 - 29, 1979). SIGCOMM '79. ACM, New York, NY, 63-68.
 .. [MRR1980] McQuillan, J.M., Richer, I., Rosen, E., `The New Routing Algorithm for the ARPANET <https://dx.doi.org/10.1109/TCOM.1980.1094721>`_ Communications, IEEE Transactions on , vol.28, no.5, pp.711,719, May 1980
-.. .. [MSMO1997] Mathis, M., Semke, J., Mahdavi, J., and Ott, T. 1997. `The macroscopic behavior of the TCP congestion avoidance algorithm <http://doi.acm.org/10.1145/263932.264023>`_. SIGCOMM Computer Communication Review 27, 3 (Jul. 1997), 67-82. 
+.. [MSMO1997] Mathis, M., Semke, J., Mahdavi, J., and Ott, T. 1997. `The macroscopic behavior of the TCP congestion avoidance algorithm <http://doi.acm.org/10.1145/263932.264023>`_. SIGCOMM Computer Communication Review 27, 3 (Jul. 1997), 67-82. 
 .. .. [MSV1987] Molle, M., Sohraby, K., Venetsanopoulos, A., `Space-Time Models of Asynchronous CSMA Protocols for Local Area Networks <https://dx.doi.org/10.1109/JSAC.1987.1146618>`_, IEEE Journal on Selected Areas in Communications, Volume: 5 Issue: 6, Jul 1987 Page(s): 956 -96 
 .. .. [MUF+2007] Mühlbauer, W., Uhlig, S., Fu, B., Meulle, M., and Maennel, O., `In search for an appropriate granularity to model routing policies <http://doi.acm.org/10.1145/1282380.1282398>`_. In Proceedings of the 2007 Conference on Applications, Technologies, Architectures, and Protocols For Computer Communications (Kyoto, Japan, August 27 - 31, 2007). SIGCOMM '07. ACM, New York, NY, 145-156. 
 .. .. [Malkin1999] Malkin, G., `RIP: An Intra-Domain Routing Protocol <http://books.google.com/books?id=BtJpQgAACAAJ>`_, Addison Wesley, 1999 
@@ -347,6 +348,7 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
 .. .. [Stewart1998] Stewart, J., `BGP4: Inter-Domain Routing In The Internet <http://books.google.com/books?id=UEcHpN4QHrAC>`_, Addison-Wesley, 1998
 .. .. [Stoll1988] Stoll, C., `Stalking the wily hacker <http://doi.acm.org/10.1145/42411.42412>`_, Communications ACM 31, 5 (May. 1988), 484-497. 
 .. [SV1995] M. Shreedhar and G. Varghese. `Efficient fair queueing using deficit round robin <http://doi.acm.org/10.1145/217391.217453>`_ SIGCOMM Computer Communication Review 25, 4 (October 1995), 231-242.
+.. [TKU2019] Turkovic, B., Kuipers, F., Uhlig, S. `Fifty Shades of Congestion Control: A Performance and Interactions Evaluation<https://arxiv.org/abs/1903.03852>`_, CoRR abs/1903.03852 (2019)
 .. .. [TE1993] Tsuchiya, P. F. and Eng, T., `Extending the IP internet through address reuse <http://doi.acm.org/10.1145/173942.173944>`_. SIGCOMM Computer Communication Review 23, 1 (Jan. 1993), 16-33. 
 .. .. [Thomborson1992] Thomborson, C., `The V.42bis Standard for Data-Compressing Modems <http://www.computer.org/portal/web/csdl/doi/10.1109/40.166712>`_, IEEE Micro, September/October 1992 (vol. 12 no. 5), pp. 41-53 
 .. [Unicode] The Unicode Consortium. `The Unicode Standard <http://unicode.org/versions/Unicode5.0.0/>`_, Version 5.0.0, defined by: The Unicode Standard, Version 5.0 (Boston, MA, Addison-Wesley, 2007
@@ -361,6 +363,7 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
 .. [WF2003] Wessels, D., Fomenkov, M., `Wow, That's a lot of packets <https://www.caida.org/publications/papers/2003/dnspackets/>`_,  Passive and Active Network Measurement Workshop (PAM), Apr 2003
 .. [Williams1993] Williams, R. `A painless guide to CRC error detection algorithms`, August 1993, unpublished manuscript, https://web.archive.org/web/20060101004751/http://www.ross.net/crc/download/crc_v3.txt
 .. .. [Winston2003] Winston, G., `NetBIOS Specification <http://www.netbiosguide.com/>`_, 2003 
+.. [WMSS2019] Ware, R., Mukerjee, M., Seshan, S. and Sherry, J. `Modeling BBR's Interactions with Loss-Based Congestion Control <https://doi.org/10.1145/3355369.3355604>`_. In Proceedings of the Internet Measurement Conference (IMC '19). ACM, New York, NY, USA, 137-143. 
 .. .. [WY2011] Wing, D. and Yourtchenko, A., `Happy Eyeballs:  Success with Dual-Stack Hosts`, Internet draft, work in progress, July 2011, http://tools.ietf.org/html/draft-ietf-v6ops-happy-eyeballs-03
 .. [X200] ITU-T, recommendation X.200, `Open Systems Interconnection - Model and Notation <http://www.itu.int/rec/T-REC-X.200-199407-I/en>`_, 1994 
 .. .. [X224] ITU-T, recommendation X.224, `Information technology - Open Systems Interconnection - Protocol for providing the connection-mode transport service <http://www.itu.int/rec/T-REC-X.224-199511-I/en/>`_, 1995 
@@ -785,3 +788,10 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
    Weippl
    Modadugu
    Rescorla
+   Gunn
+   Hassas
+   Yeganeh
+   Turkovic
+   Kuipers
+   Mukerjee
+   Seshan
