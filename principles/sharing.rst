@@ -89,8 +89,8 @@ In all these networks, except the full-mesh, the link bandwidth is shared among 
       \draw[black] (B1) -- (R1);
       \draw[black] (A2) -- (R2);
       \draw[black] (C1) -- (R2);
-      \draw[black] (R1) -- (R2) node [midway, below] {\tiny{\\10 Mbps}};
-      \draw[black] (R2) -- (R3) node [midway, below] {\tiny{\\20 Mbps}};
+      \draw[black] (R1) -- (R2) node [midway, below] {\tiny 10 Mbps};
+      \draw[black] (R2) -- (R3) node [midway, below] {\tiny 20 Mbps};
       \draw[black] (B2) -- (R3);
       \draw[black] (C2) -- (R3);
  

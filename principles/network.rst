@@ -314,9 +314,9 @@ Sometimes, the network layer needs to deal with heterogeneous datalink layers. F
       \node[router, right=2cm of A] (R1) {R1};
       \node[router, right=2cm of R1] (R2) {R2};
       \node[host, right=2 cm of R2] (B) {B};
-      \draw[black] (A) -- (R1) node [midway, below] {\tiny{\\Max 1000 B}};
-      \draw[black] (R1) -- (R2) node [midway, below] {\tiny{\\Max 500 B}};
-      \draw[black] (R2) -- (B) node [midway, below] {\tiny{\\Max 1000 B}}; 
+      \draw[black] (A) -- (R1) node [midway, below] { {\tiny Max 1000 B}};
+      \draw[black] (R1) -- (R2) node [midway, below] { {\tiny Max 500 B}};
+      \draw[black] (R2) -- (B) node [midway, below] {  {\tiny Max 1000 B}}; 
 
 
 
