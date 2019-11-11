@@ -254,6 +254,10 @@ compromised, there is some period of time during which records signed
 with the two keys coexist in the network. The validity period allows to
 ensure that old signatures do not remain in DNS caches for ever. 
 
+.. spelling::
+
+   timestamps
+
 .. index:: NSEC
 
 The last record introduced by DNSSEC is the `NSEC` record. It is used to

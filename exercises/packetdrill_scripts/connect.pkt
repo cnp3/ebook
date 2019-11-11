@@ -1,0 +1,62 @@
+//
+// enforce strict segment checking (and turn off gso) to measure probe length
+--strict_segments
+--ip_version=ipv6
+--local_ip=fd::1
+--gateway_ip=fd::2
+--remote_ip=fd::3
+
+
+`../common/defaults.sh
+ ip -6 route change fd::3 via fd::2 dev tun0 advmss 1000 mtu lock 1460 initcwnd 4
+ ethtool -K tun0 gso off tso off
+ ../common/set_sysctls.py /proc/sys/net/ipv4/tcp_timestamps=0 \
+    /proc/sys/net/ipv4/tcp_syn_retries=3 \
+    /proc/sys/net/ipv4/tcp_synack_retries=3 \
+    /proc/sys/net/ipv4/tcp_sack=0 \
+    /proc/sys/net/ipv4/tcp_dsack=0 \
+    /proc/sys/net/ipv4/tcp_frto=0 \
+    /proc/sys/net/ipv4/tcp_reordering=3 \
+    /proc/sys/net/ipv4/tcp_congestion_control=reno \
+    /proc/sys/net/ipv4/tcp_slow_start_after_idle=1 \
+    /proc/sys/net/ipv4/tcp_early_retrans=0 \
+    /proc/sys/net/ipv4/tcp_recovery=0 \
+    /proc/sys/net/ipv4/tcp_ecn=0 \
+    /proc/sys/net/ipv4/tcp_fastopen=0 \
+    /proc/sys/net/ipv4/tcp_window_scaling=0 \
+    /proc/sys/net/ipv4/tcp_rmem="64000 64000 64000" \
+    /proc/sys/net/ipv4/tcp_wmem="64000 64000 64000" \
+    /proc/sys/net/ipv4/tcp_retries1=3 \
+    /proc/sys/net/ipv4/tcp_retries2=3  \
+` 
+
+0   socket(..., SOCK_STREAM, IPPROTO_TCP) = 3
++0  setsockopt(3, SOL_SOCKET, SO_REUSEADDR, [1], 4) = 0
++0  bind(3, ..., ...) = 0
++0  listen(3, 1) = 0
+
+//TCP three-way handshake
++0  < S 0:0(0) win 4000 <mss 1000>
++0  > S. 0:0(0) ack 1 <...>
+
++.1 < . 1:1(0) ack 1 win 4000
++0  accept(3, ..., ...) = 4
+
+// write ten bytes
++0 write(4, ..., 10)=10
++0 > P. 1:11(10) ack 1
++.1 < . 1:1(0) ack 11 win 4000
+
+// read two bytes
++.1 < P. 1:3(2) ack 11 win 4000
++0 > . 11:11(0) ack 3
++.2 read(4,...,1000)=2
+
+//Packetdrill closes connection gracefully
++0 < F. 3:3(0) ack 11 win 4000
++0 > . 11:11(0) ack 4
+
+//Kernel closes connection gracefully
++0 close(4) = 0
++0 > F. 11:11(0) ack 4
++0 < . 4:4(0) ack 12 win 4000

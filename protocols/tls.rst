@@ -390,6 +390,10 @@ that since summer 2014, ECDHE is more popular than RSA. In 2018, more than 90% o
 
 The last point is the difficulty of deploying TLS servers [KMS2017]_. When TLS servers are installed, the system administrator needs to obtain certificates and configure a range of servers. Initially, getting certificates was complex and costly, but initiatives such as https://letsencrypt.org have simplified this workflow.
 
+.. spelling::
+
+   workflow
+
 In 2014, the IETF TLS working started to work on the development of version 1.3 of the TLS protocol. Their main objectives [Rescorla2015]_ for this new version were:
 
  - simplify the design by removing unused or unsafe protocol features

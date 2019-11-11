@@ -1,0 +1,53 @@
+// O. Bonaventure, 2019
+// This script demonstrates a connect created by a client and immediately
+// closed without sending/receiving data
+//
+//
+// enforce strict segment checking (and turn off gso) to measure probe length
+--strict_segments
+--ip_version=ipv6
+--local_ip=fd::1
+--gateway_ip=fd::2
+--remote_ip=fd::3
+
+
+`../common/defaults.sh
+ ip -6 route change fd::3 via fd::2 dev tun0 advmss 1000 mtu lock 1460 initcwnd 4
+ ethtool -K tun0 gso off tso off
+ ../common/set_sysctls.py /proc/sys/net/ipv4/tcp_timestamps=0 \
+    /proc/sys/net/ipv4/tcp_syn_retries=3 \
+    /proc/sys/net/ipv4/tcp_synack_retries=3 \
+    /proc/sys/net/ipv4/tcp_sack=0 \
+    /proc/sys/net/ipv4/tcp_dsack=0 \
+    /proc/sys/net/ipv4/tcp_frto=0 \
+    /proc/sys/net/ipv4/tcp_reordering=3 \
+    /proc/sys/net/ipv4/tcp_congestion_control=reno \
+    /proc/sys/net/ipv4/tcp_slow_start_after_idle=1 \
+    /proc/sys/net/ipv4/tcp_early_retrans=0 \
+    /proc/sys/net/ipv4/tcp_recovery=0 \
+    /proc/sys/net/ipv4/tcp_ecn=0 \
+    /proc/sys/net/ipv4/tcp_fastopen=0 \
+    /proc/sys/net/ipv4/tcp_window_scaling=0 \
+    /proc/sys/net/ipv4/tcp_rmem="64000 64000 64000" \
+    /proc/sys/net/ipv4/tcp_wmem="64000 64000 64000" \
+    /proc/sys/net/ipv4/tcp_retries1=3 \
+    /proc/sys/net/ipv4/tcp_retries2=3  \
+` 
+
+    0 socket(..., SOCK_STREAM, IPPROTO_TCP) = 4
+    +0 fcntl(4, F_SETFL, O_RDWR|O_NONBLOCK) = 0
+    +0 setsockopt(4, SOL_TCP, TCP_NODELAY, [1], 4) = 0
+
+   +0 connect(4, ..., ...) = -1 EINPROGRESS (Operation now in progress)
+   +0 > S 0:0(0) <mss 1000>
+   +0 %{ print "State@1", tcpi_state  }%     
+   +.1 < S. 0:0(0) ack 1 win 10000 <mss 1000>
+   +0 > . 1:1(0) ack 1 
+   +0 %{ print "State@2", tcpi_state  }%     	    
+
+   +.1 close(4)=0
+   +0 > F. 1:1(0) ack 1
+   +.1 < F. 1:1(0) ack 2 win 10000
+   +0 > . 2:2(0) ack 2
+// Reset sysctls
+`/tmp/sysctl_restore_${PPID}.sh`

@@ -460,7 +460,7 @@ Some TCP clients use delayed acknowledgments and send a TCP acknowledgment after
    +0 %{ print "cwnd @9: ",tcpi_snd_cwnd }% // prints 18
 
 
-We can now explore how TCP's retransmission techniques interact with the congestion control scheme. The Linux TCP code that combines these two techniques contains several optimizations. We start with a transfer of 8KBytes where the penultimate segment is not received by the remote host. In this case, TCP does not receive enough acknowledgments to trigger the fast retransmit and it must wait for the expiration of the retransmission timer. This script is available from :download:`/exercises/packetdrill_scripts/slow-start-rto2.pkt`.
+We can now explore how TCP's retransmission techniques interact with the congestion control scheme. The Linux TCP code that combines these two techniques contains several heuristics to improve their performance. We start with a transfer of 8KBytes where the penultimate segment is not received by the remote host. In this case, TCP does not receive enough acknowledgments to trigger the fast retransmit and it must wait for the expiration of the retransmission timer. This script is available from :download:`/exercises/packetdrill_scripts/slow-start-rto2.pkt`.
 
 .. code-block:: console
 		
