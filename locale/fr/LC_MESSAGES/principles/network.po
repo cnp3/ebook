@@ -4,24 +4,27 @@
 # : Principles, Protocols and Practice package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Computer networking : Principles, Protocols and "
-"Practice 3\n"
+"Project-Id-Version: Computer networking : Principles, Protocols and Practice "
+"3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-09 12:39+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2019-10-19 07:04+0000\n"
+"Last-Translator: Anthony Gego <anthony.gego@uclouvain.be>\n"
+"Language-Team: French <http://weblate.info.ucl.ac.be/projects/cnp3-ebook/"
+"principlesnetwork/fr/>\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.8\n"
 "Generated-By: Babel 2.7.0\n"
 
 #: ../../principles/network.rst:6
 msgid "Building a network"
-msgstr ""
+msgstr "Construction d'un réseau"
 
 #: ../../principles/network.rst:10
 msgid ""
@@ -30,6 +33,11 @@ msgid ""
 "issue via https://github.com/CNP3/ebook/issues?milestone=2 or help us by "
 "providing pull requests to close the existing issues."
 msgstr ""
+"Ceci est un brouillon non peaufiné de la troisième édition de cet e-book. Si "
+"vous avez trouvé une erreur ou avez des suggestions pour améliorer le texte, "
+"merci de créer une *issue* via https://github.com/CNP3/ebook/"
+"issues?milestone=2 ou de nous aider en ouvrant des *pull requests* pour "
+"fermer les *issues* existantes."
 
 #: ../../principles/network.rst:13
 msgid ""
@@ -1852,4 +1860,3 @@ msgid ""
 "graph by the other routers in the network, but this is outside the scope "
 "of this e-book."
 msgstr ""
-
