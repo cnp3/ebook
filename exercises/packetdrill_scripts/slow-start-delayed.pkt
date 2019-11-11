@@ -1,0 +1,87 @@
+// O. Bonaventure, 2019
+// This script demonstrates the evolution of the congestion window during a
+// slow start with a simplified TCP stack using delayed acks
+//
+// enforce strict segment checking (and turn off gso) to measure probe length
+--strict_segments
+--ip_version=ipv6
+--local_ip=fd::1
+--gateway_ip=fd::2
+--remote_ip=fd::3
+
+
+`../common/defaults.sh
+ ip -6 route change fd::3 via fd::2 dev tun0 advmss 1000 mtu lock 1460 initcwnd 2
+ ethtool -K tun0 gso off tso off
+ ../common/set_sysctls.py /proc/sys/net/ipv4/tcp_timestamps=0 \
+    /proc/sys/net/ipv4/tcp_syn_retries=3 \
+    /proc/sys/net/ipv4/tcp_synack_retries=3 \
+    /proc/sys/net/ipv4/tcp_sack=0 \
+    /proc/sys/net/ipv4/tcp_dsack=0 \
+    /proc/sys/net/ipv4/tcp_frto=0 \
+    /proc/sys/net/ipv4/tcp_reordering=3 \
+    /proc/sys/net/ipv4/tcp_congestion_control=reno \
+    /proc/sys/net/ipv4/tcp_slow_start_after_idle=1 \
+    /proc/sys/net/ipv4/tcp_early_retrans=0 \
+    /proc/sys/net/ipv4/tcp_recovery=0 \
+    /proc/sys/net/ipv4/tcp_ecn=0 \
+    /proc/sys/net/ipv4/tcp_fastopen=0 \
+    /proc/sys/net/ipv4/tcp_window_scaling=0 \
+    /proc/sys/net/ipv4/tcp_rmem="64000 64000 64000" \
+    /proc/sys/net/ipv4/tcp_wmem="64000 64000 64000" \
+    /proc/sys/net/ipv4/tcp_retries1=3 \
+    /proc/sys/net/ipv4/tcp_retries2=3  \
+` 
+
+    0 socket(..., SOCK_STREAM, IPPROTO_TCP) = 3
+   +0 setsockopt(3, SOL_SOCKET, SO_REUSEADDR, [1], 4) = 0
+   +0 bind(3, ..., ...) = 0
+   +0 listen(3, 1) = 0
+
+   +.1 < S  0:0(0) win 50000 <mss 1000>
+   +0 > S. 0:0(0) ack 1 win 20000 <mss 1000>
+   +0 < .  1:1(0) ack 1 win 50000
+
+   +.1 accept(3, ..., ...) = 4
+   // initial congestion window is 2 KBytes
+   +0 %{ print "cwnd @1: ",tcpi_snd_cwnd }% // prints 2
+   +0 %{ print "ssthresh @1: ",tcpi_snd_ssthresh }% // prints 2147483647   
+   // server sends 16000 bytes
+   +.1 write(4, ..., 16000) = 16000
+   +0 > .  1:1001(1000) ack 1
+   +0 > .  1001:2001(1000) ack 1
+
+   +.1 < .  1:1(0) ack 2001 win 50000
+   +0 %{ print "cwnd @2: ",tcpi_snd_cwnd }% // prints 4
+   +0 > .  2001:3001(1000) ack 1
+   +0 > .  3001:4001(1000) ack 1
+   +0 > .  4001:5001(1000) ack 1
+   +0 > .  5001:6001(1000) ack 1
+
+   +.1 < .  1:1(0) ack 4001 win 50000
+   +0 %{ print "cwnd @4: ",tcpi_snd_cwnd }%  // prints 6
+   +0 > .  6001:7001(1000) ack 1
+   +0 > .  7001:8001(1000) ack 1
+   +0 > .  8001:9001(1000) ack 1
+   +0 > .  9001:10001(1000) ack 1
+   +0.01 < .  1:1(0) ack 6001 win 50000
+   +0 %{ print "cwnd @6: ",tcpi_snd_cwnd }% // prints 8
+   +0 > .  10001:11001(1000) ack 1
+   +0 > .  11001:12001(1000) ack 1
+   +0 > .  12001:13001(1000) ack 1
+   +0 > .  13001:14001(1000) ack 1
+
+   +.1 < .  1:1(0) ack 8001 win 50000
+   +0 %{ print "cwnd @8: ",tcpi_snd_cwnd }% // prints 10
+   +0 > .  14001:15001(1000) ack 1
+   +0 > P.  15001:16001(1000) ack 1
+
+   // client acks everything
+   +.1 < .  1:1(0) ack 16001 win 50000
+   +0 %{ print "cwnd @9: ",tcpi_snd_cwnd }% // prints 18
+
+
+   +2 < R 1:1(0) ack 16000 win 50000
+
+
+//`/tmp/sysctl_restore_${PPID}.sh`

@@ -1,4 +1,4 @@
-.. Copyright |copy| 2013,2014,2019 by `Olivier Bonaventure <https://perso.uclouvain.be/olivier.bonaventure>`_
+.. Copyright |copy| 2013,2014,2019 by `Olivier Bonaventure <https://perso.uclouvin.be/olivier.bonaventure>`_
 .. This file is licensed under a `creative commons licence <http://creativecommons.org/licenses/by/3.0/>`_
 
 
@@ -102,6 +102,7 @@ Part 3: Practice
    exercises/tls
    exercises/trace
    exercises/tcp
+   exercises/tcp-2
    
 ..   exercises/ex-app
 ..   exercises/netkit-app

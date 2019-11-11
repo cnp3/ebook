@@ -41,7 +41,7 @@ The figure below illustrates the evolution of the congestion window when the net
    Evaluation of the TCP congestion window when the network is lightly congested
 
 
-Most TCP implementations update the congestion window when they receive an acknowledgment. If we assume that the receiver acknowledges each received segment and the sender only sends MSS sized segments, the TCP congestion control scheme can be implemented using the simplified pseudo-code [#fwrap]_ below.
+Most TCP implementations update the congestion window when they receive an acknowledgment. If we assume that the receiver acknowledges each received segment and the sender only sends MSS sized segments, the TCP congestion control scheme can be implemented using the simplified pseudo-code [#fwrap]_ below. This pseudocode includes the optimization proposed in :rfc:`3042` that allows a sender to send new unsent data upon reception of the first or second duplicate acknowledgment. The reception of each of these acknowledgment indicates that one segment has left the network and thus additional data can be sent without causing more congestion. Note that the congestion window is *not* increased upon reception of these first duplicate acknowledgments.
 
 .. code-block:: python
 
@@ -51,21 +51,28 @@ Most TCP implementations update the congestion window when they receive an ackno
     
    # Ack arrival 
    if tcp.ack > snd.una :  # new ack, no congestion
-     if  cwnd < ssthresh :
-       # slow-start : increase quickly cwnd
-       # double cwnd  every rtt
-       cwnd = cwnd + MSS
-     else:
-       # congestion avoidance : increase slowly cwnd
-       # increase cwnd by one mss every rtt
-       cwnd = cwnd+ mss*(mss/cwnd)
+     if dupacks==0: # not currently recovering from loss
+       if  cwnd < ssthresh :
+         # slow-start : increase quickly cwnd
+         # double cwnd  every rtt
+         cwnd = cwnd + MSS
+       else:
+         # congestion avoidance : increase slowly cwnd
+         # increase cwnd by one mss every rtt
+         cwnd = cwnd+ mss*(mss/cwnd)
+     else:  # recovering from loss
+       cwnd=ssthresh # deflate cwnd
    else: # duplicate or old ack
      if tcp.ack==snd.una:    # duplicate acknowledgment
        dupacks++
+       if dupacks==1 or dupacks==2:
+         send_next_unacked_segment # rfc3042
        if dupacks==3:
          retransmitsegment(snd.una)
 	 ssthresh=max(cwnd/2,2*MSS)
-	 cwnd=ssthresh   
+	 cwnd=ssthresh
+       if dupacks>3:    # rfc5681
+         cwnd=cwnd+MSS  # inflate cwnd
      else:    # ack for old segment, ignored
        dupacks=0
   
