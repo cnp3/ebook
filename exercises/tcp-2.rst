@@ -13,15 +13,54 @@ In this series of exercises, you will explore in more details the operation of T
 Injecting segments in the Linux TCP stack
 -----------------------------------------
 
-Packet capture tools like tcpdump_ and Wireshark_ are very useful to observe the segments that transport protocols exchange. TCP is a complex protocol that has evolved a lot since its first specification :rfc:`793`. TCP includes a large number of heuristics that influence the reaction of a TCP implementation to various types of events. A TCP implementation interacts with the application through the ``socket`` API. Several researchers from Google proposed packetdrill_ [CCB+2013]_.  packetdrill_ is a TCP test suite that was designed to develop unit tests to verify the correct operation of a TCP implementation. A detailed description of packetdrill_ in [CCB+2013]_. packetdrill_ uses a syntax which is a mix between the C language and the tcpdump_ syntax. To understand the operation of packetdrill_, we first discuss several examples. The TCP implementation in the Linux kernel supports all the recent TCP extensions to improve its performance. For pedagogical reasons, we disable [#fsysctl]_ most of these extensions to use a simple TCP stack.
+Packet capture tools like tcpdump_ and Wireshark_ are very useful to observe the segments that transport protocols exchange. TCP is a complex protocol that has evolved a lot since its first specification :rfc:`793`. TCP includes a large number of heuristics that influence the reaction of a TCP implementation to various types of events. A TCP implementation interacts with the application through the ``socket`` API.
 
-Let us start with a very simple example that uses packetdrill_ to open a TCP connection on a server running on the Linux kernel. A packetdrill_ script is a sequence of lines that are executed one after the other. Each of these lines can specify :
+packetdrill_ is a TCP test suite that was designed to develop unit tests to verify the correct operation of a TCP implementation. A more detailed description of packetdrill_ may be found in [CCB+2013]_. packetdrill_ uses a syntax which is a mix between the C language and the tcpdump_ syntax. To understand the operation of packetdrill_, we first discuss several examples. The TCP implementation in the Linux kernel supports all the recent TCP extensions to improve its performance. For pedagogical reasons, we disable [#fsysctl]_ most of these extensions to use a simple TCP stack. packetdrill_ can be easily installed on recent Linux kernels [#finstall]_.
+
+Let us start with a very simple example that uses packetdrill_ to open a TCP connection on a server running on the Linux kernel. A packetdrill_ script is a sequence of lines that are executed one after the other. There are three main types of lines in a packetdrill_ script.
 
  - packetdrill_ executes a system call and verifies its return value
  - packetdrill_ injects [#ftcpdump_pdrill]_ a packet in the instrumented Linux kernel as if it were received from the network
  - packetdrill_ compares a packet transmitted by the instrumented Linux kernel with the packet that the script expects
 
-Each line starts with a `timing` parameter that indicates at what time the event specified on this line should happen. packetdrill_ supports absolute and relative timings. An absolute timing is simply a number that indicates the delay in seconds between the start of the script and the event. A relative timing is indicated by using ``+``  followed by a number. This number is then the delay in seconds between the previous event and the current line. Additional information may be found in [CCB+2013]_. 
+For our first packetdrill_ script, we aim at reproducing the simple connection shown in the figure below.
+
+ .. tikz::
+    :libs: positioning, matrix, arrows 
+
+    \colorlet{lightgray}{black!20}
+    \tikzstyle{arrow} = [thick,->,>=stealth]
+    \draw[step=0.5cm,lightgray,very thin] (0,0) grid (10,10);
+    \tikzset{state/.style={rectangle, dashed, draw, fill=white} }
+    \node [black, fill=white] at (3,10) {Sender};
+    \node [black, fill=white] at (7,10) {Receiver};
+    \draw[very thick,->] (3,9.5) -- (3,0.5);
+    \draw[very thick,->] (7,9.5) -- (7,0.5);
+    
+    \draw[black,thick, ->] (3,9.5) -- (7,9) node [midway, fill=white] {SYN};
+    \draw[black,thick, ->] (7,9) -- (3,8.5) node [midway, fill=white] {SYN+ACK};
+    \draw[black,thick, ->] (3,8.5) -- (7,8) node [midway, fill=white] {ACK};
+    \draw[red, ->] (0,8) node [anchor=north, fill=white] {write(4, ..., 10)} -- (3,8);
+    \draw[black,thick, ->] (3,8) -- (7,7.5) node [midway, fill=white] {1:11};
+    \draw[black,thick, ->] (7,7.5) -- (3,7) node [midway, fill=white] {ack 11};
+
+    \draw[black,thick, ->] (7,7) -- (3,6.5) node [midway, fill=white] {1:3};
+    \draw[black,thick, ->] (3,6.5) -- (7,6) node [midway, fill=white] {ack 4};
+    \draw[black,thick, ->] (7,5) -- (3,4.5) node [midway, fill=white] {FIN};
+    \draw[black,thick, ->] (3,4.5) -- (7,4) node [midway, fill=white] {FIN+ACK};
+	   
+    \draw[red, ->] (0,3) node [anchor=north, fill=white] {close(4)} -- (3,3);
+    \draw[black,thick, ->] (3,3) -- (7,2.5) node [midway, fill=white] {FIN};
+    \draw[black,thick, ->] (7,2.5) -- (3,2) node [midway, fill=white] {FIN+ACK};
+
+    
+Let us start with the execution of a system call. A simple example is shown below.
+
+.. code-block:: console
+
+   0   socket(..., SOCK_STREAM, IPPROTO_TCP) = 3
+
+The ``0``  indicates that the system call must be issued immediately. packetdrill_ then executes the system call and verifies that it returns ``3```. If yes, the processing continues. Otherwise the script stops and indicates an error.
 
 For this first example, we program packetdrill_ to inject the segments that a client would send. The first step is thus to prepare a :manpage:`socket` that can be used to accept this connection. This socket can be created by using the four system calls below.
 
@@ -38,21 +77,22 @@ For this first example, we program packetdrill_ to inject the segments that a cl
    // configure the socket to accept incoming connections
    +0  listen(3, 1) = 0
 
-
 At this point, the socket is ready to accept incoming TCP connections. packetdrill_ needs to inject a TCP segment in the instrumented Linux stack. This can be done with the line below.
 
 .. code-block:: console
 
    +0  < S 0:0(0) win 1000 <mss 1000>
 
-packetdrill_ uses a syntax that is very close to the tcpdump_ syntax. The ``+0`` timing indicates that the line is executed immediately after the previous event. The ``<`` sign indicates that packetdrill_ injects a TCP segment and the ``S`` character indicates that the ``SYN`` flag must be set. Like tcpdump_, packetdrill_ uses sequence numbers that are relative to initial sequence number. The three numbers that follow are the sequence number of the first byte of the payload of the segment (``0``), the sequence number of the last byte of the payload of the segment (``0`` after the semi-column) and the length of the payload (``0`` between brackets) of the ``SYN`` segment. This segment does not contain a valid acknowledgment but advertises a window of 1000 bytes. All ``SYN`` segments must also include the ``MSS`` option. In this case, we set the MSS to 1000 bytes. The next line of the packetdrill_ script verifies the reply sent by the instrumented Linux kernel.
+Each line of a packetdrill_ script starts with a `timing` parameter that indicates at what time the event specified on this line should happen. packetdrill_ supports absolute and relative timings. An absolute timing is simply a number that indicates the delay in seconds between the start of the script and the event. A relative timing is indicated by using ``+``  followed by a number. This number is then the delay in seconds between the previous event and the current line. Additional information may be found in [CCB+2013]_. 
+   
+The description of TCP packets in packetdrill_ uses a syntax that is very close to the tcpdump_ one. The ``+0`` timing indicates that the line is executed immediately after the previous event. The ``<`` sign indicates that packetdrill_ injects a TCP segment and the ``S`` character indicates that the ``SYN`` flag must be set. Like tcpdump_, packetdrill_ uses sequence numbers that are relative to initial sequence number. The three numbers that follow are the sequence number of the first byte of the payload of the segment (``0``), the sequence number of the last byte of the payload of the segment (``0`` after the semi-column) and the length of the payload (``0`` between brackets) of the ``SYN`` segment. This segment does not contain a valid acknowledgment but advertises a window of 1000 bytes. All ``SYN`` segments must also include the ``MSS`` option. In this case, we set the MSS to 1000 bytes. The next line of the packetdrill_ script verifies the reply sent by the instrumented Linux kernel.
 
 .. code-block:: console
 
    +0  > S. 0:0(0) ack 1 <...>
 
 
-This TCP segment is sent immediately by the stack. The ``SYN`` flag is set and the dot next to the ``S`` character indicates that the ACK flag is also set. The SYN+ACK segment does not contain any data but its acknowledgment number is set to 1 (relative to the initial sequence number). The packetdrill_ script does not match the window size advertised in the TCP segment nor the TCP options (``<...>``). 
+This TCP segment is sent immediately by the stack. The ``SYN`` flag is set and the dot next to the ``S`` character indicates that the ACK flag is also set. The SYN+ACK segment does not contain any data but its acknowledgment number is set to 1 (relative to the initial sequence number). For outgoing packets, packetdrill_ does not verify the value of the advertised window. In this line, it also accepts any TCP options (``<...>``). 
 
 
 The third segment of the three-way handshake is sent by packetdrill_ after a delay of 0.1 seconds. The connection is now established and the accept system call will succeed.
@@ -99,13 +139,12 @@ packetdrill_ injects the ``FIN`` segment and the instrumented kernel returns an 
    +0 < . 4:4(0) ack 12 win 4000
 
 
-The complete packetdrill_ script is available from :download:`/exercises/packetdrill_scripts/connect.pkt`
+The complete packetdrill_ script is available from :download:`/exercises/packetdrill_scripts/connect.pkt`. 
+
 
 Another interesting features of packetdrill_ is that it is possible to inspect the state maintained by the Linux kernel for the underlying connection using the ``TCP_INFO`` socket option. This makes it possible to retrieve the value of some variables of the TCP control block.
 
-packetdrill_ can be used to explore in details the operation of the Linux TCP implementation to understand how it reacts to system calls and the reception of packets.
-
-Let us first explore how a TCP connection can be established. In the previous script, we have injected the segments that a client would send to a server. We can also use the Linux stack as a client and inject the segments that a server would return. Such a client process would first create its :manpage:`socket`` and then issue the :manpage:`connect` system call. At this point, the stack sends a ``SYN`` segment. To simplify the scripts, we have configured the stack to use a ``MSS`` of 1000 bytes and disabled the TCP extensions. The server replies with a ``SYN+ACK`` and the stack sends acknowledges it to finish the three-way-handshake.
+Let us first explore how a TCP connection can be established. In the previous script, we have injected the segments that a client would send to a server. We can also use the Linux stack as a client and inject the segments that a server would return. Such a client process would first create its :manpage:`socket`` and then issue the :manpage:`connect` system call. At this point, the stack sends a ``SYN`` segment. To simplify the scripts, we have configured the stack to use a ``MSS`` of 1000 bytes and disabled the TCP extensions (the details of this configuration may be found at the beginning of the script). The server replies with a ``SYN+ACK`` and the stack sends acknowledges it to finish the three-way-handshake.
 
 .. code-block:: console
 
@@ -834,7 +873,14 @@ Unless otherwise noted, we assume for the questions in this section that the fol
 
    manpage
    
-.. [#fsysctl] On Linux, most of the parameters to tune the TCP stack are accessible via :manpage:`sysctl`. These parameters are briefly described in https://github.com/torvalds/linux/blob/master/Documentation/networking/ip-sysctl.txt and in the :manpage:`tcp` manpage. Each script sets some of these configuration variables. 
+.. [#fsysctl] On Linux, most of the parameters to tune the TCP stack are accessible via :manpage:`sysctl`. These parameters are briefly described in https://github.com/torvalds/linux/blob/master/Documentation/networking/ip-sysctl.txt and in the :manpage:`tcp` manpage. Each script sets some of these configuration variables.
+
+.. spelling::
+
+   virtualbox
+	      
+	      
+.. [#finstall] packetdrill_ requires root privileges since it inject raw IP packets. The easiest way to install it is to use a virtualbox image with a Linux kernel 4.x or 5.x. You can clone its git repository from https://github.com/google/packetdrill and follow the instructions in https://github.com/google/packetdrill/tree/master/gtests/net/packetdrill. The packetdrill_ scripts used in this section are available from https://github.com/cnp3/ebook/tree/master/exercises/packetdrill_scripts      
 
 .. [#ftcpinfo] The variables that are included in TCP_INFO are defined in https://github.com/torvalds/linux/blob/master/include/uapi/linux/tcp.h
 	      
