@@ -3,7 +3,7 @@
 
 .. _tcptrace: http://www.tcptrace.org
 
-.. _packetdrill: https://code.google.com/p/packetdrill/
+.. _packetdrill: https://github.com/google/packetdrill/
 
 .. _caida: http://www.caida.org
 
