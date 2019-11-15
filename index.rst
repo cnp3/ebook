@@ -69,11 +69,11 @@ Part 2: Protocols
    protocols/udp
    protocols/tcp
    protocols/congestion
-
+   protocols/ipv6
 ..   protocols/sctp
 
 
-..   protocols/ipv6
+
 ..   protocols/ipv6b
 ..   protocols/routing
 ..   protocols/bgp

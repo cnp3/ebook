@@ -51,6 +51,8 @@ retransmit
 retransmits
 retransmitted
 retransmitting
+subnet
+subnets
 subnetwork
 subnetworks
 unicast
@@ -131,3 +133,11 @@ https
 login
 MSS
 ECN
+loopback
+extensibility
+jumbogram
+reachability
+traceroute
+multicast
+multicasts
+routable
