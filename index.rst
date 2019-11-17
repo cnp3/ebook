@@ -103,6 +103,7 @@ Part 3: Practice
    exercises/trace
    exercises/tcp
    exercises/tcp-2
+   exercises/ipv6
    
 ..   exercises/ex-app
 ..   exercises/netkit-app

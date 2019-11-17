@@ -256,3 +256,9 @@
 .. _Latex: http://en.wikipedia.org/wiki/Latex
 
 .. _netem: http://www.linuxfoundation.org/collaborate/workgroups/networking/netem
+
+.. _ipmininet: https://github.com/cnp3/ipmininet
+
+.. _IPMininet: https://github.com/cnp3/ipmininet
+
+.. _mininet: https://mininet.org
