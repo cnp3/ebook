@@ -118,20 +118,3 @@ You can now use your understanding of wireshark_ and tcpdump_ to analyze a 2-min
    
 .. include:: /links.rst
 
-
- 
-
- 
-
-
-
-	       
-
-	       
-
-.. rubric:: Footnotes
-
-
-
-
-.. include:: /links.rst

@@ -71,7 +71,7 @@ The forwarding paths used in a network depend on the forwarding tables installed
         2001:db8:1341:23/64 & 2001:db8:1341:24::2 \\        
         2001:db8:1341:13/64 & 2001:db8:1341:34::3 \\        
         2001:db8:1341:12/64 & 2001:db8:1341:24::2 \\        
-        \end{tabular}\\};
+        \end{tabular}};
         \node[host, right=of R4] (B) {B};
 
         \path[draw,thick]
@@ -118,7 +118,7 @@ In this network, propose the forwarding tables of ``R2`` and ``R3`` that ensure 
         2001:db8:1341:4/64  & 2001:db8:1341:34::4 \\
         2001:db8:1341:12/64 & 2001:db8:1341:23::2 \\        
         2001:db8:1341:24/64 & 2001:db8:1341:23::2 \\          
-        \end{tabular}\\};
+        \end{tabular}};
         \node[host, right=of R4] (B) {B};
 
         \path[draw,thick]
@@ -174,7 +174,7 @@ Routers ``R2`` and ``R3`` are buggy in this network. Besides the routes for thei
         Dest. & Nexthop \\
         \hline 
         ::/0  & 2001:db8:1341:34::4 \\
-        \end{tabular}\\};
+        \end{tabular}};
         \node[host, right=of R4] (B) {B};
 
         \path[draw,thick]
@@ -553,14 +553,14 @@ Let us start our exploration of IPv6 routing with a simple network topology that
    2001:db8:1341:3/64 & 2001:db8:1341:23::3 \\
    2001:db8:1341:1/64 & 2001:db8:1341:12::1 \\
    2001:db8:1341:13/64 & 2001:db8:1341:23::3 \\
-   \end{tabular}\\};
+   \end{tabular}};
    \node[router,below=of R1] (R3) {R3};
    \node[ftable, below=of R3] (FR3) { \begin{tabular}{l|l} 
    Dest. & Nexthop \\
    \hline
    2001:db8:1341:1/64 & 2001:db8:1341:13::1 \\
    2001:db8:1341:12/64 & 2001:db8:1341:23::2 \\
-   \end{tabular}\\};
+   \end{tabular}};
    \node[host, right=of R3] (B) {B};
    
    \path[draw,thick]

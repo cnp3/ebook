@@ -758,10 +758,10 @@ The last point that needs to be explained about ICMPv6 is the `Redirect` message
    \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
    \tikzset{lan/.style = {ellipse, draw, text centered} }
    \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
-   \node[host] (A) {A \\MAC 0023:4567:89ab};
-   \node[host, right of=A] (B) {B \\MAC 0034:5678:9abc};
-   \node[router, right of=B] (router1) {router1 \\MAC : 0045:6789:abcd};
-   \node[router, right of=router1] (router2) {router2 \\MAC : 0012:3456:7878};
+   \node[host] (A) {\begin{tabular}{c} A \\ MAC 0023:4567:89ab \end{tabular}};
+   \node[host, right of=A] (B) {\begin{tabular}{c} B \\ MAC 0034:5678:9abc \end{tabular}};
+   \node[router, right of=B] (router1) {\begin{tabular}{c} router1 \\ MAC : 0045:6789:abcd \end{tabular}};
+   \node[router, right of=router1] (router2) {\begin{tabular}{c} router2 \\ MAC : 0012:3456:7878 \end{tabular}};
    \node[lan, below right=of A] (lan) {LAN};
    
    \draw[black] (A) -- (lan);

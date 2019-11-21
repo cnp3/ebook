@@ -61,7 +61,8 @@ Most TCP implementations update the congestion window when they receive an ackno
          # increase cwnd by one mss every rtt
          cwnd = cwnd+ mss*(mss/cwnd)
      else:  # recovering from loss
-       cwnd=ssthresh # deflate cwnd
+       cwnd=ssthresh # deflate cwnd rfc5681
+       dupacks=0
    else: # duplicate or old ack
      if tcp.ack==snd.una:    # duplicate acknowledgment
        dupacks++
@@ -74,7 +75,6 @@ Most TCP implementations update the congestion window when they receive an ackno
        if dupacks>3:    # rfc5681
          cwnd=cwnd+MSS  # inflate cwnd
      else:    # ack for old segment, ignored
-       dupacks=0
   
    Expiration of the retransmission timer:
     send(snd.una)     # retransmit first lost segment

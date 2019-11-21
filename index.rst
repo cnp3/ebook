@@ -70,12 +70,9 @@ Part 2: Protocols
    protocols/tcp
    protocols/congestion
    protocols/ipv6
-..   protocols/sctp
+   protocols/routing
 
 
-
-..   protocols/ipv6b
-..   protocols/routing
 ..   protocols/bgp
 ..   protocols/lan
 ..   protocols/quic   
