@@ -71,9 +71,7 @@ Part 2: Protocols
    protocols/congestion
    protocols/ipv6
    protocols/routing
-
-
-..   protocols/bgp
+   protocols/bgp
 ..   protocols/lan
 ..   protocols/quic   
 
