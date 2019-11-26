@@ -1,4 +1,4 @@
-.. Copyright |copy| 2013 by Justin Vellemans, Florentin Rochet, David Lebrun, Juan Antonio Cordero, Olivier Bonaventure
+.. Copyright |copy| 2013, 2019 by Justin Vellemans, Florentin Rochet, David Lebrun, Juan Antonio Cordero, Olivier Bonaventure
 .. This file is licensed under a `creative commons licence <http://creativecommons.org/licenses/by/3.0/>`_
 
 Inter-domain routing
@@ -8,6 +8,16 @@ Inter-domain routing
 Exercises
 ---------
 
+
+.. inginious:: q-bgp-pol-0
+
+.. inginious:: q-bgp-pol-1
+
+.. inginious:: q-bgp-pol-2
+
+.. inginious:: q-bgp-pol-3
+
+.. inginious:: q-bgp-pol-4
 
 
 
@@ -67,7 +77,7 @@ In this network, what are the paths :
    \node[as] (AS1) {AS1};
    \node[as, above right of=AS1] (AS3) {AS3};
    \node[as, above left of=AS3] (AS2) {AS2};
-   \node[as, below right of=AS1] (AS1) {AS4};
+   \node[as, below right of=AS1] (AS4) {AS4};
 
    
    % customer provider
