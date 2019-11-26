@@ -125,11 +125,14 @@ Are all ASes capable of reaching all the other ASes in this simple Internet ?
    (AS2) edge node [sloped, midway, below, color=blue] {\textbf{=}} (AS1);
    
 
- In this internet, some ASes cannot reach all other ASes. Can you fix the problem by adding one shared-cost peering link or one customer-provider peering link ?
+ In this internet, some ASes cannot reach all other ASes. Can you fix the problem by adding one shared-cost peering link or one customer-provider peering link
+?
+
+.. inginious:: q-bgp-dp-1
 
 4. Consider the network below in which a stub domain, `AS456`, is connected to two providers `AS123` and `AS789`. `AS456` advertises its prefix to both its providers. On the other hand, `AS123` advertises ``2001:db8:dead::/48`` while `AS789` advertises ``2001:db8:beef::/48`` and ``2001:db8:dead:cafe::/63``. Via which provider will the packets destined to ``2001:db8:dead:cafe::1`` will be received by `AS456` ?
 
-  .. figure:: fig/ex-bgp-stub-two-providers.png
+  .. figure:: /exercises/figures/ex-bgp-stub-two-providers.png
      :align: center
      :scale: 100
 
@@ -140,7 +143,7 @@ Are all ASes capable of reaching all the other ASes in this simple Internet ?
 5. Consider that the AS stub (`AS456`) shown in the figure below decides to advertise two ``/48`` prefixes instead of its allocated ``/47`` prefix.
 
 
-  .. figure:: fig/ex-bgp-stub-two-providers-specific.png
+  .. figure:: /exercises/figures/ex-bgp-stub-two-providers-specific.png
      :align: center
      :scale: 100
 
@@ -153,7 +156,7 @@ Are all ASes capable of reaching all the other ASes in this simple Internet ?
 
 6. Consider the network shown below. In this network, the metric of each link is set to `1` except link `A-B` whose metric is set to `4` in both directions. In this network, there are two paths with the same cost between `D` and `C`. Old routers would randomly select one of these equal cost paths and install it in their forwarding table. Recent routers are able to use up to `N` equal cost paths towards the same destination. 
 
- .. figure:: ../../book/network/svg/ex-five-routers-weigth4.png
+ .. figure:: /exercises/figures/ex-five-routers-weigth4.png
     :align: center
     :scale: 30
 

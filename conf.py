@@ -248,7 +248,7 @@ latex_elements = {
 
 tikz_libraries="positioning,matrix,arrows,shapes"
 
-tikz_proc_suite='pdf2svg'
+tikz_proc_suite='ImageMagick'
 
 tikz_latex_preamble='''
 %preamble
