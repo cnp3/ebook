@@ -259,6 +259,4 @@
 
 .. _ipmininet: https://github.com/cnp3/ipmininet
 
-.. _IPMininet: https://github.com/cnp3/ipmininet
-
 .. _mininet: https://mininet.org

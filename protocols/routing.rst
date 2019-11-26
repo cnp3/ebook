@@ -109,16 +109,16 @@ The first summary advertisement provides precise information about the distance 
 The second OSPF particularity that is worth discussing is the support of Local Area Networks (LAN). As shown in the example below, several routers may be attached to the same LAN.
 
 .. tikz:: A LAN with routers
-
-
+   :libs: shapes,matrix,arrows,shapes
+	  
    \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
    \tikzset{lan/.style = {ellipse, draw, text centered} }
    \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
-   \node[router] (R1) {\begin{tabular}[c] R1 \\ 2001:db8:1234::11/48 \end{tabular} };
-   \node[router, right of=R1] (R2) {\begin{tabular}[c] R2 \\ 2001:db8:1234::22/48 \end{tabular} };
-   \node[router, right of=R2] (R3) {\begin{tabular}[c] R3 \\ 2001:db8:1234::33/48 \end{tabular} };
-   \node[router, right of=R3] (R4) {\begin{tabular}[c] R4 \\ 2001:db8:1234::44/48 \end{tabular} };
-  \node[lan, below right=of 2] (lan) {LAN};
+   \node[router] (R1) {\begin{tabular}{c} R1 \\ 2001:db8:1234::11/48 \end{tabular} };
+   \node[router, right of=R1] (R2) {\begin{tabular}{c} R2 \\ 2001:db8:1234::22/48 \end{tabular} };
+   \node[router, right of=R2] (R3) {\begin{tabular}{c} R3 \\ 2001:db8:1234::33/48 \end{tabular} };
+   \node[router, right of=R3] (R4) {\begin{tabular}{c} R4 \\ 2001:db8:1234::44/48 \end{tabular} };
+   \node[lan, below right=of R2] (lan) {LAN};
    
    \draw[black] (R1) -- (lan);
    \draw[black] (R2) -- (lan);

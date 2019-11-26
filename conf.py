@@ -236,7 +236,7 @@ latex_elements = {
 \\usepackage{tikz}
 \\usepackage{pgfplots}
 \pgfplotsset{compat=1.14}
-\\usetikzlibrary{arrows,positioning, matrix,backgrounds,shapes,shadows,calc}
+\\usetikzlibrary{arrows.meta,positioning, matrix,backgrounds,shapes,shadows,calc}
 '''
 }
 
@@ -246,9 +246,9 @@ latex_elements = {
 # If false, no module index is generated.
 #latex_use_modindex = True
 
-tikz_libraries="positioning,matrix,arrows"
+tikz_libraries="positioning,matrix,arrows,shapes"
 
-tikz_proc_suite='Netpbm'
+tikz_proc_suite='pdf2svg'
 
 tikz_latex_preamble='''
 %preamble

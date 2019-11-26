@@ -1,0 +1,26 @@
+.. tikz::
+   :libs: positioning, matrix, arrows
+	  
+   \begin{scope}
+   \pgfsetstrokecolor{black}
+   \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+   \pgfsetstrokecolor{strokecol}
+   \draw (8.0bp,8.0bp) -- (8.0bp,115.74bp) -- (387.0bp,115.74bp) -- (387.0bp,8.0bp) -- cycle;
+   \draw (197.5bp,100.54bp) node {Belnet};
+   \draw (197.5bp,85.54bp) node {2001:6a8::/32};
+   \end{scope}
+   \begin{scope}
+   \pgfsetstrokecolor{black}
+   \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+   \pgfsetstrokecolor{strokecol}
+   \draw (395.0bp,16.87bp) -- (395.0bp,106.87bp) -- (507.0bp,106.87bp) -- (507.0bp,16.87bp) -- cycle;
+   \draw (451.0bp,91.67bp) node {ISP1};
+   \draw (451.0bp,76.67bp) node {2a02:2788::/32};
+   \end{scope}
+   \node (ucl) at (293.0bp,42.87bp) [draw,ellipse] {UCLouvain$\backslash$n2001:6a8:3080::/48};
+   \node (ulg) at (102.0bp,42.87bp) [draw,ellipse] {ULg$\backslash$n2001:6a8:2d80::/48};
+  \node (alpha) at (451.0bp,42.87bp) [draw,ellipse] {alpha.com};
+  %
+
+
+

@@ -6,8 +6,6 @@
 The network layer
 *****************
 
-
-
 The main objective of the network layer is to allow hosts, connected to different networks, to exchange information through intermediate systems called :term:`router`. The unit of information in the network layer is called a :term:`packet`.
 
 
@@ -51,7 +49,6 @@ IP version 6
 In the late 1980s and early 1990s the growth of the Internet was causing several operational problems on routers. Many of these routers had a single CPU and up to 1 MByte of RAM to store their operating system, packet buffers and routing tables. Given the rate of allocation of IPv4 prefixes to companies and universities willing to join the Internet, the routing tables where growing very quickly and some feared that all IPv4 prefixes would quickly be allocated. In 1987, a study cited in :rfc:`1752`, estimated that there would be 100,000 networks in the near future. In August 1990, estimates indicated that the class B space would be exhausted by March 1994. 
 Two types of solution were developed to solve this problem. The first short term solution was the introduction of Classless Inter Domain Routing (:term:`CIDR`). A second short term solution was the Network Address Translation (:term:`NAT`) mechanism, defined in :rfc:`1631`. NAT allowed multiple hosts to share a single public IPv4 address.
 
-..  it is explained in section :ref:`Middleboxes`.
 
 .. spelling::
 
@@ -72,7 +69,7 @@ The IETF decided to pursue the development of IPng based on the SIPP proposal. A
 
 .. note:: The IPng address size
 
- When the work on IPng started, it was clear that 32 bits was too small to encode an IPng address and all proposals used longer addresses. However, there were many discussions about the most suitable address length. A first approach, proposed by SIP in :rfc:`1710`, was to use 64 bit addresses. A 64 bits address space was 4 billion times larger than the IPv4 address space and, furthermore, from an implementation perspective, 64 bit CPUs were being considered and 64 bit addresses would naturally fit inside their registers. Another approach was to use an existing address format. This was the TUBA proposal (:rfc:`1347`) that reuses the ISO CLNP 20 bytes addresses. The 20 bytes addresses provided room for growth, but using ISO CLNP was not favored by the IETF partially due to political reasons, despite the fact that mature CLNP implementations were already available. 128 bits appeared to be a reasonable compromise at that time.
+   When the work on IPng started, it was clear that 32 bits was too small to encode an IPng address and all proposals used longer addresses. However, there were many discussions about the most suitable address length. A first approach, proposed by SIP in :rfc:`1710`, was to use 64 bit addresses. A 64 bits address space was 4 billion times larger than the IPv4 address space and, furthermore, from an implementation perspective, 64 bit CPUs were being considered and 64 bit addresses would naturally fit inside their registers. Another approach was to use an existing address format. This was the TUBA proposal (:rfc:`1347`) that reuses the ISO CLNP 20 bytes addresses. The 20 bytes addresses provided room for growth, but using ISO CLNP was not favored by the IETF partially due to political reasons, despite the fact that mature CLNP implementations were already available. 128 bits appeared to be a reasonable compromise at that time.
 
 IPv6 addressing architecture
 ----------------------------
@@ -83,7 +80,7 @@ IPv6 supports unicast, multicast and anycast addresses. An IPv6 unicast address 
 
 .. note:: Textual representation of IPv6 addresses
 
- It is sometimes necessary to write IPv6 addresses in text format, e.g. when manually configuring addresses or for documentation purposes. The preferred format for writing IPv6 addresses is ``x:x:x:x:x:x:x:x``, where the ``x`` 's are hexadecimal digits representing the eight 16-bit parts of the address. Here are a few examples of IPv6 addresses :
+   It is sometimes necessary to write IPv6 addresses in text format, e.g. when manually configuring addresses or for documentation purposes. The preferred format for writing IPv6 addresses is ``x:x:x:x:x:x:x:x``, where the ``x`` 's are hexadecimal digits representing the eight 16-bit parts of the address. Here are a few examples of IPv6 addresses :
 
   - ``abcd:ef01:2345:6789:abcd:ef01:2345:6789``
   - ``2001:db8:0:0:8:800:200c:417a``
@@ -98,9 +95,9 @@ IPv6 supports unicast, multicast and anycast addresses. An IPv6 unicast address 
 
  An IPv6 prefix can be represented as `address/length`, where `length` is the length of the prefix in bits. For example, the three notations below correspond to the same IPv6 prefix :
 
-  - ``2001:0db8:0000:cd30:0000:0000:0000:0000``/``60``
-  - ``2001:0db8::cd30:0:0:0:0``/``60``
-  - ``2001:0db8:0:cd30::``/``60``
+  - ``2001:0db8:0000:cd30:0000:0000:0000:0000`` / ``60``
+  - ``2001:0db8::cd30:0:0:0:0`` / ``60``
+  - ``2001:0db8:0:cd30::`` / ``60``
 
 
 .. figure:: /protocols/figures/ipv6addr-arch.png
@@ -147,35 +144,9 @@ When considering the allocation of IPv6 addresses, two types of address allocati
    
 There is one difficulty with the utilization of these IPv6 prefixes. Consider Belnet, the Belgian research  ISP that has been allocated the ``2001:6a8::/32`` prefix. Universities are connected to Belnet. UCLouvain uses prefix ``2001:6a8:3080::/48`` while the University of Liege uses ``2001:6a8:2d80::/48``. A commercial ISP uses prefix ``2a02:2788::/32``. Both Belnet and the commercial ISP are connected to the global Internet. 
 
-.. tikz::
-
-   % Start of code
-   \begin{tikzpicture}[>=latex',line join=bevel,]
-   %%
-   \begin{scope}
-   \pgfsetstrokecolor{black}
-   \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-   \pgfsetstrokecolor{strokecol}
-   \draw (8.0bp,8.0bp) -- (8.0bp,115.74bp) -- (387.0bp,115.74bp) -- (387.0bp,8.0bp) -- cycle;
-   \draw (197.5bp,100.54bp) node {Belnet};
-   \draw (197.5bp,85.54bp) node {2001:6a8::/32};
-   \end{scope}
-   \begin{scope}
-   \pgfsetstrokecolor{black}
-   \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-   \pgfsetstrokecolor{strokecol}
-   \draw (395.0bp,16.87bp) -- (395.0bp,106.87bp) -- (507.0bp,106.87bp) -- (507.0bp,16.87bp) -- cycle;
-   \draw (451.0bp,91.67bp) node {ISP1};
-   \draw (451.0bp,76.67bp) node {2a02:2788::/32};
-   \end{scope}
-   \node (ucl) at (293.0bp,42.87bp) [draw,ellipse] {UCLouvain$\backslash$n2001:6a8:3080::/48};
-   \node (ulg) at (102.0bp,42.87bp) [draw,ellipse] {ULg$\backslash$n2001:6a8:2d80::/48};
-  \node (alpha) at (451.0bp,42.87bp) [draw,ellipse] {alpha.com};
-  %
-  \end{tikzpicture}
-
-
-
+.. figure:: /protocols/figures/belnet.png
+   :align: center
+   :scale: 70 
 
 
 The Belnet network advertises prefix ``2001:6a8::/32`` that includes the prefixes from both UCLouvain and ULg. These two subnetworks can be easily reached from any internet connected host. After a few years, UCLouvain decides to increase the redundancy of its Internet connectivity and buys transit service from ISP1. A direct link between UCLouvain and the commercial ISP appears on the network and UCLouvain expects to receive packets from both Belnet and the commercial ISP.
@@ -233,37 +204,32 @@ The last type of unicast IPv6 addresses are the `Link Local Unicast` addresses. 
 
 .. note:: All IPv6 hosts have several addresses
 
- An important consequence of the IPv6 unicast addressing architecture and the utilization of link-local addresses is that each IPv6 host has several IPv6 addresses. This implies that all IPv6 stacks must be able to handle multiple IPv6 addresses.
+   An important consequence of the IPv6 unicast addressing architecture and the utilization of link-local addresses is that each IPv6 host has several IPv6 addresses. This implies that all IPv6 stacks must be able to handle multiple IPv6 addresses.
 
 
-.. :rfc:`4291` defines a special type of IPv6 anycast address. On a subnetwork having prefix `p/n`, the IPv6 address whose `128-n` low-order bits are set to `0` is the anycast address that corresponds to all routers inside this subnetwork. This anycast address can be used by hosts to quickly send a packet to any of the routers inside their own subnetwork.
 
 The addresses described above are unicast addresses. These addresses are used to identify (interfaces on) hosts and routers. They can appear as source and destination addresses in the IPv6 packets. When a host sends a packet towards a unicast address, this packet is delivered by the network to its final destination. There are situations, such as when delivering video or television signal to a large number of receivers, where it is useful to have a network that can efficiently deliver the same packet to a large number of receivers. This is the `multicast` service. A multicast service can be provided in a LAN. In this case, a multicast address identifies a set of receivers and each frame sent towards this address is delivered to all receivers in the group. Multicast can also be used in a network containing routers and hosts. In this case, a multicast address identifies also a group of receivers and the network delivers efficiently each multicast packet to all members of the group. Consider for example the network below.
 
+    .. tikz::
+       :libs: positioning
 
-.. tikz:: A simple network containing four hosts and four routers
-   :libs: positioning, matrix
-
-    \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
-    \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
-    \node[host] (A) {A};
-    \node[router, below of=A] (R1) {R1};
-    \node[router, below right=of R1] (R3) {R3};
-    \node[router, below left=of R1] (R2) {R2};
-    \node[host, left=of R2] (B) {B};
-    \node[host, right=of R3] (C) {C};
-    \node[router, below left=of R3] (R4) {R4};
-    \node[host, left of=R4] (D) {D};
-
-
-    \path[draw,thick]
-    (A) edge (R1)
-    (R1) edge (R2)
-    (R3) edge (R1)
-    (R2) edge (B)
-    (R4) edge (R3)
-    (R3) edge (C)
-    (R4) edge (D);
+       \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
+       \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
+       \node[host] (A) {A};
+       \node[router, below =of A] (R1) {R1};
+       \node[router, below right=of R1] (R3) {R3};
+       \node[router, below left=of R1] (R2) {R2};
+       \node[host, left=of R2] (B) {B};
+       \node[host, right=of R3] (C) {C};
+       \node[router, below left=of R3] (R4) {R4};
+       \node[host, left =of R4] (D) {D};    
+       \draw[black] (A) -- (R1);
+       \draw[black] (B) -- (R2);
+       \draw[black] (C) -- (R3);
+       \draw[black] (D) -- (R4);
+       \draw[black] (R1) -- (R3);
+       \draw[black] (R1) -- (R2);
+       \draw[black] (R3) -- (R4);
 
 
 Assume that ``B`` and ``D`` are part of a multicast group. If ``A`` sends a multicast packet towards this group, then ``R1`` will replicate the packet to forward it to ``R2`` and ``R3``. ``R2`` would forward the packet towards ``B``. ``R3`` would forward the packet towards ``R4`` that would deliver it to ``D``.
@@ -504,21 +470,22 @@ The `Destination Unreachable` ICMP error message is returned when a packet canno
 The `Packet Too Big` ICMP messages enable the source host to discover the MTU size that it can safely use to reach a given destination. To understand its operation, consider the (academic) scenario shown in the figure below. In this figure, the labels on each link represent the maximum packet size supported by this link.
 
 
-.. tikz:: A simple network 
-   :libs: positioning, matrix
 
-    \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
-    \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
-    \node[host] (A) {A};
-    \node[router, right of=A] (R1) {R1};
-    \node[router, right=of R1] (R2) {R2};
-    \node[router, below=of R2] (R3) {R3};
-    \node[host, left=of R3] (B) {B};
-
-    \draw[black] (A) -- (R1) node [midway, below] { {\tiny 1500}};
-    \draw[black] (R1) -- (R2) node [midway, below] { {\tiny 1400}};
-    \draw[black] (R3) -- (B) node [midway, below] {  {\tiny 1500}};
-    \draw[black] (R2) -- (R3) node [midway, below] {  {\tiny 1200}};
+    .. tikz::
+       :libs: positioning, matrix, arrows.meta, shapes
+        
+       \tikzstyle{arrow} = [thick,->,>=stealth]
+       \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
+       \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
+       \node[host] (A) {A};
+       \node[router, right=of A] (R1) {R1};
+       \node[router, right=of R1] (R2) {R2};
+       \node[router, below=of R2] (R3) {R3};
+       \node[host, left=of R3] (B) {B};
+       \draw[black] (A) -- (R1) node [midway, below] { {\tiny 1500}};
+       \draw[black] (R1) -- (R2) node [midway, below] { {\tiny 1400}};
+       \draw[black] (R3) -- (B) node [midway, below] {  {\tiny 1500}};
+       \draw[black] (R2) -- (R3) node [midway, below] {  {\tiny 1200}};
     
 
 
@@ -607,20 +574,17 @@ Interactions between IPv6 and the datalink layer
 
 IPv6 hosts and routers frequently interact with the datalink layer service. To understand the main interactions, it is useful to analyze all the packets that are exchanged when a simple network containing a few hosts and routers is built. Let us first start with a LAN containing two hosts [#fMAC]_.
 
-
-
-.. tikz:: A simple IPv6 subnet
-
-
-   \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
-   \tikzset{lan/.style = {ellipse, draw, text centered} }
-   \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
-   \node[host] (A) {A - MAC : 0023:4567:89ab};
-   \node[host, right of=A] (B) {B - MAC : 0034:5678:9abc};
-   \node[lan, below right=of A] (lan) {LAN};
-   
-   \draw[black] (A) -- (lan);
-   \draw[black] (B) -- (lan); 
+  .. tikz::
+     :libs: positioning, matrix, arrows.meta, shapes
+     
+     \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
+     \tikzset{lan/.style = {ellipse, draw, text centered} }
+     \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
+     \node[host] (A) {A - MAC : 0023:4567:89ab};
+     \node[host, right=of A] (B) {B - MAC : 0034:5678:9abc};
+     \node[lan, below right=of A] (lan) {LAN};
+     \draw[black] (A) -- (lan);
+     \draw[black] (B) -- (lan);
 
 
 
@@ -650,20 +614,20 @@ Hosts ``A`` and ``B`` are attached to the same datalink layer network. They can 
 The next step is to connect the LAN to the Internet. For this, a router is attached to the LAN.
 
 
-.. tikz:: A simple IPv6 network with one router
+   .. tikz:: A simple IPv6 network with one router
+      :libs: positioning, matrix, arrows.meta, shapes
 
-
-   \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
-   \tikzset{lan/.style = {ellipse, draw, text centered} }
-   \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
-   \node[host] (A) {A - MAC : 0023:4567:89ab};
-   \node[host, right of=A] (B) {B - MAC : 0034:5678:9abc};
-   \node[router, right of=B] (router) {router - MAC : 0045:6789:abcd};
-   \node[lan, below right=of A] (lan) {LAN};
-   
-   \draw[black] (A) -- (lan);
-   \draw[black] (router) -- (lan);
-   \draw[black] (B) -- (lan); 
+      [align=center,node distance=2.5cm]
+      \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
+      \tikzset{lan/.style = {ellipse, draw, text centered} }
+      \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
+      \node[host] (A) {A - MAC : 0023:4567:89ab};
+      \node[host, right=of A] (B) {B - MAC : 0034:5678:9abc};
+      \node[router, right=of B] (router) {router - MAC : 0045:6789:abcd};
+      \node[lan, below right=of A] (lan) {LAN};
+      \draw[black] (A) -- (lan);
+      \draw[black] (router) -- (lan);
+      \draw[black] (B) -- (lan);
 
 
 Assume that the LAN containing the two hosts and the router is assigned prefix ``2001:db8:1234:5678/64``. A first solution to configure the IPv6 addresses in this network is to assign them manually. A possible assignment is :
@@ -752,22 +716,23 @@ Routers regularly send Router Advertisement messages. These messages are trigger
 
 The last point that needs to be explained about ICMPv6 is the `Redirect` message. This message is used when there is more than one router on a subnet as shown in the figure below.
 
-.. tikz:: A simple IPv6 network with one router
+   .. tikz:: A simple IPv6 network with one router
+      :libs: positioning, matrix, shapes
 
 
-   \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
-   \tikzset{lan/.style = {ellipse, draw, text centered} }
-   \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
-   \node[host] (A) {\begin{tabular}{c} A \\ MAC 0023:4567:89ab \end{tabular}};
-   \node[host, right of=A] (B) {\begin{tabular}{c} B \\ MAC 0034:5678:9abc \end{tabular}};
-   \node[router, right of=B] (router1) {\begin{tabular}{c} router1 \\ MAC : 0045:6789:abcd \end{tabular}};
-   \node[router, right of=router1] (router2) {\begin{tabular}{c} router2 \\ MAC : 0012:3456:7878 \end{tabular}};
-   \node[lan, below right=of A] (lan) {LAN};
+      \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
+      \tikzset{lan/.style = {ellipse, draw, text centered} }
+      \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
+      \node[host] (A) {\begin{tabular}{c} A \\ MAC 0023:4567:89ab \end{tabular}};
+      \node[host, right =of A] (B) {\begin{tabular}{c} B \\ MAC 0034:5678:9abc \end{tabular}};
+      \node[router, right =of B] (router1) {\begin{tabular}{c} router1 \\ MAC : 0045:6789:abcd \end{tabular}};
+      \node[router, right =of router1] (router2) {\begin{tabular}{c} router2 \\ MAC : 0012:3456:7878 \end{tabular}};
+      \node[lan, below right=of A] (lan) {LAN};
    
-   \draw[black] (A) -- (lan);
-   \draw[black] (router1) -- (lan);
-   \draw[black] (router2) -- (lan);
-   \draw[black] (B) -- (lan); 
+      \draw[black] (A) -- (lan);
+      \draw[black] (router1) -- (lan);
+      \draw[black] (router2) -- (lan);
+      \draw[black] (B) -- (lan); 
 
 
 In this network, ``router1`` is the default router for all hosts. The second router, ``router2`` provides connectivity to a specific IPv6 subnet, e.g. ``2001:db8:abcd::/48``. These two routers attached to the same subnet can be used in different ways. First, it is possible to manually configure the routing tables on all hosts to add a route towards ``2001:db8:abcd::/48`` via ``router2``. Unfortunately, forcing such manual configuration boils down all the benefits of using address auto-configuration in IPv6. The second approach is to automatically configure a default route via ``router1`` on all hosts. With such route, when a host needs to send a packet to any address within ``2001:db8:abcd::/48``, it will send it to ``router1``. ``router1`` would consult its routing table and find that the packet needs to be sent again on the subnet to reach ``router2``. This is a waste of time. A better approach would be to enable the hosts to automatically learn the new route. This is possible thanks to the ICMPv6 `Redirect` message. When ``router1`` receives a packet that needs to be forwarded back on the same interface, it replies with a `Redirect` message that indicates that the packet should have been sent via ``router2``. Upon reception of a `Redirect`  message, the host updates it forwarding table to include a new transient entry for the destination reported in the message. A timeout is usually associated with  this transient entry to automatically delete it after some time.
