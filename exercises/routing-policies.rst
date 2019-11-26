@@ -125,9 +125,9 @@ Are all ASes capable of reaching all the other ASes in this simple Internet ?
    (AS2) edge node [sloped, midway, below, color=blue] {\textbf{=}} (AS1);
    
 
- In this internet, some ASes cannot reach all other ASes. Can you fix the problem by adding one shared-cost peering link or one customer-provider peering link
-?
+In this internet, some ASes cannot reach all other ASes. Can you fix the problem by adding one shared-cost peering link or one customer-provider peering link ?
 
+ 
 .. inginious:: q-bgp-dp-1
 
 4. Consider the network below in which a stub domain, `AS456`, is connected to two providers `AS123` and `AS789`. `AS456` advertises its prefix to both its providers. On the other hand, `AS123` advertises ``2001:db8:dead::/48`` while `AS789` advertises ``2001:db8:beef::/48`` and ``2001:db8:dead:cafe::/63``. Via which provider will the packets destined to ``2001:db8:dead:cafe::1`` will be received by `AS456` ?
