@@ -107,7 +107,7 @@ her implementation. From a security viewpoint there is a clear benefit
 since the attacker needs to guess both the 16 bits `Identifier` and the
 16 bits `UDP source port` to inject a fake DNS response. To generate all
 possible DNS responses, the attacker would need to generate almost
-:math:`2^32` different messages, which is excessive in today's networks. 
+:math:`2^{32}` different messages, which is excessive in today's networks. 
 Most DNS implementations use this second approach to prevent these cache
 poisoning attacks.
 
@@ -275,7 +275,7 @@ Current DNS deployments allow resolvers to cache those negative answers
 to reduce the load on the entire DNS :rfc:`2308`. 
 
 The simplest way to allow a DNSSEC server to return signed negative responses
-would be for the serve to return a signed response that contains the
+would be for the server to return a signed response that contains the
 received query and some information indicating the error. 
 The client could then easily check the validity of the negative response.
 Unfortunately, this would force the DNSSEC server to generate signatures
