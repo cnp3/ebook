@@ -106,11 +106,11 @@ Are all ASes capable of reaching all the other ASes in this simple Internet ?
    \tikzset{as/.style={cloud, draw,cloud puffs=10,cloud puff arc=120, aspect=2, minimum height=1em, minimum width=1em} }
    \tikzset{state/.style={circle, draw, minimum height=2cm, minimum width=2cm} }
    \tikzset{pref/.style = {} }
-   \node[as] (AS4) {AS4};
-   \node[as, right of=AS1] (AS3) {AS3};
-   \node[as, below of=AS4] (AS2) {AS2};
-   \node[as, below right of=AS3] (AS5) {AS5};
-
+   \node[as] (AS1) {AS1};
+   \node[as, above of=AS1] (AS2) {AS2};
+   \node[as, above left of=AS2] (AS4) {AS4};
+   \node[as, right of=AS4] (AS5) {AS5};
+   \node[as, right of=AS5] (AS3) {AS3};
    
    % customer provider
    \draw[->, color=red, line width=1.5mm]

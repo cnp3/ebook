@@ -5,8 +5,8 @@ mkdir python
 cd python
 git clone https://github.com/obonaventure/mscgen.git
 pip3 install -e mscgen
-git clone https://github.com/sphinx-contrib/tikz.git
-pip3 install -e tikz
+git clone https://github.com/obonaventure/tikz.git
+pip3 install -U -e tikz
 cd ..
 # on error exit
 set -e
