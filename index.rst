@@ -73,7 +73,7 @@ Part 2: Protocols
    protocols/ipv6
    protocols/routing
    protocols/bgp
-..   protocols/lan
+   protocols/lan
 ..   protocols/quic   
 
 .. _part3:
