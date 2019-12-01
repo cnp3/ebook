@@ -235,7 +235,7 @@ latex_elements = {
 'preamble': '''
 \\usepackage{tikz}
 \\usepackage{pgfplots}
-\pgfplotsset{compat=1.14}
+%\pgfplotsset{compat=1.14}
 \\usetikzlibrary{arrows.meta,positioning, matrix,backgrounds,shapes,shadows,calc}
 '''
 }

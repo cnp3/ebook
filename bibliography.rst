@@ -89,7 +89,7 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
 .. [Garcia1993] Garcia-Lunes-Aceves, J., `Loop-Free Routing Using Diffusing Computations <https://dx.doi.org/10.1109/90.222913>`_, IEEE/ACM Transactions on Networking, Vol. 1, No, 1, Feb. 1993 
 .. [Gast2002] Gast, M., `802.11 Wireless Networks : The Definitive Guide <http://books.google.com/books?id=9rHnRzzMHLIC&pgis=1>`_, O'Reilly, 2002
 .. [Gill2004] Gill, V. , `Lack of Priority Queuing Considered Harmful <http://queue.acm.org/detail.cfm?id=1036502>`_, ACM Queue, December 2004 
-.. .. [Goralski2009] Goralski, W., `The Illustrated network : How TCP/IP works in a modern network <http://books.google.com/books?id=6nDtNA6VJ5YC>`_, Morgan Kaufmann, 2009 
+.. [Goralski2009] Goralski, W., `The Illustrated network : How TCP/IP works in a modern network <http://books.google.com/books?id=6nDtNA6VJ5YC>`_, Morgan Kaufmann, 2009 
 .. [Helme2019] Helme, S., `Top 1 Million Analysis - September 2019 <https://scotthelme.co.uk/top-1-million-analysis-september-2019/>`_, 2019, https://scotthelme.co.uk/top-1-million-analysis-september-2019/
 .. .. [HFPMC2002] Huffaker, B., Fomenkov, M., Plummer, D., Moore, D., Claffy, K., `Distance Metrics in the Internet <http://www.caida.org/outreach/papers/2002/Distance/>`_, Presented at the IEEE International Telecommunications Symposium (ITS) in 2002. 
 .. [HRX2008] Ha, S., Rhee, I., and Xu, L., `CUBIC: a new TCP-friendly high-speed TCP variant <http://doi.acm.org/10.1145/1400097.1400105>`_. SIGOPS Operating Systems Review 42, 5 (Jul. 2008), 64-74. 
@@ -149,7 +149,7 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
 .. .. [NGB+1997] Nielsen, H., Gettys, J., Baird-Smith, A., Prudhommeaux, E., Wium Lie, H., and Lilley, C. `Network performance effects of HTTP/1.1, CSS1, and PNG <http://doi.acm.org/10.1145/263109.263157>`_. SIGCOMM Computer Communication Review 27, 4 (October 1997), 155-166. 
 .. [NSS2010] Nygren E, Sitaraman RK, Sun J., `The Akamai network: a platform for high-performance Internet applications <https://doi.org/10.1145/1842733.1842736>`_. ACM SIGOPS Operating Systems Review. 2010 Aug 17;44(3):2-19.
 .. [Paxson99] Paxson, V. , `End-to-end Internet packet dynamics <http://doi.acm.org/10.1145/263109.263155>`_. SIGCOMM Computer Communication Review 27, 4 (Oct. 1997), 139-152. 
-.. [Perlman1985] Perlman, R., `An algorithm for distributed computation of a spanning tree in an extended LAN <http://doi.acm.org/10.1145/318951.319004>`_. SIGCOMM Computer Communication Review 15, 4 (Sep. 1985), 44-53. 
+.. [Perlman1985] Perlman, R., `An algorithm for distributed computation of a spanning tree in an extended LAN <http://doi.acm.org/10.1145/318951.319004>`_. SIGCOMM Computer Communication Review 15, 4 (September 1985), 44-53. 
 .. [Perlman2000] Perlman, R., `Interconnections : Bridges, routers, switches and internetworking protocols <http://books.google.com/books?id=AIRitf5C-QQC&pgis=1>`_, 2nd edition, Addison Wesley, 2000 
 .. .. [Perlman2004] Perlman, R., `RBridges: Transparent Routing <http://www.ieee-infocom.org/2004/Papers/26_1.PDF>`_, Proceedings IEEE INFOCOM , March 2004. 
 .. [PHG2013] Prado, A., Harris, N., and Y. Gluck, `The BREACH Attack <http://breachattack.com>`_ , 2013, <http://breachattack.com/>.
