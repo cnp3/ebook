@@ -255,7 +255,7 @@ tikz_latex_preamble='''
 \\usepackage{tikz}
 \\usepackage{pgfplots}
 \\usepackage{pgfkeys}
-\pgfplotsset{compat=1.14}
+%\pgfplotsset{compat=1.14}
 \\tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em
 }, }
 \\tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
