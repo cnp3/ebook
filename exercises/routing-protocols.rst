@@ -15,7 +15,7 @@ Exploring OSPF
 We first use IPMininet_ to explore the operation of OSPFv3, the version of OSPF that supports IPv6. We create a simple network with three routers and two hosts as shown in the figure below.
 
      .. tikz:: A simple network
-        :libs: positioning, matrix, arrows, shapes 
+        :libs: shapes, positioning, matrix, arrows, shapes 
 
         \tikzstyle{arrow} = [thick,->,>=stealth]
         \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
@@ -381,7 +381,7 @@ Exploring BGP
 To explore the configuration of BGP, let us consider a network that contains three ASes: ``AS1``,  ``AS2`` and ``AS3``. To simplify the tests, we identify one host inside each of these ASes.
 
      .. tikz:: A simple Internet
-        :libs: positioning, matrix, arrows, shapes 
+        :libs: shapes, positioning, matrix, arrows, shapes 
 
         \tikzstyle{arrow} = [thick,->,>=stealth]
         \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
@@ -1189,10 +1189,95 @@ d. What are the BGP messages that will be exchanged when the link between ``AS3`
    *** Results: 20% dropped (16/20 received)
 
 
-3. Let us now consider another example, also implemented using an IPMininet_ script. The network contains eight ASes with one host per AS. This small Internet is shown below and the script is available from :download:`/exercises/ipmininet_scripts/ebgp-bug-3.py`.
+
+3. Let us now consider another example. The network contains nine ASes with one host per AS. Assuming that ``AS9`` announces prefix `p9` and that ``AS2`` announces prefix `p2`.
+
+     .. tikz:: A simple Internet
+        :libs: shapes, positioning, matrix, arrows, shapes 
+
+        \tikzstyle{arrow} = [thick,->,>=stealth]
+        \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
+        \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
+        \tikzset{ftable/.style={rectangle, dashed, draw} }
+	\tikzset{as/.style={cloud, draw,cloud puffs=10,cloud puff arc=120, aspect=2, minimum height=1em, minimum width=1em} }
+
+	
+        \node[as] (AS2) {AS2};
+        \node[as, right=of AS2] (AS3) {AS3};
+	\node[as, above=of AS3] (AS4) {AS4};
+        \node[as, right=of AS3] (AS6) {AS6};
+	\node[as, right=of AS4] (AS5) {AS5};
+	\node[as, right=of AS5] (AS7) {AS7};
+	\node[as, right=of AS6] (AS8) {AS8};
+	\node[as, right=of AS7] (AS8) {AS8};
+	\node[as, right=of AS8] (AS1) {AS1};
+	\node[as, right=of AS7] (AS9) {AS9};
+
+	% customer provider
+	\draw[->, color=red, line width=1.5mm]
+        (AS2) edge node [pos=0.5, sloped, above, color=red] {\texttt{\$}}(AS3)
+	(AS3) edge node [pos=0.5, sloped, above, color=red] {\texttt{\$}}(AS4)
+	(AS4) edge node [pos=0.5, sloped, above, color=red] {\texttt{\$}}(AS5)
+	(AS5) edge node [pos=0.5, sloped, above, color=red] {\texttt{\$}}(AS6)
+	(AS5) edge node [pos=0.5, sloped, above, color=red] {\texttt{\$}}(AS7)
+	(AS9) edge node [pos=0.5, sloped, above, color=red] {\texttt{\$}}(AS7) 
+	(AS9) edge  node [pos=0.5, sloped, below, color=red] {\texttt{\$}} (AS1);
+	(AS1) edge  node [pos=0.5, sloped, below, color=red] {\texttt{\$}} (AS8);	
+	%shared cost
+	\path[draw, color=blue, line width= 1 mm]
+	(AS3) edge node [sloped, midway, above, color=blue] {\textbf{=}} (AS6)
+	(AS6) edge node [sloped, midway, above, color=blue] {\textbf{=}} (AS8)
+	(AS7) edge node [sloped, midway, above, color=blue] {\textbf{=}} (AS6);
+
+   a. What is the Loc-RIB of ``AS6`` for prefix `p9` ? Indicate which is the best route towards this prefix.
+
+   b. What is the Loc-RIB of ``AS9`` for prefix `p2` ? Indicate which is the best route towards this prefix.
+
+4. The network below contains nine ASes with one host per AS. Assuming that ``AS1`` announces prefix `p1` and that ``AS2`` announces prefix `p2`.
+
+  .. tikz:: A simple Internet
+     :libs: shapes, positioning, matrix, arrows, shapes 
+	          
+     \tikzstyle{arrow} = [thick,->,>=stealth]
+     \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
+     \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
+     \tikzset{ftable/.style={rectangle, dashed, draw} }
+     \tikzset{as/.style={cloud, draw,cloud puffs=10,cloud puff arc=120, aspect=2, minimum height=1em, minimum width=1em} }
+     \tikzset{state/.style={circle, draw, minimum height=2cm, minimum width=2cm} }
+
+     \node[as] (AS2) {AS2};
+     \node[as, right of=AS2] (AS3) {AS3};
+     \node[as, above of=AS3] (AS4) {AS4};
+     \node[as, right of=AS3] (AS6) {AS6}; 
+     \node[as, above of=AS6] (AS5) {AS5};
+     \node[as, right of=AS6] (AS8) {AS8}; 
+     \node[as, right of=AS5] (AS7) {AS7};
+     \node[as, right of=AS8] (AS1) {AS1};
+     % customer provider
+     \draw[->, line width=1.5mm]
+     (AS2) edge node [pos=0.5, sloped, above] {\texttt{\$}} (AS3)
+     (AS3) edge node [pos=0.5, sloped, above] {\texttt{\$}} (AS4)
+     (AS4) edge node [pos=0.5, sloped, above] {\texttt{\$}} (AS5)
+     (AS7) edge node [pos=0.5, sloped, above] {\texttt{\$}} (AS5)
+     (AS5) edge node [pos=0.5, sloped, above] {\texttt{\$}} (AS6)
+     (AS1) edge node [pos=0.5, sloped, above] {\texttt{\$}} (AS8);
+     \path[draw, line width= 1 mm]
+     (AS3) edge node [sloped, midway, above] {\textbf{=}} (AS6)
+     (AS6) edge node [sloped, midway, above] {\textbf{=}} (AS8)
+     (AS8) edge node [sloped, midway, above] {\textbf{=}}  (AS7);
+
+     
+   a. What is the Loc-RIB of ``AS6`` for prefix `p1` ? Indicate which is the best route towards this prefix.
+
+   b. What is the Loc-RIB of ``AS8`` for prefix `p2` ? Indicate which is the best route towards this prefix.
+
+
+
+
+5. Let us now consider another example, also implemented using an IPMininet_ script. The network contains eight ASes with one host per AS. This small Internet is shown below and the script is available from :download:`/exercises/ipmininet_scripts/ebgp-bug-3.py`.
 
     .. tikz:: A simple Internet
-        :libs: positioning, matrix, arrows, shapes 
+        :libs: shapes, positioning, matrix, arrows, shapes 
 
         \tikzstyle{arrow} = [thick,->,>=stealth]
         \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
