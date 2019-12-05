@@ -854,16 +854,13 @@ IPMininet_ also allows to explore the dynamics of BGP by looking at the packets 
 We also add a ``post_build`` method to launch tcpdump_ and capture the BGP packets exchanged by the routers. A BGP session runs over a TCP connection. Let us examine a few of the BGP messages exchanged on the BGP session between ``AS1`` and ``AS2``. The traces collected on the three routers are available from :download:`/exercises/traces/bgp-as1-trace.pcap`, :download:`/exercises/traces/bgp-as2-trace.pcap` and :download:`/exercises/traces/bgp-as2-trace.pcap`. 
 
 The BGP session starts with a TCP three-way handshake.
-
-.. figure:: /exercises/figures/bgp-packet1.png
-
 Once the session has been established, both BGP daemons send an ``OPEN`` message describing their capabilities and the BGP extensions that it supports. The details of these extensions go beyond the scope of this book. However, it is important to note that the ``OPEN`` message contains the ``AS`` number of the router that sends the message and its identifier as a 32 bits IPv4 address. This router identifier uniquely identifies the router. The last mandatory parameter of the ``OPEN`` message is the `Hold Time`, i.e. the maximum delay between two successive messages over this BGP session. A BGP router should send ``KEEPALIVE`` messages every one third of the `Hold Time` to keep the session up. 	    
 
 .. figure:: /exercises/figures/bgp-packet2.png
 
 The ``UPDATE`` message can be used to withdraw and advertise routes. The packet below is sent by ``AS2`` to advertise its route towards `2001:cafe:2::/48` on the BGP session with ``AS1``. 
 	    
-.. figure:: /exercises/figures/bgp-packet3.png
+.. figure:: /exercises/figures/bgp-packet2.png
 
 	    
 Another interesting utilization of IPMininet_ is to explore how routers react to link failures. We start from the same network as with the previous example and disable the link between ``AS2`` and ``AS3``. For this, we log on one of the two routers and issue the following commands.
