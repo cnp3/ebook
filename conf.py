@@ -235,7 +235,7 @@ latex_elements = {
 'preamble': '''
 \\usepackage{tikz}
 \\usepackage{pgfplots}
-\pgfplotsset{compat=1.16}
+%\pgfplotsset{compat=1.16}
 \\usetikzlibrary{arrows.meta,positioning, matrix,backgrounds,shapes,shadows,calc}
 '''
 }
@@ -255,7 +255,7 @@ tikz_latex_preamble='''
 \\usepackage{tikz}
 \\usepackage{pgfplots}
 \\usepackage{pgfkeys}
-\pgfplotsset{compat=1.16}
+%\pgfplotsset{compat=1.16}
 \\tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em
 }, }
 \\tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
