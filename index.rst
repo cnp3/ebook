@@ -102,6 +102,7 @@ Part 3: Practice
    exercises/ipv6
    exercises/routing-policies
    exercises/routing-protocols
+   exercises/lan
    
 ..   exercises/ex-app
 ..   exercises/netkit-app
