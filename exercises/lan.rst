@@ -67,6 +67,11 @@ Exercises
 
      Fig. 3. Host `H0` performs a traceroute towards its peer `H1` through a network composed of switches and routers
 
+     .. spelling::
+
+	versa
+
+     
 6. In the network represented in Fig. 4, can the host `H0` communicate with `H1` and vice-versa? Explain. Add whatever you need in the network to allow them to communicate.
 
   .. figure:: /exercises/figures/ex-stp-routing_across_VLANs.png
