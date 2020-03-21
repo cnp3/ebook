@@ -9,21 +9,26 @@ msgstr ""
 "3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-09 12:39+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2020-03-21 15:50+0000\n"
+"Last-Translator: HA Thi Ngoc Bao <thingocbaoha@gmail.com>\n"
+"Language-Team: Vietnamese <http://weblate.info.ucl.ac.be/projects/cnp3-ebook/"
+"bibliography/vi/>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.9.1\n"
 
 #: ../../bibliography.rst:5
 msgid "Bibliography"
-msgstr ""
+msgstr "Tài liệu tham khảo"
 
 #: ../../bibliography.rst:7
 msgid "Whenever possible, the bibliography includes stable hypertext links to the references cited."
 msgstr ""
+"Ngay khi có thể, mục tài liệu tham khảo sẽ bao gồm các đường dẫn ổn định đến "
+"các tài liệu được trích dẫn."
 
 #: ../../bibliography.rst:9
 msgid "LAN/MAN Standards Committee of the IEEE Computer Society. `IEEE Standard for Information Technology - Telecommunications and information exchange between systems - local and  metropolitan area networks - specific requirements - Part 11 : Wireless LAN Medium Access Control (MAC) and Physical Layer (PHY) Specifications <http://standards.ieee.org/getieee802/802.11.html>`_. IEEE, 1999."
