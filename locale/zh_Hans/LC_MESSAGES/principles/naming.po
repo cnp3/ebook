@@ -9,25 +9,33 @@ msgstr ""
 "3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-09 12:39+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2020-10-16 05:26+0000\n"
+"Last-Translator: Xicheng Li <xicheng.li@ucdconnect.ie>\n"
+"Language-Team: Chinese (Simplified) <http://weblate.info.ucl.ac.be/projects/"
+"cnp3-ebook/principlesnaming/zh_Hans/>\n"
 "Language: zh_Hans\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.9.1\n"
 
 #: ../../principles/naming.rst:7
 msgid "Naming and addressing"
-msgstr ""
+msgstr "命名和寻址"
 
 #: ../../principles/naming.rst:9
 msgid "The network and the transport layers rely on addresses that are encoded as fixed size bit strings. A network layer address uniquely identifies a host. Several transport layer entities can use the service of the same network layer. For example, a reliable transport protocol and a connectionless transport protocol can coexist on the same host. In this case, the network layer multiplexes the segments produced by these two protocols. This multiplexing is usually achieved by placing in the network packet header a field that indicates which transport protocol should process the segment. Given that there are few different transport protocols, this field does not need to be long. The port numbers play a similar role in the transport layer since they enable it to multiplex data from several application processes."
 msgstr ""
+"网络层与传输层依赖于被编码成固定长度的二进制地址。一个网络层地址可以唯一的识别一台主机。多个传输层单元可以使用同一个网络层的服务。例如，一个可靠传输协议和"
+"一个无连接传输协议可以在同一台主机上共存。在这种情况下，网络层复用于这两种协议。为了实现复用，往往通过替换数据包包头的一个特定字段来标记其所使用的传输协议"
+"。鉴于只存在几个不同的传输层协议，这个字段不需要很长。端口号在传输层扮演着同样的角色，它使得多个进程可以同时传输数据。"
 
 #: ../../principles/naming.rst:11
 msgid "While addresses are natural for the network and transport layer entities, humans prefer to use names when interacting with network services. Names can be encoded as a character string and a mapping services allows applications to map a name into the corresponding address. Using names is friendlier for humans, but it also provides a level of indirection which is very useful in many situations."
 msgstr ""
+"尽管网络层和传输层的实体生来就有地址，人们更愿意使用名称来访问网络设施。名称可以被编码成一个字符串，然后通过一个映射服务映射至对应的地址。对于用户来说，使"
+"用名称是更加便利的。名称同时还能作为一层中间件，可以在许多场景下发挥作用。"
 
 #: ../../principles/naming.rst:13
 msgid "In the early days of the Internet, only a few hosts (mainly minicomputers) connected to the network. The most popular applications were :term:`remote login` and file transfer. By 1983, there were already five hundred hosts attached to the Internet [Zakon]_. Each of these hosts were identified by a unique address. Forcing human users to remember the addresses of the hosts that they wanted to use was not user-friendly. Humans prefer to remember names, and use them when needed. Using names as aliases for addresses is a common technique in Computer Science. It simplifies the development of applications and allows the developer to ignore the low level details. For example, by using a programming language instead of writing machine code, a developer can write software without knowing whether the variables that it uses are stored in memory or inside registers."
