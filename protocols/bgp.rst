@@ -298,7 +298,7 @@ If the link between `R2` and `R3` fails, `R3` detects the failure as it did not 
 The BGP decision process
 ........................
 
-Besides the import and export filters, a key difference between BGP and the intradomain routing protocols is that each domain can define is own ranking algorithm to determine which route is chosen to forward packets when several routes have been learned towards the same prefix. This ranking depends on several BGP attributes that can be attached to a BGP route.
+Besides the import and export filters, a key difference between BGP and the intradomain routing protocols is that each domain can define its own ranking algorithm to determine which route is chosen to forward packets when several routes have been learned towards the same prefix. This ranking depends on several BGP attributes that can be attached to a BGP route.
 
 
 .. index:: BGP local-preference
@@ -391,7 +391,7 @@ In the previous sections, we have explained the operation of BGP routers. Compar
 In this internetwork, we focus on the route towards `2001:db8::1234/48` which is advertised by `AS1`. Let us also assume that `AS3` (resp. `AS4`) prefers, e.g. for economic reasons, a route learned from `AS4` (`AS3`) over a route learned from `AS1`. When `AS1` sends `U(2001:db8::1234/48,AS1)` to `AS3` and `AS4`, three sequences of exchanges of BGP messages are possible :
 
  #. `AS3` sends first `U(2001:db8:1234/48,AS3:AS1)` to `AS4`. `AS4` has learned two routes towards `2001:db8:1234/48`. It runs its BGP decision process and selects the route via `AS3` and does not advertise a route to `AS3`
- #. `AS4` first sends `U(2001:db8:1234/48,AS3:AS1)` to `AS3`. `AS3` has learned two routes towards `2001:db8:1234/48`. It runs its BGP decision process and selects the route via `AS4` and does not advertise a route to `AS4`
+ #. `AS4` first sends `U(2001:db8:1234/48,AS4:AS1)` to `AS3`. `AS3` has learned two routes towards `2001:db8:1234/48`. It runs its BGP decision process and selects the route via `AS4` and does not advertise a route to `AS4`
  #. `AS3` sends `U(2001:db8:1234/48,AS3:AS1)` to `AS4` and, at the same time, `AS4` sends `U(2001:db8:1234/48,AS4:AS1)`.  `AS3` prefers the route via `AS4` and thus sends `W(2001:db8:1234/48)` to `AS4`. In the mean time, `AS4` prefers the route via `AS3` and thus sends `W(2001:db8:1234/48)` to `AS3`. Upon reception of the `BGP Withdraws`, `AS3` and `AS4` only know the direct route towards `2001:db8:1234/48`. `AS3` (resp. `AS4`) sends `U(2001:db8:1234/48,AS3:AS1)` (resp. `U(2001:db8:1234/48,AS4:AS1)`) to `AS4` (resp. `AS3`). `AS3` and `AS4` could in theory continue to exchange BGP messages for ever. In practice, one of them sends one message faster than the other and BGP converges. 
 
 The example above has shown that the routes selected by BGP routers may sometimes depend on the ordering of the BGP messages that are exchanged. Other similar scenarios may be found in :rfc:`4264`. 

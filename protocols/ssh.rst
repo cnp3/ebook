@@ -49,11 +49,11 @@ similar protocols [Ylonen1996]_. :term:`ssh` became quickly popular and system
 administrators encouraged its usage. The original version of :term:`ssh`
 was freely available. After a few years, his author created a company
 to distribute it commercially, but other programmers continued to
-develop an open-source version of :term`ssh` called 
+develop an open-source version of :term:`ssh` called 
 `OpenSSH <http://www.openssh.com>`_.
 Over the years, :term:`ssh` evolved
 and became a flexible applicable whose usage extends beyond remote
-login to support features such as file transfers, protocol tunneling, ..
+login to support features such as file transfers, protocol tunneling, ...
 In this section, we only discuss the basic features of :term:`ssh` and explain
 how it differs from :term:`telnet`. Entire books have been written to describe
 :term:`ssh` in details [BS2005]_. An overview of the protocol
@@ -238,7 +238,7 @@ that are encoded according to the Binary Packet Protocol defined in
    the message counter and the cleartext message. 
    The message counter is not transmitted,
    but the recipient can easily recover its value. The ``MAC`` is computed as 
-   :math:`mac = MAC(key, sequence_number || unencrypted_message)` where the
+   :math:`mac = MAC(key, sequence\_number || unencrypted\_message)` where the
    key is the negotiated authentication key.
 
 .. index:: HMAC
@@ -253,7 +253,7 @@ that are encoded according to the Binary Packet Protocol defined in
    It works with any hash function (`H`) and a key (`K`). As an example, let
    us consider HMAC with the SHA-1 hash function. SHA-1 uses 20 bytes
    blocks and the block size will play an important role in the operation
-   of HMAC. We first require the key to as long as the block size. Since this
+   of HMAC. We first require the key to be as long as the block size. Since this
    key is the output of the key generation algorithm, this is one parameter
    of this algorithm. 
 

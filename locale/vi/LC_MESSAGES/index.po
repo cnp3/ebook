@@ -1,0 +1,81 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2019 Olivier Bonaventure
+# This file is distributed under the same license as the Computer networking : Principles, Protocols and Practice package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Computer networking : Principles, Protocols and Practice "
+"3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-10-09 12:39+0000\n"
+"PO-Revision-Date: 2020-01-03 16:35+0000\n"
+"Last-Translator: HA Thi Ngoc Bao <thingocbaoha@gmail.com>\n"
+"Language-Team: Vietnamese <http://weblate.info.ucl.ac.be/projects/cnp3-ebook/"
+"index/vi/>\n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+#: ../../index.rst:7
+msgid "Computer Networking : Principles, Protocols and Practice, third edition"
+msgstr "Mạng máy tính: nguyên lý, phương thức và thực hành, ấn bản thứ ba"
+
+#: ../../index.rst:17
+msgid "This is an unpolished draft of the third edition of this ebook. If you find any error or have suggestions to improve the text, please create an issue via https://github.com/CNP3/ebook/issues/new"
+msgstr ""
+"Đây là một bản dự thảo chưa được chỉnh sửa của ấn bản thứ ba của quyển sách "
+"điện tử này. Nếu bạn tìm thấy bất kỳ lỗi nào hay có các gợi ý để chỉnh sửa "
+"nội dung, xin hãy tạo một vấn đề mới tại https://github.com/CNP3/ebook/"
+"issues/new"
+
+#: ../../index.rst:19
+msgid "The development of this edition of the textbook is carried out on `https://github.com/CNP3/ebook <https://github.com/CNP3/ebook>`_"
+msgstr ""
+"Việc phát triển của ấn bản này được thực hiện trên `https://github.com/CNP3/"
+"ebook <https://github.com/CNP3/ebook>`_"
+
+#: ../../index.rst:21
+msgid "The source code of the entire textbook is written in `reStructuredText <http://docutils.sourceforge.net/rst.html>`_ and uses several `sphinx <http://sphinx.pocoo.org>`_ features. You can browse these sources from `github <https://github.com/CNP3/ebook/tree/master>`_"
+msgstr ""
+"Mã nguồn của toàn bộ cuốn sách được viết trên `reStructuredText "
+"<http://docutils.sourceforge.net/rst.html>`_ và sử dụng nhiều tính năng của `"
+"sphinx <http://sphinx.pocoo.org>`_ . Bạn có thể xem các mã nguồn này từ `"
+"github <https://github.com/CNP3/ebook/tree/master>`_"
+
+#: ../../index.rst:23
+msgid "You can access a demo version of the e-book from `http://beta.computer-networking.info <http://beta.computer-networking.info>`_"
+msgstr ""
+"Bạn có thể truy cập bản demo của cuốn sách điện tử tại địa chỉ `http://beta"
+".computer-networking.info <http://beta.computer-networking.info>`_"
+
+#: ../../index.rst:37
+msgid "Part 1: Principles"
+msgstr "Phần 1: các nguyên lý"
+
+#: ../../index.rst:54
+msgid "Part 2: Protocols"
+msgstr "Phần 2: Các phương thức"
+
+#: ../../index.rst:86
+msgid "Part 3: Practice"
+msgstr "Phần 3: Thực hành"
+
+#: ../../index.rst:149
+msgid "Appendices"
+msgstr "Phụ lục"
+
+#: ../../index.rst:160
+msgid "Indices and tables"
+msgstr "Các mục lục và bảng biểu"
+
+#: ../../index.rst:163
+msgid ":ref:`genindex`"
+msgstr ":ref:`genindex`"
+
+#: ../../index.rst:164
+msgid ":ref:`search`"
+msgstr ":ref:`search`"
