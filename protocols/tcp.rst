@@ -27,7 +27,7 @@ To provide this service, TCP relies on a simple segment format that is shown in 
 
 .. figure:: /pkt/tcp.png
    :align: center
-   :scale: 100
+   :scale: 120
 
    TCP header format
 

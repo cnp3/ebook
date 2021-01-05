@@ -44,7 +44,7 @@ An important point to note about the Physical layer is the service that it provi
 
 .. figure:: /principles/figures/ref-model-phys.png
    :align: center
-   :scale: 80
+   :scale: 100
 
    The Physical layer
 
@@ -75,7 +75,7 @@ The `Datalink layer` allows directly connected hosts to exchange information, bu
 
 .. figure:: /principles/figures/ref-model-net.png
    :align: center
-   :scale: 80 
+   :scale: 100 
 
    The network layer
 
@@ -91,7 +91,7 @@ There are different types of transport layers. The most widely used transport la
 
 .. figure:: /principles/figures/ref-model-transport.png
    :align: center
-   :scale: 80 
+   :scale: 100 
 
    The transport layer
 
@@ -104,7 +104,7 @@ The upper layer of our architecture is the `Application layer`. This layer inclu
 
 .. figure:: /principles/figures/ref-model-app.png
    :align: center
-   :scale: 50 
+   :scale: 100 
 
    The Application layer
 
@@ -153,7 +153,7 @@ Compared to the five layers reference model explained above, the :term:`OSI` ref
 
 .. figure:: /principles/figures/ref-model-osi.png
    :align: center
-   :scale: 80 
+   :scale: 100 
 
    The seven layers of the OSI reference model
 

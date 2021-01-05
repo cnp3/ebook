@@ -45,20 +45,22 @@ XDR also supports 64 bits integers and booleans. The booleans are mapped onto in
 
 .. figure:: /pkt/xdr-integer-64.png
    :align: center
+   :scale: 120	   
 
 In this representation, the first bit (`S`) is the sign (`0` represents positive). The next 11 bits represent the exponent of the number (`E`), in base 2, and the remaining 52 bits are the fractional part of the number (`F`). The floating point number that corresponds to this representation is :math:`(-1)^{S} \times 2^{E-1023} \times 1.F`. XDR also allows to encode complex data types. A first example is the string of bytes. A string of bytes is composed of two parts : a length (encoded as an integer) and a sequence of bytes. For performance reasons, the encoding of a string is aligned to 32 bits boundaries. This implies that some padding bytes may be inserted during the encoding operation is the length of the string is not a multiple of 4. The structure of the string is shown below (source :rfc:`1832`).
 
 
 .. figure:: /pkt/xdr-double.png
    :align: center
-
+   :scale: 120
 
 
 In some situations, it is necessary to encode fixed or variable length arrays. XDR :rfc:`1832` supports such arrays. For example, the encoding below corresponds to a variable length array containing n elements. The encoded representation starts with an integer that contains the number of elements and follows with all elements in sequence. It is also possible to encode a fixed-length array. In this case, the first integer is missing. 
 
 .. figure:: /pkt/xdr-array.png
    :align: center
-
+   :scale: 120
+	   
 
 XDR also supports the definition of unions, structures, ... Additional details are provided in :rfc:`1832`. 
 

@@ -27,7 +27,7 @@ IPv4 addresses are usually represented by using a dotted decimal representation 
 
 .. figure:: /protocols/figures/udp-service.png
    :align: center
-   :scale: 80 
+   :scale: 60 
 
    The connectionless or datagram service 
 
@@ -54,7 +54,7 @@ The second transport service is the connection-oriented service. On the Internet
 
 .. figure:: /protocols/figures/tcp-service.png
    :align: center
-   :scale: 80 
+   :scale: 60 
 
    The connection-oriented or byte-stream service 
 

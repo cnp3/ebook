@@ -102,7 +102,7 @@ IPv6 supports unicast, multicast and anycast addresses. An IPv6 unicast address 
 
 .. figure:: /protocols/figures/ipv6addr-arch.png
    :align: center
-   :scale: 70
+   :scale: 60
    
    Structure of IPv6 unicast addresses
 
@@ -198,7 +198,7 @@ The last type of unicast IPv6 addresses are the `Link Local Unicast` addresses. 
 
 .. figure:: /protocols/figures/ipv6-link-local.png
    :align: center
-   :scale: 70
+   :scale: 50
    
    IPv6 link local address structure
 
@@ -238,7 +238,7 @@ Finally, :rfc:`4291` defines the structure of the IPv6 multicast addresses [#fmu
 
 .. figure:: /protocols/figures/ipv6-multicast-addr.png
    :align: center
-   :scale: 70
+   :scale: 50
    
    IPv6 multicast address structure
 
@@ -255,7 +255,7 @@ The IPv6 packet format was heavily inspired by the packet format proposed for th
 
 .. figure:: /pkt/ipv6.png
    :align: center
-   :scale: 100
+   :scale: 120
 
    The IP version 6 header (:rfc:`2460`)
 
@@ -280,7 +280,8 @@ When a host receives an IPv6 packet, it needs to determine which transport proto
 For example, an IPv6 packet that contains an SCTP segment would appear as shown in the figure below.
 
 .. figure:: /pkt/ipv6-sctp.png
-
+   :scale: 120
+	   
    An IPv6 packet containing an SCTP segment
 
 .. _IPv6Options:
@@ -301,7 +302,8 @@ The last two headers are used to add security above IPv6 and implement IPSec. Th
 The `Hop-by-Hop Options` header was designed to allow IPv6 to be easily extended. In theory, this option could be used to define new fields that were not foreseen when IPv6 was designed. It is intended to be processed by both routers and hosts.  Deploying an extension to a network protocol can be difficult in practice since some nodes already support the extensions while others still use the old version and do not understand the extension. To deal with this issue, the IPv6 designers opted for a Type-Length-Value encoding of these IPv6 options. The `Hop-by-Hop Options` header is encoded as shown below.
 
 .. figure:: /pkt/ipv6-hbh.png
-
+   :scale: 120
+	   
    The IPv6 `Hop-by-Hop Options` header
 
 In this optional header, the `Next Header` field is used to support the chain of headers. It indicates the type of the next header in the chain. IPv6 headers have different lengths. The `Hdr Ext Len` field indicates the total length of the option header in bytes. The `Opt. Type` field indicates the type of option. These types are encoded such that their high order bits specify how the header needs to be handled by nodes that do not recognize it. The following values are defined for the two high order bits :
@@ -351,7 +353,8 @@ Although IPv6 can send 64 KBytes long packets, few datalink layer technologies t
 To solve these problems, IPv6 includes a packet fragmentation and reassembly mechanism. In IPv4, fragmentation was performed by both the hosts and the intermediate routers. However, experience with IPv4 has shown that fragmenting packets in routers was costly [KM1995]_.  For this reason, the developers of IPv6 have decided that routers would not fragment packets anymore. In IPv6, fragmentation is only performed by the source host. If a source has to send a packet which is larger than the MTU of the outgoing interface, the packet needs to be fragmented before being transmitted. In IPv6, each packet fragment is an IPv6 packet that includes the `Fragmentation` header. This header is included by the source in each packet fragment. The receiver uses them to reassemble the received fragments.
 
 .. figure:: /pkt/ipv6-fragment.png
-
+   :scale: 120
+	   
    IPv6 fragmentation header
 
 If a router receives a packet that is too long to be forwarded, the packet is dropped and the router returns an ICMPv6 message to inform the sender of the problem. The sender can then either fragment the packet or perform Path MTU discovery. In IPv6, packet fragmentation is performed only by the source by using IPv6 options.
@@ -447,7 +450,7 @@ ICMPv6 messages are carried inside IPv6 packets (the `Next Header` field for ICM
 
 .. figure:: /pkt/icmpv6.png
    :align: center
-   :scale: 100
+   :scale: 120
   
    ICMP version 6 packet format
 
@@ -605,6 +608,7 @@ Hosts ``A`` and ``B`` are attached to the same datalink layer network. They can 
 
   .. figure:: /pkt/macaddr-eui64.png
      :align: center
+     :scale: 120 	     
 
      A MAC address converted into a 64 bits host identifier
 
@@ -688,7 +692,8 @@ The Stateless Address Autoconfiguration (SLAAC) mechanism defined in :rfc:`4862`
 To automatically configure its global IPv6 address, the host must know the globally routable IPv6 prefix that is used on the local subnet. IPv6 routers regularly multicast ICMPv6 Router Advertisement messages that indicate the IPv6 prefix assigned to the subnet. The Router Advertisement message contains several interesting fields.
 
 .. figure:: /pkt/router-adv.png
-   :align: center
+   :align: center 
+   :scale: 120	     
    
    Format of the ICMPv6 Router Advertisement message
 
@@ -697,7 +702,9 @@ This message is sent from the link-local address of the router on the subnet. It
 Several options can be included in the Router Advertisement message. The simplest one is the MTU option that indicates the MTU to be used within the subnet. Thanks to this option, it is possible to ensure that all devices attached to the same subnet use the same MTU. Otherwise, operational problems could occur. The `Prefix` option is more important. It provides information about the prefix(es) that is (are) advertised by the router on the subnet.
 
 .. figure:: /pkt/router-prefix.png
-
+   :align: center 
+   :scale: 120	     
+	    
    The Prefix information option
 
 .. index:: IPv6 Renumbering

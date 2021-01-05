@@ -232,7 +232,7 @@ The `MAC address learning` algorithm combined with the forwarding algorithm work
 
 .. figure:: /protocols/figures/datalink-fig-014-c.png
    :align: center
-   :scale: 100
+   :scale: 80
    
    Ethernet switches in a loop
 

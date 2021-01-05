@@ -13,9 +13,9 @@ A first way to improve the performance of the web protocols is to tune the serve
 
 
 
-.. figure:: /protocols/figures/www-proxy.png
+.. figure:: /protocols/figures/www-proxy2.png
    :align: center
-   :scale: 60 
+   :scale: 80 
 
    Proxies relay client requests to servers and return the received responses
 

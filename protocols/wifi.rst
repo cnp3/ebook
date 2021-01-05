@@ -37,7 +37,7 @@ The architecture of WiFi networks is slightly different from the Local Area Netw
 
 .. figure:: /protocols/figures/datalink-fig-018-c.png
    :align: center
-   :scale: 70
+   :scale: 60
    
    An 802.11 independent or adhoc network
 
@@ -57,7 +57,7 @@ An 802.11 access point is a relay that operates in the datalink layer like switc
 
 .. figure:: /protocols/figures/wifi-ap.png
    :align: center
-   :scale: 70
+   :scale: 60
    
    An 802.11 access point
 

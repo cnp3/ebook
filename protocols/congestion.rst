@@ -106,7 +106,8 @@ The first difficulty in adding Explicit Congestion Notification (ECN) in TCP/IP 
 The second difficulty is how to allow the receiver to inform the sender of the reception of network packets marked with the `CE` bit. In reliable transport protocols like TCP and SCTP, the acknowledgments can be used to provide this feedback. For TCP, two options were possible : change some bits in the TCP segment header or define a new TCP option to carry this information. The designers of ECN opted for reusing spare bits in the TCP header. More precisely, two TCP flags have been added in the TCP header to support ECN. The `ECN-Echo` (ECE) is set in the acknowledgments when the `CE` was set in packets received on the forward path. 
 
 .. figure:: /pkt/tcp-enc.png
-
+   :scale: 120
+	   
    The TCP flags
 
 

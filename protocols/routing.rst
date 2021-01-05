@@ -41,7 +41,8 @@ RIP routers periodically exchange RIP messages. The format of these messages is 
 
 .. figure:: /pkt/ripng.png
    :align: center
-
+   :scale: 120
+	   
    The RIP message format
 
 
@@ -50,7 +51,7 @@ Each RIP message contains a set of route entries. Each route entry is encoded as
 
 .. figure:: /pkt/rip-route-entry-v6.png
    :align: center
-   :scale: 100
+   :scale: 120
 
    Format of the RIP IPv6 route entries
 

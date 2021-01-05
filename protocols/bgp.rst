@@ -261,7 +261,7 @@ Let us now discuss in more detail the operation of BGP in an IPv6 network. For t
 
 .. figure:: /protocols/figures/bgp-nexthop.png
    :align: center
-   :scale: 70
+   :scale: 100
    
    Utilization of the BGP nexthop attribute
 
@@ -315,7 +315,7 @@ A common utilization of `local-pref` is to support backup links. Consider the si
 
 .. figure:: /protocols/figures/bgp-backup.png
    :align: center
-   :scale: 70
+   :scale: 100
    
    How to create a backup link with BGP ?
 
@@ -342,7 +342,7 @@ Sometimes, the `local-pref` attribute is used to prefer a `cheap` link compared 
 
 .. figure:: /protocols/figures/bgp-prefer.png
    :align: center
-   :scale: 70
+   :scale: 100
    
    How to prefer a cheap link over an more expensive one ? 
 
@@ -367,7 +367,7 @@ With such an import filter, the routers of a domain always prefer to reach desti
 
 .. figure:: /protocols/figures/asymetry.png
    :align: center
-   :scale: 70
+   :scale: 100
    
    Asymmetry of Internet paths
 
@@ -384,7 +384,7 @@ In the previous sections, we have explained the operation of BGP routers. Compar
 
 .. figure:: /protocols/figures/disagree.png
    :align: center
-   :scale: 70
+   :scale: 100
    
    The disagree internetwork 
 
@@ -400,7 +400,7 @@ From an operational perspective, the above configuration is annoying since the n
 
 .. figure:: /protocols/figures/bad-gadget.png
    :align: center
-   :scale: 70
+   :scale: 100
    
    The bad gadget internetwork
 

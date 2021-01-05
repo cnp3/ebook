@@ -32,7 +32,7 @@ UDP uses a single segment format shown in the figure below.
 
 .. figure:: /pkt/udp.png
    :align: center
-   :scale: 100
+   :scale: 120
 
    UDP Header Format
 

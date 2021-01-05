@@ -1206,7 +1206,6 @@ d. What are the BGP messages that will be exchanged when the link between ``AS3`
 	\node[as, right=of AS4] (AS5) {AS5};
 	\node[as, right=of AS5] (AS7) {AS7};
 	\node[as, right=of AS6] (AS8) {AS8};
-	\node[as, right=of AS7] (AS8) {AS8};
 	\node[as, right=of AS8] (AS1) {AS1};
 	\node[as, right=of AS7] (AS9) {AS9};
 

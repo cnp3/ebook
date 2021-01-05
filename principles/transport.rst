@@ -117,7 +117,7 @@ The network layer ensures the delivery of packets on a hop-by-hop basis through 
 
 .. figure:: /principles/figures/transport-layer.png
    :align: center
-   :scale: 80 
+   :scale: 100 
 
    The transport layer
 
@@ -208,7 +208,7 @@ As the transport layer is built on top of the network layer, it is important to 
 
 .. figure:: /principles/figures/transport-model.png
    :align: center
-   :scale: 80 
+   :scale: 60 
 
    The transport layer 
 
@@ -762,7 +762,7 @@ To deal with this issue, transport protocols allow the receiver to advertise the
 
 .. figure:: /principles/figures/transport-dwin.png
    :align: center
-   :scale: 90 
+   :scale: 100 
 
    Dynamic receiving window
 
@@ -770,7 +770,7 @@ The receiver may adjust its advertised receive window based on its current memor
 
 .. figure:: /principles/figures/transport-win-deadlock.png
    :align: center
-   :scale: 70 
+   :scale: 60 
 
    Risk of deadlock with dynamic windows
 
@@ -784,7 +784,7 @@ To conclude our description of the basic mechanisms found in transport protocols
 
 .. figure:: /principles/figures/transport-ambiguities.png
     :align: center
-    :scale: 70 
+    :scale: 60 
 
     Ambiguities caused by excessive delays
 
@@ -805,7 +805,7 @@ The first solution to release a transport connection is to define a new control 
 
 .. figure:: /principles/figures/transport-abrupt.png 
    :align: center
-   :scale: 70 
+   :scale: 60 
 
    Abrupt connection release
 

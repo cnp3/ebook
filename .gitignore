@@ -7,3 +7,5 @@ pkt/*png
 python/*
 # tmp files during builds
 tmp/*
+# venv for python build
+venv/*

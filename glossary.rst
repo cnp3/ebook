@@ -10,7 +10,7 @@ Glossary
 .. glossary::
    :sorted:
 
-   ascii
+   ASCII
 	The American Standard Code for Information Interchange (ASCII) is a character-encoding scheme that defines a binary representation for characters. The ASCII table contains both printable characters and control characters. ASCII characters were encoded in 7 bits and only contained the characters required to write text in English. Other character sets such as Unicode have been developed later to support all written languages.
 
    anycast
@@ -52,9 +52,6 @@ Glossary
    PBL
 	Problem-based learning is a teaching approach that relies on problems.
 
-   DNS
-        The Domain Name System is a distributed database that allows to map names on IP addresses.
-   
    packet
 	a packet is the unit of information transfer in the network layer
 
@@ -190,16 +187,11 @@ Glossary
    SMTP
 	The Simple Mail Transfer Protocol is defined in :rfc:`821`
 
-   POP
-	The Post Office Protocol is defined in :rfc:`1939`
-
-   IMAP
-	The Internet Message Access Protocol is defined in :rfc:`3501`
 
    FTP
 	The File Transfer Protocol is defined in :rfc:`959`
 
-   SSH
+   ssh
 	The Secure Shell (SSH) Transport Layer Protocol is defined in :rfc:`4253`
 
    telnet
@@ -210,7 +202,7 @@ Glossary
 
 
    DNS
-	The Domain Name System is defined in :rfc:`1035`
+        The Domain Name System is a distributed database that allows to map names on IP addresses. It is defined in :rfc:`1035`
 
    RPC
 	Several types of remote procedure calls have been defined. The RPC mechanism defined in :rfc:`5531` is used by applications such as NFS
@@ -269,9 +261,7 @@ Glossary
    ARP
 	The Address Resolution Protocol is a protocol used by IPv4 devices to obtain the datalink layer address that corresponds to an IPv4 address on the local area network. ARP is defined in :rfc:`826`	
  
-   ISO
-	The International Standardization Organization
-	
+ 	
    minicomputer
 	A minicomputer is a multi-user system that was typically used in the 1960s/1970s to serve departments. See the corresponding Wikipedia article for additional information : https://en.wikipedia.org/wiki/Minicomputer
 
@@ -290,7 +280,7 @@ Glossary
    ISO-3166
 	An :term:`ISO` standard that defines codes to represent countries and their subdivisions. See http://www.iso.org/iso/country_codes.htm    
 	
-   vnc
+   VNC
 	A networked application that allows to remotely access a computer's Graphical User Interface. See https://en.wikipedia.org/wiki/Virtual_Network_Computing
 
    ISP

@@ -18,10 +18,12 @@ Computer Networking : Principles, Protocols and Practice, third edition
 
     The development of this edition of the textbook is carried out on `https://github.com/CNP3/ebook <https://github.com/CNP3/ebook>`_ 
 
-    The source code of the entire textbook is written in `reStructuredText <http://docutils.sourceforge.net/rst.html>`_ and uses several `sphinx <http://sphinx.pocoo.org>`_ features. You can browse these sources from `github <https://github.com/CNP3/ebook/tree/master>`_
+    The source code of the entire textbook is written in `reStructuredText <http://docutils.sourceforge.net/rst.html>`_ and uses several `sphinx <http://sphinx.pocoo.org>`_ features. You can browse these sources from `github <https://github.com/CNP3/ebook/tree/master>`_ You can download a pdf version from :download:`tmp/latex/CNP3.pdf`
 
-    You can access a demo version of the e-book from `http://beta.computer-networking.info <http://beta.computer-networking.info>`_ 
+    The online version of the e-book at `http://beta.computer-networking.info <http://beta.computer-networking.info>`_ contains online exercises. 
 
+   
+    
 .. _toc:
 
 .. toctree:: 
@@ -104,7 +106,9 @@ Part 3: Practice
    exercises/routing-protocols
    exercises/lan
    
-..   exercises/ex-app
+
+.. old
+   ..   exercises/ex-app
 ..   exercises/netkit-app
 ..   exercises/netkit-tcp
 ..   exercises/packetdrill

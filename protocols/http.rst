@@ -17,7 +17,7 @@ Many `FTP` clients offered a user interface similar to a Unix shell and allowed 
 
 In the late 1980s, high energy physicists working at CERN_ had to efficiently exchange documents about their ongoing and planned experiments. `Tim Berners-Lee`_ evaluated several of the documents sharing techniques that were available at that time [B1989]_. As none of the existing solutions met CERN's requirements, they chose to develop a completely new document sharing system. This system was initially called the `mesh`. It was quickly renamed the `world wide web`. The starting point for the `world wide web` are hypertext documents. An hypertext document is a document that contains references (hyperlinks) to other documents that the reader can immediately access. Hypertext was not invented for the world wide web. The idea of hypertext documents was proposed in 1945 [Bush1945]_ and the first experiments were done during the 1960s [Nelson1965]_ [Myers1998]_ . Compared to the hypertext documents that were used in the late 1980s, the main innovation introduced by the `world wide web` was to allow hyperlinks to reference documents stored different remote machines.
 
-.. figure:: /protocols/figures/www-basics.png
+.. figure:: /protocols/figures/www-basics2.png
    :align: center
    :scale: 60 
 
@@ -86,7 +86,7 @@ The HTML document shown below is composed of two parts: a header, delineated by 
 
 .. figure:: /protocols/figures/html-page.png
    :align: center
-   :scale: 80 
+   :scale: 70 
 
    A simple HTML page 
 
@@ -104,9 +104,9 @@ The response sent by the server also contains three parts :
  - a `header` , that contains additional information about the response. The response header ends with an empty line.
  - a MIME document 
 
-.. figure:: /protocols/figures/http-requests-responses.png
+.. figure:: /protocols/figures/http-requests-responses2.png
    :align: center
-   :scale: 60 
+   :scale: 80 
 
    HTTP requests and responses
 

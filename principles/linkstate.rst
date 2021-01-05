@@ -25,7 +25,7 @@ When a link-state router boots, it first needs to discover to which routers it i
 
 .. figure:: /principles/figures/ls-hello.png
    :align: center
-   :scale: 100   
+   :scale: 70   
 
    The exchange of HELLO messages
 
@@ -90,7 +90,7 @@ To ensure that all routers receive all LSPs, even when there are transmissions e
 
 .. figure:: /principles/figures/ls-lsdb.png
    :align: center
-   :scale: 100   
+   :scale: 120   
 
    Link state databases received by all routers 
 
@@ -106,7 +106,7 @@ When a link fails, the two routers attached to the link detect the failure by th
 
 .. figure:: /principles/figures/ls-twoway.png
    :align: center
-   :scale: 100   
+   :scale: 120   
 
    The two-way connectivity check
 
@@ -119,7 +119,7 @@ To compute its forwarding table, each router computes the spanning tree rooted a
 
 .. figure:: /principles/figures/ls-computation.png
    :align: center
-   :scale: 100   
+   :scale: 120   
 
    Computation of the forwarding table
 
