@@ -12,19 +12,16 @@ Open questions
 
 1. Consider a `b` bits per second link between two hosts that has a propagation delay of `t` seconds. Derive a formula that computes the time elapsed between the transmission of the first bit of a `d` bytes segment from a sending host and the reception of the last bit of this segment on the receiving host.
 
-
 2. Transmission links have sometimes different upstream and downstream bandwidths. A typical example are access networks that use ADSL (Asymmetric Digital Subscriber Lines). Consider two hosts connected via an ADSL link having an upstream bandwidth of 1 Mbps and a downstream bandwidth of 50 Mbps. The propagation delay between the two hosts is 10 milliseconds. What is the maximum throughput, expressed in frames/second, that the alternating bit protocol can obtain on this link if each data frame has a length of 125 bytes and acknowledgments are 25 bytes long. Same question if the protocol is modified to support 1500 bytes long data frames.
-
 
 3. How would you set the duration of the retransmission timer in the alternating bit protocol ?
 
- 
 4. A version of the Alternating Bit Protocol supporting variable length frames uses a header that contains the following fields :
 
      - a `number` (0 or 1)
-     - a `length` field that indicates the length of the data 
+     - a `length` field that indicates the length of the data
      - a Cyclic Redundancy Check (`CRC`)
- 
+
    To speedup the transmission of the frames, a student proposes to compute the CRC over the data part of the segment but not over the header. What do you think of this proposed solution ?
 
 5. Derive a mathematical expression that provides the `goodput`, i.e. the amount of payload bytes that have been transmitted during a period of time, achieved by the Alternating Bit Protocol assuming that :
@@ -44,8 +41,6 @@ Open questions
 7. Same question when using selective repeat instead of go-back-n. Note that the answer is not necessarily the same.
 
 
-
-
 Practice
 ========
 
@@ -53,11 +48,11 @@ Reliable protocols depend on error detection algorithms to detect transmission e
 
 1. Reliable protocols rely on different types of checksums to verify whether frames have been affected by transmission errors. The most frequently used checksums are :
 
- - the Internet checksum used by UDP, TCP and other Internet protocols which is defined in :rfc:`1071` and implemented in various libraries. 
+ - the Internet checksum used by UDP, TCP and other Internet protocols which is defined in :rfc:`1071` and implemented in various libraries.
  - the 16 bits or the 32 bits Cyclical Redundancy Checks (CRC) that are often used on disks, in zip archives and in datalink layer protocols. See http://rosettacode.org/wiki/CRC-32 for CRC-32 implementations in various languages.
- - the Fletcher checksum [Fletcher1982]_, see https://en.wikipedia.org/wiki/Fletcher%27s_checksum for implementation details
+ - the Fletcher checksum [Fletcher1982]_, see https://en.wikipedia.org/wiki/Fletcher%27s_checksum for implementation details.
 
- By using your knowledge of the Internet checksum, can you find a transmission error that will not be detected by this checksum ?
+ By using your knowledge of the Internet checksum, can you find a transmission error that will not be detected by these checksums?
 
 2. The Cyclic Redundancy Checks (CRCs) are efficient error detection codes that are able to detect :
 
@@ -69,10 +64,8 @@ Reliable protocols depend on error detection algorithms to detect transmission e
 3. Checksums and CRCs should not be confused with secure hash functions such as MD5 defined in :rfc:`1321` or SHA-1 described in :rfc:`4634`. Secure hash functions are used to ensure that files or sometimes packets/segments have not been modified. Secure hash functions aim at detecting malicious changes while checksums and CRCs only detect random transmission errors. Use the `shasum <http://linux.die.net/man/1/shasum>`_ or `md5sum <http://linux.die.net/man/1/md5sum>`_ programs on Linux to perform the same tests as above.
 
 
-
 Discussion questions
 ====================
-
 
 1. Consider two high-end servers connected back-to-back by using a 10 Gbps interface. If the delay between the two servers is one millisecond, what is the throughput that can be achieved by a reliable protocol that is using 10,000 bits frames and a window of
 
@@ -84,7 +77,7 @@ Discussion questions
 
 3. Is it possible for a selective-repeat receiver to inter-operate with a go-back-n sender ? Justify your answer.
 
-.. 4. The go-back-n and selective repeat mechanisms that are described in the book exclusively rely on cumulative acknowledgments. This implies that a receiver always returns to the sender information about the last frame that was received in-sequence. If there are frequent losses, a selective repeat receiver could return several times the same cumulative acknowledgment. Can you think of other types of acknowledgments that could be used by a selective repeat receiver to provide additional information about the out-of-sequence frames that it has received. Design such acknowledgments and explain how the sender should react upon reception of this information. 
+.. 4. The go-back-n and selective repeat mechanisms that are described in the book exclusively rely on cumulative acknowledgments. This implies that a receiver always returns to the sender information about the last frame that was received in-sequence. If there are frequent losses, a selective repeat receiver could return several times the same cumulative acknowledgment. Can you think of other types of acknowledgments that could be used by a selective repeat receiver to provide additional information about the out-of-sequence frames that it has received. Design such acknowledgments and explain how the sender should react upon reception of this information.
 
 4. A go-back-n receiver has sent :math:`2^n` data segments. All the segments have been received correctly and in-order by the receiver, but all the returned acknowledgments have been lost. Show by using a time sequence diagram (e.g. by considering a window of four segments) what happens in this case. Can you fix the problem on the go-back-n sender ?
 
