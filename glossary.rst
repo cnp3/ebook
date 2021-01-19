@@ -3,7 +3,7 @@
 
 
 .. _glossary:
-   
+
 Glossary
 ========
 
@@ -35,7 +35,7 @@ Glossary
 	Wide Area Network
 
    ISO
-	The International Standardization Organization is an agency of the United Nations that is based in Geneva and develop standards on various topics. Within ISO, country representatives vote to approve or reject standards. Most of the work on the development of ISO standards is done in expert working groups. Additional information about ISO may be obtained from https://www.iso.org 
+	The International Standardization Organization is an agency of the United Nations that is based in Geneva and develop standards on various topics. Within ISO, country representatives vote to approve or reject standards. Most of the work on the development of ISO standards is done in expert working groups. Additional information about ISO may be obtained from https://www.iso.org
 
    ITU
 	The International Telecommunication Union is a United Nation's agency whose purpose is to develop standards for the telecommunication industry. It was initially created to standardize the basic telephone system but expanded later towards data networks. The work within ITU is mainly done by network specialists from the telecommunication industry (operators and vendors). See https://www.itu.int for more information
@@ -46,7 +46,7 @@ Glossary
    W3C
 	The world wide web consortium was created to standardize the protocols and mechanisms used in the world wide web. It is thus focused on a subset of the application layer. See https://www.w3.org
 
-   ARPANET	
+   ARPANET
    	The Advanced Research Project Agency (ARPA) Network is a network that was built by network scientists in USA with funding from the ARPA of the US Ministry of Defense. ARPANET is considered as the grandfather of today's Internet.
 
    PBL
@@ -61,17 +61,17 @@ Glossary
    frame
 	a frame is the unit of information transfer in the datalink layer
 
-   SDU (Service Data Unit)	
+   SDU (Service Data Unit)
         a Service Data Unit is the unit information transferred between applications
- 
+
    Internet
 	a public internet, i.e. a network composed of different networks that are running :term:`IPv4` or :term:`IPv6`
 
    internet
-	an internet is an internetwork, i.e. a network composed of different networks. The :term:`Internet`, with a capital `I` corresponds to the global network that we use today, but other internetworks have been used in the path.	
+	an internet is an internetwork, i.e. a network composed of different networks. The :term:`Internet`, with a capital `I` corresponds to the global network that we use today, but other internetworks have been used in the path.
 
    IP
-        Internet Protocol is the generic term for the network layer protocol in the TCP/IP protocol suite. IP version 4 is widely used but IP version 6 is being deployed globally. 
+        Internet Protocol is the generic term for the network layer protocol in the TCP/IP protocol suite. IP version 4 is widely used but IP version 6 is being deployed globally.
 
    IPv4
 	is the version 4 of the Internet Protocol, the connectionless network layer protocol used in most of the Internet today. IPv4 addresses are encoded as a 32 bits field.
@@ -80,17 +80,17 @@ Glossary
 	is the version 6 of the Internet Protocol, the connectionless network layer protocol which is intended to replace IPv4. IP version 6 addresses are encoded as a 128 bits field.
 
    TCP/IP
-        refers to the :term:`TCP` and :term:`IP` protocols	
+        refers to the :term:`TCP` and :term:`IP` protocols
 
    TCP
 	The Transmission Control Protocol is a protocol of the transport layer in the TCP/IP protocol suite that provides a reliable bytestream connection-oriented service on top of IP
 
    UDP
 	User Datagram Protocol is a protocol of the transport layer in the TCP/IP protocol suite that provides an unreliable connectionless service that includes a mechanism to detect corruption
-	
-   OSI	
+
+   OSI
    	Open Systems Interconnection. A set of networking standards developed by :term:`ISO` including the 7 layers OSI reference model.
-	
+
    SNMP
 	The Simple Network Management Protocol is a management protocol defined for TCP/IP networks.
 
@@ -110,13 +110,13 @@ Glossary
         The SYN cookies is a technique used to compute the initial sequence number (ISN)
 
    TCB
-	The Transmission Control Block is the set of variables that are maintained for each established TCP connection by a TCP implementation. 
-  
+	The Transmission Control Block is the set of variables that are maintained for each established TCP connection by a TCP implementation.
+
    API
 	Application Programming Interface
 
    socket
-	A low-level API originally defined on Berkeley Unix to allow programmers to develop clients and servers. 
+	A low-level API originally defined on Berkeley Unix to allow programmers to develop clients and servers.
 
    MSS
 	A TCP option used by a TCP entity in SYN segments to indicate the Maximum Segment Size that it is able to receive.
@@ -125,11 +125,11 @@ Glossary
 	The round-trip-time (RTT) is the delay between the transmission of a segment and the reception of the corresponding acknowledgment in a transport protocol.
 
    CIDR
-	Classless Inter Domain Routing is the current address allocation architecture for IP version 4. It was defined in :rfc:`1518` and :rfc:`4632`. 
+	Classless Inter Domain Routing is the current address allocation architecture for IP version 4. It was defined in :rfc:`1518` and :rfc:`4632`.
 
    IANA
 	The Internet Assigned Numbers Authority (IANA) is responsible for the coordination of the DNS Root, IP addressing, and other Internet protocol resources
-	
+
    RIR
 	Regional Internet Registry. An organization that manages IP addresses and AS numbers on behalf of :term:`IANA`.
 
@@ -138,7 +138,7 @@ Glossary
 
    OSPF
 	Open Shortest Path First. A link-state intradomain routing protocol that  is often used in enterprise and ISP networks. OSPF is defined in and :rfc:`2328`  and :rfc:`5340`
- 
+
    IS-IS
 	Intermediate System- Intermediate System. A link-state intradomain routing that was initially defined for the ISO CLNP protocol but was extended to support IP v4 and IP v6. IS-IS is often used in ISP networks. It is defined in [ISO10589]_
 
@@ -147,7 +147,7 @@ Glossary
 
    EGP
 	Exterior Gateway Protocol. Synonym of interdomain routing protocol
-	
+
    IXP
 	Internet eXchange Point. A location where routers belonging to different domains are attached to the same Local Area Network to establish peering sessions and exchange packets. See http://www.euro-ix.net/ or https://en.wikipedia.org/wiki/List_of_Internet_exchange_points_by_size for a partial list of IXPs.
 
@@ -157,7 +157,7 @@ Glossary
    EIGRP
 	The Enhanced Interior Gateway Routing Protocol (EIGRP) is a proprietary intradomain routing protocol that is often used in enterprise networks. EIGRP uses the DUAL algorithm described in [Garcia1993]_.
 
-   IGRP	
+   IGRP
    	The Interior Gateway Routing Protocol (IGRP) is a proprietary intradomain routing protocol that uses distance vector. IGRP supports multiple metrics for each route but has been replaced by :term:`EIGRP`
 
    NAT
@@ -166,7 +166,7 @@ Glossary
    iBGP
    	An iBGP session is a BGP between two routers belonging to the same Autonomous System. Also called an internal BGP session.
 
-   eBGP	
+   eBGP
 	An eBGP session is a BGP session between two directly connected routers that belong to two different Autonomous Systems. Also called an external BGP session.
 
    router
@@ -176,8 +176,8 @@ Glossary
 	A relay operating in the datalink layer.
 
    hub
-	A relay operating in the physical layer.   
-	
+	A relay operating in the physical layer.
+
    AIMD
 	Additive Increase, Multiplicative Decrease. A rate adaption algorithm used notably by TCP where a host additively increases its transmission rate when the network is not congested and multiplicatively decreases when congested is detected.
 
@@ -200,30 +200,26 @@ Glossary
    X11
 	The XWindow system and the associated protocols are defined in [SG1990]_
 
-
-   DNS
-        The Domain Name System is a distributed database that allows to map names on IP addresses. It is defined in :rfc:`1035`
-
    RPC
 	Several types of remote procedure calls have been defined. The RPC mechanism defined in :rfc:`5531` is used by applications such as NFS
- 
+
    NFS
 	The Network File System is defined in :rfc:`1094`
 
    NTP
 	The Network Time Protocol is defined in :rfc:`1305`
-  
+
    X.25
 	A wide area networking technology using virtual circuits that was deployed by telecommunication operators.
 
    ATM
 	Asynchronous Transfer Mode
 
-   Frame-Relay	     
-        A wide area networking 	technology using virtual circuits that is deployed by telecom operators.	     
-  
+   Frame-Relay
+        A wide area networking 	technology using virtual circuits that is deployed by telecom operators.
+
    DNS
-	The Domain Name System is a distributed database that can be queried by hosts to map names onto IP addresses
+	The Domain Name System is a distributed database that can be queried by hosts to map names onto IP addresses. It is defined in :rfc:`1035`
 
    BNF
 	 A Backus-Naur Form (BNF) is a formal way to describe a language by using syntactic and lexical rules. BNFs are frequently used to define programming languages, but also to define the messages exchanged between networked applications. :rfc:`5234` explains how a BNF must be written to specify an Internet protocol.
@@ -232,11 +228,11 @@ Glossary
 	A Top-level domain name. There are two types of TLDs. The ccTLD are the TLD that correspond to a two letters :term:`ISO-3166` country code. The gTLD are the generic TLDs that are not assigned to a country.
 
    ICANN
-	The Internet Corporation for Assigned Names and Numbers (ICANN) coordinates the allocation of domain names, IP addresses and AS numbers as well protocol parameters. It also coordinates the operation and the evolution of the DNS root name servers. 
+	The Internet Corporation for Assigned Names and Numbers (ICANN) coordinates the allocation of domain names, IP addresses and AS numbers as well protocol parameters. It also coordinates the operation and the evolution of the DNS root name servers.
 
    root nameserver
-   	A name server that is responsible for the root of the domain names hierarchy. There are currently a dozen root nameservers and each DNS resolver See http://www.root-servers.org/ for more information about the operation of these root servers.		  
-	
+   	A name server that is responsible for the root of the domain names hierarchy. There are currently a dozen root nameservers and each DNS resolver See http://www.root-servers.org/ for more information about the operation of these root servers.
+
    resolver
 	A server that implements the DNS protocol and can resolve queries. A resolver usually serves a set of clients (e.g. all hosts in campus or all clients of a given ISP). It sends DNS queries to nameservers everywhere on behalf of its clients and stores the received answers in its cache. A resolver must know the IP addresses of the root nameservers.
 
@@ -246,22 +242,21 @@ Glossary
    MIME
 	The Multipurpose Internet Mail Extensions (MIME) defined in :rfc:`2045` are a set of extensions to the format of email messages that allow to use non-ASCII characters inside mail messages. A MIME message can be composed of several different parts each having a different format.
 
-   POP	
-   	The Post Office Protocol (POP), defined :rfc:`1939`, is an application-level protocol that allows a client to download email messages stored on a server. 
+   POP
+   	The Post Office Protocol (POP), defined :rfc:`1939`, is an application-level protocol that allows a client to download email messages stored on a server.
 
    IMAP
 	The Internet Message Access Protocol (IMAP), defined in :rfc:`3501`, is an application-level protocol that allows a client to access and manipulate the emails stored on a server. With IMAP, the email messages remain on the server and are not downloaded on the client.
-	
+
    HTML
-	The HyperText Markup Language specifies the structure and the syntax of the documents that are exchanged on the world wide web. HTML is maintained by the `HTML working group <https://www.w3.org/html/wg/>`_ of the :term:`W3C` 
-	
+	The HyperText Markup Language specifies the structure and the syntax of the documents that are exchanged on the world wide web. HTML is maintained by the `HTML working group <https://www.w3.org/html/wg/>`_ of the :term:`W3C`
+
    XML
 	The eXtensible Markup Language (XML) is a flexible text format derived from SGML. It was originally designed for the electronic publishing industry but is now used by a wide variety of applications that need to exchange structured data. The XML specifications are maintained by `several working groups <https://www.w3.org/XML/>`_ of the :term:`W3C`
 
    ARP
-	The Address Resolution Protocol is a protocol used by IPv4 devices to obtain the datalink layer address that corresponds to an IPv4 address on the local area network. ARP is defined in :rfc:`826`	
- 
- 	
+	The Address Resolution Protocol is a protocol used by IPv4 devices to obtain the datalink layer address that corresponds to an IPv4 address on the local area network. ARP is defined in :rfc:`826`
+
    minicomputer
 	A minicomputer is a multi-user system that was typically used in the 1960s/1970s to serve departments. See the corresponding Wikipedia article for additional information : https://en.wikipedia.org/wiki/Minicomputer
 
@@ -275,25 +270,25 @@ Glossary
    	A synonym for a regular telephone line, i.e. a line that can be used to dial any telephone number.
 
    leased line
-        A telephone line that is permanently available between two endpoints. 
+        A telephone line that is permanently available between two endpoints.
 
    ISO-3166
-	An :term:`ISO` standard that defines codes to represent countries and their subdivisions. See http://www.iso.org/iso/country_codes.htm    
-	
+	An :term:`ISO` standard that defines codes to represent countries and their subdivisions. See http://www.iso.org/iso/country_codes.htm
+
    VNC
 	A networked application that allows to remotely access a computer's Graphical User Interface. See https://en.wikipedia.org/wiki/Virtual_Network_Computing
 
    ISP
-        An Internet Service Provider, i.e. a network that provides Internet access to its clients. 
-   
+        An Internet Service Provider, i.e. a network that provides Internet access to its clients.
+
    network-byte order
         Internet protocol allow to transport sequences of bytes. These sequences of bytes are sufficient to carry ASCII characters. The network-byte order refers to the Big-Endian encoding for 16 and 32 bits integer. See https://en.wikipedia.org/wiki/Endianness
- 
+
    standard query
-        For DNS servers and resolvers, a standard query is a query for a `A` or a `AAAA` record. Such a query typically returns an IP address. 
+        For DNS servers and resolvers, a standard query is a query for a `A` or a `AAAA` record. Such a query typically returns an IP address.
 
    inverse query
-        For DNS servers and resolvers, an inverse query is a query for the domain name that corresponds to a given IP address. 
+        For DNS servers and resolvers, an inverse query is a query for the domain name that corresponds to a given IP address.
 
    TLS
 	Transport Layer Security, defined in :rfc:`5246` is a cryptographic protocol that is used to provide communication security for Internet applications. This protocol is used on top of the transport service but a detailed description is outside the scope of this book.
@@ -305,17 +300,17 @@ Glossary
        The original file containing the list of all Internet hosts. This file has been deprecated, but Unix variants still maintain a local ``/etc/hosts`` containing mappings between names and IP addresses. See http://man7.org/linux/man-pages/man5/hosts.5.html for a description of the format of this file on Linux.
 
    remote login
-       A service that enables a user to connect to a distant server over the network. Telnet, defined in :rfc:`854` and the BSD rlogin services defined in :rfc:`1282` were popular in the past. They have been deprecated for security reasons and are now replaced by :term:`ssh`. 
-   
+       A service that enables a user to connect to a distant server over the network. Telnet, defined in :rfc:`854` and the BSD rlogin services defined in :rfc:`1282` were popular in the past. They have been deprecated for security reasons and are now replaced by :term:`ssh`.
+
    file transfer
-       A service that enables a user to send or receive a file from a distant server over the network. The File Transfer Protocol :term:`FTP` was a popular service. It has now been replaced by HTTP/HTTPs or more secure protocols such as the `SSH File Transfer Protocol <https://en.wikipedia.org/wiki/SSH_File_Transfer_Protocol>`_. 
+       A service that enables a user to send or receive a file from a distant server over the network. The File Transfer Protocol :term:`FTP` was a popular service. It has now been replaced by HTTP/HTTPs or more secure protocols such as the `SSH File Transfer Protocol <https://en.wikipedia.org/wiki/SSH_File_Transfer_Protocol>`_.
 
    address
       A string of bits that identifies a network interface in the network layer or the datalink layer. Most addresses have a fixed length, e.g. 32 bits for :term:`IPv4`, 128 bits for :term:`IPv6` or 48 bits for :term:`Ethernet` and other related Local Area Networks.
 
    Ethernet
       The most widely used LAN technology.
-      
+
 .. spelling::
 
    Backus
@@ -329,5 +324,5 @@ Glossary
    eXchange
    multi
    login
-	
+
 
