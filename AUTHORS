@@ -1,43 +1,44 @@
 The first edition of CNP3 was written and maintained by `Olivier Bonaventure <http://perso.uclouvain.be/olivier.bonaventure>`_
 
 
-Over the years, students and colleagues contributed to parts of the txt, including 
+Over the years, students and colleagues contributed to parts of the txt, including
 
  - Virginie Van den Schriek contributed to various exercises
  - Laurent Vanbever contributed to various exercises
  - Damien Saucez contributed to various exercises
- - Mickael Hoerdt contributed to various exercises 
+ - Mickael Hoerdt contributed to various exercises
  - Pierre Reinbold designed the icons used to represent routers, switches, ... and provides all the sysadmin support to host the book
  - Nipaul Long converted most of the figures to SVG format
  - Daire O'Doherty helped to improve the writing throughout the book
+ - Quentin De Coninck improved the text and exercises
 
 The first and second versions of the e-book were developed on github. A lot of text for the third edition was part of the two previous editions. Here is the list of contributors to these two first editions:
 
- - Alexis Nootens 
- - Antoine Paris 
- - Benoît Legat 
- - Daire O'Doherty 
- - David Lebrun 
- - Diego Havenstein 
- - Eduardo Grosclaude 
- - Florian Knop 
+ - Alexis Nootens
+ - Antoine Paris
+ - Benoît Legat
+ - Daire O'Doherty
+ - David Lebrun
+ - Diego Havenstein
+ - Eduardo Grosclaude
+ - Florian Knop
  - Mathieu Jadin
  - Juan Antonio Cordero
- - Joris Van Hecke 
- - Léonard Julement 
+ - Joris Van Hecke
+ - Léonard Julement
  - Laurent Lantsogh
  - Laurent Vanbever
- - Marcel Waldvogel 
- - Matthieu Baerts 
- - Melanie Sedda 
+ - Marcel Waldvogel
+ - Matthieu Baerts
+ - Melanie Sedda
  - Mickael Hoerdt
- -  Author: motateko 
- - Nicolas Pettiaux 
+ -  Author: motateko
+ - Nicolas Pettiaux
  - Nipaul Long
- - Olivier Tilmans 
+ - Olivier Tilmans
  - Pablo Gonzalez
- - Raphael Bauduin 
- - Robin Descamps 
+ - Raphael Bauduin
+ - Robin Descamps
  - Hélène Verhaeghe
  - Virginie Vandenschriek
 
