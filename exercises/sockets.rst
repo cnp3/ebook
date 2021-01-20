@@ -361,6 +361,27 @@ Here are some exercises that will help you to learn how to use sockets.
 .. inginious:: sockets-client-application
 
 
+During this course, you will be asked to implement a transport protocol running on Linux devices. To prepare yourself, try to implement the protocol described in the above tasks on your Linux personal machine. If you did these exercises correctly, most of your answers can be used as it (do not forget to include the required header files). In addition to the previously produced code, you will need
+
+ - to wrap the ``create_and_send_message`` in a ``client`` executable that can parse user arguments (the ``getopt(3)`` function might help) and appropriately call the wrapped function;
+ - to combine the two ``recv_and_handle_message`` functions into a single one that can handle the client message and produce the server one;
+ - to wrap this new server function in a ``server`` executable, similarly to what you have done with the ``client`` executable.
+
+As an example, here is what you could have to invoke your programs.
+
+.. code-block:: bash
+
+    # Let put the server on port 10000 (small port numbers are priviledged) and run it as a daemon)
+    $ ./server :: 10000 &
+    # Let us call the client and request an addition result, as an int
+    $ ./client -op + ::1 10000 1 3 5 7 9
+    Result: 25
+    # Request now a multiplication, but returned as a string
+    $ ./client -op * -s ::1 10000 1 3 5 7 9
+    Result: 945
+
+If you want to observe the packets exchanged over the network, use a packet dissector such as `wireshark`_ or `tcpdump`_, listen the loopback interface (``lo``) and filter UDP packets using port 10000 (``udp.port==10000`` in `wireshark`_, ``udp port 10000`` with `tcpdump`_).
+
 .. rubric:: Footnotes
 
 
