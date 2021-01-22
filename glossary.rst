@@ -278,6 +278,7 @@ Glossary
 	An :term:`ISO` standard that defines codes to represent countries and their subdivisions. See http://www.iso.org/iso/country_codes.htm    
 	
    VNC
+   vnc
 	A networked application that allows to remotely access a computer's Graphical User Interface. See https://en.wikipedia.org/wiki/Virtual_Network_Computing
 
    ISP

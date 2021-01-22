@@ -21,6 +21,10 @@ cd pkt
 make
 cd ..
 # sphinx requires that a pdf version is available
+mkdir tmp
+cd tmp
+mkdir latex
+cd ..
 touch tmp/latex/CNP3.pdf
 # Spell checker
 sphinx-build --keep-going -b spelling . /tmp
