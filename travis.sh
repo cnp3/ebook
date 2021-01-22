@@ -20,6 +20,8 @@ set -e
 cd pkt
 make
 cd ..
+# sphinx requires that a pdf version is available
+touch tmp/latex/CNP3.pdf
 # Spell checker
 sphinx-build --keep-going -b spelling . /tmp
 # --keep-going continue the processing after a warning
