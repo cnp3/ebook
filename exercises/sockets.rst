@@ -361,11 +361,13 @@ Here are some exercises that will help you to learn how to use sockets.
 .. inginious:: sockets-client-application
 
 
+.. inginious:: sockets-server-application
+
+
 During this course, you will be asked to implement a transport protocol running on Linux devices. To prepare yourself, try to implement the protocol described in the above tasks on your Linux personal machine. If you did these exercises correctly, most of your answers can be used as it (do not forget to include the required header files). In addition to the previously produced code, you will need
 
  - to wrap the ``create_and_send_message`` in a ``client`` executable that can parse user arguments (the ``getopt(3)`` function might help) and appropriately call the wrapped function;
- - to combine the two ``recv_and_handle_message`` functions into a single one that can handle the client message and produce the server one;
- - to wrap this new server function in a ``server`` executable, similarly to what you have done with the ``client`` executable.
+ - to wrap the ``recv_and_handle_message`` server function in a ``server`` executable, similarly to what you have done with the ``client`` executable.
 
 As an example, here is what you could have to invoke your programs.
 
