@@ -216,11 +216,10 @@ Glossary
 	Asynchronous Transfer Mode
 
    Frame-Relay
-        A wide area networking 	technology using virtual circuits that is deployed by telecom operators.
+        A wide area networking technology using virtual circuits that is deployed by telecom operators.
 
    DNS
-	The Domain Name System is a distributed database that can be queried by hosts to map names onto IP addresses. It is defined in :rfc:`1035`
-
+	      The Domain Name System is a distributed database that can be queried by hosts to map names onto IP addresses. It is defined in :rfc:`1035`
    BNF
 	 A Backus-Naur Form (BNF) is a formal way to describe a language by using syntactic and lexical rules. BNFs are frequently used to define programming languages, but also to define the messages exchanged between networked applications. :rfc:`5234` explains how a BNF must be written to specify an Internet protocol.
 
@@ -276,6 +275,7 @@ Glossary
 	An :term:`ISO` standard that defines codes to represent countries and their subdivisions. See http://www.iso.org/iso/country_codes.htm
 
    VNC
+   vnc
 	A networked application that allows to remotely access a computer's Graphical User Interface. See https://en.wikipedia.org/wiki/Virtual_Network_Computing
 
    ISP

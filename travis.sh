@@ -20,8 +20,15 @@ set -e
 cd pkt
 make
 cd ..
+# sphinx requires that a pdf version is available as file id downloadable
+mkdir tmp
+cd tmp
+mkdir latex
+cd latex
+touch CNP3.pdf
+cd ../..
 # Spell checker
-sphinx-build --keep-going -b spelling . /tmp
+sphinx-build --keep-going -b spelling . tmp
 # --keep-going continue the processing after a warning
-sphinx-build  -WNT --keep-going -b html . /tmp
+sphinx-build  -WNT --keep-going -b html . tmp
 
