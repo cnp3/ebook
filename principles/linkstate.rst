@@ -13,10 +13,10 @@ Link state routing is the second family of routing protocols. While distance vec
 For link-state routing, a network is modeled as a `directed weighted graph`. Each router is a node, and the links between routers are the edges in the graph. A positive weight is associated to each directed edge and routers use the shortest path to reach each destination. In practice, different types of weights can be associated to each directed edge :
 
  - unit weight. If all links have a unit weight, shortest path routing prefers the paths with the least number of intermediate routers.
- - weight proportional to the propagation delay on the link. If all link weights are configured this way, shortest path routing uses the paths with the smallest propagation delay. 
+ - weight proportional to the propagation delay on the link. If all link weights are configured this way, shortest path routing uses the paths with the smallest propagation delay.
  - :math:`weight=\frac{C}{bandwidth}` where `C` is a constant larger than the highest link bandwidth in the network. If all link weights are configured this way, shortest path routing prefers higher bandwidth paths over lower bandwidth paths.
- 
-Usually, the same weight is associated to the two directed edges that correspond to a physical link (i.e. :math:`R1 \rightarrow R2` and :math:`R2 \rightarrow R1`). However, nothing in the link state protocols requires this. For example, if the weight is set in function of the link bandwidth, then an asymmetric ADSL link could have a different weight for the upstream and downstream directions. Other variants are possible. Some networks use optimization algorithms to find the best set of weights to minimize congestion inside the network for a given traffic demand [FRT2002]_. 
+
+Usually, the same weight is associated to the two directed edges that correspond to a physical link (i.e. :math:`R1 \rightarrow R2` and :math:`R2 \rightarrow R1`). However, nothing in the link state protocols requires this. For example, if the weight is set in function of the link bandwidth, then an asymmetric ADSL link could have a different weight for the upstream and downstream directions. Other variants are possible. Some networks use optimization algorithms to find the best set of weights to minimize congestion inside the network for a given traffic demand [FRT2002]_.
 
 
 .. index:: Hello message
@@ -25,7 +25,7 @@ When a link-state router boots, it first needs to discover to which routers it i
 
 .. figure:: /principles/figures/ls-hello.png
    :align: center
-   :scale: 70   
+   :scale: 70
 
    The exchange of HELLO messages
 
@@ -35,7 +35,8 @@ Once a router has discovered its neighbors, it must reliably distribute all its 
  - LSP.Router: identification (address) of the sender of the LSP
  - LSP.age: age or remaining lifetime of the LSP
  - LSP.seq: sequence number of the LSP
- - LSP.Links[]: links advertised in the LSP. Each directed link is represented with the following information:  
+ - LSP.Links[]: links advertised in the LSP. Each directed link is represented with the following information:
+
    - LSP.Links[i].Id: identification of the neighbor
    - LSP.Links[i].cost: cost of the link
 
@@ -43,28 +44,27 @@ These LSPs must be reliably distributed inside the network without using the rou
 
 .. code-block:: python
 
-  # links is the set of all links on the router
-  # Router R's LSP arrival on link l
-  if newer(LSP, LSDB(LSP.Router)) :
-    LSDB.add(LSP)  # implicitly removes older LSP from same router
-    for i in links :
-      if i!=l :
-      	 send(LSP,i)
-  else:
-   # LSP has already been flooded 
+    # links is the set of all links on the router
+    # Router R's LSP arrival on link l
+    if newer(LSP, LSDB(LSP.Router)) :
+        LSDB.add(LSP)  # implicitly removes older LSP from same router
+        for i in links:
+            if i!=l:
+      	       send(LSP,i)
+    # else, LSP has already been flooded
 
 
-In this pseudo-code, `LSDB(r)` returns the most recent `LSP` originating from router `r` that is stored in the `LSDB`. `newer(lsp1,lsp2)` returns true if `lsp1` is more recent than `lsp2`. See the note below for a discussion on how `newer` can be implemented.
+In this pseudo-code, `LSDB(r)` returns the most recent `LSP` originating from router `r` that is stored in the `LSDB`. `newer(lsp1, lsp2)` returns true if `lsp1` is more recent than `lsp2`. See the note below for a discussion on how `newer` can be implemented.
 
 .. note:: Which is the most recent LSP ?
 
- A router that implements flooding must be able to detect whether a received LSP is newer than the stored LSP. This requires a comparison between the sequence number of the received LSP and the sequence number of the LSP stored in the link state database. The ARPANET routing protocol [MRR1979]_ used a 6 bits sequence number and implemented the comparison as follows :rfc:`789` 
+ A router that implements flooding must be able to detect whether a received LSP is newer than the stored LSP. This requires a comparison between the sequence number of the received LSP and the sequence number of the LSP stored in the link state database. The ARPANET routing protocol [MRR1979]_ used a 6 bits sequence number and implemented the comparison as follows :rfc:`789`
 
  .. code-block:: python
 
-   def newer( lsp1, lsp2 ):
-     return ( ( ( lsp1.seq > lsp2.seq) and ( (lsp1.seq-lsp2.seq)<=32) ) or
-     	     ( ( lsp1.seq < lsp2.seq) and ( (lsp2.seq-lsp1.seq)> 32) )    )
+    def newer( lsp1, lsp2 ):
+        return ( ((lsp1.seq > lsp2.seq) and ((lsp1.seq - lsp2.seq) <= 32)) or
+     	       ( (lsp1.seq < lsp2.seq) and ((lsp2.seq - lsp1.seq) > 32)) )
 
  This comparison takes into account the modulo :math:`2^{6}` arithmetic used to increment the sequence numbers. Intuitively, the comparison divides the circle of all sequence numbers into two halves. Usually, the sequence number of the received LSP is equal to the sequence number of the stored LSP incremented by one, but sometimes the sequence numbers of two successive LSPs may differ, e.g. if one router has been disconnected for some time. The comparison above worked well until October 27, 1980. On this day, the ARPANET crashed completely. The crash was complex and involved several routers. At one point, LSP `40` and LSP `44` from one of the routers were stored in the LSDB of some routers in the ARPANET. As LSP `44` was the newest, it should have replaced LSP `40` on all routers. Unfortunately, one of the ARPANET routers suffered from a memory problem and sequence number `40` (`101000` in binary) was replaced by `8` (`001000` in binary) in the buggy router and flooded. Three LSPs were present in the network and `44` was newer than `40` which is newer than `8`, but unfortunately `8` was considered to be newer than `44`... All routers started to exchange these three link state packets forever and the only solution to recover from this problem was to shutdown the entire network :rfc:`789`.
 
@@ -72,16 +72,14 @@ In this pseudo-code, `LSDB(r)` returns the most recent `LSP` originating from ro
 
  To deal with the memory corruption problem, link state packets contain a checksum or CRC. This checksum is computed by the router that generates the LSP. Each router must verify the checksum when it receives or floods an LSP. Furthermore, each router must periodically verify the checksums of the LSPs stored in its LSDB. This enables them to cope with memory errors that could corrupt the LSDB as the one that occurred in the ARPANET.
 
-Flooding is illustrated in the figure below. By exchanging HELLO messages, each router learns its direct neighbors. For example, router `E` learns that it is directly connected to routers `D`, `B` and `C`. Its first LSP has sequence number `0` and contains the directed links `E->D`, `E->B` and `E->C`. Router `E` sends its LSP on all its links and routers `D`, `B` and `C` insert the LSP in their LSDB and forward it over their other links. 
+Flooding is illustrated in the figure below. By exchanging HELLO messages, each router learns its direct neighbors. For example, router `E` learns that it is directly connected to routers `D`, `B` and `C`. Its first LSP has sequence number `0` and contains the directed links `E->D`, `E->B` and `E->C`. Router `E` sends its LSP on all its links and routers `D`, `B` and `C` insert the LSP in their LSDB and forward it over their other links.
 
-
-.. inginious:: q-net-ls
 
 .. figure:: /principles/figures/ls-flooding.png
    :align: center
-   :scale: 100   
+   :scale: 100
 
-   Flooding : example 
+   Flooding : example
 
 
 Flooding allows LSPs to be distributed to all routers inside the network without relying on routing tables. In the example above, the LSP sent by router `E` is likely to be sent twice on some links in the network. For example, routers `B` and `C` receive `E`'s LSP at almost the same time and forward it over the `B-C` link. To avoid sending the same LSP twice on each link, a possible solution is to slightly change the pseudo-code above so that a router waits for some random time before forwarding a LSP on each link. The drawback of this solution is that the delay to flood an LSP to all routers in the network increases. In practice, routers immediately flood the LSPs that contain new information (e.g. addition or removal of a link) and delay the flooding of refresh LSPs (i.e. LSPs that contain exactly the same information as the previous LSP originating from this router) [FFEB2005]_.
@@ -90,9 +88,9 @@ To ensure that all routers receive all LSPs, even when there are transmissions e
 
 .. figure:: /principles/figures/ls-lsdb.png
    :align: center
-   :scale: 120   
+   :scale: 120
 
-   Link state databases received by all routers 
+   Link state databases received by all routers
 
 
 .. note:: Static or dynamic link metrics ?
@@ -106,12 +104,12 @@ When a link fails, the two routers attached to the link detect the failure by th
 
 .. figure:: /principles/figures/ls-twoway.png
    :align: center
-   :scale: 120   
+   :scale: 120
 
    The two-way connectivity check
 
 
-When a link is reported in the LSP of only one of the attached routers, routers consider the link as having failed and they remove it from the directed graph that they compute from their LSDB. This is called the `two-way connectivity check`. This check allows link failures to be flooded quickly as a single LSP is sufficient to announce such bad news. However, when a link comes up, it can only be used once the two attached routers have sent their LSPs. The `two-way connectivity check` also allows for dealing with router failures. When a router fails, all its links fail by definition. These failures are reported in the LSPs sent by the neighbors of the failed router. The failed router does not, of course, send a new LSP to announce its failure. However, in the graph that represents the network, this failed router appears as a node that only has outgoing edges. Thanks to the `two-way connectivity check`, this failed router cannot be considered as a transit router to reach any destination since no outgoing edge is attached to it. 
+When a link is reported in the LSP of only one of the attached routers, routers consider the link as having failed and they remove it from the directed graph that they compute from their LSDB. This is called the `two-way connectivity check`. This check allows link failures to be flooded quickly as a single LSP is sufficient to announce such bad news. However, when a link comes up, it can only be used once the two attached routers have sent their LSPs. The `two-way connectivity check` also allows for dealing with router failures. When a router fails, all its links fail by definition. These failures are reported in the LSPs sent by the neighbors of the failed router. The failed router does not, of course, send a new LSP to announce its failure. However, in the graph that represents the network, this failed router appears as a node that only has outgoing edges. Thanks to the `two-way connectivity check`, this failed router cannot be considered as a transit router to reach any destination since no outgoing edge is attached to it.
 
 When a router has failed, its LSP must be removed from the LSDB of all routers [#foverload]_. This can be done by using the `age` field that is included in each LSP. The `age` field is used to bound the maximum lifetime of a link state packet in the network. When a router generates a LSP, it sets its lifetime (usually measured in seconds) in the `age` field. All routers regularly decrement the `age` of the LSPs in their LSDB and a LSP is discarded once its `age` reaches `0`. Thanks to the `age` field, the LSP from a failed router does not remain in the LSDBs forever.
 
@@ -119,9 +117,12 @@ To compute its forwarding table, each router computes the spanning tree rooted a
 
 .. figure:: /principles/figures/ls-computation.png
    :align: center
-   :scale: 120   
+   :scale: 120
 
    Computation of the forwarding table
+
+
+.. inginious:: q-net-ls
 
 
 .. rubric:: Footnotes
