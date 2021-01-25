@@ -250,6 +250,8 @@ For example, consider again the network topology above. `A` sends a control pack
 
 With the received `record route`, `B` can send a `data packet` to `A`. For this, it simply reverses the chosen `record route`. However, we still need to communicate the chosen path to `A`. This can be done by putting the `record route` inside a control packet which is sent back to `A` over the reverse path. An alternative is to simply send a `data packet` back to `A`. This packet will travel back to `A`. To allow `A` to inspect the entire path followed by the `data packet`, its `source route` must contain all intermediate routers when it is received by `A`. This can be achieved by encoding the `source route` using a data structure that contains an index and the ordered list of node addresses. The index always points to the next address in the `source route`. It is initialized at `0` when a packet is created and incremented by each intermediate node.
 
+The third technique to compute forwarding tables is to rely on a control plane using a distributed algorithm. Routers exchange control messages to discover the network topology and build their forwarding table based on them. We dedicate a more detailed description of such distributed algorithms later in this section.
+
 
 Flat or hierarchical addresses
 ------------------------------
