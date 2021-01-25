@@ -16,23 +16,23 @@ Computer Networking : Principles, Protocols and Practice, third edition
 
    This is an unpolished draft of the third edition of this ebook. If you find any error or have suggestions to improve the text, please create an issue via https://github.com/CNP3/ebook/issues/new
 
-    The development of this edition of the textbook is carried out on `https://github.com/CNP3/ebook <https://github.com/CNP3/ebook>`_ 
+   The development of this edition of the textbook is carried out on `https://github.com/CNP3/ebook <https://github.com/CNP3/ebook>`_
 
-    The source code of the entire textbook is written in `reStructuredText <http://docutils.sourceforge.net/rst.html>`_ and uses several `sphinx <http://sphinx.pocoo.org>`_ features. You can browse these sources from `github <https://github.com/CNP3/ebook/tree/master>`_ You can download a pdf version from :download:`tmp/latex/CNP3.pdf`
+   The source code of the entire textbook is written in `reStructuredText <http://docutils.sourceforge.net/rst.html>`_ and uses several `sphinx <https://www.sphinx-doc.org>`_ features. You can browse these sources from `github <https://github.com/CNP3/ebook/tree/master>`_ You can download a pdf version from :download:`tmp/latex/CNP3.pdf`
 
-    The online version of the e-book at `http://beta.computer-networking.info <http://beta.computer-networking.info>`_ contains online exercises. 
+   The online version of the e-book at `http://beta.computer-networking.info <http://beta.computer-networking.info>`_ contains online exercises.
 
-   
-    
+
+
 .. _toc:
 
-.. toctree:: 
+.. toctree::
    :maxdepth: 2
 
 ..   preface
 
 
-   
+
 .. _part1:
 
 ##################
@@ -44,7 +44,7 @@ Part 1: Principles
 
    principles/reliability
    principles/network
-   principles/transport   
+   principles/transport
    principles/naming
    principles/sharing
    principles/referencemodels
@@ -76,7 +76,7 @@ Part 2: Protocols
    protocols/routing
    protocols/bgp
    protocols/lan
-..   protocols/quic   
+..   protocols/quic
 
 .. _part3:
 
@@ -87,12 +87,12 @@ Part 3: Practice
 .. toctree::
    :maxdepth: 4
 
-   exercises/intro           
+   exercises/intro
    exercises/reliability
    exercises/sockets
    exercises/network
    exercises/transport
-   
+
    exercises/ex-sharing
    exercises/dns
    exercises/email
@@ -105,7 +105,7 @@ Part 3: Practice
    exercises/routing-policies
    exercises/routing-protocols
    exercises/lan
-   
+
 
 .. old
    ..   exercises/ex-app
@@ -119,13 +119,13 @@ Part 3: Practice
 ..   exercises/ex-bgp
 ..   exercises/ex-stp
 
-..   exercises/intro           
+..   exercises/intro
 ..   mcq-ex/mcq-reliability
 ..   exercises/reliable
-..   mcq-ex/mcq-network-ftable	
+..   mcq-ex/mcq-network-ftable
 ..   mcq-ex/mcq-network-vc
-..   mcq-ex/mcq-network-pftables	
-..   mcq-ex/mcq-network-shortest	
+..   mcq-ex/mcq-network-pftables
+..   mcq-ex/mcq-network-shortest
 ..   mcq-ex/mcq-network
 ..   exercises/network
 ..   mcq-ex/mcq-transport
@@ -152,7 +152,7 @@ Part 3: Practice
 
 ..   transport/exercises/ex-transport
 ..   transport/exercises/cha-transport
-   
+
 ..   network/network
 
 ..  lan/lan
