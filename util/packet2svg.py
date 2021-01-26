@@ -19,7 +19,7 @@ from xml.sax.saxutils import escape
 #</svg>
 # See http://www.w3.org/TR/SVG/text.html#WhiteSpace
 
-print sys.argv
+print(sys.argv)
 for fileName in (sys.argv[1:]) :
 #    print "Processing ", fileName
     file=open(fileName)
