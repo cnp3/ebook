@@ -79,7 +79,7 @@ Discussion questions
 
 .. 4. The go-back-n and selective repeat mechanisms that are described in the book exclusively rely on cumulative acknowledgments. This implies that a receiver always returns to the sender information about the last frame that was received in-sequence. If there are frequent losses, a selective repeat receiver could return several times the same cumulative acknowledgment. Can you think of other types of acknowledgments that could be used by a selective repeat receiver to provide additional information about the out-of-sequence frames that it has received. Design such acknowledgments and explain how the sender should react upon reception of this information.
 
-4. A go-back-n receiver has sent :math:`2^n` data segments. All the segments have been received correctly and in-order by the receiver, but all the returned acknowledgments have been lost. Show by using a time sequence diagram (e.g. by considering a window of four segments) what happens in this case. Can you fix the problem on the go-back-n sender ?
+4. A go-back-n sender has sent :math:`2^n` data segments. All the segments have been received correctly and in-order by the receiver, but all the returned acknowledgments have been lost. Show by using a time sequence diagram (e.g. by considering a window of four segments) what happens in this case. Can you fix the problem on the go-back-n sender ?
 
 5. Same question as above, but assume now that both the sender and the receiver implement selective repeat. Note that the answer can be different from the above question.
 
