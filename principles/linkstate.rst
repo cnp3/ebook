@@ -23,9 +23,30 @@ Usually, the same weight is associated to the two directed edges that correspond
 
 When a link-state router boots, it first needs to discover to which routers it is directly connected. For this, each router sends a HELLO message every `N` seconds on all its interfaces. This message contains the router's address. Each router has a unique address. As its neighboring routers also send HELLO messages, the router automatically discovers to which neighbors it is connected. These HELLO messages are only sent to neighbors that are directly connected to a router, and a router never forwards the HELLO messages that it receives. HELLO messages are also used to detect link and router failures. A link is considered to have failed if no HELLO message has been received from a neighboring router for a period of :math:`k \times N` seconds.
 
-.. figure:: /principles/figures/ls-hello.png
-   :align: center
-   :scale: 70
+    .. tikz::
+        :libs: positioning, matrix, arrows, shapes
+
+        \tikzstyle{arrow} = [thick,->,>=stealth]
+        \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em, minimum width=2em, font=\large, node distance=7em}}
+        \node[router] (A) {A};
+        \node[router, right=of A] (B) { B };
+        \node[router, below=of B] (C) {C};
+
+        \path[draw,thick]
+        (A) edge (B)
+        (B) edge (C);
+
+        \draw[orange, arrow] ([yshift=1em, xshift=1em] A.east) -- ([yshift=1em, xshift=-1em] B.west) node [midway] (msg1) {};
+        \draw ([yshift=1em]msg1) -- ([yshift=1em]msg1) node [rectangle, draw, font=\tiny] {A: HELLO};
+
+        \draw[orange, arrow] ([yshift=-1em, xshift=-1em] B.west) -- ([yshift=-1em, xshift=1em] A.east) node [midway] (msg2) {};
+        \draw ([yshift=-1em]msg2) -- ([yshift=-1em]msg2) node [rectangle, draw, font=\tiny] {B: HELLO};
+
+        \draw[orange, arrow] ([xshift=-1em, yshift=-1em] B.south) -- ([xshift=-1em, , yshift=1em] C.north) node [midway] (msg3) {};
+        \draw ([xshift=-1em]msg3) -- ([xshift=-1em]msg3) node [rotate=-90,rectangle, draw, font=\tiny] {B: HELLO};
+
+        \draw[orange, arrow] ([xshift=1em, , yshift=1em] C.north) -- ([xshift=1em, yshift=-1em] B.south) node [midway] (msg3) {};
+        \draw ([xshift=1em]msg3) -- ([xshift=1em]msg3) node [rotate=90,rectangle, draw, font=\tiny] {C: HELLO};
 
    The exchange of HELLO messages
 
@@ -75,9 +96,64 @@ In this pseudo-code, `LSDB(r)` returns the most recent `LSP` originating from ro
 Flooding is illustrated in the figure below. By exchanging HELLO messages, each router learns its direct neighbors. For example, router `E` learns that it is directly connected to routers `D`, `B` and `C`. Its first LSP has sequence number `0` and contains the directed links `E->D`, `E->B` and `E->C`. Router `E` sends its LSP on all its links and routers `D`, `B` and `C` insert the LSP in their LSDB and forward it over their other links.
 
 
-.. figure:: /principles/figures/ls-flooding.png
-   :align: center
-   :scale: 100
+    .. tikz::
+       :libs: positioning, matrix, arrows
+
+       \tikzstyle{arrow} = [thick,->,>=stealth]
+       \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em, minimum width=2em, font=\large, node distance=8em}}
+       \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
+       \tikzset{rtable/.style={rectangle, dashed, draw, font=\small, node distance=3em} }
+       \node[router] (A) {A};
+       \node[rtable, above left=of A] (RTA) { \begin{tabular}{l}
+       Links \\
+       \hline
+       A $\rightarrow$ B: 1 \\
+       A $\rightarrow$ D: 1 \\
+       \end{tabular}};
+       \node[router, right=of A] (B) { B };
+       \node[rtable, above=of B] (RTB) { \begin{tabular}{l}
+       Links \\
+       \hline
+       B $\rightarrow$ A: 1 \\
+       B $\rightarrow$ C: 1 \\
+       B $\rightarrow$ E: 1 \\
+       \end{tabular}};
+       \node[router,right=of B] (C) {C};
+       \node[rtable, above right=of C] (RTC) { \begin{tabular}{l}
+       Links \\
+       \hline
+       C $\rightarrow$ B: 1 \\
+       C $\rightarrow$ E: 1 \\
+       \end{tabular}};
+       \node[router,below=of A] (D) {D};
+       \node[rtable, left=of D] (RTD) { \begin{tabular}{l}
+       Links \\
+       \hline
+       D $\rightarrow$ A: 1 \\
+       D $\rightarrow$ E: 1 \\
+       \end{tabular}};
+       \node[router, right=of D] (E) {E};
+       \node[rtable, right=of E] (RTE) { \begin{tabular}{l}
+       Links \\
+       \hline
+       E $\rightarrow$ B: 1 \\
+       E $\rightarrow$ C: 1 \\
+       E $\rightarrow$ D: 1 \\
+       \end{tabular}};
+
+       \path[draw,thick]
+       (A) edge (B)
+       (A) edge (D)
+       (B) edge (C)
+       (B) edge (E)
+       (C) edge (E)
+       (D) edge (E);
+
+       \draw[dashed] (RTA) -- (A);
+       \draw[dashed] (RTB) -- (B);
+       \draw[dashed] (RTC) -- (C);
+       \draw[dashed] (RTD) -- (D);
+       \draw[dashed] (RTE) -- (E);
 
    Flooding : example
 
@@ -86,9 +162,82 @@ Flooding allows LSPs to be distributed to all routers inside the network without
 
 To ensure that all routers receive all LSPs, even when there are transmissions errors, link state routing protocols use `reliable flooding`. With `reliable flooding`, routers use acknowledgments and if necessary retransmissions to ensure that all link state packets are successfully transferred to each neighboring router. Thanks to reliable flooding, all routers store in their LSDB the most recent LSP sent by each router in the network. By combining the received LSPs with its own LSP, each router can build a graph that represents the entire network topology.
 
-.. figure:: /principles/figures/ls-lsdb.png
-   :align: center
-   :scale: 120
+    .. tikz::
+       :libs: positioning, matrix, arrows
+
+       \tikzstyle{arrow} = [thick,->,>=stealth]
+       \tikzset{router/.style = {rectangle, draw, text centered, thick, minimum height=2em, minimum width=2em, font=\large, node distance=8em}}
+       \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
+       \tikzset{rtable/.style={rectangle, dashed, draw, font=\small, node distance=4em} }
+       \node[router] (A) {A};
+       \node[rtable, above left=of A] (RTA) { \begin{tabular}{l|l}
+       Links & LSPs \\
+       \hline
+       A $\rightarrow$ B, B $\rightarrow$ A: 1 & A-0 [B:1];[D:1] \\
+       A $\rightarrow$ D, D $\rightarrow$ A: 1 & B-0 [A:1];[C:1];[E:1] \\
+       B $\rightarrow$ C, C $\rightarrow$ B: 1 & C-0 [B:1];[E:1] \\
+       B $\rightarrow$ E, E $\rightarrow$ B: 1 & D-0 [A:1];[E:1] \\
+       C $\rightarrow$ E, E $\rightarrow$ C: 1 & E-0 [B:1];[C:1];[D:1] \\
+       D $\rightarrow$ E, E $\rightarrow$ D: 1 & \\
+       \end{tabular}};
+       \node[router, right=of A] (B) { B };
+       \node[rtable, above=of B] (RTB) { \begin{tabular}{l|l}
+       Links & LSPs \\
+       \hline
+       A $\rightarrow$ B, B $\rightarrow$ A: 1 & A-0 [B:1];[D:1] \\
+       A $\rightarrow$ D, D $\rightarrow$ A: 1 & B-0 [A:1];[C:1];[E:1] \\
+       B $\rightarrow$ C, C $\rightarrow$ B: 1 & C-0 [B:1];[E:1] \\
+       B $\rightarrow$ E, E $\rightarrow$ B: 1 & D-0 [A:1];[E:1] \\
+       C $\rightarrow$ E, E $\rightarrow$ C: 1 & E-0 [B:1];[C:1];[D:1] \\
+       D $\rightarrow$ E, E $\rightarrow$ D: 1 & \\
+       \end{tabular}};
+       \node[router,right=of B] (C) {C};
+       \node[rtable, above right=of C] (RTC) {\begin{tabular}{l|l}
+       Links & LSPs \\
+       \hline
+       A $\rightarrow$ B, B $\rightarrow$ A: 1 & A-0 [B:1];[D:1] \\
+       A $\rightarrow$ D, D $\rightarrow$ A: 1 & B-0 [A:1];[C:1];[E:1] \\
+       B $\rightarrow$ C, C $\rightarrow$ B: 1 & C-0 [B:1];[E:1] \\
+       B $\rightarrow$ E, E $\rightarrow$ B: 1 & D-0 [A:1];[E:1] \\
+       C $\rightarrow$ E, E $\rightarrow$ C: 1 & E-0 [B:1];[C:1];[D:1] \\
+       D $\rightarrow$ E, E $\rightarrow$ D: 1 & \\
+       \end{tabular}};
+       \node[router,below=of A] (D) {D};
+       \node[rtable, left=of D] (RTD) { \begin{tabular}{l|l}
+       Links & LSPs \\
+       \hline
+       A $\rightarrow$ B, B $\rightarrow$ A: 1 & A-0 [B:1];[D:1] \\
+       A $\rightarrow$ D, D $\rightarrow$ A: 1 & B-0 [A:1];[C:1];[E:1] \\
+       B $\rightarrow$ C, C $\rightarrow$ B: 1 & C-0 [B:1];[E:1] \\
+       B $\rightarrow$ E, E $\rightarrow$ B: 1 & D-0 [A:1];[E:1] \\
+       C $\rightarrow$ E, E $\rightarrow$ C: 1 & E-0 [B:1];[C:1];[D:1] \\
+       D $\rightarrow$ E, E $\rightarrow$ D: 1 & \\
+       \end{tabular}};
+       \node[router, right=of D] (E) {E};
+       \node[rtable, right=of E] (RTE) { \begin{tabular}{l|l}
+       Links & LSPs \\
+       \hline
+       A $\rightarrow$ B, B $\rightarrow$ A: 1 & A-0 [B:1];[D:1] \\
+       A $\rightarrow$ D, D $\rightarrow$ A: 1 & B-0 [A:1];[C:1];[E:1] \\
+       B $\rightarrow$ C, C $\rightarrow$ B: 1 & C-0 [B:1];[E:1] \\
+       B $\rightarrow$ E, E $\rightarrow$ B: 1 & D-0 [A:1];[E:1] \\
+       C $\rightarrow$ E, E $\rightarrow$ C: 1 & E-0 [B:1];[C:1];[D:1] \\
+       D $\rightarrow$ E, E $\rightarrow$ D: 1 & \\
+       \end{tabular}};
+
+       \path[draw,thick]
+       (A) edge (B)
+       (A) edge (D)
+       (B) edge (C)
+       (B) edge (E)
+       (C) edge (E)
+       (D) edge (E);
+
+       \draw[dashed] (RTA) -- (A);
+       \draw[dashed] (RTB) -- (B);
+       \draw[dashed] (RTC) -- (C);
+       \draw[dashed] (RTD) -- (D);
+       \draw[dashed] (RTE) -- (E);
 
    Link state databases received by all routers
 
@@ -102,9 +251,90 @@ To ensure that all routers receive all LSPs, even when there are transmissions e
 When a link fails, the two routers attached to the link detect the failure by the absence of HELLO messages received during the last :math:`k \times N` seconds. Once a router has detected the failure of one of its local links, it generates and floods a new LSP that no longer contains the failed link. This new LSP replaces the previous LSP in the network. In practice, the two routers attached to a link do not detect this failure exactly at the same time. During this period, some links may be announced in only one direction. This is illustrated in the figure below. Router `E` has detected the failure of link `E-B` and flooded a new LSP, but router `B` has not yet detected this failure.
 
 
-.. figure:: /principles/figures/ls-twoway.png
-   :align: center
-   :scale: 120
+    .. tikz::
+       :libs: positioning, matrix, arrows
+
+       \tikzstyle{arrow} = [thick,->,>=stealth]
+       \tikzset{router/.style = {rectangle, draw, text centered, thick, minimum height=2em, minimum width=2em, font=\large, node distance=7em}}
+       \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
+       \tikzset{rtable/.style={rectangle, dashed, draw, font=\small, node distance=4em} }
+       \node[router] (A) {A};
+       \node[rtable, above left=of A] (RTA) { \begin{tabular}{l|l}
+       Links & LSPs \\
+       \hline
+       A $\rightarrow$ B, B $\rightarrow$ A: 1 & A-0 [B:1];[D:1] \\
+       A $\rightarrow$ D, D $\rightarrow$ A: 1 & B-0 [A:1];[C:1];[E:1] \\
+       B $\rightarrow$ C, C $\rightarrow$ B: 1 & C-0 [B:1];[E:1] \\
+       B $\rightarrow$ E, E $\rightarrow$ B: 1 & D-0 [A:1];[E:1] \\
+       C $\rightarrow$ E, E $\rightarrow$ C: 1 & E-0 [B:1];[C:1];[D:1] \\
+       D $\rightarrow$ E, E $\rightarrow$ D: 1 & \\
+       \end{tabular}};
+       \node[router, right=of A] (B) { B };
+       \node[rtable, above=of B] (RTB) { \begin{tabular}{l|l}
+       Links & LSPs \\
+       \hline
+       A $\rightarrow$ B, B $\rightarrow$ A: 1 & A-0 [B:1];[D:1] \\
+       A $\rightarrow$ D, D $\rightarrow$ A: 1 & B-0 [A:1];[C:1];[E:1] \\
+       B $\rightarrow$ C, C $\rightarrow$ B: 1 & C-0 [B:1];[E:1] \\
+       B $\rightarrow$ E, E $\rightarrow$ B: 1 & D-0 [A:1];[E:1] \\
+       C $\rightarrow$ E, E $\rightarrow$ C: 1 & E-0 [B:1];[C:1];[D:1] \\
+       D $\rightarrow$ E, E $\rightarrow$ D: 1 & \\
+       \end{tabular}};
+       \node[router,right=of B] (C) {C};
+       \node[rtable, above right=of C] (RTC) {\begin{tabular}{l|l}
+       Links & LSPs \\
+       \hline
+       A $\rightarrow$ B, B $\rightarrow$ A: 1 & A-0 [B:1];[D:1] \\
+       A $\rightarrow$ D, D $\rightarrow$ A: 1 & B-0 [A:1];[C:1];[E:1] \\
+       B $\rightarrow$ C, C $\rightarrow$ B: 1 & C-0 [B:1];[E:1] \\
+       B $\rightarrow$ E, E $\rightarrow$ B: 1 & D-0 [A:1];[E:1] \\
+       C $\rightarrow$ E, E $\rightarrow$ C: 1 & E-0 [B:1];[C:1];[D:1] \\
+       D $\rightarrow$ E, E $\rightarrow$ D: 1 & \\
+       \end{tabular}};
+       \node[router,below=of A] (D) {D};
+       \node[rtable, left=of D] (RTD) { \begin{tabular}{l|l}
+       Links & LSPs \\
+       \hline
+       A $\rightarrow$ B, B $\rightarrow$ A: 1 & A-0 [B:1];[D:1] \\
+       A $\rightarrow$ D, D $\rightarrow$ A: 1 & B-0 [A:1];[C:1];[E:1] \\
+       B $\rightarrow$ C, C $\rightarrow$ B: 1 & C-0 [B:1];[E:1] \\
+       B $\rightarrow$ E, E $\rightarrow$ B: 1 & D-0 [A:1];[E:1] \\
+       C $\rightarrow$ E, E $\rightarrow$ C: 1 & E-0 [B:1];[C:1];[D:1] \\
+       D $\rightarrow$ E, E $\rightarrow$ D: 1 & \\
+       \end{tabular}};
+       \node[router, right=of D] (E) {E};
+       \node[rtable, below right=of E] (RTE) { \begin{tabular}{l|l}
+       Links & LSPs \\
+       \hline
+       A $\rightarrow$ B, B $\rightarrow$ A: 1 & A-0 [B:1];[D:1] \\
+       A $\rightarrow$ D, D $\rightarrow$ A: 1 & B-0 [A:1];[C:1];[E:1] \\
+       B $\rightarrow$ C, C $\rightarrow$ B: 1 & C-0 [B:1];[E:1] \\
+       B $\rightarrow$ E: 1, {\color{red}\sout{E $\rightarrow$ B: 1}} & D-0 [A:1];[E:1] \\
+       C $\rightarrow$ E, E $\rightarrow$ C: 1 & {\color{red} E-1 [C:1];[D:1]} \\
+       D $\rightarrow$ E, E $\rightarrow$ D: 1 & \\
+       \end{tabular}};
+
+       \path[draw,thick]
+       (A) edge (B)
+       (A) edge (D)
+       (B) edge (C)
+       (B) edge (E)
+       (C) edge (E)
+       (D) edge (E);
+
+       \draw (B) -- (E) node [red, midway, very thick] {\Large \sffamily\textbf{X}};
+
+       \draw[orange, arrow] ([xshift=-1em, yshift=-1.5em] E.west) -- ([xshift=1em, yshift=-1.5em] D.east) node [midway] (msg1) {};
+       \draw ([yshift=-1.5em]msg1) -- ([yshift=-1.5em]msg1) node [rectangle, draw, thick, font=\small] {\textbf{LSP: E-1 [C:1];[D:1]}};
+
+       \draw[orange, arrow] ([xshift=1em, yshift=0.75em] E.east) -- ([xshift=1em, yshift=-1.75em] C.west) node [midway] (msg2) {};
+       \draw ([xshift=1em]msg2) -- ([xshift=1em, yshift=-1em]msg2) node [rotate=45, rectangle, draw, thick, font=\small] {\textbf{LSP: E-1 [C:1];[D:1]}};
+
+       \draw[dashed] (RTA) -- (A);
+       \draw[dashed] (RTB) -- (B);
+       \draw[dashed] (RTC) -- (C);
+       \draw[dashed] (RTD) -- (D);
+       \draw[dashed] (RTE) -- (E);
 
    The two-way connectivity check
 
@@ -115,11 +345,41 @@ When a router has failed, its LSP must be removed from the LSDB of all routers [
 
 To compute its forwarding table, each router computes the spanning tree rooted at itself by using Dijkstra's shortest path algorithm [Dijkstra1959]_. The forwarding table can be derived automatically from the spanning as shown in the figure below.
 
-.. figure:: /principles/figures/ls-computation.png
-   :align: center
-   :scale: 120
+    .. tikz::
+       :libs: positioning, matrix, arrows
 
-   Computation of the forwarding table
+       \tikzstyle{arrow} = [thick,->,>=stealth]
+       \tikzset{router/.style = {rectangle, draw, text centered, thick, minimum height=2em, minimum width=2em, font=\large, node distance=4em}}
+       \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
+       \tikzset{rtable/.style={rectangle, dashed, draw, font=\small, node distance=6em} }
+       \node[router] (R1) {R1};
+       \node[router, above right=of R1] (R2) { R2 };
+       \node[router,below right=of R1] (R3) {R3};
+       \node[rtable, left=of R3] (FT) {\begin{tabular}{l}
+       Forwarding table \\
+       \hline
+       R1: West \\
+       R2: North \\
+       R4: East \\
+       R5: East \\
+       R6: East \\
+       \end{tabular}};
+       \node[router,right=of R2] (R5) {R5};
+       \node[router,right=of R3] (R4) {R4};
+       \node[router,below right=of R5] (R6) {R6};
+
+       \draw[thick] (R1) -- (R2) node [midway, above, rotate=45] {D = 3};
+       \draw[thick, red] (R1) -- (R3) node [midway, below, rotate=-45] {D = 5};
+       \draw[thick, red] (R2) -- (R3) node [midway, rotate=90, above] {D = 3};
+       \draw[thick] (R2) -- (R5) node [midway, above] {D = 2};
+       \draw[thick, red] (R3) -- (R4) node [midway, above] {D = 1};
+       \draw[thick, red] (R5) -- (R4) node [midway, rotate=90, below] {D = 3};
+       \draw[thick] (R5) -- (R6) node [midway, above, rotate=-45] {D = 10};
+       \draw[thick, red] (R4) -- (R6) node [midway, below, rotate=45] {D = 6};
+
+       \draw[dashed] (FT) -- (R3);
+
+   Computation of the forwarding table, the paths used by packets sent by R3 are shown in red
 
 
 .. inginious:: q-net-ls

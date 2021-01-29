@@ -88,7 +88,7 @@ Open questions
       \node[router,below=of R1] (R3) {R3};
       \draw[black] (R1) -- (R2) node [midway, below] {\small{1}};
       \draw[black] (R2) -- (R3) node [midway, below] {\small{-3}};
-      \draw[black] (R1) -- (R3) node [midway, below] {\small{-1}};
+      \draw[black] (R1) -- (R3) node [midway, left] {\small{-1}};
 
 
 
