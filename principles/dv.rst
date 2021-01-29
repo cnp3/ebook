@@ -61,9 +61,57 @@ The first condition ensures that the router discovers the shortest path towards 
 To understand the operation of a distance vector protocol, let us consider the network of five routers shown below.
 
 
-.. figure:: /principles/figures/dv-1.png
-   :align: center
-   :scale: 120
+    .. tikz::
+       :libs: positioning, matrix, arrows
+
+       \tikzstyle{arrow} = [thick,->,>=stealth]
+       \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em, minimum width=2em, font=\large, node distance=8em}}
+        \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
+        \tikzset{rtable/.style={rectangle, dashed, draw, font=\small, node distance=3em} }
+       \node[router] (A) {A};
+       \node[rtable, above left=of A, node distance=2em] (RTA) { \begin{tabular}{l}
+       Routing table \\
+       \hline
+       A: 0 [Local] \\
+       \end{tabular}};
+       \node[router, right=of A] (B) { B };
+       \node[rtable, above=of B] (RTB) { \begin{tabular}{l}
+       Routing table \\
+       \hline
+       B: 0 [Local] \\
+       \end{tabular}};
+       \node[router,right=of B] (C) {C};
+       \node[rtable, above right=of C] (RTC) { \begin{tabular}{l}
+       Routing table \\
+       \hline
+       C: 0 [Local] \\
+       \end{tabular}};
+       \node[router,below=of A] (D) {D};
+       \node[rtable, left=of D] (RTD) { \begin{tabular}{l}
+       Routing table \\
+       \hline
+       D: 0 [Local] \\
+       \end{tabular}};
+       \node[router, right=of D] (E) {E};
+       \node[rtable, right=of E] (RTE) { \begin{tabular}{l}
+       Routing table \\
+       \hline
+       E: 0 [Local] \\
+       \end{tabular}};
+
+       \path[draw,thick]
+       (A) edge (B)
+       (A) edge (D)
+       (B) edge (C)
+       (B) edge (E)
+       (C) edge (E)
+       (D) edge (E);
+
+       \draw[dashed] (RTA) -- (A);
+       \draw[dashed] (RTB) -- (B);
+       \draw[dashed] (RTC) -- (C);
+       \draw[dashed] (RTD) -- (D);
+       \draw[dashed] (RTE) -- (E);
 
    Operation of distance vector routing in a simple network
 
@@ -78,9 +126,77 @@ Assume that router `A` is the first to send its distance vector `[A=0]`.
 
 At this point, all routers can reach all other routers in the network thanks to the routing tables shown in the figure below.
 
-.. figure:: /principles/figures/dv-full.png
-   :align: center
-   :scale: 120
+    .. tikz::
+       :libs: positioning, matrix, arrows
+
+       \tikzstyle{arrow} = [thick,->,>=stealth]
+       \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em, minimum width=2em, font=\large, node distance=8em}}
+        \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
+        \tikzset{rtable/.style={rectangle, dashed, draw, font=\small, node distance=3em} }
+       \node[router] (A) {A};
+       \node[rtable, above left=of A] (RTA) { \begin{tabular}{l}
+       Routing table \\
+       \hline
+       A: 0 [Local] \\
+       B: 1 [East] \\
+       C: 2 [East] \\
+       D: 1 [South] \\
+       E: 2 [East] \\
+       \end{tabular}};
+       \node[router, right=of A] (B) { B };
+       \node[rtable, above=of B] (RTB) { \begin{tabular}{l}
+       Routing table \\
+       \hline
+       A: 1 [West] \\
+       B: 0 [Local] \\
+       C: 1 [East] \\
+       D: 2 [South] \\
+       E: 1 [South] \\
+       \end{tabular}};
+       \node[router,right=of B] (C) {C};
+       \node[rtable, above right=of C] (RTC) { \begin{tabular}{l}
+       Routing table \\
+       \hline
+       A: 2 [West] \\
+       B: 1 [West] \\
+       C: 0 [Local] \\
+       D: 2 [South-West] \\
+       E: 1 [South-West] \\
+       \end{tabular}};
+       \node[router,below=of A] (D) {D};
+       \node[rtable, left=of D] (RTD) { \begin{tabular}{l}
+       Routing table \\
+       \hline
+       A: 1 [North] \\
+       B: 2 [North] \\
+       C: 2 [East] \\
+       D: 0 [Local] \\
+       E: 1 [East] \\
+       \end{tabular}};
+       \node[router, right=of D] (E) {E};
+       \node[rtable, right=of E] (RTE) { \begin{tabular}{l}
+       Routing table \\
+       \hline
+       A: 2 [West] \\
+       B: 1 [North] \\
+       C: 1 [North-East] \\
+       D: 1 [West] \\
+       E: 0 [Local] \\
+       \end{tabular}};
+
+       \path[draw,thick]
+       (A) edge (B)
+       (A) edge (D)
+       (B) edge (C)
+       (B) edge (E)
+       (C) edge (E)
+       (D) edge (E);
+
+       \draw[dashed] (RTA) -- (A);
+       \draw[dashed] (RTB) -- (B);
+       \draw[dashed] (RTC) -- (C);
+       \draw[dashed] (RTD) -- (D);
+       \draw[dashed] (RTE) -- (E);
 
    Routing tables computed by distance vector in a simple network
 
@@ -98,13 +214,83 @@ Consider the example above and assume that the link between routers `A` and `B` 
  - `B` sends its distance vector :math:`[B=0,A=\infty,C=1,D=2,E=1]` to `E` and `C`. `C` learns that there is no route anymore to reach `A` via `B`.
  - `E` sends its distance vector :math:`[E=0,A=2,C=1,D=1,B=1]` to `D`, `B` and `C`. `D` learns a route towards `B`. `C` and `B` learn a route towards `A`.
 
-At this point, all routers have a routing table allowing them to reach all other routers, except router `A`, which cannot yet reach router `B`. `A` recovers the route towards `B` once router `D` sends its updated distance vector :math:`[A=1,B=2,C=2,D=1,E=1]`. This last step is illustrated in figure :ref:`figafterfailure`, which shows the routing tables on all routers.
+At this point, all routers have a routing table allowing them to reach all other routers, except router `A`, which cannot yet reach router `B`. `A` recovers the route towards `B` once router `D` sends its updated distance vector :math:`[A=1,B=2,C=2,D=1,E=1]`. This last step is illustrated in figure below, which shows the routing tables on all routers.
 
-.. _figafterfailure:
+    .. tikz::
+        :libs: positioning, matrix, arrows
 
-.. figure:: /principles/figures/dv-failure-2.png
-   :align: center
-   :scale: 120
+        \tikzstyle{arrow} = [thick,->,>=stealth]
+        \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em, minimum width=2em, font=\large, node distance=8em}}
+        \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
+        \tikzset{rtable/.style={rectangle, dashed, draw, font=\small, node distance=3em} }
+        \node[router] (A) {A};
+        \node[rtable, above left=of A] (RTA) { \begin{tabular}{l}
+                Routing table \\
+                \hline
+                A: 0 [Local] \\
+                B: $\infty$ \\
+                C: 3 [South] \\
+                D: 1 [South] \\
+                E: 2 [South] \\
+        \end{tabular}};
+        \node[router, right=of A] (B) { B };
+        \node[rtable, above=of B] (RTB) { \begin{tabular}{l}
+                Routing table \\
+                \hline
+                {\color{blue}A: 3 [South]} \\
+                B: 0 [Local] \\
+                C: 1 [East] \\
+                D: 2 [South] \\
+                E: 1 [South] \\
+        \end{tabular}};
+        \node[router,right=of B] (C) {C};
+        \node[rtable, above right=of C] (RTC) { \begin{tabular}{l}
+                Routing table \\
+                \hline
+                {\color{blue}A: 3 [South-West]} \\
+                B: 1 [West] \\
+                C: 0 [Local] \\
+                D: 2 [South-West] \\
+                E: 1 [South-West] \\
+        \end{tabular}};
+        \node[router,below=of A] (D) {D};
+        \node[rtable, left=of D] (RTD) { \begin{tabular}{l}
+                Routing table \\
+                \hline
+                A: 1 [North] \\
+                {\color{blue}B: 2 [East]} \\
+                C: 2 [East] \\
+                D: 0 [Local] \\
+                E: 1 [East] \\
+        \end{tabular}};
+        \node[router, right=of D] (E) {E};
+        \node[rtable, right=of E] (RTE) { \begin{tabular}{l}
+                Routing table \\
+                \hline
+                A: 2 [West] \\
+                B: 1 [North] \\
+                C: 1 [North-East] \\
+                D: 1 [West] \\
+                E: 0 [Local] \\
+        \end{tabular}};
+
+        \path[draw,thick]
+        (A) edge (B)
+        (A) edge (D)
+        (B) edge (C)
+        (B) edge (E)
+        (C) edge (E)
+        (D) edge (E);
+
+        \draw (A) -- (B) node [red, midway, very thick] {\Large \sffamily\textbf{X}};
+        \draw[dashed] (RTA) -- (A);
+        \draw[dashed] (RTB) -- (B);
+        \draw[dashed] (RTC) -- (C);
+        \draw[dashed] (RTD) -- (D);
+        \draw[dashed] (RTE) -- (E);
+
+        \draw[orange, arrow] ([xshift=1.5em] D.north) -- ([xshift=1.5em] A.south) node [midway] (msg1) {};
+        \draw ([xshift=1em]msg1) -- ([xshift=1em]msg1) node [ rotate=90, rectangle, draw, font=\tiny] {[A=1, B=2, C=2, D=1, E=1]};
 
    Routing tables computed by distance vector after a failure
 
@@ -158,9 +344,68 @@ This technique is called `split-horizon`. With this technique, the count to infi
 
 Unfortunately, split-horizon is not sufficient to avoid all count to infinity problems with distance vector routing. Consider the failure of link `A-B` in the four routers network shown below.
 
-.. figure:: /principles/figures/dv-infinity.png
-   :align: center
-   :scale: 120
+    .. tikz::
+        :libs: positioning, matrix, arrows, shapes
+
+        \tikzstyle{arrow} = [thick,->,>=stealth]
+        \tikzstyle{arrowlost} = [thick,-o,>=stealth]
+        \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em, minimum width=2em, font=\large, node distance=8em}}
+        \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
+        \tikzset{rtable/.style={rectangle, dashed, draw, font=\small, node distance=3em} }
+        \node[router] (A) {A};
+        \node[rtable, above left=of A] (RTA) { \begin{tabular}{l}
+                Routing table \\
+                \hline
+                A: 0 [Local] \\
+                B: $\infty$ \\
+                C: $\infty$ \\
+                E: $\infty$ \\
+        \end{tabular}};
+        \node[router, right=of A] (B) { B };
+        \node[rtable, above=of B] (RTB) { \begin{tabular}{l}
+                Routing table \\
+                \hline
+                A: 1 [West]] \\
+                B: 0 [Local] \\
+                C: 1 [East] \\
+                E: 1 [South] \\
+        \end{tabular}};
+        \node[router,right=of B] (C) {C};
+        \node[rtable, above right=of C] (RTC) { \begin{tabular}{l}
+                Routing table \\
+                \hline
+                A: 2 [West] \\
+                B: 1 [West] \\
+                C: 0 [Local] \\
+                E: 1 [South-West] \\
+        \end{tabular}};
+        \node[router, below=of B] (E) {E};
+        \node[rtable, left=of E] (RTE) { \begin{tabular}{l}
+                Routing table \\
+                \hline
+                A: 2 [North] \\
+                B: 1 [North] \\
+                C: 1 [North-East] \\
+                E: 0 [Local] \\
+        \end{tabular}};
+
+        \path[draw,thick]
+        (A) edge (B)
+        (B) edge (C)
+        (B) edge (E)
+        (C) edge (E);
+
+        \draw (A) -- (B) node [red, midway, very thick] {\Large \sffamily\textbf{X}};
+        \draw[dashed] (RTA) -- (A);
+        \draw[dashed] (RTB) -- (B);
+        \draw[dashed] (RTC) -- (C);
+        \draw[dashed] (RTE) -- (E);
+
+        \draw[orange, arrow] ([xshift=-1.5em] B.south) -- ([xshift=-1.5em] E.north) node [midway] (msg1) {};
+        \draw ([xshift=-1em]msg1) -- ([xshift=-1em]msg1) node [rotate=90, rectangle, draw, font=\tiny] {[A=$\infty$, B=0, C=1, E=$\infty$]};
+
+        \draw[orange, arrowlost] ([yshift=1.5em] B.east) -- ([yshift=1.5em,xshift=-1em] C.west) node [midway] (msg2) {};
+        \draw ([yshift=1em]msg2) -- ([yshift=1em]msg2) node [rectangle, draw, font=\tiny] {[A=$\infty$, B=0, C=$\infty$, E=1]};
 
    Count to infinity problem
 
