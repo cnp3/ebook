@@ -17,11 +17,25 @@ The main objective of the network layer is to allow hosts, connected to differen
 
 Before explaining the operation of the network layer, it is useful to remember the characteristics of the service provided by the `datalink` layer. There are many variants of the datalink layer. Some provide a reliable service while others do not provide any guarantee of delivery. The reliable datalink layer services are popular in environments such as wireless networks where transmission errors are frequent. On the other hand, unreliable services are usually used when the physical layer provides an almost reliable service (i.e. only a negligible fraction of the frames are affected by transmission errors). Such `almost reliable` services are frequently used in wired and optical networks. In this chapter, we will assume that the datalink layer service provides an `almost reliable` service since this is both the most general one and also the most widely deployed one.
 
-.. figure:: /principles/figures/osi-datalink.png
-   :align: center
-   :scale: 70
 
-   The point-to-point datalink layer
+.. tikz:: The point-to-point datalink layer
+      :libs: positioning, matrix, arrows
+
+      \tikzstyle{arrow} = [thick,<->,>=stealth]
+      \tikzset{elem/.style = {rectangle, thick, draw, text centered, minimum height=2em, minimum width=8em}, }
+
+      \node[elem] (pm) {Physical layer};
+      \node[elem, above=0em of pm] (dm) {\color{blue} Datalink};
+      \node[elem, above=0em of dm] (nm) {Network};
+
+      \node[elem, left=8em of pm] (pl) {Physical layer};
+      \node[elem, above=0em of pl] (dl) {\color{blue} Datalink};
+      \node[elem, above=0em of dl] (nl) {Network};
+
+      \draw[rectangle, thick, draw, fill=gray!20] ([xshift=1em, yshift=-1em]pl.south) rectangle ([xshift=-1em]pm.south);
+
+      \draw[arrow] (dl.east) -- (dm.west) node [midway, above] {\color{blue} Frames};
+
 
 There are two main types of datalink layers. The simplest datalink layer is when there are only two communicating systems that are directly connected through the physical layer. Such a datalink layer is used when there is a point-to-point link between the two communicating systems. These two systems can be hosts or routers. PPP (Point-to-Point Protocol), defined in :rfc:`1661`, is an example of such a point-to-point datalink layer. Datalink layer entities exchange `frames`. A datalink :term:`frame` sent by a datalink layer entity on the left is transmitted through the physical layer, so that it can reach the datalink layer entity on the right. Point-to-point datalink layers can either provide an unreliable service (frames can be corrupted or lost) or a reliable service (in this case, the datalink layer includes retransmission mechanisms).
 
