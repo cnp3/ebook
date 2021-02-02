@@ -344,22 +344,22 @@ At this point, a new link is added between `R1` and `R3`. What happens for the f
       :libs: positioning, matrix, arrows
 
       \tikzstyle{arrow} = [thick,->,>=stealth]
-      \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
+      \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em, minimum width=2em, node distance=4em}, }
       \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
       \tikzset{ftable/.style={rectangle, dashed, draw} }
-      \node[router] (R1) { R1 };
-      \node[router,right=of R1] (R2) {R2};
-      \node[router,right=of R2] (R3) {R3};
-      \node[router,right=of R3] (R4) {R4};
-      \node[router,below=of R2] (R5) {R5};
+      \node[router] (A) { A };
+      \node[router,right=of A] (B) {B};
+      \node[router,right=of B] (C) {C};
+      \node[router,right=of C] (D) {D};
+      \node[router,below=of B] (E) {E};
 
       \path[draw,thick]
-      (R1) edge (R2)
-      (R2) edge (R3)
-      (R3) edge (R4)
-      (R1) edge [bend right] (R5)
-      (R4) edge [bend left] (R5)
-      (R2) edge [bend right] (R4);
+      (A) edge node [midway, above] {1} (B)
+      (B) edge node [midway, above] {1} (C)
+      (C) edge node [midway, above] {1} (D)
+      (A) edge [bend right] node [midway, below left] {8} (E)
+      (D) edge [bend left] node [midway, below right] {1} (E)
+      (B.north) edge [bend left] node [midway, above] {3} (D.north)   ;
 
 
  If you compute the routing tables of all routers in this network, you would obtain a table such as the table below :
