@@ -104,11 +104,84 @@ The first and most popular organization of the network layer is the datagram org
 
 To understand the datagram organization, let us consider the figure below. A network layer address, represented by a letter, has been assigned to each host and router. To send some information to host `J`, host `A` creates a packet containing its own address, the destination address and the information to be exchanged.
 
-.. figure:: /principles/figures/simple-internetwork.png
-   :align: center
-   :scale: 80
+.. tikz:: A simple internetwork
+      :libs: positioning, matrix, arrows
 
-   A simple internetwork
+      \tikzstyle{arrow} = [thick,->,>=stealth]
+      \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em, minimum width=2em, node distance=6em}, }
+      \tikzset{host/.style = {circle, draw, text centered, minimum height=2em, minimum width=2em, node distance=6em}, }
+      \tikzset{rtable/.style={rectangle, dashed, draw, font=\footnotesize, node distance=3em}, }
+      \node[host] (A) {\color{red} A};
+      \node[router, right=of A] (R1) {R1};
+      \node[router, right=of R1] (R2) {R2};
+      \node[router, right=of R2] (R5) {R5};
+      \node[router, below right=of R1, below left=of R2] (R3) {R3};
+      \node[router, below=of R5] (R4) {R4};
+      \node[host, left=of R4] (I) {I};
+      \node[host, right=of R5] (J) {\color{blue} J};
+
+      \path[draw,thick]
+      (A) edge (R1)
+      (R1) edge (R2)
+      (R1) edge (R3)
+      (R2) edge (R3)
+      (R2) edge (R4)
+      (R2) edge (R5)
+      (R4) edge (I)
+      (R5) edge (J);
+
+      \node[rtable, above=of R1] (RT1) { \begin{tabular}{c}
+            Routing table \\
+            \hline
+            {\color{red} A via West} \\
+            ... \\
+            I via East \\
+            {\color{blue} J via East} \\
+      \end{tabular}};
+      \node[rtable, above=of R2] (RT2) { \begin{tabular}{c}
+            Routing table \\
+            \hline
+            {\color{red} A via West} \\
+            ... \\
+            I via South-East \\
+            {\color{blue} J via East} \\
+      \end{tabular}};
+      \node[rtable, left=of R3] (RT3) { \begin{tabular}{c}
+            Routing table \\
+            \hline
+            {\color{red} A via North-West} \\
+            ... \\
+            I via North-East \\
+            {\color{blue} J via North-East} \\
+      \end{tabular}};
+      \node[rtable, right=of R4] (RT4) { \begin{tabular}{c}
+            Routing table \\
+            \hline
+            {\color{red} A via North-West} \\
+            ... \\
+            I via West \\
+            {\color{blue} J via North-West} \\
+      \end{tabular}};
+      \node[rtable, above right=of R5] (RT5) { \begin{tabular}{c}
+            Routing table \\
+            \hline
+            {\color{red} A via West} \\
+            ... \\
+            I via West \\
+            {\color{blue} J via East} \\
+      \end{tabular}};
+
+      \draw[dashed] (RT1) -- (R1);
+      \draw[dashed] (RT2) -- (R2);
+      \draw[dashed] (RT3) -- (R3);
+      \draw[dashed] (RT4) -- (R4);
+      \draw[dashed] (RT5) -- (R5);
+
+      \draw[arrow, blue] ([yshift=1.5em]A.east) -- ([yshift=1.5em]R1.west) node [midway, above=0.5em, rectangle, thick, draw, black] {\tiny {\color{red} SRC: A} {\color{blue} DST: J} Blabla};
+      \draw[arrow, blue] ([yshift=1.5em]R1.east) -- ([yshift=1.5em]R2.west);
+      \draw[arrow, blue] ([yshift=1.5em]R2.east) -- ([yshift=1.5em]R5.west);
+      \draw[arrow, blue] ([yshift=1.5em]R5.east) -- ([yshift=1.5em]J.west);
+
 
 .. index:: hop-by-hop forwarding, forwarding table
 
@@ -175,7 +248,6 @@ To understand the operation of the port-address table, let us consider the examp
       \tikzstyle{arrow} = [thick,->,>=stealth]
       \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
       \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
-      \tikzset{ftable/.style={rectangle, dashed, draw} }
       \node[host] (A) {A};
       \node[router, right=of A] (R1) {R1};
       \node[router, right=of R1] (R2) {R2};
