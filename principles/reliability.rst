@@ -16,16 +16,16 @@ Connecting two hosts
 
 The first step when building a network, even a worldwide network such as the Internet, is to connect two hosts together. This is illustrated in the figure below.
 
-.. tikz:: Connecting two hosts together
-   :libs: positioning, matrix
+   .. tikz:: Connecting two hosts together
+      :libs: positioning, matrix
 
-   \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
-   \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
-   \node[host] (B) {B};
-   \node[host, right=of B] (A) {A};
+      \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
+      \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
+      \node[host] (B) {B};
+      \node[host, right=of B] (A) {A};
 
-   \path[draw,thick]
-   (A) edge (B);
+      \path[draw,thick]
+      (A) edge (B);
 
 
 To enable the two hosts to exchange information, they need to be linked together by some kind of physical media. Computer networks have used various types of physical media to exchange information, notably :
@@ -344,12 +344,37 @@ These two types of frames can be distinguished by dividing the frame in two part
 
 The datalink entity can then be modeled as a finite state machine, containing two states for the receiver and two states for the sender. The figure below provides a graphical representation of this state machine with the sender above and the receiver below.
 
+   .. tikz:: Finite state machines of the simplest reliable protocol (sender above, receiver below)
+      :libs: positioning, matrix, automata, arrows
 
-.. figure:: figures/simple-fsm.png
-   :align: center
-   :scale: 60
+      \tikzstyle{arrow} = [thick,->,>=stealth,font=\small]
+      \tikzstyle{every state}=[font=\small, align=center, node distance=5em]
+      \node[initial, state] (SW) {Wait\\for\\{\color{blue}SDU}};
+      \node[state, right=of SW] (SO) {Wait\\for\\OK};
+      \path[arrow] (SW) edge [bend left] node[midway, above] {\begin{tabular}{c}
+         Data.req({\color{blue}SDU}) \\
+         \hline
+         \texttt{send({\color{red}D({\color{blue}SDU})})} \\
+      \end{tabular}} (SO)
+      (SO) edge [bend left] node [midway, below] {\begin{tabular}{c}
+         \texttt{recvd({\color{red}C(OK)})} \\
+         \hline
+         - \\
+      \end{tabular}} (SW);
 
-   Finite state machine of the simplest reliable protocol
+      \node[initial, state, below=5em of SW] (RW) {Wait\\for\\frame};
+      \node[state, right=of RW] (RP) {Process\\{\color{blue}SDU}};
+      \path[arrow] (RW) edge [bend left] node[midway, above] {\begin{tabular}{c}
+         \texttt{recvd({\color{red}D({\color{blue}SDU})})} \\
+         \hline
+         Data.ind({\color{blue}SDU}) \\
+      \end{tabular}} (RP)
+      (RP) edge [bend left] node [midway, below] {\begin{tabular}{c}
+         - \\
+         \hline
+         \texttt{send({\color{red}C(OK)})} \\
+      \end{tabular}} (RW);
+
 
 The above FSM shows that the sender has to wait for an acknowledgment from the receiver before being able to transmit the next SDU.  The figure below illustrates the exchange of a few frames between two hosts.
 
@@ -490,7 +515,7 @@ The simplest error detection scheme is the checksum. A checksum is basically an 
 Since the receiver sends an acknowledgment after having received each data frame, the simplest solution to deal with losses is to use a retransmission timer. When the sender sends a frame, it starts a retransmission timer. The value of this retransmission timer should be larger than the `round-trip-time`, i.e. the delay between the transmission of a data frame and the reception of the corresponding acknowledgment. When the retransmission timer expires, the sender assumes that the data segment has been lost and retransmits it. This is illustrated in the figure below.
 
 
-.. msc::
+   .. msc::
 
       a [label="", linecolour=white],
       b [label="Host A", linecolour=black],
@@ -520,7 +545,7 @@ Since the receiver sends an acknowledgment after having received each data frame
 
 Unfortunately, retransmission timers alone are not sufficient to recover from losses. Let us consider, as an example, the situation depicted below where an acknowledgment is lost. In this case, the sender retransmits the data segment that has not been acknowledged. However, as illustrated in the figure below, the receiver considers the retransmission as a new segment whose payload must be delivered to its user.
 
-.. msc::
+   .. msc::
 
       a [label="", linecolour=white],
       b [label="Host A", linecolour=black],
@@ -555,25 +580,108 @@ To solve this problem, datalink protocols associate a `sequence number` to each 
 
 The Alternating Bit Protocol uses a single bit to encode the sequence number. It can be implemented easily. The sender (resp. the receiver) only require a four-state (resp. three-state) Finite State Machine.
 
+   .. tikz:: Alternating bit protocol: Sender FSM
+      :libs: positioning, matrix, automata, arrows
+
+      \tikzstyle{arrow} = [thick,->,>=stealth,font=\small]
+      \tikzstyle{every state}=[font=\small, align=center, node distance=5em]
+      \node[initial, state] (WD0) {Wait\\for\\{\color{red}D(0,...)}};
+      \node[state, right=of WD0] (WC0) {Wait\\for\\{\color{red}C(OK0)}};
+      \node[state, below=of WC0] (WD1) {Wait\\for\\{\color{red}D(1,...)}};
+      \node[state, below=of WD0] (WC1) {Wait\\for\\{\color{red}C(OK1)}};
+      \node[font=\small,align=right,right=of WD1] {All corrupted\\segments are\\discarded in all states};
 
 
-.. figure:: figures/abp-sender-fsm.png
-   :align: center
-   :scale: 60
-
-   Alternating bit protocol : Sender FSM
+      \path[arrow]
+      (WD0) edge [bend left] node[midway, above] {\begin{tabular}{c}
+         Data.req({\color{blue}SDU}) \\
+         \hline
+         \texttt{send({\color{red}D(0,{\color{blue}SDU},CRC)})} \\
+         \texttt{start\_timer()} \\
+      \end{tabular}} (WC0)
+      (WC0) edge [out=90,in=30,looseness=4] node [midway, right] {\begin{tabular}{c}
+         \texttt{recvd({\color{red}C(OK1)})} \\
+         or timer expires \\
+         \hline
+         \texttt{send({\color{red}D(0,{\color{blue}SDU},CRC)})} \\
+         \texttt{restart\_timer()} \\
+      \end{tabular}} (WC0)
+      (WC0) edge [bend left] node [midway, right] {\begin{tabular}{c}
+         \texttt{recvd({\color{red}C(OK0)})} \\
+         \hline
+         \texttt{cancel\_timer()} \\
+      \end{tabular}} (WD1)
+      (WD1) edge [bend left] node[midway, below] {\begin{tabular}{c}
+         Data.req({\color{blue}SDU}) \\
+         \hline
+         \texttt{send({\color{red}D(1,{\color{blue}SDU},CRC)})} \\
+         \texttt{start\_timer()} \\
+      \end{tabular}} (WC1)
+      (WC1) edge [out=270,in=210,looseness=4] node [midway, left] {\begin{tabular}{c}
+         \texttt{recvd({\color{red}C(OK0)})} \\
+         or timer expires \\
+         \hline
+         \texttt{send({\color{red}D(1,{\color{blue}SDU},CRC)})} \\
+         \texttt{restart\_timer()} \\
+      \end{tabular}} (WC1)
+      (WC1) edge [bend left] node [midway, left] {\begin{tabular}{c}
+         \texttt{recvd({\color{red}C(OK1)})} \\
+         \hline
+         \texttt{cancel\_timer()} \\
+      \end{tabular}} (WD0);
 
 
 The initial state of the sender is `Wait for D(0,...)`. In this state, the sender waits for a `Data.request`. The first data frame that it sends uses sequence number `0`. After having sent this frame, the sender waits for an `OK0` acknowledgment. A frame is retransmitted upon expiration of the retransmission timer or if an acknowledgment with an incorrect sequence number has been received.
 
 The receiver first waits for `D(0,...)`. If the frame contains a correct `CRC`, it passes the SDU to its user and sends `OK0`. If the frame contains an invalid CRC, it is immediately discarded. Then, the receiver waits for `D(1,...)`. In this state, it may receive a duplicate `D(0,...)` or a data frame with an invalid CRC. In both cases, it returns an `OK0` frame to allow the sender to recover from the possible loss of the previous `OK0` frame.
 
+   .. tikz:: Alternating bit protocol: Receiver FSM
+      :libs: positioning, matrix, automata, arrows
 
-.. figure:: figures/abp-receiver-fsm.png
-   :align: center
-   :scale: 60
+      \tikzstyle{arrow} = [thick,->,>=stealth,font=\small]
+      \tikzstyle{every state}=[font=\small, align=center, node distance=5em]
+      \node[initial, state] (WD0) {Wait\\for\\{\color{red}D(0,...)}};
+      \node[state, right=of WD0] (PD0) {Process\\{\color{red}D(0,...)}};
+      \node[state, below=of PD0] (WD1) {Wait\\for\\{\color{red}D(1,...)}};
+      \node[state, below=of WD0] (PD1) {Process\\{\color{red}D(1,...)}};
+      \node[font=\small,align=right,right=of PD0] {All corrupted\\segments are\\discarded in all states};
 
-   Alternating bit protocol : Receiver FSM
+
+      \path[arrow]
+      (WD0) edge [bend left] node[midway, above] {\begin{tabular}{c}
+         \texttt{recvd({\color{red}D(0,{\color{blue}SDU},CRC)})} \\
+         \texttt{AND is\_ok({\color{red}CRC},{\color{blue}SDU})} \\
+         \hline
+         Data.ind({\color{blue}SDU}) \\
+      \end{tabular}} (PD0)
+      (WD0) edge [out=170,in=110,looseness=4] node [midway, left] {\begin{tabular}{c}
+         \texttt{recvd({\color{red}D(1,{\color{blue}SDU},CRC)})} \\
+         \texttt{AND is\_ok({\color{red}CRC},{\color{blue}SDU})} \\
+         \hline
+         \texttt{send({\color{red}C(OK1)})} \\
+      \end{tabular}} (WD0)
+      (PD0) edge [bend left] node [midway, right] {\begin{tabular}{c}
+         - \\
+         \hline
+         \texttt{send({\color{red}C(OK0)})} \\
+      \end{tabular}} (WD1)
+      (WD1) edge [bend left] node[midway, below] {\begin{tabular}{c}
+         \texttt{recvd({\color{red}D(1,{\color{blue}SDU},CRC)})} \\
+         \texttt{AND is\_ok({\color{red}CRC},{\color{blue}SDU})} \\
+         \hline
+         Data.ind({\color{blue}SDU}) \\
+      \end{tabular}} (PD1)
+      (WD1) edge [out=0,in=300,looseness=4] node [midway, right] {\begin{tabular}{c}
+         \texttt{recvd({\color{red}D(0,{\color{blue}SDU},CRC)})} \\
+         \texttt{AND is\_ok({\color{red}CRC},{\color{blue}SDU})} \\
+         \hline
+         \texttt{send({\color{red}C(OK0)})} \\
+      \end{tabular}} (WD1)
+      (PD1) edge [bend left] node [midway, left] {\begin{tabular}{c}
+         - \\
+         \hline
+         \texttt{send({\color{red}C(OK1)})} \\
+      \end{tabular}} (WD0);
 
 
 .. note:: Dealing with corrupted frames
@@ -739,21 +847,77 @@ The simplest sliding window protocol uses the `go-back-n` recovery. Intuitively,
 The figure below shows the FSM of a simple `go-back-n` receiver. This receiver uses two variables : `lastack` and `next`. `next` is the next expected sequence number and `lastack` the sequence number of the last data frame that has been acknowledged. The receiver only accepts the frame that are received in sequence. `maxseq` is the number of different sequence numbers (:math:`2^n`).
 
 
-.. figure:: figures/gbn-rec2.png
-   :align: center
-   :scale: 70
+   .. tikz:: Go-back-n: receiver FSM
+      :libs: positioning, matrix, automata, arrows
 
-   Go-back-n : receiver FSM
+      \tikzstyle{arrow} = [thick,->,>=stealth,font=\small]
+      \tikzstyle{every state}=[font=\small, align=center, node distance=12em]
+      \node[initial, state] (W) {Wait};
+      \node[state, right=of W] (P) {Process\\{\color{blue}SDU}};
+      \node[font=\small,align=right,right=of P] {All corrupted\\segments are\\discarded in all states};
+      \path[arrow]
+      (W) edge [bend left] node[midway, above] {\begin{tabular}{c}
+         \texttt{recvd({\color{red}D(next,{\color{blue}SDU},CRC)})} \\
+         \texttt{AND is\_ok({\color{red}CRC},{\color{blue}SDU})} \\
+         \hline
+         Data.ind({\color{blue}SDU}) \\
+      \end{tabular}} (P)
+      (P) edge [bend left] node [midway, below] {\begin{tabular}{c}
+         - \\
+         \hline
+         \texttt{send({\color{red}C(OK,next,CRC)});} \\
+         \texttt{lastack = next;} \\
+         \texttt{next = (next + 1) \% maxseq;} \\
+      \end{tabular}} (W)
+      (W) edge [out=270,in=210,looseness=8] node [midway, left] {\begin{tabular}{c}
+         \texttt{recvd({\color{red}D(t != next,{\color{blue}SDU},CRC)})} \\
+         \texttt{AND is\_ok({\color{red}CRC},{\color{blue}SDU})} \\
+         \hline
+         \texttt{discard({\color{blue}SDU});} \\
+         \texttt{send({\color{red}C(OK,lastack,CRC)});} \\
+      \end{tabular}} (W);
 
 
 A `go-back-n` sender is also very simple. It uses a sending buffer that can store an entire sliding window of frames [#fsizesliding]_. The frames are sent with increasing sequence numbers (modulo `maxseq`). The sender must wait for an acknowledgment once its sending buffer is full. When a `go-back-n` sender receives an acknowledgment, it removes from the sending buffer all the acknowledged frames and uses a retransmission timer to detect frame losses. A simple `go-back-n` sender maintains one retransmission timer per connection. This timer is started when the first frame is sent. When the `go-back-n sender` receives an acknowledgment, it restarts the retransmission timer only if there are still unacknowledged frames in its sending buffer. When the retransmission timer expires, the `go-back-n` sender assumes that all the unacknowledged frames currently stored in its sending buffer have been lost. It thus retransmits all the unacknowledged frames in the buffer and restarts its retransmission timer.
 
 
-.. figure:: figures/gbn-sender2.png
-   :align: center
-   :scale: 60
+   .. tikz:: Go-back-n: sender FSM
+      :libs: positioning, matrix, automata, arrows
 
-   Go-back-n : sender FSM
+      \tikzstyle{arrow} = [thick,->,>=stealth,font=\small]
+      \tikzstyle{every state}=[font=\small, align=center, node distance=5em]
+      \node[initial, state] (W) {Wait};
+      \node[font=\small,align=right,below right=8em of W] {All corrupted\\segments are\\discarded in all states};
+      \path[arrow]
+      (W) edge [in=30,out=330,looseness=7] node[midway, right] {\begin{tabular}{l}
+         Data.req({\color{blue}SDU}) \\
+         \texttt{AND size(buffer) < W} \\
+         \hline
+         \texttt{if (seq == unack) \{ start\_timer(); \}} \\
+         \texttt{buffer.insert(seq, {\color{blue}SDU});} \\
+         \texttt{send({\color{red}D(seq,{\color{blue}SDU},CRC)});} \\
+         \texttt{seq = (seq + 1) \% maxseq;}\\
+      \end{tabular}} (W)
+      (W) edge [in=270,out=210,looseness=7] node [midway, below] {\begin{tabular}{l}
+         \texttt{recvd({\color{red}C(OK,t,CRC)})} \\
+         \texttt{AND is\_crc\_ok({\color{red}C(OK,t,CRC)})} \\
+         \hline
+         \texttt{buffer.remove\_acked\_frames()}\\
+         \texttt{unack = (t + 1) \% maxseq;}\\
+         \texttt{if (unack == seq) \{ }\\
+         \texttt{    cancel\_timer();}\\
+         \texttt{\} else \{ }\\
+         \texttt{    restart\_timer();}\\
+         \texttt{\} }\\
+      \end{tabular}} (W)
+      (W) edge [out=150,in=90,looseness=7] node [midway, above] {\begin{tabular}{l}
+         timer expires \\
+         \hline
+         \texttt{for all (i, SDU) in buffer \{ }\\
+         \texttt{    send(\color{red}D(i,{\color{blue}SDU},CRC);} \\
+         \texttt{\} }\\
+         \texttt{restart\_timer();}
+      \end{tabular}} (W);
 
 
 The operation of `go-back-n` is illustrated in the figure below. In this figure, note that upon reception of the out-of-sequence frame `D(2,c)`, the receiver returns a cumulative acknowledgment `C(OK,0)` that acknowledges all the frames that have been received in sequence. The lost frame is retransmitted upon the expiration of the retransmission timer.

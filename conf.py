@@ -237,7 +237,7 @@ latex_elements = {
 \\usepackage{tikz}
 \\usepackage{pgfplots}
 %\pgfplotsset{compat=1.16}
-\\usetikzlibrary{arrows.meta,positioning, matrix,backgrounds,shapes,shadows,calc}
+\\usetikzlibrary{arrows.meta,positioning, matrix,backgrounds,shapes,shadows,calc,automata}
 '''
 }
 
@@ -247,7 +247,7 @@ latex_elements = {
 # If false, no module index is generated.
 #latex_use_modindex = True
 
-tikz_libraries="positioning,matrix,arrows,shapes"
+tikz_libraries="positioning,matrix,arrows,shapes,automata"
 
 tikz_proc_suite='ImageMagick'
 
