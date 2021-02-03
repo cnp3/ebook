@@ -220,6 +220,7 @@ Glossary
 
    DNS
 	      The Domain Name System is a distributed database that can be queried by hosts to map names onto IP addresses. It is defined in :rfc:`1035`
+
    BNF
 	 A Backus-Naur Form (BNF) is a formal way to describe a language by using syntactic and lexical rules. BNFs are frequently used to define programming languages, but also to define the messages exchanged between networked applications. :rfc:`5234` explains how a BNF must be written to specify an Internet protocol.
 

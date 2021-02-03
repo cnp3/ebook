@@ -1,14 +1,16 @@
+dist: bionic
 before_install:
  - sudo apt-get install mscgen
  - sudo apt-get install texlive-font-utils
  - sudo apt-get install texlive-latex-extra
  - sudo apt-get install texlive-latex-recommended
  - sudo apt-get install texlive-fonts-recommended
+ - sudo apt-get install texlive-plain-generic
  - sudo apt-get install latexmk
- - sudo apt-get install netpbm 
+ - sudo apt-get install netpbm
  - sudo apt-get install poppler-utils
  - sudo apt-get install python3-enchant
- - sudo apt-get install python3-sphinxcontrib.spelling 
+ - sudo apt-get install python3-sphinxcontrib.spelling
  - sudo apt-get install inkscape
 install: "pip3 install -q -r .travis-requirements.txt"
 language: python

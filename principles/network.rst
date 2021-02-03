@@ -5,7 +5,7 @@
 Building a network
 ******************
 
-.. warning:: 
+.. warning::
 
    This is an unpolished draft of the third edition of this e-book. If you find any error or have suggestions to improve the text, please create an issue via https://github.com/CNP3/ebook/issues?milestone=2 or help us by providing pull requests to close the existing issues.
 
@@ -15,51 +15,65 @@ In the previous section, we have explained how reliable protocols allow hosts to
 The main objective of the network layer is to allow hosts, connected to different networks, to exchange information through intermediate systems called :term:`router`. The unit of information in the network layer is called a :term:`packet`.
 
 
-Before explaining the operation of the network layer, it is useful to remember the characteristics of the service provided by the `datalink` layer. There are many variants of the datalink layer. Some provide a reliable service while others do not provide any guarantee of delivery. The reliable datalink layer services are popular in environments such as wireless networks where transmission errors are frequent. On the other hand, unreliable services are usually used when the physical layer provides an almost reliable service (i.e. only a negligible fraction of the frames are affected by transmission errors). Such `almost reliable` services are frequently used in wired and optical networks. In this chapter, we will assume that the datalink layer service provides an `almost reliable` service since this is both the most general one and also the most widely deployed one. 
+Before explaining the operation of the network layer, it is useful to remember the characteristics of the service provided by the `datalink` layer. There are many variants of the datalink layer. Some provide a reliable service while others do not provide any guarantee of delivery. The reliable datalink layer services are popular in environments such as wireless networks where transmission errors are frequent. On the other hand, unreliable services are usually used when the physical layer provides an almost reliable service (i.e. only a negligible fraction of the frames are affected by transmission errors). Such `almost reliable` services are frequently used in wired and optical networks. In this chapter, we will assume that the datalink layer service provides an `almost reliable` service since this is both the most general one and also the most widely deployed one.
 
-.. figure:: /principles/figures/osi-datalink.png
-   :align: center
-   :scale: 70   
 
-   The point-to-point datalink layer
+      .. tikz:: The point-to-point datalink layer
+            :libs: positioning, matrix, arrows
 
-There are two main types of datalink layers. The simplest datalink layer is when there are only two communicating systems that are directly connected through the physical layer. Such a datalink layer is used when there is a point-to-point link between the two communicating systems. These two systems can be hosts or routers. PPP (Point-to-Point Protocol), defined in :rfc:`1661`, is an example of such a point-to-point datalink layer. Datalink layer entities exchange `frames`. A datalink :term:`frame` sent by a datalink layer entity on the left is transmitted through the physical layer, so that it can reach the datalink layer entity on the right. Point-to-point datalink layers can either provide an unreliable service (frames can be corrupted or lost) or a reliable service (in this case, the datalink layer includes retransmission mechanisms).  
+            \tikzstyle{arrow} = [thick,<->,>=stealth]
+            \tikzset{elem/.style = {rectangle, thick, draw, text centered, minimum height=2em, minimum width=8em}, }
+
+            \node[elem] (pm) {Physical layer};
+            \node[elem, above=0em of pm] (dm) {\color{blue} Datalink};
+            \node[elem, above=0em of dm] (nm) {Network};
+
+            \node[elem, left=8em of pm] (pl) {Physical layer};
+            \node[elem, above=0em of pl] (dl) {\color{blue} Datalink};
+            \node[elem, above=0em of dl] (nl) {Network};
+
+            \draw[rectangle, thick, draw, fill=gray!20] ([xshift=1em, yshift=-1em]pl.south) rectangle ([xshift=-1em]pm.south);
+
+            \draw[arrow] (dl.east) -- (dm.west) node [midway, above] {\color{blue} Frames};
+
+
+There are two main types of datalink layers. The simplest datalink layer is when there are only two communicating systems that are directly connected through the physical layer. Such a datalink layer is used when there is a point-to-point link between the two communicating systems. These two systems can be hosts or routers. PPP (Point-to-Point Protocol), defined in :rfc:`1661`, is an example of such a point-to-point datalink layer. Datalink layer entities exchange `frames`. A datalink :term:`frame` sent by a datalink layer entity on the left is transmitted through the physical layer, so that it can reach the datalink layer entity on the right. Point-to-point datalink layers can either provide an unreliable service (frames can be corrupted or lost) or a reliable service (in this case, the datalink layer includes retransmission mechanisms).
 
 
 The second type of datalink layer is the one used in Local Area Networks (LAN). Conceptually, a LAN is a set of communicating devices such that any two devices can directly exchange frames through the datalink layer. Both hosts and routers can be connected to a LAN. Some LANs only connect a few devices, but there are LANs that can connect hundreds or even thousands of devices. In this chapter, we focus on the utilization of point-to-point datalink layers. We describe later the organization and the operation of Local Area Networks and their impact on the network layer.
 
 .. TODO add reference to the chapter showing how LAN are used by IPv6
 
-Even if we only consider the point-to-point datalink layers, there is an important characteristics of these layers that we cannot ignore. No datalink layer is able to send frames of unlimited size. Each datalink layer is characterized by a maximum frame size. There are more than dozen different datalink layers and unfortunately most of them use a different maximum frame size. This heterogeneity in the maximum frame sizes will cause problems when we will need to exchange data between hosts attached to different types of datalink layers.
+Even if we only consider the point-to-point datalink layers, there is an important characteristic of these layers that we cannot ignore. No datalink layer is able to send frames of unlimited size. Each datalink layer is characterized by a maximum frame size. There are more than dozen different datalink layers and unfortunately most of them use a different maximum frame size. This heterogeneity in the maximum frame sizes will cause problems when we will need to exchange data between hosts attached to different types of datalink layers.
 
 As a first step, let us assume that we only need to exchange a small amount of data. In this case, there is no issue with the maximum length of the frames. However, there are other more interesting problems that we need to tackle. To understand these problems, let us consider the network represented in the figure below.
 
-.. tikz:: A simple network containing three hosts and five routers
-   :libs: positioning, matrix
+      .. tikz:: A simple network containing three hosts and five routers
+            :libs: positioning, matrix
 
-    \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
-    \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
-    \node[host] (A) {A};
-    \node[router, right of=A] (R1) {R1};
-    \node[router, right=of R1] (R3) {R3};
-    \node[router, right=of R3] (R5) {R5};
-    \node[router, below=of R1] (R2) {R2};
-    \node[router, below=of R3] (R4) {R4};
-    \node[host, below of=R4] (C) {C};
-    \node[host, right of=R5] (B) {B};
+            \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
+            \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
+            \node[host] (A) {A};
+            \node[router, right of=A] (R1) {R1};
+            \node[router, right=of R1] (R3) {R3};
+            \node[router, right=of R3] (R5) {R5};
+            \node[router, below=of R1] (R2) {R2};
+            \node[router, below=of R3] (R4) {R4};
+            \node[host, below of=R4] (C) {C};
+            \node[host, right of=R5] (B) {B};
 
 
-    \path[draw,thick]
-    (A) edge (R1)
-    (R1) edge (R2)
-    (R3) edge (R1)
-    (R2) edge (R4)
-    (R4) edge (R3)
-    (R4) edge (R5)
-    (R3) edge (R5)
-    (R4) edge (C)
-    (R5) edge (B)
-    (R2) edge (C);
+            \path[draw,thick]
+            (A) edge (R1)
+            (R1) edge (R2)
+            (R3) edge (R1)
+            (R2) edge (R4)
+            (R4) edge (R3)
+            (R4) edge (R5)
+            (R3) edge (R5)
+            (R4) edge (C)
+            (R5) edge (B)
+            (R2) edge (C);
 
 
 
@@ -69,14 +83,14 @@ To understand the key principles behind the operation of a network, let us analy
 
 .. index:: address
 
-The network layer enables the transmission of information between hosts that are not directly connected through intermediate routers. This transmission is carried out by putting the information to be transmitted inside a data structure which is called a `packet`. As a frame that contains useful data and control information, a packet also contains both data supplied by the user and control information. An important issue in the network layer is the ability to identify a node (host or router) inside the network. This identification is performed by associating an address to each node. An :term:`address` is usually represented as a sequence of bits. Most networks use fixed-length addresses. At this stage, let us simply assume that each of the nodes in the above network has an address which corresponds to the binary representation on its name on the figure. 
+The network layer enables the transmission of information between hosts that are not directly connected through intermediate routers. This transmission is carried out by putting the information to be transmitted inside a data structure which is called a `packet`. As a frame that contains useful data and control information, a packet also contains both data supplied by the user and control information. An important issue in the network layer is the ability to identify a node (host or router) inside the network. This identification is performed by associating an address to each node. An :term:`address` is usually represented as a sequence of bits. Most networks use fixed-length addresses. At this stage, let us simply assume that each of the nodes in the above network has an address which corresponds to the binary representation of its name on the figure.
 
 To send one byte of information to host `B`, host `A` needs to place this information inside a `packet`. In addition to the data being transmitted, the packet also contains either the addresses of the source and the destination nodes or information that indicates the path that needs to be followed to reach the destination.
 
 There are two possible organizations for the network layer :
 
  - `datagram`
- - `virtual circuits` 
+ - `virtual circuits`
 
 
 The datagram organization
@@ -90,22 +104,95 @@ The first and most popular organization of the network layer is the datagram org
 
 To understand the datagram organization, let us consider the figure below. A network layer address, represented by a letter, has been assigned to each host and router. To send some information to host `J`, host `A` creates a packet containing its own address, the destination address and the information to be exchanged.
 
-.. figure:: /principles/figures/simple-internetwork.png
-   :align: center
-   :scale: 80   
+      .. tikz:: A simple internetwork
+            :libs: positioning, matrix, arrows
 
-   A simple internetwork 
+            \tikzstyle{arrow} = [thick,->,>=stealth]
+            \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em, minimum width=2em, node distance=6em}, }
+            \tikzset{host/.style = {circle, draw, text centered, minimum height=2em, minimum width=2em, node distance=6em}, }
+            \tikzset{rtable/.style={rectangle, dashed, draw, font=\footnotesize, node distance=3em}, }
+            \node[host] (A) {\color{red} A};
+            \node[router, right=of A] (R1) {R1};
+            \node[router, right=of R1] (R2) {R2};
+            \node[router, right=of R2] (R5) {R5};
+            \node[router, below right=of R1, below left=of R2] (R3) {R3};
+            \node[router, below=of R5] (R4) {R4};
+            \node[host, left=of R4] (I) {I};
+            \node[host, right=of R5] (J) {\color{blue} J};
+
+            \path[draw,thick]
+            (A) edge (R1)
+            (R1) edge (R2)
+            (R1) edge (R3)
+            (R2) edge (R3)
+            (R2) edge (R4)
+            (R2) edge (R5)
+            (R4) edge (I)
+            (R5) edge (J);
+
+            \node[rtable, above=of R1] (RT1) { \begin{tabular}{c}
+                  Routing table \\
+                  \hline
+                  {\color{red} A via West} \\
+                  ... \\
+                  I via East \\
+                  {\color{blue} J via East} \\
+            \end{tabular}};
+            \node[rtable, above=of R2] (RT2) { \begin{tabular}{c}
+                  Routing table \\
+                  \hline
+                  {\color{red} A via West} \\
+                  ... \\
+                  I via South-East \\
+                  {\color{blue} J via East} \\
+            \end{tabular}};
+            \node[rtable, left=of R3] (RT3) { \begin{tabular}{c}
+                  Routing table \\
+                  \hline
+                  {\color{red} A via North-West} \\
+                  ... \\
+                  I via North-East \\
+                  {\color{blue} J via North-East} \\
+            \end{tabular}};
+            \node[rtable, right=of R4] (RT4) { \begin{tabular}{c}
+                  Routing table \\
+                  \hline
+                  {\color{red} A via North-West} \\
+                  ... \\
+                  I via West \\
+                  {\color{blue} J via North-West} \\
+            \end{tabular}};
+            \node[rtable, above right=of R5] (RT5) { \begin{tabular}{c}
+                  Routing table \\
+                  \hline
+                  {\color{red} A via West} \\
+                  ... \\
+                  I via West \\
+                  {\color{blue} J via East} \\
+            \end{tabular}};
+
+            \draw[dashed] (RT1) -- (R1);
+            \draw[dashed] (RT2) -- (R2);
+            \draw[dashed] (RT3) -- (R3);
+            \draw[dashed] (RT4) -- (R4);
+            \draw[dashed] (RT5) -- (R5);
+
+            \draw[arrow, blue] ([yshift=1.5em]A.east) -- ([yshift=1.5em]R1.west) node [midway, above=0.5em, rectangle, thick, draw, black] {\tiny {\color{red} SRC: A} {\color{blue} DST: J} Blabla};
+            \draw[arrow, blue] ([yshift=1.5em]R1.east) -- ([yshift=1.5em]R2.west);
+            \draw[arrow, blue] ([yshift=1.5em]R2.east) -- ([yshift=1.5em]R5.west);
+            \draw[arrow, blue] ([yshift=1.5em]R5.east) -- ([yshift=1.5em]J.west);
+
 
 .. index:: hop-by-hop forwarding, forwarding table
 
 
-With the datagram organization, routers use `hop-by-hop forwarding`. This means that when a router receives a packet that is not destined to itself, it looks up the destination address of the packet in its `forwarding table`. A `forwarding table` is a data structure that maps each destination address (or set of destination addresses) to the outgoing interface over which a packet destined to this address must be forwarded to reach its final destination. The router consults its forwarding table to forward each packet that it handles. 
+With the datagram organization, routers use `hop-by-hop forwarding`. This means that when a router receives a packet that is not destined to itself, it looks up the destination address of the packet in its `forwarding table`. A `forwarding table` is a data structure that maps each destination address (or set of destination addresses) to the outgoing interface over which a packet destined to this address must be forwarded to reach its final destination. The router consults its forwarding table to forward each packet that it handles.
 
 The figure illustrates some possible forwarding tables in this network. By inspecting the forwarding tables of the different routers, one can find the path followed by packets sent from a source to a particular destination. In the example above, host `A` sends its packet to router `R1`. `R1` consults its forwarding table and forwards the packet towards `R2`. Based on its own table, `R2` decides to forward the packet to `R5` that can deliver it to its destination. Thus, the path from `A` to `J` is `A -> R1 -> R2 -> R5 -> J`.
 
-The computation of the forwarding tables of all the routers inside a network is a key element for the correct operation of the network. This computation can be carried out by using either distributed or centralized algorithms. These algorithms provide different performance, may lead to different types of paths, but their composition must lead to valid path. 
+The computation of the forwarding tables of all the routers inside a network is a key element for the correct operation of the network. This computation can be carried out by using either distributed or centralized algorithms. These algorithms provide different performance, may lead to different types of paths, but their composition must lead to valid paths.
 
-In a network, a path can be defined as the list of all intermediate routers for a given source destination pair. For a given source/destination pair, the path can be derived by first consulting the forwarding table of the router attached to the source to determine the next router on the path towards the chosen destination. Then, the forwarding table of this router is queried for the same destination... The queries continue until the destination is reached. In a network that has valid forwarding tables, all the paths between all source/destination pairs contain a finite number of intermediate routers. However, if forwarding tables have not been correctly computed, two types of invalid paths can occur. 
+In a network, a path can be defined as the list of all intermediate routers for a given source destination pair. For a given source/destination pair, the path can be derived by first consulting the forwarding table of the router attached to the source to determine the next router on the path towards the chosen destination. Then, the forwarding table of this router is queried for the same destination... The queries continue until the destination is reached. In a network that has valid forwarding tables, all the paths between all source/destination pairs contain a finite number of intermediate routers. However, if forwarding tables have not been correctly computed, two types of invalid paths can occur.
 
 .. index:: black hole
 
@@ -115,7 +202,7 @@ A path may lead to a `black hole`. In a network, a black hole is a router that r
 
 A second type of problem may exist in networks using the datagram organization. Consider a path that contains a cycle. For example, router `R1` sends all packets towards destination `D` via router `R2`. Router `R2` forwards these packets to router `R3` and finally router `R3`'s forwarding table uses router `R1` as its nexthop to reach destination `D`. In this case, if a packet destined to `D` is received by router `R1`, it will loop on the `R1 -> R2 -> R3 -> R1` cycle and will never reach its final destination. As in the black hole case, the destination is not reachable from all sources in the network. In practice the loop problem is more annoying than the black hole problem because when a packet is caught in a forwarding loop, it unnecessarily consumes bandwidth. In the black hole case, the problematic packet is quickly discarded. We will see later that network layer protocols include techniques to minimize the impact of such forwarding loops.
 
-Any solution which is used to compute the forwarding tables of a network must ensure that all destinations are reachable from any source. This implies that it must guarantee the absence of black holes and forwarding loops. 
+Any solution which is used to compute the forwarding tables of a network must ensure that all destinations are reachable from any source. This implies that it must guarantee the absence of black holes and forwarding loops.
 
 .. index:: data plane
 
@@ -127,13 +214,13 @@ The `forwarding tables` and the precise format of the packets that are exchanged
 
 Besides the `data plane`, a network is also characterized by its `control plane`. The control plane includes all the protocols and algorithms (often distributed) that compute the forwarding tables that are installed on all routers inside the network. While there is only one possible `data plane` for a given networking technology, different networks using the same technology may use different control planes.
 
-The simplest `control plane` for a network is to manually compute the forwarding tables of all routers inside the network. This simple control plane is sufficient when the network is (very) small, usually up to a few routers. 
+The simplest `control plane` for a network is to manually compute the forwarding tables of all routers inside the network. This simple control plane is sufficient when the network is (very) small, usually up to a few routers.
 
-In most networks, manual forwarding tables are not a solution for two reasons. First, most networks are too large to enable a manual computation of the forwarding tables. Second, with manually computed forwarding tables, it is very difficult to deal with link and router failures. Networks need to operate 24h a day, 365 days per year. Many events can affect the routers and links that compose a network. Link failures are regular events in deployed networks. Links can fail for various reasons, including electromagnetic interference, fiber cuts, hardware or software problems on the terminating routers, ... Some links also need to be added to the network or removed because their utilization is too low or their cost is too high.
+In most networks, manual forwarding tables are not a solution for two reasons. First, most networks are too large to enable a manual computation of the forwarding tables. Second, with manually computed forwarding tables, it is very difficult to deal with link and router failures. Networks need to operate 24h a day, 365 days per year. Many events can affect the routers and links that compose a network. Link failures are regular events in deployed networks. Links can fail for various reasons, including electromagnetic interference, fiber cuts, hardware or software problems on the terminating routers,... Some links also need to be either added to or removed from the network because their utilization is too low or their cost is too high.
 
-Similarly, routers also fail. There are two types of failures that affect routers. A router may stop forwarding packets due to hardware or software problems (e.g. due to a crash of its operating system). A router may also need to be halted from time to time (e.g. to upgrade its operating system or to install new interface cards). These planned and unplanned events affect the set of links and routers that can be used to forward packets in the network. Still, most network users expect that their network will continue to correctly forward packets despite all these events. With manually computed forwarding tables, it is usually impossible to pre-compute the forwarding tables while taking into account all possible failure scenarios.
+Similarly, routers also fail. There are two types of failures that affect routers. A router may stop forwarding packets due to hardware or software problems (e.g., due to a crash of its operating system). A router may also need to be halted from time to time (e.g., to upgrade its operating system or to install new interface cards). These planned and unplanned events affect the set of links and routers that can be used to forward packets in the network. Still, most network users expect that their network will continue to correctly forward packets despite all these events. With manually computed forwarding tables, it is usually impossible to pre-compute the forwarding tables while taking into account all possible failure scenarios.
 
-An alternative to manually computed forwarding tables is to use a network management platform that tracks the network status and can push new forwarding tables on the routers when it detects any modification to the network topology. This solution gives some flexibility to the network managers in computing the paths inside their network. However, this solution only works if the network management platform is always capable of reaching all routers even when the network topology changes. This may require a dedicated network that allows the management platform to push information on the forwarding tables. Openflow is a modern example of such solutions [MAB2008]_. In a nutshell, Openflow is a protocol that enables a network controller to install specific entries in the forwarding tables of remote routers and much more. 
+An alternative to manually computed forwarding tables is to use a network management platform that tracks the network status and can push new forwarding tables on the routers when it detects any modification to the network topology. This solution gives some flexibility to the network managers in computing the paths inside their network. However, this solution only works if the network management platform is always capable of reaching all routers even when the network topology changes. This may require a dedicated network that allows the management platform to push information on the forwarding tables. Openflow is a modern example of such solutions [MAB2008]_. In a nutshell, Openflow is a protocol that enables a network controller to install specific entries in the forwarding tables of remote routers and much more.
 
 Another interesting point that is worth being discussed is when the forwarding tables are computed. A widely used solution is to compute the entries of the forwarding tables for all destinations on all routers. This ensures that each router has a valid route towards each destination. These entries can be updated when an event occurs and the network topology changes. A drawback of this approach is that the forwarding tables can become large in large networks since each router must always maintain one entry for each destination inside its forwarding table.
 
@@ -142,7 +229,7 @@ Some networks use the arrival of packets as the trigger to compute the correspon
 Computing forwarding tables
 ---------------------------
 
-Several techniques to update the forwarding tables upon the arrival of a packet have been used in deployed networks. In this section, we briefly present the principles that underlie three of these techniques.
+Networks deployed several techniques to update the forwarding tables upon the arrival of a packet. In this section, we briefly present the principles that underlie three of these techniques.
 
 The first technique assumes that the underlying network topology is a tree. A tree is the simplest network to be considered when forwarding packets. The main advantage of using a tree is that there is only one path between any pair of nodes inside the network. Since a tree does not contain any cycle, it is impossible to have forwarding loops in a tree-shaped network.
 
@@ -152,103 +239,104 @@ In a tree-shaped network, it is relatively simple for each node to automatically
 
 Learning the location of the sources is not sufficient, nodes also need to forward packets towards their destination. When a node receives a packet whose destination address is already present inside its port-address table, it simply forwards the packet on the interface listed in the port-address table. In this case, the packet will follow the port-address table entries in the downstream nodes and will reach the destination. If the destination address is not included in the port-address table, the node simply forwards the packet on all its interfaces, except the interface from which the packet was received. Forwarding a packet over all interfaces is usually called `broadcasting` in the terminology of computer networks. Sending the packet over all interfaces except one is a costly operation since the packet is sent over links that do not reach the destination. Given the tree-shape of the network, the packet will explore all downstream branches of the tree and will finally reach its destination. In practice, the `broadcasting` operation does not occur too often and its performance impact remains limited.
 
-To understand the operation of the port-address table, let us consider the example network shown in the figure below. This network contains three hosts: `A`, `B` and `C` and five nodes, `R1` to `R5`. When the network boots, all the forwarding tables of the nodes are empty.
+To understand the operation of the port-address table, let us consider the example network shown in the figure below. This network contains three hosts: `A`, `B` and `C` and five routers, `R1` to `R5`. When the network boots, all the forwarding tables of the nodes are empty.
 
 
-.. tikz:: A simple tree-shaped network
-      :libs: positioning, matrix, arrows 
+      .. tikz:: A simple tree-shaped network
+            :libs: positioning, matrix, arrows
 
-      \tikzstyle{arrow} = [thick,->,>=stealth]
-      \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
-      \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
-      \tikzset{ftable/.style={rectangle, dashed, draw} }
-      \node[host] (A) {A};
-      \node[router, right=of A] (R1) {R1};
-      \node[router, right=of R1] (R2) {R2};
-      \node[host, right=of R2] (C) {C};
-      \node[router, below=of R2] (R3) {R3};
-      \node[router, right=of R3] (R4) {R4};
-      \node[router, below=of R4] (R5) {R5};
-      \node[host, right=of R4] (B) {B};
-      \path[draw,thick]
-      (A) edge (R1) 
-      (R1) edge (R2) 
-      (R1) edge (R3) 
-      (R2) edge (C) 
-      (R3) edge (R4)
-      (R5) edge (B)
-      (R3) edge (R5); 
+            \tikzstyle{arrow} = [thick,->,>=stealth]
+            \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
+            \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
+            \node[host] (A) {A};
+            \node[router, right=of A] (R1) {R1};
+            \node[router, right=of R1] (R2) {R2};
+            \node[host, right=of R2] (C) {C};
+            \node[router, below=of R2] (R3) {R3};
+            \node[router, right=of R3] (R4) {R4};
+            \node[router, below=of R4] (R5) {R5};
+            \node[host, right=of R4] (B) {B};
+            \path[draw,thick]
+            (A) edge (R1)
+            (R1) edge (R2)
+            (R1) edge (R3)
+            (R2) edge (C)
+            (R3) edge (R4)
+            (R5) edge (B)
+            (R3) edge (R5);
 
 
-Host `A` sends a packet towards `B`. When receiving this packet, `R1` learns that `A` is reachable via its `North` interface. Since it does not have an entry for destination `B` in its port-address table, it forwards the packet to both `R2` and `R3`. When `R2` receives the packet, it updates its own forwarding table and forward the packet to `C`. Since `C` is not the intended recipient, it simply discards the received packet. Node `R3` also received the packet. It learns that `A` is reachable via its `North` interface and broadcasts the packet to `R4` and `R5`. `R5` also updates its forwarding table and finally forwards it to destination `B`.`Let us now consider what happens when `B` sends a reply to `A`. `R5`  first learns that `B` is attached to its `South` port. It then consults its port-address table and finds that `A` is reachable via its `North` interface. The packet is then forwarded hop-by-hop to `A` without any broadcasting. If `C` sends a packet to `B`, this packet will reach `R1` that contains a valid forwarding entry in its forwarding table.
+Host `A` sends a packet towards `B`. When receiving this packet, `R1` learns that `A` is reachable via its `North` interface. Since it does not have an entry for destination `B` in its port-address table, it forwards the packet to both `R2` and `R3`. When `R2` receives the packet, it updates its own forwarding table and forward the packet to `C`. Since `C` is not the intended recipient, it simply discards the received packet. Router `R3` also receives the packet. It learns that `A` is reachable via its `North` interface and broadcasts the packet to `R4` and `R5`. `R5` also updates its forwarding table and finally forwards it to destination `B`.`Let us now consider what happens when `B` sends a reply to `A`. `R5`  first learns that `B` is attached to its `South` port. It then consults its port-address table and finds that `A` is reachable via its `North` interface. The packet is then forwarded hop-by-hop to `A` without any broadcasting. Later on, if `C` sends a packet to `B`, this packet will reach `R1` that contains a valid forwarding entry in its forwarding table.
 
 
 
 By inspecting the source and destination addresses of packets, network nodes can automatically derive their forwarding tables. As we will discuss later, this technique is used in :term:`Ethernet` networks. Despite being widely used, it has two important drawbacks. First, packets sent to unknown destinations are broadcasted in the network even if the destination is not attached to the network. Consider the transmission of ten packets destined to `Z` in the network above. When a node receives a packet towards this destination, it can only broadcast that packet. Since `Z` is not attached to the network, no node will ever receive a packet whose source is `Z` to update its forwarding table. The second and more important problem is that few networks have a tree-shaped topology. It is interesting to analyze what happens when a port-address table is used in a network that contains a cycle. Consider the simple network shown below with a single host.
 
 
+      .. tikz:: A simple and redundant network
+            :libs: positioning, matrix, arrows
 
-.. tikz:: A simple and redundant network
-      :libs: positioning, matrix, arrows 
+            \tikzstyle{arrow} = [thick,->,>=stealth]
+            \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
+            \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
+            \tikzset{ftable/.style={rectangle, dashed, draw} }
+            \node[host] (A) {A};
+            \node[router, right=of A] (R1) {R1};
+            \node[router, right=of R1] (R3) {R3};
+            \node[router, below=of R1] (R2) {R2};
+            \node[host, right=of R3] (B) {B};
+            \path[draw,thick]
+            (A) edge (R1)
+            (R1) edge (R2)
+            (R1) edge (R3)
+            (R3) edge (R2)
+            (R3) edge (B);
 
-      \tikzstyle{arrow} = [thick,->,>=stealth]
-      \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
-      \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
-      \tikzset{ftable/.style={rectangle, dashed, draw} }
-      \node[host] (A) {A};
-      \node[router, right=of A] (R1) {R1};
-      \node[router, right=of R1] (R3) {R3};
-      \node[router, below=of R1] (R2) {R2};
-      \node[host, right=of R3] (B) {B};
-      \path[draw,thick]
-      (A) edge (R1) 
-      (R1) edge (R2) 
-      (R1) edge (R3) 
-      (R3) edge (R2) 
-      (R3) edge (B); 
 
-Assume that the network has started and all port-station and forwarding tables are empty. Host `A` sends a packet towards `B`. Upon reception of this packet, `R1` updates its port-address table. Since `B` is not present in the port-address table, the packet is broadcasted. Both `R2` and `R3` receive a copy of the packet sent by `A`. They both update their port-address table. Unfortunately, they also both broadcast the received packet. `B` receives a first copy of the packet, but `R3` and `R2` receive it again. `R3` will then broadcast this copy of the packet to `B` and `R1` while `R2` will broadcast its copy to `R1`. Although `B` has already received two copies of the packet, it is still inside the network and continues to loop. Due to the presence of the cycle, a single packet towards an unknown destination generates many copies of this packet that loop and will eventually saturate the network. Network operators who are using port-address tables to automatically compute the forwarding tables also use distributed algorithms to ensure that the network topology is always a tree.
+Assume that the network has started and all port-address and forwarding tables are empty. Host `A` sends a packet towards `B`. Upon reception of this packet, `R1` updates its port-address table. Since `B` is not present in the port-address table, the packet is broadcasted. Both `R2` and `R3` receive a copy of the packet sent by `A`. They both update their port-address table. Unfortunately, they also both broadcast the received packet. `B` receives a first copy of the packet, but `R3` and `R2` receive it again. `R3` will then broadcast this copy of the packet to `B` and `R1` while `R2` will broadcast its copy to `R1`. Although `B` has already received two copies of the packet, it is still inside the network and continues to loop. Due to the presence of the cycle, a single packet towards an unknown destination generates many copies of this packet that loop and will eventually saturate the network. Network operators who are using port-address tables to automatically compute the forwarding tables also use distributed algorithms to ensure that the network topology is always a tree.
 
 .. index:: source routing
 
-Another technique can be used to automatically compute forwarding tables. It has been used in interconnecting Token Ring networks and in some wireless networks. Intuitively, `Source routing` enables a destination to automatically discover the paths from a given source towards itself. This technique requires nodes to encode information inside some packets. For simplicity, let us assume that the `data plane` supports two types of packets :
+Another technique called `source routing` can be used to automatically compute forwarding tables. It has been used in interconnecting Token Ring networks and in some wireless networks. Intuitively, `source routing` enables a destination to automatically discover the paths from a given source towards itself. This technique requires nodes to encode information inside some packets. For simplicity, let us assume that the `data plane` supports two types of packets :
 
  - the `data packets`
  - the `control packets`
 
-`Data packets` are used to exchange data while `control packets` are used to discover the paths between hosts. With `Source routing`, network nodes can be kept as simple as possible and all the complexity is placed on the hosts. This is in contrast with the previous technique where the nodes had to maintain a port-address and a forwarding table while the hosts simply sent and received packets. Each node is configured with one unique address and there is one identifier per outgoing link. For simplicity and to avoid cluttering the figures with those identifiers, we assume that each node uses as link identifiers north, west, south, ... In practice, a node would associate one integer to each outgoing link. 
+`Data packets` are used to exchange data while `control packets` are used to discover the paths between hosts. With `source routing`, routers can be kept as simple as possible and all the complexity is placed on the hosts. This is in contrast with the previous technique where the nodes had to maintain a port-address and a forwarding table while the hosts simply sent and received packets. Each node is configured with one unique address and there is one identifier per outgoing link. For simplicity and to avoid cluttering the figures with those identifiers, we assume that each node uses as link identifiers north, west, south,... In practice, a node would associate one integer to each outgoing link.
 
-.. tikz:: A simple network with two hosts and four routers
-      :libs: positioning, matrix, arrows 
+      .. tikz:: A simple network with two hosts and four routers
+            :libs: positioning, matrix, arrows
 
-      \tikzstyle{arrow} = [thick,->,>=stealth]
-      \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
-      \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
-      \tikzset{ftable/.style={rectangle, dashed, draw} }
-      \node[host] (A) {A};
-      \node[router, right=of A] (R1) {R1};
-      \node[router, right=of R1] (R3) {R3};
-      \node[router, below=of R1] (R2) {R2};
-      \node[router, right=of R3] (R4) {R4};
-      \node[host, right=of R4] (B) {B};
-      \path[draw,thick]
-      (A) edge (R1) 
-      (R1) edge (R2) 
-      (R1) edge (R3) 
-      (R3) edge (R2) 
-      (R3) edge (R4) 
-      (R4) edge (B); 
+            \tikzstyle{arrow} = [thick,->,>=stealth]
+            \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
+            \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
+            \tikzset{ftable/.style={rectangle, dashed, draw} }
+            \node[host] (A) {A};
+            \node[router, right=of A] (R1) {R1};
+            \node[router, right=of R1] (R3) {R3};
+            \node[router, below=of R1] (R2) {R2};
+            \node[router, right=of R3] (R4) {R4};
+            \node[host, right=of R4] (B) {B};
+            \path[draw,thick]
+            (A) edge (R1)
+            (R1) edge (R2)
+            (R1) edge (R3)
+            (R3) edge (R2)
+            (R3) edge (R4)
+            (R4) edge (B);
 
 
-In the network above, node `R2` is attached to two outgoing links. `R2` is connected to both `R1` and `R3`. `R2` can easily determine that it is connected to these two nodes by exchanging packets with them or observing the packets that it receives over each interface. Assume for example that when a host or node starts, it sends a special control packet over each of its interfaces to advertise its own address to its neighbors. When a host or node receives such a packet, it automatically replies with its own address. This exchange can also be used to verify whether a neighbor, either node or host, is still alive. With `source routing`, the data plane packets include a list of identifiers. This list is called a `source route`. It indicates the path to be followed by the packet as a sequence of link identifiers. When a node receives such a `data plane` packet, it first checks whether the packet's destination is a direct neighbor. In this case, the packet is forwarded to this neighbor. Otherwise, the node extracts the next address from the list and forwards it to the neighbor. This allows the source to specify the explicit path to be followed for each packet. For example, in the figure above there are two possible paths between `A` and `B`. To use the path via `R2`, `A` would send a packet that contains `R1,R2,R3` as source route. To avoid going via `R2`, `A` would place `R1,R3` as the source route in its transmitted packet. If `A` knows the complete network topology and all link identifiers, it can easily compute the source route towards each destination. It can even use different paths, e.g. for redundancy, to reach a given destination. However, in a real network hosts do not usually have a map of the entire network topology.
+In the network above, router `R2` is attached to two outgoing links. `R2` is connected to both `R1` and `R3`. `R2` can easily determine that it is connected to these two nodes by exchanging packets with them or observing the packets that it receives over each interface. Assume for example that when a node (either host or router) starts, it sends a special control packet over each of its interfaces to advertise its own address to its neighbors. When a node receives such a packet, it automatically replies with its own address. This exchange can also be used to verify whether a neighbor, either router or host, is still alive. With `source routing`, the data plane packets include a list of identifiers. This list is called a `source route`. It indicates the path to be followed by the packet as a sequence of link identifiers. When a node receives such a `data plane` packet, it first checks whether the packet's destination is a direct neighbor. In this case, the packet is forwarded to this neighbor. Otherwise, the node extracts the next address from the list and forwards it to the neighbor. This allows the source to specify the explicit path to be followed for each packet. For example, in the figure above there are two possible paths between `A` and `B`. To use the path via `R2`, `A` would send a packet that contains `R1,R2,R3` as source route. To avoid going via `R2`, `A` would place `R1,R3` as the source route in its transmitted packet. If `A` knows the complete network topology and all link identifiers, it can easily compute the source route towards each destination. It can even use different paths, e.g. for redundancy, to reach a given destination. However, in a real network hosts do not usually have a map of the entire network topology.
 
 .. index:: record route
 
-In networks that rely on source routing, hosts use control packets to automatically discover the best path(s). In addition to the source and destination addresses, `control packets` contain a list that records the intermediate nodes. This list is often called the `record route` because it allows to record the route followed by a given packet. When a node receives such a `control packet`, it first checks whether its address is included in the record route. If yes, the packet has already been forwarded by this node and it is silently discarded. Otherwise, it adds its own address to the `record route` and forwards the packet to all its interfaces, except the interface over which the packet has been received. Thanks to this, the `control packet` can explore all paths between a source and a given destination.
+In networks that rely on source routing, hosts use control packets to automatically discover the best path(s). In addition to the source and destination addresses, `control packets` contain a list that records the intermediate nodes. This list is often called the `record route` because it allows recording the route followed by a given packet. When a node receives such a `control packet`, it first checks whether its address is included in the record route. If yes, the packet has already been forwarded by this node and it is silently discarded. Otherwise, it adds its own address to the `record route` and forwards the packet to all its interfaces, except the interface over which the packet has been received. Thanks to this, the `control packet` can explore all paths between a source and a given destination.
 
 For example, consider again the network topology above. `A` sends a control packet towards `B`. The initial `record route` is empty. When `R1` receives the packet, it adds its own address to the `record route` and forwards a copy to `R2` and another to `R3`. `R2` receives the packet, adds itself to the `record route` and forwards it to `R3`. `R3` receives two copies of the packet. The first contains the `[R1,R2]` `record route` and the second `[R1]`. In the end, `B` will receive two control packets containing  `[R1,R2,R3,R4]` and `[R1,R3,R4]` as `record routes`. `B` can keep these two paths or select the best one and discard the second. A popular heuristic is to select the `record route` of the first received packet as being the best one since this likely corresponds to the shortest delay path.
 
-With the received `record route`, `B` can send a `data packet` to `A`. For this, it simply reverses the chosen `record route`. However, we still need to communicate the chosen path to `A`. This can be done by putting the `record route` inside a control packet which is sent back to `A` over the reverse path. An alternative is to simply send a `data packet` back to `A`. This packet will travel back to `A`. To allow `A` to inspect the entire path followed by the `data packet`, its `source route` must contain all intermediate routers when it is received by `A`. This can be achieved by encoding the `source route` using a data structure that contains an index and the ordered list of node addresses. The index always points to the next address in the `source route`. It is initialized at `0` when a packet is created and incremented by each intermediate node. 
+With the received `record route`, `B` can send a `data packet` to `A`. For this, it simply reverses the chosen `record route`. However, we still need to communicate the chosen path to `A`. This can be done by putting the `record route` inside a control packet which is sent back to `A` over the reverse path. An alternative is to simply send a `data packet` back to `A`. This packet will travel back to `A`. To allow `A` to inspect the entire path followed by the `data packet`, its `source route` must contain all intermediate routers when it is received by `A`. This can be achieved by encoding the `source route` using a data structure that contains an index and the ordered list of node addresses. The index always points to the next address in the `source route`. It is initialized at `0` when a packet is created and incremented by each intermediate node.
+
+The third technique to compute forwarding tables is to rely on a control plane using a distributed algorithm. Routers exchange control messages to discover the network topology and build their forwarding table based on them. We dedicate a more detailed description of such distributed algorithms later in this section.
 
 
 Flat or hierarchical addresses
@@ -258,65 +346,65 @@ The last, but important, point to discuss about the `data plane` of the networks
 
 The first organization, which is the one that we have implicitly assumed until now, is the `flat addressing` scheme. Under this scheme, each host and network node has a unique address. The unicity of the addresses is important for the operation of the network. If two hosts have the same address, it can become difficult for the network to forward packets towards this destination. `Flat addresses` are typically used in situations where network nodes and hosts need to be able to communicate immediately with unique addresses. These `flat addresses` are often embedded inside the network interface cards. The network card manufacturer creates one unique address for each interface and this address is stored in the read-only memory of the interface. An advantage of this addressing scheme is that it easily supports unstructured and mobile networks. When a host moves, it can attach to another network and remain confident that its address is unique and enables it to communicate inside the new network.
 
-With `flat addressing` the lookup operation in the forwarding table can be implemented as an exact match. The `forwarding table` contains the (sorted) list of all known destination addresses. When a packet arrives, a network node only needs to check whether this address is included in the forwarding table or not. In software, this is an `O(log(n))` operation if the list is sorted. In hardware, Content Addressable Memories can perform this lookup operation efficiently, but their size is usually limited.
+With `flat addressing` the lookup operation in the forwarding table can be implemented as an exact match. The `forwarding table` contains the (sorted) list of all known destination addresses. When a packet arrives, a network node only needs to check whether this address is included in the forwarding table or not. In software, this is an `O(log(n))` operation if the list is sorted. In hardware, Content Addressable Memories can efficiently perform this lookup operation, but their size is usually limited.
 
 .. https://www.pagiamtzis.com/pubs/pagiamtzis-jssc2006.pdf
 
-A drawback of the `flat addressing scheme` is that the forwarding tables grow linearly with the number of hosts and nodes in the network. With this addressing scheme, each forwarding table must contain an entry that points to every address reachable inside the network. Since large networks can contain tens of millions of hosts or more, this is a major problem on network nodes that need to be able to quickly forward packets. As an illustration, it is interesting to consider the case of an interface running at 10 Gbps. Such interfaces are found on high-end servers and in various network nodes today. Assuming a packet size of 1000 bits, a pretty large and conservative number, such interface must forward ten million packets every second. This implies that a network node that receives packets over such a link must forward one 1000 bits packet every 100 nanoseconds. This is the same order of magnitude as the memory access times of old DRAMs.
+A drawback of the `flat addressing scheme` is that the forwarding tables linearly grow with the number of hosts and routers in the network. With this addressing scheme, each forwarding table must contain an entry that points to every address reachable inside the network. Since large networks can contain tens of millions of hosts or more, this is a major problem on routers that need to be able to quickly forward packets. As an illustration, it is interesting to consider the case of an interface running at 10 Gbps. Such interfaces are found on high-end servers and in various routers today. Assuming a packet size of 1000 bits, a pretty large and conservative number, such interface must forward ten million packets every second. This implies that a router that receives packets over such a link must forward one 1000 bits packet every 100 nanoseconds. This is the same order of magnitude as the memory access times of old DRAMs.
 
-A widely used alternative to the `flat addressing scheme` is the `hierarchical addressing scheme`. This addressing scheme builds upon the fact that networks usually contain much more hosts than network nodes. In this case, a first solution to reduce the size of the forwarding tables is to create a hierarchy of addresses. This is the solution chosen by the post office since postal addresses contain a country, sometimes a state or province, a city, a street and finally a street number. When an envelope is forwarded by a post office in a remote country, it only looks at the destination country, while a post office in the same province will look at the city information. Only the post office responsible for a given city will look at the street name and only the postman will use the street number. `Hierarchical addresses` provide a similar solution for network addresses. For example, the address of an Internet host attached to a campus network could contain in the high-order bits an identification of the Internet Service Provider (ISP) that serves the campus network. Then, a subsequent block of bits identifies the campus network which is one of the customers of the ISP. Finally, the low order bits of the address identify the host in the campus network.
+A widely used alternative to the `flat addressing scheme` is the `hierarchical addressing scheme`. This addressing scheme builds upon the fact that networks usually contain much more hosts than routers. In this case, a first solution to reduce the size of the forwarding tables is to create a hierarchy of addresses. This is the solution chosen by the post office since postal addresses contain a country, sometimes a state or province, a city, a street and finally a street number. When an envelope is forwarded by a post office in a remote country, it only looks at the destination country, while a post office in the same province will look at the city information. Only the post office responsible for a given city will look at the street name and only the postman will use the street number. `Hierarchical addresses` provide a similar solution for network addresses. For example, the address of an Internet host attached to a campus network could contain in the high-order bits an identification of the Internet Service Provider (ISP) that serves the campus network. Then, a subsequent block of bits identifies the campus network which is one of the customers of the ISP. Finally, the low order bits of the address identify the host in the campus network.
 
-This hierarchical allocation of addresses can be applied in any type of network. In practice, the allocation of the addresses must follow the network topology. Usually, this is achieved by dividing the addressing space in consecutive blocks and then allocating these blocks to different parts of the network. In a small network, the simplest solution is to allocate one block of addresses to each network node and assign the host addresses from the attached node. 
-
-
-.. tikz:: A simple network with two hosts and four routers
-      :libs: positioning, matrix, arrows 
-
-      \tikzstyle{arrow} = [thick,->,>=stealth]
-      \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
-      \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
-      \tikzset{ftable/.style={rectangle, dashed, draw} }
-      \node[host] (A) {A};
-      \node[router, right=of A] (R1) {R1};
-      \node[router, right=of R1] (R3) {R3};
-      \node[router, below=of R1] (R2) {R2};
-      \node[router, right=of R3] (R4) {R4};
-      \node[host, right=of R4] (B) {B};
-      \path[draw,thick]
-      (A) edge (R1) 
-      (R1) edge (R2) 
-      (R1) edge (R3) 
-      (R3) edge (R2) 
-      (R3) edge (R4) 
-      (R4) edge (B); 
+This hierarchical allocation of addresses can be applied in any type of network. In practice, the allocation of the addresses must follow the network topology. Usually, this is achieved by dividing the addressing space in consecutive blocks and then allocating these blocks to different parts of the network. In a small network, the simplest solution is to allocate one block of addresses to each network node and assign the host addresses from the attached node.
 
 
+      .. tikz:: A simple network with two hosts and four routers
+            :libs: positioning, matrix, arrows
 
-In the above figure, assume that the network uses 16 bits addresses and that the prefix `01001010` has been assigned to the entire network. Since the network contains four routers, the network operator could assign one block of sixty-four addresses to each router. `R1` would use address `0100101000000000` while `A` could use address `0100101000000001`. `R2` could be assigned all addresses from `0100101001000000`  to `0100101001111111`. `R4` could then use `0100101011000000` and assign `0100101011000001` to `B`. Other allocation schemes are possible. For example, `R3` could be allocated a larger block of addresses than `R2` and `R4` could use a sub-block from `R3` 's address block. 
+            \tikzstyle{arrow} = [thick,->,>=stealth]
+            \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
+            \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
+            \tikzset{ftable/.style={rectangle, dashed, draw} }
+            \node[host] (A) {A};
+            \node[router, right=of A] (R1) {R1};
+            \node[router, right=of R1] (R3) {R3};
+            \node[router, below=of R1] (R2) {R2};
+            \node[router, right=of R3] (R4) {R4};
+            \node[host, right=of R4] (B) {B};
+            \path[draw,thick]
+            (A) edge (R1)
+            (R1) edge (R2)
+            (R1) edge (R3)
+            (R3) edge (R2)
+            (R3) edge (R4)
+            (R4) edge (B);
 
-The main advantage of hierarchical addresses is that it is possible to significantly reduce the size of the forwarding tables. In many networks, the number of nodes can be several orders of magnitude smaller than the number of hosts. A campus network may contain a dozen network nodes and thousands of hosts. The largest Internet Services Providers typically contain no more than a few tens of thousands of network nodes but still serve tens or hundreds of millions of hosts.
 
-Despite their popularity, `hierarchical addresses` have some drawbacks. Their first drawback is that a lookup in the forwarding table is more complex than when using `flat addresses`. For example, on the Internet, network nodes have to perform a longest-match to forward each packet. This is partially compensated by the reduction in the size of the forwarding tables, but the additional complexity of the lookup operation has been a difficulty to implement hardware support for packet forwarding. A second drawback of the utilization of hierarchical addresses is that when a host connects for the first time to a network, it must contact one network node to determine its own address. This requires some packet exchanges between the host and some network nodes. Furthermore, if a host moves and is attached to another network node, its network address will change. This can be an issue with some mobile hosts. 
+
+In the above figure, assume that the network uses 16 bits addresses and that the prefix `01001010` has been assigned to the entire network. Since the network contains four routers, the network operator could assign one block of sixty-four addresses to each router. `R1` would use address `0100101000000000` while `A` could use address `0100101000000001`. `R2` could be assigned all addresses from `0100101001000000`  to `0100101001111111`. `R4` could then use `0100101011000000` and assign `0100101011000001` to `B`. Other allocation schemes are possible. For example, `R3` could be allocated a larger block of addresses than `R2` and `R4` could use a sub-block from `R3` 's address block.
+
+The main advantage of hierarchical addresses is that it is possible to significantly reduce the size of the forwarding tables. In many networks, the number of routers can be several orders of magnitude smaller than the number of hosts. A campus network may contain a dozen routers and thousands of hosts. The largest Internet Services Providers typically contain no more than a few tens of thousands of routers but still serve tens or hundreds of millions of hosts.
+
+Despite their popularity, `hierarchical addresses` have some drawbacks. Their first drawback is that a lookup in the forwarding table is more complex than when using `flat addresses`. For example, on the Internet, network nodes have to perform a longest-match to forward each packet. This is partially compensated by the reduction in the size of the forwarding tables, but the additional complexity of the lookup operation has been a difficulty to implement hardware support for packet forwarding. A second drawback of the utilization of hierarchical addresses is that when a host connects for the first time to a network, it must contact one router to determine its own address. This requires some packet exchanges between the host and some routers. Furthermore, if a host moves and is attached to another routers, its network address will change. This can be an issue with some mobile hosts.
 
 Dealing with heterogeneous datalink layers
 ------------------------------------------
 
 Sometimes, the network layer needs to deal with heterogeneous datalink layers. For example, two hosts connected to different datalink layers exchange packets via routers that are using other types of datalink layers. Thanks to the network layer, this exchange of packets is possible provided that each packet can be placed inside a datalink layer frame before being transmitted. If all datalink layers support the same frame size, this is simple. When a node receives a frame, it decapsulates the packet that it contains, checks the header and forwards it, encapsulated inside another frame, to the outgoing interface. Unfortunately, the encapsulation operation is not always possible. Each datalink layer is characterized by the maximum frame size that it supports. Datalink layers typically support frames containing up to a few hundreds or a few thousands of bytes. The maximum frame size that a given datalink layer supports depends on its underlying technology. Unfortunately, most datalink layers support a different maximum frame size. This implies that when a host sends a large packet inside a frame to its nexthop router, there is a risk that this packet will have to traverse a link that is not capable of forwarding the packet inside a single frame. In principle, there are three possibilities to solve this problem. To discuss them, we consider a simple scenario with two hosts connected to a router as shown in the figure below.
 
-.. tikz:: A simple heterogeneous network
-      :libs: positioning, matrix, arrows 
+      .. tikz:: A simple heterogeneous network
+            :libs: positioning, matrix, arrows
 
-      \tikzstyle{arrow} = [thick,->,>=stealth]
-      \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
-      \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
-      \tikzset{ftable/.style={rectangle, dashed, draw} }
-      \node[host] (A) {A};
-      \node[router, right=2cm of A] (R1) {R1};
-      \node[router, right=2cm of R1] (R2) {R2};
-      \node[host, right=2 cm of R2] (B) {B};
-      \draw[black] (A) -- (R1) node [midway, below] { {\tiny Max 1000 B}};
-      \draw[black] (R1) -- (R2) node [midway, below] { {\tiny Max 500 B}};
-      \draw[black] (R2) -- (B) node [midway, below] {  {\tiny Max 1000 B}}; 
+            \tikzstyle{arrow} = [thick,->,>=stealth]
+            \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
+            \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
+            \tikzset{ftable/.style={rectangle, dashed, draw} }
+            \node[host] (A) {A};
+            \node[router, right=2cm of A] (R1) {R1};
+            \node[router, right=2cm of R1] (R2) {R2};
+            \node[host, right=2 cm of R2] (B) {B};
+            \draw[black] (A) -- (R1) node [midway, below] { {\tiny Max 1000 B}};
+            \draw[black] (R1) -- (R2) node [midway, below] { {\tiny Max 500 B}};
+            \draw[black] (R2) -- (B) node [midway, below] {  {\tiny Max 1000 B}};
 
 
 
@@ -327,14 +415,14 @@ Consider in the network above that host `A` wants to send a 900 bytes packet (87
  #. The network layer is able to fragment a packet. In our example, the router could fragment the packet in two parts. The first part contains the beginning of the payload and the second the end. There are two possible ways to perform this fragmentation.
 
 
-   #. Router `R1` fragments the packet in two fragments before transmitting them to router `R2`. Router `R2` reassembles the two packet fragments in a larger packet before transmitting them on the link towards host `B`.
+ #. Router `R1` fragments the packet into two fragments before transmitting them to router `R2`. Router `R2` reassembles the two packet fragments in a larger packet before transmitting them on the link towards host `B`.
 
-   #. Each of the packet fragments is a valid packet that contains a header with the source (host `A`) and destination (host `B`) addresses. When router `R2` receives a packet fragment, it treats this packet as a regular packet and forwards it to its final destination (host `B`). Host `B` reassembles the received fragments.
+ #. Each of the packet fragments is a valid packet that contains a header with the source (host `A`) and destination (host `B`) addresses. When router `R2` receives a packet fragment, it treats this packet as a regular packet and forwards it to its final destination (host `B`). Host `B` reassembles the received fragments.
 
 
 These three solutions have advantages and drawbacks. With the first solution, routers remain simple and do not need to perform any fragmentation operation. This is important when routers are implemented mainly in hardware. However, hosts must be complex since they need to store the packets that they produce if they need to pass through a link that does not support large packets. This increases the buffering required on the hosts.
 
-Furthermore, a single large packet may potentially need to be retransmitted several times. Consider for example a network similar to the one shown above but with four routers. Assume that the link `R1->R2` supports 1000 bytes packets, link `R2->R3` 800 bytes packets and link `R3->R4` 600 bytes packets. A host attached to `R1` that sends large packet will have to first try 1000 bytes, then 800 bytes and finally 600 bytes. Fortunately, this scenario does not occur very often in practice and this is the reason why this solution is used in real networks. 
+Furthermore, a single large packet may potentially need to be retransmitted several times. Consider for example a network similar to the one shown above but with four routers. Assume that the link `R1->R2` supports 1000 bytes packets, link `R2->R3` 800 bytes packets and link `R3->R4` 600 bytes packets. A host attached to `R1` that sends large packet will have to first try 1000 bytes, then 800 bytes and finally 600 bytes. Fortunately, this scenario does not occur very often in practice and this is the reason why this solution is used in real networks.
 
 Fragmenting packets on a per-link basis, as presented for the second solution, can minimize the transmission overhead since a packet is only fragmented on the links where fragmentation is required. Large packets can continue to be used downstream of a link that only accepts small packets. However, this reduction of the overhead comes with two drawbacks. First, fragmenting packets, potentially on all links, increases the processing time and the buffer requirements on the routers. Second, this solution leads to a longer end-to-end delay since the downstream router has to reassemble all the packet fragments before forwarding the packet.
 
@@ -353,16 +441,16 @@ Virtual circuit organization
 ============================
 
 
-The second organization of the network layer, called `virtual circuits`, has been inspired by the organization of telephone networks. Telephone networks have been designed to carry phone calls that usually last a few minutes. Each phone is identified by a telephone number and is attached to a telephone switch. To initiate a phone call, a telephone first needs to send the destination's phone number to its local switch. The switch cooperates with the other switches in the network to create a bi-directional channel between the two telephones through the network. This channel will be used by the two telephones during the lifetime of the call and will be released at the end of the call. Until the 1960s, most of these channels were created manually, by telephone operators, upon request of the caller. Today's telephone networks use automated switches and allow several channels to be carried over the same physical link, but the principles remain roughly the same.
+The second organization of the network layer, called `virtual circuits`, has been inspired by the organization of telephone networks. Telephone networks have been designed to carry phone calls that usually last a few minutes. Each phone is identified by a telephone number and is attached to a telephone switch. To initiate a phone call, a telephone first needs to send the destination's phone number to its local switch. The switch cooperates with the other switches in the network to create a bi-directional channel between the two telephones through the network. This channel will be used by the two telephones during the lifetime of the call and will be released at the end of the call. Until the 1960s, most of these channels were created manually, by telephone operators, upon request of the caller. Today's telephone networks use automated switches and allow several channels to be carried over the same physical link, but the principles roughly remain the same.
 
 .. index:: label switching
 
-In a network using virtual circuits, all hosts are also identified with a network layer address. However, packet forwarding is not performed by looking at the destination address of each packet. With the `virtual circuit` organization, each data packet contains one label [#flabels]_. A label is an integer which is part of the packet header. Network nodes implement `label switching` to forward `labelled data packet`. Upon reception of a packet, a network nodes consults its `label forwarding table` to find the outgoing interface for this packet. In contrast with the datagram mode, this lookup is very simple. The `label forwarding table` is an array stored in memory and the label of the incoming packet is the index to access this array. This implies that the lookup operation has an `O(1)` complexity in contrast with other packet forwarding techniques. To ensure that on each node the packet label is an index in the `label forwarding table`, each network node that forwards a packet replaces the label of the forwarded packet with the label found in the `label forwarding table`.  Each entry of the `label forwarding table` contains two pieces of information :
+In a network using virtual circuits, all hosts are also identified with a network layer address. However, packet forwarding is not performed by looking at the destination address of each packet. With the `virtual circuit` organization, each data packet contains one label [#flabels]_. A label is an integer which is part of the packet header. Routers implement `label switching` to forward `labelled data packet`. Upon reception of a packet, a router consults its `label forwarding table` to find the outgoing interface for this packet. In contrast with the datagram mode, this lookup is very simple. The `label forwarding table` is an array stored in memory and the label of the incoming packet is the index to access this array. This implies that the lookup operation has an `O(1)` complexity in contrast with other packet forwarding techniques. To ensure that on each node the packet label is an index in the `label forwarding table`, each router that forwards a packet replaces the label of the forwarded packet with the label found in the `label forwarding table`.  Each entry of the `label forwarding table` contains two pieces of information :
 
  - the outgoing interface for the packet
  - the label for the outgoing packet
 
-For example, consider the `label forwarding table` of a network node below. 
+For example, consider the `label forwarding table` of a network node below.
 
 
 +--------+--------------------+----------+
@@ -381,8 +469,8 @@ If this node receives a packet with `label=2`, it forwards the packet on its `We
 
 `Label switching` enables a full control over the path followed by packets inside the network. Consider the network below and assume that we want to use two virtual circuits : `R1->R3->R4->R2->R5` and `R2->R1->R3->R4->R5`.
 
-    .. tikz::
-      :libs: positioning, matrix, arrows 
+    .. tikz:: An example of network where label switching can be applied to tune its paths
+      :libs: positioning, matrix, arrows
 
       \tikzstyle{arrow} = [thick,->,>=stealth]
       \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
@@ -394,17 +482,16 @@ If this node receives a packet with `label=2`, it forwards the packet on its `We
       \node[router, below right=of R3] (R4) {R4};
       \node[router, below=of R4] (R5) {R5};
       \path[draw,thick]
-      (R1) edge (R2) 
-      (R1) edge (R3) 
-      (R4) edge (R3) 
-      (R4) edge (R2) 
-      (R2) edge (R5) 
-      (R4) edge (R5); 
+      (R1) edge (R2)
+      (R1) edge (R3)
+      (R4) edge (R3)
+      (R4) edge (R2)
+      (R2) edge (R5)
+      (R4) edge (R5);
 
 
 
-To create these virtual circuits, we need to configure the 
-label forwarding tables` of all network nodes. For simplicity, assume that a label forwarding table only contains two entries. Assume that `R5` wants to receive the packets from the virtual circuit created by `R1` (resp. `R2`) with `label=1` (`label=0`). `R4` could use the following `label forwarding table`:
+To create these virtual circuits, we need to configure the `label forwarding tables` of all routers. For simplicity, assume that a label forwarding table only contains two entries. Assume that `R5` wants to receive the packets from the virtual circuit created by `R1` (resp. `R2`) with `label=1` (`label=0`). `R4` could use the following `label forwarding table`:
 
 +--------+--------------------+----------+
 | index  | outgoing interface | label    |
@@ -446,8 +533,8 @@ With the above `label forwarding table`, `R1` needs to originate the packets tha
 
 The figure below shows the path followed by the packets on the `R1->R3->R4->R2->R5` path in red with on each arrow the label used in the packets.
 
-    .. tikz::
-      :libs: positioning, matrix, arrows 
+    .. tikz:: The path followed by packets for a specific circuit
+      :libs: positioning, matrix, arrows
 
       \tikzstyle{arrow} = [thick,->,>=stealth]
       \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
@@ -459,28 +546,28 @@ The figure below shows the path followed by the packets on the `R1->R3->R4->R2->
       \node[router, below right=of R3] (R4) {R4};
       \node[router, below=of R4] (R5) {R5};
       \path[draw,thick]
-      (R1) edge (R2) 
-      (R4) edge (R5); 
-      \draw[arrow, dashed, red] (R1) -- (R3) node [midway, fill=white] {1}; 
-      \draw[arrow, dashed, red] (R3) -- (R4) node [midway, fill=white] {0}; 
-      \draw[arrow, dashed, red] (R4) -- (R2) node [midway, fill=white] {0}; 
+      (R1) edge (R2)
+      (R4) edge (R5);
+      \draw[arrow, dashed, red] (R1) -- (R3) node [midway, fill=white] {1};
+      \draw[arrow, dashed, red] (R3) -- (R4) node [midway, fill=white] {0};
+      \draw[arrow, dashed, red] (R4) -- (R2) node [midway, fill=white] {0};
       \draw[arrow, dashed, red] (R2) -- (R5) node [midway, fill=white] {1};
- 
+
 
 
 
 MultiProtocol Label Switching (MPLS) is the example of a deployed networking technology that relies on label switching. MPLS is more complex than the above description because it has been designed to be easily integrated with datagram technologies. However, the principles remain. `Asynchronous Transfer Mode` (ATM) and Frame Relay are other examples of technologies that rely on `label switching`.
 
-Nowadays, most deployed networks rely on distributed algorithms, called routing protocols, to compute the forwarding tables that are installed on the network nodes. These distributed algorithms are part of the `control plane`. They are usually implemented in software and are executed on the main CPU of the network nodes. There are two main families of routing protocols : distance vector routing and link state routing. Both are capable of discovering autonomously the network and react dynamically to topology changes.
+Nowadays, most deployed networks rely on distributed algorithms, called routing protocols, to compute the forwarding tables that are installed on the routers. These distributed algorithms are part of the `control plane`. They are usually implemented in software and are executed on the main CPU of the routers. There are two main families of routing protocols : distance vector routing and link state routing. Both are capable of discovering autonomously the network and react dynamically to topology changes.
 
 .. The datagram organization has been very popular in computer networks. Datagram based network layers include IPv4 and IPv6 in the global Internet, CLNP defined by the ISO, IPX defined by Novell or XNS defined by Xerox [Perlman2000]_.
 
-.. 
+..
  .. figure:: svg/simple-lan.png
     :align: center
-    :scale: 80    
-   
-    A local area network 
+    :scale: 80
+
+    A local area network
 
 .. An important difference between the point-to-point datalink layers and the datalink layers used in LANs is that in a LAN, each communicating device is identified by a unique `datalink layer address`. This address is usually embedded in the hardware of the device and different types of LANs use different types of datalink layer addresses. A communicating device attached to a LAN can send a datalink frame to any other communicating device that is attached to the same LAN. Most LANs also support special broadcast and multicast datalink layer addresses. A frame sent to the broadcast address of the LAN is delivered to all communicating devices that are attached to the LAN. The multicast addresses are used to identify groups of communicating devices. When a frame is sent towards a multicast datalink layer address, it is delivered by the LAN to all communicating devices that belong to the corresponding group.
 
@@ -489,28 +576,28 @@ Nowadays, most deployed networks rely on distributed algorithms, called routing 
 
 .. The third type of datalink layers are used in Non-Broadcast Multi-Access (NBMA) networks. These networks are used to interconnect devices like a LAN. All devices attached to an NBMA network are identified by a unique datalink layer address. However, and this is the main difference between an NBMA network and a traditional LAN, the NBMA service only supports unicast. The datalink layer service provided by an NBMA network supports neither broadcast nor multicast.
 
-.. The network layer itself relies on the following principles : 
+.. The network layer itself relies on the following principles :
 
 
 
 .. #. Each network layer entity is identified by a `network layer address`. This address is independent of the datalink layer addresses that it may use.
 .. #. The service provided by the network layer does not depend on the service or the internal organization of the underlying datalink layers.
-.. #. The network layer is conceptually divided into two planes : the `data plane` and the `control plane`. The `data plane` contains the protocols and mechanisms that allow hosts and routers to exchange packets carrying user data. The `control plane` contains the protocols and mechanisms that enable routers to efficiently learn how to forward packets towards their final destination. 
+.. #. The network layer is conceptually divided into two planes : the `data plane` and the `control plane`. The `data plane` contains the protocols and mechanisms that allow hosts and routers to exchange packets carrying user data. The `control plane` contains the protocols and mechanisms that enable routers to efficiently learn how to forward packets towards their final destination.
 
 .. The independence of the network layer from the underlying datalink layer is a key principle of the network layer. It ensures that the network layer can be used to allow hosts attached to different types of datalink layers to exchange packets through intermediate routers. Furthermore, this allows the datalink layers and the network layer to evolve independently from each other. This enables the network layer to be easily adapted to a new datalink layer every time a new datalink layer is invented.
 
 
-.. rubric:: Footnotes 
+.. rubric:: Footnotes
 
 
-.. [#flabels] We will see later a more detailed description of Multiprotocol Label Switching, a networking technology that is capable of using one or more labels. 
+.. [#flabels] We will see later a more detailed description of Multiprotocol Label Switching, a networking technology that is capable of using one or more labels.
 
 
 
 The control plane
 =================
 
-One of the objectives of the `control plane` in the network layer is to maintain the routing tables that are used on all routers. As indicated earlier, a routing table is a data structure that contains, for each destination address (or block of addresses) known by the router, the outgoing interface over which the router must forward a packet destined to this address. The routing table may also contain additional information such as the address of the next router on the path towards the destination or an estimation of the cost of this path. 
+One of the objectives of the `control plane` in the network layer is to maintain the routing tables that are used on all routers. As indicated earlier, a routing table is a data structure that contains, for each destination address (or block of addresses) known by the router, the outgoing interface over which the router must forward a packet destined to this address. The routing table may also contain additional information such as the address of the next router on the path towards the destination or an estimation of the cost of this path.
 
 In this section, we discuss the main techniques that can be used to maintain the forwarding tables in a network.
 
@@ -525,6 +612,6 @@ In this section, we discuss the main techniques that can be used to maintain the
    pre
    todo
    Multi
-	     
+
 .. include:: /links.rst
 

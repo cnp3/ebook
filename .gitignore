@@ -9,3 +9,11 @@ python/*
 tmp/*
 # venv for python build
 venv/*
+# generated translation files
+**/*.mo
+# generated site
+_build
+# python cache
+**/__pycache__
+# internal editor files
+.vscode

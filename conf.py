@@ -30,6 +30,7 @@ import sys, os
 sys.path.append(os.path.abspath("./util"))
 extensions = ['sphinx.ext.todo', 'sphinxcontrib.mscgen', 'sphinx.ext.graphviz', 'sphinxcontrib.tikz', 'sphinx.ext.mathjax', 'sphinxcontrib.spelling', 'interactive_syllabus_directives']
 
+
 #extensions = ['sphinx.ext.todo', 'sphinx.ext.pngmath', 'sphinxcontrib.mscgen','sphinx.ext.graphviz','sphinxcontrib.tikz']
 #mscgen
 mscgen_args=['-T eps']
@@ -236,7 +237,7 @@ latex_elements = {
 \\usepackage{tikz}
 \\usepackage{pgfplots}
 %\pgfplotsset{compat=1.16}
-\\usetikzlibrary{arrows.meta,positioning, matrix,backgrounds,shapes,shadows,calc}
+\\usetikzlibrary{arrows.meta,positioning, matrix,backgrounds,shapes,shadows,calc,arrows}
 '''
 }
 
@@ -255,6 +256,8 @@ tikz_latex_preamble='''
 \\usepackage{tikz}
 \\usepackage{pgfplots}
 \\usepackage{pgfkeys}
+\\usepackage[normalem]{ulem}
+\\usetikzlibrary{arrows.meta,positioning, matrix,backgrounds,shapes,shadows,calc,arrows}
 %\pgfplotsset{compat=1.16}
 \\tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em
 }, }
@@ -286,15 +289,15 @@ tikz_latex_preamble='''
 # ----- pdf options for rst2pdf -----
 #
 #
-#pdf_documents = [ 
-#        ('index', project, project, u'Computer networking : Principles, Protocols and Practice', u'Computer networking : Principles, Protocols and Practice', u'Olivier Bonaventure'), 
+#pdf_documents = [
+#        ('index', project, project, u'Computer networking : Principles, Protocols and Practice', u'Computer networking : Principles, Protocols and Practice', u'Olivier Bonaventure'),
 #    ]
 # A comma-separated list of custom stylesheets. Example:
 #pdf_stylesheets = ['sphinx','kerning','a4']
 
 # Language to be used for hyphenation support
 #pdf_language = "en_US"
-    
+
 # Mode for literal blocks wider than the frame. Can be
 # overflow, shrink or truncate
 #pdf_fit_mode = "shrink"
@@ -308,7 +311,7 @@ tikz_latex_preamble='''
 # or just use 'any'
 #pdf_breakside = 'any'
 
-# Insert footnotes where they are defined instead of 
+# Insert footnotes where they are defined instead of
 # at the end.
 #pdf_inline_footnotes = True
 
@@ -323,7 +326,7 @@ tikz_latex_preamble='''
 
 # If false, no coverpage is generated.
 #pdf_use_coverpage = True
-   
+
     # Name of the cover page template to use
     #pdf_cover_template = 'sphinxcover.tmpl'
 
