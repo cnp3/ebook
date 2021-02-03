@@ -61,7 +61,7 @@ The first condition ensures that the router discovers the shortest path towards 
 To understand the operation of a distance vector protocol, let us consider the network of five routers shown below.
 
 
-    .. tikz::
+    .. tikz:: Operation of distance vector routing in a simple network
        :libs: positioning, matrix, arrows
 
        \tikzstyle{arrow} = [thick,->,>=stealth]
@@ -113,7 +113,6 @@ To understand the operation of a distance vector protocol, let us consider the n
        \draw[dashed] (RTD) -- (D);
        \draw[dashed] (RTE) -- (E);
 
-   Operation of distance vector routing in a simple network
 
 Assume that router `A` is the first to send its distance vector `[A=0]`.
 
@@ -126,7 +125,7 @@ Assume that router `A` is the first to send its distance vector `[A=0]`.
 
 At this point, all routers can reach all other routers in the network thanks to the routing tables shown in the figure below.
 
-    .. tikz::
+    .. tikz:: Routing tables computed by distance vector in a simple network
        :libs: positioning, matrix, arrows
 
        \tikzstyle{arrow} = [thick,->,>=stealth]
@@ -198,8 +197,6 @@ At this point, all routers can reach all other routers in the network thanks to 
        \draw[dashed] (RTD) -- (D);
        \draw[dashed] (RTE) -- (E);
 
-   Routing tables computed by distance vector in a simple network
-
 
 .. inginious:: q-net-dv
 
@@ -216,7 +213,7 @@ Consider the example above and assume that the link between routers `A` and `B` 
 
 At this point, all routers have a routing table allowing them to reach all other routers, except router `A`, which cannot yet reach router `B`. `A` recovers the route towards `B` once router `D` sends its updated distance vector :math:`[A=1,B=2,C=2,D=1,E=1]`. This last step is illustrated in figure below, which shows the routing tables on all routers.
 
-    .. tikz::
+    .. tikz:: Routing tables computed by distance vector after a failure
         :libs: positioning, matrix, arrows
 
         \tikzstyle{arrow} = [thick,->,>=stealth]
@@ -290,9 +287,8 @@ At this point, all routers have a routing table allowing them to reach all other
         \draw[dashed] (RTE) -- (E);
 
         \draw[orange, arrow] ([xshift=1.5em] D.north) -- ([xshift=1.5em] A.south) node [midway] (msg1) {};
-        \draw ([xshift=1em]msg1) -- ([xshift=1em]msg1) node [ rotate=90, rectangle, draw, font=\tiny] {[A=1, B=2, C=2, D=1, E=1]};
+        \draw ([xshift=1em]msg1) -- ([xshift=1em]msg1) node [ rotate=90, rectangle, draw, font=\scriptsize] {[A=1, B=2, C=2, D=1, E=1]};
 
-   Routing tables computed by distance vector after a failure
 
 .. index:: count to infinity
 
@@ -344,7 +340,7 @@ This technique is called `split-horizon`. With this technique, the count to infi
 
 Unfortunately, split-horizon is not sufficient to avoid all count to infinity problems with distance vector routing. Consider the failure of link `A-B` in the four routers network shown below.
 
-    .. tikz::
+    .. tikz:: Count to infinity problem
         :libs: positioning, matrix, arrows, shapes
 
         \tikzstyle{arrow} = [thick,->,>=stealth]
@@ -402,12 +398,11 @@ Unfortunately, split-horizon is not sufficient to avoid all count to infinity pr
         \draw[dashed] (RTE) -- (E);
 
         \draw[orange, arrow] ([xshift=-1.5em] B.south) -- ([xshift=-1.5em] E.north) node [midway] (msg1) {};
-        \draw ([xshift=-1em]msg1) -- ([xshift=-1em]msg1) node [rotate=90, rectangle, draw, font=\tiny] {[A=$\infty$, B=0, C=1, E=$\infty$]};
+        \draw ([xshift=-1em]msg1) -- ([xshift=-1em]msg1) node [rotate=90, rectangle, draw, font=\scriptsize] {[A=$\infty$, B=0, C=1, E=$\infty$]};
 
         \draw[orange, arrowlost] ([yshift=1.5em] B.east) -- ([yshift=1.5em,xshift=-1em] C.west) node [midway] (msg2) {};
-        \draw ([yshift=1em]msg2) -- ([yshift=1em]msg2) node [rectangle, draw, font=\tiny] {[A=$\infty$, B=0, C=$\infty$, E=1]};
+        \draw ([yshift=1em]msg2) -- ([yshift=1em]msg2) node [rectangle, draw, font=\scriptsize] {[A=$\infty$, B=0, C=$\infty$, E=1]};
 
-   Count to infinity problem
 
 After having detected the failure, router `B` sends its distance vectors:
 

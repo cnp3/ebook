@@ -18,23 +18,23 @@ The main objective of the network layer is to allow hosts, connected to differen
 Before explaining the operation of the network layer, it is useful to remember the characteristics of the service provided by the `datalink` layer. There are many variants of the datalink layer. Some provide a reliable service while others do not provide any guarantee of delivery. The reliable datalink layer services are popular in environments such as wireless networks where transmission errors are frequent. On the other hand, unreliable services are usually used when the physical layer provides an almost reliable service (i.e. only a negligible fraction of the frames are affected by transmission errors). Such `almost reliable` services are frequently used in wired and optical networks. In this chapter, we will assume that the datalink layer service provides an `almost reliable` service since this is both the most general one and also the most widely deployed one.
 
 
-.. tikz:: The point-to-point datalink layer
-      :libs: positioning, matrix, arrows
+      .. tikz:: The point-to-point datalink layer
+            :libs: positioning, matrix, arrows
 
-      \tikzstyle{arrow} = [thick,<->,>=stealth]
-      \tikzset{elem/.style = {rectangle, thick, draw, text centered, minimum height=2em, minimum width=8em}, }
+            \tikzstyle{arrow} = [thick,<->,>=stealth]
+            \tikzset{elem/.style = {rectangle, thick, draw, text centered, minimum height=2em, minimum width=8em}, }
 
-      \node[elem] (pm) {Physical layer};
-      \node[elem, above=0em of pm] (dm) {\color{blue} Datalink};
-      \node[elem, above=0em of dm] (nm) {Network};
+            \node[elem] (pm) {Physical layer};
+            \node[elem, above=0em of pm] (dm) {\color{blue} Datalink};
+            \node[elem, above=0em of dm] (nm) {Network};
 
-      \node[elem, left=8em of pm] (pl) {Physical layer};
-      \node[elem, above=0em of pl] (dl) {\color{blue} Datalink};
-      \node[elem, above=0em of dl] (nl) {Network};
+            \node[elem, left=8em of pm] (pl) {Physical layer};
+            \node[elem, above=0em of pl] (dl) {\color{blue} Datalink};
+            \node[elem, above=0em of dl] (nl) {Network};
 
-      \draw[rectangle, thick, draw, fill=gray!20] ([xshift=1em, yshift=-1em]pl.south) rectangle ([xshift=-1em]pm.south);
+            \draw[rectangle, thick, draw, fill=gray!20] ([xshift=1em, yshift=-1em]pl.south) rectangle ([xshift=-1em]pm.south);
 
-      \draw[arrow] (dl.east) -- (dm.west) node [midway, above] {\color{blue} Frames};
+            \draw[arrow] (dl.east) -- (dm.west) node [midway, above] {\color{blue} Frames};
 
 
 There are two main types of datalink layers. The simplest datalink layer is when there are only two communicating systems that are directly connected through the physical layer. Such a datalink layer is used when there is a point-to-point link between the two communicating systems. These two systems can be hosts or routers. PPP (Point-to-Point Protocol), defined in :rfc:`1661`, is an example of such a point-to-point datalink layer. Datalink layer entities exchange `frames`. A datalink :term:`frame` sent by a datalink layer entity on the left is transmitted through the physical layer, so that it can reach the datalink layer entity on the right. Point-to-point datalink layers can either provide an unreliable service (frames can be corrupted or lost) or a reliable service (in this case, the datalink layer includes retransmission mechanisms).
@@ -48,32 +48,32 @@ Even if we only consider the point-to-point datalink layers, there is an importa
 
 As a first step, let us assume that we only need to exchange a small amount of data. In this case, there is no issue with the maximum length of the frames. However, there are other more interesting problems that we need to tackle. To understand these problems, let us consider the network represented in the figure below.
 
-.. tikz:: A simple network containing three hosts and five routers
-   :libs: positioning, matrix
+      .. tikz:: A simple network containing three hosts and five routers
+            :libs: positioning, matrix
 
-    \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
-    \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
-    \node[host] (A) {A};
-    \node[router, right of=A] (R1) {R1};
-    \node[router, right=of R1] (R3) {R3};
-    \node[router, right=of R3] (R5) {R5};
-    \node[router, below=of R1] (R2) {R2};
-    \node[router, below=of R3] (R4) {R4};
-    \node[host, below of=R4] (C) {C};
-    \node[host, right of=R5] (B) {B};
+            \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
+            \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
+            \node[host] (A) {A};
+            \node[router, right of=A] (R1) {R1};
+            \node[router, right=of R1] (R3) {R3};
+            \node[router, right=of R3] (R5) {R5};
+            \node[router, below=of R1] (R2) {R2};
+            \node[router, below=of R3] (R4) {R4};
+            \node[host, below of=R4] (C) {C};
+            \node[host, right of=R5] (B) {B};
 
 
-    \path[draw,thick]
-    (A) edge (R1)
-    (R1) edge (R2)
-    (R3) edge (R1)
-    (R2) edge (R4)
-    (R4) edge (R3)
-    (R4) edge (R5)
-    (R3) edge (R5)
-    (R4) edge (C)
-    (R5) edge (B)
-    (R2) edge (C);
+            \path[draw,thick]
+            (A) edge (R1)
+            (R1) edge (R2)
+            (R3) edge (R1)
+            (R2) edge (R4)
+            (R4) edge (R3)
+            (R4) edge (R5)
+            (R3) edge (R5)
+            (R4) edge (C)
+            (R5) edge (B)
+            (R2) edge (C);
 
 
 
@@ -104,83 +104,83 @@ The first and most popular organization of the network layer is the datagram org
 
 To understand the datagram organization, let us consider the figure below. A network layer address, represented by a letter, has been assigned to each host and router. To send some information to host `J`, host `A` creates a packet containing its own address, the destination address and the information to be exchanged.
 
-.. tikz:: A simple internetwork
-      :libs: positioning, matrix, arrows
+      .. tikz:: A simple internetwork
+            :libs: positioning, matrix, arrows
 
-      \tikzstyle{arrow} = [thick,->,>=stealth]
-      \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em, minimum width=2em, node distance=6em}, }
-      \tikzset{host/.style = {circle, draw, text centered, minimum height=2em, minimum width=2em, node distance=6em}, }
-      \tikzset{rtable/.style={rectangle, dashed, draw, font=\footnotesize, node distance=3em}, }
-      \node[host] (A) {\color{red} A};
-      \node[router, right=of A] (R1) {R1};
-      \node[router, right=of R1] (R2) {R2};
-      \node[router, right=of R2] (R5) {R5};
-      \node[router, below right=of R1, below left=of R2] (R3) {R3};
-      \node[router, below=of R5] (R4) {R4};
-      \node[host, left=of R4] (I) {I};
-      \node[host, right=of R5] (J) {\color{blue} J};
+            \tikzstyle{arrow} = [thick,->,>=stealth]
+            \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em, minimum width=2em, node distance=6em}, }
+            \tikzset{host/.style = {circle, draw, text centered, minimum height=2em, minimum width=2em, node distance=6em}, }
+            \tikzset{rtable/.style={rectangle, dashed, draw, font=\footnotesize, node distance=3em}, }
+            \node[host] (A) {\color{red} A};
+            \node[router, right=of A] (R1) {R1};
+            \node[router, right=of R1] (R2) {R2};
+            \node[router, right=of R2] (R5) {R5};
+            \node[router, below right=of R1, below left=of R2] (R3) {R3};
+            \node[router, below=of R5] (R4) {R4};
+            \node[host, left=of R4] (I) {I};
+            \node[host, right=of R5] (J) {\color{blue} J};
 
-      \path[draw,thick]
-      (A) edge (R1)
-      (R1) edge (R2)
-      (R1) edge (R3)
-      (R2) edge (R3)
-      (R2) edge (R4)
-      (R2) edge (R5)
-      (R4) edge (I)
-      (R5) edge (J);
+            \path[draw,thick]
+            (A) edge (R1)
+            (R1) edge (R2)
+            (R1) edge (R3)
+            (R2) edge (R3)
+            (R2) edge (R4)
+            (R2) edge (R5)
+            (R4) edge (I)
+            (R5) edge (J);
 
-      \node[rtable, above=of R1] (RT1) { \begin{tabular}{c}
-            Routing table \\
-            \hline
-            {\color{red} A via West} \\
-            ... \\
-            I via East \\
-            {\color{blue} J via East} \\
-      \end{tabular}};
-      \node[rtable, above=of R2] (RT2) { \begin{tabular}{c}
-            Routing table \\
-            \hline
-            {\color{red} A via West} \\
-            ... \\
-            I via South-East \\
-            {\color{blue} J via East} \\
-      \end{tabular}};
-      \node[rtable, left=of R3] (RT3) { \begin{tabular}{c}
-            Routing table \\
-            \hline
-            {\color{red} A via North-West} \\
-            ... \\
-            I via North-East \\
-            {\color{blue} J via North-East} \\
-      \end{tabular}};
-      \node[rtable, right=of R4] (RT4) { \begin{tabular}{c}
-            Routing table \\
-            \hline
-            {\color{red} A via North-West} \\
-            ... \\
-            I via West \\
-            {\color{blue} J via North-West} \\
-      \end{tabular}};
-      \node[rtable, above right=of R5] (RT5) { \begin{tabular}{c}
-            Routing table \\
-            \hline
-            {\color{red} A via West} \\
-            ... \\
-            I via West \\
-            {\color{blue} J via East} \\
-      \end{tabular}};
+            \node[rtable, above=of R1] (RT1) { \begin{tabular}{c}
+                  Routing table \\
+                  \hline
+                  {\color{red} A via West} \\
+                  ... \\
+                  I via East \\
+                  {\color{blue} J via East} \\
+            \end{tabular}};
+            \node[rtable, above=of R2] (RT2) { \begin{tabular}{c}
+                  Routing table \\
+                  \hline
+                  {\color{red} A via West} \\
+                  ... \\
+                  I via South-East \\
+                  {\color{blue} J via East} \\
+            \end{tabular}};
+            \node[rtable, left=of R3] (RT3) { \begin{tabular}{c}
+                  Routing table \\
+                  \hline
+                  {\color{red} A via North-West} \\
+                  ... \\
+                  I via North-East \\
+                  {\color{blue} J via North-East} \\
+            \end{tabular}};
+            \node[rtable, right=of R4] (RT4) { \begin{tabular}{c}
+                  Routing table \\
+                  \hline
+                  {\color{red} A via North-West} \\
+                  ... \\
+                  I via West \\
+                  {\color{blue} J via North-West} \\
+            \end{tabular}};
+            \node[rtable, above right=of R5] (RT5) { \begin{tabular}{c}
+                  Routing table \\
+                  \hline
+                  {\color{red} A via West} \\
+                  ... \\
+                  I via West \\
+                  {\color{blue} J via East} \\
+            \end{tabular}};
 
-      \draw[dashed] (RT1) -- (R1);
-      \draw[dashed] (RT2) -- (R2);
-      \draw[dashed] (RT3) -- (R3);
-      \draw[dashed] (RT4) -- (R4);
-      \draw[dashed] (RT5) -- (R5);
+            \draw[dashed] (RT1) -- (R1);
+            \draw[dashed] (RT2) -- (R2);
+            \draw[dashed] (RT3) -- (R3);
+            \draw[dashed] (RT4) -- (R4);
+            \draw[dashed] (RT5) -- (R5);
 
-      \draw[arrow, blue] ([yshift=1.5em]A.east) -- ([yshift=1.5em]R1.west) node [midway, above=0.5em, rectangle, thick, draw, black] {\tiny {\color{red} SRC: A} {\color{blue} DST: J} Blabla};
-      \draw[arrow, blue] ([yshift=1.5em]R1.east) -- ([yshift=1.5em]R2.west);
-      \draw[arrow, blue] ([yshift=1.5em]R2.east) -- ([yshift=1.5em]R5.west);
-      \draw[arrow, blue] ([yshift=1.5em]R5.east) -- ([yshift=1.5em]J.west);
+            \draw[arrow, blue] ([yshift=1.5em]A.east) -- ([yshift=1.5em]R1.west) node [midway, above=0.5em, rectangle, thick, draw, black] {\tiny {\color{red} SRC: A} {\color{blue} DST: J} Blabla};
+            \draw[arrow, blue] ([yshift=1.5em]R1.east) -- ([yshift=1.5em]R2.west);
+            \draw[arrow, blue] ([yshift=1.5em]R2.east) -- ([yshift=1.5em]R5.west);
+            \draw[arrow, blue] ([yshift=1.5em]R5.east) -- ([yshift=1.5em]J.west);
 
 
 .. index:: hop-by-hop forwarding, forwarding table
@@ -242,28 +242,28 @@ Learning the location of the sources is not sufficient, nodes also need to forwa
 To understand the operation of the port-address table, let us consider the example network shown in the figure below. This network contains three hosts: `A`, `B` and `C` and five routers, `R1` to `R5`. When the network boots, all the forwarding tables of the nodes are empty.
 
 
-.. tikz:: A simple tree-shaped network
-      :libs: positioning, matrix, arrows
+      .. tikz:: A simple tree-shaped network
+            :libs: positioning, matrix, arrows
 
-      \tikzstyle{arrow} = [thick,->,>=stealth]
-      \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
-      \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
-      \node[host] (A) {A};
-      \node[router, right=of A] (R1) {R1};
-      \node[router, right=of R1] (R2) {R2};
-      \node[host, right=of R2] (C) {C};
-      \node[router, below=of R2] (R3) {R3};
-      \node[router, right=of R3] (R4) {R4};
-      \node[router, below=of R4] (R5) {R5};
-      \node[host, right=of R4] (B) {B};
-      \path[draw,thick]
-      (A) edge (R1)
-      (R1) edge (R2)
-      (R1) edge (R3)
-      (R2) edge (C)
-      (R3) edge (R4)
-      (R5) edge (B)
-      (R3) edge (R5);
+            \tikzstyle{arrow} = [thick,->,>=stealth]
+            \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
+            \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
+            \node[host] (A) {A};
+            \node[router, right=of A] (R1) {R1};
+            \node[router, right=of R1] (R2) {R2};
+            \node[host, right=of R2] (C) {C};
+            \node[router, below=of R2] (R3) {R3};
+            \node[router, right=of R3] (R4) {R4};
+            \node[router, below=of R4] (R5) {R5};
+            \node[host, right=of R4] (B) {B};
+            \path[draw,thick]
+            (A) edge (R1)
+            (R1) edge (R2)
+            (R1) edge (R3)
+            (R2) edge (C)
+            (R3) edge (R4)
+            (R5) edge (B)
+            (R3) edge (R5);
 
 
 Host `A` sends a packet towards `B`. When receiving this packet, `R1` learns that `A` is reachable via its `North` interface. Since it does not have an entry for destination `B` in its port-address table, it forwards the packet to both `R2` and `R3`. When `R2` receives the packet, it updates its own forwarding table and forward the packet to `C`. Since `C` is not the intended recipient, it simply discards the received packet. Router `R3` also receives the packet. It learns that `A` is reachable via its `North` interface and broadcasts the packet to `R4` and `R5`. `R5` also updates its forwarding table and finally forwards it to destination `B`.`Let us now consider what happens when `B` sends a reply to `A`. `R5`  first learns that `B` is attached to its `South` port. It then consults its port-address table and finds that `A` is reachable via its `North` interface. The packet is then forwarded hop-by-hop to `A` without any broadcasting. Later on, if `C` sends a packet to `B`, this packet will reach `R1` that contains a valid forwarding entry in its forwarding table.
@@ -273,25 +273,25 @@ Host `A` sends a packet towards `B`. When receiving this packet, `R1` learns tha
 By inspecting the source and destination addresses of packets, network nodes can automatically derive their forwarding tables. As we will discuss later, this technique is used in :term:`Ethernet` networks. Despite being widely used, it has two important drawbacks. First, packets sent to unknown destinations are broadcasted in the network even if the destination is not attached to the network. Consider the transmission of ten packets destined to `Z` in the network above. When a node receives a packet towards this destination, it can only broadcast that packet. Since `Z` is not attached to the network, no node will ever receive a packet whose source is `Z` to update its forwarding table. The second and more important problem is that few networks have a tree-shaped topology. It is interesting to analyze what happens when a port-address table is used in a network that contains a cycle. Consider the simple network shown below with a single host.
 
 
+      .. tikz:: A simple and redundant network
+            :libs: positioning, matrix, arrows
 
-.. tikz:: A simple and redundant network
-      :libs: positioning, matrix, arrows
+            \tikzstyle{arrow} = [thick,->,>=stealth]
+            \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
+            \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
+            \tikzset{ftable/.style={rectangle, dashed, draw} }
+            \node[host] (A) {A};
+            \node[router, right=of A] (R1) {R1};
+            \node[router, right=of R1] (R3) {R3};
+            \node[router, below=of R1] (R2) {R2};
+            \node[host, right=of R3] (B) {B};
+            \path[draw,thick]
+            (A) edge (R1)
+            (R1) edge (R2)
+            (R1) edge (R3)
+            (R3) edge (R2)
+            (R3) edge (B);
 
-      \tikzstyle{arrow} = [thick,->,>=stealth]
-      \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
-      \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
-      \tikzset{ftable/.style={rectangle, dashed, draw} }
-      \node[host] (A) {A};
-      \node[router, right=of A] (R1) {R1};
-      \node[router, right=of R1] (R3) {R3};
-      \node[router, below=of R1] (R2) {R2};
-      \node[host, right=of R3] (B) {B};
-      \path[draw,thick]
-      (A) edge (R1)
-      (R1) edge (R2)
-      (R1) edge (R3)
-      (R3) edge (R2)
-      (R3) edge (B);
 
 Assume that the network has started and all port-address and forwarding tables are empty. Host `A` sends a packet towards `B`. Upon reception of this packet, `R1` updates its port-address table. Since `B` is not present in the port-address table, the packet is broadcasted. Both `R2` and `R3` receive a copy of the packet sent by `A`. They both update their port-address table. Unfortunately, they also both broadcast the received packet. `B` receives a first copy of the packet, but `R3` and `R2` receive it again. `R3` will then broadcast this copy of the packet to `B` and `R1` while `R2` will broadcast its copy to `R1`. Although `B` has already received two copies of the packet, it is still inside the network and continues to loop. Due to the presence of the cycle, a single packet towards an unknown destination generates many copies of this packet that loop and will eventually saturate the network. Network operators who are using port-address tables to automatically compute the forwarding tables also use distributed algorithms to ensure that the network topology is always a tree.
 
@@ -304,26 +304,26 @@ Another technique called `source routing` can be used to automatically compute f
 
 `Data packets` are used to exchange data while `control packets` are used to discover the paths between hosts. With `source routing`, routers can be kept as simple as possible and all the complexity is placed on the hosts. This is in contrast with the previous technique where the nodes had to maintain a port-address and a forwarding table while the hosts simply sent and received packets. Each node is configured with one unique address and there is one identifier per outgoing link. For simplicity and to avoid cluttering the figures with those identifiers, we assume that each node uses as link identifiers north, west, south,... In practice, a node would associate one integer to each outgoing link.
 
-.. tikz:: A simple network with two hosts and four routers
-      :libs: positioning, matrix, arrows
+      .. tikz:: A simple network with two hosts and four routers
+            :libs: positioning, matrix, arrows
 
-      \tikzstyle{arrow} = [thick,->,>=stealth]
-      \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
-      \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
-      \tikzset{ftable/.style={rectangle, dashed, draw} }
-      \node[host] (A) {A};
-      \node[router, right=of A] (R1) {R1};
-      \node[router, right=of R1] (R3) {R3};
-      \node[router, below=of R1] (R2) {R2};
-      \node[router, right=of R3] (R4) {R4};
-      \node[host, right=of R4] (B) {B};
-      \path[draw,thick]
-      (A) edge (R1)
-      (R1) edge (R2)
-      (R1) edge (R3)
-      (R3) edge (R2)
-      (R3) edge (R4)
-      (R4) edge (B);
+            \tikzstyle{arrow} = [thick,->,>=stealth]
+            \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
+            \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
+            \tikzset{ftable/.style={rectangle, dashed, draw} }
+            \node[host] (A) {A};
+            \node[router, right=of A] (R1) {R1};
+            \node[router, right=of R1] (R3) {R3};
+            \node[router, below=of R1] (R2) {R2};
+            \node[router, right=of R3] (R4) {R4};
+            \node[host, right=of R4] (B) {B};
+            \path[draw,thick]
+            (A) edge (R1)
+            (R1) edge (R2)
+            (R1) edge (R3)
+            (R3) edge (R2)
+            (R3) edge (R4)
+            (R4) edge (B);
 
 
 In the network above, router `R2` is attached to two outgoing links. `R2` is connected to both `R1` and `R3`. `R2` can easily determine that it is connected to these two nodes by exchanging packets with them or observing the packets that it receives over each interface. Assume for example that when a node (either host or router) starts, it sends a special control packet over each of its interfaces to advertise its own address to its neighbors. When a node receives such a packet, it automatically replies with its own address. This exchange can also be used to verify whether a neighbor, either router or host, is still alive. With `source routing`, the data plane packets include a list of identifiers. This list is called a `source route`. It indicates the path to be followed by the packet as a sequence of link identifiers. When a node receives such a `data plane` packet, it first checks whether the packet's destination is a direct neighbor. In this case, the packet is forwarded to this neighbor. Otherwise, the node extracts the next address from the list and forwards it to the neighbor. This allows the source to specify the explicit path to be followed for each packet. For example, in the figure above there are two possible paths between `A` and `B`. To use the path via `R2`, `A` would send a packet that contains `R1,R2,R3` as source route. To avoid going via `R2`, `A` would place `R1,R3` as the source route in its transmitted packet. If `A` knows the complete network topology and all link identifiers, it can easily compute the source route towards each destination. It can even use different paths, e.g. for redundancy, to reach a given destination. However, in a real network hosts do not usually have a map of the entire network topology.
@@ -357,26 +357,26 @@ A widely used alternative to the `flat addressing scheme` is the `hierarchical a
 This hierarchical allocation of addresses can be applied in any type of network. In practice, the allocation of the addresses must follow the network topology. Usually, this is achieved by dividing the addressing space in consecutive blocks and then allocating these blocks to different parts of the network. In a small network, the simplest solution is to allocate one block of addresses to each network node and assign the host addresses from the attached node.
 
 
-.. tikz:: A simple network with two hosts and four routers
-      :libs: positioning, matrix, arrows
+      .. tikz:: A simple network with two hosts and four routers
+            :libs: positioning, matrix, arrows
 
-      \tikzstyle{arrow} = [thick,->,>=stealth]
-      \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
-      \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
-      \tikzset{ftable/.style={rectangle, dashed, draw} }
-      \node[host] (A) {A};
-      \node[router, right=of A] (R1) {R1};
-      \node[router, right=of R1] (R3) {R3};
-      \node[router, below=of R1] (R2) {R2};
-      \node[router, right=of R3] (R4) {R4};
-      \node[host, right=of R4] (B) {B};
-      \path[draw,thick]
-      (A) edge (R1)
-      (R1) edge (R2)
-      (R1) edge (R3)
-      (R3) edge (R2)
-      (R3) edge (R4)
-      (R4) edge (B);
+            \tikzstyle{arrow} = [thick,->,>=stealth]
+            \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
+            \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
+            \tikzset{ftable/.style={rectangle, dashed, draw} }
+            \node[host] (A) {A};
+            \node[router, right=of A] (R1) {R1};
+            \node[router, right=of R1] (R3) {R3};
+            \node[router, below=of R1] (R2) {R2};
+            \node[router, right=of R3] (R4) {R4};
+            \node[host, right=of R4] (B) {B};
+            \path[draw,thick]
+            (A) edge (R1)
+            (R1) edge (R2)
+            (R1) edge (R3)
+            (R3) edge (R2)
+            (R3) edge (R4)
+            (R4) edge (B);
 
 
 
@@ -391,20 +391,20 @@ Dealing with heterogeneous datalink layers
 
 Sometimes, the network layer needs to deal with heterogeneous datalink layers. For example, two hosts connected to different datalink layers exchange packets via routers that are using other types of datalink layers. Thanks to the network layer, this exchange of packets is possible provided that each packet can be placed inside a datalink layer frame before being transmitted. If all datalink layers support the same frame size, this is simple. When a node receives a frame, it decapsulates the packet that it contains, checks the header and forwards it, encapsulated inside another frame, to the outgoing interface. Unfortunately, the encapsulation operation is not always possible. Each datalink layer is characterized by the maximum frame size that it supports. Datalink layers typically support frames containing up to a few hundreds or a few thousands of bytes. The maximum frame size that a given datalink layer supports depends on its underlying technology. Unfortunately, most datalink layers support a different maximum frame size. This implies that when a host sends a large packet inside a frame to its nexthop router, there is a risk that this packet will have to traverse a link that is not capable of forwarding the packet inside a single frame. In principle, there are three possibilities to solve this problem. To discuss them, we consider a simple scenario with two hosts connected to a router as shown in the figure below.
 
-.. tikz:: A simple heterogeneous network
-      :libs: positioning, matrix, arrows
+      .. tikz:: A simple heterogeneous network
+            :libs: positioning, matrix, arrows
 
-      \tikzstyle{arrow} = [thick,->,>=stealth]
-      \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
-      \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
-      \tikzset{ftable/.style={rectangle, dashed, draw} }
-      \node[host] (A) {A};
-      \node[router, right=2cm of A] (R1) {R1};
-      \node[router, right=2cm of R1] (R2) {R2};
-      \node[host, right=2 cm of R2] (B) {B};
-      \draw[black] (A) -- (R1) node [midway, below] { {\tiny Max 1000 B}};
-      \draw[black] (R1) -- (R2) node [midway, below] { {\tiny Max 500 B}};
-      \draw[black] (R2) -- (B) node [midway, below] {  {\tiny Max 1000 B}};
+            \tikzstyle{arrow} = [thick,->,>=stealth]
+            \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
+            \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
+            \tikzset{ftable/.style={rectangle, dashed, draw} }
+            \node[host] (A) {A};
+            \node[router, right=2cm of A] (R1) {R1};
+            \node[router, right=2cm of R1] (R2) {R2};
+            \node[host, right=2 cm of R2] (B) {B};
+            \draw[black] (A) -- (R1) node [midway, below] { {\tiny Max 1000 B}};
+            \draw[black] (R1) -- (R2) node [midway, below] { {\tiny Max 500 B}};
+            \draw[black] (R2) -- (B) node [midway, below] {  {\tiny Max 1000 B}};
 
 
 
@@ -415,9 +415,9 @@ Consider in the network above that host `A` wants to send a 900 bytes packet (87
  #. The network layer is able to fragment a packet. In our example, the router could fragment the packet in two parts. The first part contains the beginning of the payload and the second the end. There are two possible ways to perform this fragmentation.
 
 
-   #. Router `R1` fragments the packet into two fragments before transmitting them to router `R2`. Router `R2` reassembles the two packet fragments in a larger packet before transmitting them on the link towards host `B`.
+ #. Router `R1` fragments the packet into two fragments before transmitting them to router `R2`. Router `R2` reassembles the two packet fragments in a larger packet before transmitting them on the link towards host `B`.
 
-   #. Each of the packet fragments is a valid packet that contains a header with the source (host `A`) and destination (host `B`) addresses. When router `R2` receives a packet fragment, it treats this packet as a regular packet and forwards it to its final destination (host `B`). Host `B` reassembles the received fragments.
+ #. Each of the packet fragments is a valid packet that contains a header with the source (host `A`) and destination (host `B`) addresses. When router `R2` receives a packet fragment, it treats this packet as a regular packet and forwards it to its final destination (host `B`). Host `B` reassembles the received fragments.
 
 
 These three solutions have advantages and drawbacks. With the first solution, routers remain simple and do not need to perform any fragmentation operation. This is important when routers are implemented mainly in hardware. However, hosts must be complex since they need to store the packets that they produce if they need to pass through a link that does not support large packets. This increases the buffering required on the hosts.
@@ -469,7 +469,7 @@ If this node receives a packet with `label=2`, it forwards the packet on its `We
 
 `Label switching` enables a full control over the path followed by packets inside the network. Consider the network below and assume that we want to use two virtual circuits : `R1->R3->R4->R2->R5` and `R2->R1->R3->R4->R5`.
 
-    .. tikz::
+    .. tikz:: An example of network where label switching can be applied to tune its paths
       :libs: positioning, matrix, arrows
 
       \tikzstyle{arrow} = [thick,->,>=stealth]
@@ -533,7 +533,7 @@ With the above `label forwarding table`, `R1` needs to originate the packets tha
 
 The figure below shows the path followed by the packets on the `R1->R3->R4->R2->R5` path in red with on each arrow the label used in the packets.
 
-    .. tikz::
+    .. tikz:: The path followed by packets for a specific circuit
       :libs: positioning, matrix, arrows
 
       \tikzstyle{arrow} = [thick,->,>=stealth]

@@ -23,7 +23,7 @@ Usually, the same weight is associated to the two directed edges that correspond
 
 When a link-state router boots, it first needs to discover to which routers it is directly connected. For this, each router sends a HELLO message every `N` seconds on all its interfaces. This message contains the router's address. Each router has a unique address. As its neighboring routers also send HELLO messages, the router automatically discovers to which neighbors it is connected. These HELLO messages are only sent to neighbors that are directly connected to a router, and a router never forwards the HELLO messages that it receives. HELLO messages are also used to detect link and router failures. A link is considered to have failed if no HELLO message has been received from a neighboring router for a period of :math:`k \times N` seconds.
 
-    .. tikz::
+    .. tikz:: The exchange of HELLO messages
         :libs: positioning, matrix, arrows, shapes
 
         \tikzstyle{arrow} = [thick,->,>=stealth]
@@ -37,18 +37,16 @@ When a link-state router boots, it first needs to discover to which routers it i
         (B) edge (C);
 
         \draw[orange, arrow] ([yshift=1em, xshift=1em] A.east) -- ([yshift=1em, xshift=-1em] B.west) node [midway] (msg1) {};
-        \draw ([yshift=1em]msg1) -- ([yshift=1em]msg1) node [rectangle, draw, font=\tiny] {A: HELLO};
+        \draw ([yshift=1em]msg1) -- ([yshift=1em]msg1) node [rectangle, draw, font=\scriptsize] {A: HELLO};
 
         \draw[orange, arrow] ([yshift=-1em, xshift=-1em] B.west) -- ([yshift=-1em, xshift=1em] A.east) node [midway] (msg2) {};
-        \draw ([yshift=-1em]msg2) -- ([yshift=-1em]msg2) node [rectangle, draw, font=\tiny] {B: HELLO};
+        \draw ([yshift=-1em]msg2) -- ([yshift=-1em]msg2) node [rectangle, draw, font=\scriptsize] {B: HELLO};
 
         \draw[orange, arrow] ([xshift=-1em, yshift=-1em] B.south) -- ([xshift=-1em, , yshift=1em] C.north) node [midway] (msg3) {};
-        \draw ([xshift=-1em]msg3) -- ([xshift=-1em]msg3) node [rotate=-90,rectangle, draw, font=\tiny] {B: HELLO};
+        \draw ([xshift=-1em]msg3) -- ([xshift=-1em]msg3) node [rotate=-90,rectangle, draw, font=\scriptsize] {B: HELLO};
 
         \draw[orange, arrow] ([xshift=1em, , yshift=1em] C.north) -- ([xshift=1em, yshift=-1em] B.south) node [midway] (msg3) {};
-        \draw ([xshift=1em]msg3) -- ([xshift=1em]msg3) node [rotate=90,rectangle, draw, font=\tiny] {C: HELLO};
-
-   The exchange of HELLO messages
+        \draw ([xshift=1em]msg3) -- ([xshift=1em]msg3) node [rotate=90,rectangle, draw, font=\scriptsize] {C: HELLO};
 
 
 Once a router has discovered its neighbors, it must reliably distribute all its outgoing edges to all routers in the network to allow them to compute their local view of the network topology. For this, each router builds a `link-state packet` (LSP) containing the following information:
@@ -96,7 +94,7 @@ In this pseudo-code, `LSDB(r)` returns the most recent `LSP` originating from ro
 Flooding is illustrated in the figure below. By exchanging HELLO messages, each router learns its direct neighbors. For example, router `E` learns that it is directly connected to routers `D`, `B` and `C`. Its first LSP has sequence number `0` and contains the directed links `E->D`, `E->B` and `E->C`. Router `E` sends its LSP on all its links and routers `D`, `B` and `C` insert the LSP in their LSDB and forward it over their other links.
 
 
-    .. tikz::
+    .. tikz:: Flooding: example
        :libs: positioning, matrix, arrows
 
        \tikzstyle{arrow} = [thick,->,>=stealth]
@@ -155,22 +153,20 @@ Flooding is illustrated in the figure below. By exchanging HELLO messages, each 
        \draw[dashed] (RTD) -- (D);
        \draw[dashed] (RTE) -- (E);
 
-   Flooding : example
-
 
 Flooding allows LSPs to be distributed to all routers inside the network without relying on routing tables. In the example above, the LSP sent by router `E` is likely to be sent twice on some links in the network. For example, routers `B` and `C` receive `E`'s LSP at almost the same time and forward it over the `B-C` link. To avoid sending the same LSP twice on each link, a possible solution is to slightly change the pseudo-code above so that a router waits for some random time before forwarding a LSP on each link. The drawback of this solution is that the delay to flood an LSP to all routers in the network increases. In practice, routers immediately flood the LSPs that contain new information (e.g. addition or removal of a link) and delay the flooding of refresh LSPs (i.e. LSPs that contain exactly the same information as the previous LSP originating from this router) [FFEB2005]_.
 
 To ensure that all routers receive all LSPs, even when there are transmissions errors, link state routing protocols use `reliable flooding`. With `reliable flooding`, routers use acknowledgments and if necessary retransmissions to ensure that all link state packets are successfully transferred to each neighboring router. Thanks to reliable flooding, all routers store in their LSDB the most recent LSP sent by each router in the network. By combining the received LSPs with its own LSP, each router can build a graph that represents the entire network topology.
 
-    .. tikz::
+    .. tikz:: Link state databases received by all routers
        :libs: positioning, matrix, arrows
 
        \tikzstyle{arrow} = [thick,->,>=stealth]
-       \tikzset{router/.style = {rectangle, draw, text centered, thick, minimum height=2em, minimum width=2em, font=\large, node distance=8em}}
+       \tikzset{router/.style = {rectangle, draw, text centered, thick, minimum height=2em, minimum width=2em, font=\large, node distance=7em}}
        \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
-       \tikzset{rtable/.style={rectangle, dashed, draw, font=\small, node distance=4em} }
+       \tikzset{rtable/.style={rectangle, dashed, draw, font=\tiny, node distance=3em} }
        \node[router] (A) {A};
-       \node[rtable, above left=of A] (RTA) { \begin{tabular}{l|l}
+       \node[rtable, above left=1em of A] (RTA) { \begin{tabular}{l|l}
        Links & LSPs \\
        \hline
        A $\rightarrow$ B, B $\rightarrow$ A: 1 & A-0 [B:1];[D:1] \\
@@ -192,7 +188,7 @@ To ensure that all routers receive all LSPs, even when there are transmissions e
        D $\rightarrow$ E, E $\rightarrow$ D: 1 & \\
        \end{tabular}};
        \node[router,right=of B] (C) {C};
-       \node[rtable, above right=of C] (RTC) {\begin{tabular}{l|l}
+       \node[rtable, above right=1em of C] (RTC) {\begin{tabular}{l|l}
        Links & LSPs \\
        \hline
        A $\rightarrow$ B, B $\rightarrow$ A: 1 & A-0 [B:1];[D:1] \\
@@ -203,7 +199,7 @@ To ensure that all routers receive all LSPs, even when there are transmissions e
        D $\rightarrow$ E, E $\rightarrow$ D: 1 & \\
        \end{tabular}};
        \node[router,below=of A] (D) {D};
-       \node[rtable, left=of D] (RTD) { \begin{tabular}{l|l}
+       \node[rtable, left=1em of D] (RTD) { \begin{tabular}{l|l}
        Links & LSPs \\
        \hline
        A $\rightarrow$ B, B $\rightarrow$ A: 1 & A-0 [B:1];[D:1] \\
@@ -239,8 +235,6 @@ To ensure that all routers receive all LSPs, even when there are transmissions e
        \draw[dashed] (RTD) -- (D);
        \draw[dashed] (RTE) -- (E);
 
-   Link state databases received by all routers
-
 
 .. note:: Static or dynamic link metrics ?
 
@@ -251,15 +245,15 @@ To ensure that all routers receive all LSPs, even when there are transmissions e
 When a link fails, the two routers attached to the link detect the failure by the absence of HELLO messages received during the last :math:`k \times N` seconds. Once a router has detected the failure of one of its local links, it generates and floods a new LSP that no longer contains the failed link. This new LSP replaces the previous LSP in the network. In practice, the two routers attached to a link do not detect this failure exactly at the same time. During this period, some links may be announced in only one direction. This is illustrated in the figure below. Router `E` has detected the failure of link `E-B` and flooded a new LSP, but router `B` has not yet detected this failure.
 
 
-    .. tikz::
+    .. tikz:: The two-way connectivity check
        :libs: positioning, matrix, arrows
 
        \tikzstyle{arrow} = [thick,->,>=stealth]
        \tikzset{router/.style = {rectangle, draw, text centered, thick, minimum height=2em, minimum width=2em, font=\large, node distance=7em}}
        \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
-       \tikzset{rtable/.style={rectangle, dashed, draw, font=\small, node distance=4em} }
+       \tikzset{rtable/.style={rectangle, dashed, draw, font=\tiny, node distance=3em} }
        \node[router] (A) {A};
-       \node[rtable, above left=of A] (RTA) { \begin{tabular}{l|l}
+       \node[rtable, above left=1em of A] (RTA) { \begin{tabular}{l|l}
        Links & LSPs \\
        \hline
        A $\rightarrow$ B, B $\rightarrow$ A: 1 & A-0 [B:1];[D:1] \\
@@ -281,7 +275,7 @@ When a link fails, the two routers attached to the link detect the failure by th
        D $\rightarrow$ E, E $\rightarrow$ D: 1 & \\
        \end{tabular}};
        \node[router,right=of B] (C) {C};
-       \node[rtable, above right=of C] (RTC) {\begin{tabular}{l|l}
+       \node[rtable, above right=1em of C] (RTC) {\begin{tabular}{l|l}
        Links & LSPs \\
        \hline
        A $\rightarrow$ B, B $\rightarrow$ A: 1 & A-0 [B:1];[D:1] \\
@@ -292,7 +286,7 @@ When a link fails, the two routers attached to the link detect the failure by th
        D $\rightarrow$ E, E $\rightarrow$ D: 1 & \\
        \end{tabular}};
        \node[router,below=of A] (D) {D};
-       \node[rtable, left=of D] (RTD) { \begin{tabular}{l|l}
+       \node[rtable, left=1em of D] (RTD) { \begin{tabular}{l|l}
        Links & LSPs \\
        \hline
        A $\rightarrow$ B, B $\rightarrow$ A: 1 & A-0 [B:1];[D:1] \\
@@ -336,8 +330,6 @@ When a link fails, the two routers attached to the link detect the failure by th
        \draw[dashed] (RTD) -- (D);
        \draw[dashed] (RTE) -- (E);
 
-   The two-way connectivity check
-
 
 When a link is reported in the LSP of only one of the attached routers, routers consider the link as having failed and they remove it from the directed graph that they compute from their LSDB. This is called the `two-way connectivity check`. This check allows link failures to be quickly flooded as a single LSP is sufficient to announce such bad news. However, when a link comes up, it can only be used once the two attached routers have sent their LSPs. The `two-way connectivity check` also allows for dealing with router failures. When a router fails, all its links fail by definition. These failures are reported in the LSPs sent by the neighbors of the failed router. The failed router does not, of course, send a new LSP to announce its failure. However, in the graph that represents the network, this failed router appears as a node that only has outgoing edges. Thanks to the `two-way connectivity check`, this failed router cannot be considered as a transit router to reach any destination since no outgoing edge is attached to it.
 
@@ -345,7 +337,7 @@ When a router has failed, its LSP must be removed from the LSDB of all routers [
 
 To compute its forwarding table, each router computes the spanning tree rooted at itself by using Dijkstra's shortest path algorithm [Dijkstra1959]_. The forwarding table can be derived automatically from the spanning as shown in the figure below.
 
-    .. tikz::
+    .. tikz:: Computation of the forwarding table, the paths used by packets sent by R3 are shown in red
        :libs: positioning, matrix, arrows
 
        \tikzstyle{arrow} = [thick,->,>=stealth]
@@ -378,8 +370,6 @@ To compute its forwarding table, each router computes the spanning tree rooted a
        \draw[thick, red] (R4) -- (R6) node [midway, below, rotate=45] {D = 6};
 
        \draw[dashed] (FT) -- (R3);
-
-   Computation of the forwarding table, the paths used by packets sent by R3 are shown in red
 
 
 .. inginious:: q-net-ls
