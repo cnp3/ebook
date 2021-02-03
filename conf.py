@@ -30,6 +30,7 @@ import sys, os
 sys.path.append(os.path.abspath("./util"))
 extensions = ['sphinx.ext.todo', 'sphinxcontrib.mscgen', 'sphinx.ext.graphviz', 'sphinxcontrib.tikz', 'sphinx.ext.mathjax', 'sphinxcontrib.spelling', 'interactive_syllabus_directives']
 
+
 #extensions = ['sphinx.ext.todo', 'sphinx.ext.pngmath', 'sphinxcontrib.mscgen','sphinx.ext.graphviz','sphinxcontrib.tikz']
 #mscgen
 mscgen_args=['-T eps']
@@ -255,7 +256,7 @@ tikz_latex_preamble='''
 \\usepackage{tikz}
 \\usepackage{pgfplots}
 \\usepackage{pgfkeys}
-\\usepackage{ulem}
+\\usepackage[normalem]{ulem}
 \\usetikzlibrary{arrows.meta,positioning, matrix,backgrounds,shapes,shadows,calc,arrows}
 %\pgfplotsset{compat=1.16}
 \\tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em
