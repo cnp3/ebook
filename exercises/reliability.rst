@@ -10,7 +10,7 @@ Reliable transfer
 Open questions
 ==============
 
-1. Consider a `b` bits per second link between two hosts that has a propagation delay of `t` seconds. Derive a formula that computes the time elapsed between the transmission of the first bit of a `d` bytes segment from a sending host and the reception of the last bit of this segment on the receiving host.
+1. Consider a `b` bits per second link between two hosts that has a propagation delay of `t` seconds. Derive a formula that computes the time elapsed between the transmission of the first bit of a `d` bytes frame from a sending host and the reception of the last bit of this frame on the receiving host.
 
 2. Transmission links have sometimes different upstream and downstream bandwidths. A typical example are access networks that use ADSL (Asymmetric Digital Subscriber Lines). Consider two hosts connected via an ADSL link having an upstream bandwidth of 1 Mbps and a downstream bandwidth of 50 Mbps. The propagation delay between the two hosts is 10 milliseconds. What is the maximum throughput, expressed in frames/second, that the alternating bit protocol can obtain on this link if each data frame has a length of 125 bytes and acknowledgments are 25 bytes long. Same question if the protocol is modified to support 1500 bytes long data frames.
 
@@ -22,7 +22,7 @@ Open questions
      - a `length` field that indicates the length of the data
      - a Cyclic Redundancy Check (`CRC`)
 
-   To speedup the transmission of the frames, a student proposes to compute the CRC over the data part of the segment but not over the header. What do you think of this proposed solution ?
+   To speedup the transmission of the frames, a student proposes to compute the CRC over the data part of the frame but not over the header. What do you think of this proposed solution ?
 
 5. Derive a mathematical expression that provides the `goodput`, i.e. the amount of payload bytes that have been transmitted during a period of time, achieved by the Alternating Bit Protocol assuming that :
 
@@ -32,10 +32,10 @@ Open questions
       - The delay between the two hosts is `s` seconds in both directions
       - there are no transmission errors
 
-6. Consider a go-back-n sender and a go-back receiver that are directly connected with a 10 Mbps link that has a propagation delay of 100 milliseconds. Assume that the retransmission timer is set to three seconds. If the window has a length of 4 segments, draw a time-sequence diagram showing the transmission of 10 segments (each segment contains 10000 bits):
+6. Consider a go-back-n sender and a go-back receiver that are directly connected with a 10 Mbps link that has a propagation delay of 100 milliseconds. Assume that the retransmission timer is set to three seconds. If the window has a length of 4 frames, draw a time-sequence diagram showing the transmission consisting of 10 data frames (each frame contains 10000 bits):
 
  - when there are no losses
- - when the third and seventh segments are lost
+ - when the third and seventh frames are lost
  - when every second acknowledgment is discarded due to transmission errors
 
 7. Same question when using selective repeat instead of go-back-n. Note that the answer is not necessarily the same.
@@ -61,7 +61,7 @@ Reliable protocols depend on error detection algorithms to detect transmission e
 
  Implement a small software that computes the CRC-32 for a text file. Then, modify the contents of the file to change an even number of bits or an odd number of bits inside the file. When modifying the file, remember that an ASCII file is composed of 8 bits characters that are encoded by using the ASCII table that you can find at : http://en.wikipedia.org/wiki/ASCII . You can also write a small program that produces binary files that are a small variation of each other.
 
-3. Checksums and CRCs should not be confused with secure hash functions such as MD5 defined in :rfc:`1321` or SHA-1 described in :rfc:`4634`. Secure hash functions are used to ensure that files or sometimes packets/segments have not been modified. Secure hash functions aim at detecting malicious changes while checksums and CRCs only detect random transmission errors. Use the `shasum <http://linux.die.net/man/1/shasum>`_ or `md5sum <http://linux.die.net/man/1/md5sum>`_ programs on Linux to perform the same tests as above.
+3. Checksums and CRCs should not be confused with secure hash functions such as MD5 defined in :rfc:`1321` or SHA-1 described in :rfc:`4634`. Secure hash functions are used to ensure that files or sometimes frames/packets/segments have not been modified. Secure hash functions aim at detecting malicious changes while checksums and CRCs only detect random transmission errors. Use the `shasum <http://linux.die.net/man/1/shasum>`_ or `md5sum <http://linux.die.net/man/1/md5sum>`_ programs on Linux to perform the same tests as above.
 
 
 Discussion questions
@@ -79,7 +79,7 @@ Discussion questions
 
 .. 4. The go-back-n and selective repeat mechanisms that are described in the book exclusively rely on cumulative acknowledgments. This implies that a receiver always returns to the sender information about the last frame that was received in-sequence. If there are frequent losses, a selective repeat receiver could return several times the same cumulative acknowledgment. Can you think of other types of acknowledgments that could be used by a selective repeat receiver to provide additional information about the out-of-sequence frames that it has received. Design such acknowledgments and explain how the sender should react upon reception of this information.
 
-4. A go-back-n sender has sent :math:`2^n` data segments. All the segments have been received correctly and in-order by the receiver, but all the returned acknowledgments have been lost. Show by using a time sequence diagram (e.g. by considering a window of four segments) what happens in this case. Can you fix the problem on the go-back-n sender ?
+4. A go-back-n sender has sent :math:`2^n` data frames. All the frames have been received correctly and in-order by the receiver, but all the returned acknowledgments have been lost. Show by using a time sequence diagram (e.g. by considering a window of four frames) what happens in this case. Can you fix the problem on the go-back-n sender ?
 
 5. Same question as above, but assume now that both the sender and the receiver implement selective repeat. Note that the answer can be different from the above question.
 
