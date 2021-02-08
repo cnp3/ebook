@@ -4,28 +4,31 @@
 # : Principles, Protocols and Practice package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Computer networking : Principles, Protocols and "
-"Practice 3\n"
+"Project-Id-Version: Computer networking : Principles, Protocols and Practice "
+"3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-09 12:39+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2021-02-09 22:35+0000\n"
+"Last-Translator: Philippe D <philippe.dan@student.uclouvain.be>\n"
+"Language-Team: French <http://weblate.info.ucl.ac.be/projects/cnp3-ebook/"
+"exercisesreliability/fr/>\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.9.1\n"
 "Generated-By: Babel 2.7.0\n"
 
 #: ../../exercises/reliability.rst:7
 msgid "Reliable transfer"
-msgstr ""
+msgstr "Transfert fiable"
 
 #: ../../exercises/reliability.rst:11
 msgid "Open questions"
-msgstr ""
+msgstr "Questions ouvertes"
 
 #: ../../exercises/reliability.rst:13
 msgid ""
@@ -35,6 +38,11 @@ msgid ""
 " from a sending host and the reception of the last bit of this segment on"
 " the receiving host."
 msgstr ""
+"Soit un câble entre deux hôtes ayant un débit de `b` bits par second et un "
+"délai de propagation de `t` secondes. Établissez une formule qui calcule le "
+"temps écoulé entre la transmission du premier bit d'un segment de `d` bytes  "
+"à partir de l'hôte émetteur et la réception du dernier bit de ce segment par "
+"l'hôte récepteur."
 
 #: ../../exercises/reliability.rst:16
 msgid ""
@@ -64,11 +72,11 @@ msgstr ""
 
 #: ../../exercises/reliability.rst:24
 msgid "a `number` (0 or 1)"
-msgstr ""
+msgstr "un `nombre` (0 ou 1)"
 
 #: ../../exercises/reliability.rst:25
 msgid "a `length` field that indicates the length of the data"
-msgstr ""
+msgstr "un champ `length` (taille) qui indique la taille des données"
 
 #: ../../exercises/reliability.rst:26
 msgid "a Cyclic Redundancy Check (`CRC`)"
@@ -91,6 +99,8 @@ msgstr ""
 #: ../../exercises/reliability.rst:32
 msgid "Each frame contains `D` bytes of data and `c` bytes of control information"
 msgstr ""
+"Chaque frame contient `D` bytes de donnée et `c` bytes d'information de "
+"contrôle"
 
 #: ../../exercises/reliability.rst:33
 msgid "Each acknowledgment contains `c` bytes of control information"
@@ -104,11 +114,11 @@ msgstr ""
 
 #: ../../exercises/reliability.rst:35
 msgid "The delay between the two hosts is `s` seconds in both directions"
-msgstr ""
+msgstr "Le délai entre deux hôtes est de `s` secondes dans les deux sens"
 
 #: ../../exercises/reliability.rst:36
 msgid "there are no transmission errors"
-msgstr ""
+msgstr "il n'y a pas d'erreur de transmission"
 
 #: ../../exercises/reliability.rst:38
 msgid ""
@@ -148,6 +158,9 @@ msgid ""
 "transmission errors. The following questions will reinforce your "
 "understanding of these algorithms."
 msgstr ""
+"Les protocoles fiables dépendent d'algorithmes de détection des erreurs de "
+"transmission. Les questions suivantes vont vous permettre d'approfondir "
+"votre compréhension de ces algorithmes."
 
 #: ../../exercises/reliability.rst:54
 msgid ""
@@ -155,6 +168,9 @@ msgid ""
 " frames have been affected by transmission errors. The most frequently "
 "used checksums are :"
 msgstr ""
+"Les protocoles fiables reposent sur différents types de checksums afin de "
+"vérifier si des erreurs de transmission ont affecté les frames. Les "
+"checksums les plus fréquemment utilisés sont :"
 
 #: ../../exercises/reliability.rst:56
 msgid ""
@@ -275,4 +291,3 @@ msgid ""
 "receiver implement selective repeat. Note that the answer can be "
 "different from the above question."
 msgstr ""
-
