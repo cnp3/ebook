@@ -1,11 +1,11 @@
 .. Copyright |copy| 2013, 2019 by Olivier Bonaventure
 .. This file is licensed under a `creative commons licence <http://creativecommons.org/licenses/by/3.0/>`_
 
-.. warning:: 
+.. warning::
 
-   This is an unpolished draft of the third edition of this e-book. If you find any error or have suggestions to improve the text, please create an issue via https://github.com/CNP3/ebook/issues?milestone=3 or help us by providing pull requests to close the existing issues.
+   This is an unpolished draft of the third edition of this e-book. If you find any error or have suggestions to improve the text, please create an issue via https://github.com/CNP3/ebook/issues?milestone=4 or help us by providing pull requests to close the existing issues.
 
-   
+
 *****************
 Sharing resources
 *****************
@@ -42,7 +42,7 @@ To understand the operation of Medium Access Control algorithms, it is often int
 If the transmitting host is located at another position on the shared medium than one of the edges, then the geometrical pattern that represents the transmission of a frame is slightly different. If the transmitting host is placed in the middle of the cable, then the signal is transmitted in both directions on the cable. The figure below shows the transmission of one 100 bits frame at 100 Mbps by host C on the same cable.
 
  .. tikz::
-     :libs: positioning, matrix, arrows 
+     :libs: positioning, matrix, arrows
 
      \colorlet{lightgray}{black!20}
      \tikzstyle{arrow} = [thick,->,>=stealth]
@@ -67,7 +67,7 @@ In a shared medium, a collision may happen if two hosts transmit at almost the s
 
 
  .. tikz::
-     :libs: positioning, matrix, arrows 
+     :libs: positioning, matrix, arrows
 
      \colorlet{lightgray}{black!20}
      \tikzstyle{arrow} = [thick,->,>=stealth]
@@ -92,7 +92,7 @@ In a shared medium, a collision may happen if two hosts transmit at almost the s
 1. Consider the following scenario for the ALOHA medium access control algorithm. Three hosts are attached to a one-kilometer long cable and transmit 1000 bits frames at 1 Mbps. Each arrow represents a request to transmit a frame on the corresponding host. Each square represents 250 microseconds in the figure. Represent all the transmitted frames and list the frames that collide.
 
  .. tikz::
-     :libs: positioning, matrix, arrows 
+     :libs: positioning, matrix, arrows
 
      \colorlet{lightgray}{black!20}
      \tikzstyle{arrow} = [thick,->,>=stealth]
@@ -119,7 +119,7 @@ In a shared medium, a collision may happen if two hosts transmit at almost the s
 2. Same question as above, but now consider that the hosts transmit 1000 bits frames at 100 Mbps. The cable has a length of 2 kilometers. C is in the middle of the cable. Each square in the figure below corresponds to 10 microseconds.
 
  .. tikz::
-    :libs: positioning, matrix, arrows 
+    :libs: positioning, matrix, arrows
 
     \colorlet{lightgray}{black!20}
     \tikzstyle{arrow} = [thick,->,>=stealth]
@@ -147,10 +147,10 @@ In a shared medium, a collision may happen if two hosts transmit at almost the s
   .. collision C and last B
 
 
-3. In ALOHA, the hosts rely on acknowledgments to detect whether their frame has been received correctly by the destination. Consider a network running at 100 Mbps where the host exchange 1000 bits frames and acknowledgments of 100 bits. Draw the frames sent by hosts A and B in the figure below. Assume that a square corresponds to 10 microseconds and that the cable has a length of 2 kilometers. 
+3. In ALOHA, the hosts rely on acknowledgments to detect whether their frame has been received correctly by the destination. Consider a network running at 100 Mbps where the host exchange 1000 bits frames and acknowledgments of 100 bits. Draw the frames sent by hosts A and B in the figure below. Assume that a square corresponds to 10 microseconds and that the cable has a length of 2 kilometers.
 
  .. tikz::
-     :libs: positioning, matrix, arrows 
+     :libs: positioning, matrix, arrows
 
      \colorlet{lightgray}{black!20}
      \tikzstyle{arrow} = [thick,->,>=stealth]
@@ -176,7 +176,7 @@ In a shared medium, a collision may happen if two hosts transmit at almost the s
 
 
  .. tikz::
-    :libs: positioning, matrix, arrows 
+    :libs: positioning, matrix, arrows
 
     \colorlet{lightgray}{black!20}
     \tikzstyle{arrow} = [thick,->,>=stealth]
@@ -200,11 +200,11 @@ In a shared medium, a collision may happen if two hosts transmit at almost the s
 
   .. collision between the ack of A->B and C->A
 
-5. In practice, hosts transmit variable length frames. Consider a cable having a bandwidth of 100 Mbps and a length of 2 kilometers. 
+5. In practice, hosts transmit variable length frames. Consider a cable having a bandwidth of 100 Mbps and a length of 2 kilometers.
 
 
  .. tikz::
-     :libs: positioning, matrix, arrows 
+     :libs: positioning, matrix, arrows
 
      \colorlet{lightgray}{black!20}
      \tikzstyle{arrow} = [thick,->,>=stealth]
@@ -228,11 +228,11 @@ In a shared medium, a collision may happen if two hosts transmit at almost the s
 
 
 
-6. With CSMA, hosts need to listen to the communication channel before starting their transmission. Consider again a 2 kilometers long cable where hosts send frames at 100 Mbps. Show in the figure below the correct transmission of frames with CSMA. 
+6. With CSMA, hosts need to listen to the communication channel before starting their transmission. Consider again a 2 kilometers long cable where hosts send frames at 100 Mbps. Show in the figure below the correct transmission of frames with CSMA.
 
 
  .. tikz::
-     :libs: positioning, matrix, arrows 
+     :libs: positioning, matrix, arrows
 
      \colorlet{lightgray}{black!20}
      \tikzstyle{arrow} = [thick,->,>=stealth]
@@ -255,12 +255,12 @@ In a shared medium, a collision may happen if two hosts transmit at almost the s
      \draw[very thick, blue, ->] (10,7) node [anchor=north, fill=white] {B$\rightarrow$A [1000 bits]} -- (9,6);
 
      .. C->A needs to be delayed
-  
+
 
 7. CSMA/CD does not use acknowledgments but instead assumes that each host can detect collisions by listening while transmitting. Consider a 2 kilometers long cable running at 10 Mbps. Show in the figure below the utilization of the communication channel and the collisions that would occur. For this exercise, do not attempt to retransmit the frames that have collided.
 
  .. tikz::
-     :libs: positioning, matrix, arrows 
+     :libs: positioning, matrix, arrows
 
      \colorlet{lightgray}{black!20}
      \tikzstyle{arrow} = [thick,->,>=stealth]
@@ -290,7 +290,7 @@ In a shared medium, a collision may happen if two hosts transmit at almost the s
 8. Consider again a network that uses CSMA/CD. This time, the bandwidth is set to 1 Gbps and the cable has a length of two kilometers. When a collision occurs, consider that the hosts B and C retransmit immediately while host A waits for the next slot.
 
  .. tikz::
-     :libs: positioning, matrix, arrows 
+     :libs: positioning, matrix, arrows
 
      \colorlet{lightgray}{black!20}
      \tikzstyle{arrow} = [thick,->,>=stealth]
@@ -316,7 +316,7 @@ In a shared medium, a collision may happen if two hosts transmit at almost the s
 9. An important part of the CSMA/CD algorithm is the exponential backoff. To illustrate the operation of this algorithm, let us consider a cable that has a length of one kilometer. The bandwidth of the network is set to 10 Mbps. Assume that when a collision occurs, host A always selects the highest possible random delay according to the exponential backoff algorithm while host B always selects the shortest one. In this network, the slot time is equal to the time required to transmit 100 bits. We further assume that a host can detect collision immediately (i.e. as soon as the other frame arrives).
 
  .. tikz::
-     :libs: positioning, matrix, arrows 
+     :libs: positioning, matrix, arrows
 
      \colorlet{lightgray}{black!20}
      \tikzstyle{arrow} = [thick,->,>=stealth]
@@ -346,7 +346,7 @@ Fairness and congestion control
 
 
    .. tikz::
-      :libs: positioning, matrix, arrows 
+      :libs: positioning, matrix, arrows
 
       \tikzstyle{arrow} = [thick,->,>=stealth]
       \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
@@ -365,8 +365,8 @@ Fairness and congestion control
       \node[host, below=of D1] (D3) {D3};
       \node[host, above=of R1] (D4) {D4};
       \node[host, above=of R2] (D5) {D5};
-      \draw[-] (R1) -- (R2); 
-      \draw[-] (R2) -- (R3); 
+      \draw[-] (R1) -- (R2);
+      \draw[-] (R2) -- (R3);
       \draw[-] (S1)--(R1);
       \draw[-] (S2)--(R1);
       \draw[-] (S3)--(R1);
@@ -383,24 +383,24 @@ To understand congestion control algorithms, it can also be useful to represent 
 
 
    .. tikz::
-      :libs: positioning, matrix, arrows 
+      :libs: positioning, matrix, arrows
 
       \tikzstyle{arrow} = [thick,->,>=stealth]
-      \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
+      \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em, minimum width=2em,}, }
       \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
       \tikzset{ftable/.style={rectangle, dashed, draw} }
       \node[host] (A) {A};
       \node[router, right=3 cm of A] (R) {R};
       \node[host, right=3 cm of R] (B) {B};
-      \draw[-] (A) -- node [midway, above] { 3 Mbps} (R); 
-      \draw[-] (R) -- node [midway, above] { 1 Mbps} (B); 
+      \draw[-] (A) -- node [midway, above] { 3 Mbps} (R);
+      \draw[-] (R) -- node [midway, above] { 1 Mbps} (B);
 
 
 Suppose now that host A uses a window of three segments and sends these three segments immediately. The segments will be queued in the router before being transmitted on the output link and delivered to their destination. The destination will reply with a short acknowledgment segment. A possible visualization of this exchange of packets is represented in the figure below. We assume for this figure that the router marks the packets to indicate congestion as soon as its buffer is non-empty when its receives a packet on its input link. In the figure, a `(c)` sign is added to each packet to indicate that it has been explicitly marked.
 
 
  .. tikz::
-     :libs: positioning, matrix, arrows 
+     :libs: positioning, matrix, arrows
 
      \colorlet{lightgray}{black!20}
      \colorlet{ligthred}{red!25}
@@ -429,27 +429,27 @@ Suppose now that host A uses a window of three segments and sends these three se
      \draw[very thick, red, ->] (7,5) -- (1,5);
      \draw[very thick, red, ->] (7,3.5) -- (1,3.5);
 
-In practice, a router is connected to multiple input links. The figure below shows an example with two hosts. 
-     
+In practice, a router is connected to multiple input links. The figure below shows an example with two hosts.
+
 
    .. tikz::
-      :libs: positioning, matrix, arrows 
+      :libs: positioning, matrix, arrows
 
       \tikzstyle{arrow} = [thick,->,>=stealth]
-      \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
+      \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em, minimum width=2em,}, }
       \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
       \tikzset{ftable/.style={rectangle, dashed, draw} }
       \node[host, red] (A) {A};
       \node[router, right=3 cm of A] (R) {R};
       \node[host, right=3 cm of R] (C) {C};
       \node[host, below=of A, blue] (B) {B};
-      \draw[-] (A) -- node [midway, above] { 2 Mbps} (R); 
-      \draw[-] (B) -- node [midway, fill=white, below] { 2 Mbps} (R); 
-      \draw[-] (R) -- node [midway, above] { 1 Mbps} (C); 
+      \draw[-] (A) -- node [midway, above] { 2 Mbps} (R);
+      \draw[-] (B) -- node [midway, fill=white, below] { 2 Mbps} (R);
+      \draw[-] (R) -- node [midway, above] { 1 Mbps} (C);
 
 
  .. tikz::
-     :libs: positioning, arrows 
+     :libs: positioning, arrows
 
      \colorlet{lightgray}{black!20}
      \draw[step=0.5cm,lightgray,very thin] (0,0) grid (10,10);
@@ -487,11 +487,11 @@ In practice, a router is connected to multiple input links. The figure below sho
      \draw[very thick, blue, ->] (7,4) -- (2.5,4);
      \node[black, fill=blue!25, font=\scriptsize] at (5,4.5) {P2(c)};
 
- 
+
 In general, the links have a non-zero delay. This is illustrated in the figure below where a delay has been added on the link between `R` and `C`.
 
  .. tikz::
-     :libs: positioning, arrows, backgrounds 
+     :libs: positioning, arrows, backgrounds
 
      \colorlet{lightgray}{black!20}
      \draw[step=0.5cm,lightgray,very thin] (0,0) grid (10,10);
@@ -519,11 +519,11 @@ In general, the links have a non-zero delay. This is illustrated in the figure b
      \node[black, fill=red!25, font=\scriptsize] at (5,7.5) {P1};
 
      \draw[black, fill=blue!25] (4.5,7) -- (4.5,6) -- (7,5) -- (7,6) -- (4.5,7);
- 
+
      \node[black, fill=blue!25, font=\scriptsize] at (5,6.5) {P1(c)};
 
      \draw[black, fill=red!25] (4.5,6) -- (4.5,5) -- (7,4) -- (7,5) -- (4.5,6);
- 
+
      \node[black, fill=red!25, font=\scriptsize] at (5,5.5) {P2(c)};
 
      \draw[black, fill=blue!25] (4.5,5) -- (4.5,4) -- (7,3) -- (7,4) -- (4.5,5);
@@ -538,10 +538,10 @@ In general, the links have a non-zero delay. This is illustrated in the figure b
 2. Consider the network depicted in the figure below.
 
    .. tikz::
-      :libs: positioning, matrix, arrows 
+      :libs: positioning, matrix, arrows
 
       \tikzstyle{arrow} = [thick,->,>=stealth]
-      \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
+      \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em, minimum width=2em,}, }
       \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
       \tikzset{ftable/.style={rectangle, dashed, draw} }
       \node[host] (A) {A};
@@ -549,35 +549,35 @@ In general, the links have a non-zero delay. This is illustrated in the figure b
       \node[router, right=3 cm of R1] (R2) {R2};
       \node[host, below=of A] (B) {B};
       \node[host, right=3 cm of R2] (D) {D};
-      \draw[-] (A) -- node [midway, above, fill=white, align=center] { 1 Mbps \\ 0 msec} (R1); 
-      \draw[-] (B) -- node [midway, below, align=center] { 10 Mbps \\ 10 msec} (R1); 
-      \draw[-] (R1) -- node [midway, fill=white, below, align=center] { 1 Mbps\\10 msec} (R2); 
-      \draw[-] (R2) -- node [midway, below, align=center] { 100 Mbps \\ 0 msec} (D); 
+      \draw[-] (A) -- node [midway, above, fill=white, align=center] { 1 Mbps \\ 0 msec} (R1);
+      \draw[-] (B) -- node [midway, below, align=center] { 10 Mbps \\ 10 msec} (R1);
+      \draw[-] (R1) -- node [midway, fill=white, below, align=center] { 1 Mbps\\10 msec} (R2);
+      \draw[-] (R2) -- node [midway, below, align=center] { 100 Mbps \\ 0 msec} (D);
 
 
- a. In this network, compute the minimum round-trip-time between `A` (resp. `B`) and `D`. Perform the computation if the hosts send segments containing 1000 bits. 
- b. How is the maximum round-trip-time influenced if the buffers of router `R1` store 10 packets ?  
+ a. In this network, compute the minimum round-trip-time between `A` (resp. `B`) and `D`. Perform the computation if the hosts send segments containing 1000 bits.
+ b. How is the maximum round-trip-time influenced if the buffers of router `R1` store 10 packets ?
  c. If hosts `A` and `B` send to `D` 1000 bits segments and use a sending window of four segments, what is the maximum throughput that they can achieve ?
- d. Assume now that `R1` is using round-robin scheduling instead of a FIFO buffer. One queue is used to store the packets sent by `A` and another for the packets sent by `B`. `A` sends one 1000 bits packet every second while `B` sends packets at 10 Mbps. What is the round-trip-time measured by each of these two hosts if each of the two queues of `R1` can store 5 packets ? 
+ d. Assume now that `R1` is using round-robin scheduling instead of a FIFO buffer. One queue is used to store the packets sent by `A` and another for the packets sent by `B`. `A` sends one 1000 bits packet every second while `B` sends packets at 10 Mbps. What is the round-trip-time measured by each of these two hosts if each of the two queues of `R1` can store 5 packets ?
 
 
-3. When analyzing the reaction of a network using round-robin schedulers, it is sometimes useful to consider that the packets sent by each source are equivalent to a fluid and that each scheduler acts as a tap. Using this analogy, consider the network below. In this network, all the links are 100 Mbps and host `B` is sending packets at 100 Mbps. If A sends at 1, 5, 10, 20, 30, 40, 50, 60, 80 and 100 Mbps, what is the throughput that destination `D` will receive from `A`. Use this data to plot a graph that shows the portion of the traffic sent by host `A` which is received by host `D`. 
+3. When analyzing the reaction of a network using round-robin schedulers, it is sometimes useful to consider that the packets sent by each source are equivalent to a fluid and that each scheduler acts as a tap. Using this analogy, consider the network below. In this network, all the links are 100 Mbps and host `B` is sending packets at 100 Mbps. If A sends at 1, 5, 10, 20, 30, 40, 50, 60, 80 and 100 Mbps, what is the throughput that destination `D` will receive from `A`. Use this data to plot a graph that shows the portion of the traffic sent by host `A` which is received by host `D`.
 
 
    .. tikz::
-      :libs: positioning, matrix, arrows 
+      :libs: positioning, matrix, arrows
 
       \tikzstyle{arrow} = [thick,->,>=stealth]
-      \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
+      \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em, minimum width=2em,}, }
       \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
       \tikzset{ftable/.style={rectangle, dashed, draw} }
       \node[host] (A) {A};
       \node[router, right=3 cm of A] (R1) {R1};
       \node[host, below=of A] (B) {B};
       \node[host, right=3 cm of R1] (D) {D};
-      \draw[-] (A) -- (R1); 
-      \draw[-] (B) -- (R1); 
-      \draw[-] (R1) -- (D); 
+      \draw[-] (A) -- (R1);
+      \draw[-] (B) -- (R1);
+      \draw[-] (R1) -- (D);
 
 4. Compute the max-min fair bandwidth allocation in the network below.
 
@@ -588,10 +588,10 @@ In general, the links have a non-zero delay. This is illustrated in the figure b
     Simple network topology
 
 
-5. Consider the simple network depicted in the figure below.   
+5. Consider the simple network depicted in the figure below.
 
    .. tikz::
-      :libs: positioning, matrix, arrows 
+      :libs: positioning, matrix, arrows
 
       \tikzstyle{arrow} = [thick,->,>=stealth]
       \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
@@ -601,9 +601,9 @@ In general, the links have a non-zero delay. This is illustrated in the figure b
       \node[router, right=3 cm of A] (R1) {R1};
       \node[router, right=3 cm of R1] (R2) {R2};
       \node[host, right=3 cm of R2] (D) {D};
-      \draw[-] (A) -- node [midway, above, fill=white, align=center] { 1 Mbps} (R1); 
-      \draw[-] (R1) -- node [midway, fill=white, below, align=center] { 250 kbps} (R2); 
-      \draw[-] (R2) -- node [midway, below, align=center] { 100 Mbps} (D); 
+      \draw[-] (A) -- node [midway, above, fill=white, align=center] { 1 Mbps} (R1);
+      \draw[-] (R1) -- node [midway, fill=white, below, align=center] { 250 kbps} (R2);
+      \draw[-] (R2) -- node [midway, below, align=center] { 100 Mbps} (D);
 
 
  a. In this network, a 250 Kbps link is used between the routers. The propagation delays in the network are negligible. Host `A` sends 1000 bits long segments so that it takes one msec to transmit one segment on the `A-R1` link. Neglecting the transmission delays for the acknowledgments, what is the minimum round-trip time measured on host `A` with such segments ?
@@ -613,10 +613,10 @@ In general, the links have a non-zero delay. This is illustrated in the figure b
 6. Consider the network depicted in the figure below.
 
    .. tikz::
-      :libs: positioning, matrix, arrows 
+      :libs: positioning, matrix, arrows
 
       \tikzstyle{arrow} = [thick,->,>=stealth]
-      \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
+      \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em, minimum width=2em,}, }
       \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
       \tikzset{ftable/.style={rectangle, dashed, draw} }
       \node[host] (A) {A};
@@ -624,8 +624,8 @@ In general, the links have a non-zero delay. This is illustrated in the figure b
       \node[host, below=of A] (B) {B};
       \node[host, right=3 cm of R1] (D) {D};
       \draw[-] (A) -- node [midway, above, fill=white, align=center] { 1 Mbps\\ 10 msec} (R1);
-      \draw[-] (B) -- node [midway, above, fill=white, align=center] { 1 Mbps\\ 0 msec} (R1);
-      \draw[-] (R1) -- node [midway, fill=white, below, align=center] { 500 kbps \\ 0 msec} (D); 
+      \draw[-] (B) -- node [midway, below, fill=white, align=center] { 1 Mbps\\ 0 msec} (R1);
+      \draw[-] (R1) -- node [midway, fill=white, below, align=center] { 500 kbps \\ 0 msec} (D);
 
  Hosts `A` and `B` use the simple congestion control scheme described in the book and router `R1` uses the DECBIT mechanism to mark packets as soon as its buffers contain one packet. Hosts `A` and `B` need to send five segments and start exactly at the same time. How long does each hosts needs to wait to receive the acknowledgment for its fifth segment ?
 
