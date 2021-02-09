@@ -4,28 +4,31 @@
 # : Principles, Protocols and Practice package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Computer networking : Principles, Protocols and "
-"Practice 3\n"
+"Project-Id-Version: Computer networking : Principles, Protocols and Practice "
+"3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-09 12:39+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2021-02-09 22:35+0000\n"
+"Last-Translator: Philippe D <philippe.dan@student.uclouvain.be>\n"
+"Language-Team: French <http://weblate.info.ucl.ac.be/projects/cnp3-ebook/"
+"glossary/fr/>\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.9.1\n"
 "Generated-By: Babel 2.7.0\n"
 
 #: ../../glossary.rst:8
 msgid "Glossary"
-msgstr ""
+msgstr "Lexique"
 
 #: ../../glossary.rst:322
 msgid "address"
-msgstr ""
+msgstr "Adresse"
 
 #: ../../glossary.rst:324
 msgid ""
@@ -34,10 +37,14 @@ msgid ""
 "for :term:`IPv4`, 128 bits for :term:`IPv6` or 48 bits for "
 ":term:`Ethernet` and other related Local Area Networks."
 msgstr ""
+"Une chaîne de bits qui identifie une interface réseau dans la couche réseau "
+"ou dans la couche de liaison des données. La plupart des adresses ont une "
+"taille fixe, par exemple 32 bits pour :term:`IPv4`, 128 bits pour "
+":term:`IPv6` or 48 bits pour :term:`Ethernet` et d'autres réseaux locaux."
 
 #: ../../glossary.rst:183
 msgid "AIMD"
-msgstr ""
+msgstr "AIMD"
 
 #: ../../glossary.rst:185
 msgid ""
@@ -49,7 +56,7 @@ msgstr ""
 
 #: ../../glossary.rst:15
 msgid "anycast"
-msgstr ""
+msgstr "anycast"
 
 #: ../../glossary.rst:17
 msgid ""
@@ -59,7 +66,7 @@ msgstr ""
 
 #: ../../glossary.rst:117
 msgid "API"
-msgstr ""
+msgstr "API"
 
 #: ../../glossary.rst:119
 msgid "Application Programming Interface"
@@ -90,7 +97,7 @@ msgstr ""
 
 #: ../../glossary.rst:12
 msgid "ascii"
-msgstr ""
+msgstr "ascii"
 
 #: ../../glossary.rst:14
 msgid ""
@@ -1292,4 +1299,3 @@ msgstr ""
 #~ "groups <http://www.w3.org/XML/>`_ of the "
 #~ ":term:`W3C`"
 #~ msgstr ""
-
