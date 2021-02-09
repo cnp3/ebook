@@ -10,8 +10,8 @@ msgstr ""
 "3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-09 12:39+0000\n"
-"PO-Revision-Date: 2019-10-19 07:04+0000\n"
-"Last-Translator: Anthony Gego <anthony.gego@uclouvain.be>\n"
+"PO-Revision-Date: 2021-02-09 22:35+0000\n"
+"Last-Translator: Philippe D <philippe.dan@student.uclouvain.be>\n"
 "Language-Team: French <http://weblate.info.ucl.ac.be/projects/cnp3-ebook/"
 "exercisesnetwork/fr/>\n"
 "Language: fr\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.8\n"
+"X-Generator: Weblate 3.9.1\n"
 "Generated-By: Babel 2.7.0\n"
 
 #: ../../exercises/network.rst:8
@@ -37,7 +37,7 @@ msgstr ""
 
 #: ../../exercises/network.rst:12
 msgid "Network : Open questions"
-msgstr ""
+msgstr "Réseaux : Questions ouvertes"
 
 #: ../../exercises/network.rst:14
 msgid ""
@@ -81,7 +81,7 @@ msgstr ""
 
 #: ../../exercises/network.rst:92
 msgid "The Abilene network"
-msgstr ""
+msgstr "Le réseau Abilene"
 
 #: ../../exercises/network.rst:94
 msgid ""
@@ -89,14 +89,17 @@ msgid ""
 "the paths followed by a packet sent by the router located in `Los "
 "Angeles` to reach :"
 msgstr ""
+"Dans ce réseau, considérez que tous les poids des liens sont égaux à 1. Quel "
+"est le chemin emprunté par un paquet envoyé par le routeur situé à `Los "
+"Angeles` vers :"
 
 #: ../../exercises/network.rst:96
 msgid "the router located in `New York`"
-msgstr ""
+msgstr "le routeur situé à `New York`"
 
 #: ../../exercises/network.rst:97
 msgid "the router located in `Washington` ?"
-msgstr ""
+msgstr "le routeur situé à `Washington` ?"
 
 #: ../../exercises/network.rst:99
 msgid ""
@@ -139,13 +142,15 @@ msgstr ""
 #: ../../exercises/network.rst:132 ../../exercises/network.rst:154
 #: ../../exercises/network.rst:184 ../../exercises/network.rst:216
 msgid "Consider the network shown in the figure below."
-msgstr ""
+msgstr "Considérons à présent le réseau dans la figure ci-dessous."
 
 #: ../../exercises/network.rst:152
 msgid ""
 "Assuming that the network uses source routing, what are the possible "
 "paths from `R1` to `R4` ?"
 msgstr ""
+"En considérant que le réseau utilise du source routing, quels sont les "
+"chemins possible de `R1` à `R4` ?"
 
 #: ../../exercises/network.rst:176
 msgid ""
@@ -155,13 +160,15 @@ msgstr ""
 
 #: ../../exercises/network.rst:178
 msgid "`R3->R2->R4->R5` and `R1->R2->R5`"
-msgstr ""
+msgstr "`R3->R2->R4->R5` et `R1->R2->R5`"
 
 #: ../../exercises/network.rst:180
 msgid ""
 "Is it possible to achieve these paths and if so what are the required "
 "forwarding tables ?"
 msgstr ""
+"Est-il possible de construire ces chemins ? Si oui, à quoi ressemblent les "
+"tables de forwarding ?"
 
 #: ../../exercises/network.rst:182 ../../exercises/network.rst:214
 msgid "Same question with virtual circuits."
@@ -183,7 +190,7 @@ msgstr ""
 
 #: ../../exercises/network.rst:240
 msgid "`R1->R5->R4` and `R3->R2->R4`"
-msgstr ""
+msgstr "`R1->R5->R4` et`R3->R2->R4`"
 
 #: ../../exercises/network.rst:247
 msgid "Network: Discussion questions"
