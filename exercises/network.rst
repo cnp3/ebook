@@ -218,7 +218,7 @@ Open questions
 
   - `R1->R2->R4` and `R3->R2->R5->R4`
 
- Are these paths possible with link-state or distance vector routing ? If yes, how do configure the link weights. If no, explain your answer.
+ Are these paths possible with link-state or distance vector routing ? If yes, how do you configure the link weights. If no, explain your answer.
 
  Same question with virtual circuits.
 
