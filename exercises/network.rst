@@ -111,7 +111,7 @@ Open questions
 
  Assume that the routers located in `Denver` and `Kansas City` need to exchange lots of packets. Can you configure the link metrics such that the link between these two routers does not carry any packet sent by another router in the network ?
 
-6. In the five nodes network shown below, can you configure the link metrics so that the packets sent by router `E` to router `A` use link `B->A` while the packets sent by router `B` use links `B->D` and `D->A`?
+6. In the five nodes network shown below, can you configure the link metrics so that the packets sent by router `R5` to router `R1` use link `R3->R1` while the packets sent by router `R3` use links `R3->R2` and `R2->R1`?
 
    .. tikz::
       :libs: positioning, matrix, arrows
@@ -135,7 +135,7 @@ Open questions
 
 
 
-7. In the five nodes network shown above, can you configure the link weights so that the packets sent by router `E` (resp. `F`) follow the `E->B->A` path (resp. `F->D->B->A`) ?
+7. In the five nodes network shown above, can you configure the link weights so that the packets sent by router `R5` (resp. `R4`) follow the `R5->R3->R1` path (resp. `R4->R2->R3->R1`) ?
 
 
 8. Consider the network shown in the figure below.
