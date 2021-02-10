@@ -27,7 +27,7 @@ for fileName in (sys.argv[1:]) :
     newName=fileName.replace('.pkt','.svg')
     newFile=open(newName,'w')
     newFile.write("<svg xmlns=\"http://www.w3.org/2000/svg\"     xmlns:xlink=\"http://www.w3.org/1999/xlink\">")
-    newFile.write("<text style=\"font-size:14px; font-family:Courier; \" y=\"0\" x=\"0\" xml:space='preserve' >")
+    newFile.write("<text style=\"font-size:14px; font-family:Hack; \" y=\"0\" x=\"0\" xml:space='preserve' >")
     newFile.write("<tspan x=\"0\"> </tspan>")
     while 1:
         line = file.readline()

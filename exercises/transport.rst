@@ -5,15 +5,21 @@
 ********************
 Serving applications
 ********************
-.. warning:: 
+.. warning::
 
    This is an unpolished draft of the third edition of this e-book. If you find any error or have suggestions to improve the text, please create an issue via https://github.com/CNP3/ebook/issues?milestone=3 or help us by providing pull requests to close the existing issues.
+
+
+Multiple choices questions
+==========================
+
+.. inginious:: mcq-transport
 
 
 Open questions
 ==============
 
-1. Which mechanisms that should be included in a transport protocol that provides an unreliable connectionless transport service that can detect transmission errors but not correct them ?
+1. Which are the mechanisms that should be included in a transport protocol providing an unreliable connectionless transport service that can detect transmission errors, but not correct them ?
 
 2. A reliable connection oriented transport places a 32 bits sequence number inside the segment header to number the segments. This sequence number is incremented for each data segment. The connection starts as shown in the figure below :
 
@@ -29,7 +35,7 @@ Open questions
      c=>d [ label = "CONNECT.ind()" ];
      d=>c [ label = "CONNECT.resp()" ],
      c>>b [ label = "CR(ack=1341,seq=2141)", arcskip="1"];
-     b=>a [ label = "CONNECT.conf()" ]; 
+     b=>a [ label = "CONNECT.conf()" ];
      b>>c [ label = "CA(seq=1341,ack=2141)", arcskip="1"];
      |||;
      a=>b [ label = "DATA.req(a)" ];
@@ -52,10 +58,10 @@ Open questions
      b>>c [ label = "DATA(seq=1124,def)", arcskip="1"];
      a=>b [ label = "DISCONNECT.req(graceful,A->B)" ];
      |||;
-     
+
 
   What are the acknowledgments sent by `Host B`. How does `Host A` react and how does it terminate the connection ?
- 
+
 
 4. Consider a reliable connection-oriented transport protocol that provides the bytestream service. In this transport protocol, the sequence number that is placed inside each DATA segment reflects the position of the bytes in the bytestream. Considering the connection shown below, provide the DATA segments that are sent by `Host A` in response to the `DATA.request`, assuming that one segment is sent for each `DATA.request`.
 
@@ -71,7 +77,7 @@ Open questions
      c=>d [ label = "CONNECT.ind()" ];
      d=>c [ label = "CONNECT.resp()" ],
      c>>b [ label = "CR(ack=8765,seq=4321)", arcskip="1"];
-     b=>a [ label = "CONNECT.conf()" ]; 
+     b=>a [ label = "CONNECT.conf()" ];
      b>>c [ label = "CA(seq=8765,ack=4321)", arcskip="1"];
      |||;
      a=>b [ label = "DATA.req(a)" ];
@@ -125,7 +131,7 @@ Open questions
 Practice
 ========
 
-1. Amazon provides the `S3 storage service <https://s3.amazonaws.com/>`_ where companies and researchers can store lots of information and perform computations on the stored information. Amazon allows users to send files through the Internet, but also by sending hard-disks. Assume that a 1 Terabyte hard-disk can be delivered within 24 hours to Amazon by courier service. What is the minimum bandwidth required to match the bandwidth of this courier service ? 
+1. Amazon provides the `S3 storage service <https://s3.amazonaws.com/>`_ where companies and researchers can store lots of information and perform computations on the stored information. Amazon allows users to send files through the Internet, but also by sending hard-disks. Assume that a 1 Terabyte hard-disk can be delivered within 24 hours to Amazon by courier service. What is the minimum bandwidth required to match the bandwidth of this courier service ?
 
 
 .. inginious:: TFTP
@@ -141,7 +147,7 @@ Discussion questions
   a. DATA segments contain a sequence number that is incremented for each byte transmitted
   b. DATA segments contain a sequence number that is incremented for each DATA segment transmitted
 
-3. Some transport protocols use 32 bits sequence numbers while others use 64 bits sequence number. What are the advantages and drawbacks of each approach ? 
+3. Some transport protocols use 32 bits sequence numbers while others use 64 bits sequence number. What are the advantages and drawbacks of each approach ?
 
 4. Consider a transport protocol that provides the bytestream service and uses 32 bits sequence number to represent the position of the first byte of the payload of DATA segments in the bytestream. How would you modify this protocol so that it can provide a message-mode service ? Consider first short messages that always fit inside a single segment. In a second step, discuss how you could support messages of unlimited size.
 
