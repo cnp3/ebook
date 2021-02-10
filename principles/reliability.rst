@@ -330,7 +330,7 @@ When running on top of a perfect framing sub-layer, a datalink entity can simply
 
 
 
-Unfortunately, this is not always sufficient to ensure a reliable delivery of the SDUs. Consider the case where a client sends tens of SDUs to a server. If the server is faster that the client, it will be able to receive and process all the segments sent by the client and deliver their content to its user. However, if the server is slower than the client, problems may arise. The datalink entity contains buffers to store SDUs that have been received as a `Data.request` but have not yet been sent. If the application is faster than the physical link, the buffer may become full. At this point, the operating system suspends the application to let the datalink entity empty its transmission queue. The datalink entity also uses a buffer to store the received frames that have not yet been processed by the application. If the application is slow to process the data, this buffer may overflow and the datalink entity will not able to accept any additional frame. The buffers of the datalink entity have a limited size and if they overflow, the arriving frames will be discarded, even if they are correct.
+Unfortunately, this is not always sufficient to ensure a reliable delivery of the SDUs. Consider the case where a client sends tens of SDUs to a server. If the server is faster that the client, it will be able to receive and process all the frames sent by the client and deliver their content to its user. However, if the server is slower than the client, problems may arise. The datalink entity contains buffers to store SDUs that have been received as a `Data.request` but have not yet been sent. If the application is faster than the physical link, the buffer may become full. At this point, the operating system suspends the application to let the datalink entity empty its transmission queue. The datalink entity also uses a buffer to store the received frames that have not yet been processed by the application. If the application is slow to process the data, this buffer may overflow and the datalink entity will not able to accept any additional frame. The buffers of the datalink entity have a limited size and if they overflow, the arriving frames will be discarded, even if they are correct.
 
 To solve this problem, a reliable protocol must include a feedback mechanism that allows the receiver to inform the sender that it has processed a frame and that another one can be sent. This feedback is required even though there are no transmission errors. To include such a feedback, our reliable protocol must process two types of frames :
 
@@ -510,9 +510,9 @@ The simplest error detection scheme is the checksum. A checksum is basically an 
 .. tcp offload engine http://www.10gea.org/tcp-ip-offload-engine-toe.htm
 .. stcp used Adler-32 but it now uses CRC :rfc:`3309`
 
-.. The second imperfection of the network layer is that segments may be lost. As we will see later, the main cause of packet losses in the network layer is the lack of buffers in intermediate routers.
+.. The second imperfection of the network layer is that frames may be lost. As we will see later, the main cause of packet losses in the network layer is the lack of buffers in intermediate routers.
 
-Since the receiver sends an acknowledgment after having received each data frame, the simplest solution to deal with losses is to use a retransmission timer. When the sender sends a frame, it starts a retransmission timer. The value of this retransmission timer should be larger than the `round-trip-time`, i.e. the delay between the transmission of a data frame and the reception of the corresponding acknowledgment. When the retransmission timer expires, the sender assumes that the data segment has been lost and retransmits it. This is illustrated in the figure below.
+Since the receiver sends an acknowledgment after having received each data frame, the simplest solution to deal with losses is to use a retransmission timer. When the sender sends a frame, it starts a retransmission timer. The value of this retransmission timer should be larger than the `round-trip-time`, i.e. the delay between the transmission of a data frame and the reception of the corresponding acknowledgment. When the retransmission timer expires, the sender assumes that the data frame has been lost and retransmits it. This is illustrated in the figure below.
 
 
    .. msc::
@@ -543,7 +543,7 @@ Since the receiver sends an acknowledgment after having received each data frame
 
 
 
-Unfortunately, retransmission timers alone are not sufficient to recover from losses. Let us consider, as an example, the situation depicted below where an acknowledgment is lost. In this case, the sender retransmits the data segment that has not been acknowledged. However, as illustrated in the figure below, the receiver considers the retransmission as a new segment whose payload must be delivered to its user.
+Unfortunately, retransmission timers alone are not sufficient to recover from losses. Let us consider, as an example, the situation depicted below where an acknowledgment is lost. In this case, the sender retransmits the data frame that has not been acknowledged. However, as illustrated in the figure below, the receiver considers the retransmission as a new frame whose payload must be delivered to its user.
 
    .. msc::
 
@@ -589,7 +589,7 @@ The Alternating Bit Protocol uses a single bit to encode the sequence number. It
       \node[state, right=of WD0] (WC0) {Wait\\for\\{\color{red}C(OK0)}};
       \node[state, below=of WC0] (WD1) {Wait\\for\\{\color{red}D(1,...)}};
       \node[state, below=of WD0] (WC1) {Wait\\for\\{\color{red}C(OK1)}};
-      \node[font=\small,align=right,right=of WD1] {All corrupted\\segments are\\discarded in all states};
+      \node[font=\small,align=right,right=of WD1] {All corrupted\\frames are\\discarded in all states};
 
 
       \path[arrow]
@@ -644,7 +644,7 @@ The receiver first waits for `D(0,...)`. If the frame contains a correct `CRC`, 
       \node[state, right=of WD0] (PD0) {Process\\{\color{red}D(0,...)}};
       \node[state, below=of PD0] (WD1) {Wait\\for\\{\color{red}D(1,...)}};
       \node[state, below=of WD0] (PD1) {Process\\{\color{red}D(1,...)}};
-      \node[font=\small,align=right,right=of PD0] {All corrupted\\segments are\\discarded in all states};
+      \node[font=\small,align=right,right=of PD0] {All corrupted\\frames are\\discarded in all states};
 
 
       \path[arrow]
@@ -719,7 +719,7 @@ The figure below illustrates the operation of the alternating bit protocol.
       b->a [linecolour=white, label="cancel timer"];
       |||;
 
-The Alternating Bit Protocol can recover from the losses of data or control frames. This is illustrated in the two figures below. The first figure shows the loss of one data segment.
+The Alternating Bit Protocol can recover from the losses of data or control frames. This is illustrated in the two figures below. The first figure shows the loss of one data frame.
 
 .. msc::
 
@@ -804,7 +804,7 @@ To overcome the performance limitations of the alternating bit protocol, reliabl
 
 `Pipelining` allows the sender to transmit frames at a higher rate. However this higher transmission rate may overload the receiver. In this case, the frames sent by the sender will not be correctly received by their final destination. The reliable protocols that rely on pipelining allow the sender to transmit `W` unacknowledged frames before being forced to wait for an acknowledgment from the receiving entity.
 
-This is implemented by using a `sliding window`. The sliding window is the set of consecutive sequence numbers that the sender can use when transmitting frames without being forced to wait for an acknowledgment. The figure below shows a sliding window containing five segments (`6,7,8,9` and `10`). Two of these sequence numbers (`6` and `7`) have been used to send frames and only three sequence numbers (`8`, `9` and `10`) remain in the sliding window. The sliding window is said to be closed once all sequence numbers contained in the sliding window have been used.
+This is implemented by using a `sliding window`. The sliding window is the set of consecutive sequence numbers that the sender can use when transmitting frames without being forced to wait for an acknowledgment. The figure below shows a sliding window containing five frames (`6,7,8,9` and `10`). Two of these sequence numbers (`6` and `7`) have been used to send frames and only three sequence numbers (`8`, `9` and `10`) remain in the sliding window. The sliding window is said to be closed once all sequence numbers contained in the sliding window have been used.
 
 .. figure:: figures/slidingwin2.png
    :align: center
@@ -854,7 +854,7 @@ The figure below shows the FSM of a simple `go-back-n` receiver. This receiver u
       \tikzstyle{every state}=[font=\small, align=center, node distance=12em]
       \node[initial, state] (W) {Wait};
       \node[state, right=of W] (P) {Process\\{\color{blue}SDU}};
-      \node[font=\small,align=right,right=of P] {All corrupted\\segments are\\discarded in all states};
+      \node[font=\small,align=right,right=of P] {All corrupted\\frames are\\discarded in all states};
       \path[arrow]
       (W) edge [bend left] node[midway, above] {\begin{tabular}{c}
          \texttt{recvd({\color{red}D(next,{\color{blue}SDU},CRC)})} \\
@@ -887,7 +887,7 @@ A `go-back-n` sender is also very simple. It uses a sending buffer that can stor
       \tikzstyle{arrow} = [thick,->,>=stealth,font=\small]
       \tikzstyle{every state}=[font=\small, align=center, node distance=5em]
       \node[initial, state] (W) {Wait};
-      \node[font=\small,align=right,below right=8em of W] {All corrupted\\segments are\\discarded in all states};
+      \node[font=\small,align=right,below right=8em of W] {All corrupted\\frames are\\discarded in all states};
       \path[arrow]
       (W) edge [in=30,out=330,looseness=7] node[midway, right] {\begin{tabular}{l}
          Data.req({\color{blue}SDU}) \\
@@ -987,7 +987,7 @@ In the figure above, when the sender receives `C(OK,0,[2])`, it knows that all f
 
 .. `Go-back-n` or `selective repeat` are used to provide a reliable data transfer above an unreliable physical layer service. Until now, we have assumed that the size of the sliding window was fixed for the entire lifetime of the connection. In practice a  layer entity is usually implemented in the operating system and shares memory with other parts of the system. Furthermore, a transport layer entity must support several (possibly hundreds or thousands) of transport connections at the same time. This implies that the memory which can be used to support the sending or the receiving buffer of a transport connection may change during the lifetime of the connection [#fautotune]_ . Thus, a transport protocol must allow the sender and the receiver to adjust their window sizes.
 
-.. To deal with this issue, transport protocols allow the receiver to advertise the current size of its receiving window in all the acknowledgments that it sends. The receiving window advertised by the receiver bounds the size of the sending buffer used by the sender. In practice, the sender maintains two state variables : `swin`, the size of its sending window (that may be adjusted by the system) and `rwin`, the size of the receiving window advertised by the receiver. At any time, the number of unacknowledged segments cannot be larger than :math:`\min(swin,rwin)` [#facklost]_ . The utilisation of dynamic windows is illustrated in the figure below.
+.. To deal with this issue, transport protocols allow the receiver to advertise the current size of its receiving window in all the acknowledgments that it sends. The receiving window advertised by the receiver bounds the size of the sending buffer used by the sender. In practice, the sender maintains two state variables : `swin`, the size of its sending window (that may be adjusted by the system) and `rwin`, the size of the receiving window advertised by the receiver. At any time, the number of unacknowledged frames cannot be larger than :math:`\min(swin,rwin)` [#facklost]_ . The utilisation of dynamic windows is illustrated in the figure below.
 
 .. .. figure:: ../../book/transport/svg/transport-fig-039.png
      :align: center
@@ -995,7 +995,7 @@ In the figure above, when the sender receives `C(OK,0,[2])`, it knows that all f
 
       Dynamic receiving window
 
-.. The receiver may adjust its advertised receive window based on its current memory consumption, but also to limit the bandwidth used by the sender. In practice, the receive buffer can also shrink as the application may not able to process the received data quickly enough. In this case, the receive buffer may be completely full and the advertised receive window may shrink to `0`. When the sender receives an acknowledgment with a receive window set to `0`, it is blocked until it receives an acknowledgment with a positive receive window. Unfortunately, as shown in the figure below, the loss of this acknowledgment could cause a deadlock as the sender waits for an acknowledgment while the receiver is waiting for a data segment.
+.. The receiver may adjust its advertised receive window based on its current memory consumption, but also to limit the bandwidth used by the sender. In practice, the receive buffer can also shrink as the application may not able to process the received data quickly enough. In this case, the receive buffer may be completely full and the advertised receive window may shrink to `0`. When the sender receives an acknowledgment with a receive window set to `0`, it is blocked until it receives an acknowledgment with a positive receive window. Unfortunately, as shown in the figure below, the loss of this acknowledgment could cause a deadlock as the sender waits for an acknowledgment while the receiver is waiting for a data frame.
 
 .. .. figure:: ../../book/transport/png/transport-fig-040-c.png
       :align: center
@@ -1006,7 +1006,7 @@ In the figure above, when the sender receives `C(OK,0,[2])`, it knows that all f
 
 .. index:: persistence timer
 
-.. To solve this problem, transport protocols rely on a special timer : the `persistence timer`. This timer is started by the sender whenever it receives an acknowledgment advertising a receive window set to `0`. When the timer expires, the sender retransmits an old segment in order to force the receiver to send a new acknowledgment, and hence send the current receive window size.
+.. To solve this problem, transport protocols rely on a special timer : the `persistence timer`. This timer is started by the sender whenever it receives an acknowledgment advertising a receive window set to `0`. When the timer expires, the sender retransmits an old frame in order to force the receiver to send a new acknowledgment, and hence send the current receive window size.
 
 ..
  ..  note:: Negative acknowledgments
