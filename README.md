@@ -27,7 +27,7 @@ Contributions to the e-book are more than welcome. We welcome contributions with
 
 ### Updating existing sections
 
-This is the simplest way to contribute. If you spot a small error, a typo or would like to clarify a few sentences, feel free to update the text directly on gituhb and create a pull request. When doing so, remember that there are a few guidelines that we try to follow:
+This is the simplest way to contribute. If you spot a small error, a typo or would like to clarify a few sentences, feel free to update the text directly on github and create a pull request. When doing so, remember that there are a few guidelines that we try to follow:
 
  - We use American English spelling. There are automated travis tests that will automatically verify that your pull-request passes the spell check. If not, update your pull request. If you introduce a new word that is not recognized by the standard directory, you can either add it as a spelling directive in the file where is appears (see e.g. the bottom of the `bibliography.rst` file) or include it in the `wordlist.dict` file which contains the new words that are used in different files.
  - When citing references, please update the file `bibliography.rst`. Please use the same style as the one used in the file and add an hyperlink to the paper title that points to a stable URL, e.g. a DOI
