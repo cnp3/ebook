@@ -33,6 +33,7 @@ sudo apt-get install poppler-utils
 sudo apt-get install python3-enchant
 sudo apt-get install python3-sphinxcontrib.spelling
 sudo apt-get install inkscape
+sudo apt-get install fonts-dejavu
 ```
 
 ### CentOS 7
@@ -51,6 +52,7 @@ sudo yum install ImageMagick
 sudo yum install texlive texlive-latex
 sudo yum install texlive-base texlive-pgf
 sudo yum install texlive-collection-latex texlive-collection-latexrecommended texlive-ulem
+sudo yum install dejavu-sans-mono-fonts
 ```
 
 You will then also need to manually install the `pgfplots` and `standalone` texlive packages available on [CTAN](https://www.ctan.org).
@@ -63,7 +65,7 @@ You will then also need to manually install the `pgfplots` and `standalone` texl
 The required packages can be installed on Fedora 28+ using the following command:
 
 ```
-sudo dnf install mscgen netpbm-progs inkscape poppler-utils netpbm ImageMagick texlive texlive-latex texlive-base texlive-pgf texlive-collection-latex texlive-collection-latexrecommended texlive-pgfplots textlive-standalone texlive-ulem
+sudo dnf install mscgen netpbm-progs inkscape poppler-utils netpbm ImageMagick texlive texlive-latex texlive-base texlive-pgf texlive-collection-latex texlive-collection-latexrecommended texlive-pgfplots textlive-standalone texlive-ulem dejavu-sans-mono-fonts
 ```
 
 ### Python dependencies

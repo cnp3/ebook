@@ -12,6 +12,7 @@ before_install:
  - sudo apt-get install python3-enchant
  - sudo apt-get install python3-sphinxcontrib.spelling
  - sudo apt-get install inkscape
+ - sudo apt-get install fonts-dejavu
 install: "pip3 install -q -r .travis-requirements.txt"
 language: python
 python:
