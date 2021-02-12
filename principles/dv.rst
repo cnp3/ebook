@@ -287,7 +287,7 @@ At this point, all routers have a routing table allowing them to reach all other
         \draw[dashed] (RTE) -- (E);
 
         \draw[orange, arrow] ([xshift=1.5em] D.north) -- ([xshift=1.5em] A.south) node [midway] (msg1) {};
-        \draw ([xshift=1em]msg1) -- ([xshift=1em]msg1) node [ rotate=90, rectangle, draw, font=\scriptsize] {[A=1, B=2, C=2, D=1, E=1]};
+        \draw ([xshift=1em]msg1) -- ([xshift=1em]msg1) node [ rotate=90, rectangle, draw, font=\scriptsize] {[A=1, B=2, C=2, D=0, E=1]};
 
 
 .. index:: count to infinity
