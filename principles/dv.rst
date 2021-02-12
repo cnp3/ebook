@@ -211,7 +211,7 @@ Consider the example above and assume that the link between routers `A` and `B` 
  - `B` sends its distance vector :math:`[B=0,A=\infty,C=1,D=2,E=1]` to `E` and `C`. `C` learns that there is no route anymore to reach `A` via `B`.
  - `E` sends its distance vector :math:`[E=0,A=2,C=1,D=1,B=1]` to `D`, `B` and `C`. `D` learns a route towards `B`. `C` and `B` learn a route towards `A`.
 
-At this point, all routers have a routing table allowing them to reach all other routers, except router `A`, which cannot yet reach router `B`. `A` recovers the route towards `B` once router `D` sends its updated distance vector :math:`[A=1,B=2,C=2,D=1,E=1]`. This last step is illustrated in figure below, which shows the routing tables on all routers.
+At this point, all routers have a routing table allowing them to reach all other routers, except router `A`, which cannot yet reach router `B`. `A` recovers the route towards `B` once router `D` sends its updated distance vector :math:`[A=1,B=2,C=2,D=0,E=1]`. This last step is illustrated in figure below, which shows the routing tables on all routers.
 
     .. tikz:: Routing tables computed by distance vector after a failure
         :libs: positioning, matrix, arrows
