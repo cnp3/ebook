@@ -4,19 +4,22 @@
 # : Principles, Protocols and Practice package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Computer networking : Principles, Protocols and "
-"Practice 3\n"
+"Project-Id-Version: Computer networking : Principles, Protocols and Practice "
+"3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-09 12:39+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2021-02-16 20:35+0000\n"
+"Last-Translator: Philippe D <philippe.dan@student.uclouvain.be>\n"
+"Language-Team: French <http://weblate.info.ucl.ac.be/projects/cnp3-ebook/"
+"principlessharing/fr/>\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.9.1\n"
 "Generated-By: Babel 2.7.0\n"
 
 #: ../../principles/sharing.rst:8
@@ -2192,7 +2195,7 @@ msgstr ""
 
 #: ../../principles/sharing.rst:1326
 msgid "Footnotes"
-msgstr ""
+msgstr "Notes de bas de page"
 
 #: ../../principles/sharing.rst:1327
 msgid ""
@@ -3667,4 +3670,3 @@ msgstr ""
 #~ "'s realtime measurements, see e.g.  "
 #~ "http://www.caida.org/data/realtime/passive/"
 #~ msgstr ""
-
