@@ -10,7 +10,7 @@ msgstr ""
 "3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-09 12:39+0000\n"
-"PO-Revision-Date: 2021-02-09 22:35+0000\n"
+"PO-Revision-Date: 2021-02-16 20:35+0000\n"
 "Last-Translator: Philippe D <philippe.dan@student.uclouvain.be>\n"
 "Language-Team: French <http://weblate.info.ucl.ac.be/projects/cnp3-ebook/"
 "exercisessockets/fr/>\n"
@@ -154,7 +154,7 @@ msgstr ""
 
 #: ../../exercises/sockets.rst:139
 msgid "Receiving data from a peer using a socket"
-msgstr ""
+msgstr "Recevoir des données d'un pair en utilisant un socket"
 
 #: ../../exercises/sockets.rst:141
 msgid ""
@@ -201,7 +201,7 @@ msgstr ""
 
 #: ../../exercises/sockets.rst:216
 msgid "``connect``: connecting a socket to a remote address"
-msgstr ""
+msgstr "``connect``:connecter un socket à une adresse distante"
 
 #: ../../exercises/sockets.rst:218
 msgid ""
@@ -248,6 +248,8 @@ msgstr ""
 #: ../../exercises/sockets.rst:264
 msgid "A program can use the ``socket`` system call to create a new socket."
 msgstr ""
+"Un programme peut utiliser l'appel système ``socket`` pour créer un nouveau "
+"socket."
 
 #: ../../exercises/sockets.rst:270
 msgid ""
@@ -282,12 +284,15 @@ msgid ""
 "The ``::1`` IPv6 address identifies the computer on which the current "
 "program is running."
 msgstr ""
+"L'adresse IPv6 ``::1`` identifie l'ordinateur sur lequel le programme tourne."
 
 #: ../../exercises/sockets.rst:284
 msgid ""
 "The ``2001:6a8:308f:9:0:82ff:fe68:e520`` IPv6 address identifies the "
 "computer serving the ``https://beta.computer-networking.info`` website."
 msgstr ""
+"L'adresse IPv6 ``2001:6a8:308f:9:0:82ff:fe68:e520`` identifie l'ordinateur "
+"qui dessert le site ``https://beta.computer-networking.info``."
 
 #: ../../exercises/sockets.rst:288
 msgid ""
@@ -299,11 +304,11 @@ msgstr ""
 
 #: ../../exercises/sockets.rst:287
 msgid "The IPv6 address of the computer"
-msgstr ""
+msgstr "L'adresse IPv6 de l'ordinateur"
 
 #: ../../exercises/sockets.rst:288
 msgid "The port number identifying the program running on the computer"
-msgstr ""
+msgstr "Le port du programme qui tourne sur l'ordinateur"
 
 #: ../../exercises/sockets.rst:290
 msgid ""
@@ -409,7 +414,7 @@ msgstr ""
 
 #: ../../exercises/sockets.rst:364
 msgid "Footnotes"
-msgstr ""
+msgstr "Notes de bas de page"
 
 #: ../../exercises/sockets.rst:365
 msgid ""
