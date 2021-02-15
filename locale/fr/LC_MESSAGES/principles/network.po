@@ -10,8 +10,8 @@ msgstr ""
 "3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-09 12:39+0000\n"
-"PO-Revision-Date: 2019-10-19 07:04+0000\n"
-"Last-Translator: Anthony Gego <anthony.gego@uclouvain.be>\n"
+"PO-Revision-Date: 2021-02-16 20:35+0000\n"
+"Last-Translator: Philippe D <philippe.dan@student.uclouvain.be>\n"
 "Language-Team: French <http://weblate.info.ucl.ac.be/projects/cnp3-ebook/"
 "principlesnetwork/fr/>\n"
 "Language: fr\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.8\n"
+"X-Generator: Weblate 3.9.1\n"
 "Generated-By: Babel 2.7.0\n"
 
 #: ../../principles/network.rst:6
@@ -1151,7 +1151,7 @@ msgstr ""
 
 #: ../../principles/linkstate.rst:128 ../../principles/network.rst:505
 msgid "Footnotes"
-msgstr ""
+msgstr "Notes de bas de page"
 
 #: ../../principles/network.rst:506
 msgid ""
