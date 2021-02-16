@@ -168,14 +168,23 @@ Many other types of encodings have been defined to transmit information over an 
 
 
 
-.. index:: Physical layer
+      .. index:: Physical layer
 
 
-.. figure:: figures/physical-layer.png
-   :align: center
-   :scale: 100
+      .. tikz:: The Physical layer
+            :libs: positioning, matrix, arrows
 
-   The Physical layer
+            \tikzstyle{arrow} = [thick,<->,>=stealth]
+            \tikzset{elem/.style = {rectangle, thick, draw, text centered, minimum height=2em, minimum width=8em}, }
+
+            \node[elem] (pm) {Physical};
+
+            \node[elem, left=8em of pm] (pl) {Physical};
+
+            \draw[rectangle, thick, draw, fill=gray!20] ([xshift=1em, yshift=-1em]pl.south) rectangle ([xshift=-1em]pm.south) node [midway, below=.5em] {\scriptsize Physical transmission medium};
+
+            \draw[arrow] (pl.east) -- (pm.west) node [midway, above] {Bits} node [midway, below] {\tiny 01010010100010101001010};
+
 
 All the functions related to the physical transmission or information through a wire (or a wireless link) are usually known as the `physical layer`. The physical layer allows thus two or more entities that are directly attached to the same transmission medium to exchange bits. Being able to exchange bits is important as virtually any information can be encoded as a sequence of bits. Electrical engineers are used to processing streams of bits, but computer scientists usually prefer to deal with higher level concepts. A similar issue arises with file storage. Storage devices such as hard-disks also store streams of bits. There are hardware devices that process the bit stream produced by a hard-disk, but computer scientists have designed filesystems to allow applications to easily access such storage devices. These filesystems are typically divided into several layers as well. Hard-disks store sectors of 512 bytes or more. Unix filesystems group sectors in larger blocks that can contain data or `inodes` representing the structure of the filesystem. Finally, applications manipulate files and directories that are translated in blocks, sectors and eventually bits by the operating system.
 

@@ -59,8 +59,8 @@ Part 2: Protocols
 .. toctree::
    :maxdepth: 4
 
-   protocols/dns
    protocols/transport-service
+   protocols/dns
    protocols/email
    protocols/http
    protocols/http2
