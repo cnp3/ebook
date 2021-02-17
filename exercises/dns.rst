@@ -6,7 +6,7 @@
 Application layer
 *****************
 
-.. warning:: 
+.. warning::
 
    This is an unpolished draft of the third edition of this e-book. If you find any error or have suggestions to improve the text, please create an issue via https://github.com/CNP3/ebook/issues?milestone=5 or help us by providing pull requests to close the existing issues.
 
@@ -20,15 +20,15 @@ The Domain Name System (DNS) plays a key role in the Internet today as it allows
 
 
 .. inginious:: dns-records
-               
-               
-Several software tools can be used to send queries to DNS servers. For this exercise, we use dig_ which is installed on most Unix/Linux systems. 
 
-A typical usage of dig is as follows: 
+
+Several software tools can be used to send queries to DNS servers. For this exercise, we use dig_ which is installed on most Unix/Linux systems.
+
+A typical usage of dig is as follows:
 
 .. code-block:: console
 
-  dig @server -t type fqdn 
+  dig @server -t type fqdn
 
 where
 
@@ -41,36 +41,36 @@ dig_ also contains some additional parameters and flags that are described in th
 1. What are the IP addresses of the resolvers that the `dig` implementation you are using relies on [#fdig]_ ?
 
 2. What are the nameservers that are responsible for the `info` top-level domain ? Is it possible to use IPv6 to query them ?
-  
+
 3. What is the IPv6 address that corresponds to `www.computer-networking.info` ? Which type of DNS query does `dig` send to obtain this information ?
 
 
-4. When run without any parameter, `dig` queries one of the root DNS servers and retrieves the list of the names of all root DNS servers. For technical reasons, there are only 13 different root DNS servers. This information is also available as a text file from http://www.internic.net/zones/named.root . What are the IPv6 addresses of all these servers. 
+4. When run without any parameter, `dig` queries one of the root DNS servers and retrieves the list of the names of all root DNS servers. For technical reasons, there are only 13 different root DNS servers. This information is also available as a text file from http://www.internic.net/zones/named.root. What are the IPv6 addresses of all these servers?
 
-6. Assume now that you are residing in a network where there is no DNS resolver and that you need to perform your query manually starting from the DNS root.
+5. Assume now that you are residing in a network where there is no DNS resolver and that you need to perform your query manually starting from the DNS root.
 
    - Use `dig` to send a query to one of these root servers to find the IPv6 address of the DNS server(s) (NS record) responsible for the `org` top-level domain
    - Use `dig` to send a query to one of these DNS servers to find the IP address of the DNS server(s) (NS record) responsible for `root-servers.org`
    - Continue until you find the server responsible for `www.root-servers.org`
    - What is the lifetime associated to this IPv6 address ?
 
-7. Perform the same analysis for a popular website such as `www.google.com`. What is the lifetime associated to the corresponding IPv6 address ? If you perform the same request several times, do you always receive the same answer ? Can you explain why a lifetime is associated to the DNS replies ?
+6. Perform the same analysis for a popular website such as `www.google.com`. What is the lifetime associated to the corresponding IPv6 address ? If you perform the same request several times, do you always receive the same answer ? Can you explain why a lifetime is associated to the DNS replies ?
 
-8. Use `dig` to find the mail relays used by the `uclouvain.be` and `student.uclouvain.be` domains. What is the `TTL` of these records ? Can you explain the preferences used by the `MX` records. You can find more information about the MX records in :rfc:`5321`
+7. Use `dig` to find the mail relays used by the `uclouvain.be` and `student.uclouvain.be` domains. What is the `TTL` of these records ? Can you explain the preferences used by the `MX` records. You can find more information about the MX records in :rfc:`5321`.
 
-9. When `dig` is run, the header section in its output indicates the `id` the DNS identifier used to send the query. Does your implementation of `dig` generates random identifiers ? 
+8. When `dig` is run, the header section in its output indicates the `id` the DNS identifier used to send the query. Does your implementation of `dig` generates random identifiers ?
 
 .. code-block:: text
 
 	dig -t MX gmail.com
 
 	; <<>> DiG 9.4.3-P3 <<>> -t MX gmail.com
-	;; global options:  printcmd   
+	;; global options:  printcmd
 	;; Got answer:
 	;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 25718
 
-               
-10. A DNS implementation such as `dig` and more importantly a name resolver such as bind_ or unbound_, always checks that the received DNS reply contains the same identifier as the DNS request that it sent. Why is this so important ?
+
+9. A DNS implementation such as `dig`, and more importantly a name resolver such as bind_ or unbound_, always checks that the received DNS reply contains the same identifier as the DNS request that it sent. Why is this so important ?
 
    - Imagine an attacker who is able to send forged DNS replies to, for example, associate `www.bigbank.com` to his own IP address. How could he attack a DNS implementation that
 
@@ -78,7 +78,7 @@ dig_ also contains some additional parameters and flags that are described in th
      - sends DNS requests containing identifiers that are incremented by one after each request
      - sends DNS requests containing random identifiers
 
-11. The DNS protocol can run over UDP and over TCP. Most DNS servers prefer to use UDP because it consumes fewer resources on the server. However, TCP is useful when a large answer is expected or when a large answer is expected. Compare `time dig +tcp` and `time dig` to query a root DNS server. Is it faster to receive an answer via TCP or via UDP ?
+10. The DNS protocol can run over UDP and over TCP. Most DNS servers prefer to use UDP because it consumes fewer resources on the server. However, TCP is useful when a large answer is expected. Compare `time dig +tcp` and `time dig` to query a root DNS server. Is it faster to receive an answer via TCP or via UDP ?
 
 
 Besides `dig`, another way to analyze the DNS is to look at packet traces with tools such as `wireshark <https://www.wireshark.org>`_ or `tcpdump <https://www.tcpdump.org>`_ These tools can capture packets in a network and also display and analyze their content. `Wireshark <https://www.wireshark.org>`_  provides a flexible Graphical User Interface that eases the analysis of the captured packets. The three questions below should help you to better understand the important fields of DNS messages.
@@ -96,17 +96,17 @@ The next three questions ask you to go one step further by predicting the values
 
 .. inginious:: pkt-dns-id
 
-.. inginious:: pkt-dns-tcp    
+.. inginious:: pkt-dns-tcp
 
 When a client requests the mapping of a domain name into an IP address to its local resolver, the resolver may need to query a large number of nameservers starting from the root nameserver. The three exercises below show packet traces collected while the resolver was resolving the following names: `www.example.com`, `www.google.com` and `www.computer-networking.info`. If you understand how the DNS operates, you should be able to correctly reorder those packet traces.
-	       
+
 .. inginious:: pkt-dns-example
 
 .. inginious:: pkt-dns-google
-               
+
 .. inginious:: pkt-dns-computernetworking
-               
-               
+
+
 
 .. rubric:: Footnotes
 
