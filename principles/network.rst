@@ -493,6 +493,8 @@ If this node receives a packet with `label=2`, it forwards the packet on its `We
 
 To create these virtual circuits, we need to configure the `label forwarding tables` of all routers. For simplicity, assume that a label forwarding table only contains two entries. Assume that `R5` wants to receive the packets from the virtual circuit created by `R1` (resp. `R2`) with `label=1` (`label=0`). `R4` could use the following `label forwarding table`:
 
++----------------------------------------+
+|       R4's label forwarding table      |
 +--------+--------------------+----------+
 | index  | outgoing interface | label    |
 +--------+--------------------+----------+
@@ -503,6 +505,8 @@ To create these virtual circuits, we need to configure the `label forwarding tab
 
 Since a packet received with `label=1` must be forwarded to `R5` with `label=1`, `R2`'s `label forwarding table` could contain :
 
++----------------------------------------+
+|       R2's label forwarding table      |
 +--------+--------------------+----------+
 | index  | outgoing interface | label    |
 +--------+--------------------+----------+
@@ -513,6 +517,8 @@ Since a packet received with `label=1` must be forwarded to `R5` with `label=1`,
 
 Two virtual circuits pass through `R3`. They both need to be forwarded to `R4`, but `R4` expects `label=1` for packets belonging to the virtual circuit originated by `R2` and `label=0` for packets belonging to the other virtual circuit. `R3` could choose to leave the labels unchanged.
 
++----------------------------------------+
+|       R3's label forwarding table      |
 +--------+--------------------+----------+
 | index  | outgoing interface | label    |
 +--------+--------------------+----------+
@@ -521,14 +527,16 @@ Two virtual circuits pass through `R3`. They both need to be forwarded to `R4`, 
 |  1     |  ->R4              |    1     |
 +--------+--------------------+----------+
 
-With the above `label forwarding table`, `R1` needs to originate the packets that belong to the `R1->R3->R4->R2->R5` with `label=1`. The packets received from `R2` and belonging to the `R2->R1->R3->R4->R5` would then use `label=0` on the `R1-R3` link. `R1` 's label forwarding table could be built as follows :
+With the above `label forwarding table`, `R1` needs to originate the packets that belong to the `R1->R3->R4->R2->R5` circuit with `label=0`. The packets received from `R2` and belonging to the `R2->R1->R3->R4->R5` circuit would then use `label=1` on the `R1-R3` link. `R1` 's label forwarding table could be built as follows :
 
++----------------------------------------+
+|       R1's label forwarding table      |
 +--------+--------------------+----------+
 | index  | outgoing interface | label    |
 +--------+--------------------+----------+
 |  0     |  ->R3              |    0     |
 +--------+--------------------+----------+
-|  1     |  none              |    1     |
+|  1     |  ->R3              |    1     |
 +--------+--------------------+----------+
 
 The figure below shows the path followed by the packets on the `R1->R3->R4->R2->R5` path in red with on each arrow the label used in the packets.
@@ -548,7 +556,7 @@ The figure below shows the path followed by the packets on the `R1->R3->R4->R2->
       \path[draw,thick]
       (R1) edge (R2)
       (R4) edge (R5);
-      \draw[arrow, dashed, red] (R1) -- (R3) node [midway, fill=white] {1};
+      \draw[arrow, dashed, red] (R1) -- (R3) node [midway, fill=white] {0};
       \draw[arrow, dashed, red] (R3) -- (R4) node [midway, fill=white] {0};
       \draw[arrow, dashed, red] (R4) -- (R2) node [midway, fill=white] {0};
       \draw[arrow, dashed, red] (R2) -- (R5) node [midway, fill=white] {1};
