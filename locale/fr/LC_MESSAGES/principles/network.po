@@ -10,7 +10,7 @@ msgstr ""
 "3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-09 12:39+0000\n"
-"PO-Revision-Date: 2021-02-19 04:58+0000\n"
+"PO-Revision-Date: 2021-02-23 11:36+0000\n"
 "Last-Translator: Philippe D <philippe.dan@student.uclouvain.be>\n"
 "Language-Team: French <http://weblate.info.ucl.ac.be/projects/cnp3-ebook/"
 "principlesnetwork/fr/>\n"
@@ -152,6 +152,17 @@ msgid ""
 "the operation of Local Area Networks and their impact on the network "
 "layer."
 msgstr ""
+"Le second type de couche de liaison de données est celui utilisé dans les "
+"réseaux locaux (LAN). Fondamentalement, une LAN est un ensemble de "
+"périphériques qui communiquent ensemble de sorte à ce que n'importe quelle "
+"paire de périphériques puissent directement échanger des frames à travers la "
+"couche de liaison de données. Les hôtes et les routeurs peuvent tous deux "
+"être connectés à un réseau LAN. Certaines LAN peuvent accepter seulement "
+"quelques périphériques, mais il existe des lan qui peuvent connecter des "
+"centaines voire des milliers de périphériques. Dans ce chapitre, nous nous "
+"concentrons sur l'utilisation de couches de liaison de données point-to-"
+"point. Nous décrirons plus tard l'organisation et la maintenance des réseaux "
+"locaux ainsi que leur impact sur la couche réseau."
 
 #: ../../principles/network.rst:33
 msgid ""
@@ -164,6 +175,16 @@ msgid ""
 "cause problems when we will need to exchange data between hosts attached "
 "to different types of datalink layers."
 msgstr ""
+"Même si nous considérons seulement la couche de liaison de données point-to-"
+"point, il y a d'importantes propriétés relatives à ces couches que l'on ne "
+"peut ignorer. Aucune couche de liaison de données n'est capable de "
+"transmettre des frames de taille infinie. Chaque couche de liaison de "
+"données est caractérisée par une taille maximale de frame. Il y a plus d'une "
+"dizaine de couche de liaison de données différentes et malheureusement, la "
+"plupart d'entre elles utilisent des tailles maximales de frames différentes. "
+"Cette hétérogénéité quant aux tailles maximales de frames va poser problème "
+"lorsque nous devrons échanger des données entre des hôtes reliés à des types "
+"différents de couches de liaison de données."
 
 #: ../../principles/network.rst:35
 msgid ""
@@ -173,6 +194,11 @@ msgid ""
 " need to tackle. To understand these problems, let us consider the "
 "network represented in the figure below."
 msgstr ""
+"Pour commencer, considérons que nous avons besoin d'échanger seulement une "
+"petite quantité de données. Dans ce cas, il n'y a pas de problème avec la "
+"taille maximale de la frame. Cependant, il y a des problèmes plus "
+"intéressants auxquels nous allons devoir nous confronter. Pour comprendre "
+"ces problèmes, considérons le réseau représenté dans la figure ci-dessous."
 
 #: ../../principles/network.rst:66
 msgid ""
@@ -188,6 +214,19 @@ msgid ""
 "leads to practical issues that are beyond the scope of this document. For"
 " this reason, we only consider `single-homed` hosts in this e-book."
 msgstr ""
+"Ce réseau contient seulement deux types de périphériques. Les hôtes, "
+"représentés par des cercles, et les routeurs, représentés par des "
+"rectangles. Un hôte est un périphérique capable d'envoyer et recevoir des "
+"données pour son propre usage contrairement aux routeurs qui, la plupart du "
+"temps, ne se chargent que de relayer les données vers leur destination "
+"finale. Les routeurs ont plusieurs connexions à leurs voisins ou hôtes. Ces "
+"derniers sont habituellement connecté via une unique liaison au réseau. De "
+"nos jours, avec la croissance des réseaux sans fil, de plus en plus d'hôtes "
+"sont équipés de plusieurs interfaces de couche physique. Ces hôtes sont "
+"souvent appelés `multihomed`. Même si, utiliser plusieurs interfaces en même "
+"temps amène souvent en pratique des problèmes qui vont au-delà de ce qui est "
+"couvert dans ce document. Pour cette raison, nous ne considérons que des "
+"hôtes dits `single-homed` dans cet e-book."
 
 #: ../../principles/network.rst:68
 msgid ""
@@ -199,6 +238,14 @@ msgid ""
 "frame, router `R1` needs to understand that this byte is destined to host"
 " `B` and not to itself. This is the objective of the network layer."
 msgstr ""
+"Pour comprendre les principes clés derrière la gestion d'un réseau, "
+"analysons toutes les opérations à effectuer pour permettre à l'hôte `A` dans "
+"le réseau ci-dessus d'envoyer un byte à l'hôte `B`. Grâce à la couche de "
+"liaison de données utilisée par-dessus la liaison `A-R1`, l'hôte `A` peut "
+"aisément envoyer un byte au routeur `R1` à l'intérieur d'une frame. "
+"Cependant, lors de la réception de cette frame, le routeur `R1` doit "
+"comprendre que ce byte est destiné à l'hôte `B` et non à lui-même. "
+"L'objectif de la couche réseau consiste à gérer cette situation."
 
 #: ../../principles/network.rst:72
 msgid ""
@@ -228,19 +275,19 @@ msgstr ""
 
 #: ../../principles/network.rst:76
 msgid "There are two possible organizations for the network layer :"
-msgstr ""
+msgstr "Il y a deux organisations possibles pour la couche réseau :"
 
 #: ../../principles/network.rst:78
 msgid "`datagram`"
-msgstr ""
+msgstr "les `datagram`"
 
 #: ../../principles/network.rst:79
 msgid "`virtual circuits`"
-msgstr ""
+msgstr "les `circuits virtuels`"
 
 #: ../../principles/network.rst:83
 msgid "The datagram organization"
-msgstr ""
+msgstr "L'organisation `datagram`"
 
 #: ../../principles/network.rst:85
 msgid ""
@@ -250,18 +297,23 @@ msgid ""
 "address`. To send information to a remote host, a host creates a packet "
 "that contains:"
 msgstr ""
+"La première organisation, et la plus populaire, de la couche réseau est "
+"l'organisation par `datagram`. Cette organisation s'inspire de "
+"l'organisation du service postal. Chaque hôte est identifié par une `adresse "
+"sur la couche réseau`. Afin d'envoyer de l'information à un hôte distant, un "
+"hôte crée un paquet qui contient  :"
 
 #: ../../principles/network.rst:87
 msgid "the network layer address of the destination host"
-msgstr ""
+msgstr "l'adresse de l'hôte de destination sur la couche réseau"
 
 #: ../../principles/network.rst:88
 msgid "its own network layer address"
-msgstr ""
+msgstr "sa propre adresse sur la couche réseau"
 
 #: ../../principles/network.rst:89
 msgid "the information to be sent"
-msgstr ""
+msgstr "l'information à envoyer"
 
 #: ../../principles/network.rst:91
 msgid ""
@@ -271,6 +323,11 @@ msgid ""
 "host `A` creates a packet containing its own address, the destination "
 "address and the information to be exchanged."
 msgstr ""
+"Pour comprendre l'organisation par datagram, considérons la figure ci-"
+"dessous. Une adresse sur la couche réseau, représentée par une lettre, a été "
+"assignée à chaque hôte et routeur. Pour envoyer de l'information à l'hôte `J`"
+", l'hôte `A` crée un paquet contenant sa propre adresse, l'adresse de "
+"destination et l'information à échanger."
 
 #: ../../principles/network.rst:97
 msgid "A simple internetwork"
@@ -460,7 +517,7 @@ msgstr ""
 
 #: ../../principles/network.rst:143
 msgid "Computing forwarding tables"
-msgstr ""
+msgstr "Le calcul des tables de forwarding"
 
 #: ../../principles/network.rst:145
 msgid ""
