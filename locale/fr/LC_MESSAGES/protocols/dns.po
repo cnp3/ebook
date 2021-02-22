@@ -10,7 +10,7 @@ msgstr ""
 "3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-09 12:39+0000\n"
-"PO-Revision-Date: 2021-02-16 20:35+0000\n"
+"PO-Revision-Date: 2021-02-23 11:36+0000\n"
 "Last-Translator: Philippe D <philippe.dan@student.uclouvain.be>\n"
 "Language-Team: French <http://weblate.info.ucl.ac.be/projects/cnp3-ebook/"
 "protocolsdns/fr/>\n"
@@ -24,7 +24,7 @@ msgstr ""
 
 #: ../../protocols/dns.rst:7
 msgid "The Domain Name System"
-msgstr ""
+msgstr "Le système de nom de domaine (DNS)"
 
 #: ../../protocols/dns.rst:9
 msgid ""
