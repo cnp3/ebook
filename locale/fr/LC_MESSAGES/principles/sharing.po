@@ -10,7 +10,7 @@ msgstr ""
 "3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-09 12:39+0000\n"
-"PO-Revision-Date: 2021-02-16 20:35+0000\n"
+"PO-Revision-Date: 2021-02-25 20:36+0000\n"
 "Last-Translator: Philippe D <philippe.dan@student.uclouvain.be>\n"
 "Language-Team: French <http://weblate.info.ucl.ac.be/projects/cnp3-ebook/"
 "principlessharing/fr/>\n"
@@ -32,7 +32,7 @@ msgstr ""
 
 #: ../../principles/sharing.rst:14
 msgid "Sharing resources"
-msgstr ""
+msgstr "Le partage de ressources"
 
 #: ../../principles/sharing.rst:16
 msgid ""
