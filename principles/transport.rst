@@ -618,18 +618,18 @@ The figure below shows a typical usage of port numbers. The client process uses 
             :libs: positioning, matrix, arrows
 
             \tikzstyle{arrow} = [thick,->,>=stealth]
-            \tikzset{elem/.style = {rectangle, thick, draw, text centered, minimum height=2em, node distance=20em,}, }
+            \tikzset{elem/.style = {rectangle, thick, draw, text centered, font=\small, minimum height=2em, node distance=20em,}, }
 
             \node[elem] (C) {\color{red} Client};
             \node[elem, right=of C] (S) {\color{blue} Server};
 
             \draw (C) -- (S);
 
-            \node[rectangle, draw, text centered, above right=1em of C, font=\small] (req) {\begin{tabular}{c} Source port: {\color{red} 1234} \\ Destination port: {\color{blue} 5678} \end{tabular}};
-            \draw[arrow] ([yshift=3em]req.west) -- ([yshift=3em]req.east) node [midway, above] {Request};
+            \node[rectangle, draw, text centered, above right=.5em of C, font=\footnotesize] (req) {\begin{tabular}{c} Source port: {\color{red} 1234} \\ Destination port: {\color{blue} 5678} \end{tabular}};
+            \draw[arrow] ([yshift=1em]req.north west) -- ([yshift=1em]req.north east) node [midway, above, font=\footnotesize] {Request};
 
-            \node[rectangle, draw, text centered, below left=1em of S, font=\small] (res) {\begin{tabular}{c} Source port: {\color{blue} 5678} \\ Destination port: {\color{red} 1234} \end{tabular}};
-            \draw[arrow] ([yshift=-3em]res.east) -- ([yshift=-3em]res.west) node [midway, below] {Response};
+            \node[rectangle, draw, text centered, below left=.5em of S, font=\footnotesize] (res) {\begin{tabular}{c} Source port: {\color{blue} 5678} \\ Destination port: {\color{red} 1234} \end{tabular}};
+            \draw[arrow] ([yshift=-1em]res.south east) -- ([yshift=-1em]res.south west) node [midway, below, font=\footnotesize] {Response};
 
 To support the connection-oriented service, the transport layer needs to include several mechanisms to enrich the connectionless network-layer service. We discuss these mechanisms in the following sections.
 
