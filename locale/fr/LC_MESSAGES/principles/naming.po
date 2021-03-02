@@ -10,7 +10,7 @@ msgstr ""
 "3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-09 12:39+0000\n"
-"PO-Revision-Date: 2021-02-16 20:35+0000\n"
+"PO-Revision-Date: 2021-03-03 09:36+0000\n"
 "Last-Translator: Philippe D <philippe.dan@student.uclouvain.be>\n"
 "Language-Team: French <http://weblate.info.ucl.ac.be/projects/cnp3-ebook/"
 "principlesnaming/fr/>\n"
@@ -76,6 +76,10 @@ msgid ""
 " as mere technical identifiers, which can change at will. Only the names "
 "are stable."
 msgstr ""
+"Étant donné que les noms sont à plus haut niveau que les adresses, ils "
+"permettent (à la fois dans l'exemple de programmation au-dessus, et sur "
+"internet) de traiter les adresses comme de simples identifiants techniques "
+"qui peuvent changer à volonté. Seuls les noms restent stables."
 
 #: ../../principles/naming.rst:19
 msgid ""
@@ -153,7 +157,7 @@ msgstr ""
 
 #: ../../principles/naming.rst:59
 msgid "BNF of the fully qualified host names"
-msgstr ""
+msgstr "BNF du nom d'hôte pleinement qualifié"
 
 #: ../../principles/naming.rst:73
 msgid ""
@@ -171,6 +175,8 @@ msgstr ""
 #: ../../principles/naming.rst:75
 msgid "Some visually similar characters have different character codes"
 msgstr ""
+"Il existe des caractères similaires visuellement qui ont des character codes "
+"différents"
 
 #: ../../principles/naming.rst:77
 msgid ""
