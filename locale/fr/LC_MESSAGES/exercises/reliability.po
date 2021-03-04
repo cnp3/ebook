@@ -10,7 +10,7 @@ msgstr ""
 "3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-09 12:39+0000\n"
-"PO-Revision-Date: 2021-02-16 20:35+0000\n"
+"PO-Revision-Date: 2021-03-04 19:15+0000\n"
 "Last-Translator: Philippe D <philippe.dan@student.uclouvain.be>\n"
 "Language-Team: French <http://weblate.info.ucl.ac.be/projects/cnp3-ebook/"
 "exercisesreliability/fr/>\n"
@@ -166,7 +166,7 @@ msgstr ""
 
 #: ../../exercises/reliability.rst:50
 msgid "Practice"
-msgstr ""
+msgstr "Exercices"
 
 #: ../../exercises/reliability.rst:52
 msgid ""
@@ -266,7 +266,7 @@ msgstr ""
 
 #: ../../exercises/reliability.rst:74
 msgid "Discussion questions"
-msgstr ""
+msgstr "Questions de discussion"
 
 #: ../../exercises/reliability.rst:77
 msgid ""
