@@ -1299,7 +1299,7 @@ As an illustration, let us consider the network scenario above and assume that t
         \draw[black, fill=red!25] (6,8.5) -- (6,9) -- (8, 9) -- (8,8.5) -- (6,8.5);
         \node[black, fill=red!25, font=\scriptsize] at (7,8.7) {S2};
 
-        \draw[black, fill=red!25] (2,9.5) -- (2,10) -- (4, 10) -- (4,9.5) -- (2,9.5);
+        \draw[black, fill=red!25] (2,9) -- (2,9.5) -- (4, 9.5) -- (4,9) -- (2,9);
         \node[black, fill=red!25, font=\scriptsize] at (3,9.7) {S3};
 
         \draw[black, fill=red!25] (4,8) -- (4,9) -- (6, 9) -- (6,8) -- (4,8);
