@@ -1,4 +1,4 @@
-.. Copyright |copy| 2014, 2019 by Olivier Bonaventure, Arnaud Schils 
+.. Copyright |copy| 2014, 2019 by Olivier Bonaventure, Arnaud Schils
 .. This file is licensed under a `creative commons licence <http://creativecommons.org/licenses/by/3.0/>`_
 
 
@@ -7,7 +7,7 @@
 A closer look at TCP
 ====================
 
-In this series of exercises, you will explore in more details the operation of TCP and its congestion control scheme. TCP is very important protocol in today's Internet since most applications use it to exchange data. We first look at TCP in more details by injecting segments in the Linux TCP stack and analyze how the stack reacts. Then we study the TCP congestion control scheme.
+In this series of exercises, you will explore in more details the operation of TCP and its congestion control scheme. TCP is a very important protocol in today's Internet since most applications use it to exchange data. We first look at TCP in more details by injecting segments in the Linux TCP stack and analyze how the stack reacts. Then we study the TCP congestion control scheme.
 
 
 Injecting segments in the Linux TCP stack
@@ -26,7 +26,7 @@ Let us start with a very simple example that uses packetdrill_ to open a TCP con
 For our first packetdrill_ script, we aim at reproducing the simple connection shown in the figure below.
 
  .. tikz::
-    :libs: positioning, matrix, arrows 
+    :libs: positioning, matrix, arrows
 
     \colorlet{lightgray}{black!20}
     \tikzstyle{arrow} = [thick,->,>=stealth]
@@ -36,7 +36,7 @@ For our first packetdrill_ script, we aim at reproducing the simple connection s
     \node [black, fill=white] at (7,10) {Receiver};
     \draw[very thick,->] (3,9.5) -- (3,0.5);
     \draw[very thick,->] (7,9.5) -- (7,0.5);
-    
+
     \draw[black,thick, ->] (3,9.5) -- (7,9) node [midway, fill=white] {SYN};
     \draw[black,thick, ->] (7,9) -- (3,8.5) node [midway, fill=white] {SYN+ACK};
     \draw[black,thick, ->] (3,8.5) -- (7,8) node [midway, fill=white] {ACK};
@@ -48,12 +48,12 @@ For our first packetdrill_ script, we aim at reproducing the simple connection s
     \draw[black,thick, ->] (3,6.5) -- (7,6) node [midway, fill=white] {ack 4};
     \draw[black,thick, ->] (7,5) -- (3,4.5) node [midway, fill=white] {FIN};
     \draw[black,thick, ->] (3,4.5) -- (7,4) node [midway, fill=white] {FIN+ACK};
-	   
+
     \draw[red, ->] (0,3) node [anchor=north, fill=white] {close(4)} -- (3,3);
     \draw[black,thick, ->] (3,3) -- (7,2.5) node [midway, fill=white] {FIN};
     \draw[black,thick, ->] (7,2.5) -- (3,2) node [midway, fill=white] {FIN+ACK};
 
-    
+
 Let us start with the execution of a system call. A simple example is shown below.
 
 .. code-block:: console
@@ -83,8 +83,8 @@ At this point, the socket is ready to accept incoming TCP connections. packetdri
 
    +0  < S 0:0(0) win 1000 <mss 1000>
 
-Each line of a packetdrill_ script starts with a `timing` parameter that indicates at what time the event specified on this line should happen. packetdrill_ supports absolute and relative timings. An absolute timing is simply a number that indicates the delay in seconds between the start of the script and the event. A relative timing is indicated by using ``+``  followed by a number. This number is then the delay in seconds between the previous event and the current line. Additional information may be found in [CCB+2013]_. 
-   
+Each line of a packetdrill_ script starts with a `timing` parameter that indicates at what time the event specified on this line should happen. packetdrill_ supports absolute and relative timings. An absolute timing is simply a number that indicates the delay in seconds between the start of the script and the event. A relative timing is indicated by using ``+``  followed by a number. This number is then the delay in seconds between the previous event and the current line. Additional information may be found in [CCB+2013]_.
+
 The description of TCP packets in packetdrill_ uses a syntax that is very close to the tcpdump_ one. The ``+0`` timing indicates that the line is executed immediately after the previous event. The ``<`` sign indicates that packetdrill_ injects a TCP segment and the ``S`` character indicates that the ``SYN`` flag must be set. Like tcpdump_, packetdrill_ uses sequence numbers that are relative to initial sequence number. The three numbers that follow are the sequence number of the first byte of the payload of the segment (``0``), the sequence number of the last byte of the payload of the segment (``0`` after the semi-column) and the length of the payload (``0`` between brackets) of the ``SYN`` segment. This segment does not contain a valid acknowledgment but advertises a window of 1000 bytes. All ``SYN`` segments must also include the ``MSS`` option. In this case, we set the MSS to 1000 bytes. The next line of the packetdrill_ script verifies the reply sent by the instrumented Linux kernel.
 
 .. code-block:: console
@@ -92,7 +92,7 @@ The description of TCP packets in packetdrill_ uses a syntax that is very close 
    +0  > S. 0:0(0) ack 1 <...>
 
 
-This TCP segment is sent immediately by the stack. The ``SYN`` flag is set and the dot next to the ``S`` character indicates that the ACK flag is also set. The SYN+ACK segment does not contain any data but its acknowledgment number is set to 1 (relative to the initial sequence number). For outgoing packets, packetdrill_ does not verify the value of the advertised window. In this line, it also accepts any TCP options (``<...>``). 
+This TCP segment is sent immediately by the stack. The ``SYN`` flag is set and the dot next to the ``S`` character indicates that the ACK flag is also set. The SYN+ACK segment does not contain any data but its acknowledgment number is set to 1 (relative to the initial sequence number). For outgoing packets, packetdrill_ does not verify the value of the advertised window. In this line, it also accepts any TCP options (``<...>``).
 
 
 The third segment of the three-way handshake is sent by packetdrill_ after a delay of 0.1 seconds. The connection is now established and the accept system call will succeed.
@@ -102,7 +102,7 @@ The third segment of the three-way handshake is sent by packetdrill_ after a del
    +.1 < . 1:1(0) ack 1 win 1000
    +0  accept(3, ..., ...) = 4
 
-The :manpage:`accept` system call returns a new file descriptor, in this case value ``4``. At this point, packetdrill_ can write data on the socket or inject packets. 
+The :manpage:`accept` system call returns a new file descriptor, in this case value ``4``. At this point, packetdrill_ can write data on the socket or inject packets.
 
 .. code-block:: console
 
@@ -125,7 +125,7 @@ In the example above, packetdrill_ injects a segment containing two bytes. This 
 We can now close the connection gracefully. Let us first issue inject a segment with the ``FIN`` flag set.
 
 .. code-block:: console
- 
+
    //Packetdrill closes connection gracefully
    +0 < F. 3:3(0) ack 11 win 4000
    +0 > . 11:11(0) ack 4
@@ -139,7 +139,7 @@ packetdrill_ injects the ``FIN`` segment and the instrumented kernel returns an 
    +0 < . 4:4(0) ack 12 win 4000
 
 
-The complete packetdrill_ script is available from :download:`/exercises/packetdrill_scripts/connect.pkt`. 
+The complete packetdrill_ script is available from :download:`/exercises/packetdrill_scripts/connect.pkt`.
 
 
 Another interesting features of packetdrill_ is that it is possible to inspect the state maintained by the Linux kernel for the underlying connection using the ``TCP_INFO`` socket option. This makes it possible to retrieve the value of some variables of the TCP control block.
@@ -157,7 +157,7 @@ Let us first explore how a TCP connection can be established. In the previous sc
    // TCP State is now SYN_SENT
    +0 %{ print "State@1", tcpi_state  }%     // prints 2, i.e. TCP_SYN_SENT
    +.1 < S. 0:0(0) ack 1 win 10000 <mss 1000>
-   +0 > . 1:1(0) ack 1 
+   +0 > . 1:1(0) ack 1
    +0 %{ print "State@2", tcpi_state  }%   // prints 1, i.e. TCP_ESTABLISHED
    // TCP State is now ESTABLISHED
 
@@ -169,20 +169,20 @@ This script is available from :download:`/exercises/packetdrill_scripts/dual.pkt
 
 
 .. code-block:: console
-		
+
     0 socket(..., SOCK_STREAM, IPPROTO_TCP) = 4
    +0 fcntl(4, F_SETFL, O_RDWR|O_NONBLOCK) = 0
    +0 setsockopt(4, SOL_TCP, TCP_NODELAY, [1], 4) = 0
 
    +0 connect(4, ..., ...) = -1 EINPROGRESS (Operation now in progress)
    +0 > S 0:0(0) <mss 1000>
-   +0 %{ print "State@1", tcpi_state  }%  // prints 2, i.e. TCP_SYN_SENT   
+   +0 %{ print "State@1", tcpi_state  }%  // prints 2, i.e. TCP_SYN_SENT
    +.1 < S 0:0(0) win 5792 <mss 1000>
-   +0 %{ print "State@2", tcpi_state  }%  // prints 3, i.e. TCP_SYN_RECV   
+   +0 %{ print "State@2", tcpi_state  }%  // prints 3, i.e. TCP_SYN_RECV
    +0 > S. 0:0(0) ack 1 <mss 1000>
-   +0 %{ print "State@3", tcpi_state  }%  // prints 3, i.e. TCP_SYN_RECV   
-   +.1 < . 1:1(0) ack 1 win 5792 
-   +0 %{ print "State@4", tcpi_state  }%  // prints 1, i.e. TCP_ESTABLISHED   
+   +0 %{ print "State@3", tcpi_state  }%  // prints 3, i.e. TCP_SYN_RECV
+   +.1 < . 1:1(0) ack 1 win 5792
+   +0 %{ print "State@4", tcpi_state  }%  // prints 1, i.e. TCP_ESTABLISHED
 
 
 .. inginious:: tcp-dual
@@ -199,17 +199,17 @@ Another usage of packetdrill_ is to explore how a TCP connection ends. The scrip
    +0 connect(4, ..., ...) = -1 EINPROGRESS (Operation now in progress)
    +0 > S 0:0(0) <mss 1000>
    +.1 < S. 0:0(0) ack 1 win 10000 <mss 1000>
-   +0 > . 1:1(0) ack 1 
+   +0 > . 1:1(0) ack 1
 
    +.1 close(4)=0
    +0 > F. 1:1(0) ack 1
    +0 < . 1:1(0) ack 2 win 10000
    +.1 < F. 1:1(0) ack 2 win 10000
    +0 > . 2:2(0) ack 2
-		
+
 
 .. inginious:: tcp-local-close
-   
+
 As for the establishment of a connection, it is also possible for the two communicating hosts to close the connection at the same time. This is shown in the example below where the remote host sends its own ``FIN`` when acknowledging the first one. This script is available from :download:`/exercises/packetdrill_scripts/local-close2.pkt`.
 
 .. code-block:: console
@@ -221,7 +221,7 @@ As for the establishment of a connection, it is also possible for the two commun
    +0 connect(4, ..., ...) = -1 EINPROGRESS (Operation now in progress)
    +0 > S 0:0(0) <mss 1000>
    +.1 < S. 0:0(0) ack 1 win 10000 <mss 1000>
-   +0 > . 1:1(0) ack 1 
+   +0 > . 1:1(0) ack 1
 
    +.1 close(4)=0
    +0 > F. 1:1(0) ack 1
@@ -235,7 +235,7 @@ A third scenario for the termination of a TCP connection is that the remote host
 
 
 .. code-block:: console
-		
+
    0 socket(..., SOCK_STREAM, IPPROTO_TCP) = 4
    +0 fcntl(4, F_SETFL, O_RDWR|O_NONBLOCK) = 0
    +0 setsockopt(4, SOL_TCP, TCP_NODELAY, [1], 4) = 0
@@ -243,16 +243,16 @@ A third scenario for the termination of a TCP connection is that the remote host
    +0 connect(4, ..., ...) = -1 EINPROGRESS (Operation now in progress)
    +0 > S 0:0(0) <mss 1000>
    +.1 < S. 0:0(0) ack 1 win 10000 <mss 1000>
-   +0 > . 1:1(0) ack 1 
+   +0 > . 1:1(0) ack 1
    // remote closes
    +.1 < F. 1:1(0) ack 1 win 10000
    +0 > . 1:1(0) ack 2
-   // local host terminates the connection		
+   // local host terminates the connection
    +.1 close(4)=0
    +0 > F. 1:1(0) ack 2
    +0 < . 2:2(0) ack 2 win 10000
 
-.. inginious:: tcp-remote-close   
+.. inginious:: tcp-remote-close
 
 
 
@@ -272,24 +272,24 @@ Let us first use packetdrill_ to explore the evolution of the TCP retransmission
   +0 > .  2001:3001(1000) ack 1
   +0 > .  3001:4001(1000) ack 1
   +0 > .  4001:5001(1000) ack 1
-  +0 > .  5001:6001(1000) ack 1		
+  +0 > .  5001:6001(1000) ack 1
   +0 > .  6001:7001(1000) ack 1
   +0 > P.  7001:8001(1000) ack 1
-   
+
   // client acks one segment
   +.1 < .  1:1(0) ack 1001 win 50000
-  +0 %{ print "RTO @2: ",tcpi_rto }% // prints 216000 (microseconds)	
+  +0 %{ print "RTO @2: ",tcpi_rto }% // prints 216000 (microseconds)
   // client did not receive any other segment
   // first server retransmissions
   +.216 > . 1001:2001(1000) ack 1
-  +0 %{ print "RTO @3: ",tcpi_rto }%  // prints 432000 (microseconds)	
+  +0 %{ print "RTO @3: ",tcpi_rto }%  // prints 432000 (microseconds)
   // second after doubling rto
   +.432 > . 1001:2001(1000) ack 1
-  +0 %{ print "RTO @4: ",tcpi_rto }% // prints 864000 (microseconds)	
-  +.864 > . 1001:2001(1000) ack 1	
-  +0 %{ print "RTO @5: ",tcpi_rto }% // prints 1728000 (microseconds)	
+  +0 %{ print "RTO @4: ",tcpi_rto }% // prints 864000 (microseconds)
+  +.864 > . 1001:2001(1000) ack 1
+  +0 %{ print "RTO @5: ",tcpi_rto }% // prints 1728000 (microseconds)
 
-  
+
 We can use a similar code to demonstrate that the TCP stack performs a fast retransmit after having received three duplicate acknowledgments. This script is available from :download:`/exercises/packetdrill_scripts/frr.pkt`.
 
 .. code-block:: console
@@ -304,10 +304,10 @@ We can use a similar code to demonstrate that the TCP stack performs a fast retr
    +0 > .  2001:3001(1000) ack 1
    +0 > .  3001:4001(1000) ack 1
    +0 > .  4001:5001(1000) ack 1
-   +0 > .  5001:6001(1000) ack 1		
+   +0 > .  5001:6001(1000) ack 1
    +0 > .  6001:7001(1000) ack 1
    +0 > P.  7001:8001(1000) ack 1
-   
+
    // client acks two segments
    +.1 < .  1:1(0) ack 1001 win 50000
    +0 < .  1:1(0) ack 2001 win 50000
@@ -319,28 +319,28 @@ We can use a similar code to demonstrate that the TCP stack performs a fast retr
    +0 < .  1:1(0) ack 2001 win 50000
    +0 < .  1:1(0) ack 2001 win 50000
    // client acks everything
-   +0 %{ print "retransmissions @2: ",tcpi_bytes_retrans }% // prints 1000	
+   +0 %{ print "retransmissions @2: ",tcpi_bytes_retrans }% // prints 1000
    +.1 < .  1:1(0) ack 8001 win 50000
 
 
 A TCP stack uses both the fast retransmit technique and retransmission timers. A retransmission timer can fire after a fast retransmit when several segments are lost. The example below shows a loss of two consecutive segments. This script is available from :download:`/exercises/packetdrill_scripts/frr-rto.pkt`.
 
 .. code-block:: console
-		
+
   +.1 accept(3, ..., ...) = 4
   // initial congestion window is 16KBytes
   // server sends 8000 bytes
-  +0 %{ print "retransmissions @1: ",tcpi_bytes_retrans }% 
+  +0 %{ print "retransmissions @1: ",tcpi_bytes_retrans }%
   +.1 write(4, ..., 8000) = 8000
    +0 > .  1:1001(1000) ack 1
-   +0 > .  1001:2001(1000) ack 1 
+   +0 > .  1001:2001(1000) ack 1
    +0 > .  2001:3001(1000) ack 1 // lost
    +0 > .  3001:4001(1000) ack 1 // lost
    +0 > .  4001:5001(1000) ack 1
-   +0 > .  5001:6001(1000) ack 1		
+   +0 > .  5001:6001(1000) ack 1
    +0 > .  6001:7001(1000) ack 1
    +0 > P.  7001:8001(1000) ack 1
-   
+
    // client acks one segments
    +.1 < .  1:1(0) ack 1001 win 50000
    +0 < .  1:1(0) ack 2001 win 50000
@@ -353,10 +353,10 @@ A TCP stack uses both the fast retransmit technique and retransmission timers. A
    +0 < .  1:1(0) ack 2001 win 50000
    // client acks retransmission
    +0 %{ print "retransmissions @2: ",tcpi_bytes_retrans }% // prints 1000
-   +0 %{ print "RTO @2: ",tcpi_rto }%	// prints 224000	
+   +0 %{ print "RTO @2: ",tcpi_rto }%	// prints 224000
    +.1 < .  1:1(0) ack 3001 win 50000
 
-   +.024 > .  3001:4001(1000) ack 1 
+   +.024 > .  3001:4001(1000) ack 1
    // client acks everything
    +.1 < .  1:1(0) ack 8001 win 50000
 
@@ -368,17 +368,17 @@ More complex scenarios can be written. The script below demonstrates how the TCP
    +.1 accept(3, ..., ...) = 4
    // initial congestion window is 16KBytes
    // server sends 8000 bytes
-   +0 %{ print "retransmissions @1: ",tcpi_bytes_retrans }% 
+   +0 %{ print "retransmissions @1: ",tcpi_bytes_retrans }%
    +.1 write(4, ..., 8000) = 8000
    +0 > .  1:1001(1000) ack 1
-   +0 > .  1001:2001(1000) ack 1 
+   +0 > .  1001:2001(1000) ack 1
    +0 > .  2001:3001(1000) ack 1 // lost
-   +0 > .  3001:4001(1000) ack 1 
+   +0 > .  3001:4001(1000) ack 1
    +0 > .  4001:5001(1000) ack 1 // lost
-   +0 > .  5001:6001(1000) ack 1 		
+   +0 > .  5001:6001(1000) ack 1
    +0 > .  6001:7001(1000) ack 1 // lost
    +0 > P.  7001:8001(1000) ack 1
-   
+
    // client acks first two segments
    +.1 < .  1:1(0) ack 1001 win 50000
    +0 < .  1:1(0) ack 2001 win 50000
@@ -391,23 +391,23 @@ More complex scenarios can be written. The script below demonstrates how the TCP
    +0 < .  1:1(0) ack 2001 win 50000
    // client acks retransmission
    +0 %{ print "retransmissions @2: ",tcpi_bytes_retrans }% // prints 1000
-   +0 %{ print "RTO @2: ",tcpi_rto }%	// prints 224000	
+   +0 %{ print "RTO @2: ",tcpi_rto }%	// prints 224000
    +.1 < .  1:1(0) ack 4001 win 50000
 
-   +.024 > .  4001:5001(1000) ack 1 
+   +.024 > .  4001:5001(1000) ack 1
    // client acks block
    +0 %{ print "retransmissions @3: ",tcpi_bytes_retrans }% // prints 2000
-   +0 %{ print "RTO @3: ",tcpi_rto }%	// prints 224000	
+   +0 %{ print "RTO @3: ",tcpi_rto }%	// prints 224000
    +.1 < .  1:1(0) ack 6001 win 50000
-   +.024 > .  6001:7001(1000) ack 1 
+   +.024 > .  6001:7001(1000) ack 1
    // client acks block
    +0 %{ print "retransmissions @3: ",tcpi_bytes_retrans }% // prints 3000
-   +0 %{ print "RTO @3: ",tcpi_rto }%	// prints 224000	
+   +0 %{ print "RTO @3: ",tcpi_rto }%	// prints 224000
    +.1 < .  1:1(0) ack 8001 win 50000
-		
 
 
-   
+
+
 The examples above have demonstrated how TCP retransmits lost segments. However, they did not consider the interactions with the congestion control scheme since the use a large initial congestion window. We now set the initial congestion window to two MSS-sized segments and use the ``tcpi_snd_cwnd`` and ``tcpi_snd_ssthresh`` variables from ``TCP_INFO`` to explore the evolution of the TCP congestion control scheme. Our first script looks at the evolution of the congestion window during a slow-start when there are no losses. This script is available from :download:`/exercises/packetdrill_scripts/slow-start.pkt`.
 
 .. code-block:: console
@@ -415,7 +415,7 @@ The examples above have demonstrated how TCP retransmits lost segments. However,
    +.1 accept(3, ..., ...) = 4
    // initial congestion window is 2 KBytes
    +0 %{ print "cwnd @1: ",tcpi_snd_cwnd }% // prints 2
-   +0 %{ print "ssthresh @1: ",tcpi_snd_ssthresh }% // prints 2147483647   
+   +0 %{ print "ssthresh @1: ",tcpi_snd_ssthresh }% // prints 2147483647
    // server sends 16000 bytes
    +.1 write(4, ..., 16000) = 16000
    +0 > .  1:1001(1000) ack 1
@@ -463,7 +463,7 @@ Some TCP clients use delayed acknowledgments and send a TCP acknowledgment after
    +.1 accept(3, ..., ...) = 4
    // initial congestion window is 2 KBytes
    +0 %{ print "cwnd @1: ",tcpi_snd_cwnd }% // prints 2
-   +0 %{ print "ssthresh @1: ",tcpi_snd_ssthresh }% // prints 2147483647   
+   +0 %{ print "ssthresh @1: ",tcpi_snd_ssthresh }% // prints 2147483647
    // server sends 16000 bytes
    +.1 write(4, ..., 16000) = 16000
    +0 > .  1:1001(1000) ack 1
@@ -502,11 +502,11 @@ Some TCP clients use delayed acknowledgments and send a TCP acknowledgment after
 We can now explore how TCP's retransmission techniques interact with the congestion control scheme. The Linux TCP code that combines these two techniques contains several heuristics to improve their performance. We start with a transfer of 8KBytes where the penultimate segment is not received by the remote host. In this case, TCP does not receive enough acknowledgments to trigger the fast retransmit and it must wait for the expiration of the retransmission timer. This script is available from :download:`/exercises/packetdrill_scripts/slow-start-rto2.pkt`.
 
 .. code-block:: console
-		
+
    +.1 accept(3, ..., ...) = 4
    // initial congestion window is 2 KBytes
    +0 %{ print "cwnd @1: ",tcpi_snd_cwnd }% // prints 2
-   +0 %{ print "ssthresh @1: ",tcpi_snd_ssthresh }% // prints 2147483647   
+   +0 %{ print "ssthresh @1: ",tcpi_snd_ssthresh }% // prints 2147483647
    // server sends 8000 bytes
    +.1 write(4, ..., 8000) = 8000
    +0 > .  1:1001(1000) ack 1
@@ -539,7 +539,7 @@ We can now explore how TCP's retransmission techniques interact with the congest
 
    +.25 > .  6001:7001(1000) ack 1 // retransmission
    +0 %{ print "cwnd @9: ",tcpi_snd_cwnd }% // prints 1
-   
+
    +.1 < .  1:1(0) ack 8001 win 50000
    +0 %{ print "cwnd @10: ",tcpi_snd_cwnd }% // prints 3
 
@@ -550,7 +550,7 @@ Another interesting scenario is when the loss happens early in the data transfer
       +.1 accept(3, ..., ...) = 4
    // initial congestion window is 2 KBytes
    +0 %{ print "cwnd @1: ",tcpi_snd_cwnd }% // prints 2
-   +0 %{ print "ssthresh @1: ",tcpi_snd_ssthresh }% // prints 2147483647   
+   +0 %{ print "ssthresh @1: ",tcpi_snd_ssthresh }% // prints 2147483647
    // server sends 8000 bytes
    +.1 write(4, ..., 8000) = 8000
    +0 > .  1:1001(1000) ack 1
@@ -559,21 +559,21 @@ Another interesting scenario is when the loss happens early in the data transfer
    +.01 < .  1:1(0) ack 1001 win 50000
    +0 %{ print "cwnd @2: ",tcpi_snd_cwnd }% // prints 3
    +0 %{ print "RTO @2: ",tcpi_rto }% // prints 204000
-   +0 > .  2001:3001(1000) ack 1 
+   +0 > .  2001:3001(1000) ack 1
    +0 > .  3001:4001(1000) ack 1
 
    +0.01  < .  1:1(0) ack 1001 win 50000 // reception of 2001:3001
    +0 %{ print "cwnd @3: ",tcpi_snd_cwnd }%  // prints 3
-   +0 > .  4001:5001(1000) ack 1  // rfc 3042			 
+   +0 > .  4001:5001(1000) ack 1  // rfc 3042
    +0.001  < .  1:1(0) ack 1001 win 50000 // reception of 3001:4001
    +0 %{ print "cwnd @4: ",tcpi_snd_cwnd }%  // prints 3
-   +0 > .  5001:6001(1000) ack 1 // rfc 3042		    
+   +0 > .  5001:6001(1000) ack 1 // rfc 3042
 
    +0.01  < .  1:1(0) ack 1001 win 50000 // reception of 4001:5001
    +0 %{ print "cwnd @5: ",tcpi_snd_cwnd }%  // prints 2
    +0 %{ print "ssthresh @5: ",tcpi_snd_ssthresh }% // prints 2
    // fast retransmit
-   +0 > .  1001:2001(1000) ack 1	
+   +0 > .  1001:2001(1000) ack 1
 
    +0.001  < .  1:1(0) ack 1001 win 50000 // reception of 5001:6001
    +0 %{ print "cwnd @6: ",tcpi_snd_cwnd }%  // prints 2
@@ -581,17 +581,17 @@ Another interesting scenario is when the loss happens early in the data transfer
    +0.01  < .  1:1(0) ack 6001 win 50000 // reception of 1001:2001
    +0 %{ print "cwnd @7: ",tcpi_snd_cwnd }%  // prints 2
    +0 %{ print "ssthresh @7: ",tcpi_snd_ssthresh }% // prints 2
-   
+
    +0 > P.  7001:8001(1000) ack 1
-   
+
    +0.01  < .  1:1(0) ack 7001 win 50000
    +0 %{ print "cwnd @7: ",tcpi_snd_cwnd }%  // prints 4
    +0.001  < .  1:1(0) ack 8001 win 50000
    +0 %{ print "cwnd @8: ",tcpi_snd_cwnd }%  // prints 5
 
 
-Our last scenario is when the first segment sent is lost. In this case, two round-trip-times are required to retransmit the missing segment and recover from the loss. This script is available from :download:`/exercises/packetdrill_scripts/slow-start-frr3.pkt`.   
-	       
+Our last scenario is when the first segment sent is lost. In this case, two round-trip-times are required to retransmit the missing segment and recover from the loss. This script is available from :download:`/exercises/packetdrill_scripts/slow-start-frr3.pkt`.
+
 
 .. code-block:: console
 
@@ -603,11 +603,11 @@ Our last scenario is when the first segment sent is lost. In this case, two roun
    // server sends 8000 bytes
    +.1 write(4, ..., 8000) = 8000
    +0 > .  1:1001(1000) ack 1 // lost
-   +0 > .  1001:2001(1000) ack 1 
+   +0 > .  1001:2001(1000) ack 1
 
    +.01 < .  1:1(0) ack 1 win 50000  // duplicate ack
    +0 %{ print "cwnd @2: ",tcpi_snd_cwnd }% // prints 2
-   +0 > .  2001:3001(1000) ack 1 // rfc3042 
+   +0 > .  2001:3001(1000) ack 1 // rfc3042
 
    +0.01  < .  1:1(0) ack 1 win 50000 // reception of 2001:3001
    +0 %{ print "cwnd @3: ",tcpi_snd_cwnd }%  // prints 2
@@ -616,7 +616,7 @@ Our last scenario is when the first segment sent is lost. In this case, two roun
    +0.01  < .  1:1(0) ack 1 win 50000 // reception of 3001:4001
    +0 %{ print "cwnd @4: ",tcpi_snd_cwnd }%  // prints 1
    // fast retransmit
-   +0 > .  1:1001(1000) ack 1 
+   +0 > .  1:1001(1000) ack 1
 
 
    +0.01  < .  1:1(0) ack 4001 win 50000 // reception of 1:1001
@@ -624,15 +624,15 @@ Our last scenario is when the first segment sent is lost. In this case, two roun
    +0 > .  4001:5001(1000) ack 1
    +0 > .  5001:6001(1000) ack 1
 
-   +0.01  < .  1:1(0) ack 6001 win 50000 
+   +0.01  < .  1:1(0) ack 6001 win 50000
    +0 %{ print "cwnd @6: ",tcpi_snd_cwnd }%  // prints 4
    +0 > .  6001:7001(1000) ack 1
-   +0 > P.  7001:8001(1000) ack 1 
+   +0 > P.  7001:8001(1000) ack 1
 
-   +0.01  < .  1:1(0) ack 8001 win 50000 
+   +0.01  < .  1:1(0) ack 8001 win 50000
    +0 %{ print "cwnd @7: ",tcpi_snd_cwnd }%  // prints 4
 
-   
+
 Open questions
 --------------
 
@@ -649,7 +649,7 @@ Unless otherwise noted, we assume for the questions in this section that the fol
 1. To understand the operation of the TCP congestion control, it is often useful to write time-sequence diagrams for different scenarios. The example below shows the operation of the TCP congestion control scheme in a very simple scenario. The initial congestion window (``cwnd``) is set to 1000 bytes and the receive window (``rwin``) advertised by the receiver (supposed constant for the entire connection) is set to 2000 bytes. The slow-start threshold (``ssthresh``) is set to 64000 bytes.
 
  .. tikz::
-    :libs: positioning, matrix, arrows 
+    :libs: positioning, matrix, arrows
 
     \colorlet{lightgray}{black!20}
     \tikzstyle{arrow} = [thick,->,>=stealth]
@@ -660,19 +660,19 @@ Unless otherwise noted, we assume for the questions in this section that the fol
     \node [black, fill=white] at (7,10) {Receiver};
     \draw[very thick,->] (3,9.5) -- (3,0.5);
     \draw[very thick,->] (7,9.5) -- (7,0.5);
-    % initial state       
+    % initial state
     \node [state] at (0,11) {\begin{small}\begin{tabular}{l}
       rwin=2000 \\
-      cwnd=1000 \\ 
+      cwnd=1000 \\
       ssthresh=64000\\
      \end{tabular}\end{small}};
-    
+
     \draw[red, ->] (0,9) node [anchor=north, fill=white] {send(3k)} -- (3,9);
     \draw[black,thick, ->] (3,9) -- (7,8) node [midway, fill=white] {0:1000};
     \draw[black,thick, ->] (7,8) -- (3,7) node [midway, fill=white] {ack 1000};
     \node [state] at (0,6) {\begin{small}\begin{tabular}{l}
       rwin=2000 \\
-      cwnd=2000 \\ 
+      cwnd=2000 \\
       ssthresh=64000\\
      \end{tabular}\end{small}};
     \draw[black,thick, ->] (3,7) -- (7,6) node [midway, fill=white] {1000:2000};
@@ -692,7 +692,7 @@ Unless otherwise noted, we assume for the questions in this section that the fol
 
 
  .. tikz::
-    :libs: positioning, matrix, arrows 
+    :libs: positioning, matrix, arrows
 
     \colorlet{lightgray}{black!20}
     \tikzstyle{arrow} = [thick,->,>=stealth]
@@ -703,19 +703,19 @@ Unless otherwise noted, we assume for the questions in this section that the fol
     \node [black, fill=white] at (7,10) {Receiver};
     \draw[very thick,->] (3,9.5) -- (3,0.5);
     \draw[very thick,->] (7,9.5) -- (7,0.5);
-    % initial state       
+    % initial state
     \node [state] at (0,11) {\begin{small}\begin{tabular}{l}
       rwin=2000 \\
-      cwnd=10000 \\ 
+      cwnd=10000 \\
       ssthresh=64000\\
      \end{tabular}\end{small}};
-    
+
     \draw[red, ->] (0,9) node [anchor=north, fill=white] {send(3k)} -- (3,9);
 
-3. Same question as the first one, but consider that the MSS on the sender is set to 500 bytes. How does this modification affect the entire delay ? 
+3. Same question as the first one, but consider that the MSS on the sender is set to 500 bytes. How does this modification affect the entire delay ?
 
  .. tikz::
-    :libs: positioning, matrix, arrows 
+    :libs: positioning, matrix, arrows
 
     \colorlet{lightgray}{black!20}
     \tikzstyle{arrow} = [thick,->,>=stealth]
@@ -726,21 +726,21 @@ Unless otherwise noted, we assume for the questions in this section that the fol
     \node [black, fill=white] at (7,10) {Receiver};
     \draw[very thick,->] (3,9.5) -- (3,0.5);
     \draw[very thick,->] (7,9.5) -- (7,0.5);
-    % initial state       
+    % initial state
     \node [state] at (0,11) {\begin{small}\begin{tabular}{l}
       rwin=2000 \\
-      cwnd=1000 \\ 
+      cwnd=1000 \\
       ssthresh=64000\\
      \end{tabular}\end{small}};
-    
+
     \draw[red, ->] (0,9) node [anchor=north, fill=white] {send(10k)} -- (3,9);
-   
-4. Assuming that there are no losses and that there is no congestion in the network. If the sender writes `x` bytes on a newly established TCP connection, derive a formula that computes the minimum time required to deliver all these `x` bytes to the receiver. For the derivation of this formula, assume that `x` is a multiple of the maximum segment size and that the receive window and the slow-start threshold are larger than `x`. 
+
+4. Assuming that there are no losses and that there is no congestion in the network. If the sender writes `x` bytes on a newly established TCP connection, derive a formula that computes the minimum time required to deliver all these `x` bytes to the receiver. For the derivation of this formula, assume that `x` is a multiple of the maximum segment size and that the receive window and the slow-start threshold are larger than `x`.
 
 5. In question 1, we assumed that the receiver acknowledged every segment received from the sender. In practice, many deployed TCP implementations use delayed acknowledgments. Assuming a delayed acknowledgment timer of 50 milliseconds, modify the time-sequence diagram below to reflect the impact of these delayed acknowledgment. Does their usage decreases or increased the transmission delay ?
 
  .. tikz::
-    :libs: positioning, matrix, arrows 
+    :libs: positioning, matrix, arrows
 
     \colorlet{lightgray}{black!20}
     \tikzstyle{arrow} = [thick,->,>=stealth]
@@ -751,19 +751,19 @@ Unless otherwise noted, we assume for the questions in this section that the fol
     \node [black, fill=white] at (7,10) {Receiver};
     \draw[very thick,->] (3,9.5) -- (3,0.5);
     \draw[very thick,->] (7,9.5) -- (7,0.5);
-    % initial state       
+    % initial state
     \node [state] at (0,11) {\begin{small}\begin{tabular}{l}
       rwin=2000 \\
-      cwnd=1000 \\ 
+      cwnd=1000 \\
       ssthresh=64000\\
      \end{tabular}\end{small}};
-    
+
     \draw[red, ->] (0,9) node [anchor=north, fill=white] {send(3k)} -- (3,9);
     \draw[black,thick, ->] (3,9) -- (7,8) node [midway, fill=white] {0:1000};
     \draw[black,thick, ->] (7,8) -- (3,7) node [midway, fill=white] {ack 1000};
     \node [state] at (0,6) {\begin{small}\begin{tabular}{l}
       rwin=2000 \\
-      cwnd=2000 \\ 
+      cwnd=2000 \\
       ssthresh=64000\\
      \end{tabular}\end{small}};
     \draw[black,thick, ->] (3,7) -- (7,6) node [midway, fill=white] {1000:2000};
@@ -772,11 +772,11 @@ Unless otherwise noted, we assume for the questions in this section that the fol
     \draw[black,thick, ->] (7,5.5) -- (3,4.5) node [midway, fill=white] {ack 3000};
 
 
-6. Let us now explore the impact of congestion on the slow-start and congestion avoidance mechanisms. Consider the scenario below. For graphical reasons, it is not possible anymore to show information about the segments on the graph, but you can easily infer them. 
+6. Let us now explore the impact of congestion on the slow-start and congestion avoidance mechanisms. Consider the scenario below. For graphical reasons, it is not possible anymore to show information about the segments on the graph, but you can easily infer them.
 
 
  .. tikz::
-    :libs: positioning, matrix, arrows 
+    :libs: positioning, matrix, arrows
 
     \colorlet{lightgray}{black!20}
     \tikzstyle{arrow} = [thick,->,>=stealth,font=\tiny]
@@ -787,13 +787,13 @@ Unless otherwise noted, we assume for the questions in this section that the fol
     \node [black, fill=white] at (7,10) {Receiver};
     \draw[very thick,->] (3,9.5) -- (3,0.5);
     \draw[very thick,->] (7,9.5) -- (7,0.5);
-    % initial state       
+    % initial state
     \node [state] at (0,11) {\begin{small}\begin{tabular}{l}
       rwin=64000 \\
-      cwnd=4000 \\ 
+      cwnd=4000 \\
       ssthresh=64000\\
      \end{tabular}\end{small}};
-    
+
     \draw[red, ->] (0,9) node [anchor=north, fill=white] {send(10k)} -- (3,9);
     \draw[black,thick, ->] (3,9) -- (7,7.75);
     \draw[black,thick, ->] (3,8.7) -- (7,7.45);
@@ -806,7 +806,7 @@ Unless otherwise noted, we assume for the questions in this section that the fol
 
     \node [state] at (0,6) {\begin{small}\begin{tabular}{l}
       rwin=64000 \\
-      cwnd=8000 \\ 
+      cwnd=8000 \\
       ssthresh=64000\\
      \end{tabular}\end{small}};
     \draw[black,thick, ->] (3,6.5) -- (7,5.25);
@@ -824,12 +824,12 @@ Unless otherwise noted, we assume for the questions in this section that the fol
     \draw[black,thick, ->] (7,4) -- (3,2.75);
     \node [state] at (0,2.5) {\begin{small}\begin{tabular}{l}
       rwin=64000 \\
-      cwnd=16000 \\ 
+      cwnd=16000 \\
       ssthresh=64000\\
      \end{tabular}\end{small}};
 
 
- a. Redraw the same figure assuming that the second segment that was delivered by the sender in the figure experienced congestion. In a network that uses Explicit Congestion Notification, this segment would be marked by routers and the receiver would return the congestion mark in the corresponding acknowledgment. 
+ a. Redraw the same figure assuming that the second segment that was delivered by the sender in the figure experienced congestion. In a network that uses Explicit Congestion Notification, this segment would be marked by routers and the receiver would return the congestion mark in the corresponding acknowledgment.
 
  b. Same question, but assume now that the fourth segment delivered by the sender experienced congestion (but was not discarded).
 
@@ -837,7 +837,7 @@ Unless otherwise noted, we assume for the questions in this section that the fol
 7. A TCP connection has been active for some time and has reached a congestion window of 4000 bytes. Four segments are sent, but the second (shown in red in the figure) is corrupted. Complete the time-sequence diagram.
 
  .. tikz::
-    :libs: positioning, matrix, arrows 
+    :libs: positioning, matrix, arrows
 
     \colorlet{lightgray}{black!20}
     \tikzstyle{arrow} = [thick,->,>=stealth,font=\tiny]
@@ -848,13 +848,13 @@ Unless otherwise noted, we assume for the questions in this section that the fol
     \node [black, fill=white] at (7,10) {Receiver};
     \draw[very thick,->] (3,9.5) -- (3,0.5);
     \draw[very thick,->] (7,9.5) -- (7,0.5);
-    % initial state       
+    % initial state
     \node [state] at (0,11) {\begin{small}\begin{tabular}{l}
       rwin=64000 \\
-      cwnd=4000 \\ 
+      cwnd=4000 \\
       ssthresh=4000\\
      \end{tabular}\end{small}};
-    
+
     \draw[red, ->] (0,9) node [anchor=north, fill=white] {send(10k)} -- (3,9);
     \draw[black,thick, ->] (3,9) -- (7,7.75);
     \draw[red,thick, dashed, ->] (3,8.7) -- (7,7.45);
@@ -866,28 +866,28 @@ Unless otherwise noted, we assume for the questions in this section that the fol
     \draw[black,thick, ->] (7,6.855) -- (3,5.6);
 
 
-   
-.. rubric:: Footnotes   
+
+.. rubric:: Footnotes
 
 .. spelling::
 
    manpage
-   
+
 .. [#fsysctl] On Linux, most of the parameters to tune the TCP stack are accessible via :manpage:`sysctl`. These parameters are briefly described in https://github.com/torvalds/linux/blob/master/Documentation/networking/ip-sysctl.txt and in the :manpage:`tcp` manpage. Each script sets some of these configuration variables.
 
 .. spelling::
 
    virtualbox
-	      
-	      
-.. [#finstall] packetdrill_ requires root privileges since it inject raw IP packets. The easiest way to install it is to use a virtualbox image with a Linux kernel 4.x or 5.x. You can clone its git repository from https://github.com/google/packetdrill and follow the instructions in https://github.com/google/packetdrill/tree/master/gtests/net/packetdrill. The packetdrill_ scripts used in this section are available from https://github.com/cnp3/ebook/tree/master/exercises/packetdrill_scripts      
 
-.. [#ftcpinfo] The variables that are included in TCP_INFO are defined in https://github.com/torvalds/linux/blob/master/include/uapi/linux/tcp.h
-	      
+
+.. [#finstall] packetdrill_ requires root privileges since it inject raw IP packets. The easiest way to install it is to use a virtualbox image with a Linux kernel 4.x or 5.x. You can clone its git repository from https://github.com/google/packetdrill and follow the instructions in https://github.com/google/packetdrill/tree/master/gtests/net/packetdrill. The packetdrill_ scripts used in this section are available from https://github.com/cnp3/ebook/tree/master/exercises/packetdrill_scripts
+
 .. [#ftcpdump_pdrill] By default, packetdrill_ uses port 8080 when creating TCP segments. You can thus capture the packets injected by packetdrill_ and the responses from the stack by using ``tcpdump -i any -n port 8080``
 
-.. [#fstates] These states are defined in https://github.com/torvalds/linux/blob/master/include/net/tcp_states.h
-	      
 .. [#fpush] The `Push` flag is one of the TCP flags defined in :rfc:`793`. TCP stacks usually set this flag when transmitting a segment that empties the send buffer. This is the reason why we observe this push flag in our example.
- 
+
+.. [#ftcpinfo] The variables that are included in TCP_INFO are defined in https://github.com/torvalds/linux/blob/master/include/uapi/linux/tcp.h
+
+.. [#fstates] These states are defined in https://github.com/torvalds/linux/blob/master/include/net/tcp_states.h
+
 .. include:: /links.rst
