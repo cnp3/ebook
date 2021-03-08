@@ -75,7 +75,7 @@ Email messages are entirely composed of lines of ASCII characters. Each line can
         \node[align=left, above=0em of letter.south, anchor=south, font=\ttfamily\scriptsize\color{red}] (to) {DEF Corp.\\Steel street 5\\MA78 AX London\\Great Britain};
         \node[below left=0.8em of letter.north east, anchor=north east, fill=cyan, rectangle, draw, minimum width=1.5em, minimum height=2em] (stamp) {};
 
-        \node[font=\ttfamily\small, align=left, right=of stamp, minimum width=14em] (header) {{\color{blue}From:} president@abc.be\\{\color{red}To:} ceo@def.com\\Subject: Hello\\Date: 27 Set 1999 0901\\};
+        \node[font=\ttfamily\small, align=left, right=of stamp, minimum width=14em] (header) { {\color{blue}From:} president@abc.be\\{\color{red}To:} ceo@def.com\\Subject: Hello\\Date: 27 Set 1999 0901\\};
         \node[font=\ttfamily\small, align=left, below=0em of header, minimum width=14em] (msg) {\\Dear Sir,\\\\Bla bla bla...\\\\\\\\};
 
         % Draw email lines here
