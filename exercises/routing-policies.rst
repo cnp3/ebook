@@ -23,7 +23,7 @@ Exercises
 
 1. Consider the interdomain topology shown in the figure below.
 
-   
+
 
 .. tikz::
    :libs: shapes,matrix,arrows,shapes
@@ -41,22 +41,22 @@ Exercises
    \node[as, above right of=AS2] (AS4) {AS4};
    \node[as, below of=AS2] (AS3) {AS3};
 
-   
+
    % customer provider
    \draw[->, color=red, line width=1.5mm]
-   (AS1) edge node [pos=0.5, sloped, above, color=red] {\texttt{\$}}(AS2) 
+   (AS1) edge node [pos=0.5, sloped, above, color=red] {\texttt{\$}}(AS2)
    (AS1) edge  node [pos=0.5, sloped, below, color=red] {\texttt{\$}} (AS3)
    (AS4) edge  node [pos=0.5, sloped, above, color=red] {\texttt{\$}} (AS2);
    \path[draw, color=blue, line width= 1 mm]
    (AS2) edge node [sloped, midway, above, color=blue] {\textbf{=}} (AS3)
    (AS4) edge node [sloped, midway, below, color=blue] {\textbf{=}} (AS3);
-	  
+
 
 
 In this network, what are the paths :
 
-  - from `AS1` to `AS4` 
-  - from `AS4` to `AS2` 
+  - from `AS1` to `AS4`
+  - from `AS4` to `AS2`
   - from `AS4` to `AS1`
 
 
@@ -79,10 +79,10 @@ In this network, what are the paths :
    \node[as, above left of=AS3] (AS2) {AS2};
    \node[as, below right of=AS1] (AS4) {AS4};
 
-   
+
    % customer provider
    \draw[->, color=red, line width=1.5mm]
-   (AS1) edge node [pos=0.5, sloped, above, color=red] {\texttt{\$}}(AS4) 
+   (AS1) edge node [pos=0.5, sloped, above, color=red] {\texttt{\$}}(AS4)
    (AS3) edge  node [pos=0.5, sloped, below, color=red] {\texttt{\$}} (AS1)
    (AS3) edge  node [pos=0.5, sloped, above, color=red] {\texttt{\$}} (AS4);
    \path[draw, color=blue, line width= 1 mm]
@@ -111,10 +111,10 @@ Are all ASes capable of reaching all the other ASes in this simple Internet ?
    \node[as, above left of=AS2] (AS4) {AS4};
    \node[as, right of=AS4] (AS5) {AS5};
    \node[as, right of=AS5] (AS3) {AS3};
-   
+
    % customer provider
    \draw[->, color=red, line width=1.5mm]
-   (AS4) edge node [pos=0.5, sloped, above, color=red] {\texttt{\$}}(AS2) 
+   (AS4) edge node [pos=0.5, sloped, above, color=red] {\texttt{\$}}(AS2)
    (AS4) edge  node [pos=0.5, sloped, below, color=red] {\texttt{\$}} (AS1);
 
    \path[draw, color=blue, line width= 1 mm]
@@ -123,11 +123,11 @@ Are all ASes capable of reaching all the other ASes in this simple Internet ?
    (AS3) edge node [sloped, midway, above, color=blue] {\textbf{=}} (AS5)
    (AS3) edge node [sloped, midway, above, color=blue] {\textbf{=}} (AS1)
    (AS2) edge node [sloped, midway, below, color=blue] {\textbf{=}} (AS1);
-   
+
 
 In this internet, some ASes cannot reach all other ASes. Can you fix the problem by adding one shared-cost peering link or one customer-provider peering link ?
 
- 
+
 .. inginious:: q-bgp-dp-1
 
 4. Consider the network below in which a stub domain, `AS456`, is connected to two providers `AS123` and `AS789`. `AS456` advertises its prefix to both its providers. On the other hand, `AS123` advertises ``2001:db8:dead::/48`` while `AS789` advertises ``2001:db8:beef::/48`` and ``2001:db8:dead:cafe::/63``. Via which provider will the packets destined to ``2001:db8:dead:cafe::1`` will be received by `AS456` ?
@@ -137,8 +137,8 @@ In this internet, some ASes cannot reach all other ASes. Can you fix the problem
      :scale: 100
 
 
- 
- Should `AS123` change its configuration ? 
+
+ Should `AS123` change its configuration ?
 
 5. Consider that the AS stub (`AS456`) shown in the figure below decides to advertise two ``/48`` prefixes instead of its allocated ``/47`` prefix.
 
@@ -149,20 +149,20 @@ In this internet, some ASes cannot reach all other ASes. Can you fix the problem
 
 
  - Via which provider does `AS456` receive the packets destined to ``2001:db8:caff::bb`` and ``2001:db8:cafe::aa`` ?
-  
-  - How is the reachability of these addresses affected when link `R1`-`R3` fails ?
 
-  - Propose a configuration on R1 that achieves the same objective as the one shown in the figure but also preserves the reachability of all IP addresses inside `AS456` if one of `AS456`'s interdomain links fails.
+ - How is the reachability of these addresses affected when link `R1`-`R3` fails ?
 
-6. Consider the network shown below. In this network, the metric of each link is set to `1` except link `A-B` whose metric is set to `4` in both directions. In this network, there are two paths with the same cost between `D` and `C`. Old routers would randomly select one of these equal cost paths and install it in their forwarding table. Recent routers are able to use up to `N` equal cost paths towards the same destination. 
+ - Propose a configuration on R1 that achieves the same objective as the one shown in the figure but also preserves the reachability of all IP addresses inside `AS456` if one of `AS456`'s interdomain links fails.
+
+6. Consider the network shown below. In this network, the metric of each link is set to `1` except link `A-B` whose metric is set to `4` in both directions. In this network, there are two paths with the same cost between `D` and `C`. Old routers would randomly select one of these equal cost paths and install it in their forwarding table. Recent routers are able to use up to `N` equal cost paths towards the same destination.
 
  .. figure:: /exercises/figures/ex-five-routers-weigth4.png
     :align: center
     :scale: 30
 
-    A simple network 
+    A simple network
 
- On recent routers, a lookup in the forwarding table for a destination address returns a set of outgoing interfaces. How would you design an algorithm that selects the outgoing interface used for each packet, knowing that to avoid reordering, all segments of a given TCP connection should follow the same path ? 
+ On recent routers, a lookup in the forwarding table for a destination address returns a set of outgoing interfaces. How would you design an algorithm that selects the outgoing interface used for each packet, knowing that to avoid reordering, all segments of a given TCP connection should follow the same path ?
 
 7. A ``traceroute6`` towards ``ipv6.google.com`` provides the following output :
 
@@ -190,7 +190,7 @@ In this internet, some ASes cannot reach all other ASes. Can you fix the problem
 
  Can you explain why at the eighth, ninth and tenth hopes several IPv6 addresses are reported in the ``traceroute6`` output ?
 
-8. `Section 3.3 <https://tools.ietf.org/html/rfc4443#section-3.3>`_ of :rfc:`4443` explains two different reasons why an IPv6 enabled device could generate an ICMPv6 Time Exceeded message. Explain when a router could generate such a message with ``Code==0`` and when a host could generate such a message with ``Code==1``. 
+8. `Section 3.3 <https://tools.ietf.org/html/rfc4443#section-3.3>`_ of :rfc:`4443` explains two different reasons why an IPv6 enabled device could generate an ICMPv6 Time Exceeded message. Explain when a router could generate such a message with ``Code==0`` and when a host could generate such a message with ``Code==1``.
 
 9. `Section 3.1 <https://tools.ietf.org/html/rfc4443#section-3.1>`_ of :rfc:`4443` seven different Codes for the ICMPv6 Destination Unreachable Message. Under which circumstances would a router generate such an ICMPv6 message with :
 
@@ -198,20 +198,20 @@ In this internet, some ASes cannot reach all other ASes. Can you fix the problem
 
  .. No address in forwarding table
 
-   - ``Code==1`` 
+   - ``Code==1``
 
  .. firewall
 
-   - ``Code==3`` 
-   
+   - ``Code==3``
+
  .. host unreachable on LAN
 
    - ``Code==4``
-  
+
  .. no daemon running on this destination port (likely UDP)
 
 10. An ICMPv6 error message includes in its message body the beginning of the IPv6 packet that triggered this error. How many bytes of the original packet must be returned to allow the host to recover the original source and destination addresses and source and destination ports of the packet that caused the error ?
-  
+
   .. 40 bytes for IPv6 and 4 bytes for the port numbers
 
 
