@@ -149,7 +149,7 @@ A similar reasoning applies when the clock of the sending host is slower than th
 
 From a Computer Science viewpoint, the physical transmission of information through a wire is often considered as a black box that allows transmitting bits. This black box is commonly referred to as the `physical layer service` and is represented by using the `DATA.request` and `DATA.indication` primitives introduced earlier. This physical layer service facilitates the sending and receiving of bits, by abstracting the technological details that are involved in the actual transmission of the bits as an electromagnetic signal. However, it is important to remember that the `physical layer service` is imperfect and has the following characteristics :
 
- - the `Physical layer service` may change, e.g. due to electromagnetic interference, the value of a bit being transmitted
+ - the `Physical layer service` may change, e.g. due to electromagnetic interference, the value of a bit being transmitted might change
  - the `Physical layer service` may deliver `more` bits to the receiver than the bits sent by the sender
  - the `Physical layer service` may deliver `fewer` bits to the receiver than the bits sent by the sender
 
