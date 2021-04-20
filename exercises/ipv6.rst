@@ -433,7 +433,7 @@ The students have configured the following forwarding tables on these six router
 What do you think about the proposed configuration?
 
 
-7. Sometimes, static routes must be configured on networks to enforce certain paths. Consider the six routers network shown in the figure below.
+6. Sometimes, static routes must be configured on networks to enforce certain paths. Consider the six routers network shown in the figure below.
 
      .. tikz::
         :libs: positioning, matrix, arrows
@@ -483,7 +483,7 @@ What do you think about the proposed configuration?
 
    When creating these forwarding tables, try to minimize the number of entries that you install on each router.
 
-8. When a network is designed, an important element of the design is the IP address allocation plan. A good allocation plan can provide flexibility and help to reduce the size of the forwarding tables.
+7. When a network is designed, an important element of the design is the IP address allocation plan. A good allocation plan can provide flexibility and help to reduce the size of the forwarding tables.
 
      .. tikz::
         :libs: positioning, matrix, arrows
