@@ -1,4 +1,4 @@
-.. Copyright |copy| 2019 by Olivier Bonaventure 
+.. Copyright |copy| 2019 by Olivier Bonaventure
 .. This file is licensed under a `creative commons licence <http://creativecommons.org/licenses/by/3.0/>`_
 
 
@@ -15,7 +15,7 @@ Exploring OSPF
 We first use IPMininet_ to explore the operation of OSPFv3, the version of OSPF that supports IPv6. We create a simple network with three routers and two hosts as shown in the figure below.
 
      .. tikz:: A simple network
-        :libs: shapes, positioning, matrix, arrows, shapes 
+        :libs: shapes, positioning, matrix, arrows, shapes
 
         \tikzstyle{arrow} = [thick,->,>=stealth]
         \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
@@ -31,51 +31,50 @@ We first use IPMininet_ to explore the operation of OSPFv3, the version of OSPF 
 
 	\path[draw, color=black]
 	(a) edge (r1)
-	(b) edge (r3)    
+	(b) edge (r3)
 	(r1) edge node [sloped, midway, above, color=black] {1} (r2)
 	(r1) edge node [sloped, midway, above, color=black] {5} (r3)
 	(r2) edge node [sloped, midway, above, color=black] {3} (r3);
 
 .. code-block:: python
 
-   import shlex
-   from ipmininet.iptopo import IPTopo
-   from ipmininet.ipnet import IPNet
-   from ipmininet.cli import IPCLI
+    import shlex
+    from ipmininet.iptopo import IPTopo
+    from ipmininet.ipnet import IPNet
+    from ipmininet.cli import IPCLI
 
-   class MyTopology(IPTopo):
+    class MyTopology(IPTopo):
 
-    def build(self, *args, **kwargs):
+        def build(self, *args, **kwargs):
+            # Add routers (OSPF daemon is added by default with the default config)
 
-        # Add routers (OSPF daemon is added by default with the default config)
+            r1 = self.addRouter("r1")
+            r2 = self.addRouter("r2")
+            r3 = self.addRouter("r3")
+            a = self.addHost("a")
+            b = self.addHost("b")
 
-        r1 = self.addRouter("r1")
-        r2 = self.addRouter("r2")
-        r3 = self.addRouter("r3")
-        a = self.addHost("a")
-        b = self.addHost("b")
+            lr1r2 = self.addLink(r1, r2, igp_cost=1)
+            lr1r2[r1].addParams(ip=("2001:db8:1341:12::1/64"))
+            lr1r2[r2].addParams(ip=("2001:db8:1341:12::2/64"))
 
-        lr1r2 = self.addLink(r1, r2, igp_cost=1)
-        lr1r2[r1].addParams(ip=("2001:db8:1341:12::1/64"))
-        lr1r2[r2].addParams(ip=("2001:db8:1341:12::2/64"))
+            lr1r3 = self.addLink(r1, r3, igp_cost=5)
+            lr1r3[r1].addParams(ip=("2001:db8:1341:13::1/64"))
+            lr1r3[r3].addParams(ip=("2001:db8:1341:13::3/64"))
 
-        lr1r3 = self.addLink(r1, r3, igp_cost=5)
-        lr1r3[r1].addParams(ip=("2001:db8:1341:13::1/64"))
-        lr1r3[r3].addParams(ip=("2001:db8:1341:13::3/64"))
+            lr2r3 = self.addLink(r2, r3, igp_cost=3)
+            lr2r3[r2].addParams(ip=("2001:db8:1341:23::2/64"))
+            lr2r3[r3].addParams(ip=("2001:db8:1341:23::3/64"))
 
-        lr2r3 = self.addLink(r2, r3, igp_cost=3)
-        lr2r3[r2].addParams(ip=("2001:db8:1341:23::2/64"))
-        lr2r3[r3].addParams(ip=("2001:db8:1341:23::3/64"))
-        
-        lr1a = self.addLink(r1, a, igp_passive=True)
-        lr1a[r1].addParams(ip=("2001:db8:1341:1::1/64"))
-        lr1a[a].addParams(ip=("2001:db8:1341:1::A/64"))
+            lr1a = self.addLink(r1, a, igp_passive=True)
+            lr1a[r1].addParams(ip=("2001:db8:1341:1::1/64"))
+            lr1a[a].addParams(ip=("2001:db8:1341:1::A/64"))
 
-        lr3b = self.addLink(r3, b, igp_passive=True)
-        lr3b[r3].addParams(ip=("2001:db8:1341:3::3/64"))
-        lr3b[b].addParams(ip=("2001:db8:1341:3::B/64"))
+            lr3b = self.addLink(r3, b, igp_passive=True)
+            lr3b[r3].addParams(ip=("2001:db8:1341:3::3/64"))
+            lr3b[b].addParams(ip=("2001:db8:1341:3::B/64"))
 
-        super(MyTopology, self).build(*args, **kwargs)
+            super(MyTopology, self).build(*args, **kwargs)
 
 
 The code is very simple as by default IPMininet_ enables OSPF on routers. We introduce two specific parameters. First, the interface that connects a router to a host is flagged as a passive interface (``igp_passive=True``). This indicates to the router that there are no other routers attached to this interface and that it should not send or accept OSPF Hello messages on this interface. The second configuration parameter is that we set the IGP cost on each link.
@@ -89,34 +88,34 @@ We use this mininet_ topology to collect packet traces that show the packets tha
         for r in self.routers():
             command="/usr/sbin/tcpdump --immediate-mode -c 100 -w ./"+r+"-trace.pcap proto ospf"
             p = net[r].popen(shlex.split(command))
-	    
+
         super(MyTopology, self).post_build(net)
 
 Finally, we can start the IPMininet_ topology and launch the daemons. The entire script is available from :download:`/exercises/ipmininet_scripts/ospf6.py`.
-	
+
 .. code-block:: python
 
-   net = IPNet(topo=MyTopology(), allocate_IPs=False)  # Disable IP auto-allocation
-   try:
-     net.start()
-     IPCLI(net)
-   finally:
-     net.stop()
-		
+    net = IPNet(topo=MyTopology(), allocate_IPs=False)  # Disable IP auto-allocation
+    try:
+        net.start()
+        IPCLI(net)
+    finally:
+        net.stop()
+
 
 The script starts the routers and hosts.
 
 .. code-block:: console
 
    mininet> nodes
-   available nodes are: 
+   available nodes are:
    a b r1 r2 r3
    mininet> links
-   r1-eth2<->a-eth0 (OK OK) 
-   r1-eth0<->r2-eth0 (OK OK) 
-   r1-eth1<->r3-eth0 (OK OK) 
-   r2-eth1<->r3-eth1 (OK OK) 
-   r3-eth2<->b-eth0 (OK OK) 
+   r1-eth2<->a-eth0 (OK OK)
+   r1-eth0<->r2-eth0 (OK OK)
+   r1-eth1<->r3-eth0 (OK OK)
+   r2-eth1<->r3-eth1 (OK OK)
+   r3-eth2<->b-eth0 (OK OK)
 
 We can easily verify that the paths used to forward packets are the expected ones according to the configured IGP weights.
 
@@ -154,7 +153,7 @@ The password to access this daemon is `zebra`. It supports various commands that
 
 .. code-block:: console
 
-   r1> show ipv6 ospf6 
+   r1> show ipv6 ospf6
    OSPFv3 Routing Process (0) with Router-ID 0.0.0.2
    Running 14:26:45
    LSA minimum arrival 1000 msecs
@@ -167,18 +166,18 @@ The password to access this daemon is `zebra`. It supports various commands that
    SPF timer is inactive
    Number of AS scoped LSAs is 0
    Number of areas in this router is 1
-   
+
    Area 0.0.0.0
 	Number of Area scoped LSAs is 11
 		Interface attached to this area: lo r1-eth0 r1-eth1 r1-eth2
    SPF last executed 51986.405587s ago
 
 The ``show ipv6 ospf6`` command reports the general state of the OSPFv3 daemon.
- The ``show ipv6 ospf6 neighbor`` command reports the state of the connected neighbors.
+The ``show ipv6 ospf6 neighbor`` command reports the state of the connected neighbors.
 
- .. code-block:: console
+.. code-block:: console
 
-    r1> show ipv6 ospf6 neighbor 
+    r1> show ipv6 ospf6 neighbor
     Neighbor ID     Pri    DeadTime    State/IfState         Duration I/F[State]
     0.0.0.3          10    00:00:02     Full/DR              14:44:44 r1-eth0[BDR]
     0.0.0.4          10    00:00:02     Full/DR              14:44:48 r1-eth1[BDR]
@@ -187,8 +186,8 @@ The ``show ipv6 ospf6`` command reports the general state of the OSPFv3 daemon.
 In its output, we see that ``r1`` is attached to two different routers. Finally, the ``show ipv6 ospf6 database`` returns the full OSPFv3 database with all the link state information that was distributed by OSPFv3.
 
 .. code-block:: console
-		
-   r1> show ipv6 ospf6 database 
+
+   r1> show ipv6 ospf6 database
 
         Area Scoped Link State Database (Area 0.0.0.0)
 
@@ -243,14 +242,14 @@ The first packet that this router received his a Hello packet that was sent by r
 
 .. figure:: /exercises/figures/ospf6-packet1.png
 
-The Hello packet contains some parameters such as the `Hello interval` that is set to 1 second. This interval is the delay between the transmission of successive Hello packets. Since the `Router Dead Interval` is set to 3 seconds, the router will consider the link as down if it does not receive Hello packets during a period of 3 seconds. The second packet of the trace is sent by router ``r1``. 
+The Hello packet contains some parameters such as the `Hello interval` that is set to 1 second. This interval is the delay between the transmission of successive Hello packets. Since the `Router Dead Interval` is set to 3 seconds, the router will consider the link as down if it does not receive Hello packets during a period of 3 seconds. The second packet of the trace is sent by router ``r1``.
 
 .. figure:: /exercises/figures/ospf6-packet2.png
 
-We can then observe the Database description packet that is sent by routers to announce the state of their OSPFv3 database. The details of this packet are beyond the scope of this simple exercise. 
-	    
+We can then observe the Database description packet that is sent by routers to announce the state of their OSPFv3 database. The details of this packet are beyond the scope of this simple exercise.
+
 .. figure:: /exercises/figures/ospf6-packet3.png
-	    
+
 This packet is updated when new information is added in the router's OSPFv3 database. A few seconds router, this router sends another Database description packet that announces more information.
 
 .. figure:: /exercises/figures/ospf6-packet4.png
@@ -258,7 +257,7 @@ This packet is updated when new information is added in the router's OSPFv3 data
 Router ``r2`` reacts to this updated Database description packet by requesting the link state information that it does not already know. For this, it sends a `LS Request` packet.
 
 .. figure:: /exercises/figures/ospf6-packet5.png
-	    
+
 The requested information is sent in a `LS Update` packet shortly after that.
 
 .. figure:: /exercises/figures/ospf6-packet6.png
@@ -266,8 +265,8 @@ The requested information is sent in a `LS Update` packet shortly after that.
 OSPFv3 also includes `LS Acknowledge` packets that acknowledge the correct reception of link state information.
 
 .. figure:: /exercises/figures/ospf6-packet7.png
-	    
-A more detailed discussion of the packets that routing protocols exchange may be found in [Goralski2009]_. 
+
+A more detailed discussion of the packets that routing protocols exchange may be found in [Goralski2009]_.
 
 Exploring RIP
 -------------
@@ -276,63 +275,63 @@ IPMininet_ can also be used to perform experiments with RIP. A simple script tha
 
 .. code-block:: python
 
-   import shlex
-   from ipmininet.iptopo import IPTopo
-   from ipmininet.router.config import RIPng, RouterConfig
-   from ipmininet.ipnet import IPNet
-   from ipmininet.cli import IPCLI
+    import shlex
+    from ipmininet.iptopo import IPTopo
+    from ipmininet.router.config import RIPng, RouterConfig
+    from ipmininet.ipnet import IPNet
+    from ipmininet.cli import IPCLI
 
-   class MyTopology(IPTopo):
+    class MyTopology(IPTopo):
 
-     def build(self, *args, **kwargs):
+        def build(self, *args, **kwargs):
 
-        # RouterConfig ensures that OSPF is not automatically started
-        r1 = self.addRouter("r1", config=RouterConfig) 
-        r2 = self.addRouter("r2", config=RouterConfig)
-        r3 = self.addRouter("r3", config=RouterConfig)
-        a = self.addHost("a")
-        b = self.addHost("b")
+            # RouterConfig ensures that OSPF is not automatically started
+            r1 = self.addRouter("r1", config=RouterConfig)
+            r2 = self.addRouter("r2", config=RouterConfig)
+            r3 = self.addRouter("r3", config=RouterConfig)
+            a = self.addHost("a")
+            b = self.addHost("b")
 
-        lr1r2 = self.addLink(r1, r2, igp_cost=1)
-        lr1r2[r1].addParams(ip=("2001:db8:1341:12::1/64"))
-        lr1r2[r2].addParams(ip=("2001:db8:1341:12::2/64"))
+            lr1r2 = self.addLink(r1, r2, igp_cost=1)
+            lr1r2[r1].addParams(ip=("2001:db8:1341:12::1/64"))
+            lr1r2[r2].addParams(ip=("2001:db8:1341:12::2/64"))
 
-        lr1r3 = self.addLink(r1, r3, igp_cost=5)
-        lr1r3[r1].addParams(ip=("2001:db8:1341:13::1/64"))
-        lr1r3[r3].addParams(ip=("2001:db8:1341:13::3/64"))
+            lr1r3 = self.addLink(r1, r3, igp_cost=5)
+            lr1r3[r1].addParams(ip=("2001:db8:1341:13::1/64"))
+            lr1r3[r3].addParams(ip=("2001:db8:1341:13::3/64"))
 
-        lr2r3 = self.addLink(r2, r3, igp_cost=3)
-        lr2r3[r2].addParams(ip=("2001:db8:1341:23::2/64"))
-        lr2r3[r3].addParams(ip=("2001:db8:1341:23::3/64"))
-        
-        lr1a = self.addLink(r1, a)
-        lr1a[r1].addParams(ip=("2001:db8:1341:1::1/64"))
-        lr1a[a].addParams(ip=("2001:db8:1341:1::A/64"))
+            lr2r3 = self.addLink(r2, r3, igp_cost=3)
+            lr2r3[r2].addParams(ip=("2001:db8:1341:23::2/64"))
+            lr2r3[r3].addParams(ip=("2001:db8:1341:23::3/64"))
 
-        lr3b = self.addLink(r3, b)
-        lr3b[r3].addParams(ip=("2001:db8:1341:3::3/64"))
-        lr3b[b].addParams(ip=("2001:db8:1341:3::B/64"))
+            lr1a = self.addLink(r1, a)
+            lr1a[r1].addParams(ip=("2001:db8:1341:1::1/64"))
+            lr1a[a].addParams(ip=("2001:db8:1341:1::A/64"))
+
+            lr3b = self.addLink(r3, b)
+            lr3b[r3].addParams(ip=("2001:db8:1341:3::3/64"))
+            lr3b[b].addParams(ip=("2001:db8:1341:3::B/64"))
 
 
-        r1.addDaemon(RIPng)
-        r2.addDaemon(RIPng)
-        r3.addDaemon(RIPng)
+            r1.addDaemon(RIPng)
+            r2.addDaemon(RIPng)
+            r3.addDaemon(RIPng)
 
-        super(MyTopology, self).build(*args, **kwargs)
-        
-      def post_build(self, net):
-        for r in self.routers():
-            command="/usr/sbin/tcpdump --immediate-mode -c 10 -w ./ripng-"+r+"-trace.pcap udp port 521"
-            p = net[r].popen(shlex.split(command))
-            
+            super(MyTopology, self).build(*args, **kwargs)
+
+        def post_build(self, net):
+            for r in self.routers():
+                command = "/usr/sbin/tcpdump --immediate-mode -c 10 -w ./ripng-"+r+"-trace.pcap udp port 521"
+                p = net[r].popen(shlex.split(command))
+
         super(MyTopology, self).post_build(net)
 
-   net = IPNet(topo=MyTopology(), allocate_IPs=False)  # Disable IP auto-allocation
-   try:
-      net.start()
-      IPCLI(net)
-   finally:
-      net.stop()
+    net = IPNet(topo=MyTopology(), allocate_IPs=False)  # Disable IP auto-allocation
+    try:
+        net.start()
+        IPCLI(net)
+    finally:
+        net.stop()
 
 As RIP messages are exchanged using UDP on port 521, we filter this port in the tcpdump_ trace. RIPng distributes the routes and our two hosts can exchange packets. The entire script is available from :download:`/exercises/ipmininet_scripts/ripng.py`.
 
@@ -340,8 +339,8 @@ As RIP messages are exchanged using UDP on port 521, we filter this port in the 
 
    mininet> ping6all
    *** Ping: testing reachability over IPv6
-   a --IPv6--> b 
-   b --IPv6--> a 
+   a --IPv6--> b
+   b --IPv6--> a
    *** Results: 0% dropped (2/2 received)
    mininet> a traceroute6 -n 2001:db8:1341:3::b
    traceroute to 2001:db8:1341:3::b (2001:db8:1341:3::b) from 2001:db8:1341:1::a, 30 hops max, 24 byte packets
@@ -353,7 +352,7 @@ As RIP messages are exchanged using UDP on port 521, we filter this port in the 
    1  2001:db8:1341:3::3  0.06 ms  0.022 ms  0.018 ms
    2  2001:db8:1341:13::1  0.038 ms  0.024 ms  0.022 ms
    3  2001:db8:1341:1::a  0.03 ms  0.023 ms  0.022 ms
-   mininet> 
+   mininet>
 
 We can observe the RIPng messages that are exchanged over the network. :rfc:`2080` defines two types of RIPng messages:
 
@@ -372,16 +371,16 @@ Later, router ``r2`` will regularly transmit its distance vector inside an unsol
 
 .. figure:: /exercises/figures/ripng-packet2.png
 
-The packet traces collected on the three routers of this example are available from :download:`/exercises/traces/ripng-r1-trace.pcap`, :download:`/exercises/traces/ripng-r2-trace.pcap` and :download:`/exercises/traces/ripng-r3-trace.pcap`. 
-	    
-    
+The packet traces collected on the three routers of this example are available from :download:`/exercises/traces/ripng-r1-trace.pcap`, :download:`/exercises/traces/ripng-r2-trace.pcap` and :download:`/exercises/traces/ripng-r3-trace.pcap`.
+
+
 Exploring BGP
 -------------
 
 To explore the configuration of BGP, let us consider a network that contains three ASes: ``AS1``,  ``AS2`` and ``AS3``. To simplify the tests, we identify one host inside each of these ASes.
 
      .. tikz:: A simple Internet
-        :libs: shapes, positioning, matrix, arrows, shapes 
+        :libs: shapes, positioning, matrix, arrows, shapes
 
         \tikzstyle{arrow} = [thick,->,>=stealth]
         \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
@@ -399,7 +398,7 @@ To explore the configuration of BGP, let us consider a network that contains thr
 
 	% customer provider
 	\draw[->, color=red, line width=1.5mm]
-        (AS1) edge node [pos=0.5, sloped, above, color=red] {\texttt{\$}}(AS2) 
+        (AS1) edge node [pos=0.5, sloped, above, color=red] {\texttt{\$}}(AS2)
 	(AS2) edge  node [pos=0.5, sloped, below, color=red] {\texttt{\$}} (AS3);
 	%shared cost
 	\path[draw, color=blue, line width= 1 mm]
@@ -414,28 +413,29 @@ To explore the configuration of BGP, let us consider a network that contains thr
 
 
 .. code-block:: python
-		
-   import ipmininet.router.config.bgp as _bgp
-   from ipmininet.iptopo import IPTopo
-   from ipmininet.router.config import BGP, ebgp_session, AF_INET6, CLIENT_PROVIDER, SHARE
 
-   from ipmininet.ipnet import IPNet
-   from ipmininet.cli import IPCLI
+    import ipmininet.router.config.bgp as _bgp
+    from ipmininet.iptopo import IPTopo
+    from ipmininet.router.config import BGP, ebgp_session, AF_INET6, CLIENT_PROVIDER, SHARE
 
-   class MyTopology(IPTopo):
-      """Creates a very simple interdomain topology"""
-      def build(self, *args, **kwargs):
-        """
-        AS1 --$--> AS2 --$--> AS3
-         |                     |
-         +-----------=---------+ 
-        """
+    from ipmininet.ipnet import IPNet
+    from ipmininet.cli import IPCLI
+
+    class MyTopology(IPTopo):
+        """Creates a very simple interdomain topology"""
+        def build(self, *args, **kwargs):
+            """
+            AS1 --$--> AS2 --$--> AS3
+             |                     |
+             +-----------=---------+
+            """
+            # The remaining code snippets go here
 
 As in the previous examples, we create the routers and associate one IPv6 prefix to each AS:
 
  - ``AS1`` is assigned ``2001:cafe:1::/48``
  - ``AS2`` is assigned ``2001:cafe:2::/48``
- - ``AS3`` is assigned ``2001:cafe:3::/48``   
+ - ``AS3`` is assigned ``2001:cafe:3::/48``
 
 .. code-block:: python
 
@@ -443,9 +443,9 @@ As in the previous examples, we create the routers and associate one IPv6 prefix
    as1 = self.addRouter('as1')
    as2 = self.addRouter('as2')
    as3 = self.addRouter('as3')
-   
+
    routers=self.routers()
-   prefix = {routers[i]: '2001:cafe:%04x::/48' % (i+1) for i in range(len(routers ))}		
+   prefix = {routers[i]: '2001:cafe:%04x::/48' % (i+1) for i in range(len(routers ))}
 
    as1.addDaemon(BGP, address_families=(AF_INET6(networks=(prefix[as1],)),))
    as2.addDaemon(BGP, address_families=(AF_INET6(networks=(prefix[as2],)),))
@@ -460,13 +460,13 @@ The `addDaemon` method adds a BGP daemon on each router and configures it to adv
         h1= self.addHost("h1")
         h2= self.addHost("h2")
         h3= self.addHost("h3")
-        
+
 
         # Add all links
         l12=self.addLink(as1, as2)
         l12[as1].addParams(ip="2001:cafe:1:12::1/64")
         l12[as2].addParams(ip="2001:cafe:1:12::2/64")
-        
+
         l13=self.addLink(as1, as3)
         l13[as1].addParams(ip="2001:cafe:1:13::1/64")
         l13[as3].addParams(ip="2001:cafe:1:13::3/64")
@@ -491,12 +491,12 @@ The `addDaemon` method adds a BGP daemon on each router and configures it to adv
 The last step is to specify to which AS each router belongs and to configure the eBGP sessions and their routing policies. IPMininet_ abstracts most of the complexity of the configuration of these policies by supporting two policies
 
 .. code-block:: python
-        
+
         # Set AS-ownerships
         self.addAS(1, (as1,))
         self.addAS(2, (as2,))
         self.addAS(3, (as3,))
-        
+
         # Add eBGP sessions
 	# AS1 is a client of AS2
         ebgp_session(self, as1, as2, link_type=CLIENT_PROVIDER)
@@ -504,7 +504,7 @@ The last step is to specify to which AS each router belongs and to configure the
         ebgp_session(self, as2, as3, link_type=CLIENT_PROVIDER)
 	# AS1 and AS3 are shared cost peers
         ebgp_session(self, as1, as3, link_type=SHARE)
- 
+
         super(MyTopology, self).build(*args, **kwargs)
 
 The script ends by launching the full topology. The entire script is available from :download:`/exercises/ipmininet_scripts/ebgp-simple.py`.
@@ -521,9 +521,9 @@ If you launch the script and immediately type ``ping6all`` to check the connecti
 
    mininet> ping6all
    *** Ping: testing reachability over IPv6
-   h1 --IPv6--> X X 
-   h2 --IPv6--> X X  
-   h3 --IPv6--> X X 
+   h1 --IPv6--> X X
+   h2 --IPv6--> X X
+   h3 --IPv6--> X X
    *** Results: 100% dropped (0/6 received)
 
 Remember that BGP is a distributed protocol and that it takes some time to launch the daemons and exchange the messages. After some time, the same command will confirm that everything works as expected.
@@ -532,9 +532,9 @@ Remember that BGP is a distributed protocol and that it takes some time to launc
 
    mininet> ping6all
    *** Ping: testing reachability over IPv6
-   h1 --IPv6--> h2 h3 
-   h2 --IPv6--> h1 h3 
-   h3 --IPv6--> h2 h1 
+   h1 --IPv6--> h2 h3
+   h2 --IPv6--> h1 h3
+   h3 --IPv6--> h2 h1
    *** Results: 0% dropped (6/6 received)
 
 We can also use :manpage:`traceroute6(8)` to check the path followed by the packets. Before doing that, think about the configuration of the BGP routing policies and try to predict the output of :manpage:`traceroute6(8)`. This is a good exercise to check your understanding of BGP.
@@ -543,15 +543,15 @@ We have configured the following addresses on the hosts.
 
 .. code-block:: console
 
-   mininet> h1 ip -6 -o addr show 
+   mininet> h1 ip -6 -o addr show
    1: lo    inet6 ::1/128 scope host \       valid_lft forever preferred_lft forever
    2: h1-eth0    inet6 2001:cafe:1:1::11/64 scope global \       valid_lft forever preferred_lft forever
    2: h1-eth0    inet6 fe80::8ae:b0ff:fe9d:aefa/64 scope link \       valid_lft forever preferred_lft forever
-   mininet> h2 ip -6 -o addr show 
+   mininet> h2 ip -6 -o addr show
    1: lo    inet6 ::1/128 scope host \       valid_lft forever preferred_lft forever
    2: h2-eth0    inet6 2001:cafe:2:1::12/64 scope global \       valid_lft forever preferred_lft forever
    2: h2-eth0    inet6 fe80::d8a3:cdff:fed6:14ad/64 scope link \       valid_lft forever preferred_lft forever
-   mininet> h3 ip -6 -o addr show 
+   mininet> h3 ip -6 -o addr show
    1: lo    inet6 ::1/128 scope host \       valid_lft forever preferred_lft forever
    2: h3-eth0    inet6 2001:cafe:3:1::13/64 scope global \       valid_lft forever preferred_lft forever
    2: h3-eth0    inet6 fe80::101d:e1ff:fe4e:a3a9/64 scope link \       valid_lft forever preferred_lft forever
@@ -565,7 +565,7 @@ We can now explore the routes in this small Internet. Host ``h1`` can reach dire
    1  2001:cafe:1:1::1  0.099 ms  0.038 ms  0.056 ms
    2  2001:cafe:2:23::3  2.3 ms  0.135 ms  0.161 ms
    3  2001:cafe:3:1::13  0.216 ms  0.182 ms  0.187 ms
-		
+
 Note that the path preferred by ``AS3`` to reach ``AS1`` is different.
 
 .. code-block:: console
@@ -579,7 +579,7 @@ Note that the path preferred by ``AS3`` to reach ``AS1`` is different.
 
 
 The same applies for the paths between ``h1`` and ``h2``
-   
+
 .. code-block:: console
 
    mininet> h1 traceroute6 -n 2001:cafe:2:1::12
@@ -593,7 +593,7 @@ The same applies for the paths between ``h1`` and ``h2``
    1  2001:cafe:2:1::2  0.075 ms  0.088 ms  0.029 ms
    2  2001:cafe:1:13::1  0.059 ms  0.052 ms  0.034 ms
    3  2001:cafe:1:1::11  0.05 ms  0.036 ms  0.031 ms
-	
+
 
 Besides :manpage:`ping6(8)` and :manpage:`traceroute6(8)`, it is also useful to interact with the BGP daemon that runs on each of our routers. This is done by connecting on the Command Line Interface of the BGP router using telnet.
 
@@ -609,14 +609,14 @@ Besides :manpage:`ping6(8)` and :manpage:`traceroute6(8)`, it is also useful to 
 
 
    User Access Verification
-		
+
    Password:
 
 .. spelling::
 
    Quagga
-   
-The password for the BGP daemon is `zebra`. The `noecho` command indicates that mininet_ does not need to echo the characters that you type. You then enter the Quagga VTY that enables you to type commands. The `help` commands gives you some information about the available commands as well as `?`
+
+The password for the BGP daemon is `zebra`. The `noecho` command indicates that mininet_ does not need to echo the characters that you type. You then enter the Quagga VTY that enables you to type commands. The `help` commands gives you some information about the available commands as well as `?`.
 
 .. code-block:: console
 
@@ -634,7 +634,7 @@ The password for the BGP daemon is `zebra`. The `noecho` command indicates that 
       and you want to know what arguments match the input
       (e.g. 'show me?'.)
 
-   as1> 
+   as1>
    enable    Turn on privileged mode command
    exit      Exit current mode and down to previous mode
    find      Find CLI command containing text
@@ -644,27 +644,27 @@ The password for the BGP daemon is `zebra`. The `noecho` command indicates that 
    show      Show running system information
    terminal  Set terminal line parameters
    who       Display who is on vty
-   as1> 
+   as1>
 
 In these exercises, we mainly consider the ``show`` that extracts information from the BGP daemon. We type `show bgp` and press the `tabulation` key to see the available commands in the `show bgp`.
 
 .. code-block:: console
 
-   as1> show bgp 
-   as-path-access-list attribute-info cidr-only  community  community-info community-list 
-   dampening  detail     extcommunity-list filter-list import-check-table ipv4       
-   ipv6       json       l2vpn      large-community large-community-list mac        
-   martian    memory     multicast  neighbors  nexthop    paths      
-   peer-group peerhash   prefix-list regexp     route-leak route-map  
-   statistics summary    unicast    update-groups view       views      
-   vpn        vrf        vrfs       
+   as1> show bgp
+   as-path-access-list attribute-info cidr-only  community  community-info community-list
+   dampening  detail     extcommunity-list filter-list import-check-table ipv4
+   ipv6       json       l2vpn      large-community large-community-list mac
+   martian    memory     multicast  neighbors  nexthop    paths
+   peer-group peerhash   prefix-list regexp     route-leak route-map
+   statistics summary    unicast    update-groups view       views
+   vpn        vrf        vrfs
 
 
 A useful command to start is `show bgp summary` which provides a summary of the state of the BGP daemon.
 
 .. code-block:: console
 
-   as1> show bgp summary 
+   as1> show bgp summary
 
    IPv6 Unicast Summary:
    BGP router identifier 192.168.8.2, local AS number 1 vrf-id 0
@@ -686,7 +686,7 @@ This router (`as1`) has two BGP neighbors: ``2001:cafe:1:12::2`` and ``2001:cafe
 
 .. code-block:: console
 
-   as1> show bgp ipv6 neighbors 
+   as1> show bgp ipv6 neighbors
 
    BGP neighbor is 2001:cafe:1:12::2, remote AS 2, local AS 1, external link
      Description: as2 (eBGP)
@@ -813,7 +813,7 @@ We can now observe the BGP-Loc-RIB of the router with the ``show bgp ipv6 comman
 
 .. code-block:: console
 
-   as1> show bgp ipv6    
+   as1> show bgp ipv6
    BGP table version is 10, local router ID is 192.168.8.2, vrf id 0
    Default local pref 100, local AS 1
    Status codes:  s suppressed, d damped, h history, * valid, > best, = multipath,
@@ -838,10 +838,10 @@ We can now observe the BGP-Loc-RIB of the router with the ``show bgp ipv6 comman
 It is interesting to look at the output of this command in details. Router `as1` has routes for three different IPv6 prefixes. The first prefix is its own prefix, ``2001:cafe:1::/48``. It has no nexthop since this prefix is originated by the router. Then, `as1` has received two paths for ``2001:cafe:2::/48``. In the BGP Loc-RIB, the `>` character indicates the best route according to the BGP decision process.  ``2001:cafe:2::/48`` was learned over two different BGP sessions:
 
  - the eBGP session with ``fe80::3c81:2eff:fe19:465d`` with an AS-Path of ``AS3:AS2`` (see last column)
- - the eBGP session with ``fe80::c001:dcff:fe49:a512`` with an AS-Path of ``AS2`` (see last column)  
+ - the eBGP session with ``fe80::c001:dcff:fe49:a512`` with an AS-Path of ``AS2`` (see last column)
 
 The first of these two routes is preferred as indicated by the `>` character because it has a higher ``local-preference` (150) than the second one (100). For prefix ``2001:cafe:3::/48``, the route learned via ``fe80::3c81:2eff:fe19:465d`` is also preferred for the same reason.
-   
+
 IPMininet_ also allows to explore the dynamics of BGP by looking at the packets that the routers exchange. For this, we slightly modify the example above and add delays to the interdomain links as follows.
 
 .. code-block:: python
@@ -851,22 +851,22 @@ IPMininet_ also allows to explore the dynamics of BGP by looking at the packets 
    l23=self.addLink(as2, as3, delay='200ms')
 
 
-We also add a ``post_build`` method to launch tcpdump_ and capture the BGP packets exchanged by the routers. A BGP session runs over a TCP connection. Let us examine a few of the BGP messages exchanged on the BGP session between ``AS1`` and ``AS2``. The traces collected on the three routers are available from :download:`/exercises/traces/bgp-as1-trace.pcap`, :download:`/exercises/traces/bgp-as2-trace.pcap` and :download:`/exercises/traces/bgp-as2-trace.pcap`. 
+We also add a ``post_build`` method to launch tcpdump_ and capture the BGP packets exchanged by the routers. A BGP session runs over a TCP connection. Let us examine a few of the BGP messages exchanged on the BGP session between ``AS1`` and ``AS2``. The traces collected on the three routers are available from :download:`/exercises/traces/bgp-as1-trace.pcap`, :download:`/exercises/traces/bgp-as2-trace.pcap` and :download:`/exercises/traces/bgp-as2-trace.pcap`.
 
 The BGP session starts with a TCP three-way handshake.
-Once the session has been established, both BGP daemons send an ``OPEN`` message describing their capabilities and the BGP extensions that it supports. The details of these extensions go beyond the scope of this book. However, it is important to note that the ``OPEN`` message contains the ``AS`` number of the router that sends the message and its identifier as a 32 bits IPv4 address. This router identifier uniquely identifies the router. The last mandatory parameter of the ``OPEN`` message is the `Hold Time`, i.e. the maximum delay between two successive messages over this BGP session. A BGP router should send ``KEEPALIVE`` messages every one third of the `Hold Time` to keep the session up. 	    
+Once the session has been established, both BGP daemons send an ``OPEN`` message describing their capabilities and the BGP extensions that it supports. The details of these extensions go beyond the scope of this book. However, it is important to note that the ``OPEN`` message contains the ``AS`` number of the router that sends the message and its identifier as a 32 bits IPv4 address. This router identifier uniquely identifies the router. The last mandatory parameter of the ``OPEN`` message is the `Hold Time`, i.e. the maximum delay between two successive messages over this BGP session. A BGP router should send ``KEEPALIVE`` messages every one third of the `Hold Time` to keep the session up.
 
 .. figure:: /exercises/figures/bgp-packet2.png
 
-The ``UPDATE`` message can be used to withdraw and advertise routes. The packet below is sent by ``AS2`` to advertise its route towards `2001:cafe:2::/48` on the BGP session with ``AS1``. 
-	    
+The ``UPDATE`` message can be used to withdraw and advertise routes. The packet below is sent by ``AS2`` to advertise its route towards `2001:cafe:2::/48` on the BGP session with ``AS1``.
+
 .. figure:: /exercises/figures/bgp-packet2.png
 
-	    
+
 Another interesting utilization of IPMininet_ is to explore how routers react to link failures. We start from the same network as with the previous example and disable the link between ``AS2`` and ``AS3``. For this, we log on one of the two routers and issue the following commands.
 
 .. code-block:: console
-		
+
    mininet> noecho as2 telnet localhost bgpd
    Trying ::1...
    Connected to localhost.
@@ -878,7 +878,7 @@ Another interesting utilization of IPMininet_ is to explore how routers react to
 
    User Access Verification
 
-   Password: 
+   Password:
    as2> enable
    as2# show bgp summary
 
@@ -911,7 +911,7 @@ We can now disable one of the BGP sessions on router `as2` as follows.
 We start indicate that we will use the terminal to change the router configuration with `configure terminal`. We then enter the BGP part of the configuration with `router bgp 2` (`2` is the AS number of `as2`). Then we use the `neighbor 2001:cafe:2:23::3 shutdown` that takes as parameter the IP address of the peer of the session that we want to stop. We then leave the BGP part of the configuration (first `exit`) and the configuration menu (second `exit` command). At this point, the BGP session between ``AS2`` and ``AS3`` is down.
 
 .. code-block:: console
-   
+
    as2# show bgp summary
 
    IPv6 Unicast Summary:
@@ -930,12 +930,12 @@ We start indicate that we will use the terminal to change the router configurati
 Without a BGP session between ``AS2`` and ``AS3``, there are reachability problems in this simple Internet.
 
 .. code-block:: console
-		
+
    mininet> ping6all
    *** Ping: testing reachability over IPv6
-   h1 --IPv6--> h2 h3 
-   h2 --IPv6--> X h1 
-   h3 --IPv6--> X h1 
+   h1 --IPv6--> h2 h3
+   h2 --IPv6--> X h1
+   h3 --IPv6--> X h1
    *** Results: 33% dropped (4/6 received)
 
 We can fix them by enabling again the BGP session with the `no neighbor 2001:cafe:2:23::3 shutdown` command.
@@ -946,14 +946,14 @@ We can fix them by enabling again the BGP session with the `no neighbor 2001:caf
    Trying ::1...
    Connected to localhost.
    Escape character is '^]'.
-   
+
    Hello, this is FRRouting (version 7.1).
    Copyright 1996-2005 Kunihiro Ishiguro, et al.
 
 
    User Access Verification
 
-   Password: 
+   Password:
    as2> enable
    as2# configure terminal
    as2(config)# router bgp 2
@@ -967,7 +967,7 @@ We can fix them by enabling again the BGP session with the `no neighbor 2001:caf
    BGP table version 7
    RIB entries 5, using 800 bytes of memory
    Peers 2, using 41 KiB of memory
-   
+
    Neighbor          V         AS MsgRcvd MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd
    2001:cafe:1:12::1 4          1      15      21        0    0    0 00:09:30            1
    2001:cafe:2:23::3 4          3      28      28        0    0    0 00:00:07            1
@@ -977,14 +977,14 @@ We can fix them by enabling again the BGP session with the `no neighbor 2001:caf
    Connection closed by foreign host.
    mininet> ping6all
    *** Ping: testing reachability over IPv6
-   h1 --IPv6--> h2 h3 
-   h2 --IPv6--> h3 h1 
-   h3 --IPv6--> h2 h1 
+   h1 --IPv6--> h2 h3
+   h2 --IPv6--> h3 h1
+   h3 --IPv6--> h2 h1
    *** Results: 0% dropped (6/6 received)
 
-   
 
-   
+
+
 Exercises
 ---------
 
@@ -1001,13 +1001,13 @@ We can use IPMininet_ to prepare some networks with problems that need to be ana
         l24=self.addLink(as2, as4, delay='10ms')
         l34=self.addLink(as3, as4, delay='10ms')
         l45=self.addLink(as4, as5, delay='10ms')
-        
+
         # Add eBGP sessions
         ebgp_session(self, as2, as1, link_type=CLIENT_PROVIDER)
         ebgp_session(self, as3, as1, link_type=CLIENT_PROVIDER)
         ebgp_session(self, as5, as1, link_type=CLIENT_PROVIDER)
         ebgp_session(self, as3, as4, link_type=CLIENT_PROVIDER)
-       
+
         ebgp_session(self, as2, as3, link_type=SHARE)
         ebgp_session(self, as2, as4, link_type=SHARE)
         ebgp_session(self, as4, as5, link_type=SHARE)
@@ -1016,14 +1016,14 @@ We can use IPMininet_ to prepare some networks with problems that need to be ana
  When this network is launched, `ping6all` reports connectivity problems. Hosts `h1` and `h4` cannot exchange packets. Can you fix the problem by changing the routing policy used on only one interdomain link ? Justify your answer
 
  .. code-block:: console
-		 
+
     mininet> ping6all
     *** Ping: testing reachability over IPv6
-    h1 --IPv6--> h2 h5 X h3 
-    h2 --IPv6--> h3 h1 h4 h5 
-    h3 --IPv6--> h2 h1 h4 h5 
-    h4 --IPv6--> h2 X h5 h3 
-    h5 --IPv6--> h2 h1 h4 h3 
+    h1 --IPv6--> h2 h5 X h3
+    h2 --IPv6--> h3 h1 h4 h5
+    h3 --IPv6--> h2 h1 h4 h5
+    h4 --IPv6--> h2 X h5 h3
+    h5 --IPv6--> h2 h1 h4 h3
     *** Results: 10% dropped (18/20 received)
 
 2. Another interesting utilization IPMininet_ is to explore the impact of a link failure. We start from a small variant of the above topology.
@@ -1043,11 +1043,11 @@ We can use IPMininet_ to prepare some networks with problems that need to be ana
     ebgp_session(self, as3, as1, link_type=CLIENT_PROVIDER)
     ebgp_session(self, as5, as1, link_type=CLIENT_PROVIDER)
     ebgp_session(self, as4, as3, link_type=CLIENT_PROVIDER)
-    
+
     ebgp_session(self, as2, as3, link_type=SHARE)
     ebgp_session(self, as2, as4, link_type=SHARE)
     ebgp_session(self, as4, as5, link_type=SHARE)
-    ebgp_session(self, as2, as5, link_type=SHARE)		 
+    ebgp_session(self, as2, as5, link_type=SHARE)
 
 When this network starts, all hosts can reach all other hosts.
 
@@ -1055,11 +1055,11 @@ When this network starts, all hosts can reach all other hosts.
 
    mininet> ping6all
    *** Ping: testing reachability over IPv6
-   h1 --IPv6--> h4 h3 h2 h5 
-   h2 --IPv6--> h4 h1 h3 h5 
-   h3 --IPv6--> h4 h1 h2 h5 
-   h4 --IPv6--> h1 h3 h2 h5 
-   h5 --IPv6--> h4 h1 h3 h2 
+   h1 --IPv6--> h4 h3 h2 h5
+   h2 --IPv6--> h4 h1 h3 h5
+   h3 --IPv6--> h4 h1 h2 h5
+   h4 --IPv6--> h1 h3 h2 h5
+   h5 --IPv6--> h4 h1 h3 h2
    *** Results: 0% dropped (20/20 received)
 
 
@@ -1069,7 +1069,7 @@ a. What are the BGP messages that will be exchanged when the link between ``AS1`
 
 ..
    Failure of AS1-AS2
-   
+
    as1# show bgp sum
 
    IPv6 Unicast Summary:
@@ -1088,11 +1088,11 @@ a. What are the BGP messages that will be exchanged when the link between ``AS1`
    Connection closed by foreign host.
    mininet> ping6all
    *** Ping: testing reachability over IPv6
-   h1 --IPv6--> h4 h3 X h5 
-   h2 --IPv6--> h4 X h3 h5 
-   h3 --IPv6--> h4 h1 h2 h5 
-   h4 --IPv6--> h1 h3 h2 h5 
-   h5 --IPv6--> h4 h1 h3 h2 
+   h1 --IPv6--> h4 h3 X h5
+   h2 --IPv6--> h4 X h3 h5
+   h3 --IPv6--> h4 h1 h2 h5
+   h4 --IPv6--> h1 h3 h2 h5
+   h5 --IPv6--> h4 h1 h3 h2
    *** Results: 10% dropped (18/20 received)
 
 b. What are the BGP messages that will be exchanged when the link between ``AS1`` and ``AS3`` fails ? How does this affect the reachability of the different hosts ?
@@ -1107,7 +1107,7 @@ b. What are the BGP messages that will be exchanged when the link between ``AS1`
    BGP table version 9
    RIB entries 5, using 800 bytes of memory
    Peers 3, using 62 KiB of memory
-   
+
    Neighbor          V         AS MsgRcvd MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd
    2001:cafe:1:12::2 4          2      14      28        0    0    0 00:00:21            1
    2001:cafe:1:13::3 4          3      13      23        0    0    0 00:00:05 Idle (Admin)
@@ -1118,18 +1118,18 @@ b. What are the BGP messages that will be exchanged when the link between ``AS1`
    Connection closed by foreign host.
    mininet> ping6all
    *** Ping: testing reachability over IPv6
-   h1 --IPv6--> X X h2 h5 
-   h2 --IPv6--> h4 h1 h3 h5 
-   h3 --IPv6--> h4 X h2 X 
-   h4 --IPv6--> X h3 h2 h5 
-   h5 --IPv6--> h4 h1 X h2 
+   h1 --IPv6--> X X h2 h5
+   h2 --IPv6--> h4 h1 h3 h5
+   h3 --IPv6--> h4 X h2 X
+   h4 --IPv6--> X h3 h2 h5
+   h5 --IPv6--> h4 h1 X h2
    *** Results: 30% dropped (14/20 received)
 
 c. What are the BGP messages that will be exchanged when the link between ``AS1`` and ``AS5`` fails ? How does this affect the reachability of the different hosts ?
 
 ..
    Failure of AS1-AS5
-   
+
    as1# sh bgp sum
 
    IPv6 Unicast Summary:
@@ -1137,7 +1137,7 @@ c. What are the BGP messages that will be exchanged when the link between ``AS1`
    BGP table version 12
    RIB entries 7, using 1120 bytes of memory
    Peers 3, using 62 KiB of memory
-   
+
    Neighbor          V         AS MsgRcvd MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd
    2001:cafe:1:12::2 4          2      15      32        0    0    0 00:02:00            1
    2001:cafe:1:13::3 4          3      18      32        0    0    0 00:00:16            2
@@ -1148,20 +1148,20 @@ c. What are the BGP messages that will be exchanged when the link between ``AS1`
    Connection closed by foreign host.
    mininet> ping6all
    *** Ping: testing reachability over IPv6
-   h1 --IPv6--> h4 h3 h2 X 
-   h2 --IPv6--> h4 h1 h3 h5 
-   h3 --IPv6--> h4 h1 h2 X 
-   h4 --IPv6--> h1 h3 h2 h5 
-   h5 --IPv6--> h4 X X h2 
+   h1 --IPv6--> h4 h3 h2 X
+   h2 --IPv6--> h4 h1 h3 h5
+   h3 --IPv6--> h4 h1 h2 X
+   h4 --IPv6--> h1 h3 h2 h5
+   h5 --IPv6--> h4 X X h2
    *** Results: 20% dropped (16/20 received)
 
 d. What are the BGP messages that will be exchanged when the link between ``AS3`` and ``AS4`` fails ? How does this affect the reachability of the different hosts ?
 
-.. 
+..
    Failure AS3-AS4
 
-   as3# sh bgp summary 
-   
+   as3# sh bgp summary
+
    IPv6 Unicast Summary:
    BGP router identifier 192.168.17.1, local AS number 3 vrf-id 0
    BGP table version 12
@@ -1178,11 +1178,11 @@ d. What are the BGP messages that will be exchanged when the link between ``AS3`
    Connection closed by foreign host.
    mininet> ping6all
    *** Ping: testing reachability over IPv6
-   h1 --IPv6--> X h3 h2 h5 
-   h2 --IPv6--> h4 h1 h3 h5 
-   h3 --IPv6--> X h1 h2 h5 
-   h4 --IPv6--> X X h2 h5 
-   h5 --IPv6--> h4 h1 h3 h2 
+   h1 --IPv6--> X h3 h2 h5
+   h2 --IPv6--> h4 h1 h3 h5
+   h3 --IPv6--> X h1 h2 h5
+   h4 --IPv6--> X X h2 h5
+   h5 --IPv6--> h4 h1 h3 h2
    *** Results: 20% dropped (16/20 received)
 
 
@@ -1190,7 +1190,7 @@ d. What are the BGP messages that will be exchanged when the link between ``AS3`
 3. Let us now consider another example. The network contains nine ASes with one host per AS. Assuming that ``AS9`` announces prefix `p9` and that ``AS2`` announces prefix `p2`.
 
      .. tikz:: A simple Internet
-        :libs: shapes, positioning, matrix, arrows, shapes 
+        :libs: shapes, positioning, matrix, arrows, shapes
 
         \tikzstyle{arrow} = [thick,->,>=stealth]
         \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
@@ -1198,7 +1198,7 @@ d. What are the BGP messages that will be exchanged when the link between ``AS3`
         \tikzset{ftable/.style={rectangle, dashed, draw} }
 	\tikzset{as/.style={cloud, draw,cloud puffs=10,cloud puff arc=120, aspect=2, minimum height=1em, minimum width=1em} }
 
-	
+
         \node[as] (AS2) {AS2};
         \node[as, right=of AS2] (AS3) {AS3};
 	\node[as, above=of AS3] (AS4) {AS4};
@@ -1216,9 +1216,9 @@ d. What are the BGP messages that will be exchanged when the link between ``AS3`
 	(AS4) edge node [pos=0.5, sloped, above, color=red] {\texttt{\$}}(AS5)
 	(AS5) edge node [pos=0.5, sloped, above, color=red] {\texttt{\$}}(AS6)
 	(AS5) edge node [pos=0.5, sloped, above, color=red] {\texttt{\$}}(AS7)
-	(AS9) edge node [pos=0.5, sloped, above, color=red] {\texttt{\$}}(AS7) 
-	(AS9) edge  node [pos=0.5, sloped, below, color=red] {\texttt{\$}} (AS1);
-	(AS1) edge  node [pos=0.5, sloped, below, color=red] {\texttt{\$}} (AS8);	
+	(AS9) edge node [pos=0.5, sloped, above, color=red] {\texttt{\$}}(AS7)
+	(AS9) edge  node [pos=0.5, sloped, below, color=red] {\texttt{\$}} (AS1)
+	(AS1) edge  node [pos=0.5, sloped, below, color=red] {\texttt{\$}} (AS8);
 	%shared cost
 	\path[draw, color=blue, line width= 1 mm]
 	(AS3) edge node [sloped, midway, above, color=blue] {\textbf{=}} (AS6)
@@ -1232,7 +1232,7 @@ d. What are the BGP messages that will be exchanged when the link between ``AS3`
 4. The network below contains nine ASes with one host per AS. Assuming that ``AS1`` announces prefix `p1` and that ``AS2`` announces prefix `p2`.
 
      .. tikz:: A simple Internet
-        :libs: shapes, positioning, matrix, arrows, shapes 
+        :libs: shapes, positioning, matrix, arrows, shapes
 
         \tikzstyle{arrow} = [thick,->,>=stealth]
         \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
@@ -1243,9 +1243,9 @@ d. What are the BGP messages that will be exchanged when the link between ``AS3`
 	\node[as] (AS2) {AS2};
 	\node[as, right=of AS2] (AS3) {AS3};
 	\node[as, above=of AS3] (AS4) {AS4};
-	\node[as, right=of AS3] (AS6) {AS6}; 
+	\node[as, right=of AS3] (AS6) {AS6};
 	\node[as, above=of AS6] (AS5) {AS5};
-	\node[as, right=of AS6] (AS8) {AS8}; 
+	\node[as, right=of AS6] (AS8) {AS8};
 	\node[as, right=of AS5] (AS7) {AS7};
 	\node[as, right=of AS8] (AS1) {AS1};
 	% customer provider
@@ -1261,7 +1261,7 @@ d. What are the BGP messages that will be exchanged when the link between ``AS3`
 	(AS6) edge node [sloped, midway, above] {\textbf{=}} (AS8)
 	(AS8) edge node [sloped, midway, above] {\textbf{=}}  (AS7);
 
-     
+
    a. What is the Loc-RIB of ``AS6`` for prefix `p1` ? Indicate which is the best route towards this prefix.
 
    b. What is the Loc-RIB of ``AS8`` for prefix `p2` ? Indicate which is the best route towards this prefix.
@@ -1273,14 +1273,14 @@ d. What are the BGP messages that will be exchanged when the link between ``AS3`
 
 
      .. tikz:: A simple Internet
-        :libs: shapes, positioning, matrix, arrows, shapes 
+        :libs: shapes, positioning, matrix, arrows, shapes
 
         \tikzstyle{arrow} = [thick,->,>=stealth]
         \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
         \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
         \tikzset{ftable/.style={rectangle, dashed, draw} }
 	\tikzset{as/.style={cloud, draw,cloud puffs=10,cloud puff arc=120, aspect=2, minimum height=1em, minimum width=1em} }
-   
+
         \node[as] (AS1) {AS1};
         \node[as, right=of AS1] (AS2) {AS2};
 	\node[as, above=of AS2] (AS3) {AS3};
@@ -1298,7 +1298,7 @@ d. What are the BGP messages that will be exchanged when the link between ``AS3`
 	(AS3) edge node [pos=0.5, sloped, above, color=red] {\texttt{\$}}(AS4)
 	(AS2) edge node [pos=0.5, sloped, above, color=red] {\texttt{\$}}(AS5)
 	(AS4) edge node [pos=0.5, sloped, above, color=red] {\texttt{\$}}(AS7)
-	(AS7) edge node [pos=0.5, sloped, above, color=red] {\texttt{\$}}(AS6) 
+	(AS7) edge node [pos=0.5, sloped, above, color=red] {\texttt{\$}}(AS6)
 	(AS7) edge  node [pos=0.5, sloped, below, color=red] {\texttt{\$}} (AS8);
 	%shared cost
 	\path[draw, color=blue, line width= 1 mm]
@@ -1309,21 +1309,21 @@ d. What are the BGP messages that will be exchanged when the link between ``AS3`
 
 
 
-a. The network does not provide a full connectivity. The hosts attached to ``AS5`` cannot ping the hosts attached to ``AS8``.    
-   
+a. The network does not provide a full connectivity. The hosts attached to ``AS5`` cannot ping the hosts attached to ``AS8``.
+
   ..
      mininet> ping6all
      *** Ping: testing reachability over IPv6
-     h1 --IPv6--> X h3 h5 h8 h4 h6 h2 
-     h2 --IPv6--> h7 h3 h5 h1 h8 h4 h6 
-     h3 --IPv6--> h7 h5 h1 h8 h4 h6 h2 
-     h4 --IPv6--> h7 h3 h5 h1 h8 h6 h2 
-     h5 --IPv6--> h7 h3 h1 X h4 h6 h2 
-     h6 --IPv6--> h7 h3 h5 h1 h8 h4 h2 
-     h7 --IPv6--> h3 h5 h1 h8 h4 h6 h2 
-     h8 --IPv6--> h7 h3 X h1 h4 h6 h2 
+     h1 --IPv6--> X h3 h5 h8 h4 h6 h2
+     h2 --IPv6--> h7 h3 h5 h1 h8 h4 h6
+     h3 --IPv6--> h7 h5 h1 h8 h4 h6 h2
+     h4 --IPv6--> h7 h3 h5 h1 h8 h6 h2
+     h5 --IPv6--> h7 h3 h1 X h4 h6 h2
+     h6 --IPv6--> h7 h3 h5 h1 h8 h4 h2
+     h7 --IPv6--> h3 h5 h1 h8 h4 h6 h2
+     h8 --IPv6--> h7 h3 X h1 h4 h6 h2
      *** Results: 5% dropped (53/56 received)
-     
+
 b. What is the path that packets follow from a host attached to ``AS1`` to a host attached to ``AS8`` ?
 
    ..
@@ -1335,7 +1335,7 @@ b. What is the path that packets follow from a host attached to ``AS1`` to a hos
       4  2001:cafe:4:47::7  0.064 ms  0.053 ms  0.053 ms
       5  2001:cafe:7:78::8  0.207 ms  0.089 ms  0.083 ms
       6  2001:cafe:8:1::18  0.092 ms  0.086 ms  0.082 ms
-      
+
 c. What is the path that packets follow from a host attached to ``AS8`` to a host attached to ``AS1`` ?
 
       ..
@@ -1362,7 +1362,7 @@ d. What is the path that packets follow from a host attached to ``AS8`` to a hos
 	7  2001:cafe:2:1::12  0.082 ms  0.075 ms  0.072 ms
 
 e. What is the path that packets follow from a host attached to ``AS2`` to a host attached to ``AS7`` ?
-	
+
     ..
       mininet> h2 traceroute6 -n 2001:cafe:7:1::17
       traceroute to 2001:cafe:7:1::17 (2001:cafe:7:1::17) from 2001:cafe:2:1::12, 30 hops max, 24 byte packets
@@ -1382,7 +1382,7 @@ f. We now disable the interdomain link between ``AS3`` and ``AS4``. What are the
 	 BGP table version 13
 	 RIB entries 5, using 800 bytes of memory
 	 Peers 3, using 62 KiB of memory
-	 
+
 	 Neighbor          V         AS MsgRcvd MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd
 	 2001:cafe:1:13::1 4          1      23      29        0    0    0 00:15:35            2
 	 2001:cafe:2:23::2 4          2      21      22        0    0    0 00:15:35            1
@@ -1392,17 +1392,17 @@ f. We now disable the interdomain link between ``AS3`` and ``AS4``. What are the
 
 	 mininet> ping6all
 	 *** Ping: testing reachability over IPv6
-	 h1 --IPv6--> X h3 X X X X h2 
-	 h2 --IPv6--> h7 h3 h5 h1 X h4 h6 
-	 h3 --IPv6--> X X h1 X X X h2 
-	 h4 --IPv6--> h7 X h5 X h8 h6 h2 
-	 h5 --IPv6--> h7 X X X h4 h6 h2 
-	 h6 --IPv6--> h7 X h5 X h8 h4 h2 
-	 h7 --IPv6--> X h5 X h8 h4 h6 h2 
-	 h8 --IPv6--> h7 X X X h4 h6 X 
+	 h1 --IPv6--> X h3 X X X X h2
+	 h2 --IPv6--> h7 h3 h5 h1 X h4 h6
+	 h3 --IPv6--> X X h1 X X X h2
+	 h4 --IPv6--> h7 X h5 X h8 h6 h2
+	 h5 --IPv6--> h7 X X X h4 h6 h2
+	 h6 --IPv6--> h7 X h5 X h8 h4 h2
+	 h7 --IPv6--> X h5 X h8 h4 h6 h2
+	 h8 --IPv6--> h7 X X X h4 h6 X
 	 *** Results: 42% dropped (32/56 received)
-      
-       
-4. Exam topology
-   
-.. include:: /links.rst	       
+
+
+.. 4. Exam topology
+
+.. include:: /links.rst

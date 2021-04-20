@@ -8,7 +8,7 @@ As explained earlier, the Internet is composed of more than 45,000 different net
 
 .. index:: stub domain, transit domain
 
-Each domain contains a set of routers. From a routing point of view, these domains can be divided into two classes : the `transit` and the `stub` domains. A `stub` domain sends and receives packets whose source or destination are one of its own hosts. A `transit` domain is a domain that provides a transit service for other domains, i.e. the routers in this domain forward packets whose source and destination do not belong to the transit domain. As of this writing, about 85% of the domains in the Internet are stub domains [#fpotaroo]_. A `stub` domain that is connected to a single transit domain is called a `single-homed stub`. A `multihomed stub` is a `stub` domain connected to two or more transit providers.
+Each domain contains a set of routers. From a routing point of view, these domains can be divided into two classes : the `transit` and the `stub` domains. A `stub` domain sends and receives packets whose source or destination are one of its own hosts. A `transit` domain is a domain that provides a transit service for other domains, i.e. the routers in this domain forward packets whose source and destination do not belong to the transit domain. As of this writing, about 85% of the domains in the Internet are stub domains [#fpotaroo]_. A `stub` domain that is connected to a single transit domain is called a `single-homed stub` (e.g., `S1` in the figure below.). A `multihomed stub` is a `stub` domain connected to two or more transit providers (e.g., `S2`).
 
 .. figure:: /protocols/figures/transit-stub.png
    :align: center
@@ -16,7 +16,7 @@ Each domain contains a set of routers. From a routing point of view, these domai
 
    Transit and stub domains
 
-The stub domains can be further classified by considering whether they mainly send or receive packets. An `access-rich` stub domain is a domain that contains hosts that mainly receive packets. Typical examples include small ADSL- or cable modem-based Internet Service Providers or enterprise networks. On the other hand, a `content-rich` stub domain is a domain that mainly produces packets. Examples of `content-rich` stub domains include google_, yahoo_, microsoft_, facebook_ or content distribution networks such as akamai_ or limelight_ For the last few years, we have seen a rapid growth of these `content-rich` stub domains. Recent measurements [ATLAS2009]_ indicate that a growing fraction of all the packets exchanged on the Internet are produced in the data centers managed by these content providers.
+The stub domains can be further classified by considering whether they mainly send or receive packets. An `access-rich` stub domain is a domain that contains hosts that mainly receive packets. Typical examples include small ADSL- or cable modem-based Internet Service Providers or enterprise networks. On the other hand, a `content-rich` stub domain is a domain that mainly produces packets. Examples of `content-rich` stub domains include google_, yahoo_, microsoft_, facebook_ or content distribution networks such as akamai_ or limelight_. For the last few years, we have seen a rapid growth of these `content-rich` stub domains. Recent measurements [ATLAS2009]_ indicate that a growing fraction of all the packets exchanged on the Internet are produced in the data centers managed by these content providers.
 
 Domains need to be interconnected to allow a host inside a domain to exchange IP packets with hosts located in other domains. From a physical perspective, domains can be interconnected in two different ways. The first solution is to directly connect a router belonging to the first domain with a router inside the second domain. Such links between domains are called private interdomain links or `private peering links`. In practice, for redundancy or performance reasons, distinct physical links are usually established between different routers in the two domains that are interconnected.
 
@@ -30,7 +30,7 @@ Domains need to be interconnected to allow a host inside a domain to exchange IP
 
    eXchange
 
-Such `private peering links` are useful when, for example, an enterprise or university network needs to be connected to its Internet Service Provider. However, some domains are connected to hundreds of other domains [#fasrank]_ . For some of these domains, using only private peering links would be too costly. A better solution to allow many domains to interconnect cheaply are the `Internet eXchange Points` (:term:`IXP`). An :term:`IXP` is usually some space in a data center that hosts routers belonging to different domains. A domain willing to exchange packets with other domains present at the :term:`IXP` installs one of its routers on the :term:`IXP` and connects it to other routers inside its own network. The IXP contains a Local Area Network to which all the participating routers are connected. When two domains that are present at the IXP wish [#fwish]_ to exchange packets, they simply use the Local Area Network. IXPs are very popular in Europe and many Internet Service Providers and Content providers are present in these IXPs.
+Such `private peering links` are useful when, for example, an enterprise or university network needs to be connected to its Internet Service Provider. However, some domains are connected to hundreds of other domains [#fasrank]_ . For some of these domains, using only private peering links would be too costly. A better solution to allow many domains to cheaply interconnect are the `Internet eXchange Points` (:term:`IXP`). An :term:`IXP` is usually some space in a data center that hosts routers belonging to different domains. A domain willing to exchange packets with other domains present at the :term:`IXP` installs one of its routers on the :term:`IXP` and connects it to other routers inside its own network. The IXP contains a Local Area Network to which all the participating routers are connected. When two domains that are present at the IXP wish [#fwish]_ to exchange packets, they simply use the Local Area Network. IXPs are very popular in Europe and many Internet Service Providers and Content providers are present in these IXPs.
 
 .. figure:: /protocols/figures/ixp.png
    :align: center
@@ -121,7 +121,7 @@ In practice, to establish a BGP session between routers `R1` and `R2` in the fig
 
 The BGP protocol :rfc:`4271` defines several types of messages that can be exchanged over a BGP session :
 
- - `OPEN` : this message is sent as soon as the TCP connection between the two routers has been established. It initializes the BGP session and allows the negotiation of some options. Details about this message may be found in :rfc:`4271`
+ - `OPEN` : this message is sent as soon as the TCP connection between the two routers has been established. It initializes the BGP session and allows the negotiation of some options. Details about this message may be found in :rfc:`4271`.
  - `NOTIFICATION` : this message is used to terminate a BGP session, usually because an error has been detected by the BGP peer. A router that sends or receives a `NOTIFICATION` message immediately shutdowns the corresponding BGP session.
  - `UPDATE`: this message is used to advertise new or modified routes or to withdraw previously advertised routes.
  - `KEEPALIVE` : this message is used to ensure a regular exchange of messages on the BGP session, even when no route changes. When a BGP router has not sent an `UPDATE` message during the last 30 seconds, it shall send a `KEEPALIVE` message to confirm to the other peer that it is still up. If a peer does not receive any BGP message during a period of 90 seconds [#fdefaultkeepalive]_, the BGP session is considered to be down and all the routes learned over this session are withdrawn.
@@ -167,78 +167,84 @@ When a BGP session starts, the routers first exchange `OPEN` messages to negotia
 
 .. code-block:: python
 
-  def initialize_BGP_session( RemoteAS, RemoteIP):
-    # Initialize and start BGP session
-    # Send BGP OPEN Message to RemoteIP on port 179
-    # Follow BGP state machine
-    # advertise local routes and routes learned from peers*/
-    for d in BGPLocRIB :
-    	B=build_BGP_Update(d)
-	S=Apply_Export_Filter(RemoteAS,B)
-	if (S != None) :
-	   send_Update(S,RemoteAS,RemoteIP)
-    # entire RIB has been sent
-    # new Updates will be sent to reflect local or distant
-    # changes in routers
+    def initialize_BGP_session(remoteAS, remoteIP):
+        # Initialize and start BGP session
+        # Send BGP OPEN Message to RemoteIP on port 179
+        # Follow BGP state machine
+        # Advertise local routes and routes learned from peers
+        for d in BGPLocRIB:
+            msg = build_BGP_update(d)
+            msg_to_send = apply_export_filter(remoteAS, msg)
+            if msg_to_send is not None:
+                send_update(msg_to_send, remoteAS, remoteIP)
+        # Entire RIB has now been sent. New updates will be sent
+        # to reflect local or distant changes in routers.
 
 
-In the above pseudo-code, the `build\_BGP\_UPDATE(d)` procedure extracts from the `BGP Loc-RIB` the best path towards destination `d` (i.e. the route installed in the FIB) and prepares the corresponding BGP `UPDATE` message. This message is then passed to the `export filter` that returns NULL if the route cannot be advertised to the peer or the (possibly modified) BGP `UPDATE` message to be advertised. BGP routers allow network administrators to specify very complex `export filters`, see e.g. [WMS2004]_. A simple `export filter` that implements the equivalent of `split horizon` is shown below.
+In the above pseudo-code, the `build\_BGP\_update(d)` procedure extracts from the `BGP Loc-RIB` the best path towards destination `d` (i.e. the route installed in the FIB) and prepares the corresponding BGP `UPDATE` message. This message is then passed to the `export filter` that returns `None` if the route cannot be advertised to the peer or the (possibly modified) BGP `UPDATE` message to be advertised. BGP routers allow network administrators to specify very complex `export filters`, see e.g. [WMS2004]_. A simple `export filter` that implements the equivalent of `split horizon` is shown below.
 
 .. code-block:: python
 
- def apply_export_filter(RemoteAS, BGPMsg) :
-   # check if RemoteAS already received route
-   if RemoteAS is BGPMsg.ASPath :
-      BGPMsg=None
-      # Many additional export policies can be configured :
-      # Accept or refuse the BGPMsg
-      # Modify selected attributes inside BGPMsg
-   return BGPMsg
+    def apply_export_filter(remoteAS, bgpMsg):
+        # Check if RemoteAS already received route
+        if remoteAS in bgpMsg.ASPath:
+            bgpMsg = None
+            # Many additional export policies can be configured:
+            # accept or refuse the bgpMsg, modify selected attributes
+            # inside bgpMsg, ...
+        return bgpMsg
 
 At this point, the remote router has received all the exportable BGP routes. After this initial exchange, the router only sends `BGP UPDATE` messages when there is a change (addition of a route, removal of a route or change in the attributes of a route) in one of these exportable routes. Such a change can happen when the router receives a BGP message. The pseudo-code below summarizes the processing of these BGP messages.
 
 .. code-block:: python
 
- def Recvd_BGPMsg(Msg, RemoteAS) :
-     B=apply_import_filter(Msg,RemoteAS)
-     if (B== None): # Msg not acceptable
-     	return
-     if IsUPDATE(Msg):
-     	Old_Route=BestRoute(Msg.prefix)
-   	Insert_in_RIB(Msg)
-   	Run_Decision_Process(RIB)
-	if (BestRoute(Msg.prefix) != Old_Route) :
-	   # best route changed
-	   B=build_BGP_Message(Msg.prefix);
-    	   S=apply_export_filter(RemoteAS,B);
-    	   if (S!=None) : # announce best route
-	     send_UPDATE(S,RemoteAS,RemoteIP);
-    	   else if (Old_Route != None) :
-	     send_WITHDRAW(Msg.prefix,RemoteAS, RemoteIP)
-      else : # Msg is WITHDRAW
-      	  Old_Route=BestRoute(Msg.prefix)
-   	  Remove_from_RIB(Msg)
-	  Run_Decision_Process(RIB)
-	  if (Best_Route(Msg.prefix) !=Old_Route):
-	    # best route changed
-	    B=build_BGP_Message(Msg.prefix)
-	    S=apply_export_filter(RemoteAS,B)
-	    if (S != None) : # still one best route towards Msg.prefix
-	       send_UPDATE(S,RemoteAS, RemoteIP);
-     	    else if(Old_Route != None) : # No best route anymore
-	        send_WITHDRAW(Msg.prefix,RemoteAS,RemoteIP);
+    def bgp_message_received(msg, remoteAS):
+        filtered_msg = apply_import_filter(msg, remoteAS)
+        if filtered_msg is None: # msg is not acceptable
+            return
+
+        if is_update(msg):
+            old_route = best_route(msg.prefix)
+            insert_in_RIB(msg)
+            run_decision_process(RIB)
+            if best_route(msg.prefix) != old_route:
+                # Best route changed
+                out_msg = build_BGP_message(msg.prefix)
+                to_send = apply_export_filter(remoteAS, out_msg)
+                if to_send is not None:
+                    # Announce best route
+                    send_update(to_send, remoteAS, remoteIP)
+                elif old_route is not None:
+                    # Withdraw the route
+                    send_withdraw(msg.prefix, remoteAS, remoteIP)
+
+        else:  # msg is WITHDRAW
+            old_route = best_route(msg.prefix)
+            remove_from_rib(msg)
+            run_decision_process(RIB)
+            if best_route(msg.prefix) != old_route:
+                # Best route changed
+                out_msg = build_BGP_message(msg.prefix)
+                to_send = apply_export_filter(remoteAS, out_msg)
+                if to_send is not None:
+                    # There is still one best route
+                    # towards msg.prefix
+                    send_update(to_send, remoteAS, remoteIP)
+                elif old_route is not None:
+                    # No best route anymore
+                    send_withdraw(msg.prefix, remoteAS, remoteIP)
 
 When a BGP message is received, the router first applies the peer's `import filter` to verify whether the message is acceptable or not. If the message is not acceptable, the processing stops. The pseudo-code below shows a simple `import filter`. This `import filter` accepts all routes, except those that already contain the local AS in their AS-Path. If such a route was used, it would cause a routing loop. Another example of an `import filter` would be a filter used by an Internet Service Provider on a session with a customer to only accept routes towards the IP prefixes assigned to the customer by the provider. On real routers, `import filters` can be much more complex and some `import filters` modify the attributes of the received BGP `UPDATE` [WMS2004]_ .
 
 .. code-block:: python
 
- def apply_import_filter(RemoteAS, BGPMsg):
-     if MysAS in BGPMsg.ASPath :
-     	BGPMsg=None
-	# Many additional import policies can be configured :
-  	# Accept or refuse the BGPMsg
-  	# Modify selected attributes inside BGPMsg
-     return BGPMsg
+    def apply_import_filter(remoteAS, bgpMsg):
+        if my_AS in bgpMsg.ASPath:
+            bgpMsg = None
+            # Many additional import policies can be configured:
+            # accept or refuse the bgpMsg, modify selected
+            # attributes inside bgpMsg,...
+        return bgpMsg
 
 
 .. spelling::
@@ -462,14 +468,16 @@ Due to this organization of the Internet and due to the BGP decision process, mo
 
 .. rubric:: Footnotes
 
-.. [#fasnum] An analysis of the evolution of the number of domains on the global Internet during the last ten years may be found in http://www.potaroo.net/tools/asn32/
+.. [#fasnum] An analysis of the evolution of the number of domains on the global Internet during the last ten years may be found in http://www.potaroo.net/tools/asn32/.
 
-.. [#fasrank] See http://as-rank.caida.org/ for an  analysis of the interconnections between domains based on measurements collected in the global Internet
+.. [#fpotaroo] Several web sites collect and analyze data about the evolution of BGP in the global Internet. http://bgp.potaroo.net provides lots of statistics and analyzes that are updated daily.
+
+.. [#fasrank] See http://as-rank.caida.org/ for an  analysis of the interconnections between domains based on measurements collected in the global Internet.
 
 
-.. [#fwish] Two routers that are attached to the same IXP only exchange packets when the owners of their domains have an economical incentive to exchange packets on this IXP. Usually, a router on an IXP is only able to exchange packets with a small fraction of the routers that are present on the same IXP.
+.. [#fwish] Two routers that are attached to the same IXP exchange packets only when the owners of their domains have an economical incentive to exchange packets on this IXP. Usually, a router on an IXP is only able to exchange packets with a small fraction of the routers that are present on the same IXP.
 
-.. [#fripedb] See ftp://ftp.ripe.net/ripe/dbase for the RIPE database that contains the import and export policies of many European ISPs
+.. [#fripedb] See ftp://ftp.ripe.net/ripe/dbase for the RIPE database that contains the import and export policies of many European ISPs.
 
 .. [#fasdomain] In this text, we consider Autonomous System and domain as synonyms. In practice, a domain may be  divided into several Autonomous Systems, but we ignore this detail.
 
@@ -479,13 +487,9 @@ Due to this organization of the Internet and due to the BGP decision process, mo
 
 .. [#fflap] A link is said to be flapping if it switches several times between an operational state and a disabled state within a short period of time. A router attached to such a link would need to frequently send routing messages.
 
-
 .. [#fgranularity] Researchers such as [MUF+2007]_ have shown that modeling the Internet topology at the AS-level requires more than the `shared-cost` and `customer->provider` peering relationships. However, there is no publicly available model that goes beyond these classical peering relationships.
 
-.. [#fbgpdata] BGP data is often collected by establishing BGP sessions between Unix hosts running a BGP daemon and BGP routers in different ASes. The Unix hosts stores all BGP messages received and regular dumps of its BGP routing table. See http://www.routeviews.org, http://www.ripe.net/ris, http://bgp.potaroo.net or http://irl.cs.ucla.edu/topology/
-
-
-.. [#fpotaroo] Several web sites collect and analyze data about the evolution of BGP in the global Internet. http://bgp.potaroo.net provides lots of statistics and analyzes that are updated daily.
+.. [#fbgpdata] BGP data is often collected by establishing BGP sessions between Unix hosts running a BGP daemon and BGP routers in different ASes. The Unix hosts stores all BGP messages received and regular dumps of its BGP routing table. See http://www.routeviews.org, http://www.ripe.net/ris, http://bgp.potaroo.net or http://irl.cs.ucla.edu/topology/.
 
 
 .. include:: /links.rst
