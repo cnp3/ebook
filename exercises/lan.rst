@@ -10,8 +10,10 @@ Local Area Networks: The Spanning Tree Protocol and Virtual LANs
 
 .. inginious:: stp-ports-state
 
+.. inginious:: stp-ports-state-qcm
+
 .. inginious:: q-stp-1
-	       
+
 Exercises
 ---------
 
@@ -20,7 +22,7 @@ Exercises
   .. figure:: /exercises/figures/ex-stp-switches.png
      :align: center
      :scale: 100
-    
+
      Fig. 1. A small network composed of Ethernet switches
 
 2. Consider the switched network shown in Fig. 1. In this network, assume that the LAN between switches S3 and S12 fails. How should the switches update their port/address tables after the link failure ?
@@ -41,15 +43,15 @@ Exercises
        \node[switch, right of=S3] (S7) {S10};
        \node[switch, above of=S3] (S4) {S2};
        \node[switch, below of=S3] (S9) {S4};
- 
+
        \path[draw,thick]
-       (S3) edge (S6) 
-       (S3) edge (S7) 
-       (S6) edge (S4) 
+       (S3) edge (S6)
+       (S3) edge (S7)
+       (S6) edge (S4)
        (S4) edge (S7)
        (S3) edge (S9)
        (S9) edge (S7)
-       (S3) edge (S7); 
+       (S3) edge (S7);
 
 4. Many enterprise networks are organized with a set of backbone devices interconnected by using a full mesh of links as shown in Fig.2. In this network, what are the benefits and drawbacks of using Ethernet switches and IP routers running OSPF ?
 
@@ -71,7 +73,7 @@ Exercises
 
 	versa
 
-     
+
 6. In the network represented in Fig. 4, can the host `H0` communicate with `H1` and vice-versa? Explain. Add whatever you need in the network to allow them to communicate.
 
   .. figure:: /exercises/figures/ex-stp-routing_across_VLANs.png
@@ -99,9 +101,9 @@ Exercises
     Simple network with redundant links
 
     a. Show the messages used by the routers to discover their neighbors and establish adjacencies.
- 
+
     b. Show the messages that propagate the adjacencies of A during the flooding phase.
- 
+
     c. For each router compute its routing table once the flooding is over.
 
     d. Consider that link `B-C` fails and that router `B` is the first to detect the failure. Router `B` will flood its updated link state packet through the entire network and all routers will recompute their forwarding table. Compute the successive updates to the routers RIB, assuming that router `C` receives the updated link-state packet from router B before detecting the failure himself.
@@ -124,19 +126,18 @@ IPMininet_ can also be used to configure the Spanning Tree protocol on Linux hos
     \node[switch, right of=S9] (S7) {S7};
     \node[switch, above of=S9] (S4) {S4};
     \node[switch, below of=S9] (S3) {S3};
- 
+
     \path[draw,thick]
-    (S3) edge (S6) 
-    (S3) edge (S7) 
-    (S6) edge (S4) 
+    (S3) edge (S6)
+    (S3) edge (S7)
+    (S6) edge (S4)
     (S4) edge (S7)
     (S3) edge (S9)
     (S9) edge (S7)
     (S3) edge (S7);
 
 
-This network can be launched with the IPMininet_ script shown below. The entire
- script is available from :download:`/exercises/ipmininet_scripts/stp.py`.
+This network can be launched with the IPMininet_ script shown below. The entire script is available from :download:`/exercises/ipmininet_scripts/stp.py`.
 
 .. code-block:: python
 
@@ -149,44 +150,44 @@ This network can be launched with the IPMininet_ script shown below. The entire
 
    class MyTopology(IPTopo):
 
-    def build(self, *args, **kwargs):
+       def build(self, *args, **kwargs):
 
-        # Switches with manually set STP priority
-        s3 = self.addSwitch("s3", prio=3, lo_addresses=["2001:1::4/64"])
-        s4 = self.addSwitch("s4", prio=4, lo_addresses=["2001:1::4/64"])
-        s6 = self.addSwitch("s6", prio=6, lo_addresses=["2001:1::6/64"])
-        s7 = self.addSwitch("s7", prio=7, lo_addresses=["2001:1::7/64"])
-        s9 = self.addSwitch("s9", prio=9, lo_addresses=["2001:1::9/64"])
+           # Switches with manually set STP priority
+           s3 = self.addSwitch("s3", prio=3, lo_addresses=["2001:1::4/64"])
+           s4 = self.addSwitch("s4", prio=4, lo_addresses=["2001:1::4/64"])
+           s6 = self.addSwitch("s6", prio=6, lo_addresses=["2001:1::6/64"])
+           s7 = self.addSwitch("s7", prio=7, lo_addresses=["2001:1::7/64"])
+           s9 = self.addSwitch("s9", prio=9, lo_addresses=["2001:1::9/64"])
 
-        # Hub
-        #hub1 = self.addHub("hub1")
+           # Hub
+           # hub1 = self.addHub("hub1")
 
-        # Links
-        self.addLink(s3, s9, stp_cost=1)  # Cost changed for both interfaces
-        l37=self.addLink(s3, s7)  
-        l37[s3].addParams(stp_cost=1) # cost changed for s3->s7
-        l37[s7].addParams(stp_cost=1) # cost changed for s7->s3
-        self.addLink(s9, s7) # default cost of 1
-        self.addLink(s6, s9)
-        self.addLink(s6, s4)
-        self.addLink(s7, s4)
+           # Links
+           self.addLink(s3, s9, stp_cost=1)  # Cost changed for both interfaces
+           l37 = self.addLink(s3, s7)
+           l37[s3].addParams(stp_cost=1) # cost changed for s3->s7
+           l37[s7].addParams(stp_cost=1) # cost changed for s7->s3
+           self.addLink(s9, s7) # default cost of 1
+           self.addLink(s6, s9)
+           self.addLink(s6, s4)
+           self.addLink(s7, s4)
 
-        super(MyTopology, self).build(*args, **kwargs)
+           super(MyTopology, self).build(*args, **kwargs)
 
-    def post_build(self, net):
-        for s in self.switches():
-            command="/usr/sbin/tcpdump -i any --immediate-mode -c 50 -w ./stp-"+s+"-trace.pcap stp"
-            p = net[s].popen(shlex.split(command))
-            
-        super(MyTopology, self).post_build(net)
-        
-    
-    net = IPNet(topo=MyTopology()) 
+       def post_build(self, net):
+           for s in self.switches():
+               command="/usr/sbin/tcpdump -i any --immediate-mode -c 50 -w ./stp-"+s+"-trace.pcap stp"
+               p = net[s].popen(shlex.split(command))
+
+           super(MyTopology, self).post_build(net)
+
+
+    net = IPNet(topo=MyTopology())
     try:
-	net.start()
-	IPCLI(net)
+        net.start()
+        IPCLI(net)
     finally:
- 	net.stop()
+        net.stop()
 
 
 The ``addSwitch`` method creates an Ethernet switch. It assigns a random MAC address to each switch and we can configure it with a priority that is used in the high order bits of the switch identifier. We add one IP address to each switch so that we can connect to them on mininet_. In practice, IPMininet_ configures the :manpage:`brtcl(8)` software that implements the Spanning Tree protocol on Linux. We can then create the links, configure their cost if required and launch tcpdump_ to capture the Ethernet frames that contain the messages of the Spanning Tree protocol.
@@ -196,22 +197,22 @@ The network contains five nodes and six links.
 .. code-block:: python
 
    mininet> nodes
-   available nodes are: 
+   available nodes are:
    s3 s4 s6 s7 s9
    mininet> links
-   s3-eth2<->s7-eth1 (OK OK) 
-   s3-eth1<->s9-eth1 (OK OK) 
-   s6-eth2<->s4-eth1 (OK OK) 
-   s6-eth1<->s9-eth3 (OK OK) 
-   s7-eth3<->s4-eth2 (OK OK) 
-   s9-eth2<->s7-eth2 (OK OK) 
+   s3-eth2<->s7-eth1 (OK OK)
+   s3-eth1<->s9-eth1 (OK OK)
+   s6-eth2<->s4-eth1 (OK OK)
+   s6-eth1<->s9-eth3 (OK OK)
+   s7-eth3<->s4-eth2 (OK OK)
+   s9-eth2<->s7-eth2 (OK OK)
 
 
 By using :manpage:`brtcl(8)`, we can easily observe the state of the Spanning Tree protocol on the different switches. Let us start with ``s3``, i.e. the root of the Spanning Tree.
 
 .. code-block:: console
 
-		
+
    mininet> s3 brctl showstp s3
    s3
      bridge id		0003.f63545ab5f79
@@ -223,7 +224,7 @@ By using :manpage:`brtcl(8)`, we can easily observe the state of the Spanning Tr
      ageing time		 300.00
      hello timer		   1.03			tcn timer		   0.00
      topology change timer	   0.00			gc timer		  77.90
-     flags			
+     flags
 
 
    s3-eth1 (1)
@@ -232,7 +233,7 @@ By using :manpage:`brtcl(8)`, we can easily observe the state of the Spanning Tr
      designated bridge	0003.f63545ab5f79	message age timer	   0.00
      designated port	8001			forward delay timer	   0.00
      designated cost	   0			hold timer		   0.02
-     flags			
+     flags
 
    s3-eth2 (2)
      port id		8002			state		     forwarding
@@ -240,7 +241,7 @@ By using :manpage:`brtcl(8)`, we can easily observe the state of the Spanning Tr
      designated bridge	0003.f63545ab5f79	message age timer	   0.00
      designated port	8002			forward delay timer	   0.00
      designated cost	   0			hold timer		   0.02
-     flags			
+     flags
 
 The first part of the output of the :manpage:`brctl(8)` command shows the state of the Spanning Tree software on the switch. The identifier of this switch is ``0003.f63545ab5f79`` and the root switch is itself. There is no root port on this switch since it is the root. The path cost is the cost of the path to reach the root switch, i.e. 0 on the root. Then the switch reports the different timers.
 
@@ -261,7 +262,7 @@ The state of switch ``s9`` is different. The output of :manpage:`brctl(8)` indic
      ageing time		 300.00
      hello timer		   0.00			tcn timer		   0.00
      topology change timer	   0.00			gc timer		 167.22
-     flags			
+     flags
 
 
    s9-eth1 (1)
@@ -270,7 +271,7 @@ The state of switch ``s9`` is different. The output of :manpage:`brctl(8)` indic
      designated bridge	0003.f63545ab5f79	message age timer	  20.00
      designated port	8001			forward delay timer	   0.00
      designated cost	   0			hold timer		   0.00
-     flags			
+     flags
 
    s9-eth2 (2)
      port id		8002			state		       blocking
@@ -278,7 +279,7 @@ The state of switch ``s9`` is different. The output of :manpage:`brctl(8)` indic
      designated bridge	0007.2a6f5ef34984	message age timer	  19.98
      designated port	8002			forward delay timer	   0.00
      designated cost	   1			hold timer		   0.00
-     flags			
+     flags
 
    s9-eth3 (3)
      port id		8003			state		     forwarding
@@ -286,7 +287,7 @@ The state of switch ``s9`` is different. The output of :manpage:`brctl(8)` indic
      designated bridge	0009.7ecc45e18e5b	message age timer	   0.00
      designated port	8003			forward delay timer	   0.00
      designated cost	   1			hold timer		   0.97
-     flags			
+     flags
 
 
 :manpage:`brctl(8)` also maintains a MAC address table that contains the Ethernet addresses that have been learned on each switch port.
@@ -310,7 +311,7 @@ Thanks to the traces collected by tcpdump_, we can easily analyze the messages e
 
 .. figure:: /exercises/figures/stp-packet1.png
 
-	    
- 
+
+
 
 .. include:: /links.rst

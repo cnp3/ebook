@@ -4,7 +4,7 @@
 802.11 wireless networks
 ========================
 
-The radio spectrum is a limited resource that must be shared by everyone. During most of the twentieth century, governments and international organizations have regulated most of the radio spectrum. This regulation controls the utilization of the radio spectrum, in order to prevent interference among different users. A company that wants to use a frequency range in a given region must apply for a license from the regulator. Most regulators charge a fee for the utilization of the radio spectrum and some governments have encouraged competition among companies bidding for the same frequency to increase the license fees. 
+The radio spectrum is a limited resource that must be shared by everyone. During most of the twentieth century, governments and international organizations have regulated most of the radio spectrum. This regulation controls the utilization of the radio spectrum, in order to prevent interference among different users. A company that wants to use a frequency range in a given region must apply for a license from the regulator. Most regulators charge a fee for the utilization of the radio spectrum and some governments have encouraged competition among companies bidding for the same frequency to increase the license fees.
 
 In the 1970s, after the first experiments with ALOHANet, interest in wireless networks grew. Many experiments were done on and outside the ARPANet. One of these experiments was the `first mobile phone <http://news.bbc.co.uk/2/hi/programmes/click_online/8639590.stm>`_ , which was developed and tested in 1973. This experimental mobile phone was the starting point for the first generation analog mobile phones. Given the growing demand for mobile phones, it was clear that the analog mobile phone technology was not sufficient to support a large number of users.  To support more users and new services, researchers in several countries worked on the development of digital mobile telephones. In 1987, several European countries decided to develop the standards for a common cellular telephone system across Europe : the `Global System for Mobile Communications` (GSM). Since then, the standards have evolved and more than three billion users are connected to GSM networks today.
 
@@ -16,14 +16,14 @@ Today, WiFi is a very popular wireless networking technology. There are more tha
 
 
 ========        =========       ==========      ===========     ==============
-Standard	Frequency	Typical		Max		Range (m)
-				throughput	bandwidth	indoor/outdoor
+Standard        Frequency       Typical         Max             Range (m)
+                                throughput      bandwidth       indoor/outdoor
 ========        =========       ==========      ===========     ==============
-802.11		2.4 GHz		0.9 Mbps	2 Mbps		20/100
-802.11a		5 GHz		23 Mbps		54 Mbps		35/120
-802.11b		2.4 GHz		4.3 Mbps	11 Mbps		38/140
-802.11g		2.4 GHz		19 Mbps		54 Mbps		38/140
-802.11n		2.4/5 GHz	74 Mbps		150 Mbps	70/250
+802.11          2.4 GHz         0.9 Mbps        2 Mbps          20/100
+802.11a         5 GHz           23 Mbps         54 Mbps         35/120
+802.11b         2.4 GHz         4.3 Mbps        11 Mbps         38/140
+802.11g         2.4 GHz         19 Mbps         54 Mbps         38/140
+802.11n         2.4/5 GHz       74 Mbps         150 Mbps        70/250
 ========        =========       ==========      ===========     ==============
 
 When developing its family of standards, the `IEEE 802.11 working group <http://www.ieee802.org/11/>`_ took a similar approach as the `IEEE 802.3 working group <http://www.ieee802.org/3/>`_ that developed various types of physical layers for Ethernet networks. 802.11 networks use the CSMA/CA Medium Access Control technique described earlier and they all assume the same architecture and use the same frame format.
@@ -38,7 +38,7 @@ The architecture of WiFi networks is slightly different from the Local Area Netw
 .. figure:: /protocols/figures/datalink-fig-018-c.png
    :align: center
    :scale: 60
-   
+
    An 802.11 independent or adhoc network
 
 
@@ -50,16 +50,43 @@ Most WiFi networks are `infrastructure` networks. An `infrastructure` network co
 .. figure:: /protocols/figures/datalink-fig-019-c.png
    :align: center
    :scale: 70
-   
+
    An 802.11 infrastructure network
 
 An 802.11 access point is a relay that operates in the datalink layer like switches. The figure below represents the layers of the reference model that are involved when a WiFi host communicates with a host attached to an Ethernet network through an access point.
 
-.. figure:: /protocols/figures/wifi-ap.png
-   :align: center
-   :scale: 60
-   
-   An 802.11 access point
+
+    .. tikz:: An 802.11 access point
+        :libs: positioning, matrix, arrows
+
+        \tikzstyle{arrow} = [thick,<->,>=stealth]
+        \tikzset{elem/.style = {rectangle, thick, draw, text centered, minimum height=2em, minimum width=8em}, }
+
+        %\node[elem, minimum width=0em] (pm) {};
+        \node[elem, minimum width=4em] (pml) {Phys.};
+        \node[elem, right=0em of pml, minimum width=4em] (pmr) {Phys.};
+        \node[elem, above=0em of pml, red, thick, minimum width=4em] (wifid) {802.11};
+        \node[elem, above=0em of pmr, red, thick, minimum width=4em] (ethd) {Eth.};
+        \draw[rectangle, thick, draw, red] (pml.north west) rectangle ([yshift=2em]pmr.north east);
+        \node[below=2em of pmr.south west, red] (sw) {\textbf{Access Point} };
+
+        \node[elem, left=6em of pml] (pl) {Physical layer};
+        \node[elem, above=0em of pl] (dl) {802.11};
+        \node[elem, above=0em of dl] (nl) {Network};
+        \draw[dashed] (nl.north west) -- ([yshift=3em]nl.north west);
+        \draw[dashed] (nl.north east) -- ([yshift=3em]nl.north east);
+        \node[below=2em of pl] (hl) {\textbf{Host A} };
+
+        \node[elem, right=6em of pmr] (pr) {Physical layer};
+        \node[elem, above=0em of pr] (dr) {Ethernet};
+        \node[elem, above=0em of dr] (nr) {Network};
+        \draw[dashed] (nr.north west) -- ([yshift=3em]nr.north west);
+        \draw[dashed] (nr.north east) -- ([yshift=3em]nr.north east);
+        \node[below=2em of pr] (hr) {\textbf{Host B} };
+
+
+        \draw[rectangle, thick, draw, fill=gray!20] ([xshift=1em, yshift=-1em]pl.south) rectangle ([xshift=-1em]pml.south);
+        \draw[rectangle, thick, draw, fill=gray!80] ([xshift=1em, yshift=-1em]pmr.south) rectangle ([xshift=-1em]pr.south);
 
 .. index:: 802.11 frame format
 
@@ -70,16 +97,16 @@ An 802.11 access point is a relay that operates in the datalink layer like switc
    :scale: 100
 
    802.11 data frame format
- 
-
-The first part of the 802.11 header is the 16 bit `Frame Control` field. This field contains flags that indicate the type of frame (data frame, RTS/CTS, acknowledgment, management frames, etc), whether the frame is sent to or from a fixed LAN, etc [IEEE802.11]_. The `Duration` is a 16 bit field that is used to reserve the transmission channel. In data frames, the `Duration` field is usually set to the time required to transmit one acknowledgment frame after a SIFS delay. Note that the `Duration` field must be set to zero in multicast and broadcast frames. As these frames are not acknowledged, there is no need to reserve the transmission channel after their transmission. The `Sequence control` field contains a 12 bits sequence number that is incremented for each data frame.
 
 
-The astute reader may have noticed that the 802.11 data frames contain three 48-bits address fields [#f4addresses]_ . This is surprising compared to other protocols in the network and datalink layers whose headers only contain a source and a destination address. The need for a third address in the 802.11 header comes from the `infrastructure` networks. In such a network, frames are usually exchanged between routers and servers attached to the LAN and WiFi devices attached to one of the access points. The role of the three address fields is specified by bit flags in the `Frame Control` field. 
+The first part of the 802.11 header is the 16 bit `Frame Control` field. This field contains flags that indicate the type of frame (data frame, RTS/CTS, acknowledgment, management frames, etc), whether the frame is sent to or from a fixed LAN, etc [IEEE802.11]_. The `Duration` is a 16 bit field that is used to reserve the transmission channel. In data frames, the `Duration` field is usually set to the time required to transmit one acknowledgment frame after a SIFS delay. Note that the `Duration` field must be set to zero in multicast and broadcast frames. As these frames are not acknowledged, there is no need to reserve the transmission channel after their transmission. The `Sequence control` field contains a 12 bits sequence number that is incremented for each data frame and a 4 bits fragment number.
+
+
+The astute reader may have noticed that the 802.11 data frames contain three 48-bits address fields [#f4addresses]_ . This is surprising compared to other protocols in the network and datalink layers whose headers only contain a source and a destination address. The need for a third address in the 802.11 header comes from the `infrastructure` networks. In such a network, frames are usually exchanged between routers and servers attached to the LAN and WiFi devices attached to one of the access points. The role of the three address fields is specified by bit flags in the `Frame Control` field.
 
 When a frame is sent from a WiFi device to a server attached to the same LAN as the access point, the first address of the frame is set to the MAC address of the access point, the second address is set to the MAC address of the source WiFi device and the third address is the address of the final destination on the LAN. When the server replies, it sends an Ethernet frame whose source address is its MAC address and the destination address is the MAC address of the WiFi device. This frame is captured by the access point that converts the Ethernet header into an 802.11 frame header. The 802.11 frame sent by the access point contains three addresses : the first address is the MAC address of the destination WiFi device, the second address is the MAC address of the access point and the third address the MAC address of the server that sent the frame.
 
-802.11 control frames are simpler than data frames. They contain a `Frame Control`, a `Duration` field and one or two addresses. The acknowledgment frames are very small. They only contain the address of the destination of the acknowledgment. There is no source address and no `Sequence Control` field in the acknowledgment frames. This is because the acknowledgment frame can easily be associated to the previous frame that it acknowledges. Indeed, each unicast data frame contains a `Duration` field that is used to reserve the transmission channel to ensure that no collision will affect the acknowledgment frame. The `Sequence Control` field is mainly used by the receiver to remove duplicate frames. Duplicate frames are detected as follows. Each data frame contains a 12 bits `Sequence Control` field and the `Frame Control` field contains the `Retry` bit flag that is set when a frame is transmitted.  Each 802.11 receiver stores the most recent sequence number received from each source address in frames whose `Retry` bit is reset. Upon reception of a frame with the `Retry` bit set, the receiver verifies its sequence number to determine whether it is a duplicated frame or not. 
+802.11 control frames are simpler than data frames. They contain a `Frame Control`, a `Duration` field and one or two addresses. The acknowledgment frames are very small. They only contain the address of the destination of the acknowledgment. There is no source address and no `Sequence Control` field in the acknowledgment frames. This is because the acknowledgment frame can easily be associated to the previous frame that it acknowledges. Indeed, each unicast data frame contains a `Duration` field that is used to reserve the transmission channel to ensure that no collision will affect the acknowledgment frame. The `Sequence Control` field is mainly used by the receiver to remove duplicate frames. Duplicate frames are detected as follows. Each data frame contains a 12 bits sequence number in the `Sequence Control` field and the `Frame Control` field contains the `Retry` bit flag that is set when a frame is transmitted.  Each 802.11 receiver stores the most recent sequence number received from each source address in frames whose `Retry` bit is reset. Upon reception of a frame with the `Retry` bit set, the receiver verifies its sequence number to determine whether it is a duplicated frame or not.
 
 .. figure:: /pkt/80211-cts.png
    :align: center
@@ -105,8 +132,8 @@ When a frame is sent from a WiFi device to a server attached to the same LAN as 
 
 .. index:: beacon frame (802.11), Service Set Identity (SSID), SSID
 
-In addition to the data and control frames that we have briefly described above, 802.11 networks use several types of management frames. These management frames are used for various purposes. We briefly describe some of these frames below. A detailed discussion may be found in [IEEE802.11]_ and [Gast2002]_. 
- 
+In addition to the data and control frames that we have briefly described above, 802.11 networks use several types of management frames. These management frames are used for various purposes. We briefly describe some of these frames below. A detailed discussion may be found in [IEEE802.11]_ and [Gast2002]_.
+
 .. spelling::
 
    broadcasted
@@ -123,8 +150,8 @@ A first type of management frames are the `beacon` frames. These frames are broa
    :scale: 100
 
    IP over IEEE 802.11
- 
-The second important utilization of the management frames is to allow a WiFi station to be associated with an access point. When a WiFi station starts, it listens to beacon frames to find the available SSIDs. To be allowed to send and receive frames via an access point, a WiFi station must be associated to this access point. If the access point does not use any security mechanism to secure the wireless transmission, the WiFi station simply sends an `Association request` frame to its preferred access point (usually the access point that it receives with the strongest radio signal). This frame contains some parameters chosen by the WiFi station and the SSID that it requests to join. The access point replies with an `Association response frame` if it accepts the WiFI station. 
+
+The second important utilization of the management frames is to allow a WiFi station to be associated with an access point. When a WiFi station starts, it listens to beacon frames to find the available SSIDs. To be allowed to send and receive frames via an access point, a WiFi station must be associated to this access point. If the access point does not use any security mechanism to secure the wireless transmission, the WiFi station simply sends an `Association request` frame to its preferred access point (usually the access point that it receives with the strongest radio signal). This frame contains some parameters chosen by the WiFi station and the SSID that it requests to join. The access point replies with an `Association response frame` if it accepts the WiFI station.
 
 .. rubric:: Footnotes
 
