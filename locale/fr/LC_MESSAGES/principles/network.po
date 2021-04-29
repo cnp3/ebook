@@ -10,7 +10,7 @@ msgstr ""
 "3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-09 12:39+0000\n"
-"PO-Revision-Date: 2021-02-25 20:36+0000\n"
+"PO-Revision-Date: 2021-04-30 23:45+0000\n"
 "Last-Translator: Philippe D <philippe.dan@student.uclouvain.be>\n"
 "Language-Team: French <http://weblate.info.ucl.ac.be/projects/cnp3-ebook/"
 "principlesnetwork/fr/>\n"
@@ -1142,7 +1142,7 @@ msgstr ""
 #: ../../principles/network.rst:414 ../../principles/network.rst:422
 #: ../../principles/network.rst:432 ../../principles/network.rst:442
 msgid "0"
-msgstr ""
+msgstr "0"
 
 #: ../../principles/network.rst:371
 msgid "South"
