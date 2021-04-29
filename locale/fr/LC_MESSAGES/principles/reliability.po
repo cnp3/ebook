@@ -10,7 +10,7 @@ msgstr ""
 "3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-09 12:39+0000\n"
-"PO-Revision-Date: 2021-02-16 20:35+0000\n"
+"PO-Revision-Date: 2021-04-30 23:45+0000\n"
 "Last-Translator: Philippe D <philippe.dan@student.uclouvain.be>\n"
 "Language-Team: French <http://weblate.info.ucl.ac.be/projects/cnp3-ebook/"
 "principlesreliability/fr/>\n"
@@ -1232,7 +1232,7 @@ msgstr ""
 #: ../../principles/reliability.rst:448 ../../principles/reliability.rst:449
 #: ../../principles/reliability.rst:450 ../../principles/reliability.rst:451
 msgid "0"
-msgstr ""
+msgstr "0"
 
 #: ../../principles/reliability.rst:432 ../../principles/reliability.rst:449
 msgid "001"
