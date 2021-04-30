@@ -4,24 +4,27 @@
 # : Principles, Protocols and Practice package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Computer networking : Principles, Protocols and "
-"Practice 3\n"
+"Project-Id-Version: Computer networking : Principles, Protocols and Practice "
+"3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-09 12:39+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2021-02-09 22:35+0000\n"
+"Last-Translator: Philippe D <philippe.dan@student.uclouvain.be>\n"
+"Language-Team: French <http://weblate.info.ucl.ac.be/projects/cnp3-ebook/"
+"exercisesintro/fr/>\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.9.1\n"
 "Generated-By: Babel 2.7.0\n"
 
 #: ../../exercises/intro.rst:6
 msgid "Exercises"
-msgstr ""
+msgstr "Exercices"
 
 #: ../../exercises/intro.rst:8
 msgid ""
@@ -31,12 +34,20 @@ msgid ""
 "problem that needs to be solved by the student. They are designed so that"
 " they can lead to discussions with teaching assistants."
 msgstr ""
+"Cette section regroupe une série de questions ouvertes destinées à permettre "
+"aux étudiants d'améliorer leur compréhension des sujets abordés dans cet e-"
+"book. Ces questions ouvertes contiennent généralement des petits problèmes à "
+"résoudre par l'étudiant. Ils sont faits pour encourager la discussion avec "
+"les assistants."
 
 #: ../../exercises/intro.rst:10
 msgid ""
 "Several `Multiple Choice Questions` and simple exercises are included in "
 "the main text and supported by the https://inginious.org platform."
 msgstr ""
+"Plusieurs `questions à choix multiples` et des exercices simples sont inclus "
+"dans le texte principal et fournis grâce à la plateforme https://"
+"inginious.org ."
 
 #: ../../exercises/intro.rst:12
 msgid ""
@@ -45,4 +56,7 @@ msgid ""
 "first to the last page is not sufficient to get a detailed knowledge of "
 "computer networking."
 msgstr ""
-
+"Une bonne compréhension des sujets couverts par cet e-book peut être acquise "
+"seulement en résolvant les exercices proposés. Lire le livre jusqu'à la "
+"dernière ligne n'est pas suffisant pour une compréhension approfondie des "
+"réseaux informatiques."
