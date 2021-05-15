@@ -10,7 +10,7 @@ msgstr ""
 "3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-09 12:39+0000\n"
-"PO-Revision-Date: 2021-03-04 19:15+0000\n"
+"PO-Revision-Date: 2021-05-15 11:49+0000\n"
 "Last-Translator: Philippe D <philippe.dan@student.uclouvain.be>\n"
 "Language-Team: French <http://weblate.info.ucl.ac.be/projects/cnp3-ebook/"
 "principlesreferencemodels/fr/>\n"
@@ -37,7 +37,7 @@ msgstr ""
 
 #: ../../principles/referencemodels.rst:12
 msgid "The reference models"
-msgstr ""
+msgstr "Les modèles de référence"
 
 #: ../../principles/referencemodels.rst:14
 msgid ""
@@ -50,20 +50,31 @@ msgid ""
 "standards. The reference model that we use in this book can be considered"
 " as a simplified version of the OSI reference model [#fiso-tcp]_."
 msgstr ""
+"Compte tenu de la complexité croissante des réseaux informatiques, les "
+"chercheurs en réseaux ont proposé, au cours des années 1970, divers modèles "
+"de référence pour faciliter la description des protocoles et des services de "
+"réseau. Parmi ceux-ci, le modèle OSI (Open Systems Interconnection) "
+"[Zimmermann80]_ a probablement été le plus influent. Il a servi de base au "
+"travail de normalisation effectué au sein de l':term:`ISO` pour développer "
+"des normes mondiales pour les réseaux informatiques. Le modèle de référence "
+"que nous utilisons dans cet ouvrage peut être considéré comme une version "
+"simplifiée du modèle de référence OSI [#fiso-tcp]_."
 
 #: ../../principles/referencemodels.rst:19
 msgid "The five layers reference model"
-msgstr ""
+msgstr "Le modèle de référence à cinq couches"
 
 #: ../../principles/referencemodels.rst:21
 msgid ""
 "Our reference model is divided into five layers, as shown in the figure "
 "below."
 msgstr ""
+"Notre modèle de référence est divisé en cinq couches, comme le montre la "
+"figure ci-dessous."
 
 #: ../../principles/referencemodels.rst:27
 msgid "The five layers of the reference model"
-msgstr ""
+msgstr "Les cinq couches du modèle de référence"
 
 #: ../../principles/referencemodels.rst:32
 #: ../../principles/referencemodels.rst:49
@@ -77,6 +88,10 @@ msgid ""
 " medium is used to transfer an electrical or optical signal between two "
 "directly connected devices."
 msgstr ""
+"En commençant par le bas, la première couche est la couche physique. Deux "
+"appareils communicants sont reliés par un support physique. Ce support "
+"physique est utilisé pour transférer un signal électrique ou optique entre "
+"deux appareils directement connectés."
 
 #: ../../principles/referencemodels.rst:36
 msgid ""
@@ -86,29 +101,40 @@ msgid ""
 " unit of information transfer in the Physical layer is the bit. The "
 "Physical layer service is unreliable because :"
 msgstr ""
+"Un point important à noter concernant la couche physique est le service "
+"qu'elle fournit. Ce service est généralement un service orienté connexion "
+"non fiable qui permet aux utilisateurs de la couche physique d'échanger des "
+"bits. L'unité de transfert d'informations dans la couche physique est le "
+"bit. Le service de la couche physique n'est pas fiable car :"
 
 #: ../../principles/referencemodels.rst:38
 msgid ""
 "the Physical layer may change, e.g. due to electromagnetic interference, "
 "the value of a bit being transmitted"
 msgstr ""
+"la couche physique peut modifier, par exemple en raison d'une interférence "
+"électromagnétique, la valeur d'un bit transmis"
 
 #: ../../principles/referencemodels.rst:39
 msgid ""
 "the Physical layer may deliver `more` bits to the receiver than the bits "
 "sent by the sender"
 msgstr ""
+"la couche physique peut délivrer `plus` de bits au récepteur que les bits "
+"envoyés par l'expéditeur"
 
 #: ../../principles/referencemodels.rst:40
 msgid ""
 "the Physical layer may deliver `fewer` bits to the receiver than the bits"
 " sent by the sender"
 msgstr ""
+"la couche physique peut fournir au récepteur moins de bits que ceux envoyés "
+"par l'expéditeur"
 
 #: ../../principles/referencemodels.rst:54
 #: ../../principles/referencemodels.rst:65
 msgid "The Datalink layer"
-msgstr ""
+msgstr "La couche Datalink"
 
 #: ../../principles/referencemodels.rst:56
 msgid ""
@@ -123,6 +149,17 @@ msgid ""
 " delivery while others do not guarantee the correct delivery of the "
 "information."
 msgstr ""
+"La couche `Datalink` s'appuie sur le service fourni par la couche physique "
+"sous-jacente. La couche `Datalink` permet à deux hôtes qui sont directement "
+"connectés par la couche physique d'échanger des informations. L'unité "
+"d'information échangée entre deux entités dans la couche `Datalink` est une "
+"trame. Une trame est une séquence finie de bits. Certaines couches `Datalink`"
+" utilisent des trames de longueur variable tandis que d'autres n'utilisent "
+"que des trames de longueur fixe. Certaines couches `Datalink` fournissent un "
+"service orienté connexion alors que d'autres fournissent un service sans "
+"connexion. Certaines couches `Datalink` fournissent une livraison fiable "
+"tandis que d'autres ne garantissent pas la livraison correcte de "
+"l'information."
 
 #: ../../principles/referencemodels.rst:58
 msgid ""
@@ -139,10 +176,22 @@ msgid ""
 "layer` entity. If there are no transmission errors, this entity will "
 "receive the frame sent earlier."
 msgstr ""
+"Un point important à noter à propos de la `Couche de Liaison` est que bien "
+"que la figure ci-dessous indique que deux entités de la `Couche de Liaison` "
+"échangent des trames directement, en réalité c'est légèrement différent. "
+"Lorsque l'entité de la `couche liaison` de gauche doit transmettre une "
+"trame, elle émet autant de primitives `Data.request` à la `couche physique` "
+"sous-jacente qu'il y a de bits dans la trame. La couche physique convertit "
+"alors la séquence de bits en un signal électromagnétique ou optique qui sera "
+"envoyé sur le support physique. La couche physique, à droite de la figure, "
+"décodera le signal reçu, récupérera les bits et émettra les primitives \""
+"Data.indication\" correspondantes à son entité \"couche de liaison\". S'il "
+"n'y a pas d'erreur de transmission, cette entité recevra la trame envoyée "
+"précédemment."
 
 #: ../../principles/referencemodels.rst:69
 msgid "The Network layer"
-msgstr ""
+msgstr "La couche réseau"
 
 #: ../../principles/referencemodels.rst:73
 msgid ""
@@ -157,14 +206,24 @@ msgid ""
 "intermediate devices called routers on its way from its origin to its "
 "destination."
 msgstr ""
+"La couche `Datalink` permet aux hôtes directement connectés d'échanger des "
+"informations, mais il est souvent nécessaire d'échanger des informations "
+"entre des hôtes qui ne sont pas attachés au même support physique. C'est la "
+"tâche de la \"couche réseau\". La couche réseau est construite au-dessus de "
+"la couche liaison de données. Les entités de la couche réseau échangent des "
+"`packets`. Un `paquet` est une séquence finie d'octets qui est transportée "
+"par la couche liaison de données à l'intérieur d'une ou plusieurs trames. Un "
+"paquet contient généralement des informations sur son origine et sa "
+"destination, et passe généralement par plusieurs dispositifs intermédiaires "
+"appelés routeurs sur son chemin de son origine à sa destination."
 
 #: ../../principles/referencemodels.rst:80
 msgid "The network layer"
-msgstr ""
+msgstr "La couche réseau"
 
 #: ../../principles/referencemodels.rst:85
 msgid "The Transport layer"
-msgstr ""
+msgstr "La couche Transport"
 
 #: ../../principles/referencemodels.rst:87
 msgid ""
@@ -178,6 +237,16 @@ msgid ""
 "transport layer entity issues segments (or sometimes part of segments) as"
 " `Data.request` to the underlying network layer entity."
 msgstr ""
+"La plupart des réalisations de la couche réseau, y compris l'internet, ne "
+"fournissent pas un service fiable. Cependant, de nombreuses applications ont "
+"besoin d'échanger des informations de manière fiable et il leur serait donc "
+"très difficile d'utiliser directement le service de la couche réseau. "
+"Assurer la livraison fiable des données produites par les applications est "
+"la tâche de la couche \"transport\". Les entités de la couche transport "
+"échangent des \"segments\". Un segment est une séquence finie d'octets qui "
+"sont transportés à l'intérieur d'un ou plusieurs paquets. Une entité de la "
+"couche transport émet des segments (ou parfois des parties de segments) "
+"comme `Data.request` à l'entité de la couche réseau sous-jacente."
 
 #: ../../principles/referencemodels.rst:89
 msgid ""
@@ -187,15 +256,19 @@ msgid ""
 ":term:`UDP` ,that provides an unreliable connection-less transport "
 "service."
 msgstr ""
+"Il existe différents types de couches de transport. Les couches de transport "
+"les plus utilisées sur Internet sont :term:`TCP` ,qui fournit un service de "
+"transport bytestream orienté connexion fiable, et :term:`UDP` ,qui fournit "
+"un service de transport sans connexion non fiable."
 
 #: ../../principles/referencemodels.rst:96
 msgid "The transport layer"
-msgstr ""
+msgstr "La couche de transport"
 
 #: ../../principles/referencemodels.rst:99
 #: ../../principles/referencemodels.rst:109
 msgid "The Application layer"
-msgstr ""
+msgstr "La couche Application"
 
 #: ../../principles/referencemodels.rst:103
 msgid ""
@@ -205,6 +278,11 @@ msgid ""
 "generic Service Data Unit (SDU) term to indicate the data exchanged "
 "between two entities of the Application layer."
 msgstr ""
+"La couche supérieure de notre architecture est la `couche application`. "
+"Cette couche comprend tous les mécanismes et les structures de données qui "
+"sont nécessaires aux applications. Nous utiliserons le terme Application "
+"Data Unit (ADU) ou le terme générique Service Data Unit (SDU) pour indiquer "
+"les données échangées entre deux entités de la couche Application."
 
 #: ../../principles/referencemodels.rst:114
 msgid ""
@@ -213,30 +291,34 @@ msgid ""
 "avoid any confusion, we will stick to the terminology defined earlier, "
 "i.e. :"
 msgstr ""
+"Dans les autres chapitres de ce texte, nous ferons souvent référence aux "
+"informations échangées entre des entités situées dans des couches "
+"différentes. Pour éviter toute confusion, nous nous en tiendrons à la "
+"terminologie définie précédemment, c'est-à-dire :"
 
 #: ../../principles/referencemodels.rst:116
 msgid "physical layer entities exchange bits"
-msgstr ""
+msgstr "les entités de la couche physique échange des bits"
 
 #: ../../principles/referencemodels.rst:117
 msgid "datalink layer entities exchange *frames*"
-msgstr ""
+msgstr "les entités de la couche liaison de données échangent des *frames*"
 
 #: ../../principles/referencemodels.rst:118
 msgid "network layer entities exchange *packets*"
-msgstr ""
+msgstr "les entités de la couche réseau échangent des *packets*"
 
 #: ../../principles/referencemodels.rst:119
 msgid "transport layer entities exchange *segments*"
-msgstr ""
+msgstr "les entités de la couche transport échangent des *segments"
 
 #: ../../principles/referencemodels.rst:120
 msgid "application layer entities exchange *SDUs*"
-msgstr ""
+msgstr "les entités de la couche application échangent des *SDUs*"
 
 #: ../../principles/referencemodels.rst:125
 msgid "Reference models"
-msgstr ""
+msgstr "Modèles de référence"
 
 #: ../../principles/referencemodels.rst:128
 msgid ""
@@ -244,10 +326,13 @@ msgid ""
 "the OSI reference model and the TCP/IP reference model. We discuss them "
 "briefly in this section."
 msgstr ""
+"Deux modèles de référence ont eu du succès dans la communauté des réseaux : "
+"le modèle de référence OSI et le modèle de référence TCP/IP. Nous les "
+"abordons brièvement dans cette section."
 
 #: ../../principles/referencemodels.rst:132
 msgid "The TCP/IP reference model"
-msgstr ""
+msgstr "Le modèle de référence TCP/IP"
 
 #: ../../principles/referencemodels.rst:134
 msgid ""
@@ -257,36 +342,49 @@ msgid ""
 "[Clark88]_. :rfc:`1122` , which defines the requirements for Internet "
 "hosts, mentions four different layers. Starting from the top, these are :"
 msgstr ""
+"Contrairement à OSI, la communauté TCP/IP n'a pas consacré beaucoup "
+"d'efforts à la définition d'un modèle de référence détaillé ; en fait, les "
+"objectifs de l'architecture Internet n'ont été documentés qu'après le "
+"déploiement de TCP/IP [Clark88]_. :rfc:`1122` , qui définit les exigences "
+"pour les hôtes Internet, mentionne quatre couches différentes. En commençant "
+"par le haut, ce sont :"
 
 #: ../../principles/referencemodels.rst:136
 msgid "the Application layer"
-msgstr ""
+msgstr "la couche Application"
 
 #: ../../principles/referencemodels.rst:137
 msgid "the Transport layer"
-msgstr ""
+msgstr "la couche Transport"
 
 #: ../../principles/referencemodels.rst:138
 msgid ""
 "the Internet layer which is equivalent to the network layer of our "
 "reference model"
 msgstr ""
+"la couche Internet qui est équivalente à la couche réseau de notre modèle de "
+"référence"
 
 #: ../../principles/referencemodels.rst:139
 msgid ""
 "the Link layer which combines the functions of the physical and datalink "
 "layers of our five-layer reference model"
 msgstr ""
+"la couche Liaison qui combine les fonctions des couches physique et liaison "
+"de données de notre modèle de référence à cinq couches"
 
 #: ../../principles/referencemodels.rst:141
 msgid ""
 "Besides this difference in the lower layers, the TCP/IP reference model "
 "is very close to the five layers that we use throughout this document."
 msgstr ""
+"Outre cette différence dans les couches inférieures, le modèle de référence "
+"de TCP/IP est très proche des cinq couches que nous utilisons dans ce "
+"document."
 
 #: ../../principles/referencemodels.rst:146
 msgid "The OSI reference model"
-msgstr ""
+msgstr "Le modèle de référence OSI"
 
 #: ../../principles/referencemodels.rst:148
 msgid ""
@@ -296,6 +394,11 @@ msgid ""
 "described above. The OSI reference model refined the application layer by"
 " dividing it in three layers :"
 msgstr ""
+"Par rapport au modèle de référence à cinq couches expliqué ci-dessus, le "
+"modèle de référence :term:`OSI` défini dans [X200]_ est divisé en sept "
+"couches. Les quatre couches inférieures sont similaires aux quatre couches "
+"inférieures décrites ci-dessus. Le modèle de référence OSI a affiné la "
+"couche application en la divisant en trois couches :"
 
 #: ../../principles/referencemodels.rst:150
 msgid ""
@@ -311,6 +414,17 @@ msgid ""
 " underlying transport connection), and to release the connection in an "
 "orderly manner."
 msgstr ""
+"la \"couche session\". La couche session contient les protocoles et les "
+"mécanismes qui sont nécessaires pour organiser et synchroniser le dialogue "
+"et gérer l'échange de données des entités de la couche présentation. Alors "
+"que l'une des principales fonctions de la couche transport est de faire face "
+"au manque de fiabilité de la couche réseau, l'objectif de la couche session "
+"est de masquer les éventuelles défaillances des connexions de niveau "
+"transport à la couche supérieure. Pour cela, la couche session fournit des "
+"services qui permettent d'établir une connexion de session, de prendre en "
+"charge l'échange ordonné de données (y compris des mécanismes qui permettent "
+"de se remettre de la libération brutale d'une connexion de transport sous-"
+"jacente), et de libérer la connexion de manière ordonnée."
 
 #: ../../principles/referencemodels.rst:151
 msgid ""
@@ -326,6 +440,19 @@ msgid ""
 "the data transferred. The :term:`ASN.1` notation was designed for the "
 "Presentation layer and is still used today by some protocols."
 msgstr ""
+"la `Couche de présentation` a été conçue pour faire face aux différentes "
+"manières de représenter l'information sur les ordinateurs. Il existe de "
+"nombreuses différences dans la façon dont les ordinateurs stockent les "
+"informations. Certains ordinateurs stockent les entiers sur 32 bits, "
+"d'autres sur 64 bits et le même problème se pose avec les nombres à virgule "
+"flottante. Pour les informations textuelles, la situation est encore plus "
+"complexe avec les nombreux codes de caractères différents qui ont été "
+"utilisés [#funicode]_. La situation est encore plus complexe si l'on "
+"considère l'échange d'informations structurées telles que les "
+"enregistrements de bases de données. Pour résoudre ce problème, la couche "
+"Présentation prévoit une représentation commune des données transférées. La "
+"notation :term:`ASN.1` a été conçue pour la couche Présentation et est "
+"encore utilisée aujourd'hui par certains protocoles."
 
 #: ../../principles/referencemodels.rst:152
 msgid ""
@@ -333,10 +460,13 @@ msgid ""
 "neither the Presentation nor the Session layer. The OSI Application layer"
 " was itself further divided in several generic service elements."
 msgstr ""
+"la couche \"Application\", qui contient les mécanismes qui n'entrent ni dans "
+"la couche Présentation ni dans la couche Session. La couche Application de "
+"l'OSI a elle-même été divisée en plusieurs éléments de service génériques."
 
 #: ../../principles/referencemodels.rst:158
 msgid "The seven layers of the OSI reference model"
-msgstr ""
+msgstr "Les sept couches du modèle de référence OSI"
 
 #: ../../principles/referencemodels.rst:162
 msgid "Footnotes"
@@ -351,9 +481,18 @@ msgid ""
 "and Unicode could become the standard format to exchange characters, but "
 "we are not yet at this stage today."
 msgstr ""
+"Il existe aujourd'hui un large consensus pour une plus grande utilisation du "
+"format de caractères Unicode_. Unicode peut représenter plus de 100 000 "
+"caractères différents issus des langues écrites connues sur Terre. Peut-être "
+"qu'un jour, tous les ordinateurs n'utiliseront que l'Unicode pour "
+"représenter tous leurs caractères stockés et l'Unicode pourrait devenir le "
+"format standard pour échanger des caractères, mais nous n'en sommes pas "
+"encore là aujourd'hui."
 
 #: ../../principles/referencemodels.rst:165
 msgid ""
 "An interesting historical discussion of the OSI-TCP/IP debate may be "
 "found in [Russel06]_"
 msgstr ""
+"Une discussion historique intéressante sur le débat OSI-TCP/IP peut être "
+"trouvée dans [Russel06]_"
