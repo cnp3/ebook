@@ -10,7 +10,7 @@ msgstr ""
 "3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-09 12:39+0000\n"
-"PO-Revision-Date: 2021-04-30 23:45+0000\n"
+"PO-Revision-Date: 2021-05-15 11:49+0000\n"
 "Last-Translator: Philippe D <philippe.dan@student.uclouvain.be>\n"
 "Language-Team: French <http://weblate.info.ucl.ac.be/projects/cnp3-ebook/"
 "exercisesnetwork/fr/>\n"
@@ -404,27 +404,22 @@ msgid "D"
 msgstr "D"
 
 #: ../../exercises/network.rst:366
-#, fuzzy
 msgid "3 via B"
 msgstr "3 via B"
 
 #: ../../exercises/network.rst:366
-#, fuzzy
 msgid "1 via D"
 msgstr "1 via D"
 
 #: ../../exercises/network.rst:367
-#, fuzzy
 msgid "E"
 msgstr "E"
 
 #: ../../exercises/network.rst:367
-#, fuzzy
 msgid "4 via B"
 msgstr "4 via B"
 
 #: ../../exercises/network.rst:367
-#, fuzzy
 msgid "1 via E"
 msgstr "1 via E"
 
