@@ -929,18 +929,18 @@ The communicating users select a random integer, :math:`a` for Alice and :math:`
 Bob. The exchange starts as :
 
  - Alice selects a random integer, :math:`a` and sends
-   :math:`A=g^{a} \mod p` to Bob
+   :math:`A=g^{a} \mod (p)` to Bob
  - Bob selects a random integer, :math:`b` and sends
-   :math:`B=g^{b} \mod p` to Alice
+   :math:`B=g^{b} \mod (p)` to Alice
  - From her knowledge of :math:`a` and :math:`B`, Alice can compute
-   :math:`Secret=B^{a} \mod p= (g^{b} \mod p) ^{a} \mod p=g^{a \times b} \mod p`
+   :math:`Secret=B^{a} \mod (p)= (g^{b} \mod (p)) ^{a} \mod (p)=g^{a \times b} \mod (p)`
  - From is knowledge of :math:`b` and :math:`A`, Bob can compute
-   :math:`Secret=A^{b} \mod p=(g^{a} \mod p) ^{b} \mod p=g^{a \times b} \mod p`
+   :math:`Secret=A^{b} \mod (p)=(g^{a} \mod (p)) ^{b} \mod (p)=g^{a \times b} \mod (p)`
 
 The security of this protocol relies on the difficulty of computing
 discrete logarithms, i.e. from the knowledge of :math:`A` (resp. :math:`B`),
-it is very difficult to extract :math:`\log(A)=\log(g^{a} \mod p)=a`
-(resp. :math:`\log(B)=\log(g^{b} \mod p)=b`).
+it is very difficult to extract :math:`\log(A)=\log(g^{a} \mod (p))=a`
+(resp. :math:`\log(B)=\log(g^{b} \mod (p))=b`).
 
 An example of the utilization of the Diffie-Hellman key exchange is
 shown below. Before starting the exchange, Alice
@@ -949,11 +949,11 @@ numbers are public. They are typically part of the standard that defines
 the protocol that uses the key exchange.
 
   -  Alice chooses a secret integer : :math:`a=8` and sends
-     :math:`A= g^{a} \mod p= 5^{8} \mod 23=16` to Bob
+     :math:`A= g^{a} \mod (p)= 5^{8} \mod (23)=16` to Bob
   - Bob chooses a secret integer : :math:`b=13` and sends
-    :math:`B= g^{b} \mod p=5^{13} \mod 23=21` to Alice
-  - Alice computes :math:`S_{A}=B^{a} \mod p= 21^{8} \mod 23=3`
-  - Bob computes :math:`S_{B}=A^{b} \mod p= 16^{13} \mod 23=3`
+    :math:`B= g^{b} \mod (p)=5^{13} \mod (23)=21` to Alice
+  - Alice computes :math:`S_{A}=B^{a} \mod (p)= 21^{8} \mod (23)=3`
+  - Bob computes :math:`S_{B}=A^{b} \mod (p)= 16^{13} \mod (23)=3`
 
 Alice and Bob have agreed on the secret information :math:`3` without
 having sent it explicitly through the network. If the integers used are
@@ -973,12 +973,12 @@ Bob and can easily capture and modify their messages. The modulus
 and the base are public. They are thus known by Mallory as well. He
 could then operate as follows :
 
- - Alice chooses a secret integer and sends :math:`A= g^{a} \mod p` to Mallory
- - Mallory generates a secret integer, :math:`m` and sends :math:`M=g^{m} \mod p` to Bob
- - Bob chooses a secret integer and sends :math:`B=g^{b} \mod p` to Mallory
- - Mallory computes :math:`S_{A}=A^{m} \mod p` and :math:`S_{B}=B^{m} \mod p`
- - Alice computes :math:`S_{A}=M^{a} \mod p` and uses this key to communicate with Mallory (acting as Bob)
- - Bob computes :math:`S_{B}=M^{b} \mod p` and uses this key to communicate with Mallory (acting as Alice)
+ - Alice chooses a secret integer and sends :math:`A= g^{a} \mod (p)` to Mallory
+ - Mallory generates a secret integer, :math:`m` and sends :math:`M=g^{m} \mod (p)` to Bob
+ - Bob chooses a secret integer and sends :math:`B=g^{b} \mod (p)` to Mallory
+ - Mallory computes :math:`S_{A}=A^{m} \mod (p)` and :math:`S_{B}=B^{m} \mod (p)`
+ - Alice computes :math:`S_{A}=M^{a} \mod (p)` and uses this key to communicate with Mallory (acting as Bob)
+ - Bob computes :math:`S_{B}=M^{b} \mod (p)` and uses this key to communicate with Mallory (acting as Alice)
 
 When Alice sends a message, she encrypts it with :math:`S_{A}`. Mallory
 decrypts it with :math:`S_{A}` and encrypts the plaintext with
@@ -993,13 +993,13 @@ certificated signed by Ted, the authenticated key exchange could
 be organized as follows.
 
   -  Alice chooses a secret integer : :math:`a` and sends
-     :math:`A= g^{a} \mod p` to Bob
+     :math:`A= g^{a} \mod (p)` to Bob
   - Bob chooses a secret integer : :math:`b`, computes
-    :math:`B= g^{b} \mod p` and sends
+    :math:`B= g^{b} \mod (p)` and sends
     :math:`Cert(Bob,Bob_{pub},Ted), E_p(Bob_{priv},B)` to Alice
   - Alice checks the signature (with :math:`Bob_{pub}`)
-    and the certificate and computes :math:`S_{A}=B^{a} \mod p`
-  - Bob computes :math:`S_{B}=A^{b} \mod p`
+    and the certificate and computes :math:`S_{A}=B^{a} \mod (p)`
+  - Bob computes :math:`S_{B}=A^{b} \mod (p)`
 
 .. exercice : explorer des alternatives, cfr bouquin de Kaufmann
 
