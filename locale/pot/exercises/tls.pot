@@ -1,0 +1,37 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2019 Olivier Bonaventure
+# This file is distributed under the same license as the Computer networking : Principles, Protocols and Practice package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Computer networking : Principles, Protocols and Practice 3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-05-17 09:55+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../exercises/tls.rst:6
+msgid "TLS and ssh"
+msgstr ""
+
+#: ../../exercises/tls.rst:8
+msgid "One of the first motivations for the deployment of wide area networks such as the Internet was to enable researchers to connect to distant servers. For many years, these connections were carried out by using a simple application layer protocol such as telnet over a TCP connection. With telnet, all the characters typed by the user are sent in cleartext over the TCP connection. This implies that if someone is able to capture the packets transmitted over the network, he/she can collect sensitive information such as user names or passwords."
+msgstr ""
+
+#: ../../exercises/tls.rst:15
+msgid "Fortunately, telnet is rarely used without TLS these days and system administrators usually prefer to deploy more secure protocols such as ``ssh``."
+msgstr ""
+
+#: ../../exercises/tls.rst:24
+msgid "The Transport Layer Security (TLS) protocol is now used by a wide range of applications, even if the most popular one is HTTPS. In the exercises below, you will analyze some of the features of TLS by looking at the packets that are exchanged over a TLS session."
+msgstr ""
+
+#: ../../exercises/tls.rst:41
+msgid "Footnotes"
+msgstr ""

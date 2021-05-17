@@ -1,0 +1,118 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2019 Olivier Bonaventure
+# This file is distributed under the same license as the Computer networking : Principles, Protocols and Practice package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Computer networking : Principles, Protocols and Practice 3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-05-17 09:55+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../exercises/routing-policies.rst:5
+msgid "Inter-domain routing"
+msgstr ""
+
+#: ../../exercises/routing-policies.rst:9
+msgid "Exercises"
+msgstr ""
+
+#: ../../exercises/routing-policies.rst:24
+msgid "Consider the interdomain topology shown in the figure below."
+msgstr ""
+
+#: ../../exercises/routing-policies.rst:56
+msgid "In this network, what are the paths :"
+msgstr ""
+
+#: ../../exercises/routing-policies.rst:58
+msgid "from `AS1` to `AS4`"
+msgstr ""
+
+#: ../../exercises/routing-policies.rst:59
+msgid "from `AS4` to `AS2`"
+msgstr ""
+
+#: ../../exercises/routing-policies.rst:60
+msgid "from `AS4` to `AS1`"
+msgstr ""
+
+#: ../../exercises/routing-policies.rst:63
+#: ../../exercises/routing-policies.rst:96
+msgid "Consider the interdomain topology shown in the figure below. Assuming, that `AS1` advertises prefix ``2001:db8:1::/48``,  `AS2` prefix ``2001:db8:2::/48``, ... compute the routing tables of the different ASes."
+msgstr ""
+
+#: ../../exercises/routing-policies.rst:93
+msgid "Are all ASes capable of reaching all the other ASes in this simple Internet ?"
+msgstr ""
+
+#: ../../exercises/routing-policies.rst:128
+msgid "In this internet, some ASes cannot reach all other ASes. Can you fix the problem by adding one shared-cost peering link or one customer-provider peering link ?"
+msgstr ""
+
+#: ../../exercises/routing-policies.rst:133
+msgid "Consider the network below in which a stub domain, `AS456`, is connected to two providers `AS123` and `AS789`. `AS456` advertises its prefix to both its providers. On the other hand, `AS123` advertises ``2001:db8:dead::/48`` while `AS789` advertises ``2001:db8:beef::/48`` and ``2001:db8:dead:cafe::/63``. Via which provider will the packets destined to ``2001:db8:dead:cafe::1`` will be received by `AS456` ?"
+msgstr ""
+
+#: ../../exercises/routing-policies.rst:141
+msgid "Should `AS123` change its configuration ?"
+msgstr ""
+
+#: ../../exercises/routing-policies.rst:143
+msgid "Consider that the AS stub (`AS456`) shown in the figure below decides to advertise two ``/48`` prefixes instead of its allocated ``/47`` prefix."
+msgstr ""
+
+#: ../../exercises/routing-policies.rst:151
+msgid "Via which provider does `AS456` receive the packets destined to ``2001:db8:caff::bb`` and ``2001:db8:cafe::aa`` ?"
+msgstr ""
+
+#: ../../exercises/routing-policies.rst:153
+msgid "How is the reachability of these addresses affected when link `R1`-`R3` fails ?"
+msgstr ""
+
+#: ../../exercises/routing-policies.rst:155
+msgid "Propose a configuration on R1 that achieves the same objective as the one shown in the figure but also preserves the reachability of all IP addresses inside `AS456` if one of `AS456`'s interdomain links fails."
+msgstr ""
+
+#: ../../exercises/routing-policies.rst:157
+msgid "Consider the network shown below. In this network, the metric of each link is set to `1` except link `A-B` whose metric is set to `4` in both directions. In this network, there are two paths with the same cost between `D` and `C`. Old routers would randomly select one of these equal cost paths and install it in their forwarding table. Recent routers are able to use up to `N` equal cost paths towards the same destination."
+msgstr ""
+
+#: ../../exercises/routing-policies.rst:163
+msgid "A simple network"
+msgstr ""
+
+#: ../../exercises/routing-policies.rst:165
+msgid "On recent routers, a lookup in the forwarding table for a destination address returns a set of outgoing interfaces. How would you design an algorithm that selects the outgoing interface used for each packet, knowing that to avoid reordering, all segments of a given TCP connection should follow the same path ?"
+msgstr ""
+
+#: ../../exercises/routing-policies.rst:167
+msgid "A ``traceroute6`` towards ``ipv6.google.com`` provides the following output :"
+msgstr ""
+
+#: ../../exercises/routing-policies.rst:191
+msgid "Can you explain why at the eighth, ninth and tenth hopes several IPv6 addresses are reported in the ``traceroute6`` output ?"
+msgstr ""
+
+#: ../../exercises/routing-policies.rst:193
+msgid "`Section 3.3 <https://tools.ietf.org/html/rfc4443#section-3.3>`_ of :rfc:`4443` explains two different reasons why an IPv6 enabled device could generate an ICMPv6 Time Exceeded message. Explain when a router could generate such a message with ``Code==0`` and when a host could generate such a message with ``Code==1``."
+msgstr ""
+
+#: ../../exercises/routing-policies.rst:195
+msgid "`Section 3.1 <https://tools.ietf.org/html/rfc4443#section-3.1>`_ of :rfc:`4443` seven different Codes for the ICMPv6 Destination Unreachable Message. Under which circumstances would a router generate such an ICMPv6 message with :"
+msgstr ""
+
+#: ../../exercises/routing-policies.rst:197
+msgid "``Code==0``"
+msgstr ""
+
+#: ../../exercises/routing-policies.rst:213
+msgid "An ICMPv6 error message includes in its message body the beginning of the IPv6 packet that triggered this error. How many bytes of the original packet must be returned to allow the host to recover the original source and destination addresses and source and destination ports of the packet that caused the error ?"
+msgstr ""

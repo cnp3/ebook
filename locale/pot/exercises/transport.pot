@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Computer networking : Principles, Protocols and Practice 3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-09 12:39+0000\n"
+"POT-Creation-Date: 2021-05-17 09:55+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,90 +25,93 @@ msgid "This is an unpolished draft of the third edition of this e-book. If you f
 msgstr ""
 
 #: ../../exercises/transport.rst:14
+msgid "Multiple choices questions"
+msgstr ""
+
+#: ../../exercises/transport.rst:20
 msgid "Open questions"
 msgstr ""
 
-#: ../../exercises/transport.rst:16
-msgid "Which mechanisms that should be included in a transport protocol that provides an unreliable connectionless transport service that can detect transmission errors but not correct them ?"
+#: ../../exercises/transport.rst:22
+msgid "Which are the mechanisms that should be included in a transport protocol providing an unreliable connectionless transport service that can detect transmission errors, but not correct them ?"
 msgstr ""
 
-#: ../../exercises/transport.rst:18
+#: ../../exercises/transport.rst:24
 msgid "A reliable connection oriented transport places a 32 bits sequence number inside the segment header to number the segments. This sequence number is incremented for each data segment. The connection starts as shown in the figure below :"
 msgstr ""
 
-#: ../../exercises/transport.rst:38
+#: ../../exercises/transport.rst:44
 msgid "Continue the connection so that `Host B` sends `Hello` as data and `Host A` replies by sending `Pleased to meet you`. After having received the response, `Host B` closes the connection gracefully and `Host A` does the same. Discuss on the state that needs to be maintained inside each host."
 msgstr ""
 
-#: ../../exercises/transport.rst:40
+#: ../../exercises/transport.rst:46
 msgid "A transport connection that provides a message-mode service has been active for some time and all data has been exchanged and acknowledged in both directions. As in the exercise above, the sequence number is incremented after the transmission of each segment. At this time, `Host A` sends two DATA segments as shown in the figure below."
 msgstr ""
 
-#: ../../exercises/transport.rst:57
+#: ../../exercises/transport.rst:63
 msgid "What are the acknowledgments sent by `Host B`. How does `Host A` react and how does it terminate the connection ?"
 msgstr ""
 
-#: ../../exercises/transport.rst:60
+#: ../../exercises/transport.rst:66
 msgid "Consider a reliable connection-oriented transport protocol that provides the bytestream service. In this transport protocol, the sequence number that is placed inside each DATA segment reflects the position of the bytes in the bytestream. Considering the connection shown below, provide the DATA segments that are sent by `Host A` in response to the `DATA.request`, assuming that one segment is sent for each `DATA.request`."
 msgstr ""
 
-#: ../../exercises/transport.rst:86
+#: ../../exercises/transport.rst:92
 msgid "Same question as above, but consider now that the transport protocol tries to send large DATA segments whenever possible. For this exercise, we consider that a DATA segment can contain up to 8 bytes of data in the payload. Do not forget to show the acknowledgments in your answer."
 msgstr ""
 
-#: ../../exercises/transport.rst:88
+#: ../../exercises/transport.rst:94
 msgid "Consider a transport protocol that provides a reliable connection-oriented bytestream service. You observe the segments sent by a host that uses this protocol. Does the time-sequence diagram below reflects a valid implementation of this protocol ? Justify your answer."
 msgstr ""
 
-#: ../../exercises/transport.rst:105
+#: ../../exercises/transport.rst:111
 msgid "In the above example, the two `DATA` segments were lost before arriving at the destination. Discuss the following scenario and explain how the receiver should react to the reception of the last `DATA` segment."
 msgstr ""
 
-#: ../../exercises/transport.rst:122
+#: ../../exercises/transport.rst:128
 msgid "A network layer service guarantees that a packet will never live during more than 100 seconds inside the network. Consider a reliable connection-oriented transport protocol that places a 32 bits sequence number inside each segment. What is the maximum rate (in segments per second) at which is should sent data segments to prevent having two segments with the same sequence number inside the network ?"
 msgstr ""
 
-#: ../../exercises/transport.rst:126
+#: ../../exercises/transport.rst:132
 msgid "Practice"
 msgstr ""
 
-#: ../../exercises/transport.rst:128
+#: ../../exercises/transport.rst:134
 msgid "Amazon provides the `S3 storage service <https://s3.amazonaws.com/>`_ where companies and researchers can store lots of information and perform computations on the stored information. Amazon allows users to send files through the Internet, but also by sending hard-disks. Assume that a 1 Terabyte hard-disk can be delivered within 24 hours to Amazon by courier service. What is the minimum bandwidth required to match the bandwidth of this courier service ?"
 msgstr ""
 
-#: ../../exercises/transport.rst:135
+#: ../../exercises/transport.rst:141
 msgid "Discussion questions"
 msgstr ""
 
-#: ../../exercises/transport.rst:137
+#: ../../exercises/transport.rst:143
 msgid "In the transport layer, the receive window advertised by a receiver can vary during the lifetime of the connection. What are the causes for these variations ?"
 msgstr ""
 
-#: ../../exercises/transport.rst:139
+#: ../../exercises/transport.rst:145
 msgid "A reliable connection-oriented protocol can provide a message-mode service or a byte stream service. Which of the following usages of the sequence numbers is the best suited for each of these services ?"
 msgstr ""
 
-#: ../../exercises/transport.rst:141
+#: ../../exercises/transport.rst:147
 msgid "DATA segments contain a sequence number that is incremented for each byte transmitted"
 msgstr ""
 
-#: ../../exercises/transport.rst:142
+#: ../../exercises/transport.rst:148
 msgid "DATA segments contain a sequence number that is incremented for each DATA segment transmitted"
 msgstr ""
 
-#: ../../exercises/transport.rst:144
+#: ../../exercises/transport.rst:150
 msgid "Some transport protocols use 32 bits sequence numbers while others use 64 bits sequence number. What are the advantages and drawbacks of each approach ?"
 msgstr ""
 
-#: ../../exercises/transport.rst:146
+#: ../../exercises/transport.rst:152
 msgid "Consider a transport protocol that provides the bytestream service and uses 32 bits sequence number to represent the position of the first byte of the payload of DATA segments in the bytestream. How would you modify this protocol so that it can provide a message-mode service ? Consider first short messages that always fit inside a single segment. In a second step, discuss how you could support messages of unlimited size."
 msgstr ""
 
-#: ../../exercises/transport.rst:148
+#: ../../exercises/transport.rst:154
 msgid "What is piggybacking and what are the benefits of this technique ?"
 msgstr ""
 
-#: ../../exercises/transport.rst:155
+#: ../../exercises/transport.rst:161
 msgid "Footnotes"
 msgstr ""
-
