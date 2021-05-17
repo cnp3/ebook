@@ -797,7 +797,7 @@ Routers regularly send Router Advertisement messages. These messages are trigger
 
 The last point that needs to be explained about ICMPv6 is the `Redirect` message. This message is used when there is more than one router on a subnet as shown in the figure below.
 
-   .. tikz:: A simple IPv6 network with one router
+   .. tikz:: A simple IPv6 network with two routers
       :libs: positioning, matrix, shapes
 
 
