@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Computer networking : Principles, Protocols and Practice 3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-09 12:39+0000\n"
+"POT-Creation-Date: 2021-05-17 09:55+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../../exercises/ex-sharing.rst:6
-msgid "This is an unpolished draft of the third edition of this e-book. If you find any error or have suggestions to improve the text, please create an issue via https://github.com/CNP3/ebook/issues?milestone=3 or help us by providing pull requests to close the existing issues."
+msgid "This is an unpolished draft of the third edition of this e-book. If you find any error or have suggestions to improve the text, please create an issue via https://github.com/CNP3/ebook/issues?milestone=4 or help us by providing pull requests to close the existing issues."
 msgstr ""
 
 #: ../../exercises/ex-sharing.rst:11
@@ -180,4 +180,3 @@ msgstr ""
 #: ../../exercises/ex-sharing.rst:648
 msgid "the host stops to listen and waits for a random time before sensing again the communication channel to check whether it is free."
 msgstr ""
-

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Computer networking : Principles, Protocols and Practice 3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-09 12:39+0000\n"
+"POT-Creation-Date: 2021-05-17 09:55+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,38 +29,37 @@ msgid "The development of this edition of the textbook is carried out on `https:
 msgstr ""
 
 #: ../../index.rst:21
-msgid "The source code of the entire textbook is written in `reStructuredText <http://docutils.sourceforge.net/rst.html>`_ and uses several `sphinx <http://sphinx.pocoo.org>`_ features. You can browse these sources from `github <https://github.com/CNP3/ebook/tree/master>`_"
+msgid "The source code of the entire textbook is written in `reStructuredText <http://docutils.sourceforge.net/rst.html>`_ and uses several `sphinx <https://www.sphinx-doc.org>`_ features. You can browse these sources from `github <https://github.com/CNP3/ebook/tree/master>`_ You can download a pdf version from :download:`tmp/latex/CNP3.pdf`"
 msgstr ""
 
 #: ../../index.rst:23
-msgid "You can access a demo version of the e-book from `http://beta.computer-networking.info <http://beta.computer-networking.info>`_"
+msgid "The online version of the e-book at `http://beta.computer-networking.info <http://beta.computer-networking.info>`_ contains online exercises."
 msgstr ""
 
-#: ../../index.rst:37
+#: ../../index.rst:40
 msgid "Part 1: Principles"
 msgstr ""
 
-#: ../../index.rst:54
+#: ../../index.rst:57
 msgid "Part 2: Protocols"
 msgstr ""
 
-#: ../../index.rst:86
+#: ../../index.rst:85
 msgid "Part 3: Practice"
 msgstr ""
 
-#: ../../index.rst:149
+#: ../../index.rst:162
 msgid "Appendices"
 msgstr ""
 
-#: ../../index.rst:160
+#: ../../index.rst:173
 msgid "Indices and tables"
 msgstr ""
 
-#: ../../index.rst:163
+#: ../../index.rst:176
 msgid ":ref:`genindex`"
 msgstr ""
 
-#: ../../index.rst:164
+#: ../../index.rst:177
 msgid ":ref:`search`"
 msgstr ""
-

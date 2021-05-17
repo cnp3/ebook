@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Computer networking : Principles, Protocols and Practice 3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-09 12:39+0000\n"
+"POT-Creation-Date: 2021-05-17 09:55+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,19 +20,19 @@ msgstr ""
 msgid "Glossary"
 msgstr ""
 
-#: ../../glossary.rst:322
+#: ../../glossary.rst:308
 msgid "address"
 msgstr ""
 
-#: ../../glossary.rst:324
+#: ../../glossary.rst:310
 msgid "A string of bits that identifies a network interface in the network layer or the datalink layer. Most addresses have a fixed length, e.g. 32 bits for :term:`IPv4`, 128 bits for :term:`IPv6` or 48 bits for :term:`Ethernet` and other related Local Area Networks."
 msgstr ""
 
-#: ../../glossary.rst:183
+#: ../../glossary.rst:180
 msgid "AIMD"
 msgstr ""
 
-#: ../../glossary.rst:185
+#: ../../glossary.rst:182
 msgid "Additive Increase, Multiplicative Decrease. A rate adaption algorithm used notably by TCP where a host additively increases its transmission rate when the network is not congested and multiplicatively decreases when congested is detected."
 msgstr ""
 
@@ -44,19 +44,19 @@ msgstr ""
 msgid "a transmission mode where an information is sent from one source to `one` receiver that belongs to a specified group"
 msgstr ""
 
-#: ../../glossary.rst:117
+#: ../../glossary.rst:114
 msgid "API"
 msgstr ""
 
-#: ../../glossary.rst:119
+#: ../../glossary.rst:116
 msgid "Application Programming Interface"
 msgstr ""
 
-#: ../../glossary.rst:268
+#: ../../glossary.rst:256
 msgid "ARP"
 msgstr ""
 
-#: ../../glossary.rst:270
+#: ../../glossary.rst:258
 msgid "The Address Resolution Protocol is a protocol used by IPv4 devices to obtain the datalink layer address that corresponds to an IPv4 address on the local area network. ARP is defined in :rfc:`826`"
 msgstr ""
 
@@ -69,42 +69,42 @@ msgid "The Advanced Research Project Agency (ARPA) Network is a network that was
 msgstr ""
 
 #: ../../glossary.rst:12
-msgid "ascii"
+msgid "ASCII"
 msgstr ""
 
 #: ../../glossary.rst:14
 msgid "The American Standard Code for Information Interchange (ASCII) is a character-encoding scheme that defines a binary representation for characters. The ASCII table contains both printable characters and control characters. ASCII characters were encoded in 7 bits and only contained the characters required to write text in English. Other character sets such as Unicode have been developed later to support all written languages."
 msgstr ""
 
-#: ../../glossary.rst:99
+#: ../../glossary.rst:96
 msgid "ASN.1"
 msgstr ""
 
-#: ../../glossary.rst:101
+#: ../../glossary.rst:98
 msgid "The Abstract Syntax Notation One (ASN.1) was designed by ISO and ITU-T. It is a standard and flexible notation that can be used to describe data structures for representing, encoding, transmitting, and decoding data between applications. It was designed to be used in the Presentation layer of the OSI reference model but is now used in other protocols such as :term:`SNMP`."
 msgstr ""
 
-#: ../../glossary.rst:226
+#: ../../glossary.rst:214
 msgid "ATM"
 msgstr ""
 
-#: ../../glossary.rst:228
+#: ../../glossary.rst:216
 msgid "Asynchronous Transfer Mode"
 msgstr ""
 
-#: ../../glossary.rst:156
+#: ../../glossary.rst:153
 msgid "BGP"
 msgstr ""
 
-#: ../../glossary.rst:158
+#: ../../glossary.rst:155
 msgid "The Border Gateway Protocol is the interdomain routing protocol used in the global Internet."
 msgstr ""
 
-#: ../../glossary.rst:235
+#: ../../glossary.rst:223
 msgid "BNF"
 msgstr ""
 
-#: ../../glossary.rst:237
+#: ../../glossary.rst:225
 msgid "A Backus-Naur Form (BNF) is a formal way to describe a language by using syntactic and lexical rules. BNFs are frequently used to define programming languages, but also to define the messages exchanged between networked applications. :rfc:`5234` explains how a BNF must be written to specify an Internet protocol."
 msgstr ""
 
@@ -116,165 +116,155 @@ msgstr ""
 msgid "a transmission mode where is same information is sent to all nodes in the network"
 msgstr ""
 
-#: ../../glossary.rst:129
+#: ../../glossary.rst:126
 msgid "CIDR"
 msgstr ""
 
-#: ../../glossary.rst:131
+#: ../../glossary.rst:128
 msgid "Classless Inter Domain Routing is the current address allocation architecture for IP version 4. It was defined in :rfc:`1518` and :rfc:`4632`."
 msgstr ""
 
-#: ../../glossary.rst:283
+#: ../../glossary.rst:268
 msgid "dial-up line"
 msgstr ""
 
-#: ../../glossary.rst:285
+#: ../../glossary.rst:270
 msgid "A synonym for a regular telephone line, i.e. a line that can be used to dial any telephone number."
 msgstr ""
 
-#: ../../glossary.rst:54
-#: ../../glossary.rst:211
-#: ../../glossary.rst:232
+#: ../../glossary.rst:220
 msgid "DNS"
 msgstr ""
 
-#: ../../glossary.rst:56
-msgid "The Domain Name System is a distributed database that allows to map names on IP addresses."
-msgstr ""
-
-#: ../../glossary.rst:213
-msgid "The Domain Name System is defined in :rfc:`1035`"
-msgstr ""
-
-#: ../../glossary.rst:234
-msgid "The Domain Name System is a distributed database that can be queried by hosts to map names onto IP addresses"
-msgstr ""
-
-#: ../../glossary.rst:171
-msgid "eBGP"
-msgstr ""
-
-#: ../../glossary.rst:173
-msgid "An eBGP session is a BGP session between two directly connected routers that belong to two different Autonomous Systems. Also called an external BGP session."
-msgstr ""
-
-#: ../../glossary.rst:150
-msgid "EGP"
-msgstr ""
-
-#: ../../glossary.rst:152
-msgid "Exterior Gateway Protocol. Synonym of interdomain routing protocol"
-msgstr ""
-
-#: ../../glossary.rst:159
-msgid "EIGRP"
-msgstr ""
-
-#: ../../glossary.rst:161
-msgid "The Enhanced Interior Gateway Routing Protocol (EIGRP) is a proprietary intradomain routing protocol that is often used in enterprise networks. EIGRP uses the DUAL algorithm described in [Garcia1993]_."
-msgstr ""
-
-#: ../../glossary.rst:325
-msgid "Ethernet"
-msgstr ""
-
-#: ../../glossary.rst:327
-msgid "The most widely used LAN technology."
-msgstr ""
-
-#: ../../glossary.rst:319
-msgid "file transfer"
-msgstr ""
-
-#: ../../glossary.rst:321
-msgid "A service that enables a user to send or receive a file from a distant server over the network. The File Transfer Protocol :term:`FTP` was a popular service. It has now been replaced by HTTP/HTTPs or more secure protocols such as the `SSH File Transfer Protocol <https://en.wikipedia.org/wiki/SSH_File_Transfer_Protocol>`_."
-msgstr ""
-
-#: ../../glossary.rst:63
-msgid "frame"
-msgstr ""
-
-#: ../../glossary.rst:65
-msgid "a frame is the unit of information transfer in the datalink layer"
-msgstr ""
-
-#: ../../glossary.rst:229
-msgid "Frame-Relay"
-msgstr ""
-
-#: ../../glossary.rst:231
-msgid "A wide area networking  technology using virtual circuits that is deployed by telecom operators."
-msgstr ""
-
-#: ../../glossary.rst:102
-msgid "ftp"
-msgstr ""
-
-#: ../../glossary.rst:104
-msgid "The File Transfer Protocol defined in :rfc:`959` has been the `de facto` protocol to exchange files over the Internet before the widespread adoption of HTTP :rfc:`2616`."
-msgstr ""
-
-#: ../../glossary.rst:198
-msgid "FTP"
-msgstr ""
-
-#: ../../glossary.rst:200
-msgid "The File Transfer Protocol is defined in :rfc:`959`"
-msgstr ""
-
-#: ../../glossary.rst:313
-msgid "hosts.txt"
-msgstr ""
-
-#: ../../glossary.rst:315
-msgid "The original file containing the list of all Internet hosts. This file has been deprecated, but Unix variants still maintain a local ``/etc/hosts`` containing mappings between names and IP addresses. See http://man7.org/linux/man-pages/man5/hosts.5.html for a description of the format of this file on Linux."
-msgstr ""
-
-#: ../../glossary.rst:262
-msgid "HTML"
-msgstr ""
-
-#: ../../glossary.rst:264
-msgid "The HyperText Markup Language specifies the structure and the syntax of the documents that are exchanged on the world wide web. HTML is maintained by the `HTML working group <https://www.w3.org/html/wg/>`_ of the :term:`W3C`"
-msgstr ""
-
-#: ../../glossary.rst:186
-msgid "HTTP"
-msgstr ""
-
-#: ../../glossary.rst:188
-msgid "The HyperText Transport Protocol is defined in :rfc:`2616`"
-msgstr ""
-
-#: ../../glossary.rst:180
-msgid "hub"
-msgstr ""
-
-#: ../../glossary.rst:182
-msgid "A relay operating in the physical layer."
-msgstr ""
-
-#: ../../glossary.rst:132
-msgid "IANA"
-msgstr ""
-
-#: ../../glossary.rst:134
-msgid "The Internet Assigned Numbers Authority (IANA) is responsible for the coordination of the DNS Root, IP addressing, and other Internet protocol resources"
+#: ../../glossary.rst:222
+msgid "The Domain Name System is a distributed database that can be queried by hosts to map names onto IP addresses. It is defined in :rfc:`1035`"
 msgstr ""
 
 #: ../../glossary.rst:168
-msgid "iBGP"
+msgid "eBGP"
 msgstr ""
 
 #: ../../glossary.rst:170
+msgid "An eBGP session is a BGP session between two directly connected routers that belong to two different Autonomous Systems. Also called an external BGP session."
+msgstr ""
+
+#: ../../glossary.rst:147
+msgid "EGP"
+msgstr ""
+
+#: ../../glossary.rst:149
+msgid "Exterior Gateway Protocol. Synonym of interdomain routing protocol"
+msgstr ""
+
+#: ../../glossary.rst:156
+msgid "EIGRP"
+msgstr ""
+
+#: ../../glossary.rst:158
+msgid "The Enhanced Interior Gateway Routing Protocol (EIGRP) is a proprietary intradomain routing protocol that is often used in enterprise networks. EIGRP uses the DUAL algorithm described in [Garcia1993]_."
+msgstr ""
+
+#: ../../glossary.rst:311
+msgid "Ethernet"
+msgstr ""
+
+#: ../../glossary.rst:313
+msgid "The most widely used LAN technology."
+msgstr ""
+
+#: ../../glossary.rst:305
+msgid "file transfer"
+msgstr ""
+
+#: ../../glossary.rst:307
+msgid "A service that enables a user to send or receive a file from a distant server over the network. The File Transfer Protocol :term:`FTP` was a popular service. It has now been replaced by HTTP/HTTPs or more secure protocols such as the `SSH File Transfer Protocol <https://en.wikipedia.org/wiki/SSH_File_Transfer_Protocol>`_."
+msgstr ""
+
+#: ../../glossary.rst:60
+msgid "frame"
+msgstr ""
+
+#: ../../glossary.rst:62
+msgid "a frame is the unit of information transfer in the datalink layer"
+msgstr ""
+
+#: ../../glossary.rst:217
+msgid "Frame-Relay"
+msgstr ""
+
+#: ../../glossary.rst:219
+msgid "A wide area networking technology using virtual circuits that is deployed by telecom operators."
+msgstr ""
+
+#: ../../glossary.rst:99
+msgid "ftp"
+msgstr ""
+
+#: ../../glossary.rst:101
+msgid "The File Transfer Protocol defined in :rfc:`959` has been the `de facto` protocol to exchange files over the Internet before the widespread adoption of HTTP :rfc:`2616`."
+msgstr ""
+
+#: ../../glossary.rst:190
+msgid "FTP"
+msgstr ""
+
+#: ../../glossary.rst:192
+msgid "The File Transfer Protocol is defined in :rfc:`959`"
+msgstr ""
+
+#: ../../glossary.rst:299
+msgid "hosts.txt"
+msgstr ""
+
+#: ../../glossary.rst:301
+msgid "The original file containing the list of all Internet hosts. This file has been deprecated, but Unix variants still maintain a local ``/etc/hosts`` containing mappings between names and IP addresses. See http://man7.org/linux/man-pages/man5/hosts.5.html for a description of the format of this file on Linux."
+msgstr ""
+
+#: ../../glossary.rst:250
+msgid "HTML"
+msgstr ""
+
+#: ../../glossary.rst:252
+msgid "The HyperText Markup Language specifies the structure and the syntax of the documents that are exchanged on the world wide web. HTML is maintained by the `HTML working group <https://www.w3.org/html/wg/>`_ of the :term:`W3C`"
+msgstr ""
+
+#: ../../glossary.rst:183
+msgid "HTTP"
+msgstr ""
+
+#: ../../glossary.rst:185
+msgid "The HyperText Transport Protocol is defined in :rfc:`2616`"
+msgstr ""
+
+#: ../../glossary.rst:177
+msgid "hub"
+msgstr ""
+
+#: ../../glossary.rst:179
+msgid "A relay operating in the physical layer."
+msgstr ""
+
+#: ../../glossary.rst:129
+msgid "IANA"
+msgstr ""
+
+#: ../../glossary.rst:131
+msgid "The Internet Assigned Numbers Authority (IANA) is responsible for the coordination of the DNS Root, IP addressing, and other Internet protocol resources"
+msgstr ""
+
+#: ../../glossary.rst:165
+msgid "iBGP"
+msgstr ""
+
+#: ../../glossary.rst:167
 msgid "An iBGP session is a BGP between two routers belonging to the same Autonomous System. Also called an internal BGP session."
 msgstr ""
 
-#: ../../glossary.rst:241
+#: ../../glossary.rst:229
 msgid "ICANN"
 msgstr ""
 
-#: ../../glossary.rst:243
+#: ../../glossary.rst:231
 msgid "The Internet Corporation for Assigned Names and Numbers (ICANN) coordinates the allocation of domain names, IP addresses and AS numbers as well protocol parameters. It also coordinates the operation and the evolution of the DNS root name servers."
 msgstr ""
 
@@ -286,101 +276,95 @@ msgstr ""
 msgid "The Internet Engineering Task Force is a non-profit organization that develops the standards for the protocols used in the Internet. The IETF mainly covers the transport and network layers. Several application layer protocols are also standardized within the IETF. The work in the IETF is organized in working groups. Most of the work is performed by exchanging emails and there are three IETF meetings every year. Participation is open to anyone. See https://www.ietf.org"
 msgstr ""
 
-#: ../../glossary.rst:147
+#: ../../glossary.rst:144
 msgid "IGP"
 msgstr ""
 
-#: ../../glossary.rst:149
+#: ../../glossary.rst:146
 msgid "Interior Gateway Protocol. Synonym of intradomain routing protocol"
 msgstr ""
 
-#: ../../glossary.rst:162
+#: ../../glossary.rst:159
 msgid "IGRP"
 msgstr ""
 
-#: ../../glossary.rst:164
+#: ../../glossary.rst:161
 msgid "The Interior Gateway Routing Protocol (IGRP) is a proprietary intradomain routing protocol that uses distance vector. IGRP supports multiple metrics for each route but has been replaced by :term:`EIGRP`"
 msgstr ""
 
-#: ../../glossary.rst:195
-#: ../../glossary.rst:259
+#: ../../glossary.rst:247
 msgid "IMAP"
 msgstr ""
 
-#: ../../glossary.rst:197
-msgid "The Internet Message Access Protocol is defined in :rfc:`3501`"
-msgstr ""
-
-#: ../../glossary.rst:261
+#: ../../glossary.rst:249
 msgid "The Internet Message Access Protocol (IMAP), defined in :rfc:`3501`, is an application-level protocol that allows a client to access and manipulate the emails stored on a server. With IMAP, the email messages remain on the server and are not downloaded on the client."
 msgstr ""
 
-#: ../../glossary.rst:69
+#: ../../glossary.rst:66
 msgid "Internet"
 msgstr ""
 
-#: ../../glossary.rst:71
+#: ../../glossary.rst:68
 msgid "a public internet, i.e. a network composed of different networks that are running :term:`IPv4` or :term:`IPv6`"
 msgstr ""
 
-#: ../../glossary.rst:72
+#: ../../glossary.rst:69
 msgid "internet"
 msgstr ""
 
-#: ../../glossary.rst:74
+#: ../../glossary.rst:71
 msgid "an internet is an internetwork, i.e. a network composed of different networks. The :term:`Internet`, with a capital `I` corresponds to the global network that we use today, but other internetworks have been used in the path."
 msgstr ""
 
-#: ../../glossary.rst:304
+#: ../../glossary.rst:290
 msgid "inverse query"
 msgstr ""
 
-#: ../../glossary.rst:306
+#: ../../glossary.rst:292
 msgid "For DNS servers and resolvers, an inverse query is a query for the domain name that corresponds to a given IP address."
 msgstr ""
 
-#: ../../glossary.rst:75
+#: ../../glossary.rst:72
 msgid "IP"
 msgstr ""
 
-#: ../../glossary.rst:77
+#: ../../glossary.rst:74
 msgid "Internet Protocol is the generic term for the network layer protocol in the TCP/IP protocol suite. IP version 4 is widely used but IP version 6 is being deployed globally."
 msgstr ""
 
-#: ../../glossary.rst:78
+#: ../../glossary.rst:75
 msgid "IPv4"
 msgstr ""
 
-#: ../../glossary.rst:80
+#: ../../glossary.rst:77
 msgid "is the version 4 of the Internet Protocol, the connectionless network layer protocol used in most of the Internet today. IPv4 addresses are encoded as a 32 bits field."
 msgstr ""
 
-#: ../../glossary.rst:81
+#: ../../glossary.rst:78
 msgid "IPv6"
 msgstr ""
 
-#: ../../glossary.rst:83
+#: ../../glossary.rst:80
 msgid "is the version 6 of the Internet Protocol, the connectionless network layer protocol which is intended to replace IPv4. IP version 6 addresses are encoded as a 128 bits field."
 msgstr ""
 
-#: ../../glossary.rst:144
+#: ../../glossary.rst:141
 msgid "IS-IS"
 msgstr ""
 
-#: ../../glossary.rst:146
+#: ../../glossary.rst:143
 msgid "Intermediate System- Intermediate System. A link-state intradomain routing that was initially defined for the ISO CLNP protocol but was extended to support IP v4 and IP v6. IS-IS is often used in ISP networks. It is defined in [ISO10589]_"
 msgstr ""
 
-#: ../../glossary.rst:105
+#: ../../glossary.rst:102
 msgid "ISN"
 msgstr ""
 
-#: ../../glossary.rst:107
+#: ../../glossary.rst:104
 msgid "The Initial Sequence Number of a TCP connection is the sequence number chosen by the client ( resp. server) that is placed in the `SYN` (resp. `SYN+ACK`) segment during the establishment of the TCP connection."
 msgstr ""
 
 #: ../../glossary.rst:36
-#: ../../glossary.rst:271
 msgid "ISO"
 msgstr ""
 
@@ -388,23 +372,19 @@ msgstr ""
 msgid "The International Standardization Organization is an agency of the United Nations that is based in Geneva and develop standards on various topics. Within ISO, country representatives vote to approve or reject standards. Most of the work on the development of ISO standards is done in expert working groups. Additional information about ISO may be obtained from https://www.iso.org"
 msgstr ""
 
-#: ../../glossary.rst:273
-msgid "The International Standardization Organization"
-msgstr ""
-
-#: ../../glossary.rst:289
+#: ../../glossary.rst:274
 msgid "ISO-3166"
 msgstr ""
 
-#: ../../glossary.rst:291
+#: ../../glossary.rst:276
 msgid "An :term:`ISO` standard that defines codes to represent countries and their subdivisions. See http://www.iso.org/iso/country_codes.htm"
 msgstr ""
 
-#: ../../glossary.rst:295
+#: ../../glossary.rst:281
 msgid "ISP"
 msgstr ""
 
-#: ../../glossary.rst:297
+#: ../../glossary.rst:283
 msgid "An Internet Service Provider, i.e. a network that provides Internet access to its clients."
 msgstr ""
 
@@ -416,11 +396,11 @@ msgstr ""
 msgid "The International Telecommunication Union is a United Nation's agency whose purpose is to develop standards for the telecommunication industry. It was initially created to standardize the basic telephone system but expanded later towards data networks. The work within ITU is mainly done by network specialists from the telecommunication industry (operators and vendors). See https://www.itu.int for more information"
 msgstr ""
 
-#: ../../glossary.rst:153
+#: ../../glossary.rst:150
 msgid "IXP"
 msgstr ""
 
-#: ../../glossary.rst:155
+#: ../../glossary.rst:152
 msgid "Internet eXchange Point. A location where routers belonging to different domains are attached to the same Local Area Network to establish peering sessions and exchange packets. See http://www.euro-ix.net/ or https://en.wikipedia.org/wiki/List_of_Internet_exchange_points_by_size for a partial list of IXPs."
 msgstr ""
 
@@ -432,11 +412,11 @@ msgstr ""
 msgid "Local Area Network"
 msgstr ""
 
-#: ../../glossary.rst:286
+#: ../../glossary.rst:271
 msgid "leased line"
 msgstr ""
 
-#: ../../glossary.rst:288
+#: ../../glossary.rst:273
 msgid "A telephone line that is permanently available between two endpoints."
 msgstr ""
 
@@ -448,43 +428,43 @@ msgstr ""
 msgid "Metropolitan Area Network"
 msgstr ""
 
-#: ../../glossary.rst:253
+#: ../../glossary.rst:241
 msgid "MIME"
 msgstr ""
 
-#: ../../glossary.rst:255
+#: ../../glossary.rst:243
 msgid "The Multipurpose Internet Mail Extensions (MIME) defined in :rfc:`2045` are a set of extensions to the format of email messages that allow to use non-ASCII characters inside mail messages. A MIME message can be composed of several different parts each having a different format."
 msgstr ""
 
-#: ../../glossary.rst:277
+#: ../../glossary.rst:262
 msgid "MIME document"
 msgstr ""
 
-#: ../../glossary.rst:279
+#: ../../glossary.rst:264
 msgid "A MIME document is a document, encoded by using the :term:`MIME` format."
 msgstr ""
 
-#: ../../glossary.rst:274
+#: ../../glossary.rst:259
 msgid "minicomputer"
 msgstr ""
 
-#: ../../glossary.rst:276
+#: ../../glossary.rst:261
 msgid "A minicomputer is a multi-user system that was typically used in the 1960s/1970s to serve departments. See the corresponding Wikipedia article for additional information : https://en.wikipedia.org/wiki/Minicomputer"
 msgstr ""
 
-#: ../../glossary.rst:280
+#: ../../glossary.rst:265
 msgid "modem"
 msgstr ""
 
-#: ../../glossary.rst:282
+#: ../../glossary.rst:267
 msgid "A modem (modulator-demodulator) is a device that encodes (resp. decodes) digital information by modulating (resp. demodulating) an analog signal. Modems are frequently used to transmit digital information over telephone lines and radio links. See https://en.wikipedia.org/wiki/Modem for a survey of various types of modems"
 msgstr ""
 
-#: ../../glossary.rst:123
+#: ../../glossary.rst:120
 msgid "MSS"
 msgstr ""
 
-#: ../../glossary.rst:125
+#: ../../glossary.rst:122
 msgid "A TCP option used by a TCP entity in SYN segments to indicate the Maximum Segment Size that it is able to receive."
 msgstr ""
 
@@ -496,75 +476,75 @@ msgstr ""
 msgid "a transmission mode where an information is sent efficiently to `all` the receivers that belong to a given group"
 msgstr ""
 
-#: ../../glossary.rst:250
+#: ../../glossary.rst:238
 msgid "nameserver"
 msgstr ""
 
-#: ../../glossary.rst:252
+#: ../../glossary.rst:240
 msgid "A server that implements the DNS protocol and can answer queries for names inside its own domain."
 msgstr ""
 
-#: ../../glossary.rst:165
+#: ../../glossary.rst:162
 msgid "NAT"
 msgstr ""
 
-#: ../../glossary.rst:167
+#: ../../glossary.rst:164
 msgid "A Network Address Translator is a middlebox that translates IP packets."
 msgstr ""
 
-#: ../../glossary.rst:310
+#: ../../glossary.rst:296
 msgid "NBMA"
 msgstr ""
 
-#: ../../glossary.rst:312
+#: ../../glossary.rst:298
 msgid "A Non Broadcast Mode Multiple Access Network is a subnetwork that supports multiple hosts/routers but does not provide an efficient way of sending broadcast frames to all devices attached to the subnetwork. ATM subnetworks are an example of NBMA networks."
 msgstr ""
 
-#: ../../glossary.rst:298
+#: ../../glossary.rst:284
 msgid "network-byte order"
 msgstr ""
 
-#: ../../glossary.rst:300
+#: ../../glossary.rst:286
 msgid "Internet protocol allow to transport sequences of bytes. These sequences of bytes are sufficient to carry ASCII characters. The network-byte order refers to the Big-Endian encoding for 16 and 32 bits integer. See https://en.wikipedia.org/wiki/Endianness"
 msgstr ""
 
-#: ../../glossary.rst:217
+#: ../../glossary.rst:205
 msgid "NFS"
 msgstr ""
 
-#: ../../glossary.rst:219
+#: ../../glossary.rst:207
 msgid "The Network File System is defined in :rfc:`1094`"
 msgstr ""
 
-#: ../../glossary.rst:220
+#: ../../glossary.rst:208
 msgid "NTP"
 msgstr ""
 
-#: ../../glossary.rst:222
+#: ../../glossary.rst:210
 msgid "The Network Time Protocol is defined in :rfc:`1305`"
 msgstr ""
 
-#: ../../glossary.rst:93
+#: ../../glossary.rst:90
 msgid "OSI"
 msgstr ""
 
-#: ../../glossary.rst:95
+#: ../../glossary.rst:92
 msgid "Open Systems Interconnection. A set of networking standards developed by :term:`ISO` including the 7 layers OSI reference model."
 msgstr ""
 
-#: ../../glossary.rst:141
+#: ../../glossary.rst:138
 msgid "OSPF"
 msgstr ""
 
-#: ../../glossary.rst:143
+#: ../../glossary.rst:140
 msgid "Open Shortest Path First. A link-state intradomain routing protocol that  is often used in enterprise and ISP networks. OSPF is defined in and :rfc:`2328`  and :rfc:`5340`"
 msgstr ""
 
-#: ../../glossary.rst:57
+#: ../../glossary.rst:54
 msgid "packet"
 msgstr ""
 
-#: ../../glossary.rst:59
+#: ../../glossary.rst:56
 msgid "a packet is the unit of information transfer in the network layer"
 msgstr ""
 
@@ -576,216 +556,211 @@ msgstr ""
 msgid "Problem-based learning is a teaching approach that relies on problems."
 msgstr ""
 
-#: ../../glossary.rst:192
-#: ../../glossary.rst:256
+#: ../../glossary.rst:244
 msgid "POP"
 msgstr ""
 
-#: ../../glossary.rst:194
-msgid "The Post Office Protocol is defined in :rfc:`1939`"
-msgstr ""
-
-#: ../../glossary.rst:258
+#: ../../glossary.rst:246
 msgid "The Post Office Protocol (POP), defined :rfc:`1939`, is an application-level protocol that allows a client to download email messages stored on a server."
 msgstr ""
 
-#: ../../glossary.rst:316
+#: ../../glossary.rst:302
 msgid "remote login"
 msgstr ""
 
-#: ../../glossary.rst:318
+#: ../../glossary.rst:304
 msgid "A service that enables a user to connect to a distant server over the network. Telnet, defined in :rfc:`854` and the BSD rlogin services defined in :rfc:`1282` were popular in the past. They have been deprecated for security reasons and are now replaced by :term:`ssh`."
 msgstr ""
 
-#: ../../glossary.rst:247
+#: ../../glossary.rst:235
 msgid "resolver"
 msgstr ""
 
-#: ../../glossary.rst:249
+#: ../../glossary.rst:237
 msgid "A server that implements the DNS protocol and can resolve queries. A resolver usually serves a set of clients (e.g. all hosts in campus or all clients of a given ISP). It sends DNS queries to nameservers everywhere on behalf of its clients and stores the received answers in its cache. A resolver must know the IP addresses of the root nameservers."
 msgstr ""
 
-#: ../../glossary.rst:138
+#: ../../glossary.rst:135
 msgid "RIP"
 msgstr ""
 
-#: ../../glossary.rst:140
+#: ../../glossary.rst:137
 msgid "Routing Information Protocol. An intradomain routing protocol based on distance vectors that is sometimes used in enterprise networks. RIP is defined in :rfc:`2453`."
 msgstr ""
 
-#: ../../glossary.rst:135
+#: ../../glossary.rst:132
 msgid "RIR"
 msgstr ""
 
-#: ../../glossary.rst:137
+#: ../../glossary.rst:134
 msgid "Regional Internet Registry. An organization that manages IP addresses and AS numbers on behalf of :term:`IANA`."
 msgstr ""
 
-#: ../../glossary.rst:244
+#: ../../glossary.rst:232
 msgid "root nameserver"
 msgstr ""
 
-#: ../../glossary.rst:246
+#: ../../glossary.rst:234
 msgid "A name server that is responsible for the root of the domain names hierarchy. There are currently a dozen root nameservers and each DNS resolver See http://www.root-servers.org/ for more information about the operation of these root servers."
 msgstr ""
 
-#: ../../glossary.rst:126
+#: ../../glossary.rst:123
 msgid "round-trip-time"
 msgstr ""
 
-#: ../../glossary.rst:128
+#: ../../glossary.rst:125
 msgid "The round-trip-time (RTT) is the delay between the transmission of a segment and the reception of the corresponding acknowledgment in a transport protocol."
 msgstr ""
 
-#: ../../glossary.rst:174
+#: ../../glossary.rst:171
 msgid "router"
 msgstr ""
 
-#: ../../glossary.rst:176
+#: ../../glossary.rst:173
 msgid "A relay operating in the network layer."
 msgstr ""
 
-#: ../../glossary.rst:214
+#: ../../glossary.rst:202
 msgid "RPC"
 msgstr ""
 
-#: ../../glossary.rst:216
+#: ../../glossary.rst:204
 msgid "Several types of remote procedure calls have been defined. The RPC mechanism defined in :rfc:`5531` is used by applications such as NFS"
 msgstr ""
 
-#: ../../glossary.rst:66
+#: ../../glossary.rst:63
 msgid "SDU (Service Data Unit)"
 msgstr ""
 
-#: ../../glossary.rst:68
+#: ../../glossary.rst:65
 msgid "a Service Data Unit is the unit information transferred between applications"
 msgstr ""
 
-#: ../../glossary.rst:60
+#: ../../glossary.rst:57
 msgid "segment"
 msgstr ""
 
-#: ../../glossary.rst:62
+#: ../../glossary.rst:59
 msgid "a segment is the unit of information transfer in the transport layer"
 msgstr ""
 
-#: ../../glossary.rst:189
+#: ../../glossary.rst:186
 msgid "SMTP"
 msgstr ""
 
-#: ../../glossary.rst:191
+#: ../../glossary.rst:188
 msgid "The Simple Mail Transfer Protocol is defined in :rfc:`821`"
 msgstr ""
 
-#: ../../glossary.rst:96
+#: ../../glossary.rst:93
 msgid "SNMP"
 msgstr ""
 
-#: ../../glossary.rst:98
+#: ../../glossary.rst:95
 msgid "The Simple Network Management Protocol is a management protocol defined for TCP/IP networks."
 msgstr ""
 
-#: ../../glossary.rst:120
+#: ../../glossary.rst:117
 msgid "socket"
 msgstr ""
 
-#: ../../glossary.rst:122
+#: ../../glossary.rst:119
 msgid "A low-level API originally defined on Berkeley Unix to allow programmers to develop clients and servers."
 msgstr ""
 
-#: ../../glossary.rst:108
+#: ../../glossary.rst:105
 msgid "spoofed packet"
 msgstr ""
 
-#: ../../glossary.rst:110
+#: ../../glossary.rst:107
 msgid "A packet is said to be spoofed when the sender of the packet has used as source address a different address than its own."
 msgstr ""
 
-#: ../../glossary.rst:201
-msgid "SSH"
+#: ../../glossary.rst:193
+msgid "ssh"
 msgstr ""
 
-#: ../../glossary.rst:203
+#: ../../glossary.rst:195
 msgid "The Secure Shell (SSH) Transport Layer Protocol is defined in :rfc:`4253`"
 msgstr ""
 
-#: ../../glossary.rst:301
+#: ../../glossary.rst:287
 msgid "standard query"
 msgstr ""
 
-#: ../../glossary.rst:303
+#: ../../glossary.rst:289
 msgid "For DNS servers and resolvers, a standard query is a query for a `A` or a `AAAA` record. Such a query typically returns an IP address."
 msgstr ""
 
-#: ../../glossary.rst:177
+#: ../../glossary.rst:174
 msgid "switch"
 msgstr ""
 
-#: ../../glossary.rst:179
+#: ../../glossary.rst:176
 msgid "A relay operating in the datalink layer."
 msgstr ""
 
-#: ../../glossary.rst:111
+#: ../../glossary.rst:108
 msgid "SYN cookie"
 msgstr ""
 
-#: ../../glossary.rst:113
+#: ../../glossary.rst:110
 msgid "The SYN cookies is a technique used to compute the initial sequence number (ISN)"
 msgstr ""
 
-#: ../../glossary.rst:114
+#: ../../glossary.rst:111
 msgid "TCB"
 msgstr ""
 
-#: ../../glossary.rst:116
+#: ../../glossary.rst:113
 msgid "The Transmission Control Block is the set of variables that are maintained for each established TCP connection by a TCP implementation."
 msgstr ""
 
-#: ../../glossary.rst:87
+#: ../../glossary.rst:84
 msgid "TCP"
 msgstr ""
 
-#: ../../glossary.rst:89
+#: ../../glossary.rst:86
 msgid "The Transmission Control Protocol is a protocol of the transport layer in the TCP/IP protocol suite that provides a reliable bytestream connection-oriented service on top of IP"
 msgstr ""
 
-#: ../../glossary.rst:84
+#: ../../glossary.rst:81
 msgid "TCP/IP"
 msgstr ""
 
-#: ../../glossary.rst:86
+#: ../../glossary.rst:83
 msgid "refers to the :term:`TCP` and :term:`IP` protocols"
 msgstr ""
 
-#: ../../glossary.rst:204
+#: ../../glossary.rst:196
 msgid "telnet"
 msgstr ""
 
-#: ../../glossary.rst:206
+#: ../../glossary.rst:198
 msgid "The telnet protocol is defined in :rfc:`854`"
 msgstr ""
 
-#: ../../glossary.rst:238
+#: ../../glossary.rst:226
 msgid "TLD"
 msgstr ""
 
-#: ../../glossary.rst:240
+#: ../../glossary.rst:228
 msgid "A Top-level domain name. There are two types of TLDs. The ccTLD are the TLD that correspond to a two letters :term:`ISO-3166` country code. The gTLD are the generic TLDs that are not assigned to a country."
 msgstr ""
 
-#: ../../glossary.rst:307
+#: ../../glossary.rst:293
 msgid "TLS"
 msgstr ""
 
-#: ../../glossary.rst:309
+#: ../../glossary.rst:295
 msgid "Transport Layer Security, defined in :rfc:`5246` is a cryptographic protocol that is used to provide communication security for Internet applications. This protocol is used on top of the transport service but a detailed description is outside the scope of this book."
 msgstr ""
 
-#: ../../glossary.rst:90
+#: ../../glossary.rst:87
 msgid "UDP"
 msgstr ""
 
-#: ../../glossary.rst:92
+#: ../../glossary.rst:89
 msgid "User Datagram Protocol is a protocol of the transport layer in the TCP/IP protocol suite that provides an unreliable connectionless service that includes a mechanism to detect corruption"
 msgstr ""
 
@@ -797,11 +772,15 @@ msgstr ""
 msgid "a transmission mode where an information is sent from one source to one recipient"
 msgstr ""
 
-#: ../../glossary.rst:292
+#: ../../glossary.rst:277
+msgid "VNC"
+msgstr ""
+
+#: ../../glossary.rst:278
 msgid "vnc"
 msgstr ""
 
-#: ../../glossary.rst:294
+#: ../../glossary.rst:280
 msgid "A networked application that allows to remotely access a computer's Graphical User Interface. See https://en.wikipedia.org/wiki/Virtual_Network_Computing"
 msgstr ""
 
@@ -821,27 +800,26 @@ msgstr ""
 msgid "Wide Area Network"
 msgstr ""
 
-#: ../../glossary.rst:223
+#: ../../glossary.rst:211
 msgid "X.25"
 msgstr ""
 
-#: ../../glossary.rst:225
+#: ../../glossary.rst:213
 msgid "A wide area networking technology using virtual circuits that was deployed by telecommunication operators."
 msgstr ""
 
-#: ../../glossary.rst:207
+#: ../../glossary.rst:199
 msgid "X11"
 msgstr ""
 
-#: ../../glossary.rst:209
+#: ../../glossary.rst:201
 msgid "The XWindow system and the associated protocols are defined in [SG1990]_"
 msgstr ""
 
-#: ../../glossary.rst:265
+#: ../../glossary.rst:253
 msgid "XML"
 msgstr ""
 
-#: ../../glossary.rst:267
+#: ../../glossary.rst:255
 msgid "The eXtensible Markup Language (XML) is a flexible text format derived from SGML. It was originally designed for the electronic publishing industry but is now used by a wide variety of applications that need to exchange structured data. The XML specifications are maintained by `several working groups <https://www.w3.org/XML/>`_ of the :term:`W3C`"
 msgstr ""
-
