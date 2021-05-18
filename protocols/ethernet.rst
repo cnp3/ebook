@@ -336,7 +336,7 @@ The `BPDUs` exchanged by the switches contain the following information :
  - the `identifier` of the switch that sent the `BPDU` (`T`)
  - the number of the switch port over which the `BPDU` was sent (`p`)
 
-We will use the notation `<R,c,T,p>` to represent a `BPDU` whose `root identifier` is `R`, `cost` is `c` and that was sent on the port `p` of switch `T`.  The construction of the spanning tree depends on an ordering relationship among the `BPDUs`. This ordering relationship could be implemented by the Python function below.
+We will use the notation `<R,c,T,p>` to represent a `BPDU` whose `root identifier` is `R`, `cost` is `c` and that was sent from the port `p` of switch `T`.  The construction of the spanning tree depends on an ordering relationship among the `BPDUs`. This ordering relationship could be implemented by the Python function below.
 
 .. code-block:: python
 
