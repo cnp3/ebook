@@ -374,8 +374,8 @@ to compute :math:`K_{priv}` from :math:`K_{pub}`.
 
 A public key cryptographic scheme is a combination of two functions :
 
- - an encryption function, `E_p`, that takes a key and a message as parameters
- - a decryption function, `D_p`, that takes a key and a message as parameters
+ - an encryption function, :math:`E_{p}`, that takes a key and a message as parameters
+ - a decryption function, :math:`D_{p}`, that takes a key and a message as parameters
 
 The public key is used to encrypt a message so that it can only be read by
 the intended recipient. For example, let us consider two users : Alice and Bob.
