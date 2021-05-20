@@ -1300,7 +1300,7 @@ As an illustration, let us consider the network scenario above and assume that t
         \node[black, fill=red!25, font=\scriptsize] at (7,8.7) {S2};
 
         \draw[black, fill=red!25] (2,9) -- (2,9.5) -- (4, 9.5) -- (4,9) -- (2,9);
-        \node[black, fill=red!25, font=\scriptsize] at (3,9.7) {S3};
+        \node[black, fill=red!25, font=\scriptsize] at (3,9.2) {S3};
 
         \draw[black, fill=red!25] (4,8) -- (4,9) -- (6, 9) -- (6,8) -- (4,8);
         \node[black, fill=red!25, font=\scriptsize] at (5,8.5) {S3};
