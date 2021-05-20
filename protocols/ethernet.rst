@@ -211,7 +211,7 @@ Ethernet Switches
 Increasing the physical layer bandwidth as in `Fast Ethernet` was only one of the solutions to improve the performance of Ethernet LANs. A second solution was to replace the hubs with more intelligent devices. As `Ethernet hubs` operate in the physical layer, they can only regenerate the electrical signal to extend the geographical reach of the network. From a performance perspective, it would be more interesting to have devices that operate in the datalink layer and can analyze the destination address of each frame and forward the frames selectively on the link that leads to the destination. Such devices are usually called `Ethernet switches` [#fbridges]_.  An `Ethernet switch` is a relay that operates in the datalink layer as is illustrated in the figure below.
 
 
-    .. tikz:: Ethernet switches and the reference model
+    .. tikz:: Ethernet switches in the reference model
         :libs: positioning, matrix, arrows
 
         \tikzstyle{arrow} = [thick,<->,>=stealth]
