@@ -6,7 +6,7 @@
 The HyperText Transfer Protocol
 ===============================
 
-In the early days of the Internet was mainly used for remote terminal access with telnet_, email and file transfer. The default file transfer protocol, `FTP`, defined in :rfc:`959` was widely used. `FTP` clients and servers are still included in some operating systems.
+In the early days, the Internet was mainly used for remote terminal access with telnet_, email and file transfer. The default file transfer protocol, `FTP`, defined in :rfc:`959` was widely used. `FTP` clients and servers are still included in some operating systems.
 
 Many `FTP` clients offered a user interface similar to a Unix shell and allowed clients to browse the file system on the server and to send and retrieve files. `FTP` servers can be configured in two modes :
 
