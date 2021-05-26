@@ -69,7 +69,7 @@ A second way to improve the web performance is to reduce the time required to re
 
 A closer look at the average web page shows that it contains, on average, 27 KBytes of HTML, 120 KBytes of fonts, 60 KBytes of CSS information, almost 1 MBytes of images and more than 400 KBytes of javascript.  Each of these web page requires about 70 different HTTP requests. In other words, a browser needs to send on average 70 requests to retrieve a complete web page.
 
-Two directions have been explored to improve the delivery of web these pages. The first direction is to tune the HTTP protocol. The second approach is to change the entire network stack. We will discuss this approach after having covered the entire stack.
+Two directions have been explored to improve the delivery of these web pages. The first direction is to tune the HTTP protocol. The second approach is to change the entire network stack. We will discuss this approach after having covered the entire stack.
 
 .. to do  add reference to future QUIC section
 
@@ -236,7 +236,7 @@ HTTP/2.0 includes much more than what we have covered in this short introduction
 
 .. note:: Detecting whether a server supports HTTP/2.0
 
-   HTTP/2.0 is a new version of the HTTP protocol that still uses port 80. When a client contacts an HTTP server, it must be able to determiner whether it supports HTTP/1.x or HTTP/2.0. If the client sends a binary encoded HTTP/2.0 request to a server that only supports the ASCII encoded HTTP/1.x, it could cause problems on the server and even crash it. To minimize the risk of crashing HTTP/1.x servers, an HTTP/2.0 session starts like an HTTP/1.1 session and the first request contains the `Connection`, `Upgrade` and `HTTP2-Settings` headers. An example of such a request to upgrade the version of HTTP is shown below.
+   HTTP/2.0 is a new version of the HTTP protocol that still uses port 80. When a client contacts an HTTP server, it must be able to determine whether it supports HTTP/1.x or HTTP/2.0. If the client sends a binary encoded HTTP/2.0 request to a server that only supports the ASCII encoded HTTP/1.x, it could cause problems on the server and even crash it. To minimize the risk of crashing HTTP/1.x servers, an HTTP/2.0 session starts like an HTTP/1.1 session and the first request contains the `Connection`, `Upgrade` and `HTTP2-Settings` headers. An example of such a request to upgrade the version of HTTP is shown below.
 
    .. code-block:: console
 
