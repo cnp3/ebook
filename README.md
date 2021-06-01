@@ -5,7 +5,7 @@ Computer Networking : Principles, Protocols and Practice, 3rd Edition
 [![Build Status](https://travis-ci.org/cnp3/ebook.svg?branch=master)](https://travis-ci.org/cnp3/ebook)
 [![Translation Status](https://weblate.info.ucl.ac.be/widgets/cnp3-ebook/-/svg-badge.svg)](https://weblate.info.ucl.ac.be/engage/cnp3-ebook/?utm_source=widget)
 
-This is the current draft for the third edition of the [Computer Networking : Principles, Protocols and Practice](https://www.computer-networking.info) open-source ebook. This draft will be updated on a regular basis. The objective is to finalise this third edition by the end of 2019. 
+This is the current draft for the third edition of the [Computer Networking : Principles, Protocols and Practice](https://www.computer-networking.info) open-source ebook. This draft will be updated on a regular basis. The objective is to finalise this third edition by the end of 2021. 
 
 (c) Olivier Bonaventure, UCLouvain, Belgium
     https://perso.uclouvain.be/olivier.bonaventure
