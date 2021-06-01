@@ -653,7 +653,7 @@ Interactions between IPv6 and the datalink layer
 IPv6 hosts and routers frequently interact with the datalink layer service. To understand the main interactions, it is useful to analyze all the packets that are exchanged when a simple network containing a few hosts and routers is built. Let us first start with a LAN containing two hosts [#fMAC]_.
 
   .. tikz::
-     :libs: positioning, matrix, arrows.meta, shapes
+     :libs: positioning, matrix, shapes
 
      \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
      \tikzset{lan/.style = {ellipse, draw, text centered} }
@@ -693,7 +693,7 @@ The next step is to connect the LAN to the Internet. For this, a router is attac
 
 
    .. tikz:: A simple IPv6 network with one router
-      :libs: positioning, matrix, arrows.meta, shapes
+      :libs: positioning, matrix, shapes
 
       [align=center,node distance=2.5cm]
       \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
