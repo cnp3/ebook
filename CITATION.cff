@@ -1,10 +1,9 @@
 cff-version: 1.1.0
-message: If you use this software, please cite it as below.
+message: If you use this ebook, please cite it as below.
 authors:
   - family-names: Bonaventure
     given-names: Olivier
-  - family-names: and 
-    given-names: others
+    orcid: "https://orcid.org/0000-0002-6717-0296"
 title: Computer Networking: Principles, Protocols and Practice
 type: book
 url: https://www.computer-networking.info
