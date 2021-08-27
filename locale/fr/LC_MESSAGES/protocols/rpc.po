@@ -1,0 +1,182 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2019 Olivier Bonaventure
+# This file is distributed under the same license as the Computer networking : Principles, Protocols and Practice package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Computer networking : Principles, Protocols and Practice "
+"3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-05-17 09:55+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../protocols/rpc.rst:6
+msgid "Remote Procedure Calls"
+msgstr ""
+
+#: ../../protocols/rpc.rst:8
+msgid "In the previous sections, we have described several protocols that enable humans to exchange messages and access to remote documents. This is not the only usage of computer networks and in many situations applications use the network to exchange information with other applications. When an application needs to perform a large computation on a host, it can sometimes be useful to request computations from other hosts. Many distributed systems have been built by distributing applications on different hosts and using `Remote Procedure Calls` as a basic building block."
+msgstr ""
+
+#: ../../protocols/rpc.rst:10
+msgid "In traditional programming languages, `procedure calls` allow programmers to better structure their code. Each procedure is identified by a name, a return type and a set of parameters. When a procedure is called, the current flow of program execution is diverted to execute the procedure. This procedure uses the provided parameters to perform its computation and returns one or more values. This programming model was designed with a single host in mind. In a nutshell, most programming languages support it as follows :"
+msgstr ""
+
+#: ../../protocols/rpc.rst:12
+msgid "The caller places the values of the parameters at a location (register, stack, ...) where the callee can access them"
+msgstr ""
+
+#: ../../protocols/rpc.rst:13
+msgid "The caller transfers the control of execution to the callee's procedure"
+msgstr ""
+
+#: ../../protocols/rpc.rst:14
+msgid "The callee accesses the parameters and performs the requested computation"
+msgstr ""
+
+#: ../../protocols/rpc.rst:15
+msgid "The callee places the return value(s) at a location (register, stack, ...) where the caller can access them"
+msgstr ""
+
+#: ../../protocols/rpc.rst:16
+msgid "The callee returns the control of execution to the caller's"
+msgstr ""
+
+#: ../../protocols/rpc.rst:18
+msgid "This model was developed with a single host in mind. How should it be modified if the caller and the callee are different hosts connected through a network ? Since the two hosts can be different, the two main problems are the fact they do not share the same memory and that they do not necessarily use the same representation for numbers, characters, ... Let us examine how the five steps identified above can be supported through a network."
+msgstr ""
+
+#: ../../protocols/rpc.rst:20
+msgid "The first problem to be solved is how to transfer the information from the caller to the callee. This problem is not simple and includes two sub-problems. The first sub-problem is the encoding of the information. How to encode the values of the parameters so that they can be transferred correctly through the network ? The second problem is how to reach the callee through the network ? The callee is identified by a procedure name, but to use the transport service, we need to convert this name into an address and a port number."
+msgstr ""
+
+#: ../../protocols/rpc.rst:25
+msgid "Encoding data"
+msgstr ""
+
+#: ../../protocols/rpc.rst:27
+msgid "The encoding problem exists in a wide range of applications. In the previous sections, we have described how character-based encodings are used by email and HTTP. Although standard encoding techniques such as ASN.1 [Dubuisson2000]_ have been defined to cover most application needs, many applications have defined their specific encoding. `Remote Procedure Call` are no exception to this rule. The three most popular encoding methods are probably XDR :rfc:`1832` used by ONC-RPC :rfc:`1831`, XML, used by XML-RPC and JSON :rfc:`4627`."
+msgstr ""
+
+#: ../../protocols/rpc.rst:34
+msgid "The eXternal Data Representation (XDR) Standard, defined in :rfc:`1832` is an early specification that describes how information exchanged during Remote Procedure Calls should be encoded before being transmitted through a network. Since the transport service enables transfering a block of bytes (with the connectionless service) or a stream of bytes (by using the connection-oriented service), XDR maps each datatype onto a sequence of bytes. The caller encodes each data in the appropriate sequence and the callee decodes the received information. Here are a few examples extracted from :rfc:`1832` to illustrate how this encoding/decoding can be performed."
+msgstr ""
+
+#: ../../protocols/rpc.rst:36
+msgid "For basic data types, :rfc:`1832` simply maps their representation into a sequence of bytes. For example a 32 bits integer is transmitted as follows (with the most significant byte first, which corresponds to big-endian encoding)."
+msgstr ""
+
+#: ../../protocols/rpc.rst:43
+msgid "XDR also supports 64 bits integers and booleans. The booleans are mapped onto integers (`0` for `false` and `1` for `true`). For the floating point numbers, the encoding defined in the IEEE standard is used."
+msgstr ""
+
+#: ../../protocols/rpc.rst:50
+msgid "In this representation, the first bit (`S`) is the sign (`0` represents positive). The next 11 bits represent the exponent of the number (`E`), in base 2, and the remaining 52 bits are the fractional part of the number (`F`). The floating point number that corresponds to this representation is :math:`(-1)^{S} \\times 2^{E-1023} \\times 1.F`. XDR also allows encoding complex data types. A first example is the string of bytes. A string of bytes is composed of two parts : a length (encoded as an integer) and a sequence of bytes. For performance reasons, the encoding of a string is aligned to 32 bits boundaries. This implies that some padding bytes may be inserted during the encoding operation is the length of the string is not a multiple of 4. The structure of the string is shown below (source :rfc:`1832`)."
+msgstr ""
+
+#: ../../protocols/rpc.rst:58
+msgid "In some situations, it is necessary to encode fixed or variable length arrays. XDR :rfc:`1832` supports such arrays. For example, the encoding below corresponds to a variable length array containing n elements. The encoded representation starts with an integer that contains the number of elements and follows with all elements in sequence. It is also possible to encode a fixed-length array. In this case, the first integer (the `n` field) is missing."
+msgstr ""
+
+#: ../../protocols/rpc.rst:65
+msgid "XDR also supports the definition of unions, structures, ... Additional details are provided in :rfc:`1832`."
+msgstr ""
+
+#: ../../protocols/rpc.rst:67
+msgid "A second popular method to encode data is the JavaScript Object Notation (JSON). This syntax was initially defined to allow applications written in JavaScript to exchange data, but it has now wider usages. JSON :rfc:`4627` is a text-based representation. The simplest data type is the integer. It is represented as a sequence of digits in ASCII. Strings can also be encoding by using JSON. A JSON string always starts and ends with a quote character (`\"`) as in the C language. As in the C language, some characters (like `\"` or `\\\\`) must be escaped if they appear in a string. :rfc:`4627` describes this in details. Booleans are also supported by using the strings `false` and `true`. Like XDR, JSON supports more complex data types. A structure or object is defined as a comma separated list of elements enclosed in curly brackets. :rfc:`4627` provides the following example as an illustration."
+msgstr ""
+
+#: ../../protocols/rpc.rst:86
+msgid "This object has one field named `Image`. It has five attributes. The first one, `Width`, is an integer set to 800. The third one is a string. The fourth attribute, `Thumbnail` is also an object composed of three different attributes, one string and two integers. JSON can also be used to encode arrays or lists. In this case, square brackets are used as delimiters. The snippet below shows an array which contains the prime integers that are smaller than ten."
+msgstr ""
+
+#: ../../protocols/rpc.rst:94
+msgid "Compared with XDR, the main advantage of JSON is that the transfer syntax is easily readable by a human. However, this comes at the expense of a less compact encoding. Some data encoded in JSON will usually take more space than when it is encoded with XDR. More compact encoding schemes have been defined, see e.g. [BH2013]_ and the references therein."
+msgstr ""
+
+#: ../../protocols/rpc.rst:98
+msgid "Reaching the callee"
+msgstr ""
+
+#: ../../protocols/rpc.rst:100
+msgid "The second sub-problem is how to reach the callee. A simple solution to this problem is to make sure that the callee listens on a specific port on the remote machine and then exchange information with this server process. This is the solution chosen for JSON-RPC [JSON-RPC2]_. JSON-RPC can be used over the connectionless or the connection-oriented transport service. A JSON-RPC request contains the following fields:"
+msgstr ""
+
+#: ../../protocols/rpc.rst:102
+msgid "`jsonrpc`: a string indicating the version of the protocol used. This is important to allow the protocol to evolve in the future."
+msgstr ""
+
+#: ../../protocols/rpc.rst:103
+msgid "`method`: a string that contains the name of the procedure which is invoked"
+msgstr ""
+
+#: ../../protocols/rpc.rst:104
+msgid "`params`: a structure that contains the values of the parameters that are passed to the method"
+msgstr ""
+
+#: ../../protocols/rpc.rst:105
+msgid "`id`: an identifier chosen by the caller"
+msgstr ""
+
+#: ../../protocols/rpc.rst:107
+msgid "The JSON-RPC is encoded as a JSON object. For example, the example below shows an invocation of a method called `sum` with `1` and `3` as parameters."
+msgstr ""
+
+#: ../../protocols/rpc.rst:113
+msgid "Upon reception of this JSON structure, the callee parses the object, locates the corresponding method and passes the parameters. This method returns a response which is also encoded as a JSON structure. This response contains the following fields:"
+msgstr ""
+
+#: ../../protocols/rpc.rst:115
+msgid "`jsonrpc`: a string indicating the version of the protocol used to encode the response"
+msgstr ""
+
+#: ../../protocols/rpc.rst:116
+msgid "`id`: the same identifier as the identifier chosen by the caller"
+msgstr ""
+
+#: ../../protocols/rpc.rst:117
+msgid "`result`: if the request succeeded, this member contains the result of the request (in our example, value `4`)."
+msgstr ""
+
+#: ../../protocols/rpc.rst:118
+msgid "`error`: if the method called does not exist or its execution causes an error, the `result` element will be replaced by an `error` element which contains the following members :"
+msgstr ""
+
+#: ../../protocols/rpc.rst:120
+msgid "`code`: a number that indicates the type of error. Several error codes are defined in [JSON-RPC2]_. For example, `-32700` indicates an error in parsing the request, `-32602` indicates invalid parameters and `-32601` indicates that the method could not be found on the server. Other error codes are listed in [JSON-RPC2]_."
+msgstr ""
+
+#: ../../protocols/rpc.rst:121
+msgid "`message`: a string (limited to one sentence) that provides a short description of the error."
+msgstr ""
+
+#: ../../protocols/rpc.rst:122
+msgid "`data`: an optional field that provides additional information about the error."
+msgstr ""
+
+#: ../../protocols/rpc.rst:124
+msgid "Coming back to our example with the call for the `sum` procedure, it would return the following JSON structure."
+msgstr ""
+
+#: ../../protocols/rpc.rst:131
+msgid "If the `sum` method is not implemented on the server, it would reply with the following response."
+msgstr ""
+
+#: ../../protocols/rpc.rst:138
+msgid "The `id` field, which is present in the request and the response plays the same role as the identifier field in the DNS message. It allows the caller to match the response with the request that it sent. This `id` is very important when JSON-RPC is used over the connectionless transport service which is unreliable. If a request is sent, it may need to be retransmitted and it is possible that a callee will receive twice the same request (e.g. if the response for the first request was lost). In the DNS, when a request is lost, it can be retransmitted without causing any difficulty. However with remote procedure calls in general, losses can cause some problems. Consider a method which is used to deposit money on a bank account. If the request is lost, it will be retransmitted and the deposit will be eventually performed. However, if the response is lost, the caller will also retransmit its request. This request will be received by the callee that will deposit the money again. To prevent this problem from affecting the application, either the programmer must ensure that the remote procedures that it calls can be safely called multiple times or the application must verify whether the request has been transmitted earlier. In most deployments, the programmers use remote methods that can be safely called multiple times without breaking the application logic."
+msgstr ""
+
+#: ../../protocols/rpc.rst:146
+msgid "ONC-RPC uses a more complex method to allow a caller to reach the callee. On a host, server processes can run on different ports and given the limited number of port values (:math:`2^{16}` per host on the Internet), it is impossible to reserve one port number for each method. The solution used in ONC-RPC :rfc:`1831` is to use a special method which is called the `portmapper` :rfc:`1833`. The `portmapper` is a kind of directory that runs on a server that hosts methods. The `portmapper` runs on a standard port (`111` for ONC-RPC :rfc:`1833`). A server process that implements a method registers its method on the local `portmapper`. When a caller needs to call a method on a remote server, it first contacts the `portmapper` to obtain the port number of the server process which implements the method. The response from the portmapper allows it to directly contact the server process which implements the method."
+msgstr ""
+
+#: ../../protocols/rpc.rst:151
+msgid "Footnotes"
+msgstr ""
