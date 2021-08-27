@@ -9,8 +9,8 @@ msgstr ""
 "3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-17 09:55+0200\n"
-"PO-Revision-Date: 2021-08-27 12:44+0000\n"
-"Last-Translator: Anthony Gego <anthony.gego@uclouvain.be>\n"
+"PO-Revision-Date: 2021-08-27 13:21+0000\n"
+"Last-Translator: Quentin De Coninck <quentin.deconinck@uclouvain.be>\n"
 "Language-Team: French <http://weblate.info.ucl.ac.be/projects/cnp3-ebook/"
 "principlessecurity/fr/>\n"
 "Language: fr\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: ../../principles/security.rst:8
 msgid "Network security"
-msgstr ""
+msgstr "Sécurité des réseaux"
 
 #: ../../principles/security.rst:10
 msgid "In the early days, data networks were mainly used by researchers and security was not a concern. A few users were connected and capable of using the network. Almost all the devices attached to the network were openly accessible and users were trusted. As the utilization of the networks grew, security concerns started to appear. In universities, researchers and professors did not always trust their students and required some forms of access control. On standalone computers, the common access control mechanism is the password. A `username` is assigned to each user and when this user wants to access the computer, he or she needs to provide his/her `username` and his/her `password`. Most passwords are composed of a sequence of characters. The strength of the password is function of the difficulty of guessing the  characters chosen by each user. Various guidelines have been defined on how  to select a good password [#fpasswords]_. Some systems require regular modifications of the passwords chosen by their users."
@@ -442,7 +442,7 @@ msgstr ""
 
 #: ../../principles/security.rst:1015
 msgid "Footnotes"
-msgstr ""
+msgstr "Notes de bas de page"
 
 #: ../../principles/security.rst:1016
 msgid "The wikipedia page on passwords provides many of these references : https://en.wikipedia.org/wiki/Password_strength"
