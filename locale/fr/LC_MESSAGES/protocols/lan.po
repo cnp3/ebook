@@ -9,17 +9,20 @@ msgstr ""
 "3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-17 09:55+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2021-08-27 14:48+0000\n"
+"Last-Translator: Anthony Gego <anthony.gego@uclouvain.be>\n"
+"Language-Team: French <http://weblate.info.ucl.ac.be/projects/cnp3-ebook/"
+"protocolslan/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.9.1\n"
 
 #: ../../protocols/lan.rst:6
 msgid "Datalink layer technologies"
-msgstr ""
+msgstr "Technologies de la couche liaison"
 
 #: ../../protocols/lan.rst:8
 msgid "In this section, we review the key characteristics of several datalink layer technologies. We discuss in more detail the technologies that are widely used today. A detailed survey of all datalink layer technologies would be outside the scope of this book."
@@ -27,7 +30,7 @@ msgstr ""
 
 #: ../../protocols/ppp.rst:7
 msgid "The Point-to-Point Protocol"
-msgstr ""
+msgstr "La liaison point à point"
 
 #: ../../protocols/ppp.rst:9
 msgid "Many point-to-point datalink layers [#flapb]_ have been developed, starting in the 1960s. In this section, we focus on the protocols that are often used to transport IP packets between hosts or routers that are directly connected by a point-to-point link. This link can be a dedicated physical cable, a leased line through the telephone network or a dial-up connection with modems on the two communicating hosts."
@@ -555,7 +558,7 @@ msgstr ""
 
 #: ../../protocols/wifi.rst:5
 msgid "802.11 wireless networks"
-msgstr ""
+msgstr "Réseaux sans fil 802.11"
 
 #: ../../protocols/wifi.rst:7
 msgid "The radio spectrum is a limited resource that must be shared by everyone. During most of the twentieth century, governments and international organizations have regulated most of the radio spectrum. This regulation controls the utilization of the radio spectrum, in order to prevent interference among different users. A company that wants to use a frequency range in a given region must apply for a license from the regulator. Most regulators charge a fee for the utilization of the radio spectrum and some governments have encouraged competition among companies bidding for the same frequency to increase the license fees."
