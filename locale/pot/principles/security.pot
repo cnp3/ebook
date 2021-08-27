@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Computer networking : Principles, Protocols and Practice 3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-17 09:55+0200\n"
+"POT-Creation-Date: 2021-08-27 14:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -153,11 +153,11 @@ msgid "A public key cryptographic scheme is a combination of two functions :"
 msgstr ""
 
 #: ../../principles/security.rst:377
-msgid "an encryption function, `E_p`, that takes a key and a message as parameters"
+msgid "an encryption function, :math:`E_{p}`, that takes a key and a message as parameters"
 msgstr ""
 
 #: ../../principles/security.rst:378
-msgid "a decryption function, `D_p`, that takes a key and a message as parameters"
+msgid "a decryption function, :math:`D_{p}`, that takes a key and a message as parameters"
 msgstr ""
 
 #: ../../principles/security.rst:380

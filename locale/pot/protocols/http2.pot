@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Computer networking : Principles, Protocols and Practice 3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-17 09:55+0200\n"
+"POT-Creation-Date: 2021-08-27 14:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -69,11 +69,11 @@ msgid "A closer look at the average web page shows that it contains, on average,
 msgstr ""
 
 #: ../../protocols/http2.rst:72
-msgid "Two directions have been explored to improve the delivery of web these pages. The first direction is to tune the HTTP protocol. The second approach is to change the entire network stack. We will discuss this approach after having covered the entire stack."
+msgid "Two directions have been explored to improve the delivery of these web pages. The first direction is to tune the HTTP protocol. The second approach is to change the entire network stack. We will discuss this approach after having covered the entire stack."
 msgstr ""
 
 #: ../../protocols/http2.rst:76
-msgid "One of the limitations of HTTP from a performance viewpoint is that the requests that are sent by a browser must be sequential. Typically, a browser requests the HTML page. Once the page has been retrieved, the browser parses it to identify all the objects that it references and requests them one after each other. The web page can only be displayed to the user once all the required web objects have been retrieved. This implies that the browser must wait until the reception of each response before sending the next request. Another possibility is to allow the browser to send the send multiple requests without waiting for their corresponding responses. This approach is called `pipelining` in :rfc:`7230`."
+msgid "One of the limitations of HTTP from a performance viewpoint is that the requests that are sent by a browser must be sequential. Typically, a browser requests the HTML page. Once the page has been retrieved, the browser parses it to identify all the objects that it references and requests them one after each other. The web page can only be displayed to the user once all the required web objects have been retrieved. This implies that the browser must wait until the reception of each response before sending the next request. Another possibility is to allow the browser to send multiple requests without waiting for their corresponding responses. This approach is called `pipelining` in :rfc:`7230`."
 msgstr ""
 
 #: ../../protocols/http2.rst:79
@@ -157,7 +157,7 @@ msgid "Detecting whether a server supports HTTP/2.0"
 msgstr ""
 
 #: ../../protocols/http2.rst:239
-msgid "HTTP/2.0 is a new version of the HTTP protocol that still uses port 80. When a client contacts an HTTP server, it must be able to determiner whether it supports HTTP/1.x or HTTP/2.0. If the client sends a binary encoded HTTP/2.0 request to a server that only supports the ASCII encoded HTTP/1.x, it could cause problems on the server and even crash it. To minimize the risk of crashing HTTP/1.x servers, an HTTP/2.0 session starts like an HTTP/1.1 session and the first request contains the `Connection`, `Upgrade` and `HTTP2-Settings` headers. An example of such a request to upgrade the version of HTTP is shown below."
+msgid "HTTP/2.0 is a new version of the HTTP protocol that still uses port 80. When a client contacts an HTTP server, it must be able to determine whether it supports HTTP/1.x or HTTP/2.0. If the client sends a binary encoded HTTP/2.0 request to a server that only supports the ASCII encoded HTTP/1.x, it could cause problems on the server and even crash it. To minimize the risk of crashing HTTP/1.x servers, an HTTP/2.0 session starts like an HTTP/1.1 session and the first request contains the `Connection`, `Upgrade` and `HTTP2-Settings` headers. An example of such a request to upgrade the version of HTTP is shown below."
 msgstr ""
 
 #: ../../protocols/http2.rst:251

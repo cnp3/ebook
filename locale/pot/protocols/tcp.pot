@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Computer networking : Principles, Protocols and Practice 3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-17 09:55+0200\n"
+"POT-Creation-Date: 2021-08-27 14:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -737,7 +737,7 @@ msgid "The first path is when the host receives a segment with sequence number `
 msgstr ""
 
 #: ../../protocols/tcp.rst:607
-msgid "The second path is when the host has transmitted all data. Assume that the last transmitted sequence number is `z`. Then, the host sends a  `FIN` segment with sequence number :math:`(z+1) \\pmod{2^{32}}` and enters the `FIN_WAIT1` state. It this state, it can retransmit unacknowledged segments but cannot send new data segments. It waits for an acknowledgment of its `FIN` segment (i.e. sequence number :math:`(z+1) \\pmod{2^{32}}`), but may receive a `FIN` segment sent by the remote host. In the first case, the TCP connection enters the `FIN\\_WAIT2` state. In this state, new data segments from the remote host are still accepted until the reception of the `FIN` segment. The acknowledgment for this `FIN` segment is sent once all data received before the `FIN` segment have been delivered to the user and the connection enters the `TIME\\_WAIT` state. In the second case, a `FIN` segment is received and the connection enters the `Closing` state once all data received from the remote host have been delivered to the user. In this state, no new data segments can be sent and the host waits for an acknowledgment of its `FIN` segment before entering the `TIME\\_WAIT` state."
+msgid "The second path is when the host has transmitted all data. Assume that the last transmitted sequence number is `z`. Then, the host sends a  `FIN` segment with sequence number :math:`(z+1) \\pmod{2^{32}}` and enters the `FIN_WAIT1` state. In this state, it can retransmit unacknowledged segments but cannot send new data segments. It waits for an acknowledgment of its `FIN` segment (i.e. sequence number :math:`(z+1) \\pmod{2^{32}}`), but may receive a `FIN` segment sent by the remote host. In the first case, the TCP connection enters the `FIN\\_WAIT2` state. In this state, new data segments from the remote host are still accepted until the reception of the `FIN` segment. The acknowledgment for this `FIN` segment is sent once all data received before the `FIN` segment have been delivered to the user and the connection enters the `TIME\\_WAIT` state. In the second case, a `FIN` segment is received and the connection enters the `Closing` state once all data received from the remote host have been delivered to the user. In this state, no new data segments can be sent and the host waits for an acknowledgment of its `FIN` segment before entering the `TIME\\_WAIT` state."
 msgstr ""
 
 #: ../../protocols/tcp.rst:609
@@ -749,7 +749,7 @@ msgid "TIME\\_WAIT on busy TCP servers"
 msgstr ""
 
 #: ../../protocols/tcp.rst:613
-msgid "The :math:`2*MSL` seconds delay in the `TIME\\_WAIT` state is an important operational problem on servers having thousands of simultaneously opened TCP connections [FTY99]_. Consider for example a busy web server that processes 10.000 TCP connections every second. If each of these connections remain in the `TIME\\_WAIT` state for 4 minutes, this implies that the server would have to maintain more than 2 million TCBs at any time. For this reason, some TCP implementations prefer to perform an abrupt connection release by sending a `RST` segment to close the connection [AW05]_ and immediately discard the corresponding :term:`TCB`. However, if the `RST` segment is lost, the remote host continues to maintain a :term:`TCB` for a connection that no longer exists. This optimization reduces the number of TCBs maintained by the host sending the `RST` segment but at the potential cost of increased processing on the remote host when the `RST` segment is lost."
+msgid "The :math:`2*MSL` seconds delay in the `TIME\\_WAIT` state is an important operational problem on servers having thousands of simultaneously opened TCP connections [FTY99]_. Consider for example a busy web server that processes 10.000 TCP connections every second. If each of these connections remains in the `TIME\\_WAIT` state for 4 minutes, this implies that the server would have to maintain more than 2 million TCBs at any time. For this reason, some TCP implementations prefer to perform an abrupt connection release by sending a `RST` segment to close the connection [AW05]_ and immediately discard the corresponding :term:`TCB`. However, if the `RST` segment is lost, the remote host continues to maintain a :term:`TCB` for a connection that no longer exists. This optimization reduces the number of TCBs maintained by the host sending the `RST` segment but at the potential cost of increased processing on the remote host when the `RST` segment is lost."
 msgstr ""
 
 #: ../../protocols/tcp.rst:620

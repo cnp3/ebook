@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Computer networking : Principles, Protocols and Practice 3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-17 09:55+0200\n"
+"POT-Creation-Date: 2021-08-27 14:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -386,7 +386,7 @@ msgid "the number of the switch port over which the `BPDU` was sent (`p`)"
 msgstr ""
 
 #: ../../protocols/ethernet.rst:339
-msgid "We will use the notation `<R,c,T,p>` to represent a `BPDU` whose `root identifier` is `R`, `cost` is `c` and that was sent on the port `p` of switch `T`.  The construction of the spanning tree depends on an ordering relationship among the `BPDUs`. This ordering relationship could be implemented by the Python function below."
+msgid "We will use the notation `<R,c,T,p>` to represent a `BPDU` whose `root identifier` is `R`, `cost` is `c` and that was sent from the port `p` of switch `T`.  The construction of the spanning tree depends on an ordering relationship among the `BPDUs`. This ordering relationship could be implemented by the Python function below."
 msgstr ""
 
 #: ../../protocols/ethernet.rst:350

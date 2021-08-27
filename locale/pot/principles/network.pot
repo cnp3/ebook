@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Computer networking : Principles, Protocols and Practice 3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-17 09:55+0200\n"
+"POT-Creation-Date: 2021-08-27 14:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -189,7 +189,7 @@ msgid "To understand the operation of the port-address table, let us consider th
 msgstr ""
 
 #: ../../principles/network.rst:269
-msgid "Host `A` sends a packet towards `B`. When receiving this packet, `R1` learns that `A` is reachable via its `North` interface. Since it does not have an entry for destination `B` in its port-address table, it forwards the packet to both `R2` and `R3`. When `R2` receives the packet, it updates its own forwarding table and forward the packet to `C`. Since `C` is not the intended recipient, it simply discards the received packet. Router `R3` also receives the packet. It learns that `A` is reachable via its `North` interface and broadcasts the packet to `R4` and `R5`. `R5` also updates its forwarding table and finally forwards it to destination `B`.`Let us now consider what happens when `B` sends a reply to `A`. `R5`  first learns that `B` is attached to its `South` port. It then consults its port-address table and finds that `A` is reachable via its `North` interface. The packet is then forwarded hop-by-hop to `A` without any broadcasting. Later on, if `C` sends a packet to `B`, this packet will reach `R1` that contains a valid forwarding entry in its forwarding table."
+msgid "Host `A` sends a packet towards `B`. When receiving this packet, `R1` learns that `A` is reachable via its `West` interface. Since it does not have an entry for destination `B` in its port-address table, it forwards the packet to both `R2` and `R3`. When `R2` receives the packet, it updates its own forwarding table and forward the packet to `C`. Since `C` is not the intended recipient, it simply discards the received packet. Router `R3` also receives the packet. It learns that `A` is reachable via its `North-West` interface and broadcasts the packet to `R4` and `R5`. `R5` also updates its forwarding table and finally forwards it to destination `B`. Let us now consider what happens when `B` sends a reply to `A`. `R5`  first learns that `B` is attached to its `North-East` port. It then consults its port-address table and finds that `A` is reachable via its `North-West` interface. The packet is then forwarded hop-by-hop to `A` without any broadcasting. Later on, if `C` sends a packet to `B`, this packet will reach `R1` that contains a valid forwarding entry in its forwarding table."
 msgstr ""
 
 #: ../../principles/network.rst:273
