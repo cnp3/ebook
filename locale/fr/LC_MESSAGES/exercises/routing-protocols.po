@@ -1,0 +1,390 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2019 Olivier Bonaventure
+# This file is distributed under the same license as the Computer networking : Principles, Protocols and Practice package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Computer networking : Principles, Protocols and Practice "
+"3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-05-17 09:55+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../exercises/routing-protocols.rst:7
+msgid "Exploring routing protocols"
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:9
+msgid "Routing protocols play a key role in the Internet since they ensure that all the routers have valid routing tables. In this section, we use IPMininet_ to explore how intradomain and interdomain routing protocols work in practice. IPMininet_ adds an abstraction layer above the actual configuration of the FRRouting daemons that implement these routing protocols."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:13
+msgid "Exploring OSPF"
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:15
+msgid "We first use IPMininet_ to explore the operation of OSPFv3, the version of OSPF that supports IPv6. We create a simple network with three routers and two hosts as shown in the figure below."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:80
+msgid "The code is very simple as by default IPMininet_ enables OSPF on routers. We introduce two specific parameters. First, the interface that connects a router to a host is flagged as a passive interface (``igp_passive=True``). This indicates to the router that there are no other routers attached to this interface and that it should not send or accept OSPF Hello messages on this interface. The second configuration parameter is that we set the IGP cost on each link."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:83
+msgid "We use this mininet_ topology to collect packet traces that show the packets that OSPF routers exchange. For this, we add the following ``post_build`` method that IPMininet_ starts after having constructed the network and before launching the daemons. It simply starts tcpdump_ on each router to collect the first 100 OSPF packets that they send/receive."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:94
+msgid "Finally, we can start the IPMininet_ topology and launch the daemons. The entire script is available from :download:`/exercises/ipmininet_scripts/ospf6.py`."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:106
+msgid "The script starts the routers and hosts."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:120
+msgid "We can easily verify that the paths used to forward packets are the expected ones according to the configured IGP weights."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:135
+msgid "We can also connect to the OSPFv3 daemon running on the routers to observe its state. For this, we use the ``noecho r1 telnet localhost ospf6d`` command."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:152
+msgid "The password to access this daemon is `zebra`. It supports various commands that are described in the `FRRouting documentation <http://docs.frrouting.org/en/latest/ospf6d.html#showing-ospf6-information>`_ We briefly illustrate some of them below."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:175
+msgid "The ``show ipv6 ospf6`` command reports the general state of the OSPFv3 daemon. The ``show ipv6 ospf6 neighbor`` command reports the state of the connected neighbors."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:186
+msgid "In its output, we see that ``r1`` is attached to two different routers. Finally, the ``show ipv6 ospf6 database`` returns the full OSPFv3 database with all the link state information that was distributed by OSPFv3."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:239
+msgid "We can also use the packet traces that were collected by tcpdump_ to observe the packets that the OSPFv3 daemons exchange. OSPFv3 is a more complex protocol that the basic link state protocol that we have described in this book, but you should be able to understand some of these packets. The packet traces are available as :download:`/exercises/traces/ospf6-r1-trace.pcap`, :download:`/exercises/traces/ospf6-r2-trace.pcap` and :download:`/exercises/traces/ospf6-r3-trace.pcap`. Here are a few interesting packets collected on router ``r1``."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:241
+msgid "The first packet that this router received his a Hello packet that was sent by router ``r2``. There are several interesting points to note about this packet. First, its source address is the link-local address (``fe80::68bc:b4ff:fe19:42b7``) of router ``r2`` on this interface. The destination address of the packet is reserved IPv6 multicast address for OSPFv3, i.e. ``ff02::5``. The Hop Limit of the packet is set to 1 and OSFPv3 uses a next header of type 89."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:245
+msgid "The Hello packet contains some parameters such as the `Hello interval` that is set to 1 second. This interval is the delay between the transmission of successive Hello packets. Since the `Router Dead Interval` is set to 3 seconds, the router will consider the link as down if it does not receive Hello packets during a period of 3 seconds. The second packet of the trace is sent by router ``r1``."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:249
+msgid "We can then observe the Database description packet that is sent by routers to announce the state of their OSPFv3 database. The details of this packet are beyond the scope of this simple exercise."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:253
+msgid "This packet is updated when new information is added in the router's OSPFv3 database. A few seconds router, this router sends another Database description packet that announces more information."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:257
+msgid "Router ``r2`` reacts to this updated Database description packet by requesting the link state information that it does not already know. For this, it sends a `LS Request` packet."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:261
+msgid "The requested information is sent in a `LS Update` packet shortly after that."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:265
+msgid "OSPFv3 also includes `LS Acknowledge` packets that acknowledge the correct reception of link state information."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:269
+msgid "A more detailed discussion of the packets that routing protocols exchange may be found in [Goralski2009]_."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:272
+msgid "Exploring RIP"
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:274
+msgid "IPMininet_ can also be used to perform experiments with RIP. A simple script that uses RIPng is provided below."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:336
+msgid "As RIP messages are exchanged using UDP on port 521, we filter this port in the tcpdump_ trace. RIPng distributes the routes and our two hosts can exchange packets. The entire script is available from :download:`/exercises/ipmininet_scripts/ripng.py`."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:357
+msgid "We can observe the RIPng messages that are exchanged over the network. :rfc:`2080` defines two types of RIPng messages:"
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:359
+msgid "the requests"
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:360
+msgid "the responses that contain the router's routing table"
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:362
+msgid "When a router starts, it sends a request message. This is illustrated in the figure below with the first message sent by router ``r2``. This message is sent inside an IPv6 packet whose source address is the link-local address of the router and the destination address is ``ff02::9`` which is the reserved multicast address for RIPng."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:366
+msgid "Router ``r2`` receives a similar request from ``fe80::481a:48ff:fed7:292e`` and replies by sending its routing table in a response message. Note that this message is sent to the link-local address of the requesting router."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:370
+msgid "Later, router ``r2`` will regularly transmit its distance vector inside an unsolicited response message that is sent towards the IPv7 multicast address ``ff02::9``."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:374
+msgid "The packet traces collected on the three routers of this example are available from :download:`/exercises/traces/ripng-r1-trace.pcap`, :download:`/exercises/traces/ripng-r2-trace.pcap` and :download:`/exercises/traces/ripng-r3-trace.pcap`."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:378
+msgid "Exploring BGP"
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:380
+msgid "To explore the configuration of BGP, let us consider a network that contains three ASes: ``AS1``,  ``AS2`` and ``AS3``. To simplify the tests, we identify one host inside each of these ASes."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:434
+msgid "As in the previous examples, we create the routers and associate one IPv6 prefix to each AS:"
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:436
+msgid "``AS1`` is assigned ``2001:cafe:1::/48``"
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:437
+msgid "``AS2`` is assigned ``2001:cafe:2::/48``"
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:438
+msgid "``AS3`` is assigned ``2001:cafe:3::/48``"
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:454
+msgid "The `addDaemon` method adds a BGP daemon on each router and configures it to advertise the IPv6 prefix allocated to this AS. We then create all the links and manually assign one IPv6 subnet to each link and one IPv6 address to each interface. For the interdomain links, we use an IPv6 prefix that belongs to one of the attached ASes."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:491
+msgid "The last step is to specify to which AS each router belongs and to configure the eBGP sessions and their routing policies. IPMininet_ abstracts most of the complexity of the configuration of these policies by supporting two policies"
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:510
+msgid "The script ends by launching the full topology. The entire script is available from :download:`/exercises/ipmininet_scripts/ebgp-simple.py`."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:512
+msgid "We can now run this simple network."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:518
+msgid "If you launch the script and immediately type ``ping6all`` to check the connectivity, you might obtained the following result."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:529
+msgid "Remember that BGP is a distributed protocol and that it takes some time to launch the daemons and exchange the messages. After some time, the same command will confirm that everything works as expected."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:540
+msgid "We can also use :manpage:`traceroute6(8)` to check the path followed by the packets. Before doing that, think about the configuration of the BGP routing policies and try to predict the output of :manpage:`traceroute6(8)`. This is a good exercise to check your understanding of BGP."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:542
+msgid "We have configured the following addresses on the hosts."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:559
+msgid "We can now explore the routes in this small Internet. Host ``h1`` can reach directly host ``h3``."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:569
+msgid "Note that the path preferred by ``AS3`` to reach ``AS1`` is different."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:581
+msgid "The same applies for the paths between ``h1`` and ``h2``"
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:598
+msgid "Besides :manpage:`ping6(8)` and :manpage:`traceroute6(8)`, it is also useful to interact with the BGP daemon that runs on each of our routers. This is done by connecting on the Command Line Interface of the BGP router using telnet."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:619
+msgid "The password for the BGP daemon is `zebra`. The `noecho` command indicates that mininet_ does not need to echo the characters that you type. You then enter the Quagga VTY that enables you to type commands. The `help` commands gives you some information about the available commands as well as `?`."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:649
+msgid "In these exercises, we mainly consider the ``show`` that extracts information from the BGP daemon. We type `show bgp` and press the `tabulation` key to see the available commands in the `show bgp`."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:663
+msgid "A useful command to start is `show bgp summary` which provides a summary of the state of the BGP daemon."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:685
+msgid "This router (`as1`) has two BGP neighbors: ``2001:cafe:1:12::2`` and ``2001:cafe:1:13::3``. Both BGP sessions are established using the current version of the protocol (version 4). About 50 messages were sent/received over each session. These messages are mainly the BGP Keepalive messages that are exchanged every 30 seconds. The last column indicates that two prefixes were received over each session. We can see more details about these two eBGP sessions with the `show bgp neighbors` command."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:812
+msgid "We can now observe the BGP-Loc-RIB of the router with the ``show bgp ipv6 command`` command."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:838
+msgid "It is interesting to look at the output of this command in details. Router `as1` has routes for three different IPv6 prefixes. The first prefix is its own prefix, ``2001:cafe:1::/48``. It has no nexthop since this prefix is originated by the router. Then, `as1` has received two paths for ``2001:cafe:2::/48``. In the BGP Loc-RIB, the `>` character indicates the best route according to the BGP decision process.  ``2001:cafe:2::/48`` was learned over two different BGP sessions:"
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:840
+msgid "the eBGP session with ``fe80::3c81:2eff:fe19:465d`` with an AS-Path of ``AS3:AS2`` (see last column)"
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:841
+msgid "the eBGP session with ``fe80::c001:dcff:fe49:a512`` with an AS-Path of ``AS2`` (see last column)"
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:843
+msgid "The first of these two routes is preferred as indicated by the `>` character because it has a higher ``local-preference` (150) than the second one (100). For prefix ``2001:cafe:3::/48``, the route learned via ``fe80::3c81:2eff:fe19:465d`` is also preferred for the same reason."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:845
+msgid "IPMininet_ also allows to explore the dynamics of BGP by looking at the packets that the routers exchange. For this, we slightly modify the example above and add delays to the interdomain links as follows."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:854
+msgid "We also add a ``post_build`` method to launch tcpdump_ and capture the BGP packets exchanged by the routers. A BGP session runs over a TCP connection. Let us examine a few of the BGP messages exchanged on the BGP session between ``AS1`` and ``AS2``. The traces collected on the three routers are available from :download:`/exercises/traces/bgp-as1-trace.pcap`, :download:`/exercises/traces/bgp-as2-trace.pcap` and :download:`/exercises/traces/bgp-as2-trace.pcap`."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:856
+msgid "The BGP session starts with a TCP three-way handshake. Once the session has been established, both BGP daemons send an ``OPEN`` message describing their capabilities and the BGP extensions that it supports. The details of these extensions go beyond the scope of this book. However, it is important to note that the ``OPEN`` message contains the ``AS`` number of the router that sends the message and its identifier as a 32 bits IPv4 address. This router identifier uniquely identifies the router. The last mandatory parameter of the ``OPEN`` message is the `Hold Time`, i.e. the maximum delay between two successive messages over this BGP session. A BGP router should send ``KEEPALIVE`` messages every one third of the `Hold Time` to keep the session up."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:861
+msgid "The ``UPDATE`` message can be used to withdraw and advertise routes. The packet below is sent by ``AS2`` to advertise its route towards `2001:cafe:2::/48` on the BGP session with ``AS1``."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:866
+msgid "Another interesting utilization of IPMininet_ is to explore how routers react to link failures. We start from the same network as with the previous example and disable the link between ``AS2`` and ``AS3``. For this, we log on one of the two routers and issue the following commands."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:898
+msgid "We first connect to the BGP daemon on router `as2`. In addition to the `show` commands that have been described earlier, the router also supports privileged commands that can change its configuration. Before executing these commands, we must enter the privileged mode with the `enable` command. On production routers, this command requires a password to verify the credentials of the network administrator. The `#` prompt indicates that we are allowed to execute privileged commands. We first check the state of the BGP sessions with the `show bgp summary` commands. There are two BGP sessions configured on this router."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:900
+msgid "We can now disable one of the BGP sessions on router `as2` as follows."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:911
+msgid "We start indicate that we will use the terminal to change the router configuration with `configure terminal`. We then enter the BGP part of the configuration with `router bgp 2` (`2` is the AS number of `as2`). Then we use the `neighbor 2001:cafe:2:23::3 shutdown` that takes as parameter the IP address of the peer of the session that we want to stop. We then leave the BGP part of the configuration (first `exit`) and the configuration menu (second `exit` command). At this point, the BGP session between ``AS2`` and ``AS3`` is down."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:930
+msgid "Without a BGP session between ``AS2`` and ``AS3``, there are reachability problems in this simple Internet."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:941
+msgid "We can fix them by enabling again the BGP session with the `no neighbor 2001:cafe:2:23::3 shutdown` command."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:989
+msgid "Exercises"
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:991
+msgid "We can use IPMininet_ to prepare some networks with problems that need to be analyzed and corrected."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:993
+msgid "Our first example is a small Internet with 5 ASes. A subset of the script that configures this network is shown below. There is one host attached to each AS and this host has the same number as its AS. The entire script is available from :download:`/exercises/ipmininet_scripts/ebgp-bug.py`."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:1016
+msgid "When this network is launched, `ping6all` reports connectivity problems. Hosts `h1` and `h4` cannot exchange packets. Can you fix the problem by changing the routing policy used on only one interdomain link ? Justify your answer"
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:1029
+msgid "Another interesting utilization IPMininet_ is to explore the impact of a link failure. We start from a small variant of the above topology."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:1052
+msgid "When this network starts, all hosts can reach all other hosts."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:1066
+msgid "Draw the network and try to predict how it will react to a shutdown of any of the customer-provider links ?"
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:1068
+msgid "What are the BGP messages that will be exchanged when the link between ``AS1`` and ``AS2`` fails ? How does this affect the reachability of the different hosts ?"
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:1098
+msgid "What are the BGP messages that will be exchanged when the link between ``AS1`` and ``AS3`` fails ? How does this affect the reachability of the different hosts ?"
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:1128
+msgid "What are the BGP messages that will be exchanged when the link between ``AS1`` and ``AS5`` fails ? How does this affect the reachability of the different hosts ?"
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:1158
+msgid "What are the BGP messages that will be exchanged when the link between ``AS3`` and ``AS4`` fails ? How does this affect the reachability of the different hosts ?"
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:1190
+msgid "Let us now consider another example. The network contains nine ASes with one host per AS. Assuming that ``AS9`` announces prefix `p9` and that ``AS2`` announces prefix `p2`."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:1228
+msgid "What is the Loc-RIB of ``AS6`` for prefix `p9` ? Indicate which is the best route towards this prefix."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:1230
+msgid "What is the Loc-RIB of ``AS9`` for prefix `p2` ? Indicate which is the best route towards this prefix."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:1232
+msgid "The network below contains nine ASes with one host per AS. Assuming that ``AS1`` announces prefix `p1` and that ``AS2`` announces prefix `p2`."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:1265
+msgid "What is the Loc-RIB of ``AS6`` for prefix `p1` ? Indicate which is the best route towards this prefix."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:1267
+msgid "What is the Loc-RIB of ``AS8`` for prefix `p2` ? Indicate which is the best route towards this prefix."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:1272
+msgid "Let us now consider another example, also implemented using an IPMininet_ script. The network contains eight ASes with one host per AS. This small Internet is shown below and the script is available from :download:`/exercises/ipmininet_scripts/ebgp-bug-3.py`."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:1312
+msgid "The network does not provide a full connectivity. The hosts attached to ``AS5`` cannot ping the hosts attached to ``AS8``."
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:1327
+msgid "What is the path that packets follow from a host attached to ``AS1`` to a host attached to ``AS8`` ?"
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:1339
+msgid "What is the path that packets follow from a host attached to ``AS8`` to a host attached to ``AS1`` ?"
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:1351
+msgid "What is the path that packets follow from a host attached to ``AS8`` to a host attached to ``AS2`` ?"
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:1364
+msgid "What is the path that packets follow from a host attached to ``AS2`` to a host attached to ``AS7`` ?"
+msgstr ""
+
+#: ../../exercises/routing-protocols.rst:1375
+msgid "We now disable the interdomain link between ``AS3`` and ``AS4``. What are the hosts that ``AS1``, ``AS5`` and ``AS6`` are still able to ping ?"
+msgstr ""
