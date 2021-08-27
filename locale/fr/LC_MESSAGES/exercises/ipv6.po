@@ -1,0 +1,453 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2019 Olivier Bonaventure
+# This file is distributed under the same license as the Computer networking : Principles, Protocols and Practice package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Computer networking : Principles, Protocols and Practice "
+"3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-05-17 09:55+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../exercises/ipv6.rst:6
+msgid "IPv6 Networks"
+msgstr ""
+
+#: ../../exercises/ipv6.rst:9
+msgid "Basic questions on IPv6 Networks"
+msgstr ""
+
+#: ../../exercises/ipv6.rst:11
+msgid "Before starting to determine the paths that packets will follow in an IPv6 network, it is important to remember how to convert IPv6 addresses in binary numbers."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:15
+msgid "An IPv6 forwarding table contains a list of IPv6 prefixes with their associated nexthop or outgoing interface. When an IPv6 router receives a packet, it forwards it according to its forwarding table. Note that IPv6 routers forward packets along the *longest match* between the destination address of the packet and the routes in the forwarding table."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:20
+msgid "Now that you master the basics, you can determine the paths followed by IPv6 packets in simple networks."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:31
+msgid "Design questions"
+msgstr ""
+
+#: ../../exercises/ipv6.rst:33
+#: ../../exercises/ipv6.rst:142
+msgid "Consider the network shown in the figure below. In this network, the following addresses are used."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:35
+#: ../../exercises/ipv6.rst:144
+#: ../../exercises/ipv6.rst:222
+msgid "host ``A`` : ``2001:db8:1341:1::A`` and its default route points to ``2001:db8:1341:1::1``"
+msgstr ""
+
+#: ../../exercises/ipv6.rst:36
+#: ../../exercises/ipv6.rst:145
+#: ../../exercises/ipv6.rst:223
+msgid "host ``B`` : ``2001:db8:1341:4::B`` and its default route points to ``2001:db8:1341:4::4``"
+msgstr ""
+
+#: ../../exercises/ipv6.rst:38
+#: ../../exercises/ipv6.rst:147
+#: ../../exercises/ipv6.rst:225
+msgid "The routers have one address inside each network :"
+msgstr ""
+
+#: ../../exercises/ipv6.rst:40
+#: ../../exercises/ipv6.rst:149
+msgid "router ``R1`` uses address ``2001:db8:1341:1::1`` on its West interface, address ``2001:db8:1341:12::1`` on its East interface and address ``2001:db8:1341:13::1`` on its South interface"
+msgstr ""
+
+#: ../../exercises/ipv6.rst:41
+msgid "router ``R2`` uses address ``2001:db8:1341:12::2`` on its West interface, address ``2001:db8:1341:23::2`` on its South-West interface and address ``2001:db8:1341:24::2`` on its South interface."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:42
+msgid "router ``R3`` uses address ``2001:db8:1341:34::3`` on its East interface, address ``2001:db8:1341:23::3`` on its North-East interface and address ``2001:db8:1341:13::3`` on its North interface"
+msgstr ""
+
+#: ../../exercises/ipv6.rst:43
+#: ../../exercises/ipv6.rst:152
+msgid "router ``R4`` uses address ``2001:db8:1341:34::4`` on its West interface, address ``2001:db8:1341:24::4`` on its North interface and address ``2001:db8:1341:4::4`` on its East interface"
+msgstr ""
+
+#: ../../exercises/ipv6.rst:45
+msgid "The forwarding paths used in a network depend on the forwarding tables installed in the network nodes. Sometimes, these forwarding tables must be configured manually."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:91
+msgid "In this network, propose the forwarding tables of ``R2`` and ``R3`` that ensure that hosts ``A`` and ``B`` can exchange packets in both directions."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:94
+msgid "Consider the same network as in the previous question, but now the forwarding tables of ``R2`` and ``R3`` are configured as shown below :"
+msgstr ""
+
+#: ../../exercises/ipv6.rst:139
+msgid "In this network, select `all` the rules in the shown forwarding tables that ensure that the packets sent from ``A`` to ``B`` follow the reverse path of the packets sent by ``B`` to ``A``."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:150
+#: ../../exercises/ipv6.rst:228
+msgid "router ``R2`` uses address ``2001:db8:1341:12::2`` on its West interface, and address ``2001:db8:1341:24::2`` on its South interface"
+msgstr ""
+
+#: ../../exercises/ipv6.rst:151
+#: ../../exercises/ipv6.rst:229
+msgid "router ``R3`` uses address ``2001:db8:1341:34::3`` on its East interface and address ``2001:db8:1341:13::3`` on its North interface"
+msgstr ""
+
+#: ../../exercises/ipv6.rst:154
+msgid "Routers ``R2`` and ``R3`` are buggy in this network. Besides the routes for their local interfaces (not shown in the figure), they only have a default route which is shown in the figure below."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:193
+msgid "How do you configure the forwarding tables on ``R1`` and ``R4`` so that ``A`` can reach ``B`` and the reverse ?"
+msgstr ""
+
+#: ../../exercises/ipv6.rst:195
+msgid "Consider a slightly different network than in the previous question."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:220
+msgid "Assuming that the following IPv6 addresses are used :"
+msgstr ""
+
+#: ../../exercises/ipv6.rst:227
+msgid "router ``R1`` uses address ``2001:db8:1341:1::1`` on its West interface, address ``2001:db8:1341:12::1`` on its East interface, address ``2001:db8:1341:14::1`` on its South-East interface and address ``2001:db8:1341:13::1`` on its South interface"
+msgstr ""
+
+#: ../../exercises/ipv6.rst:230
+msgid "router ``R4`` uses address ``2001:db8:1341:34::4`` on its West interface, address ``2001:db8:1341:24::4`` on its North interface, address ``2001:db8:1341:14::4`` on its North-West interface and address ``2001:db8:1341:4::4`` on its East interface"
+msgstr ""
+
+#: ../../exercises/ipv6.rst:232
+msgid "Can you configure the forwarding tables so that the following paths are used by packets sent by host ``A`` to reach one of the four addresses of router ``R4``?"
+msgstr ""
+
+#: ../../exercises/ipv6.rst:290
+msgid "Do your forwarding tables impose the path used to reach host ``B`` which is attached to router ``R4`` or do you need to configure an additional entry in these tables ?"
+msgstr ""
+
+#: ../../exercises/ipv6.rst:292
+msgid "Consider the network below that contains only routers. This network has been configured by a group of students and you must verify whether the configuration is correct. All the IPv6 addresses are part of the same ``/48`` prefix that we name ``p``. The following subnets are defined in this ``/48`` prefix."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:294
+msgid "``p:12/64`` for the link between ``R1`` and ``R2``. On this subnet, ``R1`` uses address ``p:12::1`` while router ``R2`` uses address ``p:12::2``"
+msgstr ""
+
+#: ../../exercises/ipv6.rst:295
+msgid "``p:13/64`` for the link between ``R1`` and ``R3``. On this subnet, ``R1`` uses address ``p:13::1`` while router ``R3`` uses address ``p:13::3``"
+msgstr ""
+
+#: ../../exercises/ipv6.rst:296
+msgid "``p:24/64`` for the link between ``R2`` and ``R4``. On this subnet, ``R2`` uses address ``p:24::2`` while router ``R4`` uses address ``p:24::4``"
+msgstr ""
+
+#: ../../exercises/ipv6.rst:297
+msgid "..."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:330
+msgid "The students have configured the following forwarding tables on these six routers."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:332
+msgid "on router ``R1``"
+msgstr ""
+
+#: ../../exercises/ipv6.rst:350
+msgid "on router ``R2``"
+msgstr ""
+
+#: ../../exercises/ipv6.rst:368
+msgid "on router ``R3``"
+msgstr ""
+
+#: ../../exercises/ipv6.rst:384
+msgid "on router ``R5``"
+msgstr ""
+
+#: ../../exercises/ipv6.rst:399
+msgid "on router ``R4``"
+msgstr ""
+
+#: ../../exercises/ipv6.rst:416
+msgid "on router ``R6``"
+msgstr ""
+
+#: ../../exercises/ipv6.rst:433
+msgid "What do you think about the proposed configuration?"
+msgstr ""
+
+#: ../../exercises/ipv6.rst:436
+msgid "Sometimes, static routes must be configured on networks to enforce certain paths. Consider the six routers network shown in the figure below."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:471
+msgid "In this network, we will focus on four IPv6 prefixes :"
+msgstr ""
+
+#: ../../exercises/ipv6.rst:473
+msgid "``p:0000::/64`` used on the link ``A1-R1``. ``A1`` uses address ``p:0000::A1/64``"
+msgstr ""
+
+#: ../../exercises/ipv6.rst:474
+msgid "``p:0001::/64`` used on the link ``A2-R3``. ``A2`` uses address ``p:0001::A2/64``"
+msgstr ""
+
+#: ../../exercises/ipv6.rst:475
+msgid "``p:0002::/64`` used on the link ``B1-R5``. ``B1`` uses address ``p:0002::B1/64``"
+msgstr ""
+
+#: ../../exercises/ipv6.rst:476
+msgid "``p:0003::/64`` used on the link ``B2-R6``. ``B2`` uses address ``p:0003::B2/64``"
+msgstr ""
+
+#: ../../exercises/ipv6.rst:478
+msgid "Can you configure the forwarding tables of the six routers to achieve the following network objectives :"
+msgstr ""
+
+#: ../../exercises/ipv6.rst:480
+msgid "All packets sent by ``B1`` and ``B2`` to ``A1`` and ``A2`` are always forwarded via ``R2`` while all packets from ``A1`` and ``A2`` are always forwarded via ``R4``"
+msgstr ""
+
+#: ../../exercises/ipv6.rst:481
+msgid "The packets whose destinations are ``A1``,  ``A2``, ``B1`` or ``B2`` are never forwarded via router ``R4``"
+msgstr ""
+
+#: ../../exercises/ipv6.rst:482
+msgid "The packets sent by ``A1`` or ``A2`` towards ``B1`` are always forwarded via ``R2`` while the packets towards ``B2`` are always forwarded via ``R4``."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:484
+msgid "When creating these forwarding tables, try to minimize the number of entries that you install on each router."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:486
+msgid "When a network is designed, an important element of the design is the IP address allocation plan. A good allocation plan can provide flexibility and help to reduce the size of the forwarding tables."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:517
+msgid "Assign IP subnets to all links in this network so that you can reduce the number of entries in the forwarding tables of all routers. Assume that you have received a ``/56`` prefix that you can use as you want. Each subnet containing a host must be allocated a ``/64`` subnet."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:527
+msgid "Configuring IPv6 Networks"
+msgstr ""
+
+#: ../../exercises/ipv6.rst:529
+msgid "With the previous exercises, you have learned how to reason about IPv6 networks \"on paper\". Given the availability of IPv6 implementations, it is also possible to carry out experiments in real and virtual labs. Several virtual environments are possible. In this section, we focus on mininet_. mininet_ is an emulation framework developed at Stanford University that leverages the namespaces features of recent Linux kernels. With those namespaces, a single Linux kernel can support a variety of routers and hosts interconnected by virtual links. mininet_ has been used by several universities as an educational tool, but unfortunately it was designed without IPv6 support."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:531
+msgid "During the last years, `Olivier Tilmans <https://inl.info.ucl.ac.be/otilmans.html>`_ and `Mathieu Jadin <https://inl.info.ucl.ac.be/mjadin.html>`_ have developed the missing piece to enable students to use mininet_ to experiment with IPv6: ipmininet_.  ipmininet_ is a python module that provides the classes that are required to automatically configure IPv6 networks with different routing protocols. It is available from PyPi from https://pypi.python.org/ipmininet."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:533
+msgid "The syntax of IPMininet_ is relatively simple and can be learned by looking at a few examples."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:535
+msgid "Let us start our exploration of IPv6 routing with a simple network topology that contains two hosts and three routers and uses static routes."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:580
+msgid "IPMininet_ simplifies the creation of the network topology by providing a simple API. For this, you simply need to declare a class that extends the ``IPTopo`` class."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:592
+msgid "Then, you need to extend the build method that creates routers and hosts."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:607
+msgid "Although IPMininet_ can assign prefixes and addresses automatically, we use manually assigned addresses in this example."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:609
+msgid "We use five /64 IPv6 prefixes in this network topology:"
+msgstr ""
+
+#: ../../exercises/ipv6.rst:611
+msgid "``2001:db8:1341:1::/64`` on the link between ``a`` and ``r1``"
+msgstr ""
+
+#: ../../exercises/ipv6.rst:612
+msgid "``2001:db8:1341:12::/64`` on the link between ``r1`` and ``r2``"
+msgstr ""
+
+#: ../../exercises/ipv6.rst:613
+msgid "``2001:db8:1341:13::/64`` on the link between ``r1`` and ``r3``"
+msgstr ""
+
+#: ../../exercises/ipv6.rst:614
+msgid "``2001:db8:1341:23::/64`` on the link between ``r2`` and ``r3``"
+msgstr ""
+
+#: ../../exercises/ipv6.rst:615
+msgid "``2001:db8:1341:1::/64`` on the link between ``b`` and ``r3``"
+msgstr ""
+
+#: ../../exercises/ipv6.rst:617
+msgid "We can then manually configure the IPv6 addresses of each host/router on each link. Let us start with the links attached to the two hosts."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:631
+msgid "The same can be done for the three links between the different routers."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:648
+msgid "With these IP prefixes and the network topology, we can now use IPMininet_ to create the topology and assign the addresses."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:656
+msgid "We start by creating the objects that correspond to the static routes on the three routers. The second argument of the ``addDaemon`` method is a list of ``StaticRoute`` objects. Each of these objects is created by specifying an IP prefix and a nexthop."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:675
+msgid "We can now create the hosts and the routers"
+msgstr ""
+
+#: ../../exercises/ipv6.rst:682
+msgid "With this ``build`` method, we can now launch the network by using the python code below."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:694
+msgid "The entire script is available from :download:`/exercises/ipmininet_scripts/static-1.py`."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:696
+msgid "To help students to start using IPMininet, `Mathieu Jadin <https://inl.info.ucl.ac.be/mjadin.html>`_ has created a Vagrant box that launches a Ubuntu virtual machine with all the required software. See https://ipmininet.readthedocs.io/en/latest/install.html for additional information."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:698
+msgid "Here is a simple example of the utilization of this Vagrant box."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:700
+msgid "We start the network topology shown above with the ``sudo python script.py`` command. It launches the mininet_ interactive shell that provides several useful commands:"
+msgstr ""
+
+#: ../../exercises/ipv6.rst:732
+msgid "Some of the standard mininet commands assume the utilisation of IPv4 and do not have a direct IPv6 equivalent. Here are some useful commands."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:734
+msgid "The ``nodes`` command lists the routers and hosts that have been created in the mininet topology."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:743
+msgid "The ``links`` command lists the links that have been instantiated and shows that mapping between the named interfaces on each node."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:760
+msgid "It is possible to execute any of the standard Linux commands to configure the network stack on any of the hosts by prefixing the command with the corresponding host. Remember to always specify ``inet6`` as the address family to retrieve the IPv6 information."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:770
+msgid "Host ``a`` has two interfaces: the standard loopback interface and a network interface named ``a-eth0`` that is attached to router ``r1``. We can also verify how the IPv6 addresses have been configured:"
+msgstr ""
+
+#: ../../exercises/ipv6.rst:784
+msgid "On its ``a-eth0`` interface, host ``a`` uses IPv6 address ``2001:db8:1341:1::a/64``. The link local address (``fe80::c44e:26ff:fed9:de6d/64``) will be described in another chapter. Finally, we can check the forwarding table of host ``a``."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:794
+msgid "There are three routes in this table. The first two correspond to the two prefixes that are used over the ``a-eth0`` interface. These routes are automatically created when an IPv6 address is configured on an interface. The last route is the default route (``::/0``) which points towards ``2001:db8:1341:1::1``, i.e. router ``r1``."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:796
+msgid "Another useful command is ``xterm`` 'node' that allows to launch a terminal on the specified node. This gives you a interactive shell on any node. You can use it to capture packets with tcpdump_. As an example, let us use :manpage:`traceroute6(8)` to trace the path followed by packets from host ``a`` towards the IPv6 address of host ``b`` i.e. ``2001:db8:1341:3::b``. The output of this command shows that the path passes through routers ``r1``, ``r2`` and ``r3``."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:808
+msgid "Another interesting mininet_ command is ``pingall`` it allows to check that any host can reach any other host inside the network. It executes a ping from any host to any other host inside the network topology."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:819
+msgid "When debugging a network, it can be interesting to capture packets using tcpdump_ on specific links to check that they follow the expect. If you use tcpdump_ without any filter, you will capture the packets generated by xterm. To capture packets, you need to specify precise filters that will match the packets of interest. For traceroute6, you need to match the IPv6 packets that contain UDP segments and some ICMPv6 packets. The script below provides a simple filter that you can reuse. It takes one argument: the name of the interface on which tcpdump_ needs to run."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:827
+msgid "Starting from the :download:`/exercises/ipmininet_scripts/static-1.py` IPMininet_ script, we can explore classical problems when networks are configured with static routes. A first problem is when a router has an incomplete forwarding table. We configure the static routes as shown below. The entire script is available from :download:`/exercises/ipmininet_scripts/static-1-hole.py`."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:841
+msgid "We first check with ``pingall`` whether the network works correctly."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:851
+msgid "The problem can be detected by using :manpage:`traceroute6(8)`."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:861
+msgid "In the output of :manpage:`traceroute6(8)`, a ``!N`` indicates that host ``a`` received from ``2001:db8:1341:12::2``, i.e. router ``r2``, a Network unreachable ICMPv6 message. The forwarding table of ``r2`` confirms the root cause of this problem."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:873
+msgid "A second problem is when there is a forwarding loop inside the network, i.e. packets sent to a specific destination loop through several routers. With the static routes shown below, router ``r2`` forwards the packets towards ``2001:db8:1341:3::b`` via router ``r1``. The entire script is available from :download:`/exercises/ipmininet_scripts/static-1-loop.py`."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:888
+msgid "The ``pingall`` command reveals that there is a problem in this network."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:898
+msgid "We can analyze this configuration problem in more details by using ``traceroute6``. The loop appears clearly."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:919
+msgid "On host ``b``, the problem is different. The packets that it sends towards host ``a`` do not seem to go beyond router ``r3``."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:933
+msgid "To debug this problem, let us look at the forwarding table of ``r3``. This router forwards the packets sent to host ``a`` to router ``r1`` that is directly connected to host ``a``."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:946
+msgid "Unfortunately, when router ``r1`` sends its ICMP HopLimit exceeded message, the destination of this IP packet is ``2001:db8:1341:3::b``. This packet is forward to router ``r2`` that returns the packet back to router ``r1``. The packet loops between the two routers until their HopLimit reaches zero."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:965
+msgid "IPv6 packets"
+msgstr ""
+
+#: ../../exercises/ipv6.rst:967
+msgid "To correctly understand the operation of IPv6, it is sometimes important to remember the packet format and how the different fields are used."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:971
+msgid "The `Next Header` of the IPv6 packet indicates the type of the header that follows the IPv6 packet. IANA_ maintains a list of all the assigned values of this header at https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml"
+msgstr ""
+
+#: ../../exercises/ipv6.rst:980
+msgid "When an IPv6 router receives a packet that is larger than the Maximum Transmission Unit (MTU) on its outgoing interface, it drops the packet and returns an ICMPv6 message back to the source. Upon reception of this ICMPv6 message, the source will either adjust the size of the packets that it transmits or use IPv6 packet fragmentation. The exercises below show a few examples of the utilization of IPv6 fragmentation."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:987
+msgid "Network engineers often rely on :manpage:`ping6(8)` to verify the reachability of a remote host or router. :manpage:`ping6(8)` sends ICMPv6 echo request messages and analyzes the received ICMPv6 echo responses.  Each echo request message contains an identifier and a sequence number that is returned in the response."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:991
+msgid "When the :manpage:`ping6(8)` is executed, it sends ICMPv6 echo request messages with increasing sequence numbers."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:995
+msgid "The :manpage:`traceroute6(8)` software is very useful to debug network problems. It sends a series of UDP segments encapsulated inside IP packets with increasing values of the HopLimit. The first packet has a HotLimit and the first router on the path returns an ICMPv6 HopLimit exceeded message."
+msgstr ""
+
+#: ../../exercises/ipv6.rst:999
+msgid "When :manpage:`traceroute6(8)` sends UDP segments, it uses the UDP source port as a way to remember the target hop for this specific UDP segment."
+msgstr ""
