@@ -9,13 +9,16 @@ msgstr ""
 "3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-17 09:55+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2021-08-27 14:47+0000\n"
+"Last-Translator: Anthony Gego <anthony.gego@uclouvain.be>\n"
+"Language-Team: French <http://weblate.info.ucl.ac.be/projects/cnp3-ebook/"
+"exerciseshttp/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.9.1\n"
 
 #: ../../exercises/http.rst:6
 msgid "The HyperText Transfer Protocol"
@@ -75,7 +78,7 @@ msgstr ""
 
 #: ../../exercises/http.rst:50
 msgid "Footnotes"
-msgstr ""
+msgstr "Notes de pied de page"
 
 #: ../../exercises/http.rst:51
 msgid "The minimum command sent to a HTTP server is `GET / HTTP/1.0` followed by CRLF and a blank line."
