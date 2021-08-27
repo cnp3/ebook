@@ -1,0 +1,130 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2019 Olivier Bonaventure
+# This file is distributed under the same license as the Computer networking : Principles, Protocols and Practice package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Computer networking : Principles, Protocols and Practice "
+"3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-05-17 09:55+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../protocols/udp.rst:9
+msgid "The User Datagram Protocol"
+msgstr ""
+
+#: ../../protocols/udp.rst:11
+msgid "The User Datagram Protocol (UDP) is defined in :rfc:`768`. It provides an unreliable connectionless transport service on top of the unreliable network layer connectionless service. The main characteristics of the UDP service are :"
+msgstr ""
+
+#: ../../protocols/udp.rst:13
+msgid "the UDP service cannot deliver SDUs that are larger than 65467 bytes [#fmtuudp]_"
+msgstr ""
+
+#: ../../protocols/udp.rst:14
+msgid "the UDP service does not guarantee the delivery of SDUs (losses can occur and SDUs can arrive out-of-sequence)"
+msgstr ""
+
+#: ../../protocols/udp.rst:15
+msgid "the UDP service will not deliver a corrupted SDU to the destination"
+msgstr ""
+
+#: ../../protocols/udp.rst:17
+msgid "Compared to the connectionless network layer service, the main advantage of the UDP service is that it allows several applications running on a host to exchange SDUs with several other applications running on remote hosts. Let us consider two hosts, e.g. a client and a server. The network layer service allows the client to send information to the server, but if an application running on the client wants to contact a particular application running on the server, then an additional addressing mechanism is required other than the IP address that identifies a host, in order to differentiate the application running on a host. This additional addressing is provided by `port numbers`. When a server using UDP is enabled on a host, this server registers a `port number`. This `port number` will be used by the clients to contact the server process via UDP."
+msgstr ""
+
+#: ../../protocols/udp.rst:19
+msgid "The figure below shows a typical usage of the UDP port numbers. The client process uses port number `1234` while the server process uses port number `5678`. When the client sends a request, it is identified as originating from port number `1234` on the client host and destined to port number `5678` on the server host. When the server process replies to this request, the server's UDP implementation will send the reply as originating from port  `5678` on the server host and destined to port `1234` on the client host."
+msgstr ""
+
+#: ../../protocols/udp.rst:43
+msgid "UDP uses a single segment format shown in the figure below."
+msgstr ""
+
+#: ../../protocols/udp.rst:49
+msgid "UDP Header Format"
+msgstr ""
+
+#: ../../protocols/udp.rst:51
+msgid "The UDP header contains four fields :"
+msgstr ""
+
+#: ../../protocols/udp.rst:53
+msgid "a 16 bits source port"
+msgstr ""
+
+#: ../../protocols/udp.rst:54
+msgid "a 16 bits destination port"
+msgstr ""
+
+#: ../../protocols/udp.rst:55
+msgid "a 16 bits length field"
+msgstr ""
+
+#: ../../protocols/udp.rst:56
+msgid "a 16 bits checksum"
+msgstr ""
+
+#: ../../protocols/udp.rst:58
+msgid "As the port numbers are encoded as a 16 bits field, there can be up to only 65535 different server processes that are bound to a different UDP port at the same time on a given server. In practice, this limit is never reached. However, it is worth noticing that most implementations divide the range of allowed UDP port numbers into three different ranges :"
+msgstr ""
+
+#: ../../protocols/udp.rst:60
+msgid "the privileged port numbers (1 < port < 1024 )"
+msgstr ""
+
+#: ../../protocols/udp.rst:61
+msgid "the ephemeral port numbers ( officially [#fephemeral]_ 49152 <= port <= 65535 )"
+msgstr ""
+
+#: ../../protocols/udp.rst:62
+msgid "the registered port numbers (officially 1024 <= port < 49152)"
+msgstr ""
+
+#: ../../protocols/udp.rst:64
+msgid "In most Unix variants, only processes having system administrator privileges can be bound to port numbers smaller than `1024`. Well-known servers such as :term:`DNS`, :term:`NTP` or :term:`RPC` use privileged port numbers. When a client needs to use UDP, it usually does not require a specific port number. In this case, the UDP implementation will allocate the first available port number in the ephemeral range. The range of registered port numbers should be used by servers. In theory, developers of network servers should register their port number officially through IANA [#fportnum]_, but few developers do this."
+msgstr ""
+
+#: ../../protocols/udp.rst:69
+msgid "Computation of the UDP checksum"
+msgstr ""
+
+#: ../../protocols/udp.rst:71
+msgid "The checksum of the UDP segment is computed over :"
+msgstr ""
+
+#: ../../protocols/udp.rst:73
+msgid "a pseudo header :rfc:`2460` containing the source address, the destination address, the packet length encoded as a 32 bits number and a 32 bits bit field containing the three most significant bytes set to 0 and the low order byte set to 17"
+msgstr ""
+
+#: ../../protocols/udp.rst:74
+msgid "the entire UDP segment, including its header"
+msgstr ""
+
+#: ../../protocols/udp.rst:83
+msgid "Several types of applications rely on UDP. As a rule of thumb, UDP is used for applications where delay must be minimized or losses can be recovered by the application itself. A first class of the UDP-based applications are applications where the client sends a short request and expects a quick and short answer. The :term:`DNS` is an example of a UDP application that is often used in the wide area. However, in local area networks, many distributed systems rely on Remote Procedure Call (:term:`RPC`) that is often used on top of UDP. In Unix environments, the Network File System (:term:`NFS`) is built on top of RPC and runs frequently on top of UDP. A second class of UDP-based applications are the interactive computer games that need to frequently exchange small messages, such as the player's location or their recent actions. Many of these games use UDP to minimize the delay and can recover from losses. A third class of applications are multimedia applications such as interactive Voice over IP or interactive Video over IP. These interactive applications expect a delay shorter than about 200 milliseconds between the sender and the receiver and can recover from losses directly inside the application."
+msgstr ""
+
+#: ../../protocols/udp.rst:89
+msgid "Footnotes"
+msgstr ""
+
+#: ../../protocols/udp.rst:90
+msgid "This limitation is due to the fact that the network layer cannot transport packets that are larger than 64 KBytes. As UDP does not include any segmentation/reassembly mechanism, it cannot split a SDU before sending it. The UDP header consumes 8 bytes and the IPv6 header 60. With IPv4, the IPv4 header only consumes 20 bytes and thus the maximum UDP payload size is 65507 bytes."
+msgstr ""
+
+#: ../../protocols/udp.rst:92
+msgid "A discussion of the ephemeral port ranges used by different TCP/UDP implementations may be found in http://www.ncftp.com/ncftpd/doc/misc/ephemeral_ports.html"
+msgstr ""
+
+#: ../../protocols/udp.rst:94
+msgid "The complete list of allocated port numbers is maintained by IANA_ . It may be downloaded from http://www.iana.org/assignments/port-numbers"
+msgstr ""

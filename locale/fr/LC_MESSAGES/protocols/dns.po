@@ -10,8 +10,8 @@ msgstr ""
 "3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-09 12:39+0000\n"
-"PO-Revision-Date: 2021-05-09 09:45+0000\n"
-"Last-Translator: Philippe D <philippe.dan@student.uclouvain.be>\n"
+"PO-Revision-Date: 2021-08-27 14:47+0000\n"
+"Last-Translator: Anthony Gego <anthony.gego@uclouvain.be>\n"
 "Language-Team: French <http://weblate.info.ucl.ac.be/projects/cnp3-ebook/"
 "protocolsdns/fr/>\n"
 "Language: fr\n"
@@ -383,7 +383,7 @@ msgstr ""
 
 #: ../../protocols/dns.rst:80
 msgid "Footnotes"
-msgstr "Notes de bas de page"
+msgstr "Notes de pied de page"
 
 #: ../../protocols/dns.rst:81
 msgid ""

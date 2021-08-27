@@ -1,0 +1,37 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2019 Olivier Bonaventure
+# This file is distributed under the same license as the Computer networking : Principles, Protocols and Practice package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Computer networking : Principles, Protocols and Practice "
+"3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-05-17 09:55+0200\n"
+"PO-Revision-Date: 2021-08-27 14:48+0000\n"
+"Last-Translator: Anthony Gego <anthony.gego@uclouvain.be>\n"
+"Language-Team: French <http://weblate.info.ucl.ac.be/projects/cnp3-ebook/"
+"protocolstransport/fr/>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+#: ../../protocols/transport.rst:6
+msgid "Internet transport protocols"
+msgstr "Protocoles de transport Internet"
+
+#: ../../protocols/transport.rst:9
+msgid "Transport protocols rely on the service provided by the network layer. On the Internet, the network layer provides a connectionless service. The network layer identifies each (interface of a) host by using an IP address. It enables hosts to transmit packets that contain up to 64 KBytes of payload to any destination reachable through the network. The network layer does not guarantee the delivery of information, cannot detect transmission errors and does not preserve sequence integrity."
+msgstr ""
+
+#: ../../protocols/transport.rst:11
+msgid "Several transport protocols have been designed to provide a richer service to the applications. The two most widely deployed transport protocols on the Internet are the User Datagram Protocol (UDP) and the Transmission Control Protocol (TCP). A third important transport protocol, the Stream Control Transmission Protocol (SCTP) :rfc:`4960` appeared in the early 2000s. It is currently used by some particular applications such as signaling in Voice over IP networks. SCTP was described in the second edition of the e-book."
+msgstr ""
+
+#: ../../protocols/transport.rst:13
+msgid "The Real Time Transport Protocol (RTP), defined in :rfc:`3550` is another important protocol that is used by many multimedia applications. It includes functions that belong to the transport layer, but also functions that are related to the encoding of the information. Due to space limitations, we do not discuss it in this section."
+msgstr ""
