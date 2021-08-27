@@ -100,7 +100,7 @@ The Internet uses a single interdomain routing protocol : the Border Gateway Pro
 
 The figure below shows a simple example of the BGP routes that are exchanged between domains. In this example, prefix `2001:db8:cafe::/48` is announced by `AS1`. `AS1` advertises a BGP route towards this prefix to `AS2`. The AS-Path of this route indicates that `AS1` is the originator of the prefix. When `AS4` receives the BGP route from `AS1`, it re-announces it to `AS2` and adds its AS number to the AS-Path. `AS2` has learned two routes towards prefix `2001:db8:cafe::/48`. It compares the two routes and prefers the route learned from `AS4` based on its own ranking algorithm. `AS2` advertises to `AS5` a route towards `2001:db8:cafe::/48` with its AS-Path set to `AS2:AS4:AS1`. Thanks to the AS-Path, `AS5` knows that if it sends a packet towards `2001:db8:cafe::/48` the packet first passes through `AS2`, then through `AS4` before reaching its destination inside `AS1`.
 
-.. figure:: /protocols/figures/bgp-example.svg
+.. figure:: /protocols/figures/bgp-example.png
    :align: center
 
    Simple exchange of BGP routes
