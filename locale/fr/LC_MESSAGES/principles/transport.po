@@ -4,19 +4,22 @@
 # : Principles, Protocols and Practice package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Computer networking : Principles, Protocols and "
-"Practice 3\n"
+"Project-Id-Version: Computer networking : Principles, Protocols and Practice "
+"3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-09 12:39+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2021-05-15 11:49+0000\n"
+"Last-Translator: Philippe D <philippe.dan@student.uclouvain.be>\n"
+"Language-Team: French <http://weblate.info.ucl.ac.be/projects/cnp3-ebook/"
+"principlestransport/fr/>\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.9.1\n"
 "Generated-By: Babel 2.7.0\n"
 
 #: ../../principles/transport.rst:7
@@ -26,10 +29,15 @@ msgid ""
 "issue via https://github.com/CNP3/ebook/issues?milestone=3 or help us by "
 "providing pull requests to close the existing issues."
 msgstr ""
+"Ceci est une ébauche non révisée de la troisième édition de cet e-book. Si "
+"vous trouvez une quelconque erreur ou avez des suggestions pour améliorer ce "
+"texte, n'hésitez pas à envoyer une issue via https://github.com/CNP3/ebook/"
+"issues?milestone=3 ou aidez-nous en fournissant une pull request afin de "
+"clore les issues existantes."
 
 #: ../../principles/transport.rst:10
 msgid "Applications"
-msgstr ""
+msgstr "Applications"
 
 #: ../../principles/transport.rst:12
 msgid ""
@@ -43,7 +51,7 @@ msgstr ""
 
 #: ../../principles/transport.rst:19
 msgid "The client-server model"
-msgstr ""
+msgstr "Le modèle client-serveur"
 
 #: ../../principles/transport.rst:21
 msgid ""
@@ -92,27 +100,27 @@ msgstr ""
 
 #: ../../principles/transport.rst:29
 msgid "Alice : `Hello`"
-msgstr ""
+msgstr "Alice : `Hello`"
 
 #: ../../principles/transport.rst:30
 msgid "Bob : `Hello`"
-msgstr ""
+msgstr "Bob : `Hello`"
 
 #: ../../principles/transport.rst:31
 msgid "Alice : `What time is it ?`"
-msgstr ""
+msgstr "Alice : `Quelle heure est-il ?`"
 
 #: ../../principles/transport.rst:32
 msgid "Bob : `11:55`"
-msgstr ""
+msgstr "Bob : `11:55`"
 
 #: ../../principles/transport.rst:33
 msgid "Alice : `Thank you`"
-msgstr ""
+msgstr "Alice : `Merci`"
 
 #: ../../principles/transport.rst:34
 msgid "Bob : `You're welcome`"
-msgstr ""
+msgstr "Bob : `Avec plaisir`"
 
 #: ../../principles/transport.rst:41
 msgid ""
@@ -131,7 +139,7 @@ msgstr ""
 
 #: ../../principles/transport.rst:44
 msgid "Trudy : `1234`"
-msgstr ""
+msgstr "Trudy : `1234`"
 
 #: ../../principles/transport.rst:45
 msgid "Bob : `This is the correct password, you're welcome`"
@@ -145,11 +153,11 @@ msgstr ""
 
 #: ../../principles/transport.rst:50
 msgid "Alice : `3.1415`"
-msgstr ""
+msgstr "Alice : `3.1415`"
 
 #: ../../principles/transport.rst:51
 msgid "Bob : `This is not the correct password.`"
-msgstr ""
+msgstr "Bob : `Ce n'est pas le bon mot de passe.`"
 
 #: ../../principles/transport.rst:53
 msgid ""
@@ -299,14 +307,26 @@ msgid ""
 "running on different CPUs exchange 16 bits fields, there are two "
 "possibilities to transfer them over the transport service :"
 msgstr ""
+"Outre les chaînes de caractères, certaines applications doivent également "
+"échanger des champs de 16 et 32 bits tels que des entiers. Une solution "
+"naïve aurait été d'envoyer le champ de 16 ou 32 bits tel qu'il est codé dans "
+"la mémoire de l'hôte. Malheureusement, il existe différentes méthodes pour "
+"stocker les champs de 16 ou 32 bits en mémoire. Certains processeurs "
+"stockent l'octet le plus significatif d'un champ de 16 bits dans la première "
+"adresse du champ, tandis que d'autres stockent l'octet le moins significatif "
+"à cet endroit. Lorsque des applications en réseau fonctionnant sur des "
+"unités centrales différentes échangent des champs de 16 bits, il existe deux "
+"possibilités pour les transférer via le service de transport :"
 
 #: ../../principles/transport.rst:88
 msgid "send the most significant byte followed by the least significant byte"
 msgstr ""
+"envoyer l'octet le plus significatif suivi de l'octet le moins significatif"
 
 #: ../../principles/transport.rst:89
 msgid "send the least significant byte followed by the most significant byte"
 msgstr ""
+"envoyer l'octet le moins significatif suivi de l'octet le plus significatif"
 
 #: ../../principles/transport.rst:91
 msgid ""
@@ -336,10 +356,20 @@ msgid ""
 "above the lines indicate the bit positions in the 32-bits word, with the "
 "high order bit at position `0`."
 msgstr ""
+"Outre les mots de 16 et 32 bits, certaines applications doivent échanger des "
+"structures de données contenant des champs de bits de différentes longueurs. "
+"Par exemple, un message peut être composé d'un champ de 16 bits suivi de "
+"huit drapeaux d'un bit, d'un champ de 24 bits et de deux octets de 8 bits. "
+"Les spécifications du protocole Internet définiront un tel message en "
+"utilisant une représentation telle que celle qui suit. Dans cette "
+"représentation, chaque ligne correspond à 32 bits et les lignes verticales "
+"sont utilisées pour délimiter les champs. Les chiffres au-dessus des lignes "
+"indiquent la position des bits dans le mot de 32 bits, le bit de poids fort "
+"étant en position \"0\"."
 
 #: ../../principles/transport.rst:99
 msgid "Message format"
-msgstr ""
+msgstr "Format du message"
 
 #: ../../principles/transport.rst:101
 msgid ""
@@ -352,6 +382,14 @@ msgid ""
 "We will use it for all the binary protocols that are discussed in this "
 "book."
 msgstr ""
+"Le message mentionné ci-dessus sera transmis en commençant par le mot "
+"supérieur de 32 bits dans l'ordre des octets du réseau. Le premier champ est "
+"codé sur 16 bits. Il est suivi de huit drapeaux d'un bit (`A-H`), d'un champ "
+"de 24 bits dont l'octet de poids fort figure sur la première ligne et les "
+"deux octets de poids faible apparaissent sur la deuxième ligne, suivis de "
+"deux champs d'un octet. Cette représentation ASCII est fréquemment utilisée "
+"lors de la définition de protocoles binaires. Nous l'utiliserons pour tous "
+"les protocoles binaires abordés dans ce livre."
 
 #: ../../principles/transport.rst:105
 msgid ""
@@ -370,7 +408,7 @@ msgstr ""
 #: ../../principles/transport.rst:109 ../../principles/transport.rst:122
 #: ../../principles/transport.rst:213 ../../principles/transport.rst:526
 msgid "The transport layer"
-msgstr ""
+msgstr "La couche de transport"
 
 #: ../../principles/transport.rst:111
 msgid ""
@@ -1354,7 +1392,7 @@ msgstr ""
 
 #: ../../principles/transport.rst:827
 msgid "Footnotes"
-msgstr ""
+msgstr "Notes de bas de page"
 
 #: ../../principles/transport.rst:828
 msgid ""
@@ -1402,4 +1440,3 @@ msgid ""
 "http://www.blug.linux.no/rfc1149/ but there are few real links supporting"
 " :rfc:`1149` in the Internet."
 msgstr ""
-

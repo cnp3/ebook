@@ -4,24 +4,27 @@
 # : Principles, Protocols and Practice package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Computer networking : Principles, Protocols and "
-"Practice 3\n"
+"Project-Id-Version: Computer networking : Principles, Protocols and Practice "
+"3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-09 12:39+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2021-03-04 19:15+0000\n"
+"Last-Translator: Philippe D <philippe.dan@student.uclouvain.be>\n"
+"Language-Team: French <http://weblate.info.ucl.ac.be/projects/cnp3-ebook/"
+"exercisestransport/fr/>\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.9.1\n"
 "Generated-By: Babel 2.7.0\n"
 
 #: ../../exercises/transport.rst:7
 msgid "Serving applications"
-msgstr ""
+msgstr "Servir des applications"
 
 #: ../../exercises/transport.rst:10
 msgid ""
@@ -30,10 +33,15 @@ msgid ""
 "issue via https://github.com/CNP3/ebook/issues?milestone=3 or help us by "
 "providing pull requests to close the existing issues."
 msgstr ""
+"Ceci est une ébauche non révisée de la troisième édition de cet e-book. Si "
+"vous trouvez une quelconque erreur ou avez des suggestions pour améliorer ce "
+"texte, n'hésitez pas à envoyer une issue via https://github.com/CNP3/ebook/"
+"issues?milestone=3 ou aidez-nous en fournissant une pull request afin de "
+"clore les issues existantes."
 
 #: ../../exercises/transport.rst:14
 msgid "Open questions"
-msgstr ""
+msgstr "Questions ouvertes"
 
 #: ../../exercises/transport.rst:16
 msgid ""
@@ -41,6 +49,9 @@ msgid ""
 "provides an unreliable connectionless transport service that can detect "
 "transmission errors but not correct them ?"
 msgstr ""
+"Quels mécanismes devraient être inclus dans un protocole de transport "
+"fournissant un transport service connectionless non fiable pouvant détecter "
+"les erreurs de transmission mais sans les corriger ?"
 
 #: ../../exercises/transport.rst:18
 msgid ""
@@ -49,6 +60,10 @@ msgid ""
 "is incremented for each data segment. The connection starts as shown in "
 "the figure below :"
 msgstr ""
+"Un transport fiable via connexion place un numéro de séquence de 32 bits à "
+"l'intérieur d'un segment header afin d'énumérer les segments. Ce numéro de "
+"séquence est incrémenté pour chaque segment data. La connexion commence "
+"comme montré dans la figure ci-dessous :"
 
 #: ../../exercises/transport.rst:38
 msgid ""
@@ -57,6 +72,10 @@ msgid ""
 "response, `Host B` closes the connection gracefully and `Host A` does the"
 " same. Discuss on the state that needs to be maintained inside each host."
 msgstr ""
+"Continuez la connexion pour que l'`Hôte B` envoie comme donnée `Hello` et "
+"que l'`Hôte A` réponde en envoyant `Pleased to meet you`. Après avoir reçu "
+"la réponse, l'`Hôte B` termine la connexion gracefully et l'`Hôte A` fait de "
+"même. Discutez de l'état qui doit être maintenu pour chaque hôte."
 
 #: ../../exercises/transport.rst:40
 msgid ""
@@ -66,12 +85,20 @@ msgid ""
 "incremented after the transmission of each segment. At this time, `Host "
 "A` sends two DATA segments as shown in the figure below."
 msgstr ""
+"Une liaison de transport qui fournit un service message-mode est active "
+"depuis un certain temps et toutes les données ont été échangées et "
+"accréditées dans les deux directions. Comme dans l'exercice avant, le numéro "
+"de séquence est incrémenté après la transmission de chaque segment. Cette "
+"fois-ci, l'`Hôte A` envoie deux segments DATA comme illustré dans la figure "
+"ci-dessous."
 
 #: ../../exercises/transport.rst:57
 msgid ""
 "What are the acknowledgments sent by `Host B`. How does `Host A` react "
 "and how does it terminate the connection ?"
 msgstr ""
+"Quels sont les acknowledgments envoyés par l'`Hôte B`. Comment réagit l'`"
+"Hôte A` et comment termine-t-il la connexion ?"
 
 #: ../../exercises/transport.rst:60
 msgid ""
@@ -83,6 +110,12 @@ msgid ""
 "`DATA.request`, assuming that one segment is sent for each "
 "`DATA.request`."
 msgstr ""
+"Considérez un protocole de transport par connexion qui fournit un service "
+"bytestream. Dans ce protocole, le numéro de séquence placé à l'intérieur de "
+"chaque segment DATA reflète la position des bytes dans le bytestream. En "
+"considérant la connexion illustrée ci-dessous, établissez les segments DATA "
+"qui sont envoyés par l'`Hôte A` en réponse au `Data.request`, en considérant "
+"qu'un segment est envoyé pour chaque `Data.request`."
 
 #: ../../exercises/transport.rst:86
 msgid ""
@@ -91,6 +124,11 @@ msgid ""
 "we consider that a DATA segment can contain up to 8 bytes of data in the "
 "payload. Do not forget to show the acknowledgments in your answer."
 msgstr ""
+"Même question qu'avant, en considérant cette fois-ci que le protocole de "
+"transport tente d'envoyer de larges segments DATA dès que possible. Pour cet "
+"exercice, nous considérons que le segment DATA peut contenir jusqu'à 8 bytes "
+"de données dans le payload. N'oubliez pas d'inclure les acknowledgments dans "
+"votre réponse."
 
 #: ../../exercises/transport.rst:88
 msgid ""
@@ -99,6 +137,10 @@ msgid ""
 " uses this protocol. Does the time-sequence diagram below reflects a "
 "valid implementation of this protocol ? Justify your answer."
 msgstr ""
+"Considérez un protocole de transport qui fournit un service bytestream par "
+"connexion. Vous observez les segments envoyés par un hôte qui utilise ce "
+"protocole. Est-ce que le diagramme de séquence ci-dessous reflète une "
+"implémentation valide de ce protocole ? Justifiez votre réponse."
 
 #: ../../exercises/transport.rst:105
 msgid ""
@@ -106,6 +148,9 @@ msgid ""
 "at the destination. Discuss the following scenario and explain how the "
 "receiver should react to the reception of the last `DATA` segment."
 msgstr ""
+"Dans l'exemple ci-dessus, les deux segments `DATA` ont été perdus avant "
+"d'arriver à destination. Discutez du scénario suivant et expliquer comment "
+"le receiver devrait réagir lors de la réception du dernier segment `DATA`."
 
 #: ../../exercises/transport.rst:122
 msgid ""
@@ -116,10 +161,16 @@ msgid ""
 "is should sent data segments to prevent having two segments with the same"
 " sequence number inside the network ?"
 msgstr ""
+"Un service de la couche réseau garantit qu'un paquet ne transitera pas plus "
+"de 100 secondes dans le réseau. Considérez un protocole de transport fiable "
+"par connexion qui place un numéro de séquence de 32 bits à l'intérieur de "
+"chaque segment. Quel est le taux maximum (en segments par seconde) auquel "
+"les segments de données devraient être envoyées pour éviter d'avoir deux "
+"segments avec le même numéro de séquence à l'intérieur du réseau ?"
 
 #: ../../exercises/transport.rst:126
 msgid "Practice"
-msgstr ""
+msgstr "Exercices"
 
 #: ../../exercises/transport.rst:128
 msgid ""
@@ -131,10 +182,17 @@ msgid ""
 "courier service. What is the minimum bandwidth required to match the "
 "bandwidth of this courier service ?"
 msgstr ""
+"Amazon fournit le `S3 storage service ‹https://s3.amazonaws.com/›`_ où les "
+"entreprises et les chercheurs peuvent stocker beaucoup d'information et "
+"effectuer des calculs sur l'information stockée. Amazon permet aux "
+"utilisateurs d'envoyer des fichiers via Internet, mais également en envoyant "
+"des disques durs. En considérant qu'un disque dur de 1 Terabyte peut être "
+"livré en 24 heures à Amazon par service postal. Quelle serait la bande "
+"passante minimale requise pour égaler le service postal ?"
 
 #: ../../exercises/transport.rst:135
 msgid "Discussion questions"
-msgstr ""
+msgstr "Questions de discussion"
 
 #: ../../exercises/transport.rst:137
 msgid ""
@@ -142,6 +200,9 @@ msgid ""
 "vary during the lifetime of the connection. What are the causes for these"
 " variations ?"
 msgstr ""
+"Dans la couche de transport, la fenêtre de réception envoyée par un receiver "
+"peut varier tout au long de la durée de la connexion. Quels sont les causes "
+"de ces variations ?"
 
 #: ../../exercises/transport.rst:139
 msgid ""
@@ -149,18 +210,25 @@ msgid ""
 "service or a byte stream service. Which of the following usages of the "
 "sequence numbers is the best suited for each of these services ?"
 msgstr ""
+"Un protocole fiable par connexion peut fournir un service message-mode ou un "
+"service bytestream. Quels usages des numéros de séquence convient le mieux "
+"pour chacun de ces services ?"
 
 #: ../../exercises/transport.rst:141
 msgid ""
 "DATA segments contain a sequence number that is incremented for each byte"
 " transmitted"
 msgstr ""
+"Les segments DATA contiennent des numéros de séquence qui sont incrémentés "
+"pour chaque byte transmis"
 
 #: ../../exercises/transport.rst:142
 msgid ""
 "DATA segments contain a sequence number that is incremented for each DATA"
 " segment transmitted"
 msgstr ""
+"Les segments DATA contiennent des numéros de séquence qui sont incrémentés "
+"pour chaque segment DATA transmis"
 
 #: ../../exercises/transport.rst:144
 msgid ""
@@ -168,6 +236,9 @@ msgid ""
 " bits sequence number. What are the advantages and drawbacks of each "
 "approach ?"
 msgstr ""
+"Certains protocoles de transport utilisent des numéros de séquence sur 32 "
+"bits alors que d'autres utilisent des numéros de séquence sur 64 bits. Quels "
+"sont les avantages les inconvénients de chaque approche ?"
 
 #: ../../exercises/transport.rst:146
 msgid ""
@@ -178,12 +249,20 @@ msgid ""
 "first short messages that always fit inside a single segment. In a second"
 " step, discuss how you could support messages of unlimited size."
 msgstr ""
+"Considérez un protocole de transport qui fournit un service bytestream et "
+"utilise des numéros de séquence sur 32 bits afin de représenter la position "
+"du premier byte du payload des segments DATA dans le bytestream. Quels "
+"changements apporteriez-vous au protocole de sorte à ce qu'il puisse fournir "
+"un service message-mode ? Considérez d'abord l'envoi de messages courts qui "
+"ne dépassent pas la taille d'un seul segment. Dans un second temps, discutez "
+"de comment vous feriez pour pouvoir gérer des messages de taille illimitée."
 
 #: ../../exercises/transport.rst:148
 msgid "What is piggybacking and what are the benefits of this technique ?"
 msgstr ""
+"Qu'est-ce que le piggybacking et quels sont les avantages de cette technique "
+"?"
 
 #: ../../exercises/transport.rst:155
 msgid "Footnotes"
-msgstr ""
-
+msgstr "Notes de bas de page"

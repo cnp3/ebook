@@ -4,28 +4,31 @@
 # : Principles, Protocols and Practice package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Computer networking : Principles, Protocols and "
-"Practice 3\n"
+"Project-Id-Version: Computer networking : Principles, Protocols and Practice "
+"3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-09 12:39+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2021-03-04 19:15+0000\n"
+"Last-Translator: Philippe D <philippe.dan@student.uclouvain.be>\n"
+"Language-Team: French <http://weblate.info.ucl.ac.be/projects/cnp3-ebook/"
+"exercisesreliability/fr/>\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.9.1\n"
 "Generated-By: Babel 2.7.0\n"
 
 #: ../../exercises/reliability.rst:7
 msgid "Reliable transfer"
-msgstr ""
+msgstr "Transfert fiable"
 
 #: ../../exercises/reliability.rst:11
 msgid "Open questions"
-msgstr ""
+msgstr "Questions ouvertes"
 
 #: ../../exercises/reliability.rst:13
 msgid ""
@@ -35,6 +38,11 @@ msgid ""
 " from a sending host and the reception of the last bit of this segment on"
 " the receiving host."
 msgstr ""
+"Soit un câble entre deux hôtes ayant un débit de `b` bits par second et un "
+"délai de propagation de `t` secondes. Établissez une formule qui calcule le "
+"temps écoulé entre la transmission du premier bit d'un segment de `d` bytes  "
+"à partir de l'hôte émetteur et la réception du dernier bit de ce segment par "
+"l'hôte récepteur."
 
 #: ../../exercises/reliability.rst:16
 msgid ""
@@ -55,24 +63,28 @@ msgid ""
 "How would you set the duration of the retransmission timer in the "
 "alternating bit protocol ?"
 msgstr ""
+"Comment fixeriez-vous le délai du timer de retransmission dans le protocole "
+"du bit alterné ?"
 
 #: ../../exercises/reliability.rst:22
 msgid ""
 "A version of the Alternating Bit Protocol supporting variable length "
 "frames uses a header that contains the following fields :"
 msgstr ""
+"Une version du protocole du bit alterné à frame de longueur variable utilise "
+"une entête qui contient les champs suivants :"
 
 #: ../../exercises/reliability.rst:24
 msgid "a `number` (0 or 1)"
-msgstr ""
+msgstr "un `nombre` (0 ou 1)"
 
 #: ../../exercises/reliability.rst:25
 msgid "a `length` field that indicates the length of the data"
-msgstr ""
+msgstr "un champ `length` (taille) qui indique la taille des données"
 
 #: ../../exercises/reliability.rst:26
 msgid "a Cyclic Redundancy Check (`CRC`)"
-msgstr ""
+msgstr "un contrôle de redondance cyclique (`CRC`)"
 
 #: ../../exercises/reliability.rst:28
 msgid ""
@@ -80,6 +92,9 @@ msgid ""
 "the CRC over the data part of the segment but not over the header. What "
 "do you think of this proposed solution ?"
 msgstr ""
+"Pour accélérer la transmission des frames, un étudiant propose de calculer "
+"le CRC à partir du segment de données et non à partir de l'entête. Que "
+"pensez-vous de la solution proposée ?"
 
 #: ../../exercises/reliability.rst:30
 msgid ""
@@ -87,28 +102,35 @@ msgid ""
 "amount of payload bytes that have been transmitted during a period of "
 "time, achieved by the Alternating Bit Protocol assuming that :"
 msgstr ""
+"Obtenez une expression mathématique pour le `goodput`, c'est-à-dire la "
+"quantité de bytes pouvant être transmis pendant une période de temps donnée, "
+"issu du protocole du bit alterné en considérant que :"
 
 #: ../../exercises/reliability.rst:32
 msgid "Each frame contains `D` bytes of data and `c` bytes of control information"
 msgstr ""
+"Chaque frame contient `D` bytes de donnée et `c` bytes d'information de "
+"contrôle"
 
 #: ../../exercises/reliability.rst:33
 msgid "Each acknowledgment contains `c` bytes of control information"
-msgstr ""
+msgstr "Chaque acknowledgment contient `c` bytes de information de contrôle"
 
 #: ../../exercises/reliability.rst:34
 msgid ""
 "The bandwidth of the two directions of the link is set to `B` bits per "
 "second"
 msgstr ""
+"La bande passante dans les deux directions du câble est de `B` bits par "
+"seconde"
 
 #: ../../exercises/reliability.rst:35
 msgid "The delay between the two hosts is `s` seconds in both directions"
-msgstr ""
+msgstr "Le délai entre deux hôtes est de `s` secondes dans les deux sens"
 
 #: ../../exercises/reliability.rst:36
 msgid "there are no transmission errors"
-msgstr ""
+msgstr "il n'y a pas d'erreur de transmission"
 
 #: ../../exercises/reliability.rst:38
 msgid ""
@@ -122,25 +144,29 @@ msgstr ""
 
 #: ../../exercises/reliability.rst:40
 msgid "when there are no losses"
-msgstr ""
+msgstr "dans le cas où il n'y a pas de pertes"
 
 #: ../../exercises/reliability.rst:41
 msgid "when the third and seventh segments are lost"
-msgstr ""
+msgstr "lorsque la troisième et septième frame sont perdues"
 
 #: ../../exercises/reliability.rst:42
 msgid "when every second acknowledgment is discarded due to transmission errors"
 msgstr ""
+"lorsqu'un acknowledgment sur deux est ignoré à cause des erreurs de "
+"transmission"
 
 #: ../../exercises/reliability.rst:44
 msgid ""
 "Same question when using selective repeat instead of go-back-n. Note that"
 " the answer is not necessarily the same."
 msgstr ""
+"Même question en utilisant du selective repeat à la place du go-back-n. "
+"Remarquez que la réponse n'est pas nécessairement la même."
 
 #: ../../exercises/reliability.rst:50
 msgid "Practice"
-msgstr ""
+msgstr "Exercices"
 
 #: ../../exercises/reliability.rst:52
 msgid ""
@@ -148,6 +174,9 @@ msgid ""
 "transmission errors. The following questions will reinforce your "
 "understanding of these algorithms."
 msgstr ""
+"Les protocoles fiables dépendent d'algorithmes de détection des erreurs de "
+"transmission. Les questions suivantes vont vous permettre d'approfondir "
+"votre compréhension de ces algorithmes."
 
 #: ../../exercises/reliability.rst:54
 msgid ""
@@ -155,6 +184,9 @@ msgid ""
 " frames have been affected by transmission errors. The most frequently "
 "used checksums are :"
 msgstr ""
+"Les protocoles fiables reposent sur différents types de checksums afin de "
+"vérifier si des erreurs de transmission ont affecté les frames. Les "
+"checksums les plus fréquemment utilisés sont :"
 
 #: ../../exercises/reliability.rst:56
 msgid ""
@@ -177,28 +209,36 @@ msgid ""
 "https://en.wikipedia.org/wiki/Fletcher%27s_checksum for implementation "
 "details"
 msgstr ""
+"le Fletcher checksum [Fletcher1982]_, voir https://en.wikipedia.org/wiki/"
+"Fletcher%27s_checksum pour les détails de son implémentation"
 
 #: ../../exercises/reliability.rst:60
 msgid ""
 "By using your knowledge of the Internet checksum, can you find a "
 "transmission error that will not be detected by this checksum ?"
 msgstr ""
+"A l'aide de vos connaissances sur l'Internet checksum, pouvez-vous trouver "
+"une erreur de transmission qui ne sera pas détectée par le checksum ?"
 
 #: ../../exercises/reliability.rst:62
 msgid ""
 "The Cyclic Redundancy Checks (CRCs) are efficient error detection codes "
 "that are able to detect :"
 msgstr ""
+"Les contrôles de redondance cyclique (CRC) sont des outils efficaces de "
+"détection d'erreurs pouvant détecter :"
 
 #: ../../exercises/reliability.rst:64
 msgid "all errors that affect an odd number of bits"
-msgstr ""
+msgstr "toutes les erreurs affectant un nombre impair de bits"
 
 #: ../../exercises/reliability.rst:65
 msgid ""
 "all errors that affect a sequence of bits which is shorter than the "
 "length of the CRC"
 msgstr ""
+"toutes les errors affectant une séquence de bits plus courte que la longueur "
+"du CRC"
 
 #: ../../exercises/reliability.rst:67
 msgid ""
@@ -226,7 +266,7 @@ msgstr ""
 
 #: ../../exercises/reliability.rst:74
 msgid "Discussion questions"
-msgstr ""
+msgstr "Questions de discussion"
 
 #: ../../exercises/reliability.rst:77
 msgid ""
@@ -238,27 +278,31 @@ msgstr ""
 
 #: ../../exercises/reliability.rst:79
 msgid "one frame"
-msgstr ""
+msgstr "une frame"
 
 #: ../../exercises/reliability.rst:80
 msgid "ten frames"
-msgstr ""
+msgstr "dix frames"
 
 #: ../../exercises/reliability.rst:81
 msgid "hundred frames"
-msgstr ""
+msgstr "cent frames"
 
 #: ../../exercises/reliability.rst:83
 msgid ""
 "Is it possible for a go-back-n receiver to inter-operate with a "
 "selective-repeat sender ? Justify your answer."
 msgstr ""
+"Est-il possible pour un récepteur go-back-n de fonctionner avec un émetteur "
+"selective-repeat ? Justifiez."
 
 #: ../../exercises/reliability.rst:85
 msgid ""
 "Is it possible for a selective-repeat receiver to inter-operate with a "
 "go-back-n sender ? Justify your answer."
 msgstr ""
+"Est-il possible pour un récepteur selective-repeat de fonctionner avec un "
+"émetteur go-back-n ? Justifiez."
 
 #: ../../exercises/reliability.rst:89
 msgid ""
@@ -275,4 +319,3 @@ msgid ""
 "receiver implement selective repeat. Note that the answer can be "
 "different from the above question."
 msgstr ""
-

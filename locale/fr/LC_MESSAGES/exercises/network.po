@@ -10,8 +10,8 @@ msgstr ""
 "3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-09 12:39+0000\n"
-"PO-Revision-Date: 2019-10-19 07:04+0000\n"
-"Last-Translator: Anthony Gego <anthony.gego@uclouvain.be>\n"
+"PO-Revision-Date: 2021-05-15 11:49+0000\n"
+"Last-Translator: Philippe D <philippe.dan@student.uclouvain.be>\n"
 "Language-Team: French <http://weblate.info.ucl.ac.be/projects/cnp3-ebook/"
 "exercisesnetwork/fr/>\n"
 "Language: fr\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.8\n"
+"X-Generator: Weblate 3.9.1\n"
 "Generated-By: Babel 2.7.0\n"
 
 #: ../../exercises/network.rst:8
@@ -37,7 +37,7 @@ msgstr ""
 
 #: ../../exercises/network.rst:12
 msgid "Network : Open questions"
-msgstr ""
+msgstr "Réseaux : Questions ouvertes"
 
 #: ../../exercises/network.rst:14
 msgid ""
@@ -46,6 +46,10 @@ msgid ""
 "benefits of using a hierarchical or flat addressing space in this "
 "particular context ?"
 msgstr ""
+"Dans la vie de tous les jours, vous utilisez également des adresses "
+"hiérarchiques et des adresses plates. Pouvez-vous donner des exemples pour "
+"chacun de ces deux types et discuter des avantages d'utiliser l'un ou "
+"l'autre dans ces contextes particuliers ?"
 
 #: ../../exercises/network.rst:16
 msgid ""
@@ -56,12 +60,20 @@ msgid ""
 "time later, host `A` sends a packet to host `C`. Finally, host `B` sends "
 "a packet to host `A`."
 msgstr ""
+"Le réseau ci-dessous utilise du port forwarding avec des adresses plates. Le "
+"réseau démarre et tous les hôtes se lancent l'un après l'autre. Expliquez à "
+"chaque étape comment les paquets sont transférés et comment les port "
+"forwarding table des noeuds du réseau sont modifiées. L'hôte `C` envoie un "
+"paquet à l'hôte `B`. Quelques temps après, l'hôte `A` envoie un paquet à "
+"l'hôte `C`. Enfin, l'hôte `B` envoie un paquet à l'hôte `A`."
 
 #: ../../exercises/network.rst:42
 msgid ""
 "Same question as above, but the network is modified as shown in the "
 "figure below."
 msgstr ""
+"Même question qu'au-dessus, mais cette fois-ci le réseau est modifié comme "
+"illustré dans la figure ci-dessous."
 
 #: ../../exercises/network.rst:67
 msgid ""
@@ -69,6 +81,10 @@ msgid ""
 "What would happen with a distance vector routing protocol in the network "
 "below that contains a negative link weight ?"
 msgstr ""
+"Les protocoles de routage utilisés dans les réseaux de données utilisent "
+"uniquement des poids de lien positifs. Que se passerait-il avec un protocole "
+"de routage à vecteur de distance dans le réseau ci-dessous qui contient un "
+"poids de lien négatif ?"
 
 #: ../../exercises/network.rst:86
 msgid ""
@@ -78,10 +94,15 @@ msgid ""
 "universities. The figure below shows the topology  of this network in "
 "2009."
 msgstr ""
+"Lorsqu'un spécialiste des réseaux conçoit un réseau, l'un des problèmes "
+"qu'il doit résoudre est de définir la métrique des liens de son réseau. Aux "
+"États-Unis, le réseau Abilene interconnecte la plupart des laboratoires de "
+"recherche et des universités. La figure ci-dessous montre la topologie de ce "
+"réseau en 2009."
 
 #: ../../exercises/network.rst:92
 msgid "The Abilene network"
-msgstr ""
+msgstr "Le réseau Abilene"
 
 #: ../../exercises/network.rst:94
 msgid ""
@@ -89,14 +110,17 @@ msgid ""
 "the paths followed by a packet sent by the router located in `Los "
 "Angeles` to reach :"
 msgstr ""
+"Dans ce réseau, considérez que tous les poids des liens sont égaux à 1. Quel "
+"est le chemin emprunté par un paquet envoyé par le routeur situé à `Los "
+"Angeles` vers :"
 
 #: ../../exercises/network.rst:96
 msgid "the router located in `New York`"
-msgstr ""
+msgstr "le routeur situé à `New York`"
 
 #: ../../exercises/network.rst:97
 msgid "the router located in `Washington` ?"
-msgstr ""
+msgstr "le routeur situé à `Washington` ?"
 
 #: ../../exercises/network.rst:99
 msgid ""
@@ -104,6 +128,9 @@ msgid ""
 "the router located in `Los Angeles` to the routers located in "
 "respectively `New York` and `Washington` do not follow the same path ?"
 msgstr ""
+"Est-il possible de configurer les valeurs des liaisons de sorte à ce que les "
+"paquets envoyés par le routeur situé à `Los Angeles` aux routeurs situés "
+"respectivement à `New York` et `Washington` ne suivent pas le même chemin ?"
 
 #: ../../exercises/network.rst:101
 msgid ""
@@ -113,6 +140,11 @@ msgid ""
 "York` to the router located in  `Los Angeles` follow a completely "
 "different path ?"
 msgstr ""
+"Est-il possible de configurer les poids des liens de sorte que les paquets "
+"envoyés par le routeur situé à `Los Angeles` vers le routeur situé à `New "
+"York` suivent un chemin alors que les paquets envoyés par le routeur situé à "
+"`New York` vers le routeur situé à `Los Angeles` suivent un chemin "
+"complètement différent ?"
 
 #: ../../exercises/network.rst:103
 msgid ""
@@ -121,6 +153,10 @@ msgid ""
 "the link between these two routers does not carry any packet sent by "
 "another router in the network ?"
 msgstr ""
+"Considérez que les routeurs à `Denver` et `Kansas City` doivent échanger "
+"beaucoup de paquets. Pouvez-vous configurer les valeurs des liaisons de "
+"sorte à ce que le chemin entre ces deux routeurs ne transporte aucun autre "
+"paquet envoyé par d'autres routeurs dans le réseau ?"
 
 #: ../../exercises/network.rst:105
 msgid ""
@@ -128,6 +164,10 @@ msgid ""
 " so that the packets sent by router `E` to router `A` use link `B->A` "
 "while the packets sent by router `B` use links `B->D` and `D->A`?"
 msgstr ""
+"Dans le réseau de cinq noeuds ci-dessous, pouvez-vous configurer les valeurs "
+"des liaisons de sorte à ce que les paquets envoyés par le routeur `E` au "
+"routeur `A` utilisent le chemin `B->A` alors que les paquets envoyés par le "
+"routeur `B` utilisent les chemins `B->D` et `D->A` ?"
 
 #: ../../exercises/network.rst:129
 msgid ""
@@ -135,59 +175,70 @@ msgid ""
 " so that the packets sent by router `E` (resp. `F`) follow the `E->B->A` "
 "path (resp. `F->D->B->A`) ?"
 msgstr ""
+"Dans le réseau à cinq nœuds présenté ci-dessus, pouvez-vous configurer les "
+"poids des liens de façon à ce que les paquets envoyés par le routeur `E` ("
+"resp. `F`) suivent le chemin `E->B->A` (resp. `F->D->B->A`) ?"
 
 #: ../../exercises/network.rst:132 ../../exercises/network.rst:154
 #: ../../exercises/network.rst:184 ../../exercises/network.rst:216
 msgid "Consider the network shown in the figure below."
-msgstr ""
+msgstr "Considérons à présent le réseau dans la figure ci-dessous."
 
 #: ../../exercises/network.rst:152
 msgid ""
 "Assuming that the network uses source routing, what are the possible "
 "paths from `R1` to `R4` ?"
 msgstr ""
+"En considérant que le réseau utilise du source routing, quels sont les "
+"chemins possible de `R1` à `R4` ?"
 
 #: ../../exercises/network.rst:176
 msgid ""
 "The network operator uses would like to have the following paths in this "
 "network :"
 msgstr ""
+"L'opérateur du réseau souhaite avoir les chemins suivants dans ce réseau :"
 
 #: ../../exercises/network.rst:178
 msgid "`R3->R2->R4->R5` and `R1->R2->R5`"
-msgstr ""
+msgstr "`R3->R2->R4->R5` et `R1->R2->R5`"
 
 #: ../../exercises/network.rst:180
 msgid ""
 "Is it possible to achieve these paths and if so what are the required "
 "forwarding tables ?"
 msgstr ""
+"Est-il possible de construire ces chemins ? Si oui, à quoi ressemblent les "
+"tables de forwarding ?"
 
 #: ../../exercises/network.rst:182 ../../exercises/network.rst:214
 msgid "Same question with virtual circuits."
-msgstr ""
+msgstr "Même question avec les circuits virtuels."
 
 #: ../../exercises/network.rst:208 ../../exercises/network.rst:238
 msgid "The network operator would like to use the following paths :"
-msgstr ""
+msgstr "L'opérateur réseau souhaite utiliser les chemins suivants :"
 
 #: ../../exercises/network.rst:210
 msgid "`R1->R2->R4` and `R3->R2->R5->R4`"
-msgstr ""
+msgstr "`R1->R2->R4` et `R3->R2->R5->R4`"
 
 #: ../../exercises/network.rst:212 ../../exercises/network.rst:242
 msgid ""
 "Are these paths possible with link-state or distance vector routing ? If "
 "yes, how do configure the link weights. If no, explain your answer."
 msgstr ""
+"Ces chemins sont-ils possibles avec un routage link-state ou à vecteur de "
+"distance ? Si oui, comment configurer les poids des liens ? Si non, "
+"expliquez votre réponse."
 
 #: ../../exercises/network.rst:240
 msgid "`R1->R5->R4` and `R3->R2->R4`"
-msgstr ""
+msgstr "`R1->R5->R4` et`R3->R2->R4`"
 
 #: ../../exercises/network.rst:247
 msgid "Network: Discussion questions"
-msgstr ""
+msgstr "Réseau : Questions de discussion"
 
 #: ../../exercises/network.rst:250
 msgid ""
@@ -195,12 +246,17 @@ msgid ""
 "several hours and all hosts have exchanged packets. What is the content "
 "of the port forwarding tables ?"
 msgstr ""
+"Le réseau ci-dessous utilise port forwarding tables. Il fonctionne depuis "
+"plusieurs heures et tous les hôtes ont échangé des paquets. Quel est le "
+"contenu des forwarding table ?"
 
 #: ../../exercises/network.rst:273
 msgid ""
 "At this point, a new link is added between `R1` and `R3`. What happens "
 "for the forwarding of packets ?"
 msgstr ""
+"A ce moment, un nouveau lien est ajouté entre `R1` et `R3`. Que se passe-t-"
+"il pour le transfert des paquets ?"
 
 #: ../../exercises/network.rst:276
 msgid ""
@@ -209,30 +265,40 @@ msgid ""
 "`R3`? How should networks using port forwarding deal with such mobile "
 "hosts ?"
 msgstr ""
+"Le réseau ci-dessous utilise des port forwarding table. Que se passe-t-il si "
+"l'hôte `A` se déplace en supprimant son lien avec `R1` et en le remplaçant "
+"par un lien avec `R3` ? Comment les réseaux utilisant le port forwarding "
+"doivent-ils traiter de tels hôtes mobiles ?"
 
 #: ../../exercises/network.rst:299
 msgid ""
 "Some hosts need to be multihomed, i.e. attached to two different network "
 "nodes as shown in the figure below."
 msgstr ""
+"Certains hôtes doivent être multihomed, c'est-à-dire rattachés à deux nœuds "
+"de réseau différents, comme le montre la figure ci-dessous."
 
 #: ../../exercises/network.rst:323
 msgid "Would this network work correctly with port-forwarding tables if :"
 msgstr ""
+"Ce réseau fonctionnerait-il correctement avec les port forwarding table si :"
 
 #: ../../exercises/network.rst:325
 msgid "Host `A` uses the same flat address for both links."
-msgstr ""
+msgstr "L'hôte `A` utilise la même adresse plate pour les deux liens."
 
 #: ../../exercises/network.rst:326
 msgid "Host `A` uses a different flat address on each of its links"
 msgstr ""
+"L'hôte \"A\" utilise une adresse plate différente sur chacun de ses liens"
 
 #: ../../exercises/network.rst:328
 msgid ""
 "What are the advantages and drawbacks of flat addresses versus "
 "hierarchical addresses ?"
 msgstr ""
+"Quels sont les avantages et les inconvénients des adresses plates par "
+"rapport aux adresses hiérarchiques ?"
 
 #: ../../exercises/network.rst:332
 msgid ""
@@ -241,114 +307,121 @@ msgid ""
 "in the figure below and assume that all routers use a distance vector "
 "protocol that uses split horizon."
 msgstr ""
+"Considérons maintenant les problèmes transitoires qui se produisent "
+"principalement lorsque la topologie du réseau change. Pour cela, considérons "
+"la topologie du réseau présentée dans la figure ci-dessous et supposons que "
+"tous les routeurs utilisent un protocole de vecteur de distance qui utilise "
+"le split horizon."
 
 #: ../../exercises/network.rst:356
 msgid ""
 "If you compute the routing tables of all routers in this network, you "
 "would obtain a table such as the table below :"
 msgstr ""
+"Si vous calculez les tables de routage de tous les routeurs de ce réseau, "
+"vous obtiendrez un tableau tel que le tableau ci-dessous :"
 
 #: ../../exercises/network.rst:360
 msgid "Destination"
-msgstr ""
+msgstr "Destination"
 
 #: ../../exercises/network.rst:360
 msgid "Routes on A"
-msgstr ""
+msgstr "Routes sur A"
 
 #: ../../exercises/network.rst:360
 msgid "Routes on B"
-msgstr ""
+msgstr "Routes sur B"
 
 #: ../../exercises/network.rst:360
 msgid "Routes on C"
-msgstr ""
+msgstr "Routes sur C"
 
 #: ../../exercises/network.rst:360
 msgid "Routes on D"
-msgstr ""
+msgstr "Routes sur D"
 
 #: ../../exercises/network.rst:360
 msgid "Routes on E"
-msgstr ""
+msgstr "Routes sur E"
 
 #: ../../exercises/network.rst:363
 msgid "A"
-msgstr ""
+msgstr "A"
 
 #: ../../exercises/network.rst:363 ../../exercises/network.rst:364
 #: ../../exercises/network.rst:365 ../../exercises/network.rst:366
 #: ../../exercises/network.rst:367
 msgid "0"
-msgstr ""
+msgstr "0"
 
 #: ../../exercises/network.rst:363
 msgid "1 via A"
-msgstr ""
+msgstr "1 via A"
 
 #: ../../exercises/network.rst:363 ../../exercises/network.rst:365
 msgid "2 via B"
-msgstr ""
+msgstr "2 via B"
 
 #: ../../exercises/network.rst:363 ../../exercises/network.rst:367
 msgid "3 via C"
-msgstr ""
+msgstr "3 via C"
 
 #: ../../exercises/network.rst:363
 msgid "4 via D"
-msgstr ""
+msgstr "4 via D"
 
 #: ../../exercises/network.rst:364
 msgid "B"
-msgstr ""
+msgstr "B"
 
 #: ../../exercises/network.rst:364
 msgid "1 via B"
-msgstr ""
+msgstr "1 via B"
 
 #: ../../exercises/network.rst:364 ../../exercises/network.rst:366
 msgid "2 via C"
-msgstr ""
+msgstr "2 via C"
 
 #: ../../exercises/network.rst:364
 msgid "3 via D"
-msgstr ""
+msgstr "3 via D"
 
 #: ../../exercises/network.rst:365
 msgid "C"
-msgstr ""
+msgstr "C"
 
 #: ../../exercises/network.rst:365
 msgid "1 via C"
-msgstr ""
+msgstr "1 via C"
 
 #: ../../exercises/network.rst:365 ../../exercises/network.rst:367
 msgid "2 via D"
-msgstr ""
+msgstr "2 via D"
 
 #: ../../exercises/network.rst:366
 msgid "D"
-msgstr ""
+msgstr "D"
 
 #: ../../exercises/network.rst:366
 msgid "3 via B"
-msgstr ""
+msgstr "3 via B"
 
 #: ../../exercises/network.rst:366
 msgid "1 via D"
-msgstr ""
+msgstr "1 via D"
 
 #: ../../exercises/network.rst:367
 msgid "E"
-msgstr ""
+msgstr "E"
 
 #: ../../exercises/network.rst:367
 msgid "4 via B"
-msgstr ""
+msgstr "4 via B"
 
 #: ../../exercises/network.rst:367
 msgid "1 via E"
-msgstr ""
+msgstr "1 via E"
 
 #: ../../exercises/network.rst:370
 msgid ""
@@ -359,6 +432,13 @@ msgid ""
 "router sends its distance vector when its routing table changes (and "
 "periodically when there are no changes)."
 msgstr ""
+"Les protocoles de vecteur de distance peuvent fonctionner selon deux modes "
+"différents : les mises à jour périodiques et les mises à jour déclenchées. "
+"Les mises à jour périodiques sont le mode par défaut d'un protocole de "
+"vecteur de distance. Par exemple, chaque routeur pourrait annoncer son "
+"vecteur de distance toutes les trente secondes. Avec les `mises à jour "
+"déclenchées`, un routeur envoie son vecteur de distance lorsque sa table de "
+"routage change (et périodiquement lorsqu'il n'y a pas de changement)."
 
 #: ../../exercises/network.rst:372
 msgid ""
@@ -370,6 +450,14 @@ msgid ""
 "neighbor and update the table above. How many periods are required to "
 "allow the network to converge to a stable state ?"
 msgstr ""
+"Considérons un protocole de vecteur de distance utilisant un split horizon "
+"et des \"mises à jour périodiques\". Supposons que le lien `B-C` tombe en "
+"panne. `B` et `C` mettent à jour leur table de routage locale mais ils ne "
+"l'annonceront qu'à la fin de leur période. Choisissez un ordre pour les `"
+"mises à jour périodiques` et chaque fois qu'un routeur envoie son vecteur de "
+"distance, indiquez le vecteur envoyé à chaque voisin et mettez à jour la "
+"table ci-dessus. Combien de périodes sont nécessaires pour permettre au "
+"réseau de converger vers un état stable ?"
 
 #: ../../exercises/network.rst:374
 msgid ""
@@ -384,6 +472,17 @@ msgid ""
 "messages must be exchanged until the network converges to a stable state "
 "?"
 msgstr ""
+"Considérons le même protocole de vecteur de distance, mais maintenant avec "
+"des \"mises à jour déclenchées\". Lorsque la liaison `B-C` tombe en panne, "
+"supposons que `B` mette immédiatement à jour sa table de routage et envoie "
+"son vecteur de distance à `A` et `D`. Supposons que `A` et `D` traitent tous "
+"deux le vecteur de distance reçu et que `A` envoie son propre vecteur de "
+"distance, ... Indiquez tous les vecteurs de distance qui sont échangés et "
+"mettez à jour le tableau ci-dessus chaque fois qu'un vecteur de distance est "
+"envoyé par un routeur (et reçu par d'autres routeurs) jusqu'à ce que tous "
+"les routeurs aient appris une nouvelle route vers chaque destination. "
+"Combien de messages de vecteur de distance doivent être échangés jusqu'à ce "
+"que le réseau converge vers un état stable ?"
 
 #: ../../exercises/network.rst:376
 msgid ""
@@ -391,6 +490,9 @@ msgid ""
 "routing converges and all routers compute the same routing tables as "
 "above."
 msgstr ""
+"Considérons à nouveau le réseau illustré ci-dessus. Après un certain temps, "
+"le routage link-state converge et tous les routeurs calculent les mêmes "
+"tables de routage que ci-dessus."
 
 #: ../../exercises/network.rst:378
 msgid ""
@@ -401,6 +503,13 @@ msgid ""
 " At this point, `B` cannot reach anymore `C`, `D` and `E`. `C` cannot "
 "reach `B` and `A` anymore."
 msgstr ""
+"Une différence importante entre OSPF et RIP est que les routeurs OSPF "
+"envoient des paquets link-state qui permettent aux autres routeurs de "
+"recalculer leurs propres tables de routage alors que les routeurs RIP "
+"échangent des vecteurs de distance. Imaginons que le lien `B-C` tombe en "
+"panne et que le routeur `B` soit le premier à détecter la panne. À ce moment-"
+"là, `B` ne peut plus atteindre `C`, `D` et `E`. `C` ne peut plus atteindre "
+"`B` et `A`."
 
 #: ../../exercises/network.rst:380
 msgid ""
@@ -411,6 +520,12 @@ msgid ""
 "Assume that `B` is the first to recompute its forwarding table, followed "
 "by `D`, `A`, `C` and finally `E`."
 msgstr ""
+"Le routeur `B` flood son paquet link-state mis à jour à travers le réseau "
+"entier et tous les routeurs recompileront leur forwarding table. À la "
+"réception d'un paquet link-state, les routeurs commencent généralement par "
+"flood le paquet link-state reçu, puis recalculent leur forwarding table. "
+"Supposons que `B` soit le premier à recompiler sa forwarding table, suivi de "
+"`D`, `A`, `C` et enfin `E`."
 
 #: ../../exercises/network.rst:382
 msgid ""
@@ -418,3 +533,6 @@ msgid ""
 "are able to exchange packets. Provide your answer using a table similar "
 "to the one shown above."
 msgstr ""
+"Après chaque mise à jour d'une table de transfert, vérifiez quelles paires "
+"de routeurs sont capables d'échanger des paquets. Fournissez votre réponse à "
+"l'aide d'un tableau similaire à celui présenté ci-dessus."
