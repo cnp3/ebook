@@ -790,11 +790,11 @@ Reliable transport protocols also use sequence numbers and acknowledgment number
       d [label="", linecolour=white];
 
       a=>b [ label = "DATA.req(abcde)" ] ,
-      b>>c [ arcskip="1", label="1:abcd"];
+      b>>c [ arcskip="1", label="1:abcde"];
       c=>d [label="DATA.ind(abcde)"];
       |||;
       a=>b [ label = "DATA.req(fghijkl)" ] ,
-      b>>c [ arcskip="1", label="5:fghijkl"];
+      b>>c [ arcskip="1", label="6:fghijkl"];
       c=>d [label="DATA.ind(fghijkl)"];
 
 
