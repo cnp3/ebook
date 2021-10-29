@@ -3,3 +3,4 @@
  PyEnchant>=1.6.5
  sphinxcontrib-spelling
  sphinx-intl
+ sphinx-book-theme
