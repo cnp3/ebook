@@ -1,0 +1,122 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2019 Olivier Bonaventure
+# This file is distributed under the same license as the Computer networking : Principles, Protocols and Practice package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Computer networking : Principles, Protocols and Practice "
+"3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-05-17 09:55+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../exercises/lan.rst:5
+msgid "Local Area Networks: The Spanning Tree Protocol and Virtual LANs"
+msgstr ""
+
+#: ../../exercises/lan.rst:18
+msgid "Exercises"
+msgstr ""
+
+#: ../../exercises/lan.rst:20
+msgid "Consider the switched network shown in Fig. 1. What is the spanning tree that will be computed by 802.1d in this network assuming that all links have a unit cost ? Indicate the state of each port."
+msgstr ""
+
+#: ../../exercises/lan.rst:26
+msgid "Fig. 1. A small network composed of Ethernet switches"
+msgstr ""
+
+#: ../../exercises/lan.rst:28
+msgid "Consider the switched network shown in Fig. 1. In this network, assume that the LAN between switches S3 and S12 fails. How should the switches update their port/address tables after the link failure ?"
+msgstr ""
+
+#: ../../exercises/lan.rst:31
+msgid "Consider the switched network shown in the figure below. Compute the Spanning Tree of this network."
+msgstr ""
+
+#: ../../exercises/lan.rst:56
+msgid "Many enterprise networks are organized with a set of backbone devices interconnected by using a full mesh of links as shown in Fig.2. In this network, what are the benefits and drawbacks of using Ethernet switches and IP routers running OSPF ?"
+msgstr ""
+
+#: ../../exercises/lan.rst:62
+msgid "Fig. 2. A typical enterprise backbone network"
+msgstr ""
+
+#: ../../exercises/lan.rst:64
+msgid "In the network depicted in Fig. 3, the host `H0` performs a traceroute toward its peer `H1` (designated by its name) through a network composed of switches and routers. Explain precisely the frames, packets, and segments exchanged since the network was turned on. You may assign addresses if you need to."
+msgstr ""
+
+#: ../../exercises/lan.rst:70
+msgid "Fig. 3. Host `H0` performs a traceroute towards its peer `H1` through a network composed of switches and routers"
+msgstr ""
+
+#: ../../exercises/lan.rst:77
+msgid "In the network represented in Fig. 4, can the host `H0` communicate with `H1` and vice-versa? Explain. Add whatever you need in the network to allow them to communicate."
+msgstr ""
+
+#: ../../exercises/lan.rst:83
+msgid "Fig. 4. Can `H0` and `H1` communicate ?"
+msgstr ""
+
+#: ../../exercises/lan.rst:85
+msgid "Consider the network depicted in Fig. 5. Both of the hosts `H0` and `H1` have two interfaces: one connected to the switch `S0` and the other one to the switch `S1`. Will the link between `S0` and `S1` ever be used? If so, under which assumptions? Provide a comprehensive answer."
+msgstr ""
+
+#: ../../exercises/lan.rst:91
+msgid "Fig. 5. Will the link between `S0` and `S1` ever be used?"
+msgstr ""
+
+#: ../../exercises/lan.rst:93
+msgid "Most commercial Ethernet switches are able to run the Spanning tree protocol independently on each VLAN. What are the benefits of using per-VLAN spanning trees ?"
+msgstr ""
+
+#: ../../exercises/lan.rst:115
+msgid "Testing the Spanning Tree with IPMininet"
+msgstr ""
+
+#: ../../exercises/lan.rst:117
+msgid "IPMininet_ can also be used to configure the Spanning Tree protocol on Linux hosts that act as Ethernet switches. Let us consider the simple Ethernet network shown in the figure below."
+msgstr ""
+
+#: ../../exercises/lan.rst:140
+msgid "This network can be launched with the IPMininet_ script shown below. The entire script is available from :download:`/exercises/ipmininet_scripts/stp.py`."
+msgstr ""
+
+#: ../../exercises/lan.rst:193
+msgid "The ``addSwitch`` method creates an Ethernet switch. It assigns a random MAC address to each switch and we can configure it with a priority that is used in the high order bits of the switch identifier. We add one IP address to each switch so that we can connect to them on mininet_. In practice, IPMininet_ configures the :manpage:`brtcl(8)` software that implements the Spanning Tree protocol on Linux. We can then create the links, configure their cost if required and launch tcpdump_ to capture the Ethernet frames that contain the messages of the Spanning Tree protocol."
+msgstr ""
+
+#: ../../exercises/lan.rst:195
+msgid "The network contains five nodes and six links."
+msgstr ""
+
+#: ../../exercises/lan.rst:211
+msgid "By using :manpage:`brtcl(8)`, we can easily observe the state of the Spanning Tree protocol on the different switches. Let us start with ``s3``, i.e. the root of the Spanning Tree."
+msgstr ""
+
+#: ../../exercises/lan.rst:246
+msgid "The first part of the output of the :manpage:`brctl(8)` command shows the state of the Spanning Tree software on the switch. The identifier of this switch is ``0003.f63545ab5f79`` and the root switch is itself. There is no root port on this switch since it is the root. The path cost is the cost of the path to reach the root switch, i.e. 0 on the root. Then the switch reports the different timers."
+msgstr ""
+
+#: ../../exercises/lan.rst:248
+msgid "The second part of the output provides the state of each switch port. Port ``s3-eth1`` is active and forwards data frames (state is set to `forwarding`). This port is a `designated` port. The cost of ``1`` is the cost associated to this interface. The same information is found for port ``s3-eth2``."
+msgstr ""
+
+#: ../../exercises/lan.rst:250
+msgid "The state of switch ``s9`` is different. The output of :manpage:`brctl(8)` indicates that the root identifier is ``0003.f63545ab5f79`` which is at a distance of ``1`` from switch ``s9``. The root port on ``s9`` is port `1`, i.e. ``s9-eth1``. Two of the ports of this switch forward data packets, the root port and the ``s9-eth3`` which is a designated port. The ``s9-eth2`` port is a blocked port."
+msgstr ""
+
+#: ../../exercises/lan.rst:293
+msgid ":manpage:`brctl(8)` also maintains a MAC address table that contains the Ethernet addresses that have been learned on each switch port."
+msgstr ""
+
+#: ../../exercises/lan.rst:310
+msgid "Thanks to the traces collected by tcpdump_, we can easily analyze the messages exchanged by the switches. Here is the fist message sent by switch ``s3``."
+msgstr ""

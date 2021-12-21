@@ -1,0 +1,97 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2019 Olivier Bonaventure
+# This file is distributed under the same license as the Computer networking : Principles, Protocols and Practice package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Computer networking : Principles, Protocols and Practice "
+"3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-05-17 09:55+0200\n"
+"PO-Revision-Date: 2021-08-27 14:47+0000\n"
+"Last-Translator: Anthony Gego <anthony.gego@uclouvain.be>\n"
+"Language-Team: French <http://weblate.info.ucl.ac.be/projects/cnp3-ebook/"
+"exerciseshttp/fr/>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+#: ../../exercises/http.rst:6
+msgid "The HyperText Transfer Protocol"
+msgstr ""
+
+#: ../../exercises/http.rst:8
+msgid "An important difference between HTTP/1.0, HTTP/1.1 and HTTP/2.0 is their utilization of the underlying transport connections. Answer the three questions below to confirm that you understand the difference between these versions of the HTTP protocol."
+msgstr ""
+
+#: ../../exercises/http.rst:17
+msgid "System administrators who are responsible for web servers often want to monitor these servers and check that they are running correctly. As a HTTP server uses TCP on port 80, the simplest solution is to open a TCP connection on port 80 and check that the TCP connection is accepted by the remote host. However, as HTTP/1.x is an ASCII-based protocol, it is also very easy to write a small script that downloads a web page on the server and compares its content with the expected one. Use `telnet` or `ncat` to verify that a web server is running on host `www.computer-networking.info` [#fhttp]_."
+msgstr ""
+
+#: ../../exercises/http.rst:19
+msgid "Instead of using `telnet` on port 80, it is also possible to use a command-line tool such as curl_. Use curl_ with the `--trace-ascii tracefile` option to store in `tracefile` all the information exchanged by curl_ when accessing the server."
+msgstr ""
+
+#: ../../exercises/http.rst:21
+msgid "What is the version of HTTP used by your version of curl_ ?"
+msgstr ""
+
+#: ../../exercises/http.rst:22
+msgid "Can you explain the different headers placed by curl_ in the request ?"
+msgstr ""
+
+#: ../../exercises/http.rst:23
+msgid "Can you explain the different headers found in the response ?"
+msgstr ""
+
+#: ../../exercises/http.rst:25
+msgid "HTTP 1.1, specified in :rfc:`2616`, forces the client to include the `Host:` header in all its requests. HTTP 1.0 does not define the `Host:` header, but most implementations support it. By using `telnet` and `curl` retrieve the first page of the https://www.computer-networking.info web server [#fhttps]_ by sending http requests with and without the `Host:` header. Explain the difference between the two."
+msgstr ""
+
+#: ../../exercises/http.rst:27
+msgid "The headers sent in a HTTP request allow the client to provide additional information to the server. One of these headers is the `Accept-Language` header that allows indicating the preferred language of the client [#flang]_. For example, `curl -HAccept-Language:en http://www.google.be` will send to `http://www.google.be` a HTTP request indicating English (`en`) as the preferred language. Does google provides a different page in French (`fr`) and Walloon (`wa`) ? Same question for `http://www.uclouvain.be` (given the size of the homepage, use ``diff`` to compare the different pages retrieved from `www.uclouvain.be`)."
+msgstr ""
+
+#: ../../exercises/http.rst:29
+msgid "Compare the size of the http://www.yahoo.com and http://www.google.com web pages by downloading them with curl_."
+msgstr ""
+
+#: ../../exercises/http.rst:31
+msgid "The `ipvfoo <https://code.google.com/p/ipvfoo/>`_ extension on google chrome allows the user to visually detect whether a website is using IPv6 and IPv4, but also to see which web sites have been contacted when rendering a given web page. Some websites are distributed over several dozens of different servers. Can you find one ?"
+msgstr ""
+
+#: ../../exercises/http.rst:33
+msgid "Some websites are reachable over both IPv4 and IPv6 while others are only reachable over IPv4 [#fv6only]_. You can use the `-6` (resp. `-4`) option to force curl_ to only use IPv6 (resp. IPv4). Verify that `www.computer-networking.info` is reachable over IPv6 and IPv4 and then check whether your university website already supports IPv6."
+msgstr ""
+
+#: ../../exercises/http.rst:35
+msgid "curl_ supports a huge number of options and parameters that are described in its `man page <https://curl.haxx.se/docs/manpage.html>`_ Some of them allow you to force the utilization of a specific version of HTTP. These include `--http0.9`, `--http1.0`, `--http1.1` and `--http2`. Using the latter, verify whether your favorite website supports HTTP/2.0."
+msgstr ""
+
+#: ../../exercises/http.rst:37
+msgid "As for the DNS, besides using software tools that implement the HTTP protocols, it can also be useful to analyze packet traces with wireshark_ . The exercises below contain simple packet traces collected with different versions of the HTTP protocol."
+msgstr ""
+
+#: ../../exercises/http.rst:50
+msgid "Footnotes"
+msgstr "Notes de pied de page"
+
+#: ../../exercises/http.rst:51
+msgid "The minimum command sent to a HTTP server is `GET / HTTP/1.0` followed by CRLF and a blank line."
+msgstr ""
+
+#: ../../exercises/http.rst:53
+msgid "This syllabus is now hosted on a web server using HTTPS (port 443) instead of HTTP (port 80)."
+msgstr ""
+
+#: ../../exercises/http.rst:55
+msgid "The list of available language tags can be found at http://www.iana.org/assignments/language-subtag-registry. Versions in other formats are available at http://www.langtag.net/registries.html. Additional information about the support of multiple languages in Internet protocols may be found in rfc5646_."
+msgstr ""
+
+#: ../../exercises/http.rst:57
+msgid "There are probably very few websites that only support IPv6 and not IPv4. If you find one, let us know by submitting a pull-request to change this exercise."
+msgstr ""

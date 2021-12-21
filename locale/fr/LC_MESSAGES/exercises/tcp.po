@@ -1,0 +1,49 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2019 Olivier Bonaventure
+# This file is distributed under the same license as the Computer networking : Principles, Protocols and Practice package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Computer networking : Principles, Protocols and Practice "
+"3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-05-17 09:55+0200\n"
+"PO-Revision-Date: 2021-08-27 14:47+0000\n"
+"Last-Translator: Anthony Gego <anthony.gego@uclouvain.be>\n"
+"Language-Team: French <http://weblate.info.ucl.ac.be/projects/cnp3-ebook/"
+"exercisestcp/fr/>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+#: ../../exercises/tcp.rst:6
+msgid "TCP basics"
+msgstr ""
+
+#: ../../exercises/tcp.rst:9
+msgid "TCP is one of the key protocols in today's Internet. A TCP connection always starts with a three-way handshake. The exercises below should help you to improve your understandings of this first phase of a TCP connection."
+msgstr ""
+
+#: ../../exercises/tcp.rst:25
+msgid "Once the connection is established, the client and the server can exchange data and acknowledgments."
+msgstr ""
+
+#: ../../exercises/tcp.rst:37
+msgid "A connection ends with the transmission of segments that include the `FIN` flag that marks the end of the data transfer."
+msgstr ""
+
+#: ../../exercises/tcp.rst:43
+msgid "TCP can be extended by using options that are negotiated during the three-way handshake."
+msgstr ""
+
+#: ../../exercises/tcp.rst:52
+msgid "With your knowledge of TCP, you should now be able to reorder all the segments exchanged over a TCP connection."
+msgstr ""
+
+#: ../../exercises/tcp.rst:63
+msgid "Footnotes"
+msgstr "Notes de pied de page"
