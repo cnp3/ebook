@@ -48,7 +48,7 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
 .. .. [Cheshire2010] Cheshire, S., `Connect-By-Name for IPv6 <http://www.ietf.org/proceedings/79/slides/nbs-8.pdf>`_, presentation at IETF 79th, November 2010 
 .. .. [Cheswick1990] Cheswick, B., `An Evening with Berferd In Which a Cracker is Lured, Endured, and Studied <http://cheswick.com/ches/papers/berferd.pdf>`_, Proceedings Winter USENIX Conference, 1990, pp. 163-174
 .. [Clark88] Clark D., `The Design Philosophy of the DARPA Internet Protocols <https://dx.doi.org/10.1145/205447.205458>`_, Computer Communications Review 18:4, August 1988, pp. 106-114
-.. .. [Comer1988] Comer, D., `Internetworking with TCP/IP : principles, protocols & architecture`, Prentice Hall, 1988
+.. [Comer1988] Comer, D., `Internetworking with TCP/IP : principles, protocols & architecture`, Prentice Hall, 1988
 .. .. [Comer1991] Comer D., `Internetworking With TCP/IP : Design Implementation and Internals`,  Prentice Hall, 1991
 .. [Cohen1980] Cohen, D., `On Holy Wars and a Plea for Peace`, IEN 137, April 1980, http://www.ietf.org/rfc/ien/ien137.txt
 .. [CWE444] CWE-444, `Inconsistent Interpretation of HTTP Requests ('HTTP Request Smuggling') <https://cwe.mitre.org/data/definitions/444.html>`_, https://cwe.mitre.org/data/definitions/444.html
@@ -115,7 +115,7 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
 .. [KT1975] Kleinrock, L., Tobagi, F., `Packet Switching in Radio Channels: Part I--Carrier Sense Multiple-Access Modes and their Throughput-Delay Characteristics <https://dx.doi.org/10.1109/TCOM.1975.1092768>`_, IEEE Transactions on Communications, Vol. COM-23, No. 12, pp. 1400-1416, December 1975. 
 .. [KW2009] Katz, D., Ward, D.,  `Bidirectional Forwarding Detection`, :rfc:`5880`, June 2010
 .. [KZ1989] Khanna, A. and Zinky, J. 1989. `The revised ARPANET routing metric <http://doi.acm.org/10.1145/75247.75252>`_. SIGCOMM Computer Communication Review 19, 4 (Aug. 1989), 45-56. 
-.. .. [KuroseRoss09] Kurose J. and Ross K., `Computer networking : a top-down approach featuring the Internet <http://books.google.com/books?id=2hv3PgAACAAJ&pgis=1>`_, Addison-Wesley, 2009 
+.. [KuroseRoss09] Kurose J. and Ross K., `Computer networking : a top-down approach featuring the Internet <http://books.google.com/books?id=2hv3PgAACAAJ&pgis=1>`_, Addison-Wesley, 2009 
 .. [Lamport1981] Lamport, L., `Password authentication with insecure communication <http://doi.acm.org/10.1145/358790.358797>`_. Communications ACM 24, 11 (November 1981), 770-772. 
 .. .. [Licklider1963] Licklider, J., `Memorandum For Members and Affiliates of the Intergalactic Computer Network <http://www.kurzweilai.net/articles/art0366.html?printable=1>`_, 1963 
 .. .. [LCCD09] Leiner, B. M., Cerf, V. G., Clark, D. D., Kahn, R. E., Kleinrock, L., Lynch, D. C., Postel, J., Roberts, L. G., and Wolff, S., `A brief history of the internet <http://doi.acm.org/10.1145/1629607.1629613>`_. SIGCOMM Computer Communication Review 39, 5 (Oct. 2009), 22-31. 

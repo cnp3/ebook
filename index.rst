@@ -8,12 +8,14 @@ Computer Networking : Principles, Protocols and Practice, third edition
 
 
 
-.. figure:: cnp3.png
-   :align: center
-   :scale: 60
-
 .. only:: html
 
+   .. figure:: cnp3.png
+      :align: center
+      :scale: 60
+
+
+	  
    This is an unpolished draft of the third edition of this ebook. If you find any error or have suggestions to improve the text, please create an issue via https://github.com/CNP3/ebook/issues/new
 
    The development of this edition of the textbook is carried out on `https://github.com/CNP3/ebook <https://github.com/CNP3/ebook>`_
@@ -29,7 +31,7 @@ Computer Networking : Principles, Protocols and Practice, third edition
 .. toctree::
    :maxdepth: 2
 
-..   preface
+   preface
 
 
 

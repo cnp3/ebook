@@ -179,17 +179,17 @@
 
 .. _limelight: http://uk.limelightnetworks.com/index.php
 
-.. _Olivier Bonaventure: http://inl.info.ucl.ac.be/obo
+.. _Olivier Bonaventure: https://inl.info.ucl.ac.be/obo
 
-.. _Mickael Hoerdt: http://inl.info.ucl.ac.be/mhoerdt
+.. _Mickael Hoerdt: https://inl.info.ucl.ac.be/mhoerdt
 
-.. _Virginie Van den Schriek: http://inl.info.ucl.ac.be/vvandens
+.. _Virginie Van den Schriek: https://inl.info.ucl.ac.be/vvandens
 
 .. _Tim Berners-Lee: http://www.w3.org/People/Berners-Lee/
 
-.. _Laurent Vanbever: http://inl.info.ucl.ac.be/lvanbeve
+.. _Laurent Vanbever: https://inl.info.ucl.ac.be/lvanbeve
 
-.. _Damien Saucez: http://inl.info.ucl.ac.be/dsaucez
+.. _Damien Saucez: https://inl.info.ucl.ac.be/dsaucez
 
 .. _Raj Jain: http://www.cse.wustl.edu/~jain/
 

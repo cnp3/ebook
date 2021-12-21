@@ -168,11 +168,11 @@ Many other types of encodings have been defined to transmit information over an 
 
 
 
-      .. index:: Physical layer
+.. index:: Physical layer
 
 
-      .. tikz:: The Physical layer
-            :libs: positioning, matrix, arrows
+.. tikz:: The Physical layer
+   :libs: positioning, matrix, arrows
 
             \tikzstyle{arrow} = [thick,<->,>=stealth]
             \tikzset{elem/.style = {rectangle, thick, draw, text centered, minimum height=2em, minimum width=8em}, }

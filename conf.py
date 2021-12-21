@@ -237,7 +237,7 @@ latex_elements = {
 \\usepackage{tikz}
 \\usepackage{pgfplots}
 %\pgfplotsset{compat=1.16}
-\\usetikzlibrary{arrows.meta,positioning, matrix,backgrounds,shapes,shadows,calc,automata}
+\\usetikzlibrary{arrows.meta,positioning, matrix,backgrounds,shapes,shadows,calc,automata,arrows}
 '''
 }
 
