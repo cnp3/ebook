@@ -18,7 +18,7 @@ Because names are at a higher level than addresses, they allow (both in the exam
 
 .. index:: Network Information Center, hosts.txt
 
-The first solution that allowed applications to use names was the :term:`hosts.txt` file. This file is similar to the symbol table found in compiled code. It contains the mapping between the name of each Internet host and its associated address [#fhosts]_. It was maintained by SRI International that coordinated the Network Information Center (NIC). When a new host was connected to the network, the system administrator had to register its name and address at the NIC. The NIC updated the :term:`hosts.txt` file on its server. All Internet hosts regularly retrieved the updated :term:`hosts.txt` file from the SRI_ server. This file was stored at a well-known location on each Internet host (see :rfc:`952`) and networked applications could use it to find the address corresponding to a name.
+The first solution that allowed applications to use names was the :term:`hosts.txt` file. This file is similar to the symbol table found in compiled code. It contains the mapping between the name of each Internet host and its associated address [#fhosts]_. It was maintained by the SRI International Network Information Center (NIC). When a new host was connected to the network, the system administrator had to register its name and address at the NIC. The NIC updated the :term:`hosts.txt` file on its server. All Internet hosts regularly retrieved the updated :term:`hosts.txt` file from the SRI_ server. This file was stored at a well-known location on each Internet host (see :rfc:`952`) and networked applications could use it to find the address corresponding to a name.
 
 A :term:`hosts.txt` file can be used when there are up to a few hundred hosts on the network. However, it is clearly not suitable for a network containing thousands or millions of hosts. A key issue in a large network is to define a suitable naming scheme. The ARPANet initially used a flat naming space, i.e. each host was assigned a unique name. To limit collisions between names, these names usually contained the name of the institution and a suffix to identify the host inside the institution (a kind of poor man's hierarchical naming scheme). On the ARPANet few institutions had several hosts connected to the network.
 
@@ -139,7 +139,7 @@ Names provide a lot of flexibility compared to addresses. For the network, they 
 
 .. rubric:: Footnotes
 
-.. [#fhosts] The :term:`hosts.txt` file is not maintained anymore. A historical snapshot from April 1984 is available from http://ftp.univie.ac.at/netinfo/netinfo/hosts.txt
+.. [#fhosts] The :term:`hosts.txt` file is not maintained anymore. A historical snapshot from April 1984 is available from https://www.saildart.org/HOSTS.TXT%5BHST,NET%5D15
 
 .. [#fdnstimeline] See http://www.donelan.com/dnstimeline.html for a time line of DNS related developments.
 
