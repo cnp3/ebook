@@ -1,0 +1,30 @@
+name: Pages
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Install Latex
+      run: sudo apt-get install texlive-font-utils texlive-latex-extra texlive-latex-recommended texlive-fonts-recommended texlive-plain-generic
+    - name: Install Latexmk
+      run: sudo apt-get install latexmk
+    - name: Install netpbm
+      run: sudo apt-get  install netpbm poppler-utils imagemagick
+- name: Install inkscape	
+      run: sudo apt-get  install inkscape
+    - name: Install enchant
+      run: sudo apt-get install python3-enchant
+    - name: Sphinx contrib
+      run: sudo pip3 install sphinxcontrib-spelling sphinxcontrib-bibtex sphinxcontrib-tikz matplotlib==3.4.0 sphinx==3.5.4 mscgen
+    - name: Checkout
+      uses: actions/checkout@master
+      with:
+        fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
+        submodules: 'true' # to check mptcp-bib
+    - name: Build and Commit
+      uses: obonaventure/pages@master
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: gh-pages

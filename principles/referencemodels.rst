@@ -3,10 +3,6 @@
 
 .. index:: Reference models
 
-.. warning::
-
-   This is an unpolished draft of the third edition of this e-book. If you find any error or have suggestions to improve the text, please create an issue via https://github.com/CNP3/ebook/issues?milestone=3 or help us by providing pull requests to close the existing issues.
-
 ********************
 The reference models
 ********************

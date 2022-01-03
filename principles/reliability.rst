@@ -9,9 +9,6 @@ Connecting two hosts
 
 .. index:: electrical cable, optical fiber, multi-mode optical fiber, single-mode optical fiber
 
-.. warning::
-
-   This is an unpolished draft of the third edition of this e-book. If you find any error or have suggestions to improve the text, please create an issue via https://github.com/CNP3/ebook/issues?milestone=1 or help us by providing pull requests to close the existing issues.
 
 
 The first step when building a network, even a worldwide network such as the Internet, is to connect two hosts together. This is illustrated in the figure below.

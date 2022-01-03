@@ -5,10 +5,6 @@
 Building a network
 ******************
 
-.. warning::
-
-   This is an unpolished draft of the third edition of this e-book. If you find any error or have suggestions to improve the text, please create an issue via https://github.com/CNP3/ebook/issues?milestone=2 or help us by providing pull requests to close the existing issues.
-
 
 In the previous section, we have explained how reliable protocols allow hosts to exchange data reliably even if the underlying physical layer is imperfect and thus unreliable. Connecting two hosts together through a wire is the first step to build a network. However, this is not sufficient. Hosts usually need to interact with other hosts that are not directly connected through a direct physical layer link. This can be achieved by adding one layer above the datalink layer: the `network` layer.
 

@@ -2,9 +2,7 @@
 .. Some portions of this text come from the first edition of this ebook
 .. This file is licensed under a `creative commons licence <http://creativecommons.org/licenses/by-sa/3.0/>`_
 
-.. warning::
 
-   This is an unpolished draft of the third edition of this e-book. If you find any error or have suggestions to improve the text, please create an issue via https://github.com/CNP3/ebook/issues?milestone=3 or help us by providing pull requests to close the existing issues.
 
 Applications
 ============
