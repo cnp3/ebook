@@ -14,8 +14,10 @@ jobs:
       run: sudo apt-get  install inkscape
     - name: Install enchant
       run: sudo apt-get install python3-enchant
+    - name: Install mscgen	
+      run: sudo apt-get install mscgen
     - name: Sphinx contrib
-      run: sudo pip3 install sphinxcontrib-spelling sphinxcontrib-bibtex sphinxcontrib-tikz matplotlib==3.4.0 sphinx==3.5.4 mscgen
+      run: sudo pip3 install sphinxcontrib-spelling sphinxcontrib-bibtex sphinxcontrib-tikz matplotlib==3.4.0 sphinx==3.5.4 sphinxcontrib-mscgen
     - name: Checkout
       uses: actions/checkout@master
       with:
