@@ -10,7 +10,7 @@ jobs:
       run: sudo apt-get install latexmk
     - name: Install netpbm
       run: sudo apt-get  install netpbm poppler-utils imagemagick
-- name: Install inkscape	
+    - name: Install inkscape	
       run: sudo apt-get  install inkscape
     - name: Install enchant
       run: sudo apt-get install python3-enchant
