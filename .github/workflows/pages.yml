@@ -24,7 +24,7 @@ jobs:
         fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
         submodules: 'true' # to check mptcp-bib
     - name: Build and Commit
-      uses: obonaventure/pages@master
+      uses: cnp3/pages@master
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
