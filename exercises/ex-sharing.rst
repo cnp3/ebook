@@ -114,6 +114,13 @@ In a shared medium, a collision may happen if two hosts transmit at almost the s
 
 2. Same question as above, but now consider that the hosts transmit 1000 bits frames at 100 Mbps. The cable has a length of 2 kilometers. C is in the middle of the cable. Each square in the figure below corresponds to 10 microseconds.
 
+  .. no collision between A and B
+  .. no collision B and C
+  .. collision C and last B
+
+
+
+   
  .. tikz::
     :libs: positioning, matrix, arrows
 
@@ -138,9 +145,7 @@ In a shared medium, a collision may happen if two hosts transmit at almost the s
     \draw[very thick, green, ->] (4,7) node [anchor=north, fill=white] {C} -- (5,6);
     \draw[very thick, blue, ->] (10,7) node [anchor=north, fill=white] {B} -- (9,6);
 
-  .. no collision between A and B
-  .. no collision B and C
-  .. collision C and last B
+
 
 
 3. In ALOHA, the hosts rely on acknowledgments to detect whether their frame has been received correctly by the destination. Consider a network running at 100 Mbps where the host exchange 1000 bits frames and acknowledgments of 100 bits. Draw the frames sent by hosts A and B in the figure below. Assume that a square corresponds to 10 microseconds and that the cable has a length of 2 kilometers.
