@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Install Latex
-      run: sudo apt-get install texlive-font-utils texlive-latex-extra texlive-latex-recommended texlive-fonts-recommended texlive-plain-generic
+      run: sudo apt-get install texlive-bibtex-extra texlive-font-utils texlive-latex-extra texlive-latex-recommended texlive-fonts-recommended texlive-plain-generic
     - name: Install Latexmk
       run: sudo apt-get install latexmk
     - name: Install netpbm
