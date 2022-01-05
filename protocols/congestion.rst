@@ -27,7 +27,7 @@ A key question that must be answered by any congestion control scheme is how con
 The figure below illustrates the evolution of the congestion window when there is severe congestion. At the beginning of the connection, the sender performs `slow-start` until the first segments are lost and the retransmission timer expires. At this time, the `ssthresh` is set to half of the current congestion window and the congestion window is reset at one segment. The lost segments are retransmitted as the sender again performs slow-start until the congestion window reaches the `sshtresh`. It then switches to congestion avoidance and the congestion window increases linearly until segments are lost and the retransmission timer expires.
 
 
-.. figure:: /protocols/figures/tcp-congestion-severe.png
+.. figure:: /protocols/figures/tcp-congestion-severe.*
    :align: center
    :scale: 70
 
@@ -36,7 +36,7 @@ The figure below illustrates the evolution of the congestion window when there i
 
 The figure below illustrates the evolution of the congestion window when the network is lightly congested and all lost segments can be retransmitted using fast retransmit. The sender begins with a slow-start. A segment is lost but successfully retransmitted by a fast retransmit. The congestion window is divided by 2 and the sender immediately enters congestion avoidance as this was a mild congestion.
 
-.. figure:: /protocols/figures/tcp-congestion-mild.png
+.. figure:: /protocols/figures/tcp-congestion-mild.*
    :align: center
    :scale: 70
 
@@ -109,7 +109,7 @@ The first difficulty in adding Explicit Congestion Notification (ECN) in TCP/IP 
 
 The second difficulty is how to allow the receiver to inform the sender of the reception of network packets marked with the `CE` bit. In reliable transport protocols like TCP and SCTP, the acknowledgments can be used to provide this feedback. For TCP, two options were possible : change some bits in the TCP segment header or define a new TCP option to carry this information. The designers of ECN opted for reusing spare bits in the TCP header. More precisely, two TCP flags have been added in the TCP header to support ECN. The `ECN-Echo` (ECE) is set in the acknowledgments when the `CE` was set in packets received on the forward path.
 
-.. figure:: /pkt/tcp-enc.png
+.. figure:: /pkt/tcp-enc.*
    :scale: 120
 
    The TCP flags
@@ -190,7 +190,7 @@ Thanks to its congestion control scheme, TCP adapts its transmission rate to the
 
 This model considers a hypothetical TCP connection that suffers from equally spaced segment losses. If :math:`p` is the segment loss ratio, then the TCP connection successfully transfers :math:`\frac{1}{p}-1` segments and the next segment is lost. If we ignore the slow-start at the beginning of the connection, TCP in this environment is always in congestion avoidance as there are only isolated losses that can be recovered by using fast retransmit. The evolution of the congestion window is thus as shown in the figure below. Note that the `x-axis` of this figure represents time measured in units of one round-trip-time, which is supposed to be constant in the model, and the `y-axis` represents the size of the congestion window measured in MSS-sized segments.
 
-.. figure:: /protocols/figures/tcp-congestion-regular.png
+.. figure:: /protocols/figures/tcp-congestion-regular.*
    :align: center
    :scale: 70
 

@@ -203,7 +203,7 @@
 
 .. _GoogleDNS: http://code.google.com/speed/public-dns/docs/using.html 
 
-.. _wikipedia: http://en.wikipedia.org
+.. _wikipedia: https://en.wikipedia.org
 
 .. _ISO-8859: http://en.wikipedia.org/wiki/ISO_8859
 

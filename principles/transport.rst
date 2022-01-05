@@ -88,7 +88,7 @@ The :term:`ASCII` characters are encoded as a seven bits field, but transmitted 
 
 Most applications exchange strings that are composed of fixed or variable numbers of characters. A common solution to define the character strings that are acceptable is to define them as a grammar using a Backus-Naur Form (:term:`BNF`) such as the Augmented BNF defined in :rfc:`5234`. A BNF is a set of production rules that generate all valid character strings. For example, consider a networked application that uses two commands, where the user can supply a username and a password. The BNF for this application could be defined as shown in the figure below.
 
-.. figure:: /pkt/bnf.png
+.. figure:: /pkt/bnf.*
    :align: center
    :scale: 100
 
@@ -105,7 +105,7 @@ The first possibility was named  `big-endian` in a note written by Cohen [Cohen1
 
 Besides 16 and 32 bit words, some applications need to exchange data structures containing bit fields of various lengths. For example, a message may be composed of a 16 bits field followed by eight, one bit flags, a 24 bits field and two 8 bits bytes. Internet protocol specifications will define such a message by using a representation such as the one below. In this representation, each line corresponds to 32 bits and the vertical lines are used to delineate fields. The numbers above the lines indicate the bit positions in the 32-bits word, with the high order bit at position `0`.
 
-.. figure:: /pkt/message.png
+.. figure:: /pkt/message.*
    :align: center
    :scale: 100
 
@@ -559,7 +559,7 @@ The transport layer entity interacts with both a user in the application layer a
 
 To deal with these issues, the transport layer includes several mechanisms that depend on the service that it provides. It interacts with both the applications and the underlying network layer.
 
-.. figure:: /principles/figures/transport-entity.png
+.. figure:: /principles/figures/transport-entity.*
    :align: center
    :scale: 80
 
@@ -713,7 +713,7 @@ A classical solution to avoid remembering the previous transport connections to 
  - the `transport clock` is implemented as a `k` bits counter and its clock cycle is such that :math:`2^k \times cycle >> MSL`. Furthermore, the `transport clock` counter is incremented every clock cycle and after each connection establishment. This clock is illustrated in the figure below.
  - the `transport clock` must continue to be incremented even if the transport entity stops or reboots
 
-.. figure:: /principles/figures/transport-clock.png
+.. figure:: /principles/figures/transport-clock.*
    :align: center
    :scale: 70
 
@@ -734,7 +734,7 @@ This `transport clock` can now be combined with an exchange of three segments, c
 
  The three way handshake is illustrated in the figure below.
 
-.. figure:: /principles/figures/transport-twh.png
+.. figure:: /principles/figures/transport-twh.*
    :align: center
    :scale: 70
 
@@ -744,7 +744,7 @@ Thanks to the three way handshake, transport entities avoid duplicate transport 
 
 The first scenario is when the remote entity receives an old `CR` segment. It considers this `CR` segment as a connection establishment attempt and replies by sending a `CA` segment. However, the initiating host cannot match the received `CA` segment with a previous connection attempt. It sends a control segment (`REJECT` in the figure below) to cancel the spurious connection attempt. The remote entity cancels the connection attempt upon reception of this control segment.
 
-.. figure:: /principles/figures/transport-twh-dup.png
+.. figure:: /principles/figures/transport-twh-dup.*
    :align: center
    :scale: 70
 
@@ -753,7 +753,7 @@ The first scenario is when the remote entity receives an old `CR` segment. It co
 A second scenario is when the initiating entity sends a `CR` segment that does not reach the remote entity and receives a duplicate `CA` segment from a previous connection attempt. This duplicate `CA` segment cannot contain a valid acknowledgment for the `CR` segment as the sequence number of the `CR` segment was extracted from the transport clock of the initiating entity. The `CA` segment is thus rejected and the `CR` segment is retransmitted upon expiration of the retransmission timer.
 
 
-.. figure:: /principles/figures/transport-twh-dup2.png
+.. figure:: /principles/figures/transport-twh-dup2.*
    :align: center
    :scale: 70
 
@@ -761,7 +761,7 @@ A second scenario is when the initiating entity sends a `CR` segment that does n
 
 The last scenario is less likely, but it is important to consider it as well. The remote entity receives an old `CR` segment. It notes the connection attempt and acknowledges it by sending a `CA` segment. The initiating entity does not have a matching connection attempt and replies by sending a `REJECT`. Unfortunately, this segment never reaches the remote entity. Instead, the remote entity receives a retransmission of an older `CA` segment that contains the same sequence number as the first `CR` segment. This `CA` segment cannot be accepted by the remote entity as a confirmation of the transport connection as its acknowledgment number cannot have the same value as the sequence number of the first `CA` segment.
 
-.. figure:: /principles/figures/transport-twh-dup3.png
+.. figure:: /principles/figures/transport-twh-dup3.*
    :align: center
    :scale: 70
 
@@ -821,7 +821,7 @@ In the datalink layer, the sliding window has usually a fixed size which depends
 
 To deal with this issue, transport protocols allow the receiver to advertise the current size of its receiving window in all the acknowledgments that it sends. The receiving window advertised by the receiver bounds the size of the sending buffer used by the sender. In practice, the sender maintains two state variables : `swin`, the size of its sending window (that may be adjusted by the system) and `rwin`, the size of the receiving window advertised by the receiver. At any time, the number of unacknowledged segments cannot be larger than :math:`\min(swin,rwin)` [#facklost]_ . The utilization of dynamic windows is illustrated in the figure below.
 
-.. figure:: /principles/figures/transport-dwin.png
+.. figure:: /principles/figures/transport-dwin.*
    :align: center
    :scale: 100
 
@@ -829,7 +829,7 @@ To deal with this issue, transport protocols allow the receiver to advertise the
 
 The receiver may adjust its advertised receive window based on its current memory consumption, but also to limit the bandwidth used by the sender. In practice, the receive buffer can also shrink as the application may not able to process the received data quickly enough. In this case, the receive buffer may be completely full and the advertised receive window may shrink to `0`. When the sender receives an acknowledgment with a receive window set to `0`, it is blocked until it receives an acknowledgment with a positive receive window. Unfortunately, as shown in the figure below, the loss of this acknowledgment could cause a deadlock as the sender waits for an acknowledgment while the receiver is waiting for a data segment.
 
-.. figure:: /principles/figures/transport-win-deadlock.png
+.. figure:: /principles/figures/transport-win-deadlock.*
    :align: center
    :scale: 60
 
@@ -843,7 +843,7 @@ To solve this problem, transport protocols rely on a special timer : the `persis
 To conclude our description of the basic mechanisms found in transport protocols, we still need to discuss the impact of segments arriving in the wrong order. If two consecutive segments are reordered, the receiver relies on their sequence numbers to reorder them in its receive buffer. Unfortunately, as transport protocols reuse the same sequence number for different segments, if a segment is delayed for a prolonged period of time, it might still be accepted by the receiver. This is illustrated in the figure below where segment `D(1,b)` is delayed.
 
 
-.. figure:: /principles/figures/transport-ambiguities.png
+.. figure:: /principles/figures/transport-ambiguities.*
     :align: center
     :scale: 60
 
@@ -864,7 +864,7 @@ When we discussed the connection-oriented service, we mentioned that there are t
 The first solution to release a transport connection is to define a new control segment (e.g. the `DR` segment for Disconnection Request) and consider the connection to be released once this segment has been sent or received. This is illustrated in the figure below.
 
 
-.. figure:: /principles/figures/transport-abrupt.png
+.. figure:: /principles/figures/transport-abrupt.*
    :align: center
    :scale: 60
 
@@ -876,7 +876,7 @@ As the entity that sends the `DR` segment cannot know whether the other entity h
 
 The second method to release a transport connection is to release independently the two directions of data transfer. Once a user of the transport service has sent all its SDUs, it performs a `DISCONNECT.req` for its direction of data transfer. The transport entity sends a control segment to request the release of the connection *after* the delivery of all previous SDUs to the remote user. This is usually done by placing in the `DR` the next sequence number and by delivering the `DISCONNECT.ind` only after all previous `DATA.ind`. The remote entity confirms the reception of the `DR` segment and the release of the corresponding direction of data transfer by returning an acknowledgment. This is illustrated in the figure below.
 
-.. figure:: /principles/figures/transport-graceful.png
+.. figure:: /principles/figures/transport-graceful.*
    :align: center
    :scale: 70
 

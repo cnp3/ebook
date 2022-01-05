@@ -10,7 +10,7 @@ As explained earlier, the Internet is composed of more than 45,000 different net
 
 Each domain contains a set of routers. From a routing point of view, these domains can be divided into two classes : the `transit` and the `stub` domains. A `stub` domain sends and receives packets whose source or destination are one of its own hosts. A `transit` domain is a domain that provides a transit service for other domains, i.e. the routers in this domain forward packets whose source and destination do not belong to the transit domain. As of this writing, about 85% of the domains in the Internet are stub domains [#fpotaroo]_. A `stub` domain that is connected to a single transit domain is called a `single-homed stub` (e.g., `S1` in the figure below.). A `multihomed stub` is a `stub` domain connected to two or more transit providers (e.g., `S2`).
 
-.. figure:: /protocols/figures/transit-stub.png
+.. figure:: /protocols/figures/transit-stub.*
    :align: center
    :scale: 70
 
@@ -20,7 +20,7 @@ The stub domains can be further classified by considering whether they mainly se
 
 Domains need to be interconnected to allow a host inside a domain to exchange IP packets with hosts located in other domains. From a physical perspective, domains can be interconnected in two different ways. The first solution is to directly connect a router belonging to the first domain with a router inside the second domain. Such links between domains are called private interdomain links or `private peering links`. In practice, for redundancy or performance reasons, distinct physical links are usually established between different routers in the two domains that are interconnected.
 
-.. figure:: /protocols/figures/private-peer.png
+.. figure:: /protocols/figures/private-peer.*
    :align: center
    :scale: 70
 
@@ -32,7 +32,7 @@ Domains need to be interconnected to allow a host inside a domain to exchange IP
 
 Such `private peering links` are useful when, for example, an enterprise or university network needs to be connected to its Internet Service Provider. However, some domains are connected to hundreds of other domains [#fasrank]_ . For some of these domains, using only private peering links would be too costly. A better solution to allow many domains to cheaply interconnect are the `Internet eXchange Points` (:term:`IXP`). An :term:`IXP` is usually some space in a data center that hosts routers belonging to different domains. A domain willing to exchange packets with other domains present at the :term:`IXP` installs one of its routers on the :term:`IXP` and connects it to other routers inside its own network. The IXP contains a Local Area Network to which all the participating routers are connected. When two domains that are present at the IXP wish [#fwish]_ to exchange packets, they simply use the Local Area Network. IXPs are very popular in Europe and many Internet Service Providers and Content providers are present in these IXPs.
 
-.. figure:: /protocols/figures/ixp.png
+.. figure:: /protocols/figures/ixp.*
    :align: center
    :scale: 70
 
@@ -46,7 +46,7 @@ There are different types of economical relationships that can exist between dom
 
 The first category of peering relationship is the `customer->provider` relationship. Such a relationship is used when a customer domain pays an Internet Service Provider to be able to exchange packets with the global Internet over an interdomain link. A similar relationship is used when a small Internet Service Provider pays a larger Internet Service Provider to exchange packets with the global Internet.
 
-.. figure:: /protocols/figures/cust-prov.png
+.. figure:: /protocols/figures/cust-prov.*
    :align: center
    :scale: 70
 
@@ -85,7 +85,7 @@ A domain's import and export filters can be defined by using the Route Policy Sp
 
 The figure below provides a simple example of import and export filters for two domains in a simple internetwork. In RPSL, the keyword `ANY` is used to replace any route from any domain. It is typically used by a provider to indicate that it announces all its routes to a customer over a `provider->customer` relationship. This is the case for `AS4`'s export policy. The example below clearly shows the difference between a `provider->customer` and a `shared-cost` peering relationship. `AS4`'s export filter indicates that it announces only its internal routes (`AS4`) and the routes learned from its clients (`AS7`) over its `shared-cost` peering with `AS3`, while it advertises all the routes that it uses (including the routes learned from `AS3`) to `AS7`.
 
-.. figure:: /protocols/figures/bgp-policies.png
+.. figure:: /protocols/figures/bgp-policies.*
    :align: center
    :scale: 70
 
@@ -100,7 +100,7 @@ The Internet uses a single interdomain routing protocol : the Border Gateway Pro
 
 The figure below shows a simple example of the BGP routes that are exchanged between domains. In this example, prefix `2001:db8:cafe::/48` is announced by `AS1`. `AS1` advertises a BGP route towards this prefix to `AS2`. The AS-Path of this route indicates that `AS1` is the originator of the prefix. When `AS4` receives the BGP route from `AS1`, it re-announces it to `AS2` and adds its AS number to the AS-Path. `AS2` has learned two routes towards prefix `2001:db8:cafe::/48`. It compares the two routes and prefers the route learned from `AS4` based on its own ranking algorithm. `AS2` advertises to `AS5` a route towards `2001:db8:cafe::/48` with its AS-Path set to `AS2:AS4:AS1`. Thanks to the AS-Path, `AS5` knows that if it sends a packet towards `2001:db8:cafe::/48` the packet first passes through `AS2`, then through `AS4` before reaching its destination inside `AS1`.
 
-.. figure:: /protocols/figures/bgp-example.png
+.. figure:: /protocols/figures/bgp-example.*
    :align: center
 
    Simple exchange of BGP routes
@@ -109,7 +109,7 @@ The figure below shows a simple example of the BGP routes that are exchanged bet
 
 BGP routers exchange routes over BGP sessions. A BGP session is established between two routers belonging to two different domains that are directly connected. As explained earlier, the physical connection between the two routers can be implemented as a private peering link or over an Internet eXchange Point. A BGP session between two adjacent routers runs above a TCP connection (the default BGP port is 179). In contrast with intradomain routing protocols that exchange IP packets or UDP segments, BGP runs above TCP because TCP ensures a reliable delivery of the BGP messages sent by each router without forcing the routers to implement acknowledgments, checksums, etc. Furthermore, the two routers consider the peering link to be up as long as the BGP session and the underlying TCP connection remain up [#flifetimebgp]_. The two endpoints of a BGP session are called `BGP peers`.
 
-.. figure:: /protocols/figures/bgp-peering.png
+.. figure:: /protocols/figures/bgp-peering.*
    :align: center
    :scale: 70
 
@@ -144,7 +144,7 @@ From a conceptual point of view, a BGP router connected to `N` BGP peers, can be
 
 .. _bgprouter:
 
-.. figure:: /protocols/figures/bgp-router.png
+.. figure:: /protocols/figures/bgp-router.*
    :align: center
    :scale: 70
 
@@ -264,7 +264,7 @@ If the import filter accepts the BGP message, the pseudo-code distinguishes two 
 
 Let us now discuss in more detail the operation of BGP in an IPv6 network. For this, let us consider the simple network composed of three routers located in three different ASes and shown in the figure below.
 
-.. figure:: /protocols/figures/bgp-nexthop.png
+.. figure:: /protocols/figures/bgp-nexthop.*
    :align: center
    :scale: 100
 
@@ -318,7 +318,7 @@ The `local-pref` attribute is often used to prefer some routes over others.
 
 A common utilization of `local-pref` is to support backup links. Consider the situation depicted in the figure below. `AS1` would always like to use the high bandwidth link to send and receive packets via `AS2` and only use the backup link upon failure of the primary one.
 
-.. figure:: /protocols/figures/bgp-backup.png
+.. figure:: /protocols/figures/bgp-backup.*
    :align: center
    :scale: 100
 
@@ -345,7 +345,7 @@ The import filter above modifies the selection of the BGP routes inside `AS1`. T
 
 Sometimes, the `local-pref` attribute is used to prefer a `cheap` link compared to a more expensive one. For example, in the network below, `AS1` could wish to send and receive packets mainly via its interdomain link with `AS4`.
 
-.. figure:: /protocols/figures/bgp-prefer.png
+.. figure:: /protocols/figures/bgp-prefer.*
    :align: center
    :scale: 100
 
@@ -370,7 +370,7 @@ Another important utilization of the `local-pref` attribute is to support the `c
 
 With such an import filter, the routers of a domain always prefer to reach destinations via their customers whenever such a route exists. Otherwise, they prefer to use `shared-cost` peering relationships and they only send packets via their providers when they do not know any alternate route. A consequence of setting the `local-pref` attribute like this is that Internet paths are often asymmetrical. Consider for example the internetwork shown in the figure below.
 
-.. figure:: /protocols/figures/asymetry.png
+.. figure:: /protocols/figures/asymetry.*
    :align: center
    :scale: 100
 
@@ -387,7 +387,7 @@ BGP convergence
 In the previous sections, we have explained the operation of BGP routers. Compared to intradomain routing protocols, a key feature of BGP is its ability to support interdomain routing policies that are defined by each domain as its import and export filters and ranking process. A domain can define its own routing policies and router vendors have implemented many configuration tweaks to support complex routing policies. However, the routing policy chosen by a domain may interfere with the routing policy chosen by another domain. To understand this issue, let us first consider the simple internetwork shown below.
 
 
-.. figure:: /protocols/figures/disagree.png
+.. figure:: /protocols/figures/disagree.*
    :align: center
    :scale: 100
 
@@ -403,7 +403,7 @@ The example above has shown that the routes selected by BGP routers may sometime
 
 From an operational perspective, the above configuration is annoying since the network operators cannot easily predict which paths are chosen. Unfortunately, there are even more annoying BGP configurations. For example, let us consider the configuration below which is often named `Bad Gadget` [GW1999]_
 
-.. figure:: /protocols/figures/bad-gadget.png
+.. figure:: /protocols/figures/bad-gadget.*
    :align: center
    :scale: 100
 
@@ -443,7 +443,7 @@ In practice, researchers and operators expect that these guidelines are verified
 
 Based on these studies and [ATLAS2009]_, the AS-level Internet topology can be summarized as shown in the figure below.
 
-.. figure:: /protocols/figures/bgp-hierarchy.png
+.. figure:: /protocols/figures/bgp-hierarchy.*
    :align: center
    :scale: 70
 

@@ -567,7 +567,7 @@ Nowadays, most deployed networks rely on distributed algorithms, called routing 
 .. The datagram organization has been very popular in computer networks. Datagram based network layers include IPv4 and IPv6 in the global Internet, CLNP defined by the ISO, IPX defined by Novell or XNS defined by Xerox [Perlman2000]_.
 
 ..
- .. figure:: svg/simple-lan.png
+ .. figure:: svg/simple-lan.*
     :align: center
     :scale: 80
 

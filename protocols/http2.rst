@@ -61,7 +61,7 @@ These reverse proxies can also be used to spread the load among different server
 
 A second way to improve the web performance is to reduce the time required to retrieve web objects. While the first web servers returned an HTML documents with possibly a few images, today's rich web servers return one HTML document with associated style sheets, javascript code, images, fonts, ... Some of these web objects come from the original server while others are hosted on different servers. Today, a typical web page contains almost 2 MBytes of data on average. The size of the web pages continues to grow according to statistics collected by `httparchive.org`. Web pages targeted to mobile devices are slightly smaller.
 
-.. figure:: /protocols/figures/httparchive-bytes.png
+.. figure:: /protocols/figures/httparchive-bytes.*
    :align: center
    :scale: 60
 
@@ -146,7 +146,7 @@ To cope with these two problems, the IETF HTTP working group developed version 2
 Let us first examine how HTTP/2.0 structures the bytestream of the underlying connection.
 
 
-.. figure:: /pkt/http2-frame.png
+.. figure:: /pkt/http2-frame.*
    :align: center
    :scale: 100
 

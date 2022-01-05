@@ -17,7 +17,7 @@ DNS messages are composed of five parts that are named sections in :rfc:`1035`. 
 
 The header of DNS messages is composed of 12 bytes. The figure below presents its structure.
 
-.. figure:: /pkt/dnsheader.png
+.. figure:: /pkt/dnsheader.*
    :align: center
    :scale: 100
 
@@ -40,7 +40,7 @@ The `RD` (recursion desired) bit is set by a client when it sends a query to a r
 
 The last four sections of the DNS message contain `Resource Records` (RR).  All RRs have the same top level format shown in the figure below.
 
-.. figure:: /pkt/dnsrr.png
+.. figure:: /pkt/dnsrr.*
    :align: center
    :scale: 100
 
@@ -54,7 +54,7 @@ The `RDLength` field is the length of the `RData` field that contains the inform
 
 Several types of DNS RR are used in practice. The `A` type encodes the IPv4 address that corresponds to the specified name. The `AAAA` type encodes the IPv6 address that corresponds to the specified name. A `NS` record contains the name of the DNS server that is responsible for a given domain. For example, a query for the `AAAA` record associated to the `www.ietf.org` name returned the following answer.
 
-.. figure:: /pkt/dns6-www-ietf-org.png
+.. figure:: /pkt/dns6-www-ietf-org.*
    :align: center
 
    Query for the `AAAA` record of `www.ietf.org`

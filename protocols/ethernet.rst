@@ -49,7 +49,7 @@ The original 10 Mbps Ethernet specification [DIX]_ defined a simple frame format
 The fourth part of the Ethernet frame is the payload. The minimum length of the payload is 46 bytes to ensure a minimum frame size, including the header of 512 bits. The Ethernet payload cannot be longer than 1500 bytes. This size was found reasonable when the first Ethernet specification was written. At that time, Xerox had been using its experimental 3 Mbps Ethernet that offered 554 bytes of payload and :rfc:`1122` required a minimum MTU of 572 bytes for IPv4. 1500 bytes was large enough to support these needs without forcing the network adapters to contain overly large memories. Furthermore, simulations and measurement studies performed in Ethernet networks revealed that CSMA/CD was able to achieve a very high utilization. This is illustrated in the figure below based on [SH1980]_, which shows the channel utilization achieved in Ethernet networks containing different numbers of hosts that are sending frames of different sizes.
 
 
-.. figure:: /protocols/figures/ethernet-util.png
+.. figure:: /protocols/figures/ethernet-util.*
    :align: center
    :scale: 70
 
@@ -61,7 +61,7 @@ The last field of the Ethernet frame is a 32 bit Cyclical Redundancy Check (CRC)
 
 .. index:: Ethernet DIX frame format
 
-.. figure:: /pkt/ethernet-dix.png
+.. figure:: /pkt/ethernet-dix.*
    :align: center
    :scale: 100
 
@@ -82,7 +82,7 @@ The Ethernet frame format shown above is specified in [DIX]_. This is the format
 
 
 
-.. figure:: /pkt/ethernet-8023.png
+.. figure:: /pkt/ethernet-8023.*
    :align: center
    :scale: 100
 
@@ -149,7 +149,7 @@ The introduction of the twisted pairs led to two major changes to Ethernet. The 
 Computers can directly be attached to Ethernet hubs. Ethernet hubs themselves can be attached to other Ethernet hubs to build a larger network. However, some important guidelines must be followed when building a complex network with hubs. First, the network topology must be a tree. As hubs are relays in the physical layer, adding a link between `Hub2` and `Hub3` in the network below would create an electrical shortcut that would completely disrupt the network. This implies that there cannot be any redundancy in a hub-based network. A failure of a hub or of a link between two hubs would partition the network into two isolated networks. Second, as hubs are relays in the physical layer, collisions can happen and must be handled by CSMA/CD as in a 10Base5 network. This implies that the maximum delay between any pair of devices in the network cannot be longer than the 51.2 microseconds `slot time`. If the delay is longer, collisions between short frames may not be correctly detected. This constraint limits the geographical spread of 10BaseT networks containing hubs.
 
 
-.. figure:: /protocols/figures/ethernet-net-hub.png
+.. figure:: /protocols/figures/ethernet-net-hub.*
    :align: center
    :scale: 70
 
@@ -248,7 +248,7 @@ Increasing the physical layer bandwidth as in `Fast Ethernet` was only one of th
 An `Ethernet switch` understands the format of the Ethernet frames and can selectively forward frames over each interface. For this, each `Ethernet switch` maintains a `MAC address table`. This table contains, for each MAC address known by the switch, the identifier of the switch's port over which a frame sent towards this address must be forwarded to reach its destination. This is illustrated below with the `MAC address table` of the bottom switch. When the switch receives a frame destined to address `B`, it forwards the frame on its South port. If it receives a frame destined to address `D`, it forwards it only on its North port.
 
 
-.. figure:: /protocols/figures/datalink-fig-013-c.png
+.. figure:: /protocols/figures/datalink-fig-013-c.*
    :align: center
    :scale: 70
 
@@ -293,7 +293,7 @@ The pseudo-code below details how an Ethernet switch forwards Ethernet frames. I
 The `MAC address learning` algorithm combined with the forwarding algorithm work well in a tree-shaped network such as the one shown above. However, to deal with link and switch failures, network administrators often add redundant links to ensure that their network remains connected even after a failure. Let us consider what happens in the Ethernet network shown in the figure below.
 
 
-.. figure:: /protocols/figures/datalink-fig-014-c.png
+.. figure:: /protocols/figures/datalink-fig-014-c.*
    :align: center
    :scale: 80
 
@@ -317,7 +317,7 @@ The `Spanning Tree Protocol` (STP), proposed in [Perlman1985]_, is a distributed
 
 
 
-.. figure:: /protocols/figures/datalink-fig-015-c.png
+.. figure:: /protocols/figures/datalink-fig-015-c.*
    :align: center
    :scale: 70
 
@@ -382,7 +382,7 @@ Designated   yes              yes         yes
 To illustrate the operation of the `Spanning Tree Protocol`, let us consider the simple network topology in the figure below.
 
 
-.. figure:: /protocols/figures/datalink-fig-016-c.png
+.. figure:: /protocols/figures/datalink-fig-016-c.*
    :Align: center
    :scale: 60
 
@@ -406,7 +406,7 @@ Another important advantage of Ethernet switches is the ability to create Virtua
 The figure below illustrates a switched Ethernet network with three Virtual LANs. `VLAN2` and `VLAN3` only require a local configuration of switch `S1`. Host `C` can exchange frames with host `D`, but not with hosts that are outside of its VLAN. `VLAN1` is more complex as there are ports of this VLAN on several switches. To support such VLANs, local configuration is not sufficient anymore. When a switch receives a frame from another switch, it must be able to determine the VLAN in which the frame originated to use the correct MAC table to forward the frame. This is done by assigning an identifier to each Virtual LAN and placing this identifier inside the headers of the frames that are exchanged between switches.
 
 
-.. figure:: /protocols/figures/datalink-fig-017-c.png
+.. figure:: /protocols/figures/datalink-fig-017-c.*
    :align: center
    :scale: 70
 
@@ -414,7 +414,7 @@ The figure below illustrates a switched Ethernet network with three Virtual LANs
 
 IEEE defined in the [IEEE802.1q]_ standard a special header to encode the VLAN identifiers. This 32 bit header includes a 12 bit VLAN field that contains the VLAN identifier of each frame. The format of the [IEEE802.1q]_ header is described below.
 
-.. figure:: /pkt/8021q.png
+.. figure:: /pkt/8021q.*
    :align: center
    :scale: 100
 

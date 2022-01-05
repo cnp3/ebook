@@ -157,7 +157,7 @@ From a Computer Science viewpoint, the physical transmission of information thro
 Many other types of encodings have been defined to transmit information over an electrical cable. All physical layers are able to send and receive physical symbols that represent values `0` and `1`. However, for various reasons that are outside the scope of this chapter, several physical layers exchange other physical symbols as well. For example, the Manchester encoding used in several physical layers can send four different symbols. The Manchester encoding is a differential encoding scheme in which time is divided into fixed-length periods. Each period is divided in two halves and two different voltage levels can  be applied. To send a symbol, the sender must set one of these two voltage levels during each half period. To send a `1` (resp. `0`), the sender must set a high (resp. low) voltage during the first half of the period and a low (resp. high) voltage during the second half. This encoding ensures that there will be a transition at the middle of each period and allows the receiver to synchronize its clock to the sender's clock. Apart from the encodings for `0` and `1`, the Manchester encoding also supports two additional symbols : `InvH` and `InvB`  where the same voltage level is used for the two half periods. By definition, these two symbols cannot appear inside a frame which is only composed of `0` and `1`. Some technologies use these special symbols as markers for the beginning or end of frames.
 
 
- .. figure:: figures/manchester.png
+ .. figure:: figures/manchester.*
     :align: center
     :scale: 50
 
@@ -802,7 +802,7 @@ Go-back-n and selective repeat
 
 To overcome the performance limitations of the alternating bit protocol, reliable protocols rely on `pipelining`. This technique allows a sender to transmit several consecutive frames without being forced to wait for an acknowledgment after each frame. Each data frame contains a sequence number encoded as an `n` bits field.
 
-.. figure:: figures/pipelining2.png
+.. figure:: figures/pipelining2.*
    :align: center
    :scale: 70
 
@@ -812,7 +812,7 @@ To overcome the performance limitations of the alternating bit protocol, reliabl
 
 This is implemented by using a `sliding window`. The sliding window is the set of consecutive sequence numbers that the sender can use when transmitting frames without being forced to wait for an acknowledgment. The figure below shows a sliding window containing five frames (`6,7,8,9` and `10`). Two of these sequence numbers (`6` and `7`) have been used to send frames and only three sequence numbers (`8`, `9` and `10`) remain in the sliding window. The sliding window is said to be closed once all sequence numbers contained in the sliding window have been used.
 
-.. figure:: figures/slidingwin2.png
+.. figure:: figures/slidingwin2.*
    :align: center
    :scale: 100
 
@@ -821,7 +821,7 @@ This is implemented by using a `sliding window`. The sliding window is the set o
 The figure below illustrates the operation of the sliding window. It uses a sliding window of three frames. The sender can thus transmit three frames before being forced to wait for an acknowledgment. The sliding window moves to the higher sequence numbers upon the reception of each acknowledgment. When the first acknowledgment (`OK0`) is received, it enables the sender to move its sliding window to the right and sequence number `3` becomes available. This sequence number is used later to transmit the frame containing `d`.
 
 
-.. figure:: figures/gbnwin.png
+.. figure:: figures/gbnwin.*
    :align: center
    :scale: 60
 
@@ -831,7 +831,7 @@ The figure below illustrates the operation of the sliding window. It uses a slid
 In practice, as the frame header includes an `n` bits field to encode the sequence number, only the sequence numbers between :math:`0` and :math:`2^{n}-1` can be used. This implies that, during a long transfer, the same sequence number will be used for different frames and the sliding window will wrap. This is illustrated in the figure below assuming that `2` bits are used to encode the sequence number in the frame header. Note that upon reception of `OK1`, the sender slides its window and can use sequence number `0` again.
 
 
-.. figure:: figures/gbnwinex.png
+.. figure:: figures/gbnwinex.*
    :align: center
    :scale: 60
 
@@ -928,7 +928,7 @@ A `go-back-n` sender is also very simple. It uses a sending buffer that can stor
 
 The operation of `go-back-n` is illustrated in the figure below. In this figure, note that upon reception of the out-of-sequence frame `D(2,c)`, the receiver returns a cumulative acknowledgment `C(OK,0)` that acknowledges all the frames that have been received in sequence. The lost frame is retransmitted upon the expiration of the retransmission timer.
 
-.. figure:: figures/gbnex2.png
+.. figure:: figures/gbnex2.*
    :align: center
    :scale: 70
 
@@ -949,7 +949,7 @@ The main advantage of `go-back-n` is that it can be easily implemented, and it c
 
 A `selective repeat` receiver maintains a sliding window of `W` frames and stores in a buffer the out-of-sequence frames that it receives. The figure below shows a five-frame receive window on a receiver that has already received frames `7` and `9`.
 
-.. figure:: figures/selrepeatwin2.png
+.. figure:: figures/selrepeatwin2.*
    :align: center
    :scale: 70
 
@@ -963,7 +963,7 @@ The `selective repeat` sender maintains a sending buffer that can store up to `W
 
 The figure below illustrates the operation of `selective repeat` when frames are lost. In this figure, `C(OK,x)` is used to indicate that all frames, up to and including sequence number `x` have been received correctly.
 
-.. figure:: figures/selrepeat.png
+.. figure:: figures/selrepeat.*
    :align: center
    :scale: 70
 
@@ -1034,7 +1034,7 @@ In the figure above, when the sender receives `C(OK,0,[2])`, it knows that all f
 
 Reliable protocols often need to send data in both directions. To reduce the overhead caused by the acknowledgments, most reliable protocols use `piggybacking`. Thanks to this technique, a datalink entity can place the acknowledgments and the receive window that it advertises for the opposite direction of the data flow inside the header of the data frames that it sends. The main advantage of piggybacking is that it reduces the overhead as it is not necessary to send a complete frame to carry an acknowledgment. This is illustrated in the figure below where the acknowledgment number is underlined in the data frames. Piggybacking is only used when data flows in both directions. A receiver will generate a pure acknowledgment when it does not send data in the opposite direction as shown in the bottom of the figure.
 
-.. figure:: figures/piggyback2.png
+.. figure:: figures/piggyback2.*
    :align: center
    :scale: 70
 
