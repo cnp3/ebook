@@ -42,7 +42,7 @@ The figure below shows a typical usage of the UDP port numbers. The client proce
 
 UDP uses a single segment format shown in the figure below.
 
-.. figure:: /pkt/udp.png
+.. figure:: /pkt/udp.*
    :align: center
    :scale: 120
 

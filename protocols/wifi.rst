@@ -35,7 +35,7 @@ When developing its family of standards, the `IEEE 802.11 working group <http://
 The architecture of WiFi networks is slightly different from the Local Area Networks that we have discussed until now. There are, in practice, two main types of WiFi networks : `independent` or `adhoc` networks  and `infrastructure` networks [#fBSS]_. An `independent` or `adhoc` network is composed of a set of devices that communicate with each other. These devices play the same role and the `adhoc` network is usually not connected to the global Internet. `Adhoc` networks are used when for example a few laptops need to exchange information or to connect a computer with a WiFi printer.
 
 
-.. figure:: /protocols/figures/datalink-fig-018-c.png
+.. figure:: /protocols/figures/datalink-fig-018-c.*
    :align: center
    :scale: 60
 
@@ -47,7 +47,7 @@ The architecture of WiFi networks is slightly different from the Local Area Netw
 Most WiFi networks are `infrastructure` networks. An `infrastructure` network contains one or more `access points` that are attached to a fixed Local Area Network (usually an Ethernet network) that is connected to other networks such as the Internet. The figure below shows such a network with two access points and four WiFi devices. Each WiFi device is associated to one access point and uses this access point as a relay to exchange frames with the devices that are associated to another access point or reachable through the LAN.
 
 
-.. figure:: /protocols/figures/datalink-fig-019-c.png
+.. figure:: /protocols/figures/datalink-fig-019-c.*
    :align: center
    :scale: 70
 
@@ -92,7 +92,7 @@ An 802.11 access point is a relay that operates in the datalink layer like switc
 
 802.11 devices exchange variable length frames, which have a slightly different structure than the simple frame format used in Ethernet LANs. We review the key parts of the 802.11 frames. Additional details may be found in [IEEE802.11]_ and [Gast2002]_ . An 802.11 frame contains a fixed length header, a variable length payload that may contain up 2324 bytes of user data and a 32 bits CRC. Although the payload can contain up to 2324 bytes, most 802.11 deployments use a maximum payload size of 1500 bytes as they are used in `infrastructure` networks attached to Ethernet LANs. An 802.11 data frame is shown below.
 
-.. figure:: /pkt/80211.png
+.. figure:: /pkt/80211.*
    :align: center
    :scale: 100
 
@@ -108,7 +108,7 @@ When a frame is sent from a WiFi device to a server attached to the same LAN as 
 
 802.11 control frames are simpler than data frames. They contain a `Frame Control`, a `Duration` field and one or two addresses. The acknowledgment frames are very small. They only contain the address of the destination of the acknowledgment. There is no source address and no `Sequence Control` field in the acknowledgment frames. This is because the acknowledgment frame can easily be associated to the previous frame that it acknowledges. Indeed, each unicast data frame contains a `Duration` field that is used to reserve the transmission channel to ensure that no collision will affect the acknowledgment frame. The `Sequence Control` field is mainly used by the receiver to remove duplicate frames. Duplicate frames are detected as follows. Each data frame contains a 12 bits sequence number in the `Sequence Control` field and the `Frame Control` field contains the `Retry` bit flag that is set when a frame is transmitted.  Each 802.11 receiver stores the most recent sequence number received from each source address in frames whose `Retry` bit is reset. Upon reception of a frame with the `Retry` bit set, the receiver verifies its sequence number to determine whether it is a duplicated frame or not.
 
-.. figure:: /pkt/80211-cts.png
+.. figure:: /pkt/80211-cts.*
    :align: center
    :scale: 100
 
@@ -119,7 +119,7 @@ When a frame is sent from a WiFi device to a server attached to the same LAN as 
 
 802.11 RTS/CTS frames are used to reserve the transmission channel, in order to transmit one data frame and its acknowledgment. The RTS frames contain a `Duration` and the transmitter and receiver addresses. The `Duration` field of the RTS frame indicates the duration of the entire reservation (i.e. the time required to transmit the CTS, the data frame, the acknowledgments and the required SIFS delays). The CTS frame has the same format as the acknowledgment frame.
 
-.. figure:: /pkt/80211-rts.png
+.. figure:: /pkt/80211-rts.*
    :align: center
    :scale: 100
 
@@ -145,7 +145,7 @@ A first type of management frames are the `beacon` frames. These frames are broa
 
  Two types of encapsulation schemes were defined to support IP in Ethernet networks : the original encapsulation scheme, built above the Ethernet DIX format is defined in :rfc:`894` and a second encapsulation :rfc:`1042` scheme, built above the LLC/SNAP protocol [IEEE802.2]_. In 802.11 networks, the situation is simpler and only the :rfc:`1042` encapsulation is used. In practice, this encapsulation adds 6 bytes to the 802.11 header. The first four bytes correspond to the LLC/SNAP header. They are followed by the two bytes Ethernet Type field (`0x800` for IP and `0x806` for ARP). The figure below shows an IP packet encapsulated in an 802.11 frame.
 
-.. figure:: /pkt/ip-80211.png
+.. figure:: /pkt/ip-80211.*
    :align: center
    :scale: 100
 

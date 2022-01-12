@@ -44,7 +44,7 @@ To understand this attack, it is important to correctly understand how
 the DNS protocol operates and the roles of the different fields of
 the DNS header which is reproduced in the figure below.
 
-.. figure:: /pkt/dnsheader.png
+.. figure:: /pkt/dnsheader.*
    :align: center
    :scale: 100
 

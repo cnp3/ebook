@@ -7,7 +7,7 @@ Routing in IP networks
 In a large IP network such as the global Internet, routers need to exchange routing information. The Internet is an interconnection of networks, often called domains, that are under different responsibilities. As of this writing, the Internet is composed on more than 40,000 different domains and this number is still growing [#fas]_. A domain can be a small enterprise that manages a few routers in a single building, a larger enterprise with a hundred routers at multiple locations, or a large Internet Service Provider managing thousands of routers. Two classes of routing protocols are used to allow these domains to efficiently exchange routing information.
 
 
-.. figure:: /protocols/figures/small-internet.png
+.. figure:: /protocols/figures/small-internet.*
    :align: center
    :scale: 70
 
@@ -39,7 +39,7 @@ The Routing Information Protocol (RIP) is the simplest routing protocol that was
 
 RIP routers periodically exchange RIP messages. The format of these messages is shown below. A RIP message is sent inside a UDP segment whose destination port is set to `521`. A RIP message contains several fields. The `command` field indicates whether the RIP message is a request or a response. When a router boots, its routing table is empty and it cannot forward any packet. To speedup the discovery of the network, it can send a request message to the RIP IPv6 multicast address, ``FF02::9``. All RIP routers listen to this multicast address and any router attached to the subnet will reply by sending its own routing table as a sequence of RIP messages. In steady state, routers multicast one of more RIP response messages every 30 seconds. These messages contain the distance vectors that summarize the router's routing table. The current version of RIP is version 2 defined in :rfc:`2453` for IPv4 and :rfc:`2080` for IPv6.
 
-.. figure:: /pkt/ripng.png
+.. figure:: /pkt/ripng.*
    :align: center
    :scale: 120
 
@@ -49,7 +49,7 @@ RIP routers periodically exchange RIP messages. The format of these messages is 
 
 Each RIP message contains a set of route entries. Each route entry is encoded as a 20 bytes field whose format is shown below. RIP was initially designed to be suitable for different network layer protocols. Some implementations of RIP were used in XNS or IPX networks :rfc:`2453`. The format of the route entries used by :rfc:`2080` is shown below. `Prefix length` is the length of the subnet identifier in bits and the `metric` is encoded as one byte. The maximum metric supported by RIP is `15`.
 
-.. figure:: /pkt/rip-route-entry-v6.png
+.. figure:: /pkt/rip-route-entry-v6.*
    :align: center
    :scale: 120
 
@@ -77,7 +77,7 @@ OSPF imposes restrictions on how a network can be divided into areas. An area is
 
 For example, the network shown in the figure below has been divided into three areas : `area 0`, containing routers `RA`, `RB`, `RC` and `RD`, `area 1`, containing routers `R1`, `R3`, `R4`, `R5` and `RA`, and `area 2` containing `R7`, `R8`, `R9`, `R10`, `RB` and `RC`. OSPF areas are identified by a 32 bit integer, which is sometimes represented as an IP address. Among the OSPF areas, `area 0`, also called the `backbone area`, has a special role. The backbone area groups all the area border routers (routers `RA`, `RB` and `RC` in the figure below) and the routers that are directly connected to the backbone routers but do not belong to another area (router `RD` in the figure below). An important restriction imposed by OSPF is that the path between two routers that belong to two different areas (e.g. `R1` and `R8` in the figure below) must pass through the backbone area.
 
-.. figure:: /protocols/figures/ospf-areas.png
+.. figure:: /protocols/figures/ospf-areas.*
    :align: center
    :scale: 70
 
@@ -85,7 +85,7 @@ For example, the network shown in the figure below has been divided into three a
 
 Inside each non-backbone area, routers distribute the topology of the area by exchanging link state packets with the other routers in the area. The internal routers do not know the topology of other areas, but each router knows how to reach the backbone area. Inside an area, the routers only exchange link-state packets for all destinations that are reachable inside the area. In OSPF, the inter-area routing is done by exchanging distance vectors. This is illustrated by the network topology shown below.
 
-.. figure:: /protocols/figures/ospf-area.png
+.. figure:: /protocols/figures/ospf-area.*
    :align: center
    :scale: 40
 

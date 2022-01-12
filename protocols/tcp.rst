@@ -25,7 +25,7 @@ On the global Internet, most of the applications used in the wide area rely on T
 
 To provide this service, TCP relies on a simple segment format that is shown in the figure below. Each TCP segment contains a header described below and, optionally, a payload. The default length of the TCP header is twenty bytes, but some TCP headers contain options.
 
-.. figure:: /pkt/tcp.png
+.. figure:: /pkt/tcp.*
    :align: center
    :scale: 120
 
@@ -128,7 +128,7 @@ This segment is often called a `SYN+ACK` segment. The acknowledgment confirms to
 
 At this point, the TCP connection is open and both the client and the server are allowed to send TCP segments containing data. This is illustrated in the figure below.
 
-.. figure:: /protocols/figures/tcp-estab.png
+.. figure:: /protocols/figures/tcp-estab.*
    :align: center
    :scale: 70
 
@@ -150,7 +150,7 @@ In the figure above, the connection is considered to be established by the clien
 
 A server could, of course, refuse to open a TCP connection upon reception of a `SYN` segment. This refusal may be due to various reasons. There may be no server process that is listening on the destination port of the `SYN` segment. The server could always refuse connection establishments from this particular client (e.g. due to security reasons) or the server may not have enough resources to accept a new TCP connection at that time. In this case, the server would reply with a TCP segment having its `RST` flag set and containing the `sequence number` of the received `SYN` segment incremented by one as its `acknowledgment number`. This is illustrated in the figure below. We discuss the other usages of the TCP `RST` flag later (see :ref:`TCPRelease`).
 
-.. figure:: /protocols/figures/tcp-estab-rej.png
+.. figure:: /protocols/figures/tcp-estab-rej.*
    :align: center
    :scale: 70
 
@@ -178,7 +178,7 @@ A client host starts in the `Init` state. It then sends a `SYN` segment and ente
 
 Apart from these two paths in the TCP connection establishment FSM, there is a third path that corresponds to the case when both the client and the server send a `SYN` segment to open a TCP connection [#ftcpboth]_. In this case, the client and the server send a `SYN` segment and enter the `SYN Sent` state. Upon reception of the `SYN` segment sent by the other host, they reply by sending a `SYN+ACK` segment and enter the `SYN RCVD` state. The `SYN+ACK` that arrives from the other host allows it to transition to the `Established` state. The figure below illustrates such a simultaneous establishment of a TCP connection.
 
-.. figure:: /protocols/figures/tcp-estab-sim.png
+.. figure:: /protocols/figures/tcp-estab-sim.*
    :align: center
    :scale: 70
 
@@ -365,7 +365,7 @@ In a go-back-n transport protocol such as TCP, the retransmission timeout must b
 
 A good setting of the retransmission timeout clearly depends on an accurate estimation of the round-trip-time of each TCP connection. The round-trip-time differs between TCP connections, but may also change during the lifetime of a single connection. For example, the figure below shows the evolution of the round-trip-time  between two hosts during a period of 45 seconds.
 
-.. figure:: /protocols/figures/tcp-rtt.png
+.. figure:: /protocols/figures/tcp-rtt.*
    :align: center
    :scale: 70
 
@@ -374,7 +374,7 @@ A good setting of the retransmission timeout clearly depends on an accurate esti
 
 The easiest solution to measure the round-trip-time on a TCP connection is to measure the delay between the transmission of a data segment and the reception of a corresponding acknowledgment [#frttmes]_. As illustrated in the figure below, this measurement works well when there are no segment losses.
 
-.. figure:: /protocols/figures/tcp-rtt2.png
+.. figure:: /protocols/figures/tcp-rtt2.*
    :align: center
    :scale: 70
 
@@ -393,7 +393,7 @@ However, when a data segment is lost, as illustrated in the bottom part of the f
 
 To avoid this ambiguity in the estimation of the round-trip-time when segments are retransmitted, recent TCP implementations rely on the `timestamp option` defined in :rfc:`1323`. This option allows a TCP sender to place two 32 bit timestamps in each TCP segment that it sends. The first timestamp, TS Value (`TSval`) is chosen by the sender of the segment. It could for example be the current value of its real-time clock [#ftimestamp]_. The second value, TS Echo Reply (`TSecr`), is the last `TSval` that was received from the remote host and stored in the :term:`TCB`. The figure below shows how the utilization of this timestamp option allows for the disambiguation of the round-trip-time measurement when there are retransmissions.
 
-.. figure:: /protocols/figures/tcp-rtt-ts.png
+.. figure:: /protocols/figures/tcp-rtt-ts.*
    :align: center
    :scale: 70
 
@@ -432,7 +432,7 @@ Then, when other rtt measurements are collected, `srtt` and `rttvar` are updated
 The proposed values for the parameters are :math:`\alpha=\frac{1}{8}` and :math:`\beta=\frac{1}{4}`. This allows a TCP implementation, implemented in the kernel, to perform the `rtt` computation by using shift operations instead of the more costly floating point operations [Jacobson1988]_. The figure below illustrates the computation of the `rto` upon `rtt` changes.
 
 
-.. figure:: /protocols/figures/tcp-rto.png
+.. figure:: /protocols/figures/tcp-rto.*
    :align: center
    :scale: 70
 
@@ -487,7 +487,7 @@ The first extension that was proposed is the fast retransmit heuristic. This ext
 
 From a performance point of view, one issue with TCP's `retransmission timeout` is that when there are isolated segment losses, the TCP sender often remains idle waiting for the expiration of its retransmission timeouts. Such isolated losses are frequent in the global Internet [Paxson99]_.  A heuristic to deal with isolated losses without waiting for the expiration of the retransmission timeout has been included in many TCP implementations since the early 1990s. To understand this heuristic, let us consider the figure below that shows the segments exchanged over a TCP connection when an isolated segment is lost.
 
-.. figure:: /protocols/figures/tcp-loss.png
+.. figure:: /protocols/figures/tcp-loss.*
    :align: center
    :scale: 70
 
@@ -511,7 +511,7 @@ This heuristic requires an additional variable in the TCB (`dupacks`). Most impl
 
 The figure below illustrates the operation of the `fast retransmit` heuristic.
 
-.. figure:: /protocols/figures/tcp-frr.png
+.. figure:: /protocols/figures/tcp-frr.*
    :align: center
    :scale: 70
 
@@ -522,7 +522,7 @@ The figure below illustrates the operation of the `fast retransmit` heuristic.
 
 When losses are not isolated or when the windows are small, the performance of the `fast retransmit` heuristic decreases. In such environments, it is necessary to allow a TCP sender to use a selective repeat strategy instead of the default go-back-n strategy. Implementing selective-repeat requires a change to the TCP protocol as the receiver needs to be able to inform the sender of the out-of-order segments that it has already received. This can be done by using the Selective Acknowledgments (SACK) option defined in :rfc:`2018`. This TCP option is negotiated during the establishment of a TCP connection. If both TCP hosts support the option, SACK blocks can be attached by the receiver to the segments that it sends. SACK blocks allow a TCP receiver to indicate the blocks of data that it has received correctly but out of sequence. The figure below illustrates the utilization of the SACK blocks.
 
-.. figure:: /protocols/figures/tcp-sack.png
+.. figure:: /protocols/figures/tcp-sack.*
    :align: center
    :scale: 70
 

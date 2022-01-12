@@ -347,7 +347,7 @@ SMTP is a text-based protocol like many other application-layer protocols on the
 
 The SMTP protocol, like most text-based protocols, is specified as a :term:`BNF`. The full BNF is defined in :rfc:`5321`. The main SMTP commands are defined by the BNF rules shown in the figure below.
 
-.. figure:: /pkt/smtp-bnf.png
+.. figure:: /pkt/smtp-bnf.*
    :align: center
    :scale: 130
 
@@ -357,7 +357,7 @@ In this BNF, `atext` corresponds to printable ASCII characters. This BNF rule is
 
 The SMTP responses are defined by the BNF shown in the figure below.
 
-.. figure:: /pkt/smtp-response.png
+.. figure:: /pkt/smtp-response.*
    :align: center
 
    BNF specification of the SMTP responses

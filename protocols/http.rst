@@ -103,7 +103,7 @@ More complex HTML elements can also include optional attributes in the start tag
 
 The HTML document shown below is composed of two parts: a header, delineated by the `<head>` and `</head>` markers, and a body (between the `<body>` and `</body>` markers). In the example below, the header only contains a title, but other types of information can be included in the header. The body contains an image, some text and a list with three hyperlinks. The image is included in the web page by indicating its URI between brackets inside the `<img src="...">` marker. It is important to note that the image can reside on any server. The client will automatically download it when rendering the web page. The `<h1>...</h1>` marker is used to specify the first level of headings. The `<ul>` marker indicates an unnumbered list while the `<li>` marker indicates a list item. The `<a href="URI">text</a>` indicates a hyperlink. The `text` will be underlined in the rendered web page and the client will fetch the specified URI when the user clicks on the link.
 
-.. figure:: /protocols/figures/html-page.png
+.. figure:: /protocols/figures/html-page.*
    :align: center
    :scale: 70
 

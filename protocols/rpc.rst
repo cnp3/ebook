@@ -31,33 +31,33 @@ The encoding problem exists in a wide range of applications. In the previous sec
    eXternal
    datatype
 
-The eXternal Data Representation (XDR) Standard, defined in :rfc:`1832` is an early specification that describes how information exchanged during Remote Procedure Calls should be encoded before being transmitted through a network. Since the transport service enables transfering a block of bytes (with the connectionless service) or a stream of bytes (by using the connection-oriented service), XDR maps each datatype onto a sequence of bytes. The caller encodes each data in the appropriate sequence and the callee decodes the received information. Here are a few examples extracted from :rfc:`1832` to illustrate how this encoding/decoding can be performed.
+The eXternal Data Representation (XDR) Standard, defined in :rfc:`1832` is an early specification that describes how information exchanged during Remote Procedure Calls should be encoded before being transmitted through a network. Since the transport service enables transferring a block of bytes (with the connectionless service) or a stream of bytes (by using the connection-oriented service), XDR maps each datatype onto a sequence of bytes. The caller encodes each data in the appropriate sequence and the callee decodes the received information. Here are a few examples extracted from :rfc:`1832` to illustrate how this encoding/decoding can be performed.
 
 For basic data types, :rfc:`1832` simply maps their representation into a sequence of bytes. For example a 32 bits integer is transmitted as follows (with the most significant byte first, which corresponds to big-endian encoding).
 
 
-.. figure:: /pkt/xdr-integer.png
+.. figure:: /pkt/xdr-integer.*
    :align: center
 
 
 XDR also supports 64 bits integers and booleans. The booleans are mapped onto integers (`0` for `false` and `1` for `true`). For the floating point numbers, the encoding defined in the IEEE standard is used.
 
 
-.. figure:: /pkt/xdr-integer-64.png
+.. figure:: /pkt/xdr-integer-64.*
    :align: center
    :scale: 120
 
 In this representation, the first bit (`S`) is the sign (`0` represents positive). The next 11 bits represent the exponent of the number (`E`), in base 2, and the remaining 52 bits are the fractional part of the number (`F`). The floating point number that corresponds to this representation is :math:`(-1)^{S} \times 2^{E-1023} \times 1.F`. XDR also allows encoding complex data types. A first example is the string of bytes. A string of bytes is composed of two parts : a length (encoded as an integer) and a sequence of bytes. For performance reasons, the encoding of a string is aligned to 32 bits boundaries. This implies that some padding bytes may be inserted during the encoding operation is the length of the string is not a multiple of 4. The structure of the string is shown below (source :rfc:`1832`).
 
 
-.. figure:: /pkt/xdr-double.png
+.. figure:: /pkt/xdr-double.*
    :align: center
    :scale: 120
 
 
 In some situations, it is necessary to encode fixed or variable length arrays. XDR :rfc:`1832` supports such arrays. For example, the encoding below corresponds to a variable length array containing n elements. The encoded representation starts with an integer that contains the number of elements and follows with all elements in sequence. It is also possible to encode a fixed-length array. In this case, the first integer (the `n` field) is missing.
 
-.. figure:: /pkt/xdr-array.png
+.. figure:: /pkt/xdr-array.*
    :align: center
    :scale: 120
 

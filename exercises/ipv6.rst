@@ -729,7 +729,7 @@ We start the network topology shown above with the ``sudo python script.py`` com
 
    mininet>
 
-Some of the standard mininet commands assume the utilisation of IPv4 and do not have a direct IPv6 equivalent. Here are some useful commands.
+Some of the standard mininet commands assume the utilization of IPv4 and do not have a direct IPv6 equivalent. Here are some useful commands.
 
 The ``nodes`` command lists the routers and hosts that have been created in the mininet topology.
 

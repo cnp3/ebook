@@ -114,6 +114,13 @@ In a shared medium, a collision may happen if two hosts transmit at almost the s
 
 2. Same question as above, but now consider that the hosts transmit 1000 bits frames at 100 Mbps. The cable has a length of 2 kilometers. C is in the middle of the cable. Each square in the figure below corresponds to 10 microseconds.
 
+  .. no collision between A and B
+  .. no collision B and C
+  .. collision C and last B
+
+
+
+   
  .. tikz::
     :libs: positioning, matrix, arrows
 
@@ -138,9 +145,7 @@ In a shared medium, a collision may happen if two hosts transmit at almost the s
     \draw[very thick, green, ->] (4,7) node [anchor=north, fill=white] {C} -- (5,6);
     \draw[very thick, blue, ->] (10,7) node [anchor=north, fill=white] {B} -- (9,6);
 
-  .. no collision between A and B
-  .. no collision B and C
-  .. collision C and last B
+
 
 
 3. In ALOHA, the hosts rely on acknowledgments to detect whether their frame has been received correctly by the destination. Consider a network running at 100 Mbps where the host exchange 1000 bits frames and acknowledgments of 100 bits. Draw the frames sent by hosts A and B in the figure below. Assume that a square corresponds to 10 microseconds and that the cable has a length of 2 kilometers.
@@ -169,7 +174,9 @@ In a shared medium, a collision may happen if two hosts transmit at almost the s
      \draw[very thick, blue, ->] (10,7) node [anchor=north, fill=white] {B$\rightarrow$A [1000 bits]} -- (9,6);
 
 4. Same question as above, but now assume that the retransmission timer of each host is set to 50 microseconds.
-
+   
+ .. collision between the ack of A->B and C->A
+   
 
  .. tikz::
     :libs: positioning, matrix, arrows
@@ -194,7 +201,7 @@ In a shared medium, a collision may happen if two hosts transmit at almost the s
     \draw[very thick, green, ->] (4,9) node [anchor=north, fill=white] {C$\rightarrow$A [1000 bits]} -- (5,8);
     \draw[very thick, blue, ->] (10,7) node [anchor=north, fill=white] {B$\rightarrow$A [1000 bits]} -- (9,6);
 
-  .. collision between the ack of A->B and C->A
+
 
 5. In practice, hosts transmit variable length frames. Consider a cable having a bandwidth of 100 Mbps and a length of 2 kilometers.
 
@@ -226,7 +233,9 @@ In a shared medium, a collision may happen if two hosts transmit at almost the s
 
 6. With CSMA, hosts need to listen to the communication channel before starting their transmission. Consider again a 2 kilometers long cable where hosts send frames at 100 Mbps. Show in the figure below the correct transmission of frames with CSMA.
 
+     .. C->A needs to be delayed
 
+	
  .. tikz::
      :libs: positioning, matrix, arrows
 
@@ -250,11 +259,13 @@ In a shared medium, a collision may happen if two hosts transmit at almost the s
      \draw[very thick, green, ->] (4,9) node [anchor=north, fill=white] {C$\rightarrow$A [1000 bits]} -- (5,8);
      \draw[very thick, blue, ->] (10,7) node [anchor=north, fill=white] {B$\rightarrow$A [1000 bits]} -- (9,6);
 
-     .. C->A needs to be delayed
+
 
 
 7. CSMA/CD does not use acknowledgments but instead assumes that each host can detect collisions by listening while transmitting. Consider a 2 kilometers long cable running at 10 Mbps. Show in the figure below the utilization of the communication channel and the collisions that would occur. For this exercise, do not attempt to retransmit the frames that have collided.
 
+     .. collision for A->B and C->A no collision for B
+   
  .. tikz::
      :libs: positioning, matrix, arrows
 
@@ -279,7 +290,7 @@ In a shared medium, a collision may happen if two hosts transmit at almost the s
      \draw[very thick, blue, ->] (10,7) node [anchor=north, fill=white] {B$\rightarrow$A [100 bits]} -- (9,6);
 
 
-     .. collision for A->B and C->A no collision for B
+
 
 
 

@@ -58,7 +58,7 @@ There are three main types of datalink layers. The simplest datalink layer is wh
 
 The second type of datalink layer is the one used in Local Area Networks (LAN). Conceptually, a LAN is a set of communicating devices such that any two devices can directly exchange frames through the datalink layer. Both hosts and routers can be connected to a LAN. Some LANs only connect a few devices, but there are LANs that can connect hundreds or even thousands of devices.
 
-.. figure:: /protocols/figures/simple-lan.png
+.. figure:: /protocols/figures/simple-lan.*
    :align: center
    :scale: 80
 
@@ -188,7 +188,7 @@ When considering the allocation of IPv6 addresses, two types of address allocati
 
 There is one difficulty with the utilization of these IPv6 prefixes. Consider Belnet, the Belgian research  ISP that has been allocated the ``2001:6a8::/32`` prefix. Universities are connected to Belnet. UCLouvain uses prefix ``2001:6a8:3080::/48`` while the University of Liege uses ``2001:6a8:2d80::/48``. A commercial ISP uses prefix ``2a02:2788::/32``. Both Belnet and the commercial ISP are connected to the global Internet.
 
-.. figure:: /protocols/figures/belnet.png
+.. figure:: /protocols/figures/belnet.*
    :align: center
    :scale: 70
 
@@ -264,7 +264,7 @@ The last type of unicast IPv6 addresses are the `Link Local Unicast` addresses. 
 
 The addresses described above are unicast addresses. These addresses are used to identify (interfaces on) hosts and routers. They can appear as source and destination addresses in the IPv6 packets. When a host sends a packet towards a unicast address, this packet is delivered by the network to its final destination. There are situations, such as when delivering video or television signal to a large number of receivers, where it is useful to have a network that can efficiently deliver the same packet to a large number of receivers. This is the `multicast` service. A multicast service can be provided in a LAN. In this case, a multicast address identifies a set of receivers and each frame sent towards this address is delivered to all receivers in the group. Multicast can also be used in a network containing routers and hosts. In this case, a multicast address identifies also a group of receivers and the network delivers efficiently each multicast packet to all members of the group. Consider for example the network below.
 
-    .. tikz::
+    .. tikz:: A simple network with hosts and routers
        :libs: positioning
 
        \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
@@ -322,7 +322,7 @@ IPv6 packet format
 
 The IPv6 packet format was heavily inspired by the packet format proposed for the SIPP protocol in :rfc:`1710`. The standard IPv6 header defined in :rfc:`2460` occupies 40 bytes and contains 8 different fields, as shown in the figure below.
 
-.. figure:: /pkt/ipv6.png
+.. figure:: /pkt/ipv6.*
    :align: center
    :scale: 120
 
@@ -348,7 +348,7 @@ When a host receives an IPv6 packet, it needs to determine which transport proto
 
 For example, an IPv6 packet that contains an TCP segment would appear as shown in the figure below.
 
-.. figure:: /pkt/ipv6-tcp.png
+.. figure:: /pkt/ipv6-tcp.*
    :scale: 120
 
    An IPv6 packet containing an TCP segment
@@ -370,7 +370,7 @@ The last two headers are used to add security above IPv6 and implement IPSec. Th
 
 The `Hop-by-Hop Options` header was designed to make IPv6 easily extensible. In theory, this option could be used to define new fields that were not foreseen when IPv6 was designed. It is intended to be processed by both routers and hosts.  Deploying an extension to a network protocol can be difficult in practice since some nodes already support the extensions while others still use the old version and do not understand the extension. To deal with this issue, the IPv6 designers opted for a Type-Length-Value encoding of these IPv6 options. The `Hop-by-Hop Options` header is encoded as shown below.
 
-.. figure:: /pkt/ipv6-hbh.png
+.. figure:: /pkt/ipv6-hbh.*
    :scale: 120
 
    The IPv6 `Hop-by-Hop Options` header
@@ -411,17 +411,26 @@ FDDI  		        4352 bytes
 
 Although IPv6 can send 64 KBytes long packets, few datalink layer technologies that are used today are able to send a 64 KBytes packet inside a frame. Furthermore, as illustrated in the figure below, another problem is that a host may send a packet that would be too large for one of the datalink layers used by the intermediate routers.
 
-.. figure:: /protocols/figures/ipv6-frag.png
-   :align: center
-   :scale: 70
+    .. tikz:: The need for fragmentation and reassembly
+       :libs: positioning
 
-   The need for fragmentation and reassembly
+       \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
+       \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
+       \node[host] (A) {A};
+       \node[router, right =of A] (R1) {R1};
+       \node[router, right=of R1] (R2) {R2};
+       \node[host, left =of R2] (B) {B};
+       \draw[black] (A) -- (R1) node [midway, below] { {\tiny MTU:9188}};
+       \draw[black] (R1) -- (R2) node [midway, below] { {\tiny MTU:1500}};
+       \draw[black] (R2) -- (B) node [midway, below] { {\tiny MTU:4478}};
+       
+          
 
-.. Index:: IPv4 fragmentation and reassembly
+.. index:: IPv4 fragmentation and reassembly
 
 To solve these problems, IPv6 includes a packet fragmentation and reassembly mechanism. In IPv4, fragmentation was performed by both the hosts and the intermediate routers. However, experience with IPv4 has shown that fragmenting packets in routers was costly [KM1995]_.  For this reason, the developers of IPv6 have decided that routers would not fragment packets anymore. In IPv6, fragmentation is only performed by the source host. If a source has to send a packet which is larger than the MTU of the outgoing interface, the packet needs to be fragmented before being transmitted. In IPv6, each packet fragment is an IPv6 packet that includes the `Fragmentation` header. This header is included by the source in each packet fragment. The receiver uses them to reassemble the received fragments.
 
-.. figure:: /pkt/ipv6-fragment.png
+.. figure:: /pkt/ipv6-fragment.*
    :scale: 120
 
    IPv6 fragmentation header
@@ -446,7 +455,7 @@ Some IPv6 implementations send the fragments of a packet in increasing fragment 
 
 The figure below provides an example of a fragmented IPv6 packet containing a UDP segment. The `Next Header` type reserved for the IPv6 fragmentation option is 44.
 
-.. figure:: /protocols/figures/ipv6-frag-example.png
+.. figure:: /protocols/figures/ipv6-frag-example.*
    :align: center
    :scale: 70
 
@@ -502,7 +511,7 @@ Note that the reassembly algorithm must deal with the unreliability of the IP ne
 
 The last type of `IPv6 header extension` is the `Routing` header. The ``type 0`` routing header defined in :rfc:`2460` is an example of an IPv6 option that must be processed by some routers. This option is encoded as shown below.
 
-.. figure:: /pkt/ipv6-routing-0.png
+.. figure:: /pkt/ipv6-routing-0.*
    :align: center
    :scale: 100
 
@@ -523,7 +532,7 @@ It is sometimes necessary for intermediate routers or the destination host to in
 
 ICMPv6 messages are carried inside IPv6 packets (the `Next Header` field for ICMPv6 is ``58``). Each ICMP message contains a 32 bits header with an 8 bits `type` field, a `code` field and a 16 bits checksum computed over the entire ICMPv6 message. The message body contains a copy of the IPv6 packet in error.
 
-.. figure:: /pkt/icmpv6.png
+.. figure:: /pkt/icmpv6.*
    :align: center
    :scale: 120
 
@@ -652,7 +661,7 @@ Interactions between IPv6 and the datalink layer
 
 IPv6 hosts and routers frequently interact with the datalink layer service. To understand the main interactions, it is useful to analyze all the packets that are exchanged when a simple network containing a few hosts and routers is built. Let us first start with a LAN containing two hosts [#fMAC]_.
 
-  .. tikz::
+  .. tikz:: A simple network
      :libs: positioning, matrix, shapes
 
      \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
@@ -674,14 +683,14 @@ Hosts ``A`` and ``B`` are attached to the same datalink layer network. They can 
 
  Appendix A of :rfc:`4291` provides the algorithm used to convert a 48 bits MAC address into a 64 bits host identifier. This algorithm builds upon the structure of the MAC addresses. A MAC address is represented as shown in the figure below.
 
-  .. figure:: /pkt/macaddr.png
+  .. figure:: /pkt/macaddr.*
      :align: center
 
      A MAC address
 
  MAC addresses are allocated in blocks of :math:`2^{20}`. When a company registers for a block of MAC addresses, it receives an identifier. company identifier is then used to populated the `c` bits of the MAC addresses. The company can allocate all addresses in starting with this prefix and manages the `m` bits as it wishes.
 
-  .. figure:: /pkt/macaddr-eui64.png
+  .. figure:: /pkt/macaddr-eui64.*
      :align: center
 
      A MAC address converted into a 64 bits host identifier
@@ -765,7 +774,7 @@ The Stateless Address Autoconfiguration (SLAAC) mechanism defined in :rfc:`4862`
 
 To automatically configure its global IPv6 address, the host must know the globally routable IPv6 prefix that is used on the local subnet. IPv6 routers regularly multicast ICMPv6 Router Advertisement messages that indicate the IPv6 prefix assigned to the subnet. The Router Advertisement message contains several interesting fields.
 
-.. figure:: /pkt/router-adv.png
+.. figure:: /pkt/router-adv.*
    :align: center
    :scale: 120
 
@@ -775,7 +784,7 @@ This message is sent from the link-local address of the router on the subnet. It
 
 Several options can be included in the Router Advertisement message. The simplest one is the MTU option that indicates the MTU to be used within the subnet. Thanks to this option, it is possible to ensure that all devices attached to the same subnet use the same MTU. Otherwise, operational problems could occur. The `Prefix` option is more important. It provides information about the prefix(es) that is (are) advertised by the router on the subnet.
 
-.. figure:: /pkt/router-prefix.png
+.. figure:: /pkt/router-prefix.*
    :align: center
    :scale: 120
 
