@@ -54,7 +54,7 @@ A TCP header contains the following fields :
 
  - the `checksum` field contains the value of the Internet checksum computed over the entire TCP segment and a pseudo-header as with UDP
  - the `Reserved` field was initially reserved for future utilization. It is now used by :rfc:`3168`.
- - the `TCP Header Length` (THL) or `Data Offset` field is a four bits field that indicates the size of the TCP header in 32 bit words. The maximum size of the TCP header is thus 64 bytes.
+ - the `TCP Header Length` (THL) or `Data Offset` field is a four-bit field that indicates the size of the TCP header in 32 bit words. The maximum size of the TCP header is thus 64 bytes.
  - the `Optional header extension` is used to add optional information to the TCP header. Thanks to this header extension, it is possible to add new fields to the TCP header that were not planned in the original specification. This allowed TCP to evolve since the early eighties. The details of the TCP header extension are explained in sections :ref:`TCPOpen` and :ref:`TCPReliable`.
 
     .. _fig-tcpports:
@@ -108,15 +108,15 @@ TCP connection establishment
 
 .. index:: TCP Connection establishment, TCP SYN, TCP SYN+ACK
 
-A TCP connection is established by using a three-way handshake. The connection establishment phase uses the `sequence number`, the `acknowledgment number` and the `SYN` flag. When a TCP connection is established, the two communicating hosts negotiate the initial sequence number to be used in both directions of the connection. For this, each TCP entity maintains a 32 bits counter, which is supposed to be incremented by one at least every 4 microseconds and after each connection establishment [#ftcpclock]_. When a client host wants to open a TCP connection with a server host, it creates a TCP segment with :
+A TCP connection is established by using a three-way handshake. The connection establishment phase uses the `sequence number`, the `acknowledgment number` and the `SYN` flag. When a TCP connection is established, the two communicating hosts negotiate the initial sequence number to be used in both directions of the connection. For this, each TCP entity maintains a 32-bit counter, which is supposed to be incremented by one at least every 4 microseconds and after each connection establishment [#ftcpclock]_. When a client host wants to open a TCP connection with a server host, it creates a TCP segment with :
 
  - the `SYN` flag set
- - the `sequence number` set to the current value of the 32 bits counter of the client host's TCP entity
+ - the `sequence number` set to the current value of the 32-bit counter of the client host's TCP entity
 
 Upon reception of this segment (which is often called a `SYN segment`), the server host replies with a segment containing :
 
  - the `SYN` flag set
- - the `sequence number` set to the current value of the 32 bits counter of the server host's TCP entity
+ - the `sequence number` set to the current value of the 32-bit counter of the server host's TCP entity
  - the `ACK` flag set
  - the `acknowledgment number` set to the `sequence number` of the received `SYN` segment incremented by 1 :math:`\pmod{2^{32}}`. When a TCP entity sends a segment having `x+1` as acknowledgment number, this indicates that it has received all data up to and including sequence number `x` and that it is expecting data having sequence number `x+1`. As the `SYN` flag was set in a segment having sequence number `x`, this implies that setting the `SYN` flag in a segment consumes one sequence number.
 
@@ -191,11 +191,11 @@ Apart from these two paths in the TCP connection establishment FSM, there is a t
 
  When a TCP entity opens a TCP connection, it creates a Transmission Control Block (:term:`TCB`). The TCB contains the entire state that is maintained by the TCP entity for each TCP connection. During connection establishment, the TCB contains the local IP address, the remote IP address, the local port number, the remote port number, the current local sequence number and the last sequence number received from the remote entity. Until the mid-1990s, TCP implementations had a limit on the number of TCP connections that could be in the `SYN RCVD` state at a given time. Many implementations set this limit to about 100 TCBs. This limit was considered sufficient even for heavily loaded HTTP servers given the small delay between the reception of a `SYN` segment and the reception of the `ACK` segment that terminates the establishment of the TCP connection. When the limit of 100 TCBs in the `SYN Rcvd` state is reached, the TCP entity discards all received TCP `SYN` segments that do not correspond to an existing TCB.
 
- This limit of 100 TCBs in the `SYN Rcvd` state was chosen to protect the TCP entity from the risk of overloading its memory with too many TCBs in the `SYN Rcvd` state. However, it was also the reason for a new type of Denial of Service (DoS) attack :rfc:`4987`. A DoS attack is defined as an attack where an attacker can render a resource unavailable in the network. For example, an attacker may cause a DoS attack on a 2 Mbps link used by a company by sending more than 2 Mbps of packets through this link. In this case, the DoS attack was more subtle. As a TCP entity discards all received `SYN` segments as soon as it has 100 TCBs in the `SYN Rcvd` state, an attacker simply had to send a few 100 `SYN` segments every second to a server and never reply to the received `SYN+ACK` segments. To avoid being caught, attackers were of course sending these `SYN` segments with a different address than their own IP address [#fspoofing]_. On most TCP implementations, once a TCB entered the `SYN Rcvd` state, it remained in this state for several seconds, waiting for a retransmission of the initial `SYN` segment. This attack was later called a `SYN flood` attack and the servers of the ISP named panix were among the first to `be affected <http://memex.org/meme2-12.html>`_ by this attack.
+ This limit of 100 TCBs in the `SYN Rcvd` state was chosen to protect the TCP entity from the risk of overloading its memory with too many TCBs in the `SYN Rcvd` state. However, it was also the reason for a new type of Denial of Service (DoS) attack :rfc:`4987`. A DoS attack is defined as an attack where an attacker can render a resource unavailable in the network. For example, an attacker may cause a DoS attack on a 2 Mbps link used by a company by sending more than 2 Mbps of packets through this link. In this case, the DoS attack was more subtle. As a TCP entity discards all received `SYN` segments as soon as it has 100 TCBs in the `SYN Rcvd` state, an attacker simply had to send a few 100 `SYN` segments every second to a server and never reply to the received `SYN+ACK` segments. To avoid being caught, attackers were of course sending these `SYN` segments with a different address than their own IP address [#fspoofing]_. On most TCP implementations, once a TCB entered the `SYN Rcvd` state, it remained in this state for several seconds, waiting for a retransmission of the initial `SYN` segment. This attack was later called a `SYN flood` attack and the servers of the ISP named Panix were among the first to `be affected <http://memex.org/meme2-12.html>`_ by this attack.
 
  .. spelling::
 
-   panix
+   Panix
 
  To avoid the `SYN flood` attacks, recent TCP implementations no longer enter the `SYN Rcvd` state upon reception of a `SYN segment`. Instead, they reply directly with a `SYN+ACK` segment and wait until the reception of a valid `ACK`. This implementation trick is only possible if the TCP implementation is able to verify that the received `ACK` segment acknowledges the `SYN+ACK` segment sent earlier without storing the initial sequence number of this `SYN+ACK` segment in a TCB. The solution to solve this problem, which is known as `SYN cookies <http://cr.yp.to/syncookies.html>`_ is to compute the 32 bits of the `ISN` as follows :
 
