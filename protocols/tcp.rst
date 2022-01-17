@@ -224,11 +224,11 @@ The TCP options are encoded by using a Type Length Value format where :
 
  - the first byte indicates the `type` of the option.
  - the second byte indicates the total length of the option (including the first two bytes) in bytes
- - the last bytes are specific for each type of option
+ - the remaining bytes are specific for each type of option
 
-:rfc:`793` defines the Maximum Segment Size (MSS) TCP option that must be understood by all TCP implementations. This option (type 2) has a length of 4 bytes and contains a 16 bits word that indicates the MSS supported by the sender of the `SYN` segment. The MSS option can only be used in TCP segments having the `SYN` flag set.
+:rfc:`793` defines the Maximum Segment Size (MSS) TCP option that must be understood by all TCP implementations. This option (type 2) has a length of 4 bytes and contains a 16-bit word that indicates the MSS supported by the sender of the `SYN` segment. The MSS option can only be used in TCP segments having the `SYN` flag set.
 
-:rfc:`793` also defines two special options that must be supported by all TCP implementations. The first option is `End of option`. It is encoded as a single byte having value `0x00` and can be used to ensure that the TCP header extension ends on a 32 bits boundary. The `No-Operation` option, encoded as a single byte having value `0x01`, can be used when the TCP header extension contains several TCP options that should be aligned on 32 bit boundaries. All other options [#ftcpoptions]_ are encoded using the TLV format.
+:rfc:`793` also defines two special options that must be supported by all TCP implementations. The first option is `End of option`. It is encoded as a single byte having value `0x00` and can be used to ensure that the TCP header extension ends on a 32-bit boundary. The `No-Operation` option, encoded as a single byte having value `0x01`, can be used when the TCP header extension contains several TCP options that should be aligned on 32-bit boundaries. All other options [#ftcpoptions]_ are encoded using the TLV format.
 
 .. note:: The robustness principle
 
@@ -635,7 +635,7 @@ The `TIME\_WAIT` state is different from the other states of the TCP FSM. A TCP 
 
 .. [#fspoofing] Sending a packet with a different source IP address than the address allocated to the host is called sending a :term:`spoofed packet`.
 
-.. [#ftcpoptions] The full list of all TCP options may be found at http://www.iana.org/assignments/tcp-parameters/
+.. [#ftcpoptions] The full list of all TCP options may be found at https://www.iana.org/assignments/tcp-parameters/
 
 .. [#fackflag] In practice, only the `SYN` segment do not have their `ACK` flag set.
 
