@@ -136,7 +136,7 @@ Diffie-Hellman key exchange algorithm is used within the
 ``ssh`` protocol. In this case, each host has both a private and a public key.  (Note that
 :math:`g` is a generator for the subgroup of the Galois field of order :math:`p`, where
 :math:`p` is a prime number, and || is the concatenation operator.  For additional background
-information, see :rfc:`4253`.)
+information, see [Schneier1996]_.)
 
  - the client generates the random number :math:`a` and sends
    :math:`A=g^{a} \mod p` to the server
