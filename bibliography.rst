@@ -672,6 +672,7 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
    Savola
    Scharf
    Scheifler
+   Schneier
    Schulzrinne
    Scudder
    Sechrest
