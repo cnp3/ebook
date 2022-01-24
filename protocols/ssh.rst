@@ -132,8 +132,11 @@ Once the cryptographic algorithms have been negotiated, the key exchange algorit
 used to negotiate a secret key that will be shared by the client and the server.
 These key exchange algorithms include some variations over
 the basic algorithms. As an example, let us analyze how the
-Diffie Hellman key exchange algorithm is used within the
-``ssh`` protocol. In this case, each host has both a private and a public key.
+Diffie-Hellman key exchange algorithm is used within the
+``ssh`` protocol. In this case, each host has both a private and a public key.  (Note that
+:math:`g` is a generator for the subgroup of the Galois field of order :math:`p`, where
+:math:`p` is a prime number, and || is the concatenation operator.  For additional background
+information, see [Schneier1996]_.)
 
  - the client generates the random number :math:`a` and sends
    :math:`A=g^{a} \mod p` to the server
@@ -144,11 +147,11 @@ Diffie Hellman key exchange algorithm is used within the
    messages sent by the client (resp. server), :math:`KEX\_INIT_{Client}`
    (resp.  :math:`KEX\_INIT_{Server}`) is the key exchange message sent by
    the client (resp. server) and :math:`A`, :math:`B` and :math:`K` are the
-   messages of the Diffie Hellman key exchange
+   messages of the Diffie-Hellman key exchange
  - the client can recompute :math:`K=A^{b} \mod p` and verify the
    signature provided by the server
 
-This is a slightly modified authenticated Diffie Hellman key exchange
+This is a slightly modified authenticated Diffie-Hellman key exchange
 with two interesting points. The first point is that
 when the server authenticates the key exchange it does not provide a
 certificate. This is because ``ssh`` assumes that the client will store
@@ -171,7 +174,7 @@ has been upgraded and that a new key has been generated during this upgrade.
 .. index:: downgrade attack
 
 The second point is that the server authenticates not only the result
-of the Diffie Hellman exchange but also a hash of all the information
+of the Diffie-Hellman exchange but also a hash of all the information
 sent and received during the exchange. This is important to prevent
 `downgrade attacks`. A `downgrade attack` is an attack where an
 active attacker modifies the messages sent by the communicating hosts
@@ -192,7 +195,7 @@ is a technique that is frequently used to prevent downgrade attacks.
 
 .. note:: Single use keys
 
-   Thanks to the Diffie Hellman key exchange, the client and the
+   Thanks to the Diffie-Hellman key exchange, the client and the
    servers share key :math:`K`. A naive implementation would probably
    directly use this key for all the cryptographic algorithms that
    have been negotiated for this session. Like most security protocols,
@@ -285,7 +288,7 @@ command on ``computer2``, she can create an ``ssh`` session on this computer
 and type (again) her password. With the host-based authentication scheme,
 ``computer1`` signs a message with its private key to confirm that
 it has already authenticated Alice. ``computer2`` would then accept
-Alice's session without asking her credentials.
+Alice's session without asking for her credentials.
 
 The ``ssh`` protocol includes other features that are beyond the
 scope of this book. Additional details may be found in [BS2005]_.
