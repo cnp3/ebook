@@ -113,6 +113,8 @@ The `first edition <https://www.computer-networking.info/firstedition.html>`_ of
     Saylor
     Stephane
     Bortzmeyer
+    Greg
+    Skinner
     
 Over the years, students and colleagues contributed to parts of the text, including:
 
@@ -169,6 +171,7 @@ The main contributors to the third edition were `Olivier Bonaventure`_ and `Quen
  - Nicolas Rosar
  - Gauthier de Moffarts
  - Marcin Wilk
+ - Greg Skinner
 
 
 The entire source code for the ebook is available on `https://github.com/CNP3/ebook <https://github.com/CNP3/ebook>`_ If you spot any error, typo or want to improve the ebook, please add issues or suggest pull requests.

@@ -325,6 +325,7 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
 .. [Russel06] Russell A., `Rough Consensus and Running Code and the Internet-OSI Standards War <https://dx.doi.org/10.1109/MAHC.2006.42>`_, IEEE Annals of the History of Computing, July-September 2006 
 .. .. [SAO1990] Sidhu, G., Andrews, R., Oppenheimer, A., `Inside AppleTalk <ftp://ftp.turingbirds.com/electronics/books/buses_networks/apple_localtalk.pdf>`_, Addison-Wesley, 1990 
 .. [SARK2002] Subramanian, L., Agarwal, S., Rexford, J., Katz, R.. .. `Characterizing the Internet hierarchy from multiple vantage points <https://dx.doi.org/10.1109/INFCOM.2002.1019307>`_. In IEEE INFOCOM, 2002 
+.. [Schneier1996] Schneier, B., `Applied Cryptography: Protocols, Algorithms, and Source Code in C`_, Second Edition, Wiley, 1996
 .. [Sechrest] Sechrest, S., `An Introductory 4.4BSD Interprocess Communication Tutorial <http://docs.freebsd.org/44doc/psd/20.ipctut/paper.pdf>`_, 4.4BSD Programmer's Supplementary Documentation 
 .. [SG1990] Scheifler, R., Gettys, J., `X Window System: The Complete Reference to Xlib <https://www.x.org/releases/current/doc/xproto/x11protocol.html>`_, X Protocol, ICCCM, XLFD, X Version 11, Release 4, Digital Press
 .. [SGP98] Stone, J., Greenwald, M., Partridge, C., and Hughes, J., `Performance of checksums and CRC's over real data <https://dx.doi.org/10.1109/90.731187>`_. IEEE/ACM Transactions Networking 6, 5 (Oct. 1998), 529-543. 
@@ -671,6 +672,7 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
    Savola
    Scharf
    Scheifler
+   Schneier
    Schulzrinne
    Scudder
    Sechrest
