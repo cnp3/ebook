@@ -106,10 +106,10 @@ The second tool is the flow graph that is part of the `Statistics` menu. It prov
 
 Use wireshark to analyze the packet traces described earlier :download:`traces/simple-trace.pcap`.
 
-When analyzing packet traces with wireshark_, it is often very useful to use `Display filters` that only show the packets that match some specific criteria. There filters are described in several online documents:
+When analyzing packet traces with wireshark_, it is often very useful to use `Display filters` that only show the packets that match some specific criteria. These filters are described in several online documents:
 
  - the `wireshark wiki <https://wiki.wireshark.org/>` page on `Display filters <https://wiki.wireshark.org/DisplayFilters>`_
- - a nice `list of Wireshark Display Filters <https://networksecuritytools.com/list-wireshark-display-filters/>`_ by Robert Allen
+ - a nice `tutorial on Wireshark Display Filters <https://unit42.paloaltonetworks.com/using-wireshark-display-filter-expressions>`_ by Brad Duncan
 
 You can now use your understanding of wireshark_ and tcpdump_ to analyze a 2-minutes long packet trace.
 

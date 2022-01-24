@@ -77,7 +77,7 @@ dig_ also contains some additional parameters and flags that are described in th
 10. The DNS protocol can run over UDP and over TCP. Most DNS servers prefer to use UDP because it consumes fewer resources on the server. However, TCP is useful when a large answer is expected. Compare `time dig +tcp` and `time dig` to query a root DNS server. Is it faster to receive an answer via TCP or via UDP ?
 
 
-Besides `dig`, another way to analyze the DNS is to look at packet traces with tools such as `wireshark <https://www.wireshark.org>`_ or `tcpdump <https://www.tcpdump.org>`_ These tools can capture packets in a network and also display and analyze their content. `Wireshark <https://www.wireshark.org>`_  provides a flexible Graphical User Interface that eases the analysis of the captured packets. The three questions below should help you to better understand the important fields of DNS messages.
+Besides `dig`, another way to analyze the DNS is to look at packet traces with tools such as _wireshark or _tcpdump . These tools can capture packets in a network and also display and analyze their content. Wireshark provides a flexible Graphical User Interface that eases the analysis of the captured packets. The three questions below should help you to better understand the important fields of DNS messages.
 
 
 .. inginious:: mcq-pkt-dns-1

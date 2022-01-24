@@ -528,7 +528,7 @@ Configuring IPv6 Networks
 
 With the previous exercises, you have learned how to reason about IPv6 networks "on paper". Given the availability of IPv6 implementations, it is also possible to carry out experiments in real and virtual labs. Several virtual environments are possible. In this section, we focus on mininet_. mininet_ is an emulation framework developed at Stanford University that leverages the namespaces features of recent Linux kernels. With those namespaces, a single Linux kernel can support a variety of routers and hosts interconnected by virtual links. mininet_ has been used by several universities as an educational tool, but unfortunately it was designed without IPv6 support.
 
-During the last years, `Olivier Tilmans <https://inl.info.ucl.ac.be/otilmans.html>`_ and `Mathieu Jadin <https://inl.info.ucl.ac.be/mjadin.html>`_ have developed the missing piece to enable students to use mininet_ to experiment with IPv6: ipmininet_.  ipmininet_ is a python module that provides the classes that are required to automatically configure IPv6 networks with different routing protocols. It is available from PyPi from https://pypi.python.org/ipmininet.
+During the last years, `Olivier Tilmans <https://inl.info.ucl.ac.be/otilmans.html>`_ and `Mathieu Jadin <https://inl.info.ucl.ac.be/mjadin.html>`_ have developed the missing piece to enable students to use mininet_ to experiment with IPv6: ipmininet_.  ipmininet_ is a python module that provides the classes that are required to automatically configure IPv6 networks with different routing protocols. It is available from PyPi from https://pypi.org/project/ipmininet/
 
 The syntax of IPMininet_ is relatively simple and can be learned by looking at a few examples.
 

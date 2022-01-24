@@ -873,8 +873,10 @@ Unless otherwise noted, we assume for the questions in this section that the fol
 
    manpage
 
-.. [#fsysctl] On Linux, most of the parameters to tune the TCP stack are accessible via :manpage:`sysctl`. These parameters are briefly described in https://github.com/torvalds/linux/blob/master/Documentation/networking/ip-sysctl.txt and in the :manpage:`tcp` manpage. Each script sets some of these configuration variables.
+.. [#fsysctl] On Linux, most of the parameters to tune the TCP stack are accessible via :manpage:`sysctl`. These parameters are briefly described in https://github.com/torvalds/linux/blob/master/Documentation/networking/ip-sysctl.rst and in the :manpage:`tcp` manpage. Each script sets some of these configuration variables.
 
+
+	      
 .. spelling::
 
    virtualbox
