@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg"     xmlns:xlink="http://www.w3.org/1999/xlink"><text style="font-size:14px; font-family:DejaVu Sans Mono; " y="0" x="0" xml:space='preserve' ><tspan x="0"> </tspan> <tspan x="0" dy="18"> ehlo = "EHLO" SP Domain CRLF
+</tspan> <tspan x="0" dy="18"> mail = "MAIL FROM:" Path CRLF
+</tspan> <tspan x="0" dy="18"> rcpt = "RCPT TO:" ( "&lt;Postmaster@" Domain "&gt;" / "&lt;Postmaster&gt;" / Path ) CRLF
+</tspan> <tspan x="0" dy="18"> data = "DATA" CRLF
+</tspan> <tspan x="0" dy="18"> quit = "QUIT" CRLF
+</tspan> <tspan x="0" dy="18"> Path           = "&lt;" Mailbox "&gt;"
+</tspan> <tspan x="0" dy="18"> Domain         = sub-domain *("." sub-domain)
+</tspan> <tspan x="0" dy="18"> sub-domain     = Let-dig [Ldh-str]
+</tspan> <tspan x="0" dy="18"> Let-dig        = ALPHA / DIGIT
+</tspan> <tspan x="0" dy="18"> Ldh-str        = *( ALPHA / DIGIT / "-" ) Let-dig
+</tspan> <tspan x="0" dy="18"> Mailbox        = Local-part "@" Domain
+</tspan> <tspan x="0" dy="18"> Local-part     = Dot-string
+</tspan> <tspan x="0" dy="18"> Dot-string     = Atom *("."  Atom)
+</tspan> <tspan x="0" dy="18"> Atom           = 1*atext</tspan></text> </svg>

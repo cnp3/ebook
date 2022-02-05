@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg"     xmlns:xlink="http://www.w3.org/1999/xlink"><text style="font-size:14px; font-family:Courier; " y="0" x="0" xml:space='preserve' ><tspan x="0"> </tspan> <tspan x="0" dy="18">
+</tspan> <tspan x="0" dy="18">; &lt;&lt;&gt;&gt; DiG 9.6-ESV-R4-P3 &lt;&lt;&gt;&gt; -t AAAA www.ietf.org
+</tspan> <tspan x="0" dy="18">;; global options: +cmd
+</tspan> <tspan x="0" dy="18">;; Got answer:
+</tspan> <tspan x="0" dy="18">;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NOERROR, id: 55279
+</tspan> <tspan x="0" dy="18">;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 6, ADDITIONAL: 11
+</tspan> <tspan x="0" dy="18">
+</tspan> <tspan x="0" dy="18">;; QUESTION SECTION:
+</tspan> <tspan x="0" dy="18">;www.ietf.org.                  IN      AAAA
+</tspan> <tspan x="0" dy="18">
+</tspan> <tspan x="0" dy="18">;; ANSWER SECTION:
+</tspan> <tspan x="0" dy="18">www.ietf.org.           1661    IN      AAAA    2001:1890:123a::1:1e
+</tspan> <tspan x="0" dy="18">
+</tspan> <tspan x="0" dy="18">;; AUTHORITY SECTION:
+</tspan> <tspan x="0" dy="18">ietf.org.               1661    IN      NS      ns1.hkg1.afilias-nst.info.
+</tspan> <tspan x="0" dy="18">ietf.org.               1661    IN      NS      ns1.sea1.afilias-nst.info.
+</tspan> <tspan x="0" dy="18">ietf.org.               1661    IN      NS      ns0.amsl.com.
+</tspan> <tspan x="0" dy="18">ietf.org.               1661    IN      NS      ns1.yyz1.afilias-nst.info.
+</tspan> <tspan x="0" dy="18">ietf.org.               1661    IN      NS      ns1.ams1.afilias-nst.info.
+</tspan> <tspan x="0" dy="18">ietf.org.               1661    IN      NS      ns1.mia1.afilias-nst.info.
+</tspan> <tspan x="0" dy="18">
+</tspan> <tspan x="0" dy="18">;; ADDITIONAL SECTION:
+</tspan> <tspan x="0" dy="18">ns1.sea1.afilias-nst.info. 70552 IN     A       65.22.8.1
+</tspan> <tspan x="0" dy="18">ns1.sea1.afilias-nst.info. 74301 IN     AAAA    2a01:8840:8::1
+</tspan> <tspan x="0" dy="18">ns1.yyz1.afilias-nst.info. 70552 IN     A       65.22.9.1
+</tspan> <tspan x="0" dy="18">ns1.yyz1.afilias-nst.info. 74301 IN     AAAA    2a01:8840:9::1
+</tspan> <tspan x="0" dy="18">ns1.ams1.afilias-nst.info. 2597 IN      A       65.22.6.79
+</tspan> <tspan x="0" dy="18">ns0.amsl.com.           148523  IN      A       64.170.98.2
+</tspan> <tspan x="0" dy="18">ns0.amsl.com.           148523  IN      AAAA    2001:1890:126c::1:2
+</tspan> <tspan x="0" dy="18">ns1.hkg1.afilias-nst.info. 2073 IN      A       65.22.6.1
+</tspan> <tspan x="0" dy="18">ns1.hkg1.afilias-nst.info. 2073 IN      AAAA    2a01:8840:6::1
+</tspan> <tspan x="0" dy="18">ns1.mia1.afilias-nst.info. 70552 IN     A       65.22.7.1
+</tspan> <tspan x="0" dy="18">ns1.mia1.afilias-nst.info. 74301 IN     AAAA    2a01:8840:7::1
+</tspan> <tspan x="0" dy="18">
+</tspan> <tspan x="0" dy="18">;; Query time: 16 msec
+</tspan> <tspan x="0" dy="18">;; SERVER: 109.88.203.3#53(109.88.203.3)
+</tspan> <tspan x="0" dy="18">;; WHEN: Tue Oct  8 20:59:02 2013
+</tspan> <tspan x="0" dy="18">;; MSG SIZE  rcvd: 451
+</tspan> <tspan x="0" dy="18">
+</tspan></text> </svg>
