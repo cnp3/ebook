@@ -1,0 +1,11 @@
+body > .container-xl {
+  transform: translate(0);
+}
+
+.navbar-syllabus {
+  line-height: 1.4;
+}
+
+.navbar-syllabus .dropdown {
+  position: unset;
+}
