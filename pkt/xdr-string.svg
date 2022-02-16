@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg"     xmlns:xlink="http://www.w3.org/1999/xlink"><text style="font-size:14px; font-family:Courier; " y="0" x="0" xml:space='preserve' ><tspan x="0"> </tspan> <tspan x="0" dy="18">          0     1     2     3     4     5     ...
-</tspan> <tspan x="0" dy="18">         +-----+-----+-----+-----+-----+-----+...+-----+-----+...+-----+
-</tspan> <tspan x="0" dy="18">         |        length n       |byte0|byte1|...| n-1 |  0  |...|  0  |
-</tspan> <tspan x="0" dy="18">         +-----+-----+-----+-----+-----+-----+...+-----+-----+...+-----+
-</tspan> <tspan x="0" dy="18">         |&lt;-------4 bytes-------&gt;|&lt;------n bytes------&gt;|&lt;---r bytes---&gt;|
-</tspan> <tspan x="0" dy="18">                                 |&lt;----n+r (where (n+r) mod 4 = 0)----&gt;|
-</tspan></text> </svg>

@@ -1,5 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg"     xmlns:xlink="http://www.w3.org/1999/xlink"><text style="font-size:14px; font-family:Courier; " y="0" x="0" xml:space='preserve' ><tspan x="0"> </tspan> <tspan x="0" dy="18"> Greeting       = "220 " Domain [ SP textstring ] CRLF
-</tspan> <tspan x="0" dy="18"> textstring     = 1*atext
-</tspan> <tspan x="0" dy="18"> Reply-line     = *( Reply-code "-" [ textstring ] CRLF )
-</tspan> <tspan x="0" dy="18">                  Reply-code [ SP textstring ] CRLF
-</tspan> <tspan x="0" dy="18"> Reply-code     = %x32-35 %x30-35 %x30-39</tspan></text> </svg>
