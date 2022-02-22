@@ -126,7 +126,7 @@ msgid "`R1->R2->R4` and `R3->R2->R5->R4`"
 msgstr ""
 
 #: ../../exercises/network.rst:221
-msgid "Are these paths possible with link-state or distance vector routing ? If yes, how do you configure the link weights. If no, explain your answer."
+msgid "Are these paths possible with link-state or distance vector routing ? If so, how do you configure the link weights? If not, explain your answer."
 msgstr ""
 
 #: ../../exercises/network.rst:249
@@ -134,7 +134,7 @@ msgid "`R1->R5->R4` and `R3->R2->R4`"
 msgstr ""
 
 #: ../../exercises/network.rst:251
-msgid "Are these paths possible with link-state or distance vector routing ? If yes, how do configure the link weights. If no, explain your answer."
+msgid "Are these paths possible with link-state or distance vector routing ? If so, how do you configure the link weights? If not, explain your answer."
 msgstr ""
 
 #: ../../exercises/network.rst:256
