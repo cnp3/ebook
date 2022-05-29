@@ -70,7 +70,7 @@ In the next chapter, we describe the organization and the operation of Local Are
 
 The third type of datalink layers are used in Non-Broadcast Multi-Access (NBMA) networks. These networks are used to interconnect devices like a LAN. All devices attached to an NBMA network are identified by a unique datalink layer address. However, and this is the main difference between an NBMA network and a traditional LAN, the NBMA service only supports unicast. The datalink layer service provided by an NBMA network supports neither broadcast nor multicast.
 
-Unfortunately no datalink layer is able to send frames of unlimited side. Each datalink layer is characterized by a maximum frame size. There are more than a dozen different datalink layers and unfortunately most of them use a different maximum frame size. The network layer must cope with the heterogeneity of the datalink layer.
+Unfortunately no datalink layer is able to send frames of unlimited size. Each datalink layer is characterized by a maximum frame size. There are more than a dozen different datalink layers and unfortunately most of them use a different maximum frame size. The network layer must cope with the heterogeneity of the datalink layer.
 
 
 IP version 6
@@ -222,7 +222,7 @@ With the longest match rule, the route ``::/0`` plays a particular role. As this
 
    trie
 
-The longest prefix match can be implemented by using different data structures One possibility is to use a trie. Details on how to implement efficient packet forwarding algorithms may be found in [Varghese2005]_.
+The longest prefix match can be implemented by using different data structures. One possibility is to use a trie. Details on how to implement efficient packet forwarding algorithms may be found in [Varghese2005]_.
 
 
 .. index:: Unique Local Unicast IPv6
@@ -753,7 +753,7 @@ When an entry in the NDP table times out on a host, it may either be deleted or 
 
 .. index:: Duplicate Address Detection
 
-This is not the only usage of the Neighbor Solicitation and Neighbor Advertisement messages. They are also used to detect the utilization of duplicate addresses. In the network above, consider what happens when a new host is connected to the LAN. If this host is configured by mistake with the same address as ``hostA`` (i.e. ``2001:db8:1234:5678::AA``), problems could occur. Indeed, if two hosts have the same IPv6 address on the LAN, but different MAC addresses, it will be difficult to correctly reach them. IPv6 anticipated this problem and includes a `Duplicate Address Detection` Algorithm (DAD). When an IPv6 address [#flinklocal]_ is configured on a host, by any means, the host must verify the uniqueness of this address on the LAN. For this, it multicasts an ICMPv6 Neighbor Solicitation that queries the network for its newly configured address. The IPv6 source address of this NS is set to ``::`` (i.e. the reserved unassigned address) if the host does not already have an IPv6 address on this subnet). If the NS does not receive any answer, the new address is considered to be unique and can safely be used. Otherwise, the new address is refused and an error message should be returned to the system administrator or a new IPv6 address should be generated. The `Duplicate Address Detection` Algorithm can prevent various operational problems that are often difficult to debug.
+This is not the only usage of the Neighbor Solicitation and Neighbor Advertisement messages. They are also used to detect the utilization of duplicate addresses. In the network above, consider what happens when a new host is connected to the LAN. If this host is configured by mistake with the same address as ``hostA`` (i.e. ``2001:db8:1234:5678::AA``), problems could occur. Indeed, if two hosts have the same IPv6 address on the LAN, but different MAC addresses, it will be difficult to correctly reach them. IPv6 anticipated this problem and includes a `Duplicate Address Detection` Algorithm (DAD). When an IPv6 address [#flinklocal]_ is configured on a host, by any means, the host must verify the uniqueness of this address on the LAN. For this, it multicasts an ICMPv6 Neighbor Solicitation that queries the network for its newly configured address. The IPv6 source address of this NS is set to ``::`` (i.e. the reserved unassigned address) if the host does not already have an IPv6 address on this subnet. If the NS does not receive any answer, the new address is considered to be unique and can safely be used. Otherwise, the new address is refused and an error message should be returned to the system administrator or a new IPv6 address should be generated. The `Duplicate Address Detection` Algorithm can prevent various operational problems that are often difficult to debug.
 
 
 
