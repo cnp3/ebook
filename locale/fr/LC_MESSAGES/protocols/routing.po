@@ -9,8 +9,8 @@ msgstr ""
 "3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-17 09:55+0200\n"
-"PO-Revision-Date: 2021-08-27 14:48+0000\n"
-"Last-Translator: Anthony Gego <anthony.gego@uclouvain.be>\n"
+"PO-Revision-Date: 2022-06-15 20:11+0000\n"
+"Last-Translator: Thomas ANTOINE <t.antoine@student.uclouvain.be>\n"
 "Language-Team: French <http://weblate.info.ucl.ac.be/projects/cnp3-ebook/"
 "protocolsrouting/fr/>\n"
 "Language: fr\n"
@@ -27,10 +27,20 @@ msgstr "Routage dans les réseaux IP"
 #: ../../protocols/routing.rst:7
 msgid "In a large IP network such as the global Internet, routers need to exchange routing information. The Internet is an interconnection of networks, often called domains, that are under different responsibilities. As of this writing, the Internet is composed on more than 40,000 different domains and this number is still growing [#fas]_. A domain can be a small enterprise that manages a few routers in a single building, a larger enterprise with a hundred routers at multiple locations, or a large Internet Service Provider managing thousands of routers. Two classes of routing protocols are used to allow these domains to efficiently exchange routing information."
 msgstr ""
+"Dans un réseau IP large tel que l'Internet global, les routeurs ont besoin "
+"d'échanger des informations. L'internet est une interconnexion de réseaux, "
+"souvent appelés domaines, qui sont sous différentes responsabilités. Au "
+"moment d’écrire ces lignes, l'Internet est composé de plus de 40,000 "
+"domaines différents et ce nombre continue d'augmenter [#fas]_. Un domaine "
+"peut être une entreprise gérant quelques routeurs dans un seul bâtiment, une "
+"grande entreprise avec une centaine de routeurs à plusieurs endroits, ou un "
+"fournisseur de services Internet gérant des milliers de routeurs. Deux "
+"classes de protocoles de routage sont utilisés pour permettre à ces domaines "
+"d'échanger des informations de routage de manière efficace."
 
 #: ../../protocols/routing.rst:14
 msgid "Organisation of a small Internet"
-msgstr ""
+msgstr "Organisation d'un petit Internet"
 
 #: ../../protocols/routing.rst:17
 msgid "The first class of routing protocols are the `intradomain routing protocols` (sometimes also called the interior gateway protocols or :term:`IGP`). An intradomain routing protocol is used by all routers inside a domain to exchange routing information about the destinations that are reachable inside the domain. There are several intradomain routing protocols. Some domains use :term:`RIP`, which is a distance vector protocol. Other domains use link-state routing protocols such as :term:`OSPF` or :term:`IS-IS`. Finally, some domains use static routing or proprietary protocols such as :term:`IGRP` or :term:`EIGRP`."
@@ -62,7 +72,7 @@ msgstr ""
 
 #: ../../protocols/routing.rst:36
 msgid "RIP"
-msgstr ""
+msgstr "RIP"
 
 #: ../../protocols/routing.rst:38
 msgid "The Routing Information Protocol (RIP) is the simplest routing protocol that was standardized for the TCP/IP protocol suite. RIP is defined in :rfc:`2453`. Additional information about RIP may be found in [Malkin1999]_."
@@ -74,7 +84,7 @@ msgstr ""
 
 #: ../../protocols/routing.rst:46
 msgid "The RIP message format"
-msgstr ""
+msgstr "Le format de message de RIP"
 
 #: ../../protocols/routing.rst:50
 msgid "Each RIP message contains a set of route entries. Each route entry is encoded as a 20 bytes field whose format is shown below. RIP was initially designed to be suitable for different network layer protocols. Some implementations of RIP were used in XNS or IPX networks :rfc:`2453`. The format of the route entries used by :rfc:`2080` is shown below. `Prefix length` is the length of the subnet identifier in bits and the `metric` is encoded as one byte. The maximum metric supported by RIP is `15`."
@@ -94,7 +104,7 @@ msgstr ""
 
 #: ../../protocols/routing.rst:65
 msgid "OSPF"
-msgstr ""
+msgstr "OSPF"
 
 #: ../../protocols/routing.rst:67
 msgid "Link-state routing protocols are used in IP networks. Open Shortest Path First (OSPF), defined in :rfc:`2328`, is the link state routing protocol that has been standardized by the IETF. The last version of OSPF, which supports IPv6, is defined in :rfc:`5340`. OSPF is frequently used in enterprise networks and in some ISP networks. However, ISP networks often use the IS-IS link-state routing protocol [ISO10589]_ , which was developed for the ISO CLNP protocol but was adapted to be used in IP :rfc:`1195` networks before the finalization of the standardization of OSPF. A detailed analysis of ISIS and OSPF may be found in [BMO2006]_ and [Perlman2000]_.  Additional information about OSPF may be found in [Moy1998]_."
