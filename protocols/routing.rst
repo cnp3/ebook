@@ -100,7 +100,7 @@ These summary advertisements are flooded through the backbone area attached to r
 
 On the other hand, consider the prefixes `2001:db8:aaaa:0000::/64` and `2001:db8:aaaa:0001::/64` that are inside `area 1`. Router `RA` is the only area border router that is attached to this area. This router can create two different network summary advertisements :
 
- - `2001:db8:aaaa:0000::/64` at a distance of `1` and `2001:db8:aaaa:0001::/64` at a distance of `2` from `RA`
+ - `2001:db8:aaaa:0001::/64` at a distance of `1` and `2001:db8:aaaa:0000::/64` at a distance of `2` from `RA`
  - `2001:db8:aaaa:0000::/63` at a distance of `2` from `RA`
 
 The first summary advertisement provides precise information about the distance used to reach each prefix. However, all routers in the network have to maintain a route towards `2001:db8:aaaa:0000::/64` and a route towards `2001:db8:aaaa:0001::/64` that are both via router `RA`. The second advertisement would improve the scalability of OSPF by reducing the number of routes that are advertised across area boundaries. However, in practice this requires manual configuration on the border routers.
