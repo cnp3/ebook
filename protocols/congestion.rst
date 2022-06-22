@@ -43,7 +43,7 @@ The figure below illustrates the evolution of the congestion window when the net
    Evaluation of the TCP congestion window when the network is lightly congested
 
 
-Most TCP implementations update the congestion window when they receive an acknowledgment. If we assume that the receiver acknowledges each received segment and the sender only sends MSS sized segments, the TCP congestion control scheme can be implemented using the simplified pseudo-code [#fwrap]_ below. This pseudocode includes the optimization proposed in :rfc:`3042` that allows a sender to send new unsent data upon reception of the first or second duplicate acknowledgment. The reception of each of these acknowledgment indicates that one segment has left the network and thus additional data can be sent without causing more congestion. Note that the congestion window is *not* increased upon reception of these first duplicate acknowledgments.
+Most TCP implementations update the congestion window when they receive an acknowledgment. If we assume that the receiver acknowledges each received segment and the sender only sends MSS sized segments, the TCP congestion control scheme can be implemented using the simplified pseudo-code [#fwrap]_ below. This pseudocode includes the optimization proposed in :rfc:`3042` that allows a sender to send new unsent data upon reception of the first or second duplicate acknowledgment. The reception of each of these acknowledgments indicates that one segment has left the network and thus additional data can be sent without causing more congestion. Note that the congestion window is *not* increased upon reception of these first duplicate acknowledgments.
 
 .. code-block:: python
 

@@ -309,7 +309,7 @@ encryption schemes use keys that are composed of a small number of bits, typical
 
 A secret key encryption scheme is a perfectly reversible
 functions, i.e. given an encryption function `E`, there is an associated
-decryption function `D` such that :math:`\forall k \forall M : D(K, E(M,K))=M`.
+decryption function `D` such that :math:`\forall K, \forall M : D(K, E(K,M))=M`.
 
 .. index:: DES
 

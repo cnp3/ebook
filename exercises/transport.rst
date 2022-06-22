@@ -32,7 +32,7 @@ Open questions
      b>>c [ label = "CR(seq=1341)", arcskip="1"];
      c=>d [ label = "CONNECT.ind()" ];
      d=>c [ label = "CONNECT.resp()" ],
-     c>>b [ label = "CR(ack=1341,seq=2141)", arcskip="1"];
+     c>>b [ label = "CA(ack=1341,seq=2141)", arcskip="1"];
      b=>a [ label = "CONNECT.conf()" ];
      b>>c [ label = "CA(seq=1341,ack=2141)", arcskip="1"];
      |||;
@@ -74,7 +74,7 @@ Open questions
      b>>c [ label = "CR(seq=8765)", arcskip="1"];
      c=>d [ label = "CONNECT.ind()" ];
      d=>c [ label = "CONNECT.resp()" ],
-     c>>b [ label = "CR(ack=8765,seq=4321)", arcskip="1"];
+     c>>b [ label = "CA(ack=8765,seq=4321)", arcskip="1"];
      b=>a [ label = "CONNECT.conf()" ];
      b>>c [ label = "CA(seq=8765,ack=4321)", arcskip="1"];
      |||;
