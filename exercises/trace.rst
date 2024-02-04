@@ -108,7 +108,7 @@ Use wireshark to analyze the packet traces described earlier :download:`traces/s
 
 When analyzing packet traces with wireshark_, it is often very useful to use `Display filters` that only show the packets that match some specific criteria. These filters are described in several online documents:
 
- - the `wireshark wiki <https://wiki.wireshark.org/>` page on `Display filters <https://wiki.wireshark.org/DisplayFilters>`_
+ - the `wireshark wiki <https://wiki.wireshark.org/>`_ page on `Display filters <https://wiki.wireshark.org/DisplayFilters>`_
  - a nice `tutorial on Wireshark Display Filters <https://unit42.paloaltonetworks.com/using-wireshark-display-filter-expressions>`_ by Brad Duncan
 
 You can now use your understanding of wireshark_ and tcpdump_ to analyze a 2-minutes long packet trace.
