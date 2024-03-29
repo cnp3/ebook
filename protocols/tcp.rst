@@ -298,7 +298,7 @@ An elegant solution to this problem was proposed by John Nagle in :rfc:`896`. Jo
         if there are unacknowledged data:
             place data in buffer until acknowledgment has been received
         else:
-            send one TCP segment containing all buffered data
+            send one TCP segment containing all buffered data (up to rcv.wnd)
 
 The first rule ensures that a TCP connection used for bulk data transfer always sends full TCP segments. The second rule sends one partially filled TCP segment every round-trip-time.
 
