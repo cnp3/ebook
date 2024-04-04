@@ -639,7 +639,7 @@ In general, the links have a non-zero delay. This is illustrated in the figure b
 Discussion questions
 ====================
 
-.. spelling::
+.. spelling:word-list::
 
    slotTime
 

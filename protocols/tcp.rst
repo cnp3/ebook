@@ -193,7 +193,7 @@ Apart from these two paths in the TCP connection establishment FSM, there is a t
 
  This limit of 100 TCBs in the `SYN Rcvd` state was chosen to protect the TCP entity from the risk of overloading its memory with too many TCBs in the `SYN Rcvd` state. However, it was also the reason for a new type of Denial of Service (DoS) attack :rfc:`4987`. A DoS attack is defined as an attack where an attacker can render a resource unavailable in the network. For example, an attacker may cause a DoS attack on a 2 Mbps link used by a company by sending more than 2 Mbps of packets through this link. In this case, the DoS attack was more subtle. As a TCP entity discards all received `SYN` segments as soon as it has 100 TCBs in the `SYN Rcvd` state, an attacker simply had to send a few 100 `SYN` segments every second to a server and never reply to the received `SYN+ACK` segments. To avoid being caught, attackers were of course sending these `SYN` segments with a different address than their own IP address [#fspoofing]_. On most TCP implementations, once a TCB entered the `SYN Rcvd` state, it remained in this state for several seconds, waiting for a retransmission of the initial `SYN` segment. This attack was later called a `SYN flood` attack and the servers of the ISP named Panix were among the first to `be affected <http://memex.org/meme2-12.html>`_ by this attack.
 
- .. spelling::
+ .. spelling:word-list::
 
    Panix
 
@@ -280,7 +280,7 @@ When a TCP segment with the `ACK` flag set is received, the following operations
 Segment transmission strategies
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. spelling::
+.. spelling:word-list::
 
    Nagle
 
@@ -321,7 +321,7 @@ This algorithm, called the Nagle algorithm, takes a few lines of code in all TCP
 TCP windows
 -----------
 
-.. spelling::
+.. spelling:word-list::
 
    kbps
    GByte
@@ -350,7 +350,7 @@ By using the window scaling extensions defined in :rfc:`1323`, TCP implementatio
 500 msec 17 Gbps
 ======== ==================
 
-.. spelling::
+.. spelling:word-list::
 
    throughputs
 
@@ -380,14 +380,14 @@ The easiest solution to measure the round-trip-time on a TCP connection is to me
 
    How to measure the round-trip-time ?
 
-.. spelling::
+.. spelling:word-list::
 
    Karn
    Partridge
 
 However, when a data segment is lost, as illustrated in the bottom part of the figure, the measurement is ambiguous as the sender cannot determine whether the received acknowledgment was triggered by the first transmission of segment `123` or its retransmission. Using incorrect round-trip-time estimations could lead to incorrect values of the retransmission timeout. For this reason, Phil Karn and Craig Partridge proposed, in [KP91]_, to ignore the round-trip-time measurements performed during retransmissions.
 
-.. spelling::
+.. spelling:word-list::
 
    timestamps
 
@@ -410,7 +410,7 @@ However, in practice, this computation for the retransmission timeout did not wo
 
 Jacobson's algorithm uses two state variables, `srtt` the smoothed `rtt` and `rttvar` the estimation of the variance of the `rtt` and two parameters : :math:`\alpha` and :math:`\beta`. When a TCP connection starts, the first `rto` is set to `3` seconds. When a first estimation of the `rtt` is available, the `srtt`, `rttvar` and `rto` are computed as follows :
 
-.. spelling::
+.. spelling:word-list::
 
    rtt
 
@@ -626,7 +626,7 @@ The `TIME\_WAIT` state is different from the other states of the TCP FSM. A TCP 
 
 .. [#frlogin] On many departmental networks containing Unix workstations, it was common to allow users on one of the hosts to use ``rlogin`` :rfc:`1258`  to run commands on any of the workstations of the network without giving any password. In this case, the remote workstation "authenticated" the client host based on its IP address. This was a bad practice from a security viewpoint.
 
-.. spelling::
+.. spelling:word-list::
 
    rlogin
 

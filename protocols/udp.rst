@@ -73,7 +73,7 @@ In most Unix variants, only processes having system administrator privileges can
   - a pseudo header :rfc:`2460` containing the source address, the destination address, the packet length encoded as a 32 bits number and a 32 bits bit field containing the three most significant bytes set to 0 and the low order byte set to 17
   - the entire UDP segment, including its header
 
-.. spelling::
+.. spelling:word-list::
 
    0xffff
 

@@ -80,7 +80,7 @@ In the late 1980s and early 1990s the growth of the Internet was causing several
 Two types of solution were developed to solve this problem. The first short term solution was the introduction of Classless Inter Domain Routing (:term:`CIDR`). A second short term solution was the Network Address Translation (:term:`NAT`) mechanism, defined in :rfc:`1631`. NAT allowed multiple hosts to share a single public IPv4 address.
 
 
-.. spelling::
+.. spelling:word-list::
 
    IPng
 
@@ -181,7 +181,7 @@ When considering the allocation of IPv6 addresses, two types of address allocati
  - ``/64`` for a single user (e.g. a home user connected via ADSL)
  - ``/128`` in the rare case when it is known that no more than one host will be attached
 
-.. spelling::
+.. spelling:word-list::
 
    Belnet
    ULg
@@ -218,7 +218,7 @@ With the longest match rule, the route ``::/0`` plays a particular role. As this
  - a packet with destination ``2001:1890:123a::1:1e`` matches one route : ``::/0``. The packet is forwarded via ``fe80::dead:beef``
  - a packet with destination ``2001:6a8:3880:40::2`` matches two routes : ``2001:6a8::/32`` and ``::/0``. The packet is forwarded via ``fe80::aaaa:bbbb``
 
-.. spelling::
+.. spelling:word-list::
 
    trie
 
@@ -447,7 +447,7 @@ In IPv6, fragmentation is performed exclusively by the source host and relies on
  - the `More` flag, which is set to `0` in the last fragment of a packet and to `1` in all other fragments.
  - the 32-bit `Identification` field indicates to which original packet a fragment belongs. When a host sends fragmented packets, it should ensure that it does not reuse the same `identification` field for packets sent to the same destination during a period of `MSL` seconds. This is easier with the 32 bits `identification` used in the IPv6 fragmentation header, than with the 16 bits `identification` field of the IPv4 header.
 
-.. spelling::
+.. spelling:word-list::
 
    priori
 
@@ -727,7 +727,7 @@ Assume that the LAN containing the two hosts and the router is assigned prefix `
 
 To be able to exchange IPv6 packets with ``hostB``, ``hostA`` needs to know the MAC address of the interface of ``hostB`` on the LAN. This is the `address resolution` problem. In IPv6, this problem is solved by using the Neighbor Discovery Protocol (NDP). NDP is specified in :rfc:`4861`. This protocol is part of ICMPv6 and uses the multicast datalink layer service.
 
-.. spelling::
+.. spelling:word-list::
 
    querier
 
@@ -761,7 +761,7 @@ This is not the only usage of the Neighbor Solicitation and Neighbor Advertiseme
 
 Few users manually configure the IPv6 addresses on their hosts. They prefer to rely on protocols that can automatically configure their IPv6 addresses. IPv6 supports two such protocols : DHCPv6 and the Stateless Address Autoconfiguration (SLAAC).
 
-.. spelling::
+.. spelling:word-list::
 
    autoconfiguration
    Autoconfiguration

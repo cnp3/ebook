@@ -516,7 +516,7 @@ What do you think about the proposed configuration?
 
   Assign IP subnets to all links in this network so that you can reduce the number of entries in the forwarding tables of all routers. Assume that you have received a ``/56`` prefix that you can use as you want. Each subnet containing a host must be allocated a ``/64`` subnet.
 
-.. spelling::
+.. spelling:word-list::
 
    namespace
    namespaces
@@ -647,7 +647,7 @@ The same can be done for the three links between the different routers.
 
 With these IP prefixes and the network topology, we can now use IPMininet_ to create the topology and assign the addresses.
 
-.. spelling::
+.. spelling:word-list::
 
    addDaemon
    StaticRoute
@@ -752,7 +752,7 @@ The ``links`` command lists the links that have been instantiated and shows that
    r3-eth2<->b-eth0 (OK OK)
    mininet>
 
-.. spelling::
+.. spelling:word-list::
 
    inet
    inet6

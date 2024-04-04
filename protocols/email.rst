@@ -39,7 +39,7 @@ Before looking at the details of Internet email, let us consider a simple scenar
         \node[txt, below=of BM] (TBM) {Bob retrieves messages\\from his server};
         \draw[arrow] (BM) -- (TBM);
 
-.. spelling::
+.. spelling:word-list::
 
    webmail
 
@@ -278,7 +278,7 @@ The example below, from :rfc:`4648`, illustrates the `Base64` encoding.
  |  Encoding      |    F      P      u      c       A      9      l      \+  |
  +----------------+----------------------------------------------------------+
 
-.. spelling::
+.. spelling:word-list::
 
    0x14fb9c03d97e
 
@@ -311,7 +311,7 @@ The last point to be discussed about `base64` is what happens when the length of
  |  Encoding      |    F     P       s     \=   |
  +----------------+-----------------------------+
 
-.. spelling::
+.. spelling:word-list::
 
    eXchange
 

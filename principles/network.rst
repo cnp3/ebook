@@ -610,7 +610,7 @@ In this section, we discuss the main techniques that can be used to maintain the
 .. include:: /principles/linkstate.rst
 
 
-.. spelling::
+.. spelling:word-list::
 
    broadcasted
    pre

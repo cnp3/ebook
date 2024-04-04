@@ -26,7 +26,7 @@ Encoding data
 
 The encoding problem exists in a wide range of applications. In the previous sections, we have described how character-based encodings are used by email and HTTP. Although standard encoding techniques such as ASN.1 [Dubuisson2000]_ have been defined to cover most application needs, many applications have defined their specific encoding. `Remote Procedure Call` are no exception to this rule. The three most popular encoding methods are probably XDR :rfc:`1832` used by ONC-RPC :rfc:`1831`, XML, used by XML-RPC and JSON :rfc:`4627`.
 
-.. spelling::
+.. spelling:word-list::
 
    eXternal
    datatype
@@ -137,7 +137,7 @@ If the `sum` method is not implemented on the server, it would reply with the fo
 
 The `id` field, which is present in the request and the response plays the same role as the identifier field in the DNS message. It allows the caller to match the response with the request that it sent. This `id` is very important when JSON-RPC is used over the connectionless transport service which is unreliable. If a request is sent, it may need to be retransmitted and it is possible that a callee will receive twice the same request (e.g. if the response for the first request was lost). In the DNS, when a request is lost, it can be retransmitted without causing any difficulty. However with remote procedure calls in general, losses can cause some problems. Consider a method which is used to deposit money on a bank account. If the request is lost, it will be retransmitted and the deposit will be eventually performed. However, if the response is lost, the caller will also retransmit its request. This request will be received by the callee that will deposit the money again. To prevent this problem from affecting the application, either the programmer must ensure that the remote procedures that it calls can be safely called multiple times or the application must verify whether the request has been transmitted earlier. In most deployments, the programmers use remote methods that can be safely called multiple times without breaking the application logic.
 
-.. spelling::
+.. spelling:word-list::
 
    portmapper
 
