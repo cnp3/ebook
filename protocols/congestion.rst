@@ -236,7 +236,7 @@ The CUBIC congestion control scheme
 
    rtt
 
-The NewReno congestion control scheme has been the dominant and the standard TCP congestion control scheme. It works well in networks having a small round-trip-time or a low bandwidth*delay product. In networks with a high bandwidth*delay product, a single packet loss can force a TCP sender to spend a lot of time in congestion avoidance. Since NewReno advances its congestion window by one MSS every round-trip-time, it can spend a long time in congestion avoidance before reaching a congestion window that is large enough to fully use the network. Furthermore, NewReno favors connections with a small round-trip-time compared to connections with a longer round-trip-time.
+The NewReno congestion control scheme has historically been the dominant and the standard TCP congestion control scheme. It works well in networks having a small round-trip-time or a low bandwidth*delay product. In networks with a high bandwidth*delay product, a single packet loss can force a TCP sender to spend a lot of time in congestion avoidance. Since NewReno advances its congestion window by one MSS every round-trip-time, it can spend a long time in congestion avoidance before reaching a congestion window that is large enough to fully use the network. Furthermore, NewReno favors connections with a small round-trip-time compared to connections with a longer round-trip-time as shown in the previous section.
 
 Internet researchers have proposed a wide range of congestion control schemes. During the last decade, the CUBIC congestion control scheme has emerged has the standard congestion control scheme. It has been adopted by key TCP implementations and is defined in :rfc:`9438`. 
 
@@ -259,7 +259,7 @@ The CUBIC congestion control scheme was designed with three [#fcubic]_ main prin
  3. CUBIC sets is multiplicative window decrease factor in order to balance scalability and efficiency
 
 
-CUBIC adjusts the congestion window based on the congestion observed on the path. For this, CUBIC uses a cubic function as illustrated below. Compared with the slow-start and congestion avoidance phases of NewReno, the cubic function has several benefits. After having experienced congestion, remembers the congestion window that caused congestion and reduces its congestion window to allow the router buffers to drain. After that, it needs to quickly increase its congestion window to be able to fully utilize the network. This is the role of the concave part of the cubic function. It quickly increases the congestion window until reaching the previous value of the congestion window. This is the plateau of the cubic function. The sender transmits at a rate that previously caused congestion. Thanks to the plateau of the cubic function, it does not change its transmission rate quickly. After having transmitted at this rate for several round-trip-times without congestion, the sender starts to increase its congestion window using the convex part of the cubic function. This increase is much faster than NewReno's congestion avoidance and allows CUBIC to quickly utilize the available bandwidth. This results in a much higher network utilization than using NewReno. 
+CUBIC adjusts the congestion window based on the congestion observed on the path. For this, CUBIC uses a cubic function as illustrated below. Compared with the slow-start and congestion avoidance phases of NewReno, the cubic function has several benefits. After having experienced congestion, it remembers the congestion window size that caused congestion and reduces its congestion window to allow the router buffers to drain. After that, it needs to quickly increase its congestion window to be able to fully utilize the network. This is the role of the concave part of the cubic function. It quickly increases the congestion window until reaching the previous value of the congestion window. This is the plateau of the cubic function. The sender hence quicly transmits at a rate that previously caused congestion. Thanks to the plateau of the cubic function, it does not change its transmission rate quickly. After having transmitted at this rate for several round-trip-times without congestion, the sender starts to increase its congestion window using the convex part of the cubic function. This increase is much faster than NewReno's congestion avoidance and allows CUBIC to quickly utilize the available bandwidth. This results in a much higher network utilization than using NewReno. 
     
     
 .. tikz:: The concave and convex parts of a cubic function
@@ -271,13 +271,13 @@ CUBIC adjusts the congestion window based on the congestion observed on the path
 
 The parameters of the cubic function can be adjusted to have a faster ramp-up or a longer plateau. This results in a compromise between stability and faster utilization of available network resources, but at the risk of causing more congestion.
 
-The cubic function allows to adjust the congestion window. It is used when an acknowledgment is received and depends on the delay since the previous congestion event. With CUBIC, two flows that share a single bottleneck will have similar congestion windows. Since their throughput will be :math:`\frac{cwnd}{rtt}`, the flows with a lower rtt will achieve a higher throughput. 
+The cubic function allows to adjust the congestion window. It is used when an acknowledgment is received and depends on the delay since the previous congestion event. With CUBIC, two flows that share a single bottleneck link will have similar congestion windows. Since their throughput will be :math:`\frac{cwnd}{rtt}`, the flow with a lower rtt will achieve a higher throughput. 
 
 NewReno halves its congestion window at each congestion event. CUBIC also uses a multiplicative decrease when it detects congestion, but using a factor of :math:`0.7` instead of :math:`0.5`. This provides a better balance between scalability and convergence speed than NewReno.
 
 A CUBIC implementation uses the following function to increase its congestion window upon reception of an acknowledgment: :math:`W_{cubic}(t)= C \times (t-K)^3 + W_{max}`. In this function, :math:`t` is the delay between now and the time of the previous congestion event that marks the start of the current congestion avoidance period. :math:`K` is the time period required for the cubic function to increase the congestion window to reach :math:`W_{max}`. :math:`W_{max}` is the congestion window that caused the last congestion event. It corresponds to the plateau of the cubic function. CUBIC uses :math:`W_{cubic}(t)` to compute a target value of the congestion window after one RTT where RTT is the smoothed value of the measured round-trip-time. When a CUBIC sender receives an acknowledgment, it computes :math:`target=W_{cubic}(t+RTT)` and increments :math:`cwnd` by :math:`\frac{target-cwnd}{cwnd}`.
 
-If a CUBIC sender detects congestion, it remembers the current value of :math:`cwnd` as :math:`W_{max}` and sets :math:`ssthresh=cwnd \times 0.7` and sets :math:`cwnd=max(ssthresh,2)`. This is the multiplicative decrease part of CUBIC [#cubicdec]_.
+If a CUBIC sender detects congestion, it remembers the current value of :math:`cwnd` as :math:`W_{max}`, sets :math:`ssthresh=cwnd \times 0.7` and sets :math:`cwnd=max(ssthresh,2)`. This is the multiplicative decrease part of CUBIC [#cubicdec]_.
 
 The CUBIC specification recommends values for the :math:`C` and :math:`K` parameters of the cubic function. :math:`C` should be set to 0.4 based on various studies and simulation results. :math:`K` is computed as :math:`K=\sqrt[3]{\frac{W_{max}-cwnd_{epoch}}{C}}` where :math:`cwnd_{epoch}` is the value of the congestion window at the beginning of the current congestion avoidance stage.
 
@@ -302,14 +302,18 @@ At this point, it is interesting to explore the evolution of the congestion wind
 
 
 .. tikz:: Comparing the evolution of the congestion window using CUBIC and NewReno
-	  
+
+
    \draw[->] (-0.2,0) -- (7,0) node[below] {$t$};
    \draw[->] (0,-0.2) -- (0,7) node[above] {$cwnd$};
    \draw[color=blue,domain=0:6]   plot (\x,{0.2*(5+\x)})  node[above] {NewReno};
-   \draw[color=red,domain=0:6]   plot (\x,{0.2*(0.4*((\x-1.957)^3)+10)}) node[above] {CUBIC};
+   \draw[color=red,domain=0:6]   plot (\x,{0.2*(0.4*((\x-1.957)^3)+10)}) node[above] {CUBIC};  
+   \draw[-,dashed,color=red] (0,0.2*5) -- (2,0.2*5) node[below] {threshold};  
+   \draw[->,dashed]  (0.05,0.2*16) node [right] {fast retransmit} -- (0.05,0.2*10) ;
+	  
 
 
-Mathematical models of the CUBIC congestion control scheme have also been developed. :rfc:`9438` uses a similar deterministic loss model as the one we used earlier. With a multiplicative decrease factor set to :math:`0.7`, this model computes an average window of :math:`sqrt[4]{\frac{C*3.7}{1.2}} \times \frac{sqrt[4]{rtt^3}}{sqrt[4]{p^3}}`. 
+Mathematical models of the CUBIC congestion control scheme have also been developed. :rfc:`9438` uses a similar deterministic loss model as the one we used earlier. With a multiplicative decrease factor set to :math:`0.7`, this model computes an average congestion window of :math:`\sqrt[4]{\frac{C*3.7}{1.2}} \times \frac{\sqrt[4]{rtt^3}}{\sqrt[4]{p^3}}`. 
    
 
 .. rubric:: Footnotes
