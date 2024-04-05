@@ -27,7 +27,7 @@ As an illustration, let us use tcpdump_ to analyze the packets exchanged while e
 
 The ``-6`` parameter passed to curl_ forces the utilization of IPv6. curl_ returns an HTML page that indicates that https must be used instead of http to access this web site.
 
-.. spelling::
+.. spelling:word-list::
 
    lookups
 
@@ -87,7 +87,7 @@ wireshark_ is more recent than tcpdump_. It evolved from the ethereal packet tra
 
    Wireshark : default window
 
-.. spelling::
+.. spelling:word-list::
 
    wireshark
 

@@ -4,7 +4,7 @@
 Ethernet
 ========
 
-.. spelling::
+.. spelling:word-list::
 
    Palo
    Alto
@@ -53,7 +53,7 @@ The fourth part of the Ethernet frame is the payload. The minimum length of the 
    :align: center
    :scale: 70
 
-   Impact of the frame length on the maximum channel utilisation [SH1980]_
+   Impact of the frame length on the maximum channel utilization [SH1980]_
 
 
 The last field of the Ethernet frame is a 32 bit Cyclical Redundancy Check (CRC). This CRC is able to catch a much larger number of transmission errors than the Internet checksum used by IP, UDP and TCP [SGP98]_. The format of the Ethernet frame is shown below.
@@ -98,7 +98,7 @@ The Ethernet frame format shown above is specified in [DIX]_. This is the format
 
  The first property is a consequence of the utilization of CSMA/CD. The second property is a consequence of the physical organization of the Ethernet network as a shared bus. These two properties are important and all revisions to the Ethernet technology have preserved them.
 
-.. spelling::
+.. spelling:word-list::
 
    BaseF
    BaseT
@@ -180,7 +180,7 @@ Standard         Comments
 40-100 Gbps      Optical fiber (experiences are performed with copper)
 ============     ========================================================
 
-.. spelling::
+.. spelling:word-list::
 
    Tx
    Fx

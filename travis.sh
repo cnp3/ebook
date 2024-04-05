@@ -5,8 +5,10 @@ mkdir python
 cd python
 git clone https://github.com/obonaventure/mscgen.git
 pip3 install -e mscgen
-git clone https://github.com/obonaventure/tikz.git
-pip3 install -U -e tikz
+#git clone https://github.com/obonaventure/tikz.git
+pip3 install -U sphinxcontrib-tikz
+pip3 install -U sphinxcontrib-spelling
+pip3 install -U sphinx-book-theme
 cd ..
 # on error exit
 set -e

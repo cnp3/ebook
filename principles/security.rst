@@ -123,7 +123,7 @@ As will be described later, the best approach to prevent this type of attack
 is to rely on cryptographic techniques to ensure that passwords are never
 sent in clear.
 
-.. spelling::
+.. spelling:word-list::
 
    Snowden
 
@@ -270,7 +270,7 @@ a French cryptographer who first documented it :
      `A cryptographic algorithm should be secure even if the attacker knows
      everything about the system, except one parameter known as the secret key.`
 
-.. spelling::
+.. spelling:word-list::
 
    Auguste
    Kerckhoff
@@ -280,7 +280,7 @@ This principle is important because it remains the basic assumption of all
 cryptographers. Any system that relies on the secrecy of its algorithm
 to be considered secure is doomed to fail and be broken one day.
 
-.. spelling::
+.. spelling:word-list::
 
    Vernam
 
@@ -345,7 +345,7 @@ deployed. The most popular ones are :
    the correct one.
 
 
-.. spelling::
+.. spelling:word-list::
 
    Daemen
    Rijmen
@@ -384,7 +384,7 @@ Alice (resp. Bob) uses the keys :math:`A_{priv}` and :math:`A_{pub}` (resp.
 Bob computes :math:`CM=E_p(A_{pub},M)` and Alice can decrypt it by using
 :math:`D_p(A_{priv},CM)=D_p(A_{priv},E_p(A_{pub},M))=M`.
 
-.. spelling::
+.. spelling:word-list::
 
    Rivest
    Shamir
@@ -426,7 +426,7 @@ suffer from the same problem.
 
 .. wikipedia illustration is nice https://en.wikipedia.org/wiki/MD5
 
-.. spelling::
+.. spelling:word-list::
 
    summarization
 
@@ -563,7 +563,7 @@ millions of passwords.
 
 .. index:: hash chain
 
-.. spelling::
+.. spelling:word-list::
 
    Lamport
 
@@ -912,7 +912,7 @@ will be used by the secret key encryption scheme.
 Key exchange
 ^^^^^^^^^^^^
 
-.. spelling::
+.. spelling:word-list::
 
    Diffie
    Hellman

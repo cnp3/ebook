@@ -26,7 +26,7 @@ Domains need to be interconnected to allow a host inside a domain to exchange IP
 
    Interconnection of two domains via a private peering link
 
-.. spelling::
+.. spelling:word-list::
 
    eXchange
 
@@ -151,7 +151,7 @@ From a conceptual point of view, a BGP router connected to `N` BGP peers, can be
    Organization of a BGP router
 
 
-.. spelling::
+.. spelling:word-list::
 
    dataplane
 
@@ -247,7 +247,7 @@ When a BGP message is received, the router first applies the peer's `import filt
         return bgpMsg
 
 
-.. spelling::
+.. spelling:word-list::
 
    bogon
    bogons
@@ -453,7 +453,7 @@ Based on these studies and [ATLAS2009]_, the AS-level Internet topology can be s
 
 The domains on the Internet can be divided in about four categories according to their role and their position in the AS-level topology.
 
-.. spelling::
+.. spelling:word-list::
 
    Proximus
 

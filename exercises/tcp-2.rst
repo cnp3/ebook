@@ -869,7 +869,7 @@ Unless otherwise noted, we assume for the questions in this section that the fol
 
 .. rubric:: Footnotes
 
-.. spelling::
+.. spelling:word-list::
 
    manpage
 
@@ -877,7 +877,7 @@ Unless otherwise noted, we assume for the questions in this section that the fol
 
 
 	      
-.. spelling::
+.. spelling:word-list::
 
    virtualbox
 

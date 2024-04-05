@@ -17,7 +17,7 @@ jobs:
     - name: Install mscgen	
       run: sudo apt-get install mscgen
     - name: Sphinx contrib
-      run: sudo pip3 install sphinxcontrib-spelling sphinxcontrib-bibtex sphinxcontrib-tikz matplotlib==3.4.0 sphinx==3.5.4 sphinxcontrib-mscgen sphinx-book-theme
+      run: sudo pip3 install sphinxcontrib-spelling sphinxcontrib-bibtex sphinxcontrib-tikz matplotlib==3.4.0 sphinx sphinxcontrib-mscgen sphinx-book-theme
     - name: Sphinx contrib-mscgen
       run: sudo pip3 install git+https://github.com/obonaventure/mscgen.git
     - name: Checkout

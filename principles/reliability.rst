@@ -498,7 +498,7 @@ Some headers also include a `length` field, which indicates the total length of 
 
 The simplest error detection scheme is the checksum. A checksum is basically an arithmetic sum of all the bytes that a frame is composed of. There are different types of checksums. For example, an eight bit checksum can be computed as the arithmetic sum of all the bytes of (both the header and trailer of) the frame. The checksum is computed by the sender before sending the frame and the receiver verifies the checksum upon frame reception. The receiver discards frames received with an invalid checksum. Checksums can be easily implemented in software, but their error detection capabilities are limited. Cyclical Redundancy Checks (CRC) have better error detection capabilities [SGP98]_, but require more CPU when implemented in software.
 
-.. spelling::
+.. spelling:word-list::
 
    png
 
@@ -835,7 +835,7 @@ In practice, as the frame header includes an `n` bits field to encode the sequen
    :align: center
    :scale: 60
 
-   Utilisation of the sliding window with modulo arithmetic
+   Utilization of the sliding window with modulo arithmetic
 
 .. index:: go-back-n
 
@@ -1056,7 +1056,7 @@ Reliable protocols often need to send data in both directions. To reduce the ove
 
 .. .. [#fmsl] As we will see in the next chapter, the Internet does not strictly enforce this MSL. However, it is reasonable to expect that most packets on the Internet will not remain in the network during more than 2 minutes. There are a few exceptions to this rule, such as :rfc:`1149` whose implementation is described in http://www.blug.linux.no/rfc1149/ but there are few real links supporting :rfc:`1149` in the Internet.
 
-.. spelling::
+.. spelling:word-list::
 
    multi
    Multi

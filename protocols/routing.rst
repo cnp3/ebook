@@ -11,7 +11,7 @@ In a large IP network such as the global Internet, routers need to exchange rout
    :align: center
    :scale: 70
 
-   Organisation of a small Internet
+   Organization of a small Internet
 
 
 The first class of routing protocols are the `intradomain routing protocols` (sometimes also called the interior gateway protocols or :term:`IGP`). An intradomain routing protocol is used by all routers inside a domain to exchange routing information about the destinations that are reachable inside the domain. There are several intradomain routing protocols. Some domains use :term:`RIP`, which is a distance vector protocol. Other domains use link-state routing protocols such as :term:`OSPF` or :term:`IS-IS`. Finally, some domains use static routing or proprietary protocols such as :term:`IGRP` or :term:`EIGRP`.
@@ -151,7 +151,7 @@ A first approach is to select one of the equal cost paths (e.g. the first or the
 
 A second approach is to install all equal cost paths [#fmaxpaths]_ in the forwarding table and load-balance the packets on the different paths. Consider the case where a router has `N` different outgoing interfaces to reach destination `d`. A first possibility to load-balance the traffic among these interfaces is to use `round-robin`. `Round-robin` allows equally balancing the packets among the `N` outgoing interfaces. This equal load-balancing is important in practice because it allows better spreading the load throughout the network. However, few networks use this `round-robin` strategy to load-balance traffic on routers. The main drawback of `round-robin` is that packets that belong to the same flow (e.g. TCP connection) may be forwarded over different paths. If packets belonging to the same TCP connection are sent over different paths, they will probably experience different delays and arrive out-of-sequence at their destination. When a TCP receiver detects out-of-order segments, it sends duplicate acknowledgments that may cause the sender to initiate a fast retransmission and enter congestion avoidance. Thus, out-of-order segments may lead to lower TCP performance. This is annoying for a load-balancing technique whose objective is to improve the network performance by spreading the load.
 
-.. spelling::
+.. spelling:word-list::
 
    tuple
 

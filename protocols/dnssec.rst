@@ -254,7 +254,7 @@ compromised, there is some period of time during which records signed
 with the two keys coexist in the network. The validity period allows
 ensuring that old signatures do not remain in DNS caches for ever.
 
-.. spelling::
+.. spelling:word-list::
 
    timestamps
 
