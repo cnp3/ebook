@@ -361,7 +361,7 @@ Unfortunately, split-horizon is not sufficient to avoid all count to infinity pr
         \node[rtable, above=of B] (RTB) { \begin{tabular}{l}
                 Routing table \\
                 \hline
-                A: 1 [West]] \\
+                A: $\infty$ \\
                 B: 0 [Local] \\
                 C: 1 [East] \\
                 E: 1 [South] \\

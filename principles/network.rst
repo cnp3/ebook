@@ -404,16 +404,13 @@ Sometimes, the network layer needs to deal with heterogeneous datalink layers. F
 
 
 
-Consider in the network above that host `A` wants to send a 900 bytes packet (870 bytes of payload and 30 bytes of header) to host `B` via router `R1`. Host `A` encapsulates this packet inside a single frame. The frame is received by router `R1` which extracts the packet. Router `R1` has three possible options to process this packet.
+Consider in the network above that host `A` wants to send a 900 bytes packet (870 bytes of payload and 30 bytes of header) to host `B` via router `R1`. Host `A` encapsulates this packet inside a single frame. The frame is received by router `R1` which extracts the packet. Router `R1` has three possible options to process this packet:
 
  #. The packet is too large and router `R1` cannot forward it to router `R2`. It rejects the packet and sends a control packet back to the source (host `A`) to indicate that it cannot forward packets longer than 500 bytes (minus the packet header). The source could react to this control packet by retransmitting the information in smaller packets.
 
- #. The network layer is able to fragment a packet. In our example, the router could fragment the packet in two parts. The first part contains the beginning of the payload and the second the end. There are two possible ways to perform this fragmentation.
+ #. The network layer of router `R1` is able to fragment a packet. In our example, the router could fragment the packet in two parts. The first part contains the beginning of the payload and the second the end. Both packets are transmitted to router `R2`. Router `R2` reassembles the two packet fragments in a larger packet before transmitting them on the link towards host `B`.
 
-
- #. Router `R1` fragments the packet into two fragments before transmitting them to router `R2`. Router `R2` reassembles the two packet fragments in a larger packet before transmitting them on the link towards host `B`.
-
- #. Each of the packet fragments is a valid packet that contains a header with the source (host `A`) and destination (host `B`) addresses. When router `R2` receives a packet fragment, it treats this packet as a regular packet and forwards it to its final destination (host `B`). Host `B` reassembles the received fragments.
+ #. As in the previous solution router `R1` fragments the packet, but each fragment is a valid packet that contains a header with the source (host `A`) and destination (host `B`) addresses. When router `R2` receives a packet fragment, it treats this packet as a regular packet and forwards it to its final destination (host `B`). Host `B` reassembles the received fragments.
 
 
 These three solutions have advantages and drawbacks. With the first solution, routers remain simple and do not need to perform any fragmentation operation. This is important when routers are implemented mainly in hardware. However, hosts must be complex since they need to store the packets that they produce if they need to pass through a link that does not support large packets. This increases the buffering required on the hosts.
