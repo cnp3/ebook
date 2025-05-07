@@ -367,7 +367,7 @@ Router ``r2`` receives a similar request from ``fe80::481a:48ff:fed7:292e`` and 
 
 .. figure:: /exercises/figures/ripng-packet2.png
 
-Later, router ``r2`` will regularly transmit its distance vector inside an unsolicited response message that is sent towards the IPv7 multicast address ``ff02::9``.
+Later, router ``r2`` will regularly transmit its distance vector inside an unsolicited response message that is sent towards the IPv6 multicast address ``ff02::9``.
 
 .. figure:: /exercises/figures/ripng-packet2.png
 
