@@ -141,7 +141,7 @@ msgid "Router ``r2`` receives a similar request from ``fe80::481a:48ff:fed7:292e
 msgstr ""
 
 #: ../../exercises/routing-protocols.rst:370
-msgid "Later, router ``r2`` will regularly transmit its distance vector inside an unsolicited response message that is sent towards the IPv7 multicast address ``ff02::9``."
+msgid "Later, router ``r2`` will regularly transmit its distance vector inside an unsolicited response message that is sent towards the IPv6 multicast address ``ff02::9``."
 msgstr ""
 
 #: ../../exercises/routing-protocols.rst:374
