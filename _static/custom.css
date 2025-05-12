@@ -9,3 +9,7 @@ body > .container-xl {
 .navbar-syllabus .dropdown {
   position: unset;
 }
+
+.toctree-wrapper *:not(.figure) > .caption {
+  display: none;
+}
