@@ -97,7 +97,7 @@ able to eavesdrop the data passing in front of her.
       b>>e [ label = "I'm Alice\n\n", arcskip="1"];
       e=>f [ label = "" ];
 
-      e=>f [ label = "" ] ,
+      f=>e [ label = "" ] ,
       e>>b [ label = "Password:\n\n", arcskip="1"];
       b=>a [ label = "" ];
 
@@ -105,7 +105,7 @@ able to eavesdrop the data passing in front of her.
       b>>e [ label = "1234xyz$\n\n", arcskip="1"];
       e=>f [ label = "" ];
 
-      e=>f [ label = "" ] ,
+      f=>e [ label = "" ] ,
       e>>b [ label = "Access\n\n", arcskip="1"];
       b=>a [ label = "" ];
 
@@ -1028,4 +1028,3 @@ mechanism should never be used without authentication.
            CPU.
 
 .. include:: /links.rst
-

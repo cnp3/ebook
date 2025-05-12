@@ -300,7 +300,7 @@ The last point to be discussed about `base64` is what happens when the length of
 
 
  +----------------+-----------------------------+
- |  Input data    | 0x14b9                      |
+ |  Input data    | 0x14fb                      |
  +----------------+-----------------------------+
  |  8-bit         | 00010100  11111011          |
  +----------------+-----------------------------+
