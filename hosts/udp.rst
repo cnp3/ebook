@@ -1,4 +1,4 @@
-.. Copyright |copy| 2010, 2019 by Olivier Bonaventure
+.. Copyright |copy| 2010, 2019, 2025 by Olivier Bonaventure
 .. This file is licensed under a `creative commons licence <http://creativecommons.org/licenses/by/3.0/>`_
 
 
@@ -16,13 +16,13 @@ The User Datagram Protocol (UDP) is defined in :rfc:`768`. It provides an unreli
 
 Compared to the connectionless network layer service, the main advantage of the UDP service is that it allows several applications running on a host to exchange SDUs with several other applications running on remote hosts. Let us consider two hosts, e.g. a client and a server. The network layer service allows the client to send information to the server, but if an application running on the client wants to contact a particular application running on the server, then an additional addressing mechanism is required other than the IP address that identifies a host, in order to differentiate the application running on a host. This additional addressing is provided by `port numbers`. When a server using UDP is enabled on a host, this server registers a `port number`. This `port number` will be used by the clients to contact the server process via UDP.
 
-The figure below shows a typical usage of the UDP port numbers. The client process uses port number `1234` while the server process uses port number `5678`. When the client sends a request, it is identified as originating from port number `1234` on the client host and destined to port number `5678` on the server host. When the server process replies to this request, the server's UDP implementation will send the reply as originating from port  `5678` on the server host and destined to port `1234` on the client host.
+The figure below shows a typical usage of the UDP port numbers. The client process uses port number 1234, while the server process uses port number 5678. When the client sends a request, it is identified as originating from port number 1234 on the client host and destined to port number 5678 on the server host. When the server process replies to this request, the server's UDP implementation will send the reply as originating from port 5678 on the server host and destined to port 1234 on the client host.
 
     .. tikz:: Usage of the UDP port numbers
         :libs: positioning, matrix, arrows
 
         \tikzstyle{arrow} = [thick,->,>=stealth]
-        \tikzset{elem/.style = {rectangle, thick, draw, text centered, font=\small, minimum height=2em, node distance=20em,}, }
+        \tikzset{elem/.style = {rectangle, thick, draw, text centered, font=\small, minimum height=2em, node distance=20em}}
 
         \node[elem] (C) {\color{red} Client};
         \node[elem, right=of C] (S) {\color{blue} Server};
@@ -38,8 +38,6 @@ The figure below shows a typical usage of the UDP port numbers. The client proce
 
 .. index:: UDP segment
 
-
-
 UDP uses a single segment format shown in the figure below.
 
 .. figure:: /pkt/udp.*
@@ -50,19 +48,29 @@ UDP uses a single segment format shown in the figure below.
 
 The UDP header contains four fields :
 
- - a 16 bits source port
- - a 16 bits destination port
- - a 16 bits length field
- - a 16 bits checksum
+ - a 16-bit source port
+ - a 16-bit destination port
+ - a 16-bit length field
+ - a 16-bit checksum
 
-As the port numbers are encoded as a 16 bits field, there can be up to only 65535 different server processes that are bound to a different UDP port at the same time on a given server. In practice, this limit is never reached. However, it is worth noticing that most implementations divide the range of allowed UDP port numbers into three different ranges :
+As the port numbers are encoded as a 16-bit field, there can be up to only 65535 different server processes that are bound to a different UDP port at the same time on a given server. In practice, this limit is never reached. However, it is worth noticing that most implementations divide the range of allowed UDP port numbers into three different ranges :
 
  - the privileged port numbers (1 < port < 1024 )
  - the ephemeral port numbers ( officially [#fephemeral]_ 49152 <= port <= 65535 )
  - the registered port numbers (officially 1024 <= port < 49152)
 
-In most Unix variants, only processes having system administrator privileges can be bound to port numbers smaller than `1024`. Well-known servers such as :term:`DNS`, :term:`NTP` or :term:`RPC` use privileged port numbers. When a client needs to use UDP, it usually does not require a specific port number. In this case, the UDP implementation will allocate the first available port number in the ephemeral range. The range of registered port numbers should be used by servers. In theory, developers of network servers should register their port number officially through IANA [#fportnum]_, but few developers do this.
+In most Unix variants, only processes having system administrator privileges can be bound to port numbers smaller than `1024`. Well-known servers such as :term:`DNS`, :term:`NNTP`,or :term:`RPC` use privileged port numbers. When a client needs to use UDP, it usually does not require a specific port number. In this case, the UDP implementation will allocate the first available port number in the ephemeral range. The range of registered port numbers should be used by servers. In theory, developers of network servers should register their port number officially through IANA [#fportnum]_, but few developers do this.
 
+
+UDP can be used over IPv4 or IPv6. When a host receives an IP packet, it needs to determine whether this packet should be processed by UDP or another transport protocol. This is done by using the `Protocol` field in the IP version 4 header. The :term:`Internet Assigned Numbers Authority` (IANA) maintains a `registry of the assigned Internet Protocol numbers <https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml>`_ that assigns one integer to each protocol which can be carried inside an IP packet. This registry specifies that ``17`` is reserved to indicate a UDP segment.
+
+.. figure:: /pkt/udp-ipv4.*
+   :align: center
+   :scale: 80
+
+   An IPv4 packet containing an empty UDP segment
+
+   
 
 .. index:: UDP Checksum, Checksum computation
 
@@ -70,7 +78,7 @@ In most Unix variants, only processes having system administrator privileges can
 
  The checksum of the UDP segment is computed over :
 
-  - a pseudo header :rfc:`2460` containing the source address, the destination address, the packet length encoded as a 32 bits number and a 32 bits bit field containing the three most significant bytes set to 0 and the low order byte set to 17
+  - a pseudo header :rfc:`2460` containing the source address, the destination address, the packet length encoded as a 32-bit number and a 32-bit bit field containing the three most significant bytes set to 0 and the low-order byte set to 17
   - the entire UDP segment, including its header
 
 .. spelling:word-list::
@@ -80,7 +88,7 @@ In most Unix variants, only processes having system administrator privileges can
  This pseudo-header allows the receiver to detect errors affecting the source or destination addresses placed in the IP layer below. This is a violation of the layering principle that dates from the time when UDP and IP were elements of a single protocol. It should be noted that if the checksum algorithm computes value '0x0000', then value '0xffff' is transmitted. A UDP segment whose checksum is set to '0x0000' is a segment for which the transmitter did not compute a checksum upon transmission. Some :term:`NFS` servers chose to disable UDP checksums for performance reasons when running over IPv4, but this caused `problems <http://lynnesblog.telemuse.net/192>`_ that were difficult to diagnose. Over IPv6, the UDP checksum cannot be disabled. A detailed discussion of the implementation of the Internet checksum may be found in :rfc:`1071`
 
 
-Several types of applications rely on UDP. As a rule of thumb, UDP is used for applications where delay must be minimized or losses can be recovered by the application itself. A first class of the UDP-based applications are applications where the client sends a short request and expects a quick and short answer. The :term:`DNS` is an example of a UDP application that is often used in the wide area. However, in local area networks, many distributed systems rely on Remote Procedure Call (:term:`RPC`) that is often used on top of UDP. In Unix environments, the Network File System (:term:`NFS`) is built on top of RPC and runs frequently on top of UDP. A second class of UDP-based applications are the interactive computer games that need to frequently exchange small messages, such as the player's location or their recent actions. Many of these games use UDP to minimize the delay and can recover from losses. A third class of applications are multimedia applications such as interactive Voice over IP or interactive Video over IP. These interactive applications expect a delay shorter than about 200 milliseconds between the sender and the receiver and can recover from losses directly inside the application.
+Several types of applications rely on UDP. As a rule of thumb, UDP is used for applications where delay must be minimized or losses can be recovered by the application itself. A first-class of UDP-based applications are applications where the client sends a short request and expects a quick and short answer. The :term:`DNS` is an example of a UDP application that is often used in the wide area. However, in local area networks, many distributed systems rely on Remote Procedure Call (:term:`RPC`) that is often used on top of UDP. In Unix environments, the Network File System (:term:`NFS`) is built on top of RPC and runs frequently on top of UDP. A second class of UDP-based applications are the interactive computer games that need to frequently exchange small messages, such as the player's location or their recent actions. Many of these games use UDP to minimize the delay and can recover from losses. A third class of applications are multimedia applications such as interactive Voice over IP or interactive Video over IP. These interactive applications expect a delay shorter than about 200 milliseconds between the sender and the receiver and can recover from losses directly inside the application.
 
 
 

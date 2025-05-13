@@ -333,12 +333,12 @@ Each datalink layer has its own characteristics and as indicated earlier, each d
 ==============      ==================
 Datalink layer      MTU
 --------------      ------------------
-Ethernet	           1500 bytes
-WiFi		           2272 bytes
-ATM (AAL5)	        9180 bytes
-802.15.4	           102 or 81 bytes
-Token Ring	        4464 bytes
-FDDI  		        4352 bytes
+Ethernet	    1500 bytes
+WiFi		    2272 bytes
+ATM (AAL5)	    9180 bytes
+802.15.4	    102 or 81 bytes
+Token Ring	    4464 bytes
+FDDI  		    4352 bytes
 ==============      ==================
 
 Although IPv6 can send 64 KBytes long packets, few datalink layer technologies that are used today are able to send a 64 KBytes packet inside a frame. Furthermore, as illustrated in the figure below, another problem is that a host may send a packet that would be too large for one of the datalink layers used by the intermediate routers.
