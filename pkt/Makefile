@@ -2,7 +2,7 @@
 # OB additions
 # Automatic conversion of images
 #
-PKT2SVG= ../util/packet2svg.py
+PKT2SVG= python3 ../util/packet2svg.py
 SVG2PNG= ../util/convertpkt.sh
 
 SVGFILES := $(patsubst %.pkt,%.svg,$(wildcard *.pkt))

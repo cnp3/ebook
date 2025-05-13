@@ -1,10 +1,11 @@
-.. Copyright |copy| 2013,2014,2019 by `Olivier Bonaventure <https://perso.uclouvin.be/olivier.bonaventure>`_
+.. Copyright |copy| 2013,2014,2019,2025 by `Olivier Bonaventure <https://perso.uclouvin.be/olivier.bonaventure>`_
 .. This file is licensed under a `creative commons licence <http://creativecommons.org/licenses/by/3.0/>`_
 
 
 ########################################################################
 Computer Networking : Principles, Protocols and Practice, fourth edition
 ########################################################################
+
 
 
 
@@ -16,9 +17,12 @@ Computer Networking : Principles, Protocols and Practice, fourth edition
 
    This is an unpolished draft of the fourth edition of this ebook. If you find any error or have suggestions to improve the text, please create an issue via https://github.com/CNP3/ebook/issues/new
 
+   This is an unpolished draft of the third edition of this ebook. If you find any error or have suggestions to improve the text, please create an issue via https://github.com/CNP3/ebook/issues/new
+
    The development of this edition of the textbook is carried out on `https://github.com/CNP3/ebook <https://github.com/CNP3/ebook>`_
 
-   ..   The source code of the entire textbook is written in `reStructuredText <http://docutils.sourceforge.net/rst.html>`_ and uses several `sphinx <https://www.sphinx-doc.org>`_ features. You can browse these sources from `github <https://github.com/CNP3/ebook/tree/master>`_ You can download a pdf version from :download:`tmp/latex/CNP3.pdf`
+..   The source code of the entire textbook is written in `reStructuredText <http://docutils.sourceforge.net/rst.html>`_ and uses several `sphinx <https://www.sphinx-doc.org>`_ features. You can browse these sources from `github <https://github.com/CNP3/ebook/tree/master>`_ You can download a pdf version from :download:`tmp/latex/CNP3.pdf`
+
 
 ..   The online version of the e-book at `http://beta.computer-networking.info <http://beta.computer-networking.info>`_ contains online exercises.
 

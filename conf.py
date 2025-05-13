@@ -11,7 +11,7 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
-import sys, os
+import sys, os, shutil
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -31,10 +31,10 @@ sys.path.append(os.path.abspath("./util"))
 extensions = ['sphinx.ext.todo', 'sphinxcontrib.mscgen', 'sphinx.ext.graphviz', 'sphinxcontrib.tikz', 'sphinx.ext.mathjax', 'sphinxcontrib.spelling', 'interactive_syllabus_directives',     'sphinxcontrib.bibtex', 'matplotlib.sphinxext.plot_directive']
 
 
-#extensions = ['sphinx.ext.todo', 'sphinx.ext.pngmath', 'sphinxcontrib.mscgen','sphinx.ext.graphviz','sphinxcontrib.tikz']
+#extensions = ['sphinx.ext.todo', 'sphinx.ext.pngmath', 'sphinxcontrib.mscgen','sphinx.ext.graphviz','sphinxcontrib.tikz','sphinxcontrib.spelling']
 #mscgen
 mscgen_args=['-T eps']
-mscgen_epstopdf='/usr/bin/epstopdf'
+mscgen_epstopdf=shutil.which("epstopdf")
 mscgen_epstopdf_args=['--debug']
 
 # Localisation
@@ -50,6 +50,7 @@ tokenizer_lang='en_US'
 spelling_show_suggestions=False
 # Private dictionnary
 spelling_word_list_filename=['wordlist.dict']
+
 
 
 # mcq
@@ -102,7 +103,9 @@ exclude_trees = ['_build', 'venv', 'python', 'tmp']
 
 # List of files that should not be automatically compiled by sphynx because they are included
 
-exclude_patterns = [ '*#*', "python/*" , "principles/*", "protocols/*", '\._*rst', "venv*/*", "tmp/*", ".venv/*"]
+
+exclude_patterns = [ '*#*', "python/*" , "principles/dv.rst", "principles/linkstate.rst", "._*rst", "venv/*", "tmp/*"]
+
 
 # epilog add to all included files
 #rst_epilog = """
@@ -237,10 +240,8 @@ latex_elements = {
 'preamble': '''
 \\usepackage{tikz}
 \\usepackage{pgfplots}
-\\usepackage{bytefield}
-\pgfplotsset{compat=1.16}
-\\usetikzlibrary{math}
-\\usetikzlibrary{arrows,arrows.meta,positioning, matrix,backgrounds,shapes,shapes.symbols,shadows,calc,automata,fit}
+\\pgfplotsset{compat=1.16}
+\\usetikzlibrary{arrows.meta,positioning, matrix,backgrounds,shapes,shadows,calc,automata,arrows}
 '''
 }
 
@@ -260,7 +261,7 @@ tikz_latex_preamble='''
 \\usepackage{pgfplots}
 \\usepackage{pgfkeys}
 \\usepackage[normalem]{ulem}
-%\pgfplotsset{compat=1.16}
+\\pgfplotsset{compat=1.16}
 \\tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em
 }, }
 \\tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
