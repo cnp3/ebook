@@ -92,6 +92,7 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
 .. [Goralski2009] Goralski, W., `The Illustrated network : How TCP/IP works in a modern network <http://books.google.com/books?id=6nDtNA6VJ5YC>`_, Morgan Kaufmann, 2009 
 .. [Helme2019] Helme, S., `Top 1 Million Analysis - September 2019 <https://scotthelme.co.uk/top-1-million-analysis-september-2019/>`_, 2019, https://scotthelme.co.uk/top-1-million-analysis-september-2019/
 .. .. [HFPMC2002] Huffaker, B., Fomenkov, M., Plummer, D., Moore, D., Claffy, K., `Distance Metrics in the Internet <http://www.caida.org/outreach/papers/2002/Distance/>`_, Presented at the IEEE International Telecommunications Symposium (ITS) in 2002. 
+.. [HBR2020] Holterbach, T., Buhler, T, Rellstab, T., Vanbever, L., `An Open Platform to Teach How the Internet Practically Works <https://doi.org/10.1145/3402413.3402420>`_, SIGCOMM Computer Communication Review, April 2020
 .. [HRX2008] Ha, S., Rhee, I., and Xu, L., `CUBIC: a new TCP-friendly high-speed TCP variant <https://doi.org/10.1145/1400097.1400105>`_. SIGOPS Operating Systems Review 42, 5 (Jul. 2008), 64-74. 
 .. [HV2008] Hogg, S. Vyncke, E., `IPv6 Security <http://www.ciscopress.com/store/ipv6-security-9780133346312>`_, Cisco Press, 2008
 .. [IMHM2013] Ishihara, K., Mukai, M., Hiromi, R., Mawatari, M., `Packet Filter and Route Filter Recommendation for IPv6 at xSP routers <http://www.team-cymru.org/ReadingRoom/Templates/IPv6Routers/xsp-recommendations.html>`_, 2013
@@ -419,6 +420,7 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
    Bradner
    Brakmo
    Briscoe
+   Buhler
    Burleigh
    Bux
    Byrnes
@@ -507,6 +509,7 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
    Hinden
    Hiromi
    Hogg
+   Holterbach
    Hong
    Hopps
    Hornig
@@ -653,6 +656,7 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
    Redlich
    Refice
    Rekhter
+   Rellstab
    Resnick
    Retana
    Rexford
@@ -732,6 +736,7 @@ Whenever possible, the bibliography includes stable hypertext links to the refer
    Uhlig
    Usenix
    Uzun
+   Vanbever
    Vanstone
    Varada
    Varadhan

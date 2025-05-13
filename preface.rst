@@ -1,10 +1,54 @@
 .. Copyright |copy| 2010 by Olivier Bonaventure
 .. This file is licensed under a `creative commons licence <http://creativecommons.org/licenses/by/3.0/>`_
 
+==============================
+Preface for the fourth edition 
+==============================
 
-=======
-Preface
-=======
+The fourth edition of the textbook introduces a major change compared to the
+previous editions. There previous editions started from the principles before
+explaining the actual protocols that are used in deployed networks. From a
+pedagogical viewpoint, this approach had the benefit of allowing the students
+to first understand the basic principles and then explore in details how
+existing protocols use them. Unfortunately, the main drawback of this approach
+was that students spent half their semester to understand abstract protocols.
+They had to wait until the second half of the course to be able to understand
+the protocols that they use every day. This created a lot of frustration among
+students and motivated us to explore a different way to explain computer
+networking to students. This approach has been tested during two years
+at `UCLouvain`_ and worked well. We have adopted it for the fourth edition
+of the ebook.
+
+The ebook is now divided in two main parts. The first part considers the
+network as a black box and focuses on the interactions between the hosts.
+During this part, student explore networked applications, security, naming
+and addressing and most functions of the transport layer except
+congestion control. The network
+and datalink layers are briefly explained with a focus on the frame and
+packet formats. The second part of the ebook opens the black box and describes
+in more details the control plane protocols, mainly the routing protocols
+(both intradomain and interdomain routing), but also the Spanning
+Tree Protocol and Medium Access Control techniques. We also explain the traffic
+control techniques which can be used on routers and how congestion control
+operates on hosts. 
+
+A key benefit of this approach is that students can quickly carry hands-on
+exercises with real protocols during the first semester. The previous approach
+relied more on traditional paper/pencil exercises. At `UCLouvain`_ students
+work on two projects in parallel with the course. The first project focuses on
+the host part. The students use `Wireshark`_ and similar tools to explore the
+packets exchanged by an application or a browser when interacting with a
+website. This forces them to better understand the protocols used by hosts
+in more details in parallel with the course. The second project builds
+upon the
+`Mini Internet project <https://github.com/nsg-ethz/mini_internet_project>`_
+designed by Laurent Vanbever and his colleagues at ETH Zurich [HBR2020]_
+
+
+
+==============================
+Preface for the first editions 
+==============================
 
 
 This textbook came from a frustration of first main author. Many authors choose to write a textbook because there are no textbooks in their field or because they are not satisfied with the existing textbooks. This frustration has produced several excellent textbooks in the networking community. At a time when networking textbooks were mainly theoretical, `Douglas Comer`_ chose to write a textbook entirely focused on the TCP/IP protocol suite [Comer1988]_, a difficult choice at that time. He later extended his textbook by describing a complete TCP/IP implementation, adding practical considerations to the theoretical descriptions in [Comer1988]_. `Richard Stevens`_ approached the Internet like an explorer and explained the operation of protocols by looking at all the packets that were exchanged on the wire [Stevens1994]_. `Jim Kurose`_ and `Keith Ross`_ reinvented the networking textbooks by starting from the applications that the students use and later explained the Internet protocols by removing one layer after the other [KuroseRoss09]_. 
@@ -182,7 +226,7 @@ The ebook covers only a small subset of the `Computer Networking` domain. To enc
 
 .. note::
 
- `Computer Networking : Principles, Protocols and Practice`, (c) 2011-2021, `Olivier Bonaventure`_, `Université catholique de Louvain <https://www.uclouvain.be>`_ (Belgium) and the collaborators listed above, used under a Creative Commons Attribution (CC BY) license made possible by funding from The Saylor Foundation's Open Textbook Challenge in order to be incorporated into Saylor.org' collection of open courses available at `https://www.saylor.org <https://www.saylor.org>`_. Full license terms may be viewed at : `https://creativecommons.org/licenses/by/3.0/ <https://creativecommons.org/licenses/by/3.0/>`_
+ `Computer Networking : Principles, Protocols and Practice`, (c) 2011-2024, `Olivier Bonaventure`_, `Université catholique de Louvain <https://www.uclouvain.be>`_ (Belgium) and the collaborators listed above, used under a Creative Commons Attribution (CC BY) license made possible by funding from The Saylor Foundation's Open Textbook Challenge in order to be incorporated into Saylor.org' collection of open courses available at `https://www.saylor.org <https://www.saylor.org>`_. Full license terms may be viewed at : `https://creativecommons.org/licenses/by/3.0/ <https://creativecommons.org/licenses/by/3.0/>`_
 
 
 .. About the author

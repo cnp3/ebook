@@ -2,9 +2,9 @@
 .. This file is licensed under a `creative commons licence <http://creativecommons.org/licenses/by/3.0/>`_
 
 
-#######################################################################
-Computer Networking : Principles, Protocols and Practice, third edition
-#######################################################################
+########################################################################
+Computer Networking : Principles, Protocols and Practice, fourth edition
+########################################################################
 
 
 
@@ -14,13 +14,11 @@ Computer Networking : Principles, Protocols and Practice, third edition
       :align: center
       :scale: 60
 
+   This is an unpolished draft of the fourth edition of this ebook. If you find any error or have suggestions to improve the text, please create an issue via https://github.com/CNP3/ebook/issues/new
 
-	  
-..   This is an unpolished draft of the third edition of this ebook. If you find any error or have suggestions to improve the text, please create an issue via https://github.com/CNP3/ebook/issues/new
+   The development of this edition of the textbook is carried out on `https://github.com/CNP3/ebook <https://github.com/CNP3/ebook>`_
 
-..   The development of this edition of the textbook is carried out on `https://github.com/CNP3/ebook <https://github.com/CNP3/ebook>`_
-
-..   The source code of the entire textbook is written in `reStructuredText <http://docutils.sourceforge.net/rst.html>`_ and uses several `sphinx <https://www.sphinx-doc.org>`_ features. You can browse these sources from `github <https://github.com/CNP3/ebook/tree/master>`_ You can download a pdf version from :download:`tmp/latex/CNP3.pdf`
+   ..   The source code of the entire textbook is written in `reStructuredText <http://docutils.sourceforge.net/rst.html>`_ and uses several `sphinx <https://www.sphinx-doc.org>`_ features. You can browse these sources from `github <https://github.com/CNP3/ebook/tree/master>`_ You can download a pdf version from :download:`tmp/latex/CNP3.pdf`
 
 ..   The online version of the e-book at `http://beta.computer-networking.info <http://beta.computer-networking.info>`_ contains online exercises.
 
@@ -37,47 +35,78 @@ Computer Networking : Principles, Protocols and Practice, third edition
 
 .. _part1:
 
-##################
-Part 1: Principles
-##################
+#############
+Part 1: Hosts
+#############
 
 .. toctree::
    :maxdepth: 4
 
-   principles/reliability
-   principles/network
-   principles/transport
-   principles/naming
-   principles/sharing
-   principles/referencemodels
-   principles/security
+   hosts/physical
+   hosts/ip-intro   
+   hosts/transport-service
+   hosts/udp 
+   hosts/naming 
+   hosts/transport-co
+   hosts/email
+   hosts/http
+   hosts/http2
+   hosts/rpc
+   hosts/security
+   hosts/ssh
+   hosts/tls
+   hosts/dnssec
+   hosts/transport2  .. pas sur de l'utilité
+   hosts/reliability
+   hosts/tcp
+   hosts/quic
+   hosts/ipv6
+   hosts/ipv4
+   hosts/referencemodels
+
+
+      ..   principles/reliability
+..  principles/network
+..   principles/transport
+..   principles/naming
+..   principles/sharing
+..   principles/referencemodels
+..   principles/security
 
 .. _part2:
 
-#################
-Part 2: Protocols
-#################
+################
+Part 2: Networks
+################
 
 .. toctree::
    :maxdepth: 4
 
-   protocols/transport-service
-   protocols/dns
-   protocols/email
-   protocols/http
-   protocols/http2
-   protocols/rpc
-   protocols/ssh
-   protocols/tls
-   protocols/dnssec
-   protocols/transport
-   protocols/udp
-   protocols/tcp
-   protocols/congestion
-   protocols/ipv6
-   protocols/routing
-   protocols/bgp
-   protocols/lan
+
+   network/network
+   network/routing
+   network/bgp
+   network/lan
+   network/sharing
+   network/congestion
+              
+..   protocols/transport-service
+..   protocols/dns
+..   protocols/email
+..   protocols/http
+..   protocols/http2
+..   protocols/rpc
+..   protocols/ssh
+..   protocols/tls
+..   protocols/dnssec
+..   protocols/transport
+..   protocols/udp
+..   protocols/tcp
+..   protocols/congestion
+..   protocols/ipv6
+..   protocols/routing
+..   protocols/bgp
+..   protocols/lan
 ..   protocols/quic
 
 .. _part3:

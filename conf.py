@@ -28,7 +28,7 @@ import sys, os
 
 # add sphinx extensions
 sys.path.append(os.path.abspath("./util"))
-extensions = ['sphinx.ext.todo', 'sphinxcontrib.mscgen', 'sphinx.ext.graphviz', 'sphinxcontrib.tikz', 'sphinx.ext.mathjax', 'sphinxcontrib.spelling', 'interactive_syllabus_directives']
+extensions = ['sphinx.ext.todo', 'sphinxcontrib.mscgen', 'sphinx.ext.graphviz', 'sphinxcontrib.tikz', 'sphinx.ext.mathjax', 'sphinxcontrib.spelling', 'interactive_syllabus_directives',     'sphinxcontrib.bibtex', 'matplotlib.sphinxext.plot_directive']
 
 
 #extensions = ['sphinx.ext.todo', 'sphinx.ext.pngmath', 'sphinxcontrib.mscgen','sphinx.ext.graphviz','sphinxcontrib.tikz']
@@ -102,7 +102,7 @@ exclude_trees = ['_build', 'venv', 'python', 'tmp']
 
 # List of files that should not be automatically compiled by sphynx because they are included
 
-exclude_patterns = [ '*#*', "python/*" , "principles/dv.rst", "principles/linkstate.rst", '\._*rst', "venv/*", "tmp/*"]
+exclude_patterns = [ '*#*', "python/*" , "principles/*", "protocols/*", '\._*rst', "venv*/*", "tmp/*", ".venv/*"]
 
 # epilog add to all included files
 #rst_epilog = """
@@ -237,8 +237,10 @@ latex_elements = {
 'preamble': '''
 \\usepackage{tikz}
 \\usepackage{pgfplots}
+\\usepackage{bytefield}
 \pgfplotsset{compat=1.16}
-\\usetikzlibrary{arrows.meta,positioning, matrix,backgrounds,shapes,shadows,calc,automata,arrows}
+\\usetikzlibrary{math}
+\\usetikzlibrary{arrows,arrows.meta,positioning, matrix,backgrounds,shapes,shapes.symbols,shadows,calc,automata,fit}
 '''
 }
 
@@ -248,7 +250,7 @@ latex_elements = {
 # If false, no module index is generated.
 #latex_use_modindex = True
 
-tikz_libraries="positioning,matrix,arrows,shapes,automata"
+tikz_libraries="positioning,matrix,arrows,shapes,automata,math"
 
 tikz_proc_suite='ImageMagick'
 
@@ -263,6 +265,12 @@ tikz_latex_preamble='''
 }, }
 \\tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
 '''
+
+# bibtex
+
+bibtex_bibfiles = ['bib/papers.bib', 'bib/quic.bib', 'bib/rfc.bib',]
+bibtex_default_style = 'unsrt'
+
 
 # -- Options for PDF output --------------------------------------------------
 # Grouping the document tree into PDF files. List of tuples # (source start file, target name, title, author, options). # # If there is more than one author, separate them with \\. # For example: r'Guido van Rossum\\Fred L. Drake, Jr., editor' #
@@ -391,8 +399,9 @@ epub_cover=('cnp3.png','')
 
 
 # numfig:
-#numfig_number_figures = True
-#numfig_figure_caption_prefix = "Fig."
+numfig = True
+numfig_number_figures = True
+numfig_figure_caption_prefix = "Fig."
 
 
 

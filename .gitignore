@@ -1,3 +1,4 @@
+
 # emacs backup files
 *~
 
@@ -9,7 +10,7 @@ tmp/*
 venv/*
 # generated translation files
 **/*.mo
-# generated site
+.# generated site
 _build
 # python cache
 **/__pycache__
