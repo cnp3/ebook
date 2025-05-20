@@ -144,7 +144,7 @@ sent by Mallory.
 To cope with these security threats and improve the security of the
 DNS, the IETF has defined several extensions that are known as DNSSEC.
 DNSSEC exploits public-key cryptography to authenticate the content
-of the DNS records that are sent by DNS servers and resolvers. DNSEC is
+of the DNS records that are sent by DNS servers and resolvers. DNSSEC is
 defined in three main documents :rfc:`4033`, :rfc:`4034`, :rfc:`4035`.
 With DNSSEC, each DNS zone uses one public-private key pair. This key pair
 is only used to sign and authenticate DNS records. The DNS records are
