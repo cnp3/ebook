@@ -46,7 +46,7 @@ An `application-level protocol` is similar to a structured conversation between 
  - Alice : `Thank you`
  - Bob : `You're welcome`
 
-.. spelling::
+.. spelling:word-list::
 
    Tchang
 

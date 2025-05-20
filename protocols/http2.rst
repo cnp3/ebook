@@ -156,7 +156,7 @@ The information exchanged over an HTTP/2.0 session is composed of frames. A fram
 
 Other frame types are described later. The `Flags` are used for some frame types and the `R` bit must be set to zero. The last important field of the `HTTP/2.0 Frame` header is the `Stream Identifier`. With HTTP/2.0, the bytestream of the underlying transport connection is divided in independent streams that are identified by an integer. The odd (resp. even) stream identifiers are managed by the client (resp. server). This enables the server (or the client) to multiplex data corresponding to different frames over a single bytestream.
 
-.. spelling::
+.. spelling:word-list::
 
    HoL
 

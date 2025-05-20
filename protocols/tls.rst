@@ -131,7 +131,7 @@ In a nutshell, the client starts the TLS handshake by proposing a random nonce. 
 
 
 
-.. spelling::
+.. spelling:word-list::
 
    cryptanalysts
 
@@ -384,7 +384,7 @@ In 2013, the statistics collected by the Firefox Telemetry project [#ftelemetry]
 
 Measurement studies that analyzed the evolution of TLS over the years have identified several important changes in the TLS ecosystem [KRA2018]_. First, the preferred cryptographic algorithms have changed. While RC4 was used by 60% of the connections in 2012, its usage has dropped since 2015. AES started to be deployed in 2013 and is now used for more than 90% of the connections. The deployed versions of TLS have also changed. TLS 1.0 and TLS 1.1 are now rarely used. The deployment of TLS 1.2 started in 2013 and reached 70% of the connections in 2015. Version 1.3 of TLS, that is described below, is also widely deployed.
 
-.. spelling::
+.. spelling:word-list::
 
    Snowden
    RSA
@@ -394,7 +394,7 @@ that since summer 2014, ECDHE is more popular than RSA. In 2018, more than 90% o
 
 The last point is the difficulty of deploying TLS servers [KMS2017]_. When TLS servers are installed, the system administrator needs to obtain certificates and configure a range of servers. Initially, getting certificates was complex and costly, but initiatives such as https://letsencrypt.org have simplified this workflow.
 
-.. spelling::
+.. spelling:word-list::
 
    workflow
 
@@ -446,7 +446,7 @@ The TLS 1.3 handshake differs from the TLS 1.2 handshake in several ways. First,
 
 There are several important differences with the TLS 1.2 handshake. First, the Diffie Hellman key exchange is required in TLS 1.3 and this exchange is initiated by the client (before having validated the server identity). To initiate the Diffie Hellman key exchange, the client needs to guess the modulus and the base that can be accepted by the server. Either the client uses standard parameters that most server supports or the client remembers the last modulus/base that it used with this particular server. If the client guessed incorrectly, the server replies with the parameters that it expects and one round-trip-time is lost. When the server sends its `ServerHello`, it already knows the session key. This implies that the server can encrypt all subsequent messages. After one round-trip-time, all data exchanged over the TLS 1.3 session is encrypted and authenticated. In TLS 1.3, the server certificate is encrypted with the session key, as well as the `Finished` message. The server signs the handshake to confirm that it owns the public key of its certificate. If the server wants to send application data, it can already encrypt it and send it to the client. Upon reception of the server Certificate, the client verifies it and checks the signature of the handshake and the `Finished` message. The client confirms the end of the handshake by sending its own `Finished` message. At that time, the client can send encrypted data. This means that the client only had to wait one round-trip-time before sending encrypted data. This is much faster than with TLS 1.2.
 
-.. spelling::
+.. spelling:word-list::
 
    pre
    rtt
@@ -518,7 +518,7 @@ There are many more differences between TLS 1.2 and TLS 1.3. Additional details 
 .. [#fhandshake] A detailed explanation of the TLS 1.3 handshake may be found at https://tls13.ulfheim.net/
 .. [#ftelemetry] See https://letsencrypt.org/stats/ for a graph and https://docs.telemetry.mozilla.org/datasets/other/ssl/reference.html for additional information on the dataset
 
-.. spelling::
+.. spelling:word-list::
 
    dataset
 
