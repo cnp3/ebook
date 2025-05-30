@@ -105,6 +105,15 @@ sphinx-build --keep-going -b html . <output_dir>
 
 where ``<output_dir>`` is the output directory where the e-book should be built.
 
+
+## Docker build
+
+```
+docker build --output out .
+```
+
+Build the html version in docker, and extract the result to ``out``
+
 ### Building a localized version
 
 If you want to build a localized version of the e-book, change the ``language`` parameter in ``conf.py`` using the ISO-639-1 code corresponding to the target language.
