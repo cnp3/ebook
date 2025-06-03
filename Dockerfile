@@ -39,7 +39,9 @@ RUN . ./bin/activate && pip3 install -U -e tikz
 
 COPY ./ /repo/
 
-RUN . ./bin/activate && cd /repo && sphinx-build --fail-on-warning --keep-going -b spelling . /out
+# Don't run with --fail-on-warning here to only check for spelling mistakes first
+# Grep exit with 0 if it finds anything, here we don't want to find any spelling mistake, this why we have the !
+RUN . ./bin/activate && cd /repo && ! sphinx-build --keep-going -b spelling . /out | grep "Spell check:"
 RUN . ./bin/activate && cd /repo && sphinx-build --keep-going -b html . /out
 
 FROM scratch AS export
