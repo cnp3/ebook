@@ -44,6 +44,7 @@ COPY ./ /repo/
 RUN . ./bin/activate && cd /repo && ! sphinx-build --keep-going -b spelling . /out | grep "Spell check:"
 RUN . ./bin/activate && cd /repo && sphinx-build --keep-going -b html . /out
 RUN . ./bin/activate && cd /repo && sphinx-build --keep-going -b epub . /out
+RUN . ./bin/activate && cd /repo && sphinx-build -M latexpdf . /out
 
 FROM scratch AS export
 COPY --from=build /out .
