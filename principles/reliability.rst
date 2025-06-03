@@ -835,7 +835,7 @@ In practice, as the frame header includes an `n` bits field to encode the sequen
    :align: center
    :scale: 60
 
-   Utilisation of the sliding window with modulo arithmetic
+   Utilization of the sliding window with modulo arithmetic
 
 .. index:: go-back-n
 
