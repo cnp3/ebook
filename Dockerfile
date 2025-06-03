@@ -39,6 +39,7 @@ RUN . ./bin/activate && pip3 install -U -e tikz
 
 COPY ./ /repo/
 
+RUN . ./bin/activate && cd /repo && sphinx-build --fail-on-warning --keep-going -b spelling . /out
 RUN . ./bin/activate && cd /repo && sphinx-build --keep-going -b html . /out
 
 FROM scratch AS export
