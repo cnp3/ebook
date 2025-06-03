@@ -43,6 +43,7 @@ COPY ./ /repo/
 # Grep exit with 0 if it finds anything, here we don't want to find any spelling mistake, this why we have the !
 RUN . ./bin/activate && cd /repo && ! sphinx-build --keep-going -b spelling . /out | grep "Spell check:"
 RUN . ./bin/activate && cd /repo && sphinx-build --keep-going -b html . /out
+RUN . ./bin/activate && cd /repo && sphinx-build --keep-going -b epub . /out
 
 FROM scratch AS export
 COPY --from=build /out .
