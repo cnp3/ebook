@@ -262,6 +262,7 @@ tikz_latex_preamble='''
 \\usepackage{tikz}
 \\usepackage{pgfplots}
 \\usepackage{pgfkeys}
+\\usepackage{bytefield}
 \\usepackage[normalem]{ulem}
 \\pgfplotsset{compat=1.16}
 \\tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em

@@ -1,3 +1,5 @@
+:orphan:
+
 .. Copyright |copy| 2015, 2019 by Olivier Bonaventure
 .. This file is licensed under a `creative commons licence <http://creativecommons.org/licenses/by/3.0/>`_
 

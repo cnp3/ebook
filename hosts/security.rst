@@ -1,11 +1,12 @@
-.. Copyright |copy| 2013, 2019 by Olivier Bonaventure
+.. Copyright |copy| 2013, 2019, 2025 by Olivier Bonaventure
 .. This file is licensed under a `creative commons
    licence <http://creativecommons.org/licenses/by-sa/3.0/>`_
 
 .. index:: security
 
+****************
 Network security
-----------------
+****************
 
 In the early days, data networks were mainly used by researchers and security was not a concern. A few users were connected and capable of using the network. Almost all the devices attached to the network were openly accessible and users were trusted. As the utilization of the networks grew, security concerns started to appear. In universities, researchers and professors did not always trust their students and required some forms of access control. On standalone computers, the common access control mechanism is the password. A `username` is assigned to each user and when this user wants to access the computer, he or she needs to provide his/her `username` and his/her `password`. Most passwords are composed of a sequence of characters. The strength of the password is function of the difficulty of guessing the  characters chosen by each user. Various guidelines have been defined on how  to select a good password [#fpasswords]_. Some systems require regular modifications of the passwords chosen by their users.
 
@@ -55,8 +56,8 @@ in the time sequence diagram below.
 
 
 
-Threats
-^^^^^^^
+Security threats
+================
 
 When analyzing security issues in computer networks, it is useful to
 reason about the
@@ -239,7 +240,7 @@ the request.
 
 
 Cryptographic primitives
-^^^^^^^^^^^^^^^^^^^^^^^^
+========================
 
 Cryptography techniques have initially been defined and used by spies and armies
 to exchange secret information in manner that ensures that adversaries cannot
@@ -463,7 +464,7 @@ generator. :rfc:`4086` provides useful recommendations.
 
 
 Cryptographic protocols
-^^^^^^^^^^^^^^^^^^^^^^^
+=======================
 
 We can now combine the cryptographic operations described in the previous section
 to build some protocols to securely exchange
@@ -907,7 +908,7 @@ use a public key cryptosystem to encrypt the random secret keys that
 will be used by the secret key encryption scheme.
 
 Key exchange
-^^^^^^^^^^^^
+============
 
 .. spelling:word-list::
 
@@ -998,14 +999,13 @@ be organized as follows.
     and the certificate and computes :math:`S_{A}=B^{a} \mod p`
   - Bob computes :math:`S_{B}=A^{b} \mod p`
 
-.. exercice : explorer des alternatives, cfr bouquin de Kaufmann
 
 This prevents the attack mentioned above since Mallory cannot create a
 fake certificate and cannot sign a value by using Bob's private key. Given
 the risk of man-in-the-middle attacks, the Diffie-Hellman key exchange
 mechanism should never be used without authentication.
 
-
+.. todo: provide examples using python
 
 
 .. rubric:: Footnotes

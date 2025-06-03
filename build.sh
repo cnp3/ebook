@@ -17,11 +17,10 @@ cd pkt
 make
 cd ..
 # Spell checker
-sphinx-build --keep-going -b spelling . tmp
-sphinx-build  -M latexpdf . tmp
-# --keep-going continue the processing after a warning
-sphinx-build  -b html . tmp
-sphinx-build  -b singlehtml . tmp
-sphinx-build  -b epub . tmp
+sphinx-build --keep-going -b spelling . tmp -w spell.out 
+sphinx-build -M latexpdf  . tmp -w latex.out -j auto
+sphinx-build -b html -j auto -w html.out . tmp
+#sphinx-build -b singlehtml . tmp
+#sphinx-build  -b epub . tmp
 
 deactivate

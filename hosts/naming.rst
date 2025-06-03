@@ -6,7 +6,7 @@
 .. _naming:
 
 Naming and addressing
----------------------
+=====================
 
 The network and the transport layers rely on addresses that are encoded as fixed-size bit strings. A network layer address uniquely identifies a host. Several transport layer entities can use the service of the same network layer. For example, a reliable transport protocol and a connectionless transport protocol can coexist on the same host. In this case, the network layer multiplexes the segments produced by these two protocols. This multiplexing is usually achieved by placing in the network packet header a field that indicates which transport protocol should process the segment. Given that there are few different transport protocols, this field does not need to be long. The port numbers play a similar role in the transport layer since they enable it to multiplex data from several application processes.
 
@@ -139,7 +139,7 @@ Names provide a lot of flexibility compared to addresses. For the network, they 
 .. _DNS:
 
 The Domain Name System
-======================
+----------------------
 
 The last component of the Domain Name System is the DNS protocol. The original DNS protocol runs above both the datagram and the bytestream services. In practice, the datagram service is used when short queries and responses are exchanged, and the bytestream service is used when longer responses are expected. In this section, we first focus on the utilization of the DNS protocol above the datagram service. We will discuss later other recently proposed protocols to carry DNS information.
 

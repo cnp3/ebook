@@ -1,4 +1,5 @@
-.. Copyright |copy| 2013 by Olivier Bonaventure
+:orphan:
+.. Copyright |copy| 2013, 2025 by Olivier Bonaventure
 .. This file is licensed under a `creative commons licence <http://creativecommons.org/licenses/by-sa/3.0/>`_
 
 .. _Email:

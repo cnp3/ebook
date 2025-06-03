@@ -3,7 +3,6 @@
 
 .. un chapitre IPv4 existe dans la première édition du livre, mais il doit être fortement réécrit pour être acceptable
 
-
 ******************
 Internet protocols
 ******************

@@ -71,6 +71,8 @@
 
 .. _libpcap: https://www.tcpdump.org/
 
+.. _uclouvain: https://www.uclouvain.be
+
 .. _wireshark: https://www.wireshark.org
 
 .. _iperf: https://code.google.com/p/iperf/

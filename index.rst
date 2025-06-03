@@ -31,7 +31,7 @@ Computer Networking : Principles, Protocols and Practice, fourth edition
 .. _toc:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 4
 
    preface
 
@@ -46,27 +46,29 @@ Part 1: Hosts
 .. toctree::
    :maxdepth: 4
 
-   hosts/physical
-   hosts/ip-intro   
-   hosts/transport-service
+   hosts/introduction
    hosts/udp 
-   hosts/naming 
-   hosts/transport-co
-   hosts/email
-   hosts/http
-   hosts/http2
-   hosts/rpc
+   hosts/naming
+   hosts/applications
+   .. hosts/transport-service
+   .. hosts/transport-co
+   .. hosts/email
+   .. hosts/http
+   .. hosts/http2
+   .. hosts/rpc
    hosts/security
-   hosts/ssh
-   hosts/tls
-   hosts/dnssec
-   hosts/transport2  .. pas sur de l'utilité
+   hosts/security-protocols
+   .. hosts/ssh
+   .. hosts/tls
+   .. hosts/dnssec
+   .. hosts/transport2  .. pas sur de l'utilité
    hosts/reliability
    hosts/tcp
    hosts/quic
-   hosts/ipv6
-   hosts/ipv4
-   hosts/referencemodels
+   hosts/network-host
+   .. hosts/ipv4
+   .. hosts/ipv6
+   .. hosts/referencemodels
 
 
       ..   principles/reliability

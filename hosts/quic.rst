@@ -18,7 +18,7 @@ QUIC :cite:`rfc9000` is the latest transport protocol standardized by the IETF. 
 
    
 
-From a pure layering viewpoint, QUIC can be illustrated as shown in :numref:`fig-quic-layers`.
+From a pure layering viewpoint, QUIC can be illustrated as shown in :numref:`fig-quic-layers`. 
    
 .. _fig-quic-layers:
 .. tikz:: QUIC in the TCP/IP stack

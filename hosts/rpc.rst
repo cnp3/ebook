@@ -1,4 +1,4 @@
-  .. Copyright |copy| 2013, 2019 by Olivier Bonaventure
+.. Copyright |copy| 2013, 2019 by Olivier Bonaventure
 .. This file is licensed under a `creative commons licence <http://creativecommons.org/licenses/by-sa/3.0/>`_
 
 
@@ -144,6 +144,11 @@ The `id` field, which is present in the request and the response plays the same 
 .. index:: portmapper
 
 ONC-RPC uses a more complex method to allow a caller to reach the callee. On a host, server processes can run on different ports and given the limited number of port values (:math:`2^{16}` per host on the Internet), it is impossible to reserve one port number for each method. The solution used in ONC-RPC :rfc:`1831` is to use a special method which is called the `portmapper` :rfc:`1833`. The `portmapper` is a kind of directory that runs on a server that hosts methods. The `portmapper` runs on a standard port (`111` for ONC-RPC :rfc:`1833`). A server process that implements a method registers its method on the local `portmapper`. When a caller needs to call a method on a remote server, it first contacts the `portmapper` to obtain the port number of the server process which implements the method. The response from the portmapper allows it to directly contact the server process which implements the method.
+
+.. todo:: provide examples using rpcinfo and rpcgen and json-rpc using python. There is very limited support for ONC-RPC in python git clone https://github.com/nfs-ganesha/python-oncrpc.git
+.. install it on kathara and provide examples for the students
+   .. students need to leanr CLI tools and program in python
+
 
 
 .. rubric:: Footnotes

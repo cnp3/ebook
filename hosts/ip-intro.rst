@@ -1,3 +1,5 @@
+:orphan:
+
 .. Copyright |copy| 2024, 2025 by `Olivier Bonaventure <https://perso.uclouvain.be/olivier.bonaventure>`_
 .. This file is licensed under a `creative commons licence <http://creativecommons.org/licenses/by/3.0/>`_
 

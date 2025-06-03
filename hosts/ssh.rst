@@ -1,3 +1,5 @@
+:orphan:
+
 .. Copyright |copy| 2015, 2019 by Olivier Bonaventure
 .. This file is licensed under a `creative commons licence <http://creativecommons.org/licenses/by/3.0/>`_
 
@@ -292,6 +294,8 @@ Alice's session without asking for her credentials.
 
 The ``ssh`` protocol includes other features that are beyond the
 scope of this book. Additional details may be found in [BS2005]_.
+
+.. todo: provide examples using kathara, telnet has not really been deployed with tls support although sume implementatons support it
 
 
 .. rubric:: Footnotes

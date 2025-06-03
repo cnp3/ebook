@@ -1,3 +1,4 @@
+:orphan:
 .. Copyright |copy| 2013, 2025 by Olivier Bonaventure
 .. Some portions of this text come from the first edition of this e-book
 .. This file is licensed under a `creative commons licence <http://creativecommons.org/licenses/by-sa/3.0/>`_
@@ -11,8 +12,9 @@ Connecting two hosts
 
 
 
-The first step when building a network, even a worldwide network such as the Internet, is to connect two hosts together. This is illustrated in the figure below.
+The first step when building a network, even a worldwide network such as the Internet, is to connect two hosts together. This is illustrated in :numref:`fig-2hosts`. 
 
+   .. _fig-2hosts:
    .. tikz:: Connecting two hosts together
       :libs: positioning, matrix
 
@@ -66,6 +68,7 @@ To understand some of the principles behind the physical transmission of informa
 This transmission scheme has been used in some early networks. We use it as a basis to understand how hosts communicate.  From a computer science viewpoint, dealing with voltages is unusual. Computer scientists frequently rely on models that enable them to reason about the issues that they face without having to consider all implementation details. The physical transmission scheme described above can be represented by using a `time-sequence diagram`.
 
 A `time-sequence diagram` describes the interactions between communicating hosts. By convention, the communicating hosts are represented in the left and right parts of the diagram, while the electrical link occupies the middle of the diagram. In such a time-sequence diagram, time flows from the top to the bottom of the diagram. The transmission of one bit of information is represented by three arrows. Starting from the left, the first horizontal arrow represents the request to transmit one bit of information. This request is represented by a `primitive`, which can be considered as a kind of procedure call. This primitive has one parameter (the bit being transmitted) and a name (`DATA.request` in this example). By convention, all primitives that are named `something.request` correspond to a request to transmit some information. The dashed arrow indicates the transmission of the corresponding electrical signal on the wire. Electrical and optical signals do not travel instantaneously. The diagonal dashed arrow indicates that it takes some time for the electrical signal to be transmitted from `Host A` to `Host B`. Upon reception of the electrical signal, the electronics on `Host B`'s network interface detect the voltage and convert it into a bit. This bit is delivered as a `DATA.indication` primitive. All primitives that are named `something.indication` correspond to the reception of some information. The dashed lines also represent the relationship between two (or more) primitives. Such a time-sequence diagram provides information about the ordering of the different primitives, but the distance between two primitives does not represent a precise amount of time.
+
 
   .. msc::
 
@@ -124,7 +127,7 @@ With the above transmission scheme, a bit is transmitted by setting the voltage 
 A similar reasoning applies when the clock of the sending host is slower than the clock of the receiving host. In this case, the receiver will sense more bits than the bits that have been transmitted by the sender. This is illustrated in the figure below where the second bit received on the right was not transmitted by the left host.
 
 
-  … msc::
+  .. msc::
 
       a [label="", linecolour=white],
       b [label="Host A", linecolour=black],
@@ -153,20 +156,79 @@ From a Computer Science viewpoint, the physical transmission of information thro
 
 .. index:: Manchester encoding
 
-Many other types of encodings have been defined to transmit information over an electrical cable. All physical layers are able to send and receive physical symbols that represent values `0` and `1`. However, for various reasons that are outside the scope of this chapter, several physical layers exchange other physical symbols as well. For example, the Manchester encoding used in several physical layers can send four different symbols. The Manchester encoding is a differential encoding scheme in which time is divided into fixed-length periods. Each period is divided into two halves and two different voltage levels can be applied. To send a symbol, the sender must set one of these two voltage levels during each half period. To send a `1` (resp. `0`), the sender must set a high (resp. low) voltage during the first half of the period and a low (resp. high) voltage during the second half. This encoding ensures that there will be a transition at the middle of each period and allows the receiver to synchronize its clock to the sender's clock. Apart from the encodings for `0` and `1`, the Manchester encoding also supports two additional symbols : `InvH` and `InvB` where the same voltage level is used for the two half periods. By definition, these two symbols cannot appear inside a frame which is only composed of `0` and `1`. Some technologies use these special symbols as markers for the beginning or end of frames.
+Many other types of encodings have been defined to transmit information over an electrical cable. All physical layers are able to send and receive physical symbols that represent values `0` and `1`. However, for various reasons that are outside the scope of this chapter, several physical layers exchange other physical symbols as well. For example, the Manchester encoding used in several physical layers can send four different symbols. The Manchester encoding is a differential encoding scheme in which time is divided into fixed-length periods. Each period is divided into two halves and two different voltage levels can be applied. To send a symbol, the sender must set one of these two voltage levels during each half period. To send a `1` (resp. `0`), the sender must set a high (resp. low) voltage during the first half of the period and a low (resp. high) voltage during the second half. This encoding ensures that there will be a transition at the middle of each period and allows the receiver to synchronize its clock to the sender's clock. Apart from the encodings for `0` and `1`, the Manchester encoding also supports two additional symbols : `InvH` and `InvB` where the same voltage level is used for the two half periods. By definition, these two symbols cannot appear inside a frame which is only composed of `0` and `1`. Some technologies use these special symbols as markers for the beginning or end of frames. This encoding is illustrated in :numref:`fig-manchester`.
 
-
+ .. _fig-manchester:
  .. figure:: /principles/figures/manchester.*
     :align: center
     :scale: 50
 
     Manchester encoding
 
+When the physical layer transmits a bit of information using light or an electromgnatic signal, there is no guarantee that the bit sent by the transmitter will be received as it was sent by the receiver. Several types of errors can impact this transmission.
+    
+`Information Theory` defines two mechanisms that can be used to transmit information over a channel affected by random errors. These two mechanisms add redundancy to the transmitted information, to allow the receiver to detect or sometimes even correct transmission errors. A detailed discussion of these mechanisms is outside the scope of this chapter, but it is useful to consider a simple mechanism to understand its operation and its limitations.
+
+`Information theory` defines `coding schemes`. There are different types of coding schemes, but let us focus on coding schemes that operate on binary strings. A coding scheme is a function that maps information encoded as a string of `m` bits into a string of `n` bits. The simplest coding scheme is the (even) parity coding. This coding scheme takes an `m` bits source string and produces an `m+1` bits coded string where the first `m` bits of the coded string are the bits of the source string and the last bit of the coded string is chosen such that the coded string will always contain an even number of bits set to `1`. For example :
+
+ - `1001` is encoded as `10010`
+ - `1101` is encoded as `11011`
+
+This parity scheme has been used in some RAMs as well as to encode characters sent over a serial line. It is easy to show that this coding scheme allows the receiver to detect a single transmission error, but it cannot correct it. However, if two or more bits are in error, the receiver may not always be able to detect the error.
+
+Some coding schemes allow the receiver to correct some transmission errors. For example, consider the coding scheme that encodes each source bit as follows :
+
+ - `1` is encoded as `111`
+ - `0` is encoded as `000`
+
+For example, consider a sender that sends `111`. If there is one bit in error, the receiver could receive `011` or `101` or `110`. In these three cases, the receiver will decode the received bit pattern as a `1` since it contains a majority of bits set to `1`. If there are two bits in error, the receiver will not be able anymore to recover from the transmission error.
+
+This simple coding scheme forces the sender to transmit three bits for each source bit. However, it allows the receiver to correct single bit errors. More advanced coding systems that allow recovering from errors are used in several types of physical layers.
+
+To understand `error detection codes`, let us consider two devices that exchange bit strings containing `N` bits. To allow the receiver to detect a transmission error, the sender converts each string of `N` bits into a string of `N+r` bits. Usually, the `r` redundant bits are added at the beginning or the end of the transmitted bit string, but some techniques interleave redundant bits with the original bits. An `error detection code` can be defined as a function that computes the `r` redundant bits corresponding to each string of `N` bits. The simplest error detection code is the parity bit. There are two types of parity schemes : even and odd parity. With the `even` (resp. `odd`) parity scheme, the redundant bit is chosen so that an even (resp. odd) number of bits are set to `1` in the transmitted bit string of `N+r` bits. The receiver can easily recompute the parity of each received bit string and discard the strings with an invalid parity. The parity scheme is often used when 7-bit characters are exchanged. In this case, the eighth bit is often a parity bit. The table below shows the parity bits that are computed for bit strings containing three bits.
+
+  ====================    ==========     ===========
+  3 bits string           Odd parity     Even parity
+  ====================    ==========     ===========
+  000	     	          1              0
+  001                     0              1
+  010                     0              1
+  100                     0              1
+  111                     0              1
+  110	     	          1              0
+  101	     	          1              0
+  011	     	          1              0
+  ====================    ==========     ===========
+
+The parity bit allows a receiver to detect transmission errors that have affected a single bit among the transmitted `N+r` bits. If there are two or more bits in error, the receiver may not necessarily be able to detect the transmission error. More powerful error detection schemes have been defined. The Cyclical Redundancy Checks (CRC) are widely used in datalink layer protocols. An N-bits CRC can detect all transmission errors affecting a burst of less than N bits in the transmitted frame and all transmission errors that affect an odd number of bits. Additional details about CRCs may be found in [Williams1993]_.
+
+It is also possible to design a code that allows the receiver to correct transmission errors. The simplest `error correction code` is the triple modular redundancy (TMR). To transmit a bit set to `1` (resp. `0`), the sender transmits `111` (resp. `000`). When there are no transmission errors, the receiver can decode `111` as `1`. If transmission errors have affected a single bit, the receiver performs majority voting as shown in the table below. This scheme allows the receiver to correct all transmission errors that affect a single bit.
+
+  ====================    =============
+  Received bits           Decoded bit
+  ====================    =============
+	 000	     		0
+	 001			0
+	 010			0
+	 100			0
+	 111			1
+	 110			1
+	 101			1
+	 011			1
+  ====================    =============
+
+Other more powerful error correction codes have been proposed and are used in some applications. The `Hamming Code <https://en.wikipedia.org/wiki/Hamming_code>`_ is a clever combination of parity bits that provides error detection and correction capabilities.
+
+All the functions related to the physical transmission or information through a wire (or a wireless link) are usually known as the `physical layer`. The physical layer allows two or more entities that are directly attached to the same transmission medium to exchange bits. Being able to exchange bits is important as virtually any information can be encoded as a sequence of bits. Electrical engineers are used to processing streams of bits, but computer scientists usually prefer to deal with higher-level concepts.
+
+A similar issue arises with file storage. Storage devices such as hard-disks also store streams of bits. There are hardware devices that process the bit stream produced by a hard-disk, but computer scientists have designed filesystems to allow applications to easily access such storage devices. These filesystems are typically divided into several layers as well. Hard-disks store sectors of 512 bytes or more. Unix filesystems group sectors in larger blocks that can contain data or `inodes` representing the structure of the filesystem. Finally, applications manipulate files and directories that are translated into blocks, sectors, and eventually bits by the operating system.
+
+Computer networks use a similar approach. Each layer provides a service that is built above the underlying layer and is closer to the needs of the applications. :numref:`fig-physical-layer` represents the lower layer of the protocol stack. We will explore the different layers of this stack in this book. 
 
 
 .. index:: Physical layer
 
-
+.. _fig-physical-layer:
 .. tikz:: The Physical layer 
    :libs: positioning, matrix, arrows
 
@@ -182,11 +244,7 @@ Many other types of encodings have been defined to transmit information over an 
             \draw[arrow] (pl.east) -- (pm.west) node [midway, above] {Bits} node [midway, below] {\tiny 01010010100010101001010};
 
 
-All the functions related to the physical transmission or information through a wire (or a wireless link) are usually known as the `physical layer`. The physical layer allows two or more entities that are directly attached to the same transmission medium to exchange bits. Being able to exchange bits is important as virtually any information can be encoded as a sequence of bits. Electrical engineers are used to processing streams of bits, but computer scientists usually prefer to deal with higher-level concepts. A similar issue arises with file storage. Storage devices such as hard-disks also store streams of bits. There are hardware devices that process the bit stream produced by a hard-disk, but computer scientists have designed filesystems to allow applications to easily access such storage devices. These filesystems are typically divided into several layers as well. Hard-disks store sectors of 512 bytes or more. Unix filesystems group sectors in larger blocks that can contain data or `inodes` representing the structure of the filesystem. Finally, applications manipulate files and directories that are translated into blocks, sectors, and eventually bits by the operating system.
-
 .. index:: Datalink layer, frame
-
-Computer networks use a similar approach. Each layer provides a service that is built above the underlying layer and is closer to the needs of the applications. We will explore the different layers of the protocol stack in this book. 
 
 
 The datalink layer
@@ -197,7 +255,6 @@ The datalink layer
 Computer scientists are usually not interested in exchanging bits between two hosts. They prefer to write software that deals with larger blocks of data in order to transmit messages or complete files. Thanks to the physical layer service, it is possible to send a continuous stream of bits between two hosts. This stream of bits can include logical blocks of data, but we need to be able to extract each block of data from the bit stream despite the imperfections of the physical layer. In many networks, the basic unit of information exchanged between two directly connected hosts is often called a `frame`. A `frame` can be defined as a sequence of bits that has a particular syntax or structure. We will see examples of such frames later in this chapter.
 
 To enable the transmission/reception of frames, the first problem to be solved is how to encode a frame as a sequence of bits, so that the receiver can easily recover the received frame despite the limitations of the physical layer.
-
 
 .. index:: framing
 
@@ -299,6 +356,20 @@ Bit stuffing and character stuffing allow recovering frames from a stream of bit
 
 
 We can now build upon the framing mechanism to allow the hosts to exchange frames containing an integer number of bits or bytes. Once the framing problem has been solved, we can use these frames to carry Internet packets.
+
+Coping with transmission errors
+-------------------------------
+
+As explained earlier, the physical layer can be subject to various types that affect the bits sent by a transmitter. Data transmission on a physical link can be affected by the following errors :
+
+ - random isolated errors where the value of a single bit has been modified due to a transmission error
+ - random burst errors where the values of `n` consecutive bits have been changed due to transmission errors
+ - random bit creations and random bit removals where bits have been added or removed due to transmission errors
+
+Besides framing, datalink layers also include mechanisms to detect and sometimes even recover from transmission errors. To allow a receiver to notice transmission errors, a sender must add some redundant information as an `error detection` code to the frame sent. This `error detection` code is computed by the sender on the frame that it transmits. When the receiver receives a frame with an error detection code, it recomputes it and verifies whether the received `error detection code` matches the computed `error detection code`. If they match, the frame is considered to be valid.
+
+.. todo: where to place checksum
+
 
 .. inginious:: mcq-rel-framing
 
