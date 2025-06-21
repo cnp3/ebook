@@ -39,7 +39,7 @@ It is usually replaced by :term:`ssh` or similar protocols.
 The secure shell (ssh)
 ----------------------
 
-.. spelling::
+.. spelling:word-list::
 
    Ylonen
 
@@ -123,7 +123,7 @@ to evolve when new algorithms are proposed. If a client is upgraded, it can
 announce a new algorithm as its preferred one even if the server is not
 yet upgraded.
 
-.. spelling::
+.. spelling:word-list::
 
    Diffie
    Hellman

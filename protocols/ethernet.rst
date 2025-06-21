@@ -4,7 +4,7 @@
 Ethernet
 ========
 
-.. spelling::
+.. spelling:word-list::
 
    Palo
    Alto
@@ -98,7 +98,7 @@ The Ethernet frame format shown above is specified in [DIX]_. This is the format
 
  The first property is a consequence of the utilization of CSMA/CD. The second property is a consequence of the physical organization of the Ethernet network as a shared bus. These two properties are important and all revisions to the Ethernet technology have preserved them.
 
-.. spelling::
+.. spelling:word-list::
 
    BaseF
    BaseT
@@ -180,7 +180,7 @@ Standard         Comments
 40-100 Gbps      Optical fiber (experiences are performed with copper)
 ============     ========================================================
 
-.. spelling::
+.. spelling:word-list::
 
    Tx
    Fx

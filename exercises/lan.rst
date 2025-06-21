@@ -1,4 +1,5 @@
-.. Copyright |copy| 2013,2019 by Justin Vellemans, Florentin Rochet, David Lebrun, Juan Antonio Cordero, Olivier Bonaventure
+.. Copyright |copy| 2013,2019 by Justin Vellemans, Florentin Rochet,
+   David Lebrun, Juan Antonio Cordero, Olivier Bonaventure
 .. This file is licensed under a `creative commons licence <http://creativecommons.org/licenses/by/3.0/>`_
 
 Local Area Networks: The Spanning Tree Protocol and Virtual LANs
@@ -69,7 +70,7 @@ Exercises
 
      Fig. 3. Host `H0` performs a traceroute towards its peer `H1` through a network composed of switches and routers
 
-     .. spelling::
+     .. spelling:word-list::
 
 	versa
 

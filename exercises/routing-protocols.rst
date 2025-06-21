@@ -612,7 +612,7 @@ Besides :manpage:`ping6(8)` and :manpage:`traceroute6(8)`, it is also useful to 
 
    Password:
 
-.. spelling::
+.. spelling:word-list::
 
    Quagga
 
@@ -678,7 +678,7 @@ A useful command to start is `show bgp summary` which provides a summary of the 
 
    Total number of neighbors 2
 
-.. spelling::
+.. spelling:word-list::
 
    Keepalive
 
@@ -803,7 +803,7 @@ This router (`as1`) has two BGP neighbors: ``2001:cafe:1:12::2`` and ``2001:cafe
      Read thread: on  Write thread: on
 
 
-.. spelling::
+.. spelling:word-list::
 
    BGP
    Loc

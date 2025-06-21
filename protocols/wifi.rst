@@ -28,7 +28,9 @@ Standard        Frequency       Typical         Max             Range (m)
 
 When developing its family of standards, the `IEEE 802.11 working group <http://www.ieee802.org/11/>`_ took a similar approach as the `IEEE 802.3 working group <http://www.ieee802.org/3/>`_ that developed various types of physical layers for Ethernet networks. 802.11 networks use the CSMA/CA Medium Access Control technique described earlier and they all assume the same architecture and use the same frame format.
 
+.. spelling:word-list::
 
+   adhoc
 
 .. index:: Basic Service Set (BSS), BSS, adhoc network, independent network
 
@@ -134,7 +136,7 @@ When a frame is sent from a WiFi device to a server attached to the same LAN as 
 
 In addition to the data and control frames that we have briefly described above, 802.11 networks use several types of management frames. These management frames are used for various purposes. We briefly describe some of these frames below. A detailed discussion may be found in [IEEE802.11]_ and [Gast2002]_.
 
-.. spelling::
+.. spelling:word-list::
 
    broadcasted
 

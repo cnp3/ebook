@@ -153,7 +153,7 @@ Names provide a lot of flexibility compared to addresses. For the network, they 
 
 .. [#frootv6] Until February 2008, the root DNS servers only had IPv4 addresses. IPv6 addresses were slowly added to the root DNS servers to avoid creating problems as discussed in http://www.icann.org/en/committees/security/sac018.pdf As of February 2021, there remain a few DNS root servers that are still not reachable using IPv6. The full list is available at http://www.root-servers.org/
 
-.. spelling::
+.. spelling:word-list::
 
    subdomains
 

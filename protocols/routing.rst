@@ -151,7 +151,7 @@ A first approach is to select one of the equal cost paths (e.g. the first or the
 
 A second approach is to install all equal cost paths [#fmaxpaths]_ in the forwarding table and load-balance the packets on the different paths. Consider the case where a router has `N` different outgoing interfaces to reach destination `d`. A first possibility to load-balance the traffic among these interfaces is to use `round-robin`. `Round-robin` allows equally balancing the packets among the `N` outgoing interfaces. This equal load-balancing is important in practice because it allows better spreading the load throughout the network. However, few networks use this `round-robin` strategy to load-balance traffic on routers. The main drawback of `round-robin` is that packets that belong to the same flow (e.g. TCP connection) may be forwarded over different paths. If packets belonging to the same TCP connection are sent over different paths, they will probably experience different delays and arrive out-of-sequence at their destination. When a TCP receiver detects out-of-order segments, it sends duplicate acknowledgments that may cause the sender to initiate a fast retransmission and enter congestion avoidance. Thus, out-of-order segments may lead to lower TCP performance. This is annoying for a load-balancing technique whose objective is to improve the network performance by spreading the load.
 
-.. spelling::
+.. spelling:word-list::
 
    tuple
 
