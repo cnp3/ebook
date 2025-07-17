@@ -25,14 +25,16 @@ Glossary
    broadcast
 	a transmission mode where is same information is sent to all nodes in the network
 
+   Local Area Network
+   Local Area Networks	
    LAN
-	Local Area Network
+	Local Area Network. Examples include Ethernet, Wi-Fi, Token-Ring, FDDI, ...
 
    MAN
-	Metropolitan Area Network
+	Metropolitan Area Network. A network covering the geographic area around a large city.
 
    WAN
-	Wide Area Network
+	Wide Area Network. A large network.
 
    ISO
 	The International Standardization Organization is an agency of the United Nations that is based in Geneva and develop standards on various topics. Within ISO, country representatives vote to approve or reject standards. Most of the work on the development of ISO standards is done in expert working groups. Additional information about ISO may be obtained from https://www.iso.org
@@ -51,7 +53,8 @@ Glossary
 
    PBL
 	Problem-based learning is a teaching approach that relies on problems.
-
+	
+   packets
    packet
 	a packet is the unit of information transfer in the network layer
 
@@ -70,12 +73,15 @@ Glossary
    internet
 	an internet is an internetwork, i.e. a network composed of different networks. The :term:`Internet`, with a capital `I` corresponds to the global network that we use today, but other internetworks have been used in the path.
 
+   Internet Protocol 	
    IP
         Internet Protocol is the generic term for the network layer protocol in the TCP/IP protocol suite. IP version 4 is widely used but IP version 6 is being deployed globally.
 
+   IP version 4
    IPv4
 	is the version 4 of the Internet Protocol, the connectionless network layer protocol used in most of the Internet today. IPv4 addresses are encoded as a 32 bits field.
-
+	
+   IP version 6
    IPv6
 	is the version 6 of the Internet Protocol, the connectionless network layer protocol which is intended to replace IPv4. IP version 6 addresses are encoded as a 128 bits field.
 
@@ -127,6 +133,7 @@ Glossary
    CIDR
 	Classless Inter Domain Routing is the current address allocation architecture for IP version 4. It was defined in :rfc:`1518` and :rfc:`4632`.
 
+   Internet Assigned Numbers Authority
    IANA
 	The Internet Assigned Numbers Authority (IANA) is responsible for the coordination of the DNS Root, IP addressing, and other Internet protocol resources
 
@@ -306,12 +313,33 @@ Glossary
    file transfer
        A service that enables a user to send or receive a file from a distant server over the network. The File Transfer Protocol :term:`FTP` was a popular service. It has now been replaced by HTTP/HTTPs or more secure protocols such as the `SSH File Transfer Protocol <https://en.wikipedia.org/wiki/SSH_File_Transfer_Protocol>`_.
 
+   MAC address 
+   IP address
    address
       A string of bits that identifies a network interface in the network layer or the datalink layer. Most addresses have a fixed length, e.g. 32 bits for :term:`IPv4`, 128 bits for :term:`IPv6` or 48 bits for :term:`Ethernet` and other related Local Area Networks.
 
    Ethernet
       The most widely used LAN technology.
 
+   Internet Service Providers
+   Internet Service Provider
+   ISP
+      A company that provides Internet access to users
+      
+   protocol
+      A set of rules (semantics and syntax) that specify the messages that nodes can exchange to communicate
+
+   NNTP
+   Network News Transfer Protocol
+      A protocol to transfer newsgroup messages defined in :rfc:`3977`.
+
+   Medium Access Control
+      A technique to regulate the access to a shared medium.
+      
+
+   IP subnet
+      A set of IP addresses having a common prefix.
+      
 .. spelling::
 
    Backus
@@ -325,5 +353,6 @@ Glossary
    eXchange
    multi
    login
-
-
+   Wi
+   Fi
+   

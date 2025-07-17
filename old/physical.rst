@@ -158,6 +158,45 @@ From a Computer Science viewpoint, the physical transmission of information thro
 
 Many other types of encodings have been defined to transmit information over an electrical cable. All physical layers are able to send and receive physical symbols that represent values `0` and `1`. However, for various reasons that are outside the scope of this chapter, several physical layers exchange other physical symbols as well. For example, the Manchester encoding used in several physical layers can send four different symbols. The Manchester encoding is a differential encoding scheme in which time is divided into fixed-length periods. Each period is divided into two halves and two different voltage levels can be applied. To send a symbol, the sender must set one of these two voltage levels during each half period. To send a `1` (resp. `0`), the sender must set a high (resp. low) voltage during the first half of the period and a low (resp. high) voltage during the second half. This encoding ensures that there will be a transition at the middle of each period and allows the receiver to synchronize its clock to the sender's clock. Apart from the encodings for `0` and `1`, the Manchester encoding also supports two additional symbols : `InvH` and `InvB` where the same voltage level is used for the two half periods. By definition, these two symbols cannot appear inside a frame which is only composed of `0` and `1`. Some technologies use these special symbols as markers for the beginning or end of frames. This encoding is illustrated in :numref:`fig-manchester`.
 
+
+.. tikz:: Manchest encoding
+   
+   \def\bitwidth{1}
+   \def\high{1}
+   \def\low{0}
+
+   % Example bitstream: 1 0 1 1 0
+   \def\bits{{1,0,1,1,0}}
+
+   % Draw time axis
+   \draw[->] (0, -0.5) -- ({\bitwidth * 5.5}, -0.5) node[right] {Time};
+
+   % Labels
+   \node at (-0.5, \high) {Voltage};
+
+   % Draw waveform
+   \foreach \b [count=\i from 0] in \bits {
+     \pgfmathsetmacro\x{\i * \bitwidth}
+     \pgfmathsetmacro\mid{\x + 0.5}
+     \ifnum\b=1
+      % 1 = low-to-high
+      \draw (\x,\low) -- (\mid,\low) -- (\mid,\high) -- ({\x+\bitwidth},\high);
+      \else
+      % 0 = high-to-low
+      \draw (\x,\high) -- (\mid,\high) -- (\mid,\low) -- ({\x+\bitwidth},\low);
+      \fi
+      % Vertical line between bits
+      \draw[dotted] ({\x+\bitwidth}, -0.5) -- ({\x+\bitwidth}, \high + 0.5);
+   }
+
+   % Bit labels
+   \foreach \b [count=\i from 0] in \bits {
+    \pgfmathsetmacro\x{\i * \bitwidth + 0.5}
+    \node at (\x, -1) {\b};
+   }
+
+
+
  .. _fig-manchester:
  .. figure:: /principles/figures/manchester.*
     :align: center
@@ -165,7 +204,7 @@ Many other types of encodings have been defined to transmit information over an 
 
     Manchester encoding
 
-When the physical layer transmits a bit of information using light or an electromgnatic signal, there is no guarantee that the bit sent by the transmitter will be received as it was sent by the receiver. Several types of errors can impact this transmission.
+When the physical layer transmits a bit of information using light or an electromagnetic signal, there is no guarantee that the bit sent by the transmitter will be received as it was sent by the receiver. Several types of errors can impact this transmission.
     
 `Information Theory` defines two mechanisms that can be used to transmit information over a channel affected by random errors. These two mechanisms add redundancy to the transmitted information, to allow the receiver to detect or sometimes even correct transmission errors. A detailed discussion of these mechanisms is outside the scope of this chapter, but it is useful to consider a simple mechanism to understand its operation and its limitations.
 

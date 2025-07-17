@@ -28,7 +28,7 @@ import sys, os, shutil
 
 # add sphinx extensions
 sys.path.append(os.path.abspath("./util"))
-extensions = ['sphinx.ext.todo', 'sphinxcontrib.mscgen', 'sphinx.ext.graphviz', 'sphinxcontrib.tikz', 'sphinx.ext.mathjax', 'sphinxcontrib.spelling', 'interactive_syllabus_directives',     'sphinxcontrib.bibtex', 'matplotlib.sphinxext.plot_directive']
+extensions = ['sphinx.ext.todo', 'sphinxcontrib.mscgen', 'sphinx.ext.graphviz', 'sphinxcontrib.tikz', 'sphinx.ext.mathjax', 'sphinxcontrib.spelling', 'interactive_syllabus_directives', 'matplotlib.sphinxext.plot_directive']
 
 
 #extensions = ['sphinx.ext.todo', 'sphinx.ext.pngmath', 'sphinxcontrib.mscgen','sphinx.ext.graphviz','sphinxcontrib.tikz','sphinxcontrib.spelling']
@@ -42,7 +42,9 @@ mscgen_epstopdf_args=['--debug']
 locale_dirs= ['locale/']
 gettext_compact=False   # see http://www.sphinx-doc.org/en/master/usage/advanced/intl.html#using-transifex-service-for-team-translation
 
-
+# Todo
+todo_emit_warnings=True
+todo_include_todos=False
 
 # spelling
 spelling_lang='en_US'
@@ -104,7 +106,7 @@ exclude_trees = ['_build', 'venv', 'python', 'tmp']
 # List of files that should not be automatically compiled by sphynx because they are included
 
 
-exclude_patterns = [ '*#*', "python/*" , "principles/dv.rst", "principles/linkstate.rst", "._*rst", "venv/*", "tmp/*"]
+exclude_patterns = [ '*#*', "python/*" , "principles/*", "protocols/*", "._*rst", "venv/*", "tmp/*", "old/*", "exercises/*"]
 
 
 # epilog add to all included files
@@ -253,27 +255,19 @@ latex_elements = {
 # If false, no module index is generated.
 #latex_use_modindex = True
 
-tikz_libraries="positioning,matrix,arrows,shapes,automata,math"
+tikz_libraries="positioning,matrix,arrows,shapes,automata,math,shapes.geometric"
 
 tikz_proc_suite='ImageMagick'
 
-tikz_latex_preamble='''
-%preamble
-\\usepackage{tikz}
-\\usepackage{pgfplots}
-\\usepackage{pgfkeys}
-\\usepackage{bytefield}
-\\usepackage[normalem]{ulem}
-\\pgfplotsset{compat=1.16}
-\\tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em
-}, }
-\\tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
-'''
+# Read the custom TikZ preamble from file
+with open('tikz_preamble.tex', encoding='utf-8') as f:
+    tikz_latex_preamble = f.read()
+
 
 # bibtex
 
-bibtex_bibfiles = ['bib/papers.bib', 'bib/quic.bib', 'bib/rfc.bib',]
-bibtex_default_style = 'unsrt'
+#bibtex_bibfiles = ['bib/papers.bib', 'bib/quic.bib']
+#bibtex_default_style = 'unsrt'
 
 
 # -- Options for PDF output --------------------------------------------------

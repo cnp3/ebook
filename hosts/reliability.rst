@@ -328,7 +328,7 @@ The receiver first waits for `D(0,...)`. If the segment contains a correct `CRC`
 
 .. note:: Corrupted segments must be discarded
 
- The receiver FSM of the Alternating bit protocol discards all segmentss that contain an invalid CRC. This is the safest approach since the received segment can be completely different from the one sent by the remote host. A receiver should not attempt at extracting information from a corrupted segment because it cannot know which portion of the segment has been affected by the error.
+ The receiver FSM of the Alternating bit protocol discards all segments that contain an invalid CRC. This is the safest approach since the received segment can be completely different from the one sent by the remote host. A receiver should not attempt at extracting information from a corrupted segment because it cannot know which portion of the segment has been affected by the error.
 
 
 The figure below illustrates the operation of the Alternating Bit Protocol.
@@ -438,15 +438,14 @@ Go-back-n and selective repeat
 
 To overcome the performance limitations of the alternating bit protocol, reliable protocols rely on `pipelining` shown in :numref:`fig-pipelining`. This technique allows a sender to transmit several consecutive segments without being forced to wait for an acknowledgment after each segment. Each data segment contains a sequence number encoded as an `n` bits field.
 
-
-.. fig_pipelining:
 .. figure:: /principles/figures/pipelining2.*
    :align: center
    :scale: 70
+   :name: fig-pipelining
 
    Pipelining improves the performance of reliable protocols
 
-`Pipelining` allows the sender to transmit segments at a higher rate. However this higher transmission rate may overload the receiver. In this case, the segments sent by the sender will not be correctly received by their final destination. The reliable protocols that rely on pipelining allow the sender to transmit `W` unacknowledged segmentss before being forced to wait for an acknowledgment from the receiving entity.
+`Pipelining` allows the sender to transmit segments at a higher rate. However this higher transmission rate may overload the receiver. In this case, the segments sent by the sender will not be correctly received by their final destination. The reliable protocols that rely on pipelining allow the sender to transmit `W` unacknowledged segments before being forced to wait for an acknowledgment from the receiving entity.
 
 This is implemented by using a `sliding window`. The sliding window is the set of consecutive sequence numbers that the sender can use when transmitting segments without being forced to wait for an acknowledgment. :numref:`fig-sliding-win` shows a sliding window containing five segments (`6,7,8,9` and `10`). Two of these sequence numbers (`6` and `7`) have been used to send segments and only three sequence numbers (`8`, `9` and `10`) remain in the sliding window. The sliding window is said to be closed once all sequence numbers contained in the sliding window have been used.
 
@@ -596,7 +595,7 @@ A `selective repeat` receiver maintains a sliding window of `W` segments and sto
 
    The receiving window with selective repeat
 
-A `selective repeat` receiver discards all segments having an invalid CRC, and maintains the variable `lastack` as the sequence number of the last in-sequence segment that it has received. The receiver always includes the value of `lastack` in the acknowledgments that it sends. Some protocols also allow the `selective repeat` receiver to acknowledge the out-of-sequence segments that it has received. This can be done for example by placing the list of the correctly received, but out-of-sequence segmentss in the acknowledgments together with the `lastack` value.
+A `selective repeat` receiver discards all segments having an invalid CRC, and maintains the variable `lastack` as the sequence number of the last in-sequence segment that it has received. The receiver always includes the value of `lastack` in the acknowledgments that it sends. Some protocols also allow the `selective repeat` receiver to acknowledge the out-of-sequence segments that it has received. This can be done for example by placing the list of the correctly received, but out-of-sequence segments in the acknowledgments together with the `lastack` value.
 
 When a `selective repeat` receiver receives a data segment, it first verifies whether the segment is inside its receiving window. If yes, the segment is placed in the receive buffer. If not, the received segment is discarded and an acknowledgment containing `lastack` is sent to the sender. The receiver then removes all consecutive segments starting at `lastack` (if any) from the receive buffer. The payloads of these segments are delivered to the user, `lastack` and the receiving window are updated, and an acknowledgment acknowledging the last segment received in sequence is sent.
 
@@ -888,7 +887,7 @@ Compared to our simple protocols, reliable transport protocols encode their sequ
 
 In simple protocols, the sliding window has usually a fixed size which depends on the amount of available buffers. A single transport layer entity serves a large and varying number of application processes. Each transport layer entity manages a pool of buffers that needs to be shared between all these processes. Transport entity are usually implemented inside the operating system kernel and shares memory with other parts of the system. Furthermore, a transport layer entity must support several (possibly hundreds or thousands) of transport connections at the same time. This implies that the memory which can be used to support the sending or the receiving buffer of a transport connection may change during the lifetime of the connection [#fautotune]_ . Thus, a transport protocol must allow the sender and the receiver to adjust their window sizes.
 
-To deal with this issue, transport protocols allow the receiver to advertise the current size of its receiving window in all the acknowledgments that it sends. The receiving window advertised by the receiver bounds the size of the sending buffer used by the sender. In practice, the sender maintains two state variables : `swin`, the size of its sending window (that may be adjusted by the system) and `rwin`, the size of the receiving window advertised by the receiver. At any time, the number of unacknowledged segments cannot be larger than :math:`\min(swin,rwin)` [#facklost]_ . The utilization of dynamic windows is illustrated in :numref:`fig-dynamic-win`.
+To deal with this issue, transport protocols allow the receiver to advertise the current size of its receiving window in all the acknowledgments that it sends. The receiving window advertised by the receiver bounds the size of the sending buffer used by the sender. In practice, the sender maintains two state variables : `swin`, the size of its sending window (that may be adjusted by the system) and `rwin`, the size of the receiving window advertised by the receiver. At any time, the number of unacknowledged segments cannot be larger than :math:`\min(swin,rwin)` [#facklost]_ . The utilization of dynamic windows is illustrated in figure :numref:`fig-transport-dynamic-win`.
 
 
 .. _fig-transport-dynamic-win: 

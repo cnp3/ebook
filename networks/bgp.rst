@@ -4,12 +4,13 @@
 Interdomain routing
 ===================
 
-As explained earlier, the Internet is composed of more than 45,000 different networks [#fasnum]_ called `domains`. Each domain is composed of a group of routers and hosts that are managed by the same organization. Example domains include belnet_, sprint_, level3_, geant_, abilene_, cisco_ or google_ ...
+As explained earlier, the Internet is composed of more than 100,000 different networks [#fasnum]_ called `domains`. Each domain is composed of a group of routers and hosts that are managed by the same organization. Example domains include belnet_, sprint_, level3_, geant_, abilene_, cisco_ or google_ ...
 
 .. index:: stub domain, transit domain
 
-Each domain contains a set of routers. From a routing point of view, these domains can be divided into two classes : the `transit` and the `stub` domains. A `stub` domain sends and receives packets whose source or destination are one of its own hosts. A `transit` domain is a domain that provides a transit service for other domains, i.e. the routers in this domain forward packets whose source and destination do not belong to the transit domain. As of this writing, about 85% of the domains in the Internet are stub domains [#fpotaroo]_. A `stub` domain that is connected to a single transit domain is called a `single-homed stub` (e.g., `S1` in the figure below.). A `multihomed stub` is a `stub` domain connected to two or more transit providers (e.g., `S2`).
+Each domain contains a set of routers. From a routing point of view, these domains can be divided into two classes : the `transit` and the `stub` domains. A `stub` domain sends and receives packets whose source or destination are one of its own hosts. A `transit` domain is a domain that provides a transit service for other domains, i.e. the routers in this domain forward packets whose source and destination do not belong to the transit domain. As of this writing, about 85% of the domains in the Internet are stub domains [#fpotaroo]_. A `stub` domain that is connected to a single transit domain is called a `single-homed stub` (e.g., `S1` in figure :numref:`fig-transit-stub`.). A `multihomed stub` is a `stub` domain connected to two or more transit providers (e.g., `S2`).
 
+.. _fig-transit-stub:
 .. figure:: /protocols/figures/transit-stub.*
    :align: center
    :scale: 70
@@ -26,7 +27,8 @@ Domains need to be interconnected to allow a host inside a domain to exchange IP
 
    Interconnection of two domains via a private peering link
 
-.. spelling::
+.. spelling:word-list::
+
 
    eXchange
 
@@ -46,24 +48,25 @@ There are different types of economical relationships that can exist between dom
 
 The first category of peering relationship is the `customer->provider` relationship. Such a relationship is used when a customer domain pays an Internet Service Provider to be able to exchange packets with the global Internet over an interdomain link. A similar relationship is used when a small Internet Service Provider pays a larger Internet Service Provider to exchange packets with the global Internet.
 
+.. _fig-net-cust-prov:
 .. figure:: /protocols/figures/cust-prov.*
    :align: center
    :scale: 70
 
    A simple Internet with peering relationships
 
-To understand the `customer->provider` relationship, let us consider the simple internetwork shown in the figure above. In this internetwork, `AS7` is a stub domain that is connected to one provider : `AS4`. The contract between `AS4` and `AS7` allows a host inside `AS7` to exchange packets with any host in the internetwork. To enable this exchange of packets, `AS7` must know a route towards any domain and all the domains of the internetwork must know a route via `AS4` that allows them to reach hosts inside `AS7`. From a routing perspective, the commercial contract between `AS7` and `AS4` leads to the following routes being exchanged :
+To understand the `customer->provider` relationship, let us consider the simple internetwork shown in figure :numref:`fig-net-cust-prov`. In this internetwork, `AS7` is a stub domain that is connected to one provider : `AS4`. The contract between `AS4` and `AS7` allows a host inside `AS7` to exchange packets with any host in the internetwork. To enable this exchange of packets, `AS7` must know a route towards any domain and all the domains of the internetwork must know a route via `AS4` that allows them to reach hosts inside `AS7`. From a routing perspective, the commercial contract between `AS7` and `AS4` leads to the following routes being exchanged :
 
  - over a `customer->provider` relationship, the `customer` domain advertises to its `provider`  its own prefixes and all the routes that it has learned from its own customers.
  - over a `provider->customer` relationship, the `provider` advertises all the routes that it knows to its `customer`.
 
 The second rule ensures that the customer domain receives a route towards all destinations that are reachable via its provider. The first rule allows the prefixes of the customer domain to be distributed throughout the Internet.
 
-Coming back to the figure above, `AS4` advertises to its two providers `AS1` and `AS2` its own prefixes and the routes learned from its customer, `AS7`. On the other hand, `AS4` advertises to `AS7` all the routes that it knows.
+Coming back to figure :numref:`fig-net-cust-prov`, `AS4` advertises to its two providers `AS1` and `AS2` its own prefixes and the routes learned from its customer, `AS7`. On the other hand, `AS4` advertises to `AS7` all the routes that it knows.
 
 .. index:: shared-cost peering relationship
 
-The second type of peering relationship is the `shared-cost` peering relationship. Such a relationship usually does not involve a payment from one domain to the other in contrast with the `customer->provider` relationship. A `shared-cost` peering relationship is usually established between domains having a similar size and geographic coverage. For example, consider the figure above. If `AS3` and `AS4` exchange many packets via `AS1`, they both need to pay `AS1`. A cheaper alternative for `AS3` and `AS4` would be to establish a `shared-cost` peering. Such a peering can be established at IXPs where both `AS3` and `AS4` are present or by using private peering links. This `shared-cost` peering should be used to exchange packets between hosts inside `AS3` and hosts inside `AS4`. However, `AS3` does not want to receive on the `AS3-AS4` `shared-cost` peering links packets whose destination belongs to `AS1` as `AS3` would have to pay to send these packets to `AS1`.
+The second type of peering relationship is the `shared-cost` peering relationship. Such a relationship usually does not involve a payment from one domain to the other in contrast with the `customer->provider` relationship. A `shared-cost` peering relationship is usually established between domains having a similar size and geographic coverage. For example, consider figure :numref:`fig-net-cust-prov`. If `AS3` and `AS4` exchange many packets via `AS1`, they both need to pay `AS1`. A cheaper alternative for `AS3` and `AS4` would be to establish a `shared-cost` peering. Such a peering can be established at IXPs where both `AS3` and `AS4` are present or by using private peering links. This `shared-cost` peering should be used to exchange packets between hosts inside `AS3` and hosts inside `AS4`. However, `AS3` does not want to receive on the `AS3-AS4` `shared-cost` peering links packets whose destination belongs to `AS1` as `AS3` would have to pay to send these packets to `AS1`.
 
 From a routing perspective, over a `shared-cost` peering relationship a domain only advertises its internal routes/prefixes and the routes that it has learned from its customers. This restriction ensures that only packets destined to the local domain or one of its customers is received over the `shared-cost` peering relationship. This implies that the routes that have been learned from a provider or from another `shared-cost` peer is not advertised over a `shared-cost` peering relationship. This is motivated by economical reasons. If a domain were to advertise the routes that it learned from a provider over a `shared-cost` peering relationship that does not bring revenue, it would have allowed its `shared-cost` peer to use the link with its provider without any payment. If a domain were to advertise the routes it learned over a `shared cost` peering over another `shared-cost` peering relationship, it would have allowed these `shared-cost` peers to use its own network (which may span one or more continents) freely to exchange packets.
 
@@ -83,8 +86,9 @@ These different types of relationships are implemented in the `interdomain routi
 
 A domain's import and export filters can be defined by using the Route Policy Specification Language (RPSL) specified in :rfc:`2622` [GAVE1999]_ . Some Internet Service Providers, notably in Europe, use RPSL to document [#fripedb]_ their import and export policies. Several tools help to easily convert a RPSL policy into router commands.
 
-The figure below provides a simple example of import and export filters for two domains in a simple internetwork. In RPSL, the keyword `ANY` is used to replace any route from any domain. It is typically used by a provider to indicate that it announces all its routes to a customer over a `provider->customer` relationship. This is the case for `AS4`'s export policy. The example below clearly shows the difference between a `provider->customer` and a `shared-cost` peering relationship. `AS4`'s export filter indicates that it announces only its internal routes (`AS4`) and the routes learned from its clients (`AS7`) over its `shared-cost` peering with `AS3`, while it advertises all the routes that it uses (including the routes learned from `AS3`) to `AS7`.
+Figure :numref:`fig-bgp-rpsl` provides a simple example of import and export filters for two domains in a simple internetwork. In RPSL, the keyword `ANY` is used to replace any route from any domain. It is typically used by a provider to indicate that it announces all its routes to a customer over a `provider->customer` relationship. This is the case for `AS4`'s export policy. The example below clearly shows the difference between a `provider->customer` and a `shared-cost` peering relationship. `AS4`'s export filter indicates that it announces only its internal routes (`AS4`) and the routes learned from its clients (`AS7`) over its `shared-cost` peering with `AS3`, while it advertises all the routes that it uses (including the routes learned from `AS3`) to `AS7`.
 
+.. _fig-bgp-rpsl:
 .. figure:: /protocols/figures/bgp-policies.*
    :align: center
    :scale: 70
@@ -98,8 +102,9 @@ The Border Gateway Protocol
 
 The Internet uses a single interdomain routing protocol : the Border Gateway Protocol (BGP). The current version of BGP is defined in :rfc:`4271`. BGP differs from the intradomain routing protocols that we have already discussed in several ways. First, BGP is a `path-vector` protocol. When a BGP router advertises a route towards a prefix, it announces the IP prefix and the interdomain path used to reach this prefix. From BGP's point of view, each domain is identified by a unique `Autonomous System` (AS) number [#fasdomain]_ and the interdomain path contains the AS numbers of the transit domains that are used to reach the associated prefix. This interdomain path is called the `AS Path`. Thanks to these AS-Paths, BGP does not suffer from the count-to-infinity problems that affect distance vector routing protocols. Furthermore, the AS-Path can be used to implement some routing policies. Another difference between BGP and the intradomain routing protocols is that a BGP router does not send the entire contents of its routing table to its neighbors regularly. Given the size of the global Internet, routers would be overloaded by the number of BGP messages that they would need to process. BGP uses incremental updates, i.e. it only announces the routes that have changed to its neighbors.
 
-The figure below shows a simple example of the BGP routes that are exchanged between domains. In this example, prefix `2001:db8:cafe::/48` is announced by `AS1`. `AS1` advertises a BGP route towards this prefix to `AS2`. The AS-Path of this route indicates that `AS1` is the originator of the prefix. When `AS4` receives the BGP route from `AS1`, it re-announces it to `AS2` and adds its AS number to the AS-Path. `AS2` has learned two routes towards prefix `2001:db8:cafe::/48`. It compares the two routes and prefers the route learned from `AS4` based on its own ranking algorithm. `AS2` advertises to `AS5` a route towards `2001:db8:cafe::/48` with its AS-Path set to `AS2:AS4:AS1`. Thanks to the AS-Path, `AS5` knows that if it sends a packet towards `2001:db8:cafe::/48` the packet first passes through `AS2`, then through `AS4` before reaching its destination inside `AS1`.
+Figure :numref:`fig-bgp-simple-example` shows a simple example of the BGP routes that are exchanged between domains. In this example, prefix `2001:db8:cafe::/48` is announced by `AS1`. `AS1` advertises a BGP route towards this prefix to `AS2`. The AS-Path of this route indicates that `AS1` is the originator of the prefix. When `AS4` receives the BGP route from `AS1`, it re-announces it to `AS2` and adds its AS number to the AS-Path. `AS2` has learned two routes towards prefix `2001:db8:cafe::/48`. It compares the two routes and prefers the route learned from `AS4` based on its own ranking algorithm. `AS2` advertises to `AS5` a route towards `2001:db8:cafe::/48` with its AS-Path set to `AS2:AS4:AS1`. Thanks to the AS-Path, `AS5` knows that if it sends a packet towards `2001:db8:cafe::/48` the packet first passes through `AS2`, then through `AS4` before reaching its destination inside `AS1`.
 
+.. _fig-bgp-simple-example:
 .. figure:: /protocols/figures/bgp-example.*
    :align: center
 
@@ -151,8 +156,8 @@ From a conceptual point of view, a BGP router connected to `N` BGP peers, can be
    Organization of a BGP router
 
 
-.. spelling::
-
+.. spelling:word-list::
+   
    dataplane
 
 
@@ -247,8 +252,8 @@ When a BGP message is received, the router first applies the peer's `import filt
         return bgpMsg
 
 
-.. spelling::
-
+.. spelling:word-list::
+   
    bogon
    bogons
    ASes
@@ -453,8 +458,9 @@ Based on these studies and [ATLAS2009]_, the AS-level Internet topology can be s
 
 The domains on the Internet can be divided in about four categories according to their role and their position in the AS-level topology.
 
-.. spelling::
 
+.. spelling:word-list::
+   
    Proximus
 
  - the core of the Internet is composed of a dozen-twenty `Tier-1` ISPs. A `Tier-1` is a domain that has no `provider`. Such an ISP has `shared-cost` peering relationships with all other `Tier-1` ISPs and `provider->customer` relationships with smaller ISPs. Examples of `Tier-1` ISPs include sprint_, level3_ or opentransit_

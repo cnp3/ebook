@@ -1,0 +1,47 @@
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{pgfkeys}
+\usepackage{bytefield}
+\usepackage{tikzpeople}
+\usepackage[normalem]{ulem}
+\usetikzlibrary{shapes.geometric}
+\pgfplotsset{compat=1.16}
+%router
+\tikzset{router/.style = {cylinder, draw, shape border rotate=90, aspect=0.4, minimum height=1cm, minimum width=0.5cm,  
+         path picture={
+      \draw[dashed]
+        ([yshift=0.3cm, xshift=0cm]path picture bounding box.south east)
+        arc[start angle=0, end angle=-180, x radius=0.35cm, y radius=0.15cm];
+        \draw[dashed]
+        ([yshift=0.7cm, xshift=0cm]path picture bounding box.south east)
+        arc[start angle=0, end angle=-180, x radius=0.35cm, y radius=0.15cm];
+    }
+  },
+}
+\tikzset{host/.style = {rectangle, draw, text centered, minimum height=2em}, }
+%host - needs to be written as extended pgfshape
+\tikzset{
+  todohost/.style={
+    %draw,  % don't draw box
+    minimum width=1.8cm,
+    minimum height=1.1cm,
+    inner sep=0pt,
+    path picture={
+      % outer rectangle
+      \draw([xshift=0.2cm, yshift=0.2cm]path picture bounding box.south west)
+      rectangle
+      ([xshift=0cm, yshift=-0.2cm]path picture bounding box.north east);
+      %screen
+      \draw[fill=gray!20] 
+        ([xshift=0.3cm, yshift=0.3cm]path picture bounding box.south west)
+        rectangle 
+        ([xshift=-0.1cm, yshift=-0.3cm]path picture bounding box.north east);
+      %keyboard
+      \coordinate (A) at (path picture bounding box.south west);
+      \coordinate (B) at ([xshift=-0.2cm, yshift=0cm]path picture bounding box.south east);
+      \coordinate (C) at ([xshift=0cm, yshift=0.2cm]path picture bounding box.south east);
+      \coordinate (D) at ([xshift=0.2cm, yshift=0.2cm]path picture bounding box.south west);
+      \draw[fill=gray!10] (A) -- (B) -- (C) -- (D) -- cycle;
+      } ;
+  }     
+} 

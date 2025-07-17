@@ -1,10 +1,10 @@
-.. Copyright |copy| 2010, 2019 by Olivier Bonaventure
+.. Copyright |copy| 2010, 2019, 2025 by Olivier Bonaventure
 .. This file is licensed under a `creative commons licence <http://creativecommons.org/licenses/by/3.0/>`_
 
 .. index:: Distance vector
 
 Distance vector routing
------------------------
+=======================
 
 Distance vector routing is a simple distributed routing protocol. Distance vector routing allows routers to automatically discover the destinations reachable inside the network as well as the shortest path to reach each of these destinations. The shortest path is computed based on `metrics` or `costs` that are associated to each link. We use `l.cost` to represent the metric that has been configured for link `l` on a router.
 
@@ -58,15 +58,14 @@ The router iterates over all addresses included in the distance vector. If the d
 
 The first condition ensures that the router discovers the shortest path towards each destination. The second condition is used to take into account the changes of routes that may occur after a link failure or a change of the metric associated to a link.
 
-To understand the operation of a distance vector protocol, let us consider the network of five routers shown below.
+To understand the operation of a distance vector protocol, let us consider the network of five routers shown in :numref:`fig-dv-5routers`.
 
-
+    .. _fig-dv-5routers: 
     .. tikz:: Operation of distance vector routing in a simple network
        :libs: positioning, matrix, arrows
 
        \tikzstyle{arrow} = [thick,->,>=stealth]
-       \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em, minimum width=2em, font=\large, node distance=8em}}
-        \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
+       
         \tikzset{rtable/.style={rectangle, dashed, draw, font=\small, node distance=3em} }
        \node[router] (A) {A};
        \node[rtable, above left=of A, node distance=2em] (RTA) { \begin{tabular}{l}
@@ -123,14 +122,14 @@ Assume that router `A` is the first to send its distance vector `[A=0]`.
  - `B` sends its distance vector `[B=0,A=1,C=1,D=2,E=1]` to `A`, `C` and `E`. `A`, `B`, `C` and `E` can now reach all five routers of this network.
  - `A` sends its distance vector `[A=0,B=1,C=2,D=1,E=2]` to `B` and `D`.
 
-At this point, all routers can reach all other routers in the network thanks to the routing tables shown in the figure below.
+At this point, all routers can reach all other routers in the network thanks to the routing tables shown in figure :numref:`fig-dv-5routers-tables`.
 
+    .. _fig-dv-5routers-tables: 
     .. tikz:: Routing tables computed by distance vector in a simple network
        :libs: positioning, matrix, arrows
 
        \tikzstyle{arrow} = [thick,->,>=stealth]
-       \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em, minimum width=2em, font=\large, node distance=8em}}
-        \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
+       
         \tikzset{rtable/.style={rectangle, dashed, draw, font=\small, node distance=3em} }
        \node[router] (A) {A};
        \node[rtable, above left=of A] (RTA) { \begin{tabular}{l}
@@ -211,14 +210,14 @@ Consider the example above and assume that the link between routers `A` and `B` 
  - `B` sends its distance vector :math:`[B=0,A=\infty,C=1,D=2,E=1]` to `E` and `C`. `C` learns that there is no route anymore to reach `A` via `B`.
  - `E` sends its distance vector :math:`[E=0,A=2,C=1,D=1,B=1]` to `D`, `B` and `C`. `D` learns a route towards `B`. `C` and `B` learn a route towards `A`.
 
-At this point, all routers have a routing table allowing them to reach all other routers, except router `A`, which cannot yet reach router `B`. `A` recovers the route towards `B` once router `D` sends its updated distance vector :math:`[A=1,B=2,C=2,D=0,E=1]`. This last step is illustrated in figure below, which shows the routing tables on all routers.
+At this point, all routers have a routing table allowing them to reach all other routers, except router `A`, which cannot yet reach router `B`. `A` recovers the route towards `B` once router `D` sends its updated distance vector :math:`[A=1,B=2,C=2,D=0,E=1]`. This last step is illustrated in figure :numref:`fig-dv-5routers-failure`, which shows the routing tables on all routers.
 
+    .. _fig-dv-5routers-failure: 
     .. tikz:: Routing tables computed by distance vector after a failure
         :libs: positioning, matrix, arrows
 
         \tikzstyle{arrow} = [thick,->,>=stealth]
-        \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em, minimum width=2em, font=\large, node distance=8em}}
-        \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
+        
         \tikzset{rtable/.style={rectangle, dashed, draw, font=\small, node distance=3em} }
         \node[router] (A) {A};
         \node[rtable, above left=of A] (RTA) { \begin{tabular}{l}
@@ -338,15 +337,15 @@ This technique is called `split-horizon`. With this technique, the count to infi
             # end for d in R[]
         # end for l in interfaces
 
-Unfortunately, split-horizon is not sufficient to avoid all count to infinity problems with distance vector routing. Consider the failure of link `A-B` in the four routers network shown below.
+Unfortunately, split-horizon is not sufficient to avoid all count to infinity problems with distance vector routing. Consider the failure of link `A-B` in the four routers network shown in figure :numref:`fig-dv-4routers-count`.
 
+    .. _fig-dv-4routers-count:
     .. tikz:: Count to infinity problem
         :libs: positioning, matrix, arrows, shapes
 
         \tikzstyle{arrow} = [thick,->,>=stealth]
         \tikzstyle{arrowlost} = [thick,-o,>=stealth]
-        \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em, minimum width=2em, font=\large, node distance=8em}}
-        \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
+        
         \tikzset{rtable/.style={rectangle, dashed, draw, font=\small, node distance=3em} }
         \node[router] (A) {A};
         \node[rtable, above left=of A] (RTA) { \begin{tabular}{l}

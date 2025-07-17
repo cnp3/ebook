@@ -1,17 +1,18 @@
-.. Copyright |copy| 2013, 2019 by Olivier Bonaventure
+.. Copyright |copy| 2013, 2019, 2025 by Olivier Bonaventure
 .. This file is licensed under a `creative commons licence <http://creativecommons.org/licenses/by/3.0/>`_
 
+**********************   
 Routing in IP networks
-======================
+**********************
 
-In a large IP network such as the global Internet, routers need to exchange routing information. The Internet is an interconnection of networks, often called domains, that are under different responsibilities. As of this writing, the Internet is composed on more than 40,000 different domains and this number is still growing [#fas]_. A domain can be a small enterprise that manages a few routers in a single building, a larger enterprise with a hundred routers at multiple locations, or a large Internet Service Provider managing thousands of routers. Two classes of routing protocols are used to allow these domains to efficiently exchange routing information.
+In a large IP network such as the global Internet, routers need to exchange routing information. The Internet is an interconnection of networks, often called domains, that are under different responsibilities. As of 2025, the Internet is composed on more than 100,000 different domains and this number is still growing [#fas]_. A domain can be a small enterprise that manages a few routers in a single building, a larger enterprise with a hundred routers at multiple locations, or a large Internet Service Provider managing thousands of routers. Two classes of routing protocols are used to allow these domains to efficiently exchange routing information.
 
 
 .. figure:: /protocols/figures/small-internet.*
    :align: center
    :scale: 70
 
-   Organisation of a small Internet
+   Organization of a small Internet
 
 
 The first class of routing protocols are the `intradomain routing protocols` (sometimes also called the interior gateway protocols or :term:`IGP`). An intradomain routing protocol is used by all routers inside a domain to exchange routing information about the destinations that are reachable inside the domain. There are several intradomain routing protocols. Some domains use :term:`RIP`, which is a distance vector protocol. Other domains use link-state routing protocols such as :term:`OSPF` or :term:`IS-IS`. Finally, some domains use static routing or proprietary protocols such as :term:`IGRP` or :term:`EIGRP`.
@@ -75,16 +76,18 @@ OSPF imposes restrictions on how a network can be divided into areas. An area is
  - Internal router : A router whose directly connected networks belong to the area
  - Area border routers : A router that is attached to several areas.
 
-For example, the network shown in the figure below has been divided into three areas : `area 0`, containing routers `RA`, `RB`, `RC` and `RD`, `area 1`, containing routers `R1`, `R3`, `R4`, `R5` and `RA`, and `area 2` containing `R7`, `R8`, `R9`, `R10`, `RB` and `RC`. OSPF areas are identified by a 32 bit integer, which is sometimes represented as an IP address. Among the OSPF areas, `area 0`, also called the `backbone area`, has a special role. The backbone area groups all the area border routers (routers `RA`, `RB` and `RC` in the figure below) and the routers that are directly connected to the backbone routers but do not belong to another area (router `RD` in the figure below). An important restriction imposed by OSPF is that the path between two routers that belong to two different areas (e.g. `R1` and `R8` in the figure below) must pass through the backbone area.
+For example, the network shown in figure :numref:`fig-ospf-areas` has been divided into three areas : `area 0`, containing routers `RA`, `RB`, `RC` and `RD`, `area 1`, containing routers `R1`, `R3`, `R4`, `R5` and `RA`, and `area 2` containing `R7`, `R8`, `R9`, `R10`, `RB` and `RC`. OSPF areas are identified by a 32 bit integer, which is sometimes represented as an IP address. Among the OSPF areas, `area 0`, also called the `backbone area`, has a special role. The backbone area groups all the area border routers (routers `RA`, `RB` and `RC` in the figure below) and the routers that are directly connected to the backbone routers but do not belong to another area (router `RD` in the figure below). An important restriction imposed by OSPF is that the path between two routers that belong to two different areas (e.g. `R1` and `R8` in the figure below) must pass through the backbone area.
 
+.. _fig-ospf-areas:
 .. figure:: /protocols/figures/ospf-areas.*
    :align: center
    :scale: 70
 
    OSPF areas
 
-Inside each non-backbone area, routers distribute the topology of the area by exchanging link state packets with the other routers in the area. The internal routers do not know the topology of other areas, but each router knows how to reach the backbone area. Inside an area, the routers only exchange link-state packets for all destinations that are reachable inside the area. In OSPF, the inter-area routing is done by exchanging distance vectors. This is illustrated by the network topology shown below.
+Inside each non-backbone area, routers distribute the topology of the area by exchanging link state packets with the other routers in the area. The internal routers do not know the topology of other areas, but each router knows how to reach the backbone area. Inside an area, the routers only exchange link-state packets for all destinations that are reachable inside the area. In OSPF, the inter-area routing is done by exchanging distance vectors. This is illustrated by the network topology shown in figure :numref:`fig-net-ospf-areas`.
 
+.. _fig-net-ospf-areas:
 .. figure:: /protocols/figures/ospf-area.*
    :align: center
    :scale: 40
@@ -107,14 +110,15 @@ The first summary advertisement provides precise information about the distance 
 
 .. index:: OSPF Designated Router
 
-The second OSPF particularity that is worth discussing is the support of Local Area Networks (LAN). As shown in the example below, several routers may be attached to the same LAN.
+The second OSPF particularity that is worth discussing is the support of Local Area Networks (LAN). As shown in figure :numref:`fig-ospf-lan`, several routers may be attached to the same LAN.
 
+.. _fig-ospf-lan:
 .. tikz:: A LAN with routers
    :libs: positioning, shapes,matrix,arrows,shapes
 
-   \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
+
    \tikzset{lan/.style = {ellipse, draw, text centered} }
-   \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
+
    \node[router] (R1) {\begin{tabular}{c} R1 \\ 2001:db8:1234::11/48 \end{tabular} };
    \node[router, right =of R1] (R2) {\begin{tabular}{c} R2 \\ 2001:db8:1234::22/48 \end{tabular} };
    \node[router, right =of R2] (R3) {\begin{tabular}{c} R3 \\ 2001:db8:1234::33/48 \end{tabular} };
@@ -151,7 +155,8 @@ A first approach is to select one of the equal cost paths (e.g. the first or the
 
 A second approach is to install all equal cost paths [#fmaxpaths]_ in the forwarding table and load-balance the packets on the different paths. Consider the case where a router has `N` different outgoing interfaces to reach destination `d`. A first possibility to load-balance the traffic among these interfaces is to use `round-robin`. `Round-robin` allows equally balancing the packets among the `N` outgoing interfaces. This equal load-balancing is important in practice because it allows better spreading the load throughout the network. However, few networks use this `round-robin` strategy to load-balance traffic on routers. The main drawback of `round-robin` is that packets that belong to the same flow (e.g. TCP connection) may be forwarded over different paths. If packets belonging to the same TCP connection are sent over different paths, they will probably experience different delays and arrive out-of-sequence at their destination. When a TCP receiver detects out-of-order segments, it sends duplicate acknowledgments that may cause the sender to initiate a fast retransmission and enter congestion avoidance. Thus, out-of-order segments may lead to lower TCP performance. This is annoying for a load-balancing technique whose objective is to improve the network performance by spreading the load.
 
-.. spelling::
+
+.. spelling:word-list::
 
    tuple
 
@@ -162,8 +167,6 @@ Fortunately, it is possible to perform `per-flow` load balancing without maintai
  :math:`hash(NextHeader,IP_{src},IP_{dst},Port_{src},Port_{dst}) \pmod{N}`
 
 In this formula, `N` is the number of outgoing interfaces on the equal cost paths towards the packet's destination. Various hash functions are possible, including CRC, checksum or MD5 :rfc:`2991`. Since the hash function is computed over the four-tuple, the same hash value will be computed for all packets belonging to the same flow. This prevents reordering due to load balancing inside the network. Most routers support this kind of load-balancing today  [ACO+2006]_.
-
-
 
 .. rubric:: Footnotes
 

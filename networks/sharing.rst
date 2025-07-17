@@ -115,8 +115,7 @@ In all these networks, except the full-mesh, the link bandwidth is shared among 
       :libs: positioning, matrix, arrows
 
       \tikzstyle{arrow} = [thick,->,>=stealth]
-      \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em, node distance=4em}, }
-      \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
+      
       \tikzset{ftable/.style={rectangle, dashed, draw} }
       \node[host] (A1) {A1};
       \node[router, right=of A1] (R1) {R1};
@@ -155,8 +154,7 @@ Sharing bandwidth among the hosts directly attached to a link is not the only sh
       :libs: positioning, matrix, arrows
 
       \tikzstyle{arrow} = [thick,->,>=stealth]
-      \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
-      \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
+     
       \tikzset{ftable/.style={rectangle, dashed, draw} }
       \node[host] (A) {A};
       \node[router, right=of A] (R1) {R1};
@@ -210,10 +208,11 @@ Let us first explore which mechanisms can be used inside a network to control co
 
 As explained earlier, one of the first manifestation of congestion on network nodes is the saturation of the network links that leads to a growth in the occupancy of the buffers of the node. This growth of the buffer occupancy implies that some packets will spend more time in the buffer and thus in the network. If hosts measure the network delays (e.g. by measuring the round-trip-time between the transmission of a packet and the return of the corresponding acknowledgment) they could start to sense congestion. On low bandwidth links, a growth in the buffer occupancy can lead to an increase of the delays which can be easily measured by the end hosts. On high bandwidth links, a few packets inside the buffer will cause a small variation in the delay which may not necessarily be larger that the natural fluctuations of the delay measurements.
 
-If the buffer's occupancy continues to grow, it will overflow and packets will need to be discarded. Discarding packets during congestion is the second possible reaction of a network node to congestion. Before looking at how a node can discard packets, it is interesting to discuss qualitatively the impact of the buffer occupancy on the reliable delivery of data through a network. This is illustrated by the figure below, adapted from [Jain1990]_.
+If the buffer's occupancy continues to grow, it will overflow and packets will need to be discarded. Discarding packets during congestion is the second possible reaction of a network node to congestion. Before looking at how a node can discard packets, it is interesting to discuss qualitatively the impact of the buffer occupancy on the reliable delivery of data through a network. This is illustrated by figure :numref:`fig-congestion-jain`, adapted from [Jain1990]_.
 
-.. figure:: /principles/figures/jain.*
+.. figure:: /principles/figures/jain.png
    :align: center
+   :name: fig-congestion-jain
 
    Network congestion
 
@@ -346,7 +345,7 @@ Based on the feedback received from the network, the hosts can adjust their tran
 
 Another way to share the network resources is to distribute the load across multiple links. Many techniques have been designed to spread the load over the network. As an illustration, let us briefly consider how the load can be shared when accessing some content. Consider a large and popular file such as the image of a Linux distribution or the upgrade of a commercial operating system that will be downloaded by many users. There are many ways to distribute this large file. A naive solution is to place one copy of the file on a server and allow all users to download this file from the server. If the file is popular and millions of users want to download it, the server will quickly become overloaded. There are two classes of solutions that can be used to serve a large number of users. A first approach is to store the file on servers whose name is known by the clients. Before retrieving the file, each client will query the name service to obtain the address of the server. If the file is available from many servers, the name service can provide different addresses to different clients. This will automatically spread the load since different clients will download the file from different servers. Most large content providers use such a solution to distribute large files or videos.
 
-.. spelling::
+.. spelling:word-list::
 
    bittorrent
    metadata
@@ -543,18 +542,20 @@ Carrier Sense Multiple Access with Collision Detection
 
 CSMA improves channel utilization compared to ALOHA. However, the performance can still be improved, especially in wired networks. Consider the situation of two terminals that are connected to the same cable. This cable could, for example, be a coaxial cable as in the early days of Ethernet [Metcalfe1976]_. It could also be built with twisted pairs. Before extending CSMA, it is useful to understand, more intuitively, how frames are transmitted in such a network and how collisions can occur. The figure below illustrates the physical transmission of a frame on such a cable. To transmit its frame, host A must send an electrical signal on the shared medium. The first step is thus to begin the transmission of the electrical signal. This is point `(1)` in the figure below. This electrical signal will travel along the cable. Although electrical signals travel fast, we know that information cannot travel faster than the speed of light (i.e. 300.000 kilometers/second). On a coaxial cable, an electrical signal is slightly slower than the speed of light and 200.000 kilometers per second is a reasonable estimation. This implies that if the cable has a length of one kilometer, the electrical signal will need 5 microseconds to travel from one end of the cable to the other. The ends of coaxial cables are equipped with termination points that ensure that the electrical signal is not reflected back to its source. This is illustrated at point `(3)` in the figure, where the electrical signal has reached the left endpoint and host B. At this point, B starts to receive the frame being transmitted by A. Notice that there is a delay between the transmission of a bit on host A and its reception by host B. If there were other hosts attached to the cable, they would receive the first bit of the frame at slightly different times. As we will see later, this timing difference is a key problem for MAC algorithms. At point `(4)`, the electrical signal has reached both ends of the cable and occupies it completely. Host A continues to transmit the electrical signal until the end of the frame. As shown at point `(5)`, when the sending host stops its transmission, the electrical signal corresponding to the end of the frame leaves the coaxial cable. The channel becomes empty again once the entire electrical signal has been removed from the cable.
 
-.. figure:: /principles/figures/frame-bus.*
+.. figure:: /principles/figures/frame-bus.png
    :align: center
    :scale: 70
 
    Frame transmission on a shared bus
 
-Now that we have looked at how a frame is actually transmitted as an electrical signal on a shared bus, it is interesting to look in more detail at what happens when two hosts transmit a frame at almost the same time. This is illustrated in the figure below, where hosts A and B start their transmission at the same time (point `(1)`). At this time, if host C senses the channel, it will consider it to be free. This will not last a long time and at point `(2)` the electrical signals from both host A and host B reach host C. The combined electrical signal (shown graphically as the superposition of the two curves in the figure) cannot be decoded by host C. Host C detects a collision, as it receives a signal that it cannot decode. Since host C cannot decode the frames, it cannot determine which hosts are sending the colliding frames. Note that host A (and host B) will detect the collision after host C (point `(3)` in the figure below).
+Now that we have looked at how a frame is actually transmitted as an electrical signal on a shared bus, it is interesting to look in more detail at what happens when two hosts transmit a frame at almost the same time. This is illustrated in the figure below, where hosts A and B start their transmission at the same time (point `(1)`). At this time, if host C senses the channel, it will consider it to be free. This will not last a long time and at point `(2)` the electrical signals from both host A and host B reach host C. The combined electrical signal (shown graphically as the superposition of the two curves in the figure) cannot be decoded by host C. Host C detects a collision, as it receives a signal that it cannot decode. Since host C cannot decode the frames, it cannot determine which hosts are sending the colliding frames. Note that host A (and host B) will detect the collision after host C (point `(3)` in figure :numref:`fig-collision-bus`).
 
 
-.. figure:: /principles/figures/frame-collision.*
+
+.. figure:: /principles/figures/frame-collision.png
    :align: center
    :scale: 70
+   :name: fig-collision-bus
 
    Frame collision on a shared bus
 
@@ -568,7 +569,7 @@ As shown above, hosts detect collisions when they receive an electrical signal t
 To better understand these collisions, it is useful to analyze what would be the worst collision on a shared bus network. Let us consider a wire with two hosts attached at both ends, as shown in the figure below. Host A starts to transmit its frame and its electrical signal is propagated on the cable. Its propagation time depends on the physical length of the cable and the speed of the electrical signal. Let us use :math:`\tau` to represent this propagation delay in seconds. Slightly less than :math:`\tau` seconds after the beginning of the transmission of A's frame, B decides to start transmitting its own frame. After :math:`\epsilon` seconds, B senses A's frame, detects the collision and stops transmitting. The beginning of B's frame travels on the cable until it reaches host A. Host A can thus detect the collision at time :math:`\tau-\epsilon+\tau \approx 2\times\tau`. An important point to note is that a collision can only occur during the first :math:`2\times\tau` seconds of its transmission. If a collision did not occur during this period, it cannot occur afterwards since the transmission channel is busy after :math:`\tau` seconds and CSMA/CD hosts sense the transmission channel before transmitting their frame.
 
 
-.. figure:: /principles/figures/frame-collision-worst.*
+.. figure:: /principles/figures/frame-collision-worst.png
    :align: center
    :scale: 70
 
@@ -581,7 +582,7 @@ Furthermore, on the wired networks where CSMA/CD is used, collisions are almost 
 Removing acknowledgments is an interesting optimization as it reduces the number of frames that are exchanged on the network and the number of frames that need to be processed by the hosts. However, to use this optimization, we must ensure that all hosts will be able to detect all the collisions that affect their frames. The problem is important for short frames. Let us consider two hosts, A and B, that are sending a small frame to host C as illustrated in the figure below. If the frames sent by A and B are very short, the situation illustrated below may occur. Hosts A and B send their frame and stop transmitting (point `(1)`). When the two short frames arrive at the location of host C, they collide and host C cannot decode them (point `(2)`). The two frames are absorbed by the ends of the wire. Neither host A nor host B have detected the collision. They both consider their frame to have been received correctly by its destination.
 
 
-.. figure:: /principles/figures/frame-collision-short.*
+.. figure:: /principles/figures/frame-collision-short.png
    :align: center
    :scale: 70
 
@@ -656,7 +657,7 @@ Compared to CSMA, CSMA/CA defines more precisely when a device is allowed to sen
 The figure below shows the basic operation of CSMA/CA devices. Before transmitting, host `A` verifies that the channel is empty for a long enough period. Then, its sends its data frame. After checking the validity of the received frame, the recipient sends an acknowledgment frame after a short SIFS delay. Host `C`, which does not participate in the frame exchange, senses the channel to be busy at the beginning of the data frame. Host `C` can use this information to determine how long the channel will be busy for. Note that as :math:`SIFS<DIFS<EIFS`, even a device that would start to sense the channel immediately after the last bit of the data frame could not decide to transmit its own frame during the transmission of the acknowledgment frame.
 
 
-.. figure:: /principles/figures/csmaca-1.*
+.. figure:: /principles/figures/csmaca-1.png
    :align: center
    :scale: 70
 
@@ -668,20 +669,20 @@ The figure below shows the basic operation of CSMA/CA devices. Before transmitti
 
 The main difficulty with CSMA/CA is when two or more devices transmit at the same time and cause collisions. This is illustrated in the figure below, assuming a fixed timeout after the transmission of a data frame. With CSMA/CA, the timeout after the transmission of a data frame is very small, since it corresponds to the SIFS plus the time required to transmit the acknowledgment frame.
 
-.. figure:: /principles/figures/csmaca-2.*
+.. figure:: /principles/figures/csmaca-2.png
    :align: center
    :scale: 70
 
    Collisions with CSMA/CA
 
-.. spelling
-
+.. spelling:word-list::
+   
    slotTime
 
 To deal with this problem, CSMA/CA relies on a backoff timer. This backoff timer is a random delay that is chosen by each device in a range that depends on the number of retransmissions for the current frame. The range grows exponentially with the retransmissions as in CSMA/CD. The minimum range for the backoff timer is :math:`[0,7*slotTime]` where the `slotTime` is a parameter that depends on the underlying physical layer. Compared to CSMA/CD's exponential backoff, there are two important differences to notice. First, the initial range for the backoff timer is seven times larger. This is because it is impossible in CSMA/CA to detect collisions as they happen. With CSMA/CA, a collision may affect the entire frame while with CSMA/CD it can only affect the beginning of the frame. Second, a CSMA/CA device must regularly sense the transmission channel during its back off timer. If the channel becomes busy (i.e. because another device is transmitting), then the back off timer must be frozen until the channel becomes free again. Once the channel becomes free, the back off timer is restarted. This is in contrast with CSMA/CD where the back off is recomputed after each collision. This is illustrated in the figure below. Host `A` chooses a smaller backoff than host `C`. When `C` senses the channel to be busy, it freezes its backoff timer and only restarts it once the channel is free again.
 
 
-.. figure:: /principles/figures/csmaca-3.*
+.. figure:: /principles/figures/csmaca-3.png
    :align: center
    :scale: 70
 
@@ -720,7 +721,7 @@ The pseudo-code below summarizes the operation of a CSMA/CA device. The values o
 Another problem faced by wireless networks is often called the `hidden station problem`. In a wireless network, radio signals are not always propagated same way in all directions. For example, two devices separated by a wall may not be able to receive each other's signal while they could both be receiving the signal produced by a third host. This is illustrated in the figure below, but it can happen in other environments. For example, two devices that are on different sides of a hill may not be able to receive each other's signal while they are both able to receive the signal sent by a station at the top of the hill. Furthermore, the radio propagation conditions may change with time. For example, a truck may temporarily block the communication between two nearby devices.
 
 
-.. figure:: /principles/figures/csmaca-hidden.*
+.. figure:: /principles/figures/csmaca-hidden.png
    :align: center
    :scale: 70
 
@@ -732,7 +733,7 @@ Another problem faced by wireless networks is often called the `hidden station p
 
 To avoid collisions in these situations, CSMA/CA allows devices to reserve the transmission channel for some time. This is done by using two control frames : `Request To Send` (RTS) and `Clear To Send` (CTS). Both are very short frames to minimize the risk of collisions. To reserve the transmission channel, a device sends a RTS frame to the intended recipient of the data frame. The RTS frame contains the duration of the requested reservation. The recipient replies, after a SIFS delay, with a CTS frame which also contains the duration of the reservation. As the duration of the reservation has been sent in both RTS and CTS, all hosts that could collide with either the sender or the reception of the data frame are informed of the reservation. They can compute the total duration of the transmission and defer their access to the transmission channel until then. This is illustrated in the figure below where host `A` reserves the transmission channel to send a data frame to host `B`. Host `C` notices the reservation and defers its transmission.
 
-.. figure:: /principles/figures/csmaca-reserv.*
+.. figure:: /principles/figures/csmaca-reserv.png
    :align: center
    :scale: 70
 
@@ -755,7 +756,7 @@ A Token Ring network is composed of a set of stations that are attached to a uni
 
 
 .. _fig-tokenring:
-.. figure:: /principles/figures/token-ring.*
+.. figure:: /principles/figures/token-ring.png
    :align: center
    :scale: 70
 
@@ -827,8 +828,7 @@ To understand this problem better, let us consider the scenario shown in the fig
        :libs: positioning, matrix, arrows
 
        \tikzstyle{arrow} = [thick,->,>=stealth]
-       \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em, minimum width=2em, node distance = 4em}, }
-       \tikzset{host/.style = {circle, draw, text centered, minimum height=2em, node distance = 4em}, }
+       
        \node[host] (A) {A};
        \node[router, right=of A] (R1) {R1};
        \node[router, right=of R1] (R2) {R2};
@@ -842,7 +842,7 @@ To understand this problem better, let us consider the scenario shown in the fig
 In this network, the segments sent by the server reach router `R1`. `R1` forwards the segments towards router `R2`. Router `R1` can potentially receive segments at `10 Mbps`, but it can only forward them at `2 Mbps` to router `R2` and then to host `C`.  Router `R1` includes buffers that allow it to store the packets that cannot immediately be forwarded to their destination. To understand the operation of a reliable transport protocol in this environment, let us consider a simplified model of this network where host `A` is attached to a `10 Mbps` link to a queue that represents the buffers of router `R1`. This queue is emptied at a rate of `2 Mbps`.
 
 
-.. figure:: /principles/figures/tcp-self-clocking.*
+.. figure:: /principles/figures/tcp-self-clocking.png
    :align: center
    :scale: 70
 
@@ -903,8 +903,7 @@ The `congestion collapse` is a problem that all heterogeneous networks face. Dif
       :libs: positioning, matrix, arrows
 
       \tikzstyle{arrow} = [thick,->,>=stealth]
-      \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em, node distance = 5em}, }
-      \tikzset{host/.style = {circle, draw, text centered, minimum height=2em, node distance = 5em}, }
+      
       \tikzset{ftable/.style={rectangle, dashed, draw} }
       \node[host] (A) {A};
       \node[router, right=of A] (R1) {R1};
@@ -951,11 +950,12 @@ A congestion control scheme can be modeled as an algorithm that adapts the trans
 
 .. index:: Additive Increase Multiplicative Decrease (AIMD)
 
-Let us focus on the binary feedback scheme which is the most widely used today. Intuitively, the congestion control scheme should decrease the transmission rate of a host when congestion has been detected in the network, in order to avoid congestion collapse. Furthermore, the hosts should increase their transmission rate when the network is not congested. Otherwise, the hosts would not be able to efficiently utilize the network. The rate allocated to each host fluctuates with time, depending on the feedback received from the network. The figure below illustrates the evolution of the transmission rates allocated to two hosts in our simple network. Initially, two hosts have a low allocation, but this is not efficient. The allocations increase until the network becomes congested. At this point, the hosts decrease their transmission rate to avoid congestion collapse. If the congestion control scheme works well, after some time the allocations should become both fair and efficient.
+Let us focus on the binary feedback scheme which is the most widely used today. Intuitively, the congestion control scheme should decrease the transmission rate of a host when congestion has been detected in the network, in order to avoid congestion collapse. Furthermore, the hosts should increase their transmission rate when the network is not congested. Otherwise, the hosts would not be able to efficiently utilize the network. The rate allocated to each host fluctuates with time, depending on the feedback received from the network. Figure :numref:`fig-congestion-rates` illustrates the evolution of the transmission rates allocated to two hosts in our simple network. Initially, two hosts have a low allocation, but this is not efficient. The allocations increase until the network becomes congested. At this point, the hosts decrease their transmission rate to avoid congestion collapse. If the congestion control scheme works well, after some time the allocations should become both fair and efficient.
 
-.. figure:: /principles/figures/congestion-rates-evolution.*
+.. figure:: /principles/figures/congestion-rates-evolution.png
    :align: center
    :scale: 70
+   :name: fig-congestion-rates
 
    Evolution of the transmission rates
 
@@ -991,14 +991,13 @@ Congestion control with a window-based transport protocol
 ---------------------------------------------------------
 
 
-AIMD controls congestion by adjusting the transmission rate of the sources in reaction to the current congestion level. If the network is not congested, the transmission rate increases. If congestion is detected, the transmission rate is multiplicatively decreased. In practice, directly adjusting the transmission rate can be difficult since it requires the utilization of fine grained timers. In reliable transport protocols, an alternative is to dynamically adjust the sending window. This is the solution chosen for protocols like TCP and SCTP that will be described in more details later. To understand how window-based protocols can adjust their transmission rate, let us consider the very simple scenario of a reliable transport protocol that uses `go-back-n`. Consider the very simple scenario shown in the figure below.
+AIMD controls congestion by adjusting the transmission rate of the sources in reaction to the current congestion level. If the network is not congested, the transmission rate increases. If congestion is detected, the transmission rate is multiplicatively decreased. In practice, directly adjusting the transmission rate can be difficult since it requires the utilization of fine grained timers. In reliable transport protocols, an alternative is to dynamically adjust the sending window. This is the solution chosen for protocols like TCP and SCTP that will be described in more details later. To understand how window-based protocols can adjust their transmission rate, let us consider the very simple scenario of a reliable transport protocol that uses `go-back-n`. Consider the very simple scenario shown in figure :numref:`fig-bottleneck`.
 
-
+    .. _fig-bottleneck:
     .. tikz:: A simple network with hosts sharing a bottleneck link
         :libs: positioning, matrix
 
-        \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
-        \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
+        
         \node[router] (R1) {R1};
         \node[router, right=3cm of R1] (R2) {R2};
         \node[host, left=of R1] (A) {A};
@@ -1012,9 +1011,9 @@ AIMD controls congestion by adjusting the transmission rate of the sources in re
 
 The links between the hosts and the routers have a bandwidth of 1 Mbps while the link between the two routers has a bandwidth of 500 Kbps. There is no significant propagation delay in this network. For simplicity, assume that hosts `A` and `B` send 1000 bits packets. The transmission of such a packet on a `host-router` (resp. `router-router` ) link requires 1 msec (resp. 2 msec). If there is no traffic in the network, the round-trip-time measured by host `A` to reach `D` is slightly larger than 4 msec. Let us observe the flow of packets with different window sizes to understand the relationship between sending window and transmission rate.
 
-Consider first a window of one segment. This segment takes 4 msec to reach host `D`. The destination replies with an acknowledgment and the next segment can be transmitted. With such a sending window, the transmission rate is roughly 250 segments per second or 250 Kbps. This is illustrated in the figure below where each square of the grid corresponds to one millisecond.
+Consider first a window of one segment. This segment takes 4 msec to reach host `D`. The destination replies with an acknowledgment and the next segment can be transmitted. With such a sending window, the transmission rate is roughly 250 segments per second or 250 Kbps. This is illustrated in figure :numref:`fig-gbn-win-1` where each square of the grid corresponds to one millisecond.
 
-
+    .. _fig-gbn-win-1:
     .. tikz:: Go-back-n transfer from A to D, window of one segment
         :libs: positioning, matrix, arrows
 
@@ -1246,10 +1245,10 @@ A congestion control scheme for our simple transport protocol could be implement
 In the above pseudocode, `cwin` contains the congestion window stored as a real number of segments. This congestion window is updated upon the arrival of each acknowledgment and when congestion is detected. For simplicity, we assume that `cwin` is stored as a floating point number but only full segments can be transmitted.
 
 
-As an illustration, let us consider the network scenario above and assume that the router implements the DECBit binary feedback scheme [RJ1995]_. This scheme uses a form of Forward Explicit Congestion Notification and a router marks the congestion bit in arriving packets when its buffer contains one or more packets. In the figure below, we use a `*` to indicate a marked packet.
+As an illustration, let us consider the network scenario above and assume that the router implements the DECBit binary feedback scheme [RJ1995]_. This scheme uses a form of Forward Explicit Congestion Notification and a router marks the congestion bit in arriving packets when its buffer contains one or more packets. In figure :numref:`fig-gbn-decbit`, we use a `*` to indicate a marked packet.
 
 
-
+    .. _fig-gbn-decbit:
     .. tikz:: Go-back-n transfer from A to D, with AIMD congestion control and DecBit binary feedback scheme
         :libs: positioning, matrix, arrows
 
@@ -1403,15 +1402,14 @@ As an illustration, let us consider the network scenario above and assume that t
 
 When the connection starts, its congestion window is set to one segment. Segment `S0` is sent an acknowledgment at roughly :math:`t_{0}+4`. The congestion window is increased by one segment and `S1` and `S2` are transmitted at time :math:`t_{0}+4` and :math:`t_{0}+5`. The corresponding acknowledgments are received at times :math:`t_{0}+8` and :math:`t_{0}+10`. Upon reception of this last acknowledgment, the congestion window reaches `3` and segments can be sent (`S4` and `S5`). When segment `S6` reaches router `R1`, its buffers already contain `S5`. The packet containing `S6` is thus marked to inform the sender of the congestion. Note that the sender will only notice the congestion once it receives the corresponding acknowledgment at :math:`t_{0}+18`. In the meantime, the congestion window continues to increase. At :math:`t_{0}+16`, upon reception of the acknowledgment for `S5`, it reaches `4`. When congestion is detected, the congestion window is decreased down to `2`. This explains the idle time between the reception of the acknowledgment for `S*6` and the transmission of `S10`.
 
-In practice, a router is connected to multiple input links. The figure below shows an example with two hosts.
+In practice, a router is connected to multiple input links. Figure :numref:`fig-2hosts-bottleneck` shows an example with two hosts.
 
-
+    .. _fig-2hosts-bottleneck:
     .. tikz:: A simple network with hosts sharing a bottleneck
         :libs: positioning, matrix, arrows
 
         \tikzstyle{arrow} = [thick,->,>=stealth]
-        \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
-        \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
+        
         \tikzset{ftable/.style={rectangle, dashed, draw} }
         \node[host, red] (A) {A};
         \node[host, right=3 cm of A] (R) {R};
@@ -1422,7 +1420,8 @@ In practice, a router is connected to multiple input links. The figure below sho
         \draw[-] (R) -- node [midway, above] { 1 Mbps} (C);
 
 
-    .. tikz:: R sharing the bottleneck link between different inputs
+	
+    .. tikz:: Sharing the bottleneck link between different inputs
         :libs: positioning, arrows
 
         \colorlet{lightgray}{black!20}
@@ -1464,7 +1463,7 @@ In practice, a router is connected to multiple input links. The figure below sho
 
 In general, the links have a non-zero delay. This is illustrated in the figure below where a delay has been added on the link between `R` and `C`.
 
-    .. tikz:: R sharing the bottleneck link between different inputs
+    .. tikz:: Sharing the bottleneck link between different inputs
         :libs: positioning, arrows, backgrounds
 
         \colorlet{lightgray}{black!20}

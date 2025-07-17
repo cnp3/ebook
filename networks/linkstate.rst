@@ -6,7 +6,7 @@
 .. _linkstate:
 
 Link state routing
-------------------
+==================
 
 Link state routing is the second family of routing protocols. While distance vector routers use a distributed algorithm to compute their routing tables, link-state routers exchange messages to allow each router to learn the entire network topology. Based on this learned topology, each router is then able to compute its routing table by using a shortest path computation such as Dijkstra's algorithm [Dijkstra1959]_. A detailed description of this shortest path algorithm may be found in [Wikipedia:Dijkstra]_.
 
@@ -21,13 +21,15 @@ Usually, the same weight is associated to the two directed edges that correspond
 
 .. index:: Hello message
 
-When a link-state router boots, it first needs to discover to which routers it is directly connected. For this, each router sends a HELLO message every `N` seconds on all its interfaces. This message contains the router's address. Each router has a unique address. As its neighboring routers also send HELLO messages, the router automatically discovers to which neighbors it is connected. These HELLO messages are only sent to neighbors that are directly connected to a router, and a router never forwards the HELLO messages that it receives. HELLO messages are also used to detect link and router failures. A link is considered to have failed if no HELLO message has been received from a neighboring router for a period of :math:`k \times N` seconds.
+When a link-state router boots, it first needs to discover to which routers it is directly connected. For this, each router sends a HELLO message every `N` seconds on all its interfaces. This message contains the router's address. Each router has a unique address. As its neighboring routers also send HELLO messages, the router automatically discovers to which neighbors it is connected. These HELLO messages are only sent to neighbors that are directly connected to a router, and a router never forwards the HELLO messages that it receives. HELLO messages are also used to detect link and router failures. A link is considered to have failed if no HELLO message has been received from a neighboring router for a period of :math:`k \times N` seconds. This is illustrated in figure :numref:`fig-ls-hello`. 
 
+    .. _fig-ls-hello:
+    
     .. tikz:: The exchange of HELLO messages
         :libs: positioning, matrix, arrows, shapes
 
         \tikzstyle{arrow} = [thick,->,>=stealth]
-        \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em, minimum width=2em, font=\large, node distance=7em}}
+        
         \node[router] (A) {A};
         \node[router, right=of A] (B) { B };
         \node[router, below=of B] (C) {C};
@@ -59,7 +61,7 @@ Once a router has discovered its neighbors, it must reliably distribute all its 
    - LSP.Links[i].Id: identification of the neighbor
    - LSP.Links[i].cost: cost of the link
 
-These LSPs must be reliably distributed inside the network without using the router's routing table since these tables can only be computed once the LSPs have been received. The `Flooding` algorithm is used to efficiently distribute the LSPs of all routers. Each router that implements `flooding` maintains a `link state database` (LSDB) containing the most recent LSP sent by each router. When a router receives a LSP, it first verifies whether this LSP is already stored inside its LSDB. If so, the router has already distributed the LSP earlier and it does not need to forward it. Otherwise, the router forwards the LSP on all its links except the link over which the LSP was received. Flooding can be implemented by using the following pseudo-code.
+These LSPs must be reliably distributed inside the network without using the router's routing table since these tables can only be computed once the LSPs have been received. The `Flooding` algorithm is used to efficiently distribute the LSPs of all routers. Each router that implements `flooding` maintains a `Link sSate DataBase` (LSDB) containing the most recent LSP sent by each router. When a router receives a LSP, it first verifies whether this LSP is already stored inside its LSDB. If so, the router has already distributed the LSP earlier and it does not need to forward it. Otherwise, the router forwards the LSP on all its links except the link over which the LSP was received. Flooding can be implemented by using the following pseudo-code.
 
 .. code-block:: python
 
@@ -91,15 +93,16 @@ In this pseudo-code, `LSDB(r)` returns the most recent `LSP` originating from ro
 
  To deal with the memory corruption problem, link state packets contain a checksum or CRC. This checksum is computed by the router that generates the LSP. Each router must verify the checksum when it receives or floods an LSP. Furthermore, each router must periodically verify the checksums of the LSPs stored in its LSDB. This enables them to cope with memory errors that could corrupt the LSDB as the one that occurred in the ARPANET.
 
-Flooding is illustrated in the figure below. By exchanging HELLO messages, each router learns its direct neighbors. For example, router `E` learns that it is directly connected to routers `D`, `B` and `C`. Its first LSP has sequence number `0` and contains the directed links `E->D`, `E->B` and `E->C`. Router `E` sends its LSP on all its links and routers `D`, `B` and `C` insert the LSP in their LSDB and forward it over their other links.
+Flooding is illustrated in figure :numref:`fig-ls-flooding`. By exchanging HELLO messages, each router learns its direct neighbors. For example, router `E` learns that it is directly connected to routers `D`, `B` and `C`. Its first LSP has sequence number `0` and contains the directed links `E->D`, `E->B` and `E->C`. Router `E` sends its LSP on all its links and routers `D`, `B` and `C` insert the LSP in their LSDB and forward it over their other links.
 
 
+    .. _fig-ls-flooding:
+    
     .. tikz:: Flooding: example
        :libs: positioning, matrix, arrows
 
        \tikzstyle{arrow} = [thick,->,>=stealth]
-       \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em, minimum width=2em, font=\large, node distance=8em}}
-       \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
+       
        \tikzset{rtable/.style={rectangle, dashed, draw, font=\small, node distance=3em} }
        \node[router] (A) {A};
        \node[rtable, above left=of A] (RTA) { \begin{tabular}{l}
@@ -156,14 +159,15 @@ Flooding is illustrated in the figure below. By exchanging HELLO messages, each 
 
 Flooding allows LSPs to be distributed to all routers inside the network without relying on routing tables. In the example above, the LSP sent by router `E` is likely to be sent twice on some links in the network. For example, routers `B` and `C` receive `E`'s LSP at almost the same time and forward it over the `B-C` link. To avoid sending the same LSP twice on each link, a possible solution is to slightly change the pseudo-code above so that a router waits for some random time before forwarding a LSP on each link. The drawback of this solution is that the delay to flood an LSP to all routers in the network increases. In practice, routers immediately flood the LSPs that contain new information (e.g. addition or removal of a link) and delay the flooding of refresh LSPs (i.e. LSPs that contain exactly the same information as the previous LSP originating from this router) [FFEB2005]_.
 
-To ensure that all routers receive all LSPs, even when there are transmissions errors, link state routing protocols use `reliable flooding`. With `reliable flooding`, routers use acknowledgments and if necessary retransmissions to ensure that all link state packets are successfully transferred to each neighboring router. Thanks to reliable flooding, all routers store in their LSDB the most recent LSP sent by each router in the network. By combining the received LSPs with its own LSP, each router can build a graph that represents the entire network topology.
+To ensure that all routers receive all LSPs, even when there are transmissions errors, link state routing protocols use `reliable flooding`. With `reliable flooding`, routers use acknowledgments and if necessary retransmissions to ensure that all link state packets are successfully transferred to each neighboring router. Thanks to reliable flooding, all routers store in their LSDB the most recent LSP sent by each router in the network. By combining the received LSPs with its own LSP, each router can build a graph that represents the entire network topology as shown in figure :numref:`fig-ls-lsdb`.
 
+    .. _fig-ls-lsdb:
+    
     .. tikz:: Link state databases received by all routers
        :libs: positioning, matrix, arrows
 
        \tikzstyle{arrow} = [thick,->,>=stealth]
-       \tikzset{router/.style = {rectangle, draw, text centered, thick, minimum height=2em, minimum width=2em, font=\large, node distance=7em}}
-       \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
+       
        \tikzset{rtable/.style={rectangle, dashed, draw, font=\tiny, node distance=3em} }
        \node[router] (A) {A};
        \node[rtable, above left=1em of A] (RTA) { \begin{tabular}{l|l}
@@ -242,15 +246,16 @@ To ensure that all routers receive all LSPs, even when there are transmissions e
 
 .. index:: two-way connectivity
 
-When a link fails, the two routers attached to the link detect the failure by the absence of HELLO messages received during the last :math:`k \times N` seconds. Once a router has detected the failure of one of its local links, it generates and floods a new LSP that no longer contains the failed link. This new LSP replaces the previous LSP in the network. In practice, the two routers attached to a link do not detect this failure exactly at the same time. During this period, some links may be announced in only one direction. This is illustrated in the figure below. Router `E` has detected the failure of link `E-B` and flooded a new LSP, but router `B` has not yet detected this failure.
+When a link fails, the two routers attached to the link detect the failure by the absence of HELLO messages received during the last :math:`k \times N` seconds. Once a router has detected the failure of one of its local links, it generates and floods a new LSP that no longer contains the failed link. This new LSP replaces the previous LSP in the network. In practice, the two routers attached to a link do not detect this failure exactly at the same time. During this period, some links may be announced in only one direction. This is illustrated in figure :numref:`fig-ls-2way`. Router `E` has detected the failure of link `E-B` and flooded a new LSP, but router `B` has not yet detected this failure.
 
 
+    .. _fig-ls-2way:
+    
     .. tikz:: The two-way connectivity check
        :libs: positioning, matrix, arrows
 
        \tikzstyle{arrow} = [thick,->,>=stealth]
-       \tikzset{router/.style = {rectangle, draw, text centered, thick, minimum height=2em, minimum width=2em, font=\large, node distance=7em}}
-       \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
+       
        \tikzset{rtable/.style={rectangle, dashed, draw, font=\tiny, node distance=3em} }
        \node[router] (A) {A};
        \node[rtable, above left=1em of A] (RTA) { \begin{tabular}{l|l}
@@ -335,14 +340,15 @@ When a link is reported in the LSP of only one of the attached routers, routers 
 
 When a router has failed, its LSP must be removed from the LSDB of all routers [#foverload]_. This can be done by using the `age` field that is included in each LSP. The `age` field is used to bound the maximum lifetime of a link state packet in the network. When a router generates a LSP, it sets its lifetime (usually measured in seconds) in the `age` field. All routers regularly decrement the `age` of the LSPs in their LSDB and a LSP is discarded once its `age` reaches `0`. Thanks to the `age` field, the LSP from a failed router does not remain in the LSDBs forever.
 
-To compute its forwarding table, each router computes the spanning tree rooted at itself by using Dijkstra's shortest path algorithm [Dijkstra1959]_. The forwarding table can be derived automatically from the spanning as shown in the figure below.
+To compute its forwarding table, each router computes the spanning tree rooted at itself by using Dijkstra's shortest path algorithm [Dijkstra1959]_. The forwarding table can be derived automatically from the spanning as shown in figure :numref:`fig-ls-forwarding-tables`.
 
+    .. _fig-ls-forwarding-tables:
+    
     .. tikz:: Computation of the forwarding table, the paths used by packets sent by R3 are shown in red
        :libs: positioning, matrix, arrows
 
        \tikzstyle{arrow} = [thick,->,>=stealth]
-       \tikzset{router/.style = {rectangle, draw, text centered, thick, minimum height=2em, minimum width=2em, font=\large, node distance=4em}}
-       \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
+       
        \tikzset{rtable/.style={rectangle, dashed, draw, font=\small, node distance=6em} }
        \node[router] (R1) {R1};
        \node[router, above right=of R1] (R2) { R2 };

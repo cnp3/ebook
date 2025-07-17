@@ -52,7 +52,7 @@ As for the DNS, besides using software tools that implement the HTTP protocols, 
 
 .. [#fhttps] This syllabus is now hosted on a web server using HTTPS (port 443) instead of HTTP (port 80).
 
-.. [#flang] The list of available language tags can be found at http://www.iana.org/assignments/language-subtag-registry. Versions in other formats are available at http://www.langtag.net/registries.html. Additional information about the support of multiple languages in Internet protocols may be found in rfc5646_.
+.. [#flang] The list of available language tags can be found at http://www.iana.org/assignments/language-subtag-registry. Versions in other formats are available at http://www.langtag.net/registries.html. Additional information about the support of multiple languages in Internet protocols may be found in :rfc:`5646`.
 
 .. [#fv6only] There are probably very few websites that only support IPv6 and not IPv4. If you find one, let us know by submitting a pull-request to change this exercise.
 

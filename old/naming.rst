@@ -30,7 +30,7 @@ Each top-level domain is managed by an organization that decides how subdomain n
    :libs: shapes
 
    \tikzset{d/.style = {ellipse, draw},}
-   \node {[d] {.}}
+   \node {{.}}
       child { node[d] {edu}
               child { node[d] {ucla} }
 	      child { node[d] {mit} } }

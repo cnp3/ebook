@@ -10,22 +10,19 @@ Introduction
 .. index:: electrical cable, optical fiber, multi-mode optical fiber, single-mode optical fiber
 
 
-
-The first step when building a network, even a worldwide network such as the Internet, is to connect two hosts together. This is illustrated in :numref:`fig-2hosts`. 
+The first step when building a network, even a worldwide network such as the Internet, is to connect two hosts together. This is illustrated in figure :numref:`fig-2hosts`. 
 
 .. _fig-2hosts:
-   
 .. tikz:: Connecting two hosts together
    :libs: positioning, matrix
 
-   \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em}, }
-   \tikzset{host/.style = {circle, draw, text centered, minimum height=2em}, }
+
    \node[host] (B) {B};
    \node[host, right=of B] (A) {A};
 
    \path[draw,thick] (A) edge (B);
 
-
+   
 To enable the two hosts to exchange information, they need to be linked together by some kind of physical media. Computer networks have used various types of physical media to exchange information, notably :
 
  - `electrical cable`. Information can be transmitted over different types of electrical cables. The most common ones are the twisted pairs (that are used in the telephone network, but also in enterprise networks) and the coaxial cables (that are still used in cable TV networks, but are no longer used in enterprise networks). Some networking technologies operate over the classical electrical cable.
@@ -157,14 +154,15 @@ From a Computer Science viewpoint, the physical transmission of information thro
 
 Many other types of encodings have been defined to transmit information over an electrical cable. All physical layers are able to send and receive physical symbols that represent values `0` and `1`. However, for various reasons that are outside the scope of this chapter, several physical layers exchange other physical symbols as well. For example, the Manchester encoding used in several physical layers can send four different symbols. The Manchester encoding is a differential encoding scheme in which time is divided into fixed-length periods. Each period is divided into two halves and two different voltage levels can be applied. To send a symbol, the sender must set one of these two voltage levels during each half period. To send a `1` (resp. `0`), the sender must set a high (resp. low) voltage during the first half of the period and a low (resp. high) voltage during the second half. This encoding ensures that there will be a transition at the middle of each period and allows the receiver to synchronize its clock to the sender's clock. Apart from the encodings for `0` and `1`, the Manchester encoding also supports two additional symbols : `InvH` and `InvB` where the same voltage level is used for the two half periods. By definition, these two symbols cannot appear inside a frame which is only composed of `0` and `1`. Some technologies use these special symbols as markers for the beginning or end of frames. This encoding is illustrated in :numref:`fig-manchester`.
 
- .. _fig-manchester:
- .. figure:: /principles/figures/manchester.*
-    :align: center
-    :scale: 50
 
-    Manchester encoding
+.. figure:: /principles/figures/manchester.*
+   :align: center
+   :scale: 50
+   :name: fig-manchester
+	  
+   Manchester encoding
 
-When the physical layer transmits a bit of information using light or an electromgnatic signal, there is no guarantee that the bit sent by the transmitter will be received as it was sent by the receiver. Several types of errors can impact this transmission.
+When the physical layer transmits a bit of information using light or an electromagnetic signal, there is no guarantee that the bit sent by the transmitter will be received as it was sent by the receiver. Several types of errors can impact this transmission.
     
 `Information Theory` defines two mechanisms that can be used to transmit information over a channel affected by random errors. These two mechanisms add redundancy to the transmitted information, to allow the receiver to detect or sometimes even correct transmission errors. A detailed discussion of these mechanisms is outside the scope of this chapter, but it is useful to consider a simple mechanism to understand its operation and its limitations.
 
@@ -367,7 +365,7 @@ As explained earlier, the physical layer can be subject to various types that af
 
 Besides framing, datalink layers also include mechanisms to detect and sometimes even recover from transmission errors. To allow a receiver to notice transmission errors, a sender must add some redundant information as an `error detection` code to the frame sent. This `error detection` code is computed by the sender on the frame that it transmits. When the receiver receives a frame with an error detection code, it recomputes it and verifies whether the received `error detection code` matches the computed `error detection code`. If they match, the frame is considered to be valid.
 
-.. todo: where to place checksum
+.. todo:: where to place checksum
 
 
 .. inginious:: mcq-rel-framing
@@ -452,7 +450,7 @@ of cellular network technologies such as 4G and 5G. Some of these technologies w
 characteristics that we ignore in this part of the book. 
 
 The Internet relies on a few architectural principles. First, all
-the information that hosts exchange must be divided into :term:`IP packets`.
+the information that hosts exchange must be divided into :term:`IP` :term:`packets`.
 IP stands for the :term:`Internet Protocol`. This is the :term:`protocol`
 or the set of rules that hosts apply when exchanging information. An IP packet is a variable-length sequence of bytes that contains two main
 parts :
@@ -467,15 +465,14 @@ contains both the IP address of the source or origin of the packet and
 the IP address of the destination or recipient of the packet. The network
 uses the destination address to deliver each packet to its final recipient.
 
-Throughout this part, we will consider the Internet as a blackbox as shown in :numref:`fig-network-blackbox`. We will focus on hos hosts interact and will reveal how the network really operates in the second part of the book. 
+Throughout this part, we will consider the Internet as a black box as shown in :numref:`fig-network-blackbox`. We will focus on hos hosts interact and will reveal how the network really operates in the second part of the book. 
 
    .. _fig-network-blackbox:
    
    .. tikz:: Internet hosts can exchange packets
       :libs: positioning, matrix, shapes
 
-      \tikzset{router/.style = {rectangle, draw, text centered, minimum height=2em} }
-      \tikzset{host/.style = {circle, draw, text centered, minimum height=2em} }
+	   
       \node[host] (B) {B}; 
       \node[cloud, draw, right=of B] (C) {Internet};
 
@@ -490,6 +487,9 @@ creates a sequence of bytes containing the header and the payload and
 then passes it to the network interface card. The other elements of the
 network will handle the packet and deliver it to its final destination.
 
+A primer on IP version 4
+------------------------
+
 Two different versions of the Internet protocol are used on today's Internet.
 The first one, named :term:`IP version 4` uses 32-bit long addresses. IPv4 addresses are often represented in `dotted-decimal` format as a sequence of four integers separated by a `dot`. The first integer is the decimal representation of the most significant byte of the 32-bit IPv4 address, ... For example, 
 
@@ -502,9 +502,9 @@ The first one, named :term:`IP version 4` uses 32-bit long addresses. IPv4 addre
    
 This version was designed when the Internet was a research network that connected computers in universities and research labs. At that time, having a maximum of :math:`2^{32}` IPv4 addresses was not considered to be a severe limitation. Today, almost all the available IPv4 addresses have been assigned to various organizations ranging from enterprises or universities to :term:`Internet Service Providers`.
 
-An IPv4 address is composed of two parts : a `subnetwork identifier` and a `host identifier`. The `subnetwork identifier` is composed of the high-order bits of the address, and the host identifier is encoded in the low-order bits of the address. This is illustrated below with a 22-bit subnetwork identifier shown in blue and a 12-bit host identifier in red.
+An IPv4 address is composed of two parts : a `subnetwork identifier` and a `host identifier`. The `subnetwork identifier` is composed of the high-order bits of the address, and the host identifier is encoded in the low-order bits of the address. This is illustrated in figure :numref:`fig-subnetwork` with a 22-bit subnetwork identifier shown in blue and a 12-bit host identifier in red.
 
-
+.. _fig-subnetwork:
 .. tikz:: The subnetwork (blue) and host identifiers (red) inside an IPv4 address
    :libs: positioning, matrix, arrows
 	   
@@ -538,13 +538,17 @@ Subnet      	Number of   Smallest      Highest
 The unit of information for IPv4 is the :term:`packet`. An IPv4 packet has a 20-byte header which contains the source and destination addresses of the packet and some control information. One of the control fields of the IPv4 header is a 16-bit field that contains the total length of the packet (header included). An IPv4 packet cannot be longer than 65535 bytes, header included. In practice, hosts rarely send really long packets and most IPv4 packets are shorter than about 1500 bytes. The IPv4 packet header is shown in :numref:`fig-ipv4-header`. 
 
 
-.. _fig-ipv4-header:
 .. figure:: /pkt/ipv4.*
    :align: center
    :scale: 80
+   :name: fig-ipv4-header
     
    The IP version 4 header
 
+
+A primer on IP version 6
+------------------------
+   
 The second deployed version of IP is :term:`IP version 6`. This version of
 IP introduces several changes compared to IP version 4 that will be discussed
 later. The most important one is the length of the IPv6 addresses.
@@ -594,7 +598,7 @@ The standard IPv6 header defined in :rfc:`2460` occupies 40 bytes and contains 8
 The transport layer
 ===================
 
-The network layer enables hosts to reach each others. However, different communication flows can take place between the same hosts. These communication flows might have different needs (some require reliable delivery, other not) and need to be distinguished. Ensuring an identification of a communication flow between two given hosts is the task of the `transport layer`. `Transport layer` entities exchange `segments`. A segment is a finite sequence of bytes that are transported inside one or more packets. A transport layer entity issues segments (or sometimes part of segments) as `Data.request` to the underlying network layer entity. This is illustrated in :numref:`fig-transport-layer1`. 
+The network layer enables hosts to reach each others through intermediate routers. However, different communication flows can take place between the same hosts. These communication flows might have different needs (some require reliable delivery, other not) and need to be distinguished. Ensuring an identification of a communication flow between two given hosts is the task of the `transport layer`. `Transport layer` entities exchange `segments`. A segment is a finite sequence of bytes that are transported inside one or more packets. A transport layer entity issues segments (or sometimes part of segments) as `Data.request` to the underlying network layer entity. This is illustrated in :numref:`fig-transport-layer1`. 
 
 There are different types of transport layers. The most widely used transport layers on the Internet are :term:`TCP`, that provides a reliable connection-oriented bytestream transport service, and :term:`UDP`, that provides an unreliable connection-less transport service.
 
@@ -623,67 +627,6 @@ There are different types of transport layers. The most widely used transport la
         \draw[rectangle, thick, draw, fill=gray!80] ([xshift=1em, yshift=-1em]pm.south) rectangle ([xshift=-1em]pr.south);
 
         \draw[arrow] (tl.east) -- (tr.west) node [midway, above] {Segments};
-
-
-There are two main types of transport services :
-
- - the `connectionless` service
- - the `connection-oriented` or `byte-stream` service
-
-The connectionless service allows applications to easily exchange messages or Service Data Units. On the Internet, this service is provided by the UDP protocol that will be explained in the next chapter. The connectionless transport service on the Internet is unreliable, but is able to detect transmission errors. This implies that an application will not receive data that has been corrupted due to transmission errors.
-
-The connectionless transport service allows networked application to exchange messages. Several networked applications may be running at the same time on a single host. Each of these applications must be able to exchange SDUs with remote applications. To enable these exchanges of SDUs, each networked application running on a host is identified by the following information :
-
- - the `host` on which the application is running
- - the `port number` on which the application `listens` for data
-
-On the Internet, the `port number` is an integer and the `host` is identified by its IPv4 or IPv6 address. A host that only has an IPv4 address cannot communicate with a host having only an IPv6 address. :numref:`fig-cl-transport` illustrates two applications that are using the datagram service provided by UDP on hosts that are using IPv4 addresses.
-
-    .. _fig-cl-transport:
-    .. tikz:: The connectionless or datagram service 
-        :libs: positioning, matrix, arrows
-
-        \tikzstyle{arrow} = [thick,->,>=stealth]
-        \tikzset{elem/.style = {rectangle, thick, draw, text centered, minimum height=2em, node distance=5em, font=\small}, }
-        \node[elem, minimum width=16em] (N) {Datagram service};
-        \node[elem, above=of N.west, anchor=west] (A1) {Application 1};
-        \node[elem, above=of N.east, anchor=east] (A2) {Application 2};
-
-        \draw[thick] ([xshift=3em, yshift=-1em]A1.west) -- ([xshift=3em, yshift=1em]N.west) node[midway] (I1) {\Large $\bullet$};
-        \draw[thick] ([xshift=-3em, yshift=-1em]A2.east) -- ([xshift=-3em, yshift=1em]N.east) node[midway] (I2) {\Large $\bullet$};
-
-        \node[left=of I1, align=left, font=\scriptsize] (T1) {Identification:\\IP address: 130.104.32.107\\Protocol: UDP\\Port: 1234};
-        \node[right=of I2, align=left, font=\scriptsize] (T2) {Identification:\\IP address: 139.165.16.12\\Protocol: UDP\\Port: 53};
-
-        \draw[arrow] (I1) -- (T1);
-        \draw[arrow] (I2) -- (T2);
-
-
-The second transport service is the connection-oriented service. On the Internet, this service is often called the `byte-stream service` as it creates a reliable byte stream between the two applications that are linked by a transport connection. Like the datagram service, the networked applications that use the byte-stream service are identified by the host on which they run and a port number. These hosts can be identified by an address or a name. :numref:`fig-co-transport` illustrates two applications that are using the byte-stream service provided by the TCP protocol on IPv6 hosts. The byte-stream service provided by TCP is reliable and bidirectional.
-
-    .. _fig-co-transport:
-    .. tikz:: The connection-oriented or byte-stream service
-        :libs: positioning, matrix, arrows
-
-        \tikzstyle{arrow} = [thick,->,>=stealth]
-        \tikzset{elem/.style = {rectangle, thick, draw, text centered, minimum height=2em, node distance=5em, font=\small}, }
-        \node[elem, minimum width=16em] (N) {Byte-stream service};
-        \node[elem, above=of N.west, anchor=west] (A1) {Application 1};
-        \node[elem, above=of N.east, anchor=east] (A2) {Application 2};
-
-        \draw[thick] ([xshift=3em, yshift=-1em]A1.west) -- ([xshift=3em, yshift=1em]N.west) node[midway] (I1) {\Large $\bullet$};
-        \draw[thick] ([xshift=-3em, yshift=-1em]A2.east) -- ([xshift=-3em, yshift=1em]N.east) node[midway] (I2) {\Large $\bullet$};
-
-        \node[left=of I1, align=left, font=\scriptsize] (T1) {Identification:\\IP address: 2001:db8::200c:417a\\Protocol: TCP\\Port: 1234};
-        \node[right=of I2, align=left, font=\scriptsize] (T2) {Identification:\\IP address: 2001:4860:a005::68\\Protocol: TCP\\Port: 53};
-
-        \draw[arrow] (I1) -- (T1);
-        \draw[arrow] (I2) -- (T2);
-
-
-
-The transport layer
--------------------
 
 A network is always designed and built to enable applications running on hosts to exchange information. In a previous chapter, we have explained the principles of the `network layer` that enables hosts connected to different types of datalink layers to exchange information through routers. These routers act as relays in the network layer and ensure the delivery of packets between any pair of hosts attached to the network.
 
@@ -719,6 +662,29 @@ The network layer ensures the delivery of packets on a hop-by-hop basis through 
 
 
 Most networks use a datagram organization and provide a simple service which is called the `connectionless service`.
+
+
+As the transport layer is built on top of the network layer, it is important to know the key features of the network layer service. In this book, we only consider the `connectionless network layer service` which is the most widespread. Its main characteristics are :
+
+ - the `connectionless network layer service` can only transfer SDUs of *limited size*
+ - the `connectionless network layer service` may discard SDUs
+ - the `connectionless network layer service` may corrupt SDUs
+ - the `connectionless network layer service` may delay, reorder or even duplicate SDUs
+
+
+These imperfections of the `connectionless network layer service` are caused by the operations of the `network layer`. This `layer` is able to deliver packets to their intended destination, but it cannot guarantee their delivery. The main cause of packet losses and errors are the buffers used on the network nodes. If the buffers of one of these nodes becomes full, all arriving packets must be discarded. This situation frequently happens in practice. Transmission errors can also affect packet transmissions on links where reliable transmission techniques are not enabled or because of errors in the buffers of the network nodes.
+	
+There are three main types of transport services :
+
+ - the `connectionless` service
+ - the `connection-oriented` (`byte-stream` or `message-mode`) service
+ - the `request-response` service
+   
+The connectionless transport service
+------------------------------------
+
+   
+The connectionless service allows applications to easily exchange messages or Service Data Units. On the Internet, this service is provided by the UDP protocol that will be explained in the next chapter. The connectionless transport service on the Internet is unreliable, but is able to detect transmission errors. This implies that an application will not receive data that has been corrupted due to transmission errors.
 
 The figure below provides a representation of the connectionless service as a `time-sequence diagram`. The user on the left, having address `S`, issues a `Data.request` primitive containing Service Data Unit (SDU) `M` that must be delivered by the service provider to destination `D`. The dashed line between the two primitives indicates that the `Data.indication` primitive that is delivered to the user on the right corresponds to the `Data.request` primitive sent by the user on the left.
 
@@ -794,39 +760,35 @@ Finally, some unreliable connectionless service providers may deliver to a desti
       b>>c [ label = "", arcskip="1"];
       c=>d1 [ label = "DATA.ind(S,D,\"xyz\")" ];
 
-As the transport layer is built on top of the network layer, it is important to know the key features of the network layer service. In this book, we only consider the `connectionless network layer service` which is the most widespread. Its main characteristics are :
 
- - the `connectionless network layer service` can only transfer SDUs of *limited size*
- - the `connectionless network layer service` may discard SDUs
- - the `connectionless network layer service` may corrupt SDUs
- - the `connectionless network layer service` may delay, reorder or even duplicate SDUs
+The connectionless transport service allows networked application to exchange messages. Several networked applications may be running at the same time on a single host. Each of these applications must be able to exchange SDUs with remote applications. To enable these exchanges of SDUs, each networked application running on a host is identified by the following information :
 
+ - the `host` on which the application is running
+ - the `port number` on which the application `listens` for data
 
-These imperfections of the `connectionless network layer service` are caused by the operations of the `network layer`. This `layer` is able to deliver packets to their intended destination, but it cannot guarantee their delivery. The main cause of packet losses and errors are the buffers used on the network nodes. If the buffers of one of these nodes becomes full, all arriving packets must be discarded. This situation frequently happens in practice. Transmission errors can also affect packet transmissions on links where reliable transmission techniques are not enabled or because of errors in the buffers of the network nodes.
+On the Internet, the `port number` is an integer and the `host` is identified by its IPv4 or IPv6 address. A host that only has an IPv4 address cannot communicate with a host having only an IPv6 address. :numref:`fig-cl-transport` illustrates two applications that are using the datagram service provided by UDP on hosts that are using IPv4 addresses.
 
+    .. _fig-cl-transport:
+    .. tikz:: The connectionless or datagram service 
+        :libs: positioning, matrix, arrows
 
-Transport layer services
-------------------------
+        \tikzstyle{arrow} = [thick,->,>=stealth]
+        \tikzset{elem/.style = {rectangle, thick, draw, text centered, minimum height=2em, node distance=5em, font=\small}, }
+        \node[elem, minimum width=16em] (N) {Datagram service};
+        \node[elem, above=of N.west, anchor=west] (A1) {Application 1};
+        \node[elem, above=of N.east, anchor=east] (A2) {Application 2};
 
-When two applications need to communicate, they need to structure their exchange of information. Structuring this exchange of information requires solving two different problems. The first problem is how to represent the information being exchanged knowing that the two applications may be running on hosts that use different operating systems, different processors and have different conventions to store information. This requires a common syntax to transfer the information between the two applications. For this chapter, let us assume that this syntax exists and that the two applications simply need to exchange bytes. We will discuss later how more complex data can be encoded as sequences of bytes to be exchanged. The second problem is how to organize the interactions between the application and the underlying network. From the application's viewpoint, the `network` will appear as the `transport layer` service. This `transport layer` can provide three types of services to the applications :
+        \draw[thick] ([xshift=3em, yshift=-1em]A1.west) -- ([xshift=3em, yshift=1em]N.west) node[midway] (I1) {\Large $\bullet$};
+        \draw[thick] ([xshift=-3em, yshift=-1em]A2.east) -- ([xshift=-3em, yshift=1em]N.east) node[midway] (I2) {\Large $\bullet$};
 
- - the `connectionless service`
- - the `connection oriented service`
- - the `request-response service`
+        \node[left=of I1, align=left, font=\scriptsize] (T1) {Identification:\\IP address: 130.104.32.107\\Protocol: UDP\\Port: 1234};
+        \node[right=of I2, align=left, font=\scriptsize] (T2) {Identification:\\IP address: 139.165.16.12\\Protocol: UDP\\Port: 53};
 
-The connectionless service
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+        \draw[arrow] (I1) -- (T1);
+        \draw[arrow] (I2) -- (T2);
 
-The `connectionless service` that we have described earlier is frequently used by users who need to exchange small SDUs. It can be easily built on top of the connectionless network layer service that we have described earlier. Users needing to either send or receive several different and potentially large SDUs, or who need structured exchanges often prefer the `connection-oriented service`.
-
-
-.. todo: description
-
-
-The connection-oriented service
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. index:: connection establishment
+The connection-oriented transport service
+-----------------------------------------
 
 An invocation of the `connection-oriented service` is divided into three phases. The first phase is the establishment of a `connection`. A `connection` is a temporary association between two users through a service provider. Several connections may exist at the same time between any pair of users. Once established, the connection is used to transfer SDUs. `Connections` usually provide one bidirectional stream supporting the exchange of SDUs between the two users that are associated through the `connection`. This stream is used to transfer data during the second phase of the connection called the `data transfer` phase. The third phase is the termination of the connection. Once the users have finished exchanging SDUs, they request the service provider to terminate the connection. As we will see later, there are also some cases where the service provider may need to terminate a connection itself.
 
@@ -1081,10 +1043,34 @@ To ensure a reliable delivery of the SDUs sent by each user over a connection, w
 
  An important point to note about the connection-oriented service is its reliability. A `connection-oriented` service can only guarantee the correct delivery of all SDUs provided that the connection has been released gracefully. This implies that while the connection is active, there is no guarantee for the actual delivery of the SDUs exchanged as the connection may need to be abruptly released at any time.
 
+
+The second transport service is the connection-oriented service. On the Internet, this service is often called the `byte-stream service` as it creates a reliable byte stream between the two applications that are linked by a transport connection. Like the datagram service, the networked applications that use the byte-stream service are identified by the host on which they run and a port number. These hosts can be identified by an address or a name. :numref:`fig-co-transport` illustrates two applications that are using the byte-stream service provided by the TCP protocol on IPv6 hosts. The byte-stream service provided by TCP is reliable and bidirectional.
+
+    .. _fig-co-transport:
+    .. tikz:: The connection-oriented or byte-stream service
+        :libs: positioning, matrix, arrows
+
+        \tikzstyle{arrow} = [thick,->,>=stealth]
+        \tikzset{elem/.style = {rectangle, thick, draw, text centered, minimum height=2em, node distance=5em, font=\small}, }
+        \node[elem, minimum width=16em] (N) {Byte-stream service};
+        \node[elem, above=of N.west, anchor=west] (A1) {Application 1};
+        \node[elem, above=of N.east, anchor=east] (A2) {Application 2};
+
+        \draw[thick] ([xshift=3em, yshift=-1em]A1.west) -- ([xshift=3em, yshift=1em]N.west) node[midway] (I1) {\Large $\bullet$};
+        \draw[thick] ([xshift=-3em, yshift=-1em]A2.east) -- ([xshift=-3em, yshift=1em]N.east) node[midway] (I2) {\Large $\bullet$};
+
+        \node[left=of I1, align=left, font=\scriptsize] (T1) {Identification:\\IP address: 2001:db8::200c:417a\\Protocol: TCP\\Port: 1234};
+        \node[right=of I2, align=left, font=\scriptsize] (T2) {Identification:\\IP address: 2001:4860:a005::68\\Protocol: TCP\\Port: 53};
+
+        \draw[arrow] (I1) -- (T1);
+        \draw[arrow] (I2) -- (T2);
+
+
+
 .. index:: request-response service
 
 The request-response service
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+----------------------------
 
 .. index:: Remote Procedure Call, RPC
 
@@ -1116,7 +1102,7 @@ The `request-response service` allows to efficiently exchange small amounts of i
 
 
 The transport layer
--------------------
+===================
 
 The transport layer entity interacts with both a user in the application layer and the network layer. It improves the network layer service to make it usable by applications. From the application's viewpoint, the main limitations of the network layer service come from its unreliable service:
 
@@ -1138,7 +1124,7 @@ We have already described in the datalink layers mechanisms to deal with data lo
 
 
 Connectionless transport
-^^^^^^^^^^^^^^^^^^^^^^^^
+------------------------
 
 The simplest service that can be provided in the transport layer is the connectionless transport service. Compared to the connectionless network layer service, this transport service includes two additional features :
 
@@ -1199,12 +1185,146 @@ The figure below shows a typical usage of port numbers. The client process uses 
             \draw[arrow] ([yshift=-1em]res.south east) -- ([yshift=-1em]res.south west) node [midway, below, font=\footnotesize] {Response};
 
 
+
+The User Datagram Protocol
+--------------------------
+
+The User Datagram Protocol (UDP) is defined in :rfc:`768`. It provides an unreliable connectionless transport service on top of the unreliable network layer connectionless service. The main characteristics of the UDP service are :
+
+ - the UDP service cannot deliver SDUs that are larger than 65467 bytes [#fmtuudp]_
+ - the UDP service does not guarantee the delivery of SDUs (losses can occur and SDUs can arrive out-of-sequence)
+ - the UDP service will not deliver a corrupted SDU to the destination
+
+Compared to the connectionless network layer service, the main advantage of the UDP service is that it allows several applications running on a host to exchange SDUs with several other applications running on remote hosts. Let us consider two hosts, e.g. a client and a server. The network layer service allows the client to send information to the server, but if an application running on the client wants to contact a particular application running on the server, then an additional addressing mechanism is required other than the IP address that identifies a host, in order to differentiate the application running on a host. This additional addressing is provided by `port numbers`. When a server using UDP is enabled on a host, this server registers a `port number`. This `port number` will be used by the clients to contact the server process via UDP.
+
+Figure :numref:`fig-udp-port` shows a typical usage of the UDP port numbers. The client process uses port number 1234, while the server process uses port number 5678. When the client sends a request, it is identified as originating from port number 1234 on the client host and destined to port number 5678 on the server host. When the server process replies to this request, the server's UDP implementation will send the reply as originating from port 5678 on the server host and destined to port 1234 on the client host.
+
+    .. _fig-udp-port:
+    .. tikz:: Usage of the UDP port numbers
+        :libs: positioning, matrix, arrows
+
+        \tikzstyle{arrow} = [thick,->,>=stealth]
+        \tikzset{elem/.style = {rectangle, thick, draw, text centered, font=\small, minimum height=2em, node distance=20em}}
+
+        \node[elem] (C) {\color{red} Client};
+        \node[elem, right=of C] (S) {\color{blue} Server};
+
+        \draw (C) -- (S);
+
+        \node[rectangle, draw, text centered, above right=.5em of C, font=\footnotesize] (req) {\begin{tabular}{c} Source port: {\color{red} 1234} \\ Destination port: {\color{blue} 5678} \end{tabular}};
+        \draw[arrow] ([yshift=1em]req.north west) -- ([yshift=1em]req.north east) node [midway, above, font=\footnotesize] {Request};
+
+        \node[rectangle, draw, text centered, below left=.5em of S, font=\footnotesize] (res) {\begin{tabular}{c} Source port: {\color{blue} 5678} \\ Destination port: {\color{red} 1234} \end{tabular}};
+        \draw[arrow] ([yshift=-1em]res.south east) -- ([yshift=-1em]res.south west) node [midway, below, font=\footnotesize] {Response};
+
+
+.. index:: UDP segment
+
+UDP uses a single segment format shown in figure :numref:`fig-udp-header`.
+
+.. figure:: /pkt/udp.*
+   :align: center
+   :scale: 120
+   :name: fig-udp-header
+
+   UDP Header Format
+
+The UDP header contains four fields :
+
+ - a 16-bit source port
+ - a 16-bit destination port
+ - a 16-bit length field
+ - a 16-bit checksum
+
+As the port numbers are encoded as a 16-bit field, there can be up to only 65535 different server processes that are bound to a different UDP port at the same time on a given server. In practice, this limit is never reached. However, it is worth noticing that most implementations divide the range of allowed UDP port numbers into three different ranges :
+
+ - the privileged port numbers (1 < port < 1024 )
+ - the ephemeral port numbers ( officially [#fephemeral]_ 49152 <= port <= 65535 )
+ - the registered port numbers (officially 1024 <= port < 49152)
+
+In most Unix variants, only processes having system administrator privileges can be bound to port numbers smaller than `1024`. Well-known servers such as :term:`DNS`, :term:`NNTP`,or :term:`RPC` use privileged port numbers. When a client needs to use UDP, it usually does not require a specific port number. In this case, the UDP implementation will allocate the first available port number in the ephemeral range. The range of registered port numbers should be used by servers. In theory, developers of network servers should register their port number officially through IANA [#fportnum]_, but few developers do this.
+
+UDP can be used over IPv4 or IPv6. When a host receives an IP packet, it needs to determine whether this packet should be processed by UDP or another transport protocol. This is done by using the `Protocol` field in the IP version 4 header. The :term:`Internet Assigned Numbers Authority` (IANA) maintains a `registry of the assigned Internet Protocol numbers <https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml>`_ that assigns one integer to each protocol which can be carried inside an IP packet. This registry specifies that ``17`` is reserved to indicate a UDP segment. Figure :numref:`fig-udp-ipv4` shows a UDP segment inside an IPv4 packet.
+
+.. figure:: /pkt/udp-ipv4.*
+   :align: center
+   :scale: 80
+   :name: fig-udp-ipv4
+
+   An IPv4 packet containing an empty UDP segment
+
+   
+
+.. index:: UDP Checksum, Checksum computation
+
+.. note:: Computation of the UDP checksum
+
+   Many Internet protocols use the Internet checksum defined in :rfc:`1071` to detect transmission errors. This checksum is computed by the sender and verified by the received. The algorithm defined in :rfc:`1071` uses modular arithmetic. It is computed over a sequence of bytes which is padded if it contains an odd number of bytes. The checksum is the one's complement of the sum of the 16 bits words modulo :math:`2^16`. The python code below computes the Internet checksum. 
+
+    .. code-block:: python
+
+       def internet_checksum(data: bytes) -> int:
+           """
+           Compute the Internet Checksum of the supplied data.
+	   :param data: The input data as bytes
+	   :return: The checksum as an integer (16-bit)
+	   """
+           if len(data) % 2:
+             data += b'\x00'  # pad to even length
+
+           checksum = 0
+           for i in range(0, len(data), 2):
+               word = (data[i] << 8) + data[i+1]
+               checksum += word
+               # carry around
+               checksum = (checksum & 0xFFFF) + (checksum >> 16)
+
+           return ~checksum & 0xFFFF  # one's complement
+
+
+       # Example usage
+       if __name__ == "__main__":
+           test_data = b"a sequence of bytes"
+           chk = internet_checksum(test_data)
+           print(f"Checksum: 0x{chk:04X}")
+
+   The byte array used to compute the checksum of an UDP segment contains :
+
+     - a pseudo header :rfc:`2460` containing the source address, the destination address, the packet length encoded as a 32-bit number and a 32-bit bit field containing the three most significant bytes set to 0 and the low-order byte set to 17
+     - the entire UDP segment, including its header
+
+.. spelling:word-list::
+
+   0xffff
+
+   This pseudo-header allows the receiver to detect errors affecting the source or destination addresses placed in the IP layer below. This is a violation of the layering principle that dates from the time when UDP and IP were elements of a single protocol. It should be noted that if the checksum algorithm computes value '0x0000', then value '0xffff' is transmitted. A UDP segment whose checksum is set to '0x0000' is a segment for which the transmitter did not compute a checksum upon transmission. Some :term:`NFS` servers chose to disable UDP checksums for performance reasons when running over IPv4, but this caused `problems <http://lynnesblog.telemuse.net/192>`_ that were difficult to diagnose. Over IPv6, the UDP checksum cannot be disabled. A detailed discussion of the implementation of the Internet checksum may be found in :rfc:`1071`
+
+
+Several types of applications rely on UDP. As a rule of thumb, UDP is used for applications where delay must be minimized or losses can be recovered by the application itself. A first-class of UDP-based applications are applications where the client sends a short request and expects a quick and short answer. The :term:`DNS` is an example of a UDP application that is often used in the wide area. However, in local area networks, many distributed systems rely on Remote Procedure Call (:term:`RPC`) that is often used on top of UDP. In Unix environments, the Network File System (:term:`NFS`) is built on top of RPC and runs frequently on top of UDP. A second class of UDP-based applications are the interactive computer games that need to frequently exchange small messages, such as the player's location or their recent actions. Many of these games use UDP to minimize the delay and can recover from losses. A third class of applications are multimedia applications such as interactive Voice over IP or interactive Video over IP. These interactive applications expect a delay shorter than about 200 milliseconds between the sender and the receiver and can recover from losses directly inside the application.
+
+
+
+.. rubric:: Footnotes
+
+
+.. [#fmtuudp] This limitation is due to the fact that the network layer cannot transport packets that are larger than 64 KBytes. As UDP does not include any segmentation/reassembly mechanism, it cannot split a SDU before sending it. The UDP header consumes 8 bytes and the IPv6 header 60. With IPv4, the IPv4 header only consumes 20 bytes and thus the maximum UDP payload size is 65507 bytes.
+
+.. [#fephemeral] A discussion of the ephemeral port ranges used by different TCP/UDP implementations may be found in http://www.ncftp.com/ncftpd/doc/misc/ephemeral_ports.html
+
+.. [#fportnum] The complete list of allocated port numbers is maintained by IANA_ . It may be downloaded from http://www.iana.org/assignments/port-numbers
+
+
    
 .. spelling:word-list::
 
    multi
    Multi
-
+   Wi-Fi
+   IoT
+   Wi
+   Fi
+   todo
+   
 .. include:: /links.rst
 
 

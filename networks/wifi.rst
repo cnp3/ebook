@@ -15,6 +15,8 @@ While most of the frequency ranges of the radio spectrum are reserved for specif
 Today, WiFi is a very popular wireless networking technology. There are more than several hundreds of millions of WiFi devices. The development of this technology started in the late 1980s with the `WaveLAN <http://en.wikipedia.org/wiki/WaveLAN>`_ proprietary wireless network. WaveLAN operated at 2 Mbps and used different frequency bands in different regions of the world. In the early 1990s, the IEEE_ created the `802.11 working group <http://www.ieee802.org/11/>`_ to standardize a family of wireless network technologies. This working group was very prolific and produced several wireless networking standards that use different frequency ranges and different physical layers. The table below provides a summary of the main 802.11 standards.
 
 
+.. _table-wifi:
+
 ========        =========       ==========      ===========     ==============
 Standard        Frequency       Typical         Max             Range (m)
                                 throughput      bandwidth       indoor/outdoor
@@ -35,26 +37,29 @@ When developing its family of standards, the `IEEE 802.11 working group <http://
 The architecture of WiFi networks is slightly different from the Local Area Networks that we have discussed until now. There are, in practice, two main types of WiFi networks : `independent` or `adhoc` networks  and `infrastructure` networks [#fBSS]_. An `independent` or `adhoc` network is composed of a set of devices that communicate with each other. These devices play the same role and the `adhoc` network is usually not connected to the global Internet. `Adhoc` networks are used when for example a few laptops need to exchange information or to connect a computer with a WiFi printer.
 
 
-.. figure:: /protocols/figures/datalink-fig-018-c.*
+.. figure:: /protocols/figures/datalink-fig-018-c.png
    :align: center
    :scale: 60
-
+   :name: fig-wifi-adhoc
+	   
    An 802.11 independent or adhoc network
 
 
 .. index:: infrastructure network
 
-Most WiFi networks are `infrastructure` networks. An `infrastructure` network contains one or more `access points` that are attached to a fixed Local Area Network (usually an Ethernet network) that is connected to other networks such as the Internet. The figure below shows such a network with two access points and four WiFi devices. Each WiFi device is associated to one access point and uses this access point as a relay to exchange frames with the devices that are associated to another access point or reachable through the LAN.
+Most WiFi networks are `infrastructure` networks. An `infrastructure` network contains one or more `access points` that are attached to a fixed Local Area Network (usually an Ethernet network) that is connected to other networks such as the Internet. Figure :numref:`fig-wifi-infra` shows such a network with two access points and four WiFi devices. Each WiFi device is associated to one access point and uses this access point as a relay to exchange frames with the devices that are associated to another access point or reachable through the LAN.
 
 
-.. figure:: /protocols/figures/datalink-fig-019-c.*
+.. figure:: /protocols/figures/datalink-fig-019-c.png
    :align: center
    :scale: 70
+   :name: fig-wifi-infra
 
    An 802.11 infrastructure network
 
-An 802.11 access point is a relay that operates in the datalink layer like switches. The figure below represents the layers of the reference model that are involved when a WiFi host communicates with a host attached to an Ethernet network through an access point.
+An 802.11 access point is a relay that operates in the datalink layer like switches. Figure :numref:`fig-wifi-ap` represents the layers of the reference model that are involved when a WiFi host communicates with a host attached to an Ethernet network through an access point.
 
+    .. _fig-wifi-ap:
 
     .. tikz:: An 802.11 access point
         :libs: positioning, matrix, arrows
@@ -90,11 +95,12 @@ An 802.11 access point is a relay that operates in the datalink layer like switc
 
 .. index:: 802.11 frame format
 
-802.11 devices exchange variable length frames, which have a slightly different structure than the simple frame format used in Ethernet LANs. We review the key parts of the 802.11 frames. Additional details may be found in [IEEE802.11]_ and [Gast2002]_ . An 802.11 frame contains a fixed length header, a variable length payload that may contain up 2324 bytes of user data and a 32 bits CRC. Although the payload can contain up to 2324 bytes, most 802.11 deployments use a maximum payload size of 1500 bytes as they are used in `infrastructure` networks attached to Ethernet LANs. An 802.11 data frame is shown below.
+802.11 devices exchange variable length frames, which have a slightly different structure than the simple frame format used in Ethernet LANs. We review the key parts of the 802.11 frames. Additional details may be found in [IEEE802.11]_ and [Gast2002]_ . An 802.11 frame contains a fixed length header, a variable length payload that may contain up 2324 bytes of user data and a 32 bits CRC. Although the payload can contain up to 2324 bytes, most 802.11 deployments use a maximum payload size of 1500 bytes as they are used in `infrastructure` networks attached to Ethernet LANs. An 802.11 data frame is shown in figure :numref:`fig-80211-packet`.
 
 .. figure:: /pkt/80211.*
    :align: center
    :scale: 100
+   :name: fig-80211-packet
 
    802.11 data frame format
 
@@ -111,6 +117,7 @@ When a frame is sent from a WiFi device to a server attached to the same LAN as 
 .. figure:: /pkt/80211-cts.*
    :align: center
    :scale: 100
+   :name: fig-80211-cts-ack
 
    IEEE 802.11 ACK and CTS frames
 
@@ -122,7 +129,8 @@ When a frame is sent from a WiFi device to a server attached to the same LAN as 
 .. figure:: /pkt/80211-rts.*
    :align: center
    :scale: 100
-
+   :name: fig-80211-rst
+	   
    IEEE 802.11 RTS frame format
 
 
@@ -134,20 +142,22 @@ When a frame is sent from a WiFi device to a server attached to the same LAN as 
 
 In addition to the data and control frames that we have briefly described above, 802.11 networks use several types of management frames. These management frames are used for various purposes. We briefly describe some of these frames below. A detailed discussion may be found in [IEEE802.11]_ and [Gast2002]_.
 
-.. spelling::
+.. spelling:word-list::
 
    broadcasted
-
+   adhoc
+   
 A first type of management frames are the `beacon` frames. These frames are broadcasted regularly by access points. Each `beacon frame` contains information about the capabilities of the access point (e.g. the supported 802.11 transmission rates) and a `Service Set Identity` (SSID). The SSID is a null-terminated ASCII string that can contain up to 32 characters. An access point may support several SSIDs and announce them in beacon frames. An access point may also choose to remain silent and not advertise beacon frames. In this case, WiFi stations may send `Probe request` frames to force the available access points to return a `Probe response` frame.
 
 
 .. note:: IP over 802.11
 
- Two types of encapsulation schemes were defined to support IP in Ethernet networks : the original encapsulation scheme, built above the Ethernet DIX format is defined in :rfc:`894` and a second encapsulation :rfc:`1042` scheme, built above the LLC/SNAP protocol [IEEE802.2]_. In 802.11 networks, the situation is simpler and only the :rfc:`1042` encapsulation is used. In practice, this encapsulation adds 6 bytes to the 802.11 header. The first four bytes correspond to the LLC/SNAP header. They are followed by the two bytes Ethernet Type field (`0x800` for IP and `0x806` for ARP). The figure below shows an IP packet encapsulated in an 802.11 frame.
+ Two types of encapsulation schemes were defined to support IP in Ethernet networks : the original encapsulation scheme, built above the Ethernet DIX format is defined in :rfc:`894` and a second encapsulation :rfc:`1042` scheme, built above the LLC/SNAP protocol [IEEE802.2]_. In 802.11 networks, the situation is simpler and only the :rfc:`1042` encapsulation is used. In practice, this encapsulation adds 6 bytes to the 802.11 header. The first four bytes correspond to the LLC/SNAP header. They are followed by the two bytes Ethernet Type field (`0x800` for IP and `0x806` for ARP). Figure :numref:`fig-ip-80211` shows an IP packet encapsulated in an 802.11 frame.
 
 .. figure:: /pkt/ip-80211.*
    :align: center
    :scale: 100
+   :name: fig-ip-80211
 
    IP over IEEE 802.11
 

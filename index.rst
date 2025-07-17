@@ -46,38 +46,13 @@ Part 1: Hosts
 .. toctree::
    :maxdepth: 4
 
-   hosts/introduction
-   hosts/udp 
-   hosts/naming
+   hosts/introduction 
    hosts/applications
-   .. hosts/transport-service
-   .. hosts/transport-co
-   .. hosts/email
-   .. hosts/http
-   .. hosts/http2
-   .. hosts/rpc
    hosts/security
-   hosts/security-protocols
-   .. hosts/ssh
-   .. hosts/tls
-   .. hosts/dnssec
-   .. hosts/transport2  .. pas sur de l'utilité
    hosts/reliability
    hosts/tcp
    hosts/quic
    hosts/network-host
-   .. hosts/ipv4
-   .. hosts/ipv6
-   .. hosts/referencemodels
-
-
-      ..   principles/reliability
-..  principles/network
-..   principles/transport
-..   principles/naming
-..   principles/sharing
-..   principles/referencemodels
-..   principles/security
 
 .. _part2:
 
@@ -89,12 +64,12 @@ Part 2: Networks
    :maxdepth: 4
 
 
-   network/network
-   network/routing
-   network/bgp
-   network/lan
-   network/sharing
-   network/congestion
+   networks/network
+   networks/routing
+   networks/bgp
+   networks/lan
+   networks/sharing
+   networks/congestion
               
 ..   protocols/transport-service
 ..   protocols/dns
@@ -124,24 +99,24 @@ Part 3: Practice
 .. toctree::
    :maxdepth: 4
 
-   exercises/intro
-   exercises/reliability
-   exercises/sockets
-   exercises/network
-   exercises/transport
+..   exercises/intro
+..   exercises/reliability
+..   exercises/sockets
+..   exercises/network
+..   exercises/transport
 
-   exercises/ex-sharing
-   exercises/dns
-   exercises/email
-   exercises/http
-   exercises/tls
-   exercises/trace
-   exercises/tcp
-   exercises/tcp-2
-   exercises/ipv6
-   exercises/routing-policies
-   exercises/routing-protocols
-   exercises/lan
+..   exercises/ex-sharing
+..   exercises/dns
+..   exercises/email
+..   exercises/http
+..   exercises/tls
+..   exercises/trace
+..   exercises/tcp
+..   exercises/tcp-2
+..   exercises/ipv6
+..   exercises/routing-policies
+..   exercises/routing-protocols
+..   exercises/lan
 
 
 .. old

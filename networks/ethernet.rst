@@ -1,10 +1,13 @@
 .. Copyright |copy| 2010, 2013 by Olivier Bonaventure
 .. This file is licensed under a `creative commons licence <http://creativecommons.org/licenses/by/3.0/>`_
 
+.. _chapter-ethernet:
+
 Ethernet
 ========
 
-.. spelling::
+.. spelling:word-list::
+   
 
    Palo
    Alto
@@ -16,10 +19,11 @@ The third decision was the frame format. The experimental 3 Mbps Ethernet networ
 
 .. index:: Organization Unique Identifier, OUI
 
-The datalink layer addresses used in Ethernet networks are often called MAC addresses. They are structured as shown in the figure below. The first bit of the address indicates whether the address identifies a network adapter or a multicast group. The upper 24 bits are used to encode an Organization Unique Identifier (OUI). This OUI identifies a block of addresses that has been allocated by the secretariat [#foui]_ that is responsible for the uniqueness of Ethernet addresses to a manufacturer. Once a manufacturer has received an OUI, it can build and sell products with one of the 16 million addresses in this block.
+The datalink layer addresses used in Ethernet networks are often called MAC addresses. They are structured as shown in figure :numref:`fig-ethernet-add-format`. The first bit of the address indicates whether the address identifies a network adapter or a multicast group. The upper 24 bits are used to encode an Organization Unique Identifier (OUI). This OUI identifies a block of addresses that has been allocated by the secretariat [#foui]_ that is responsible for the uniqueness of Ethernet addresses to a manufacturer. Once a manufacturer has received an OUI, it can build and sell products with one of the 16 million addresses in this block.
 
 
-
+    .. _fig-ethernet-add-format:
+    
     .. tikz:: 48 bits Ethernet address format
         :libs: positioning, matrix, arrows
 
@@ -44,19 +48,19 @@ The datalink layer addresses used in Ethernet networks are often called MAC addr
 
 .. index:: EtherType, Ethernet Type field
 
-The original 10 Mbps Ethernet specification [DIX]_ defined a simple frame format where each frame is composed of five fields. The Ethernet frame starts with a preamble (not shown in the figure below) that is used by the physical layer of the receiver to synchronize its clock with the sender's clock. The first field of the frame is the destination address. As this address is placed at the beginning of the frame, an Ethernet interface can quickly verify whether it is the frame recipient and if not, cancel the processing of the arriving frame. The second field is the source address. While the destination address can be either a unicast or a multicast/broadcast address, the source address must always be a unicast address. The third field is a 16 bits integer that indicates which type of network layer packet is carried inside the frame. This field is often called the `EtherType`. Frequently used `EtherType` values [#fethertype]_ include `0x0800` for IPv4, `0x86DD` for IPv6 [#fipv6ether]_ and `0x806` for the Address Resolution Protocol (ARP).
+The original 10 Mbps Ethernet specification [DIX]_ defined a simple frame format where each frame is composed of five fields. The Ethernet frame starts with a preamble (not shown in figure :numref:`fig-ethernet-dix`) that is used by the physical layer of the receiver to synchronize its clock with the sender's clock. The first field of the frame is the destination address. As this address is placed at the beginning of the frame, an Ethernet interface can quickly verify whether it is the frame recipient and if not, cancel the processing of the arriving frame. The second field is the source address. While the destination address can be either a unicast or a multicast/broadcast address, the source address must always be a unicast address. The third field is a 16 bits integer that indicates which type of network layer packet is carried inside the frame. This field is often called the `EtherType`. Frequently used `EtherType` values [#fethertype]_ include `0x0800` for IPv4, `0x86DD` for IPv6 [#fipv6ether]_ and `0x806` for the Address Resolution Protocol (ARP).
 
-The fourth part of the Ethernet frame is the payload. The minimum length of the payload is 46 bytes to ensure a minimum frame size, including the header of 512 bits. The Ethernet payload cannot be longer than 1500 bytes. This size was found reasonable when the first Ethernet specification was written. At that time, Xerox had been using its experimental 3 Mbps Ethernet that offered 554 bytes of payload and :rfc:`1122` required a minimum MTU of 572 bytes for IPv4. 1500 bytes was large enough to support these needs without forcing the network adapters to contain overly large memories. Furthermore, simulations and measurement studies performed in Ethernet networks revealed that CSMA/CD was able to achieve a very high utilization. This is illustrated in the figure below based on [SH1980]_, which shows the channel utilization achieved in Ethernet networks containing different numbers of hosts that are sending frames of different sizes.
+The fourth part of the Ethernet frame is the payload. The minimum length of the payload is 46 bytes to ensure a minimum frame size, including the header of 512 bits. The Ethernet payload cannot be longer than 1500 bytes. This size was found reasonable when the first Ethernet specification was written. At that time, Xerox had been using its experimental 3 Mbps Ethernet that offered 554 bytes of payload and :rfc:`1122` required a minimum MTU of 572 bytes for IPv4. 1500 bytes was large enough to support these needs without forcing the network adapters to contain overly large memories. Furthermore, simulations and measurement studies performed in Ethernet networks revealed that CSMA/CD was able to achieve a very high utilization. This is illustrated in figure :numref:`fig-ethernet-utilization` based on [SH1980]_, which shows the channel utilization achieved in Ethernet networks containing different numbers of hosts that are sending frames of different sizes.
 
-
+.. _fig-ethernet-utilization:
 .. figure:: /protocols/figures/ethernet-util.*
    :align: center
    :scale: 70
 
-   Impact of the frame length on the maximum channel utilisation [SH1980]_
+   Impact of the frame length on the maximum channel utilization [SH1980]_
 
 
-The last field of the Ethernet frame is a 32 bit Cyclical Redundancy Check (CRC). This CRC is able to catch a much larger number of transmission errors than the Internet checksum used by IP, UDP and TCP [SGP98]_. The format of the Ethernet frame is shown below.
+The last field of the Ethernet frame is a 32 bit Cyclical Redundancy Check (CRC). This CRC is able to catch a much larger number of transmission errors than the Internet checksum used by IP, UDP and TCP [SGP98]_. The format of the Ethernet frame is shown in figure :numref:`fig-ethernet-dix` .
 
 
 .. index:: Ethernet DIX frame format
@@ -64,6 +68,7 @@ The last field of the Ethernet frame is a 32 bit Cyclical Redundancy Check (CRC)
 .. figure:: /pkt/ethernet-dix.*
    :align: center
    :scale: 100
+   :name: fig-ethernet-dix	   
 
    Ethernet DIX frame format
 
@@ -78,14 +83,13 @@ The last field of the Ethernet frame is a 32 bit Cyclical Redundancy Check (CRC)
 .. index:: LLC
 
 
-The Ethernet frame format shown above is specified in [DIX]_. This is the format used to send both IPv4 :rfc:`894` and IPv6 packets :rfc:`2464`. After the publication of [DIX]_, the Institute of Electrical and Electronic Engineers (IEEE) began to standardize several Local Area Network technologies. IEEE worked on several LAN technologies, starting with Ethernet, Token Ring and Token Bus. These three technologies were completely different, but they all agreed to use the 48 bits MAC addresses specified initially for Ethernet [IEEE802]_ . While developing its Ethernet standard [IEEE802.3]_, the IEEE 802.3 working group was confronted with a problem. Ethernet mandated a minimum payload size of 46 bytes, while some companies were looking for a LAN technology that could transparently transport short frames containing only a few bytes of payload. Such a frame can be sent by an Ethernet host by padding it to ensure that the payload is at least 46 bytes long. However since the Ethernet header [DIX]_ does not contain a length field, it is impossible for the receiver to determine how many useful bytes were placed inside the payload field. To solve this problem, the IEEE decided to replace the `Type` field of the Ethernet [DIX]_ header with a length field [#ftypelen]_. This `Length` field contains the number of useful bytes in the frame payload. The payload must still contain at least 46 bytes, but padding bytes are added by the sender and removed by the receiver. In order to add the `Length` field without significantly changing the frame format, IEEE had to remove the `Type` field. Without this field, it is impossible for a receiving host to identify the type of network layer packet inside a received frame. To solve this new problem, IEEE developed a completely new sublayer called the Logical Link Control [IEEE802.2]_. Several protocols were defined in this sublayer. One of them provided a slightly different version of the `Type` field of the original Ethernet frame format. Another contained acknowledgments and retransmissions to provide a reliable service... In practice, [IEEE802.2]_ is never used to support IP in Ethernet networks. The figure below shows the official [IEEE802.3]_ frame format.
-
-
+The Ethernet frame format discussed above is specified in [DIX]_. This is the format used to send both IPv4 :rfc:`894` and IPv6 packets :rfc:`2464`. After the publication of [DIX]_, the Institute of Electrical and Electronic Engineers (IEEE) began to standardize several Local Area Network technologies. IEEE worked on several LAN technologies, starting with Ethernet, Token Ring and Token Bus. These three technologies were completely different, but they all agreed to use the 48 bits MAC addresses specified initially for Ethernet [IEEE802]_ . While developing its Ethernet standard [IEEE802.3]_, the IEEE 802.3 working group was confronted with a problem. Ethernet mandated a minimum payload size of 46 bytes, while some companies were looking for a LAN technology that could transparently transport short frames containing only a few bytes of payload. Such a frame can be sent by an Ethernet host by padding it to ensure that the payload is at least 46 bytes long. However since the Ethernet header [DIX]_ does not contain a length field, it is impossible for the receiver to determine how many useful bytes were placed inside the payload field. To solve this problem, the IEEE decided to replace the `Type` field of the Ethernet [DIX]_ header with a length field [#ftypelen]_. This `Length` field contains the number of useful bytes in the frame payload. The payload must still contain at least 46 bytes, but padding bytes are added by the sender and removed by the receiver. In order to add the `Length` field without significantly changing the frame format, IEEE had to remove the `Type` field. Without this field, it is impossible for a receiving host to identify the type of network layer packet inside a received frame. To solve this new problem, IEEE developed a completely new sublayer called the Logical Link Control [IEEE802.2]_. Several protocols were defined in this sublayer. One of them provided a slightly different version of the `Type` field of the original Ethernet frame format. Another contained acknowledgments and retransmissions to provide a reliable service... In practice, [IEEE802.2]_ is never used to support IP in Ethernet networks. Figure :numref:`fig-ethernet-8023-frame` shows the official [IEEE802.3]_ frame format.
 
 .. figure:: /pkt/ethernet-8023.*
    :align: center
    :scale: 100
-
+   :name: fig-ethernet-8023-frame
+	  
    Ethernet 802.3 frame format
 
 
@@ -97,8 +101,8 @@ The Ethernet frame format shown above is specified in [DIX]_. This is the format
  - does not reorder the transmitted frames
 
  The first property is a consequence of the utilization of CSMA/CD. The second property is a consequence of the physical organization of the Ethernet network as a shared bus. These two properties are important and all revisions to the Ethernet technology have preserved them.
-
-.. spelling::
+ 
+.. spelling:word-list::
 
    BaseF
    BaseT
@@ -115,9 +119,10 @@ The second physical layer was 10Base2. This physical layer used a thin coaxial c
 
 .. index:: Ethernet hub, 10BaseT
 
-The introduction of the twisted pairs led to two major changes to Ethernet. The first change concerns the physical topology of the network. 10Base2 and 10Base5 networks are shared buses, the coaxial cable typically passes through each room that contains a connected computer. A 10BaseT network is a star-shaped network. All the devices connected to the network are attached to a twisted pair cable that ends in the telecom closet. From a maintenance perspective, this is a major improvement. The cable is a weak point in 10Base2 and 10Base5 networks. Any physical damage on the cable broke the entire network and when such a failure occurred, the network administrator had to manually check the entire cable to detect where it was damaged. With 10BaseT, when one twisted pair is damaged, only the device connected to this twisted pair is affected and this does not affect the other devices. The second major change introduced by 10BaseT was that is was impossible to build a 10BaseT network by simply connecting all the twisted pairs together. All the twisted pairs must be connected to a relay that operates in the physical layer. This relay is called an `Ethernet hub`. A `hub` is thus a physical layer relay that receives an electrical signal on one of its interfaces, regenerates the signal and transmits it over all its other interfaces. Some `hubs` are also able to convert the electrical signal from one physical layer to another (e.g. 10BaseT to 10Base2 conversion).
+The introduction of the twisted pairs led to two major changes to Ethernet. The first change concerns the physical topology of the network. 10Base2 and 10Base5 networks are shared buses, the coaxial cable typically passes through each room that contains a connected computer. A 10BaseT network is a star-shaped network. All the devices connected to the network are attached to a twisted pair cable that ends in the telecom closet. From a maintenance perspective, this is a major improvement. The cable is a weak point in 10Base2 and 10Base5 networks. Any physical damage on the cable broke the entire network and when such a failure occurred, the network administrator had to manually check the entire cable to detect where it was damaged. With 10BaseT, when one twisted pair is damaged, only the device connected to this twisted pair is affected and this does not affect the other devices. The second major change introduced by 10BaseT was that is was impossible to build a 10BaseT network by simply connecting all the twisted pairs together. All the twisted pairs must be connected to a relay that operates in the physical layer. This relay is called an `Ethernet hub`. A `hub` is thus a physical layer relay that receives an electrical signal on one of its interfaces, regenerates the signal and transmits it over all its other interfaces. Some `hubs` are also able to convert the electrical signal from one physical layer to another (e.g. 10BaseT to 10Base2 conversion). An Ethernet hub is a relay that operates at the physical layer as shown in figure :numref:`fig-ethernet-hub`.
 
-
+    .. _fig-ethernet-hub:
+    
     .. tikz:: Ethernet hubs in the reference model
         :libs: positioning, matrix, arrows
 
@@ -146,12 +151,13 @@ The introduction of the twisted pairs led to two major changes to Ethernet. The 
 
 .. index:: collision domain
 
-Computers can directly be attached to Ethernet hubs. Ethernet hubs themselves can be attached to other Ethernet hubs to build a larger network. However, some important guidelines must be followed when building a complex network with hubs. First, the network topology must be a tree. As hubs are relays in the physical layer, adding a link between `Hub2` and `Hub3` in the network below would create an electrical shortcut that would completely disrupt the network. This implies that there cannot be any redundancy in a hub-based network. A failure of a hub or of a link between two hubs would partition the network into two isolated networks. Second, as hubs are relays in the physical layer, collisions can happen and must be handled by CSMA/CD as in a 10Base5 network. This implies that the maximum delay between any pair of devices in the network cannot be longer than the 51.2 microseconds `slot time`. If the delay is longer, collisions between short frames may not be correctly detected. This constraint limits the geographical spread of 10BaseT networks containing hubs.
+Computers can directly be attached to Ethernet hubs. Ethernet hubs themselves can be attached to other Ethernet hubs to build a larger network. However, some important guidelines must be followed when building a complex network with hubs. First, the network topology must be a tree. As hubs are relays in the physical layer, adding a link between `Hub2` and `Hub3` in the network of figure :numref:`fig-network-hubs` would create an electrical shortcut that would completely disrupt the network. This implies that there cannot be any redundancy in a hub-based network. A failure of a hub or of a link between two hubs would partition the network into two isolated networks. Second, as hubs are relays in the physical layer, collisions can happen and must be handled by CSMA/CD as in a 10Base5 network. This implies that the maximum delay between any pair of devices in the network cannot be longer than the 51.2 microseconds `slot time`. If the delay is longer, collisions between short frames may not be correctly detected. This constraint limits the geographical spread of 10BaseT networks containing hubs.
 
 
-.. figure:: /protocols/figures/ethernet-net-hub.*
+.. figure:: /protocols/figures/ethernet-net-hub.png
    :align: center
    :scale: 70
+   :name: fig-network-hubs
 
    A hierarchical Ethernet network composed of hubs
 
@@ -180,7 +186,8 @@ Standard         Comments
 40-100 Gbps      Optical fiber (experiences are performed with copper)
 ============     ========================================================
 
-.. spelling::
+
+.. spelling:word-list::
 
    Tx
    Fx
@@ -208,8 +215,9 @@ Ethernet Switches
 
 .. index:: Ethernet switch, Ethernet bridge, bridge, switch
 
-Increasing the physical layer bandwidth as in `Fast Ethernet` was only one of the solutions to improve the performance of Ethernet LANs. A second solution was to replace the hubs with more intelligent devices. As `Ethernet hubs` operate in the physical layer, they can only regenerate the electrical signal to extend the geographical reach of the network. From a performance perspective, it would be more interesting to have devices that operate in the datalink layer and can analyze the destination address of each frame and forward the frames selectively on the link that leads to the destination. Such devices are usually called `Ethernet switches` [#fbridges]_.  An `Ethernet switch` is a relay that operates in the datalink layer as is illustrated in the figure below.
+Increasing the physical layer bandwidth as in `Fast Ethernet` was only one of the solutions to improve the performance of Ethernet LANs. A second solution was to replace the hubs with more intelligent devices. As `Ethernet hubs` operate in the physical layer, they can only regenerate the electrical signal to extend the geographical reach of the network. From a performance perspective, it would be more interesting to have devices that operate in the datalink layer and can analyze the destination address of each frame and forward the frames selectively on the link that leads to the destination. Such devices are usually called `Ethernet switches` [#fbridges]_.  An `Ethernet switch` is a relay that operates in the datalink layer as is illustrated in figure :numref:`fig-switch-ref-model`.
 
+    .. _fig-switch-ref-model:
 
     .. tikz:: Ethernet switches in the reference model
         :libs: positioning, matrix, arrows
@@ -245,13 +253,14 @@ Increasing the physical layer bandwidth as in `Fast Ethernet` was only one of th
 
 .. index:: MAC address table (Ethernet switch)
 
-An `Ethernet switch` understands the format of the Ethernet frames and can selectively forward frames over each interface. For this, each `Ethernet switch` maintains a `MAC address table`. This table contains, for each MAC address known by the switch, the identifier of the switch's port over which a frame sent towards this address must be forwarded to reach its destination. This is illustrated below with the `MAC address table` of the bottom switch. When the switch receives a frame destined to address `B`, it forwards the frame on its South port. If it receives a frame destined to address `D`, it forwards it only on its North port.
+An `Ethernet switch` understands the format of the Ethernet frames and can selectively forward frames over each interface. For this, each `Ethernet switch` maintains a `MAC address table`. This table contains, for each MAC address known by the switch, the identifier of the switch's port over which a frame sent towards this address must be forwarded to reach its destination. This is illustrated in figure :numref:`fig-operation-switch` with the `MAC address table` of the bottom switch. When the switch receives a frame destined to address `B`, it forwards the frame on its South port. If it receives a frame destined to address `D`, it forwards it only on its North port.
 
 
-.. figure:: /protocols/figures/datalink-fig-013-c.*
+.. figure:: /protocols/figures/datalink-fig-013-c.png
    :align: center
    :scale: 70
-
+   :name: fig-operation-switch
+	   
    Operation of Ethernet switches
 
 
@@ -290,12 +299,13 @@ The pseudo-code below details how an Ethernet switch forwards Ethernet frames. I
  Ethernet switches are much better from this perspective thanks to the selective forwarding, a host will usually only receive the frames destined to itself as well as the multicast, broadcast and unknown frames. However, this does not imply that switches are completely secure. There are, unfortunately, attacks against Ethernet switches. From a security perspective, the `MAC address table` is one of the fragile elements of an Ethernet switch. This table has a fixed size. Some low-end switches can store a few tens or a few hundreds of addresses while higher-end switches can store tens of thousands of addresses or more. From a security point of view, a limited resource can be the target of Denial of Service attacks. Unfortunately, such attacks are also possible on Ethernet switches. A malicious host could overflow the `MAC address table` of the switch by generating thousands of frames with random source addresses. Once the `MAC address table` is full, the switch needs to broadcast all the frames that it receives. At this point, an attacker will receive unicast frames that are not destined to its address. The ARP attack discussed in the previous chapter could also occur with Ethernet switches [Vyncke2007]_. Recent switches implement several types of defenses against these attacks, but they need to be carefully configured by the network administrator. See [Vyncke2007]_ for a detailed discussion on security issues with Ethernet switches.
 
 
-The `MAC address learning` algorithm combined with the forwarding algorithm work well in a tree-shaped network such as the one shown above. However, to deal with link and switch failures, network administrators often add redundant links to ensure that their network remains connected even after a failure. Let us consider what happens in the Ethernet network shown in the figure below.
+The `MAC address learning` algorithm combined with the forwarding algorithm work well in a tree-shaped network such as the one shown above. However, to deal with link and switch failures, network administrators often add redundant links to ensure that their network remains connected even after a failure. Let us consider what happens in the Ethernet network shown in figure :numref:`fig-ethernet-loop`.
 
 
-.. figure:: /protocols/figures/datalink-fig-014-c.*
+.. figure:: /protocols/figures/datalink-fig-014-c.png
    :align: center
    :scale: 80
+   :name: fig-ethernet-loop
 
    Ethernet switches in a loop
 
@@ -313,13 +323,14 @@ The `MAC address learning` algorithm allows switches to be plug-and-play. Unfort
 The Spanning Tree Protocol (802.1d)
 ------------------------------------
 
-The `Spanning Tree Protocol` (STP), proposed in [Perlman1985]_, is a distributed protocol that is used by switches to reduce the network topology to a spanning tree, so that there are no cycles in the topology. For example, consider the network shown in the figure below. In this figure, each bold line corresponds to an Ethernet to which two Ethernet switches are attached. This network contains several cycles that must be broken to allow Ethernet switches, using the MAC address learning algorithm, to exchange frames.
+The `Spanning Tree Protocol` (STP), proposed in [Perlman1985]_, is a distributed protocol that is used by switches to reduce the network topology to a spanning tree, so that there are no cycles in the topology. For example, consider the network shown in figure :numref:`fig-ethernet-spanning`. In this figure, each bold line corresponds to an Ethernet to which two Ethernet switches are attached. This network contains several cycles that must be broken to allow Ethernet switches, using the MAC address learning algorithm, to exchange frames.
 
 
 
-.. figure:: /protocols/figures/datalink-fig-015-c.*
+.. figure:: /protocols/figures/datalink-fig-015-c.png
    :align: center
    :scale: 70
+   :name: fig-ethernet-spanning
 
    Spanning tree computed in a switched Ethernet network
 
@@ -379,12 +390,13 @@ Designated   yes              yes         yes
 
 ..  No `BPDU` should be received on a `Designated` or `Blocked` port when the topology is stable. The reception of a `BPDU` on such a port usually indicates a change in the topology.
 
-To illustrate the operation of the `Spanning Tree Protocol`, let us consider the simple network topology in the figure below.
+To illustrate the operation of the `Spanning Tree Protocol`, let us consider the simple network topology in the figure :numref:`fig-stp-example`.
 
 
 .. figure:: /protocols/figures/datalink-fig-016-c.*
    :Align: center
    :scale: 30
+   :name: fig-stp-example
 
    A simple Spanning tree computed in a switched Ethernet network
 
@@ -403,21 +415,23 @@ Virtual LANs
 
 Another important advantage of Ethernet switches is the ability to create Virtual Local Area Networks (VLANs). A virtual LAN can be defined as a `set of ports attached to one or more Ethernet switches`. A switch can support several VLANs and it runs one MAC learning algorithm for each Virtual LAN. When a switch receives a frame with an unknown or a multicast destination, it forwards it over all the ports that belong to the same Virtual LAN but not over the ports that belong to other Virtual LANs. Similarly, when a switch learns a source address on a port, it associates it to the Virtual LAN of this port and uses this information only when forwarding frames on this Virtual LAN.
 
-The figure below illustrates a switched Ethernet network with three Virtual LANs. `VLAN2` and `VLAN3` only require a local configuration of switch `S1`. Host `C` can exchange frames with host `D`, but not with hosts that are outside of its VLAN. `VLAN1` is more complex as there are ports of this VLAN on several switches. To support such VLANs, local configuration is not sufficient anymore. When a switch receives a frame from another switch, it must be able to determine the VLAN in which the frame originated to use the correct MAC table to forward the frame. This is done by assigning an identifier to each Virtual LAN and placing this identifier inside the headers of the frames that are exchanged between switches.
+Figure :numref:`fig-vlan` illustrates a switched Ethernet network with three Virtual LANs. `VLAN2` and `VLAN3` only require a local configuration of switch `S1`. Host `C` can exchange frames with host `D`, but not with hosts that are outside of its VLAN. `VLAN1` is more complex as there are ports of this VLAN on several switches. To support such VLANs, local configuration is not sufficient anymore. When a switch receives a frame from another switch, it must be able to determine the VLAN in which the frame originated to use the correct MAC table to forward the frame. This is done by assigning an identifier to each Virtual LAN and placing this identifier inside the headers of the frames that are exchanged between switches.
 
 
-.. figure:: /protocols/figures/datalink-fig-017-c.*
+.. figure:: /protocols/figures/datalink-fig-017-c.png
    :align: center
    :scale: 70
+   :name: fig-vlan	   
 
    Virtual Local Area Networks in a switched Ethernet network
 
-IEEE defined in the [IEEE802.1q]_ standard a special header to encode the VLAN identifiers. This 32 bit header includes a 12 bit VLAN field that contains the VLAN identifier of each frame. The format of the [IEEE802.1q]_ header is described below.
+IEEE defined in the [IEEE802.1q]_ standard a special header to encode the VLAN identifiers. This 32 bit header includes a 12 bit VLAN field that contains the VLAN identifier of each frame. The format of the [IEEE802.1q]_ header is shown in figure :numref:`fig-8021q`.
 
 .. figure:: /pkt/8021q.*
    :align: center
    :scale: 100
-
+   :name: fig-8021q
+	   
    Format of the 802.1q header
 
 The [IEEE802.1q]_ header is inserted immediately after the source MAC address in the Ethernet frame (i.e. before the EtherType field). The maximum frame size is increased by 4 bytes. It is encoded in 32 bits and contains four fields. The Tag Protocol Identifier is set to `0x8100` to allow the receiver to detect the presence of this additional header. The `Priority Code Point` (PCP) is a three bit field that is used to support different transmission priorities for the frame. Value `0` is the lowest priority and value `7` the highest. Frames with a higher priority can expect to be forwarded earlier than frames having a lower priority. The `C` bit is used for compatibility between Ethernet and Token Ring networks. The last 12 bits of the 802.1q header contain the VLAN identifier. Value `0` indicates that the frame does not belong to any VLAN while value `0xFFF` is reserved. This implies that 4094 different VLAN identifiers can be used in an Ethernet network.
