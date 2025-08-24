@@ -43,6 +43,7 @@ Part 1: Principles
 
 .. toctree::
    :maxdepth: 4
+   :caption: Part 1: Principles
 
    principles/reliability
    principles/network
@@ -60,6 +61,7 @@ Part 2: Protocols
 
 .. toctree::
    :maxdepth: 4
+   :caption: Part 2: Protocols
 
    protocols/transport-service
    protocols/dns
@@ -88,6 +90,7 @@ Part 3: Practice
 
 .. toctree::
    :maxdepth: 4
+   :caption: Part 3: Practice
 
    exercises/intro
    exercises/reliability
@@ -165,6 +168,7 @@ Appendices
 
 .. toctree::
    :maxdepth: 4
+   :caption: Appendices
 
    glossary
    bibliography
