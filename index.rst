@@ -69,7 +69,6 @@ Part 2: Networks
    networks/bgp
    networks/lan
    networks/sharing
-   networks/congestion
               
 ..   protocols/transport-service
 ..   protocols/dns
