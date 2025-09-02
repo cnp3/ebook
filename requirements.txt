@@ -47,3 +47,4 @@ sphinxcontrib-spelling==8.0.1
 -e git+https://github.com/sphinx-contrib/tikz@a6ba7fad8bc2a3beec4da6144c0906ac344943ab#egg=sphinxcontrib_tikz
 typing_extensions==4.13.2
 urllib3==2.4.0
+sphinxcontrib-jquery==4.1

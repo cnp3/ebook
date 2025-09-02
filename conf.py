@@ -28,7 +28,7 @@ import sys, os, shutil
 
 # add sphinx extensions
 sys.path.append(os.path.abspath("./util"))
-extensions = ['sphinx.ext.todo', 'sphinxcontrib.mscgen', 'sphinx.ext.graphviz', 'sphinxcontrib.tikz', 'sphinx.ext.mathjax', 'sphinxcontrib.spelling', 'interactive_syllabus_directives', 'matplotlib.sphinxext.plot_directive']
+extensions = ['sphinx.ext.todo', 'sphinxcontrib.mscgen', 'sphinx.ext.graphviz', 'sphinxcontrib.tikz', 'sphinx.ext.mathjax', 'sphinxcontrib.spelling', 'interactive_syllabus_directives', 'matplotlib.sphinxext.plot_directive', 'sphinxcontrib.jquery']
 
 
 #extensions = ['sphinx.ext.todo', 'sphinx.ext.pngmath', 'sphinxcontrib.mscgen','sphinx.ext.graphviz','sphinxcontrib.tikz','sphinxcontrib.spelling']
