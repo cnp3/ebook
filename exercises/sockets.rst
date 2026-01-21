@@ -93,11 +93,13 @@ The socket is a powerful abstraction as it allows processes to communicate even 
 
 
 
-Networked applications were usually implemented by using the :term:`socket` :term:`API`. This API was designed when TCP/IP was first implemented in the `Unix BSD`_ operating system [Sechrest]_ [LFJLMT]_, and has served as the model for many APIs between applications and the networking stack in an operating system. Although the socket API is very popular, other APIs have also been developed. For example, the STREAMS API has been added to several Unix System V variants [Rago1993]_. The socket API is supported by most programming languages and several textbooks have been devoted to it. Users of the C language can consult [DC2009]_, [Stevens1998]_, [SFR2004]_ or [Kerrisk2010]_. The Java implementation of the socket API is described in [CD2008]_ and in the `Java tutorial <http://java.sun.com/docs/books/tutorial/networking/sockets/index.html>`_. In this section, we will use the C socket API to illustrate the key concepts.
+Networked applications were usually implemented by using the :term:`socket` :term:`API`. This API was designed when TCP/IP was first implemented in the `Unix BSD`_ operating system [Sechrest]_ [LFJLMT]_, and has served as the model for many APIs between applications and the networking stack in an operating system. Although the socket API is very popular, other APIs have also been developed. For example, the STREAMS API has been added to several Unix System V variants [Rago1993]_. The socket API is supported by most programming languages and several textbooks have been devoted to it. Users of the C language can consult [DC2009]_, [Stevens1998]_, [SFR2004]_ or [Kerrisk2010]_. The Java implementation of the socket API is described in [CD2008]_ and in the `Java tutorial <http://java.sun.com/docs/books/tutorial/networking/sockets/index.html>`_. Python's socket module documentation can be found in the `Python documentation <https://docs.python.org/3/library/socket.html>`_.
 
 The socket API is quite low-level and should be used only when you need a complete control of the network access. If your application simply needs, for instance, to retrieve data from a web server, there are much simpler and higher-level APIs.
 
-A detailed discussion of the socket API is outside the scope of this section and the references cited above provide a detailed discussion of all the  details of the socket API. As a starting point, it is interesting to compare the socket API with the service primitives that we have discussed in the previous chapter. Let us first consider the connectionless service that consists of the following two primitives :
+A detailed discussion of the socket API is outside the scope of this section and the references cited above provide a detailed discussion of all the  details of the socket API. In this section, we will use the Python socket API to illustrate the key concepts. Python provides a simple and portable interface to sockets through its built-in ``socket`` module.
+
+As a starting point, it is interesting to compare the socket API with the service primitives that we have discussed in the previous chapter. Let us first consider the connectionless service that consists of the following two primitives :
 
  - `DATA.request(destination,message)` is used to send a message to a specified destination. In this socket API, this corresponds to the ``send`` method.
  - `DATA.indication(message)` is issued by the transport service to deliver a message to the application. In the socket API, this corresponds to the return of the ``recv`` method that is called by the application.
@@ -107,219 +109,304 @@ The `DATA` primitives are exchanged through a service access point. In the socke
 Sending data to a peer using a socket
 -------------------------------------
 
-In order to reach a peer, a process must know its :term:`address`. An address is a value that identifies a peer in a given network. There exists many different kinds of address families. For example, some of them allow reaching a peer using the file system on the computer. Some others enable communicating with a remote peer through a network. The socket API provides generic functions: the peer address is taken as a ``struct sockaddr *``, which can point to any family of address. This is partly why sockets are a powerful abstraction.
+In order to reach a peer, a process must know its :term:`address`. An address is a value that identifies a peer in a given network. There exists many different kinds of address families. For example, some of them allow reaching a peer using the file system on the computer. Some others enable communicating with a remote peer through a network. The socket API provides generic functions that work with different address families. This is partly why sockets are a powerful abstraction.
 
-The ``sendto`` system call allows to send data to a peer identified by its socket address through a given socket.
+The ``sendto`` method allows sending data to a peer identified by its socket address through a given socket.
 
-.. code-block:: c
+.. code-block:: python
 
-    ssize_t sendto(int sockfd, const void *buf, size_t len, int flags, const struct sockaddr *dest_addr, socklen_t addrlen);
+    socket.sendto(data, address)
 
-The first argument is the file descriptor of the socket that we use to perform the communication. ``buf`` is a buffer of length ``len`` containing the bytes to send to the peer. The usage of ``flags`` argument is out of the scope of this section and can be set to 0. ``dest_addr`` is the socket address of the destination to which we want to send the bytes, its length is passed using the ``addrlen`` argument.
+The ``data`` argument is a bytes object containing the data to send to the peer. The ``address`` is the socket address of the destination, which is typically a tuple ``(host, port)`` for network sockets.
 
-In the following example, a C program is sending the bytes ``'h'``, ``'e'``, ``'l'``, ``'l'`` and ``'o'`` to a remote process located at address ``peer_addr``, using the already created socket ``sock``.
+In the following example, a Python program sends the bytes ``'h'``, ``'e'``, ``'l'``, ``'l'`` and ``'o'`` to a remote process located at address ``peer_addr``, using the already created socket ``sock``.
 
-.. code-block:: c
+.. code-block:: python
 
-    int send_hello_to_peer(int sock, struct sockaddr *peer_addr, size_t peer_addr_len) {
-        ssize_t sent = sendto(sock, "hello", strlen("hello"), 0, peer_addr, peer_addr_len);
-        if (sent == -1) {
-            printf("could not send the message, error: %s\n", strerror(errno));
-            return errno;
-        }
-        return 0;
-    }
+    import socket
 
-As the ``sendto`` function is generic, this function will work correctly independently from the fact that the peer's address is defined as a path on the computer filesystem or a network address.
+    def send_hello_to_peer(sock, peer_addr):
+        """
+        Send the message 'hello' to a peer.
+
+        Args:
+            sock: A socket object used to send the data
+            peer_addr: The address of the peer (e.g., ('::1', 55555) for IPv6)
+        """
+        try:
+            # sendto() sends the bytes to the specified address
+            # The message must be encoded to bytes (strings are Unicode in Python)
+            sent = sock.sendto(b"hello", peer_addr)
+            print(f"Sent {sent} bytes to {peer_addr}")
+        except OSError as e:
+            # OSError is raised when a socket operation fails
+            print(f"Could not send the message: {e}")
+            raise
+
+As the ``sendto`` method is generic, this function will work correctly independently from the fact that the peer's address is defined as a path on the computer filesystem or a network address.
 
 
 Receiving data from a peer using a socket
 -----------------------------------------
 
-Operating systems allow assigning an address to a socket using the ``bind`` system call. This is useful when you want to receive messages from another program to which you announced your socket address.
-Once the address is assigned to the socket, the program can receive data from others using system calls such as ``recv`` and ``read``. Note that we can use the ``read`` system call as the operating system provides a socket as a file descriptor.
+Operating systems allow assigning an address to a socket using the ``bind`` method. This is useful when you want to receive messages from another program to which you announced your socket address.
+Once the address is assigned to the socket, the program can receive data from others using methods such as ``recv`` and ``recvfrom``.
 
 The following program binds its socket to a given socket address and then waits for receiving new bytes, using the already created socket ``sock``.
 
-.. code-block:: c
+.. code-block:: python
 
-    #define MAX_MESSAGE_SIZE 2500
-    int bind_and_receive_from_peer(int sock, struct sockaddr *local_addr, socklen_t local_addr_len) {
-        int err = bind(sock, local_addr, local_addr_len);  // assign our address to the socket
-        if (err == -1) {
-            printf("could not bind on the socket, error: %s\n", strerror(errno));
-            return errno;
-        }
-        char buffer[MAX_MESSAGE_SIZE];  // allocate a buffer of MAX_MESSAGE_SIZE bytes on the stack
-        ssize_t n_received = recv(sock, buffer, MAX_MESSAGE_SIZE, 0);   // equivalent to do: read(sock, buffer, MAX_MESSAGE_SIZE);
-        if (n_received == -1) {
-            printf("could not receive the message, error: %s\n", strerror(errno));
-            return errno;
-        }
+    import socket
 
-        // let's print what we received !
-        printf("received %ld bytes:\n", n_received);
-        for (int i = 0 ; i < n_received ; i++) {
-            printf("0x%hhx ('%c') ", buffer[i], buffer[i]);
-        }
-        printf("\n");
-        return 0;
-    }
+    MAX_MESSAGE_SIZE = 2500
+
+    def bind_and_receive_from_peer(sock, local_addr):
+        """
+        Bind the socket to a local address and receive a message.
+
+        Args:
+            sock: A socket object
+            local_addr: The local address to bind to (e.g., ('', 55555) for any interface)
+        """
+        try:
+            # bind() assigns our address to the socket so others can reach us
+            sock.bind(local_addr)
+        except OSError as e:
+            print(f"Could not bind on the socket: {e}")
+            raise
+
+        try:
+            # recv() blocks until data is received
+            # It returns a bytes object containing the received data
+            data = sock.recv(MAX_MESSAGE_SIZE)
+        except OSError as e:
+            print(f"Could not receive the message: {e}")
+            raise
+
+        # Print what we received
+        print(f"Received {len(data)} bytes:")
+        # Display each byte in hexadecimal and as a character
+        for byte in data:
+            # byte is already an integer in Python 3
+            char = chr(byte) if 32 <= byte < 127 else '.'
+            print(f"0x{byte:02x} ('{char}') ", end="")
+        print()
+
+        return data
 
 .. note::
 
-    Depending on the socket address family, the operating system might implicitly assign an address to an unbound socket upon a call to ``write``, ``send`` or ``sendto``. While this is a useful behavior, describing it precisely is out of the scope of this section.
+    Depending on the socket address family, the operating system might implicitly assign an address to an unbound socket upon a call to ``send`` or ``sendto``. While this is a useful behavior, describing it precisely is out of the scope of this section.
 
-.. warning::
+.. note::
 
-    While the provided examples show the usage of a `char` array as the data buffer, implementers should **never** assume that it contains a string. C programs rely on the `char` type to refer to a 8-bit long value, and arbitrary binary values can be exchanged over the network (i.e., the ``\0`` value does not delimit the end of the data).
+    In Python, socket operations work with ``bytes`` objects, not strings. To convert a string to bytes, use ``string.encode('utf-8')``. To convert bytes to a string, use ``bytes.decode('utf-8')``. When working with binary protocols, you should work directly with bytes.
 
-Using this code, the program will read and print an arbitrary message received from an arbitrary peer who knows the program's socket address. If we want to know the address of the peer that sent us the message, we can use the ``recvfrom`` system call. This is what a modified version of ``bind_and_receive_from_peer`` is doing below.
+Using this code, the program will read and print an arbitrary message received from an arbitrary peer who knows the program's socket address. If we want to know the address of the peer that sent us the message, we can use the ``recvfrom`` method. This is what a modified version of ``bind_and_receive_from_peer`` is doing below.
 
-.. code-block:: c
+.. code-block:: python
 
-    #define MAX_MESSAGE_SIZE 2500
-    int bind_and_receive_from_peer_with_addr(int sock) {
-        int err = bind(sock, local_addr, local_addr_len);  // assign our address to the socket
-        if (err == -1) {
-            printf("could not bind on the socket, error: %s\n", strerror(errno));
-            return errno;
-        }
-        struct sockaddr_storage peer_addr;  // allocate the peer's address on the stack. It will be initialized when we receive a message
-        socklen_t peer_addr_len = sizeof(struct sockaddr_storage); // variable that will contain the length of the peer's address
-        char buffer[MAX_MESSAGE_SIZE];  // allocate a buffer of MAX_MESSAGE_SIZE bytes on the stack
-        ssize_t n_received = recvfrom(sock, buffer, MAX_MESSAGE_SIZE, 0, (struct sockaddr *) &peer_addr, &peer_addr_len);
-        if (n_received == -1) {
-            printf("could not receive the message, error: %s\n", strerror(errno));
-            return errno;
-        }
+    import socket
 
-        // let's print what we received !
-        printf("received %ld bytes:\n", n_received);
-        for (int i = 0 ; i < n_received ; i++) {
-            printf("0x%hhx ('%c') ", buffer[i], buffer[i]);
-        }
-        printf("\n");
+    MAX_MESSAGE_SIZE = 2500
 
-        // let's now print the address of the peer
-        uint8_t *peer_addr_bytes = (uint8_t *) &peer_addr;
-        printf("the socket address of the peer is (%ld bytes):\n", peer_addr_len);
-        for (int i = 0 ; i < peer_addr_len ; i++) {
-            printf("0x%hhx ", peer_addr_bytes[i]);
-        }
-        printf("\n");
-        return 0;
-    }
+    def bind_and_receive_from_peer_with_addr(sock, local_addr):
+        """
+        Bind the socket and receive a message, also retrieving the sender's address.
+
+        Args:
+            sock: A socket object
+            local_addr: The local address to bind to
+        """
+        try:
+            # Assign our address to the socket
+            sock.bind(local_addr)
+        except OSError as e:
+            print(f"Could not bind on the socket: {e}")
+            raise
+
+        try:
+            # recvfrom() returns both the data AND the sender's address
+            # This is useful when we need to reply to the sender
+            data, peer_addr = sock.recvfrom(MAX_MESSAGE_SIZE)
+        except OSError as e:
+            print(f"Could not receive the message: {e}")
+            raise
+
+        # Print what we received
+        print(f"Received {len(data)} bytes:")
+        for byte in data:
+            char = chr(byte) if 32 <= byte < 127 else '.'
+            print(f"0x{byte:02x} ('{char}') ", end="")
+        print()
+
+        # Print the address of the peer who sent the message
+        # For IPv6, peer_addr is a tuple: (host, port, flowinfo, scope_id)
+        # For IPv4, peer_addr is a tuple: (host, port)
+        print(f"Message received from: {peer_addr}")
+
+        return data, peer_addr
 
 
-This function is now using the ``recvfrom`` system call that will also provide the address of the peer who sent the message. As addresses are generic and can have different sizes, ``recvfrom`` also tells us the size of the address that it has written.
+This function is now using the ``recvfrom`` method that returns both the data and the address of the peer who sent the message. In Python, the address is returned as a tuple, making it easy to use directly with ``sendto`` for sending a reply.
 
 ``connect``: connecting a socket to a remote address
 ----------------------------------------------------
 
-Operating systems enable linking a socket to a remote address so that every information sent through the socket will only be sent to this remote address, and the socket will only receive messages sent by this remote address. This can be done using the ``connect`` system call shown below.
+Operating systems enable linking a socket to a remote address so that every information sent through the socket will only be sent to this remote address, and the socket will only receive messages sent by this remote address. This can be done using the ``connect`` method shown below.
 
-.. code-block:: c
+.. code-block:: python
 
-    int connect(int sockfd, const struct sockaddr *addr, socklen_t addrlen);
+    socket.connect(address)
 
-This system call will assign the socket ``sockfd`` to the ``addr`` remote socket address. The process can then use the ``send`` and ``write`` system calls that do not to specify the destination socket address.
-Furthermore, the calls to ``recv`` and ``read`` will only deliver messages sent by this remote address. This is useful when we only care about the other peer messages.
+This method will assign the socket to the ``address`` remote socket address. The process can then use the ``send`` method without needing to specify the destination socket address.
+Furthermore, calls to ``recv`` will only deliver messages sent by this remote address. This is useful when we only care about the other peer's messages.
 
 The following program connects a socket to a remote address, sends a message and waits for a reply.
 
-.. code-block:: c
+.. code-block:: python
 
-    #define MAX_MESSAGE_SIZE 2500
-    int send_hello_to_and_read_reply_from_connected_peer(int sock, struct sockaddr *peer_addr, size_t peer_addr_len) {
-        int err = connect(sock, peer_addr, peer_addr_len); // connect the socket to the peer
-        if (err == -1) {
-            printf("cound not connect the socket: %s\n", strerror(errno));
-            return errno;
-        }
-        ssize_t written = write(sock, "hello", strlen("hello"));  // we can use the generic write(2) system call: we do not need to specify the destination socket address
-        if (written == -1) {
-            printf("could not send the message, error: %s\n", strerror(errno));
-            return errno;
-        }
-        uint8_t buffer[MAX_MESSAGE_SIZE]; // allocate the receive buffer on the stack
-        ssize_t amount_read = read(sock, buffer, MAX_MESSAGE_SIZE);
-        if (amount_read == -1) {
-            printf("could not read on the socket, error: %s\n", strerror(errno));
-            return errno;
-        }
-        // let's print what we received !
-        printf("received %ld bytes:\n", amount_read);
-        for (int i = 0 ; i < amount_read ; i++) {
-            printf("0x%hhx ('%c') ", buffer[i], buffer[i]);
-        }
-        return 0;
-    }
+    import socket
+
+    MAX_MESSAGE_SIZE = 2500
+
+    def send_hello_and_read_reply(sock, peer_addr):
+        """
+        Connect to a peer, send 'hello', and wait for a reply.
+
+        Args:
+            sock: A socket object
+            peer_addr: The address of the peer to connect to
+        """
+        try:
+            # connect() links the socket to the remote address
+            # After this, we can use send() instead of sendto()
+            sock.connect(peer_addr)
+        except OSError as e:
+            print(f"Could not connect the socket: {e}")
+            raise
+
+        try:
+            # After connect(), we can use send() without specifying the address
+            # The socket remembers the peer's address
+            sent = sock.send(b"hello")
+            print(f"Sent {sent} bytes")
+        except OSError as e:
+            print(f"Could not send the message: {e}")
+            raise
+
+        try:
+            # recv() will only receive messages from the connected peer
+            data = sock.recv(MAX_MESSAGE_SIZE)
+        except OSError as e:
+            print(f"Could not read on the socket: {e}")
+            raise
+
+        # Print what we received
+        print(f"Received {len(data)} bytes:")
+        for byte in data:
+            char = chr(byte) if 32 <= byte < 127 else '.'
+            print(f"0x{byte:02x} ('{char}') ", end="")
+        print()
+
+        return data
 
 
 Creating a new socket to communicate through a network
 ------------------------------------------------------
 
-Until now, we learned how to use sockets that were already created. When writing a whole program, you will have to create you own sockets and choose the concrete technology that it will use to communicate with others. In this section, we will create new sockets and allow a program to communicate with processes located on another computer using a network. The most recent standardized technology used to communicate through a network is the :term:`IPv6` network protocol.
+Until now, we learned how to use sockets that were already created. When writing a whole program, you will have to create your own sockets and choose the concrete technology that it will use to communicate with others. In this section, we will create new sockets and allow a program to communicate with processes located on another computer using a network. The most recent standardized technology used to communicate through a network is the :term:`IPv6` network protocol.
 In the IPv6 protocol, hosts are identified using *IPv6 addresses*. Modern operating systems allow IPv6 network communications between programs to be done using the socket API, just as we did in the previous sections.
 
-A program can use the ``socket`` system call to create a new socket.
+A program can use the ``socket.socket()`` constructor to create a new socket.
 
-.. code-block:: c
+.. code-block:: python
 
-    int socket(int domain, int type, int protocol)
+    import socket
+    sock = socket.socket(family, type, proto=0)
 
-The ``domain`` parameter specifies the address family that we will use to concretely perform the communication. For an IPv6 socket, the ``domain`` parameter will be set to the value ``AF_INET6``, telling the operating system that we plan to communicate using IPv6 addresses.
-The ``type`` parameter specifies the communication guarantees that we need. For now, we will use the type ``SOCK_DGRAM`` which allows us to send *unreliable messages*. This means that each data that we send at each call of ``sendto`` will either be completely received or not received at all. The last parameter will be set to ``0``. The following line creates a socket, telling the operating system that we want to communicate using IPv6 addresses and that we want to send unreliable messages.
+The ``family`` parameter specifies the address family that we will use to concretely perform the communication. For an IPv6 socket, the ``family`` parameter will be set to the value ``socket.AF_INET6``, telling the operating system that we plan to communicate using IPv6 addresses.
+The ``type`` parameter specifies the communication guarantees that we need. For now, we will use the type ``socket.SOCK_DGRAM`` which allows us to send *unreliable messages* (UDP datagrams). This means that each data that we send at each call of ``sendto`` will either be completely received or not received at all. The following line creates a socket, telling the operating system that we want to communicate using IPv6 addresses and that we want to send unreliable messages.
 
 
-.. code-block:: c
+.. code-block:: python
 
-    int sock = socket(AF_INET6, SOCK_DGRAM, 0);
+    import socket
+
+    # Create an IPv6 UDP socket
+    # AF_INET6: use IPv6 addresses
+    # SOCK_DGRAM: use unreliable datagrams (UDP)
+    sock = socket.socket(socket.AF_INET6, socket.SOCK_DGRAM)
 
 
 Sending a message to a remote peer using its IPv6 address
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Now that we created an IPv6 socket, we can use it to reach another program if we know its IPv6 address. IPv6 addresses have a human-readable format that can be represented as a string of characters. The details of IPv6 addresses are out of scope of this section but here are some examples :
- - The ``::1`` IPv6 address identifies the computer on which the current program is running.
+ - The ``::1`` IPv6 address identifies the computer on which the current program is running (the loopback address).
  - The ``2001:6a8:308f:9:0:82ff:fe68:e520`` IPv6 address identifies the computer serving the ``https://beta.computer-networking.info`` website.
 
-An IPv6 address often identifies a computer and not a program running on the computer. In order to identify a specific program running on a specific computer, we use a *port number* in addition to the IPv6 address. A program using an IPv6 socket is this identified using :
+An IPv6 address often identifies a computer and not a program running on the computer. In order to identify a specific program running on a specific computer, we use a *port number* in addition to the IPv6 address. A program using an IPv6 socket is thus identified using :
  - The IPv6 address of the computer
  - The port number identifying the program running on the computer
 
-A program can use the ``struct sockaddr_in6`` to represent IPv6 socket addresses. The following program creates a ``struct sockaddr_in6`` that identifies the program that reserved the port number ``55555`` on the computer identified by the ``::1`` IPv6 address.
+In Python, IPv6 socket addresses are represented as tuples. The following code creates an address tuple that identifies the program that reserved the port number ``55555`` on the computer identified by the ``::1`` IPv6 address.
 
 
-.. code-block:: c
+.. code-block:: python
 
-    struct sockaddr_in6 peer_addr;			// allocate the address on the stack
-    memset(&peer_addr, 0, sizeof(peer_addr));		// fill the address with 0-bytes to avoid garbage-values
-    peer_addr.sin6_family = AF_INET6;			// indicate that the address is an IPv6 address
-    peer_addr.sin6_port = htons(55555);			// indicate that the programm is running on port 55555
-    inet_pton(AF_INET6, "::1", &peer_addr.sin6_addr);   // indicate that the program is running on the computer identified by the ::1 IPv6 address
+    # In Python, IPv6 addresses are simple tuples: (host, port, flowinfo, scope_id)
+    # For most use cases, flowinfo and scope_id can be set to 0
+    # The host is a string containing the IPv6 address
+    # The port is an integer
+
+    peer_addr = ("::1", 55555, 0, 0)  # IPv6 address ::1, port 55555
+
+    # For convenience, you can also use just (host, port) and Python will fill in the rest
+    peer_addr = ("::1", 55555)
 
 Now, we have built everything we need to send a message to the remote program. The ``create_socket_and_send_message`` function below assembles all the building blocks we created until now in order to send the message ``"hello"`` to the program running on port ``55555`` on the computer identified by the ``::1`` IPv6 address.
 
-.. code-block:: c
+.. code-block:: python
 
-    int create_socket_and_send_message() {
-        int sock = socket(AF_INET6, SOCK_DGRAM, 0);		// create a socket using IPv6 addresses
-        if (sock == -1) {
-            printf("could not create the IPv6 SOCK_DGRAM socket, error: %s\n", strerror(errno));
-            return errno;
-        }
-        struct sockaddr_in6 peer_addr;				// allocate the address on the stack
-        memset(&peer_addr, 0, sizeof(peer_addr));		// fill the address with 0-bytes to avoid garbage-values
-        peer_addr.sin6_family = AF_INET6;			// indicate that the address is an IPv6 address
-        peer_addr.sin6_port = htons(55555);			// indicate that the programm is running on port 55555
-        inet_pton(AF_INET6, "::1", &peer_addr.sin6_addr);   	// indicate that the program is running on the computer identified by the ::1 IPv6 address
+    import socket
 
-        send_hello_to_peer(sock, (struct sockaddr *) &peer_addr, sizeof(peer_addr));	// use the send_hello_to_peer function that we defined previously
-	close(sock);						// release the resources used by the socket
-        return 0;
-    }
+    def create_socket_and_send_message():
+        """
+        Create an IPv6 UDP socket and send 'hello' to a peer.
+        This function demonstrates the complete workflow of socket communication.
+        """
+        try:
+            # Create an IPv6 UDP socket
+            # AF_INET6: use IPv6 addresses
+            # SOCK_DGRAM: use unreliable datagrams (UDP)
+            sock = socket.socket(socket.AF_INET6, socket.SOCK_DGRAM)
+        except OSError as e:
+            print(f"Could not create the IPv6 SOCK_DGRAM socket: {e}")
+            raise
+
+        # Define the peer's address as a tuple (host, port)
+        # ::1 is the IPv6 loopback address (equivalent to 127.0.0.1 in IPv4)
+        # 55555 is the port number where the peer is listening
+        peer_addr = ("::1", 55555)
+
+        try:
+            # Use the send_hello_to_peer function we defined previously
+            send_hello_to_peer(sock, peer_addr)
+        finally:
+            # Always close the socket to release system resources
+            # Using a try/finally block ensures the socket is closed even if an error occurs
+            sock.close()
+
+.. note::
+
+    In Python, it's recommended to use the ``with`` statement for automatic resource management:
+
+    .. code-block:: python
+
+        with socket.socket(socket.AF_INET6, socket.SOCK_DGRAM) as sock:
+            send_hello_to_peer(sock, ("::1", 55555))
+        # Socket is automatically closed when exiting the 'with' block
 
 Note that we can reuse our ``send_hello_to_peer`` function without any modification as we wrote it to handle any kind of sockets, including sockets using the IPv6 network protocol.
 
@@ -364,22 +451,22 @@ Here are some exercises that will help you to learn how to use sockets.
 .. inginious:: sockets-server-application
 
 
-During this course, you will be asked to implement a transport protocol running on Linux devices. To prepare yourself, try to implement the protocol described in the above tasks on your Linux personal machine. If you did these exercises correctly, most of your answers can be used as it (do not forget to include the required header files). In addition to the previously produced code, you will need
+During this course, you will be asked to implement a transport protocol running on Linux devices. To prepare yourself, try to implement the protocol described in the above tasks on your Linux personal machine. In addition to the previously produced code, you will need
 
- - to wrap the ``create_and_send_message`` in a ``client`` executable that can parse user arguments (the ``getopt(3)`` function might help) and appropriately call the wrapped function;
- - to wrap the ``recv_and_handle_message`` server function in a ``server`` executable, similarly to what you have done with the ``client`` executable.
+ - to wrap the ``create_socket_and_send_message`` in a ``client.py`` script that can parse user arguments (Python's ``argparse`` module is useful for this) and appropriately call the wrapped function;
+ - to wrap a ``recv_and_handle_message`` server function in a ``server.py`` script, similarly to what you have done with the client script.
 
 As an example, here is what you could have to invoke your programs.
 
 .. code-block:: bash
 
-    # Let put the server on port 10000 (small port numbers are priviledged) and run it as a daemon)
-    $ ./server :: 10000 &
-    # Let us call the client and request an addition result, as an int
-    $ ./client -op + ::1 10000 1 3 5 7 9
+    # Put the server on port 10000 (ports below 1024 are privileged) and run it in the background
+    $ python server.py :: 10000 &
+    # Call the client and request an addition result, as an int
+    $ python client.py --op + ::1 10000 1 3 5 7 9
     Result: 25
     # Request now a multiplication, but returned as a string
-    $ ./client -op * -s ::1 10000 1 3 5 7 9
+    $ python client.py --op '*' -s ::1 10000 1 3 5 7 9
     Result: 945
 
 If you want to observe the packets exchanged over the network, use a packet dissector such as `wireshark`_ or `tcpdump`_, listen the loopback interface (``lo``) and filter UDP packets using port 10000 (``udp.port==10000`` in `wireshark`_, ``udp port 10000`` with `tcpdump`_).
@@ -387,7 +474,7 @@ If you want to observe the packets exchanged over the network, use a packet diss
 .. rubric:: Footnotes
 
 
-.. [#fhtonl] For example, the ``htonl(3)`` (resp. ``ntohl(3)``) function the standard C library converts a 32-bits unsigned integer from the byte order used by the CPU to the network byte order (resp. from the network byte order to the CPU byte order). Similar functions exist in other programming languages.
+.. [#fhtonl] For example, in C, the ``htonl(3)`` (resp. ``ntohl(3)``) function from the standard library converts a 32-bits unsigned integer from the byte order used by the CPU to the network byte order (resp. from the network byte order to the CPU byte order). In Python, the ``struct`` module provides similar functionality. For example, ``struct.pack('!I', value)`` packs a 32-bit unsigned integer in network byte order (big-endian), where ``'!'`` specifies network byte order and ``'I'`` specifies an unsigned 32-bit integer. To unpack, use ``struct.unpack('!I', data)[0]``.
 
 
 
