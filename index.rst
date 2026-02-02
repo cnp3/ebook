@@ -98,11 +98,11 @@ Part 3: Practice
 .. toctree::
    :maxdepth: 4
 
-..   exercises/intro
-..   exercises/reliability
-..   exercises/sockets
-..   exercises/network
-..   exercises/transport
+   exercises/intro
+   exercises/sockets
+..  exercises/reliability
+..  exercises/network
+..  exercises/transport
 
 ..   exercises/ex-sharing
 ..   exercises/dns
