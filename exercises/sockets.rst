@@ -436,19 +436,19 @@ Exercises
 
 Here are some exercises that will help you to learn how to use sockets.
 
-.. inginious:: sockets-creating-a-socket
+.. inginious:: sockets-creating-a-socket-python
 
 
-.. inginious:: sockets-creating-a-listening-socket
+.. inginious:: creating-a-listening-socket-python
 
 
-.. inginious:: sockets-sending-strings
+.. inginious:: sockets-sending-strings-python
 
 
-.. inginious:: sockets-client-application
+.. inginious:: sockets-client-application-python
 
 
-.. inginious:: sockets-server-application
+.. inginious:: sockets-server-application-python
 
 
 During this course, you will be asked to implement a transport protocol running on Linux devices. To prepare yourself, try to implement the protocol described in the above tasks on your Linux personal machine. In addition to the previously produced code, you will need

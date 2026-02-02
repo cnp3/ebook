@@ -106,7 +106,7 @@ exclude_trees = ['_build', 'venv', 'python', 'tmp']
 # List of files that should not be automatically compiled by sphynx because they are included
 
 
-exclude_patterns = [ '*#*', "python/*" , "principles/*", "protocols/*", "._*rst", "venv/*", "tmp/*", "old/*", "exercises/*"]
+exclude_patterns = [ '*#*', "python/*" , "principles/*", "protocols/*", "._*rst", "venv/*", "tmp/*", "old/*"]
 
 
 # epilog add to all included files
