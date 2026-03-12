@@ -100,8 +100,11 @@ Part 3: Practice
 
    exercises/intro
    exercises/sockets
+   exercises/ipv6
+   exercises/network
+   exercises/routing-protocols
+   exercises/routing-policies
 ..  exercises/reliability
-..  exercises/network
 ..  exercises/transport
 
 ..   exercises/ex-sharing
@@ -112,9 +115,6 @@ Part 3: Practice
 ..   exercises/trace
 ..   exercises/tcp
 ..   exercises/tcp-2
-..   exercises/ipv6
-..   exercises/routing-policies
-..   exercises/routing-protocols
 ..   exercises/lan
 
 
