@@ -553,7 +553,7 @@ The second deployed version of IP is :term:`IP version 6`. This version of
 IP introduces several changes compared to IP version 4 that will be discussed
 later. The most important one is the length of the IPv6 addresses.
 An IPv6 address is 128 bits long. This implies that in theory, there
-are :math:`2^128=340,282,366,920,938,463,463,374,607,431,768,211,456` unique IPv6 addresses. The number of IPv6 addresses is
+are :math:`2^{128}=340,282,366,920,938,463,463,374,607,431,768,211,456` unique IPv6 addresses. The number of IPv6 addresses is
 much larger than the number of IPv4 addresses, and we do not
 expect the IPv6 addressing space to become exhausted one day.
 
