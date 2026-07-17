@@ -465,7 +465,7 @@ contains both the IP address of the source or origin of the packet and
 the IP address of the destination or recipient of the packet. The network
 uses the destination address to deliver each packet to its final recipient.
 
-Throughout this part, we will consider the Internet as a black box as shown in :numref:`fig-network-blackbox`. We will focus on hos hosts interact and will reveal how the network really operates in the second part of the book. 
+Throughout this part, we will consider the Internet as a black box as shown in :numref:`fig-network-blackbox`. We will focus on how hosts interact and will reveal how the network really operates in the second part of the book. 
 
    .. _fig-network-blackbox:
    
@@ -553,7 +553,7 @@ The second deployed version of IP is :term:`IP version 6`. This version of
 IP introduces several changes compared to IP version 4 that will be discussed
 later. The most important one is the length of the IPv6 addresses.
 An IPv6 address is 128 bits long. This implies that in theory, there
-are :math:`2^128=340,282,366,920,938,463,463,374,607,431,768,211,456` unique IPv6 addresses. The number of IPv6 addresses is
+are :math:`2^{128}=340,282,366,920,938,463,463,374,607,431,768,211,456` unique IPv6 addresses. The number of IPv6 addresses is
 much larger than the number of IPv4 addresses, and we do not
 expect the IPv6 addressing space to become exhausted one day.
 
