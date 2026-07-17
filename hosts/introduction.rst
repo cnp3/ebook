@@ -502,7 +502,7 @@ The first one, named :term:`IP version 4` uses 32-bit long addresses. IPv4 addre
    
 This version was designed when the Internet was a research network that connected computers in universities and research labs. At that time, having a maximum of :math:`2^{32}` IPv4 addresses was not considered to be a severe limitation. Today, almost all the available IPv4 addresses have been assigned to various organizations ranging from enterprises or universities to :term:`Internet Service Providers`.
 
-An IPv4 address is composed of two parts : a `subnetwork identifier` and a `host identifier`. The `subnetwork identifier` is composed of the high-order bits of the address, and the host identifier is encoded in the low-order bits of the address. This is illustrated in figure :numref:`fig-subnetwork` with a 22-bit subnetwork identifier shown in blue and a 12-bit host identifier in red.
+An IPv4 address is composed of two parts : a `subnetwork identifier` and a `host identifier`. The `subnetwork identifier` is composed of the high-order bits of the address, and the host identifier is encoded in the low-order bits of the address. This is illustrated in figure :numref:`fig-subnetwork` with a 22-bit subnetwork identifier shown in blue and a 10-bit host identifier in red.
 
 .. _fig-subnetwork:
 .. tikz:: The subnetwork (blue) and host identifiers (red) inside an IPv4 address
