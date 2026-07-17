@@ -465,7 +465,7 @@ contains both the IP address of the source or origin of the packet and
 the IP address of the destination or recipient of the packet. The network
 uses the destination address to deliver each packet to its final recipient.
 
-Throughout this part, we will consider the Internet as a black box as shown in :numref:`fig-network-blackbox`. We will focus on hos hosts interact and will reveal how the network really operates in the second part of the book. 
+Throughout this part, we will consider the Internet as a black box as shown in :numref:`fig-network-blackbox`. We will focus on how hosts interact and will reveal how the network really operates in the second part of the book. 
 
    .. _fig-network-blackbox:
    
